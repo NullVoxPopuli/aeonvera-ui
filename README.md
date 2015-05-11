@@ -29,8 +29,12 @@ or copy the latest command from [the NVM repo](https://github.com/creationix/nvm
     npm install -g bower
     export PATH="$(npm bin):$PATH"
     
+### Initial app dependencies
+
+    npm install
+    bower install
+    
 # Running
 
-    bower install
     ember server
     
