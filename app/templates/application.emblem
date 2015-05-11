@@ -1,0 +1,10 @@
+.off-canvas-wrap data-offcanvas='true'
+  .inner-wrap
+    = render 'shared/menu/menu'
+
+  section.main-section
+    .shell
+      span hi
+      = outlet
+  = render 'shared/footer'
+  a.exit-off-canvas

@@ -1,0 +1,15 @@
+@import "settings";
+
+@import "foundation";
+
+@import "colors";
+@import "footer";
+
+
+body{
+  background-color: $body-background;
+}
+
+.shell{
+  background-color: $content-background;
+}
