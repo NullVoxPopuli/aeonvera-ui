@@ -1,4 +1,4 @@
-# aeonvera-ui
+# aeonvera-ui [![Build Status](https://travis-ci.org/NullVoxPopuli/aeonvera-ui.svg)](https://travis-ci.org/NullVoxPopuli/aeonvera-ui)
 Ember frontend for aeonvera
 
 
