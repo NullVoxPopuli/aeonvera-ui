@@ -3,21 +3,49 @@
     h6.subheader.text-center = t 'subheader'
 
 .row.center-margin
-  .columns.medium-6.text-center
+  .columns.medium-4.text-center
     h3 = t 'lookingforevent'
     hr
+    a.button = t 'buttons.eventcalendar'
     /= link_to "Event Calendar", calendar_home_index_path, :class => "button success"
 
-  .columns.medium-6.text-center
+  .columns.medium-4.text-center
     h3 = t 'hostinganevent'
     hr
+    a.button.success = t 'buttons.createyourevent'
     /= link_to "Create Your Event", new_hosted_event_path, :class => "button success"
 
+  .columns.medium-4.text-center
+    h3 = t 'lookingforscene'
+    hr
+    a.button = t 'buttons.scenesbycity'
 
-hr
+br
+br
 
 .text-center
-  / span<>
+  ul.button-group
+    li: a.button.small.success = t 'buttons.login'
     /= link_to('Login', new_user_session_path, :class => "button primary")
-  / span<>
+    li: a.button.small.success = t 'buttons.signup'
     /= link_to('Sign Up', new_user_registration_path, :class => "button primary")
+
+br
+br
+
+.imageoverlay.text-center.panel.bg-header.header
+  h3.text-center = t 'whatisheader'
+  span = t 'whatis'
+
+.row.center-margin
+  .columns.medium-4.text-center
+    h3: a = t 'features'
+    span = t 'featuresinfo'
+  .columns.medium-4.text-center
+    h3: a = t 'pricing'
+    span = t 'pricinginfo'
+  .columns.medium-4.text-center
+    h3: a = t 'faq'
+    span = t 'faqinfo'
+
+br
