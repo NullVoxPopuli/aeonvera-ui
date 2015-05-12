@@ -3,26 +3,19 @@ footer
     .medium-6.columns
       ul.inline-list
         li
-          a href="/terms_of_service" Terms of Service
-        li
-          a href="/privacy" Privacy
+          a href="/terms_of_service" = t 'tos'
 
         li
-          a href="https://github.com/NullVoxPopuli/aeonvera/issues?state=open"
-            | Submit Ideas
+          a href="/privacy" = t 'privacy'
+
+        li = submit-idea-link
 
     .medium-6.columns
       .right
         ul.inline-list
-          li
-            a href="mainto:support@aeonvera.com"
-              = fa-icon "envelope"
-          li
-            a href="https://www.facebook.com/aeonvera"
-              = fa-icon "facebook-official"
-
+          li = mail-support-icon-link
+          li = facebook-icon-link
 
   .row.copy
     .small-12.columns
-      .right
-        | Copyright &copy; 2013-2015 Precognition LLC
+      .right = t 'copyright'

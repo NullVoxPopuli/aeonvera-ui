@@ -6,13 +6,11 @@
     /      span
 
     section.middle.tab-bar-section
-      h1.title ÆONVERA
-      /= APPLICATION_CONFIG[:app_name]
+      h1.title = t 'appname'
 
     section.right-small
       a.right-off-canvas-toggle.menu-icon
-        span
-        / = fa_icon 'bars'
+        span = fa-icon 'bars'
 
   aside.right-off-canvas-menu
     ul.off-canvas-list
@@ -32,8 +30,8 @@
       / title area
       li.name
         h1
-          a ÆONVERA
-      /= nav_title
+          a = t 'appname'
+          /= nav_title
       li.divider
     section.top-bar-section
       / right nav section

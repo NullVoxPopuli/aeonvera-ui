@@ -1,0 +1,23 @@
+.imageoverlay.text-center.panel.bg-header.header
+    h1.text-center = t 'appname'
+    h6.subheader.text-center = t 'subheader'
+
+.row style='margin: 0 auto;'
+  .columns.medium-6.text-center
+    h3 = t 'lookingforevent'
+    hr
+    /= link_to "Event Calendar", calendar_home_index_path, :class => "button success"
+
+  .columns.medium-6.text-center
+    h3 = t 'hostinganevent'
+    hr
+    /= link_to "Create Your Event", new_hosted_event_path, :class => "button success"
+
+
+hr
+
+.text-center
+  / span<>
+    /= link_to('Login', new_user_session_path, :class => "button primary")
+  / span<>
+    /= link_to('Sign Up', new_user_registration_path, :class => "button primary")

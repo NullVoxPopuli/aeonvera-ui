@@ -4,7 +4,6 @@
 
   section.main-section
     .shell
-      span hi
       = outlet
   = render 'shared/footer'
   a.exit-off-canvas
