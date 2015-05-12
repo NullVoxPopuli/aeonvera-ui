@@ -39,4 +39,4 @@
         /= render partial: '/shared/menu/right_menu_items', locals: { drop_options: true }
 
 
-.hide-for-small style='height: 40px' &nbsp;
+.hide-for-small.top-nav-padding

@@ -6,5 +6,5 @@ export default{
   tos: 'Terms of Service',
   privacy: 'Privacy',
   submitideas: 'Submit Ideas',
-  copyright: 'Copyright &copy; 2013-2015 Precognition LLC'
-}
+  copyright: 'Copyright © 2013-2015 Precognition LLC'
+};

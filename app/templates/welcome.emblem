@@ -2,7 +2,7 @@
     h1.text-center = t 'appname'
     h6.subheader.text-center = t 'subheader'
 
-.row style='margin: 0 auto;'
+.row.center-margin
   .columns.medium-6.text-center
     h3 = t 'lookingforevent'
     hr
