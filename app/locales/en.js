@@ -14,6 +14,7 @@ export default{
   features: 'Features',
   pricing: 'Pricing',
   faq: 'F.A.Q.',
+  faqfull: 'Frequently Asked Questions',
 
   featuresinfo: 'List of current and upcoming features and possible explanations of each. \
     ÆONVERA is written by, and is for Swing Dancers.',
@@ -36,5 +37,25 @@ export default{
     eventcalendar: 'Event Calendar',
     createyourevent: 'Create Your Event',
     scenesbycity: 'Scenes By City'
+  },
+
+  faqtext: {
+    questions: {
+      whystripe: 'Why Stripe?',
+      pricecompare: 'How do your prices compare to other event registration sites?',
+      name: 'How did ÆONVERA get its name?',
+      pronounce: 'How do you pronounce "ÆONVERA"?'
+    },
+    answers: {
+      whystripe: '',
+      pricecompare: '',
+      name: '',
+      pronounce: 'The "Æ" letter, in Modern English does not have an agreed \
+        upon pronunciation. Some people pronounce it as "ee", like in "eon",\
+        some pronounce it as "eh", as in "esophagus".  \
+        The creator of ÆONVERA pronounces it as a long "a" sound like in "ape".\
+        More info on that can be found %@, and %@. "Vera" is pronounced like in \
+        Aloe Vera. No tricks on that one.'
+    }
   }
 };
