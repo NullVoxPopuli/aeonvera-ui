@@ -10,6 +10,8 @@ export default Router.map(function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
+    this.route('tos');
+    this.route('privacy');
   });
   this.resource('events', function() {});
 });

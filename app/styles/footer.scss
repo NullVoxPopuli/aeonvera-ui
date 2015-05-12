@@ -1,8 +1,4 @@
 footer {
-  margin-left: 0px;
-  margin-right: 0px;
-  // margin-top: 80px;
-  bottom: 0px;
   text-align: center;
   width: 100%;
   font-size: 0.8em;
@@ -10,4 +6,32 @@ footer {
   background: $footer-background;
   padding: 40px 40px;
   color: white;
+
+  a {
+    font-size: 0.8em;
+  }
+
+  &.small{
+    max-height: 40px;
+    margin-top: 0px;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    font-size: 0.8em;
+    background: $footer-background;
+    padding: 10px 40px;
+    color: $footer-link-color-small;
+
+    a{
+      color: $footer-link-color-small;
+    }
+
+    ul.inline-list{
+      margin: 0;
+    }
+    .row.copy{
+      display: none;
+    }
+  }
 }

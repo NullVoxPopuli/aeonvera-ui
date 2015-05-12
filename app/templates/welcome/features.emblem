@@ -1,0 +1,14 @@
+.imageoverlay.text-center.panel.callout.extra-padding.header
+  h1 Features Everywhere
+  h4.subheader
+    a href="https://github.com/NullVoxPopuli/aeonvera" target="_blank" Have an Idea? Submit Here.
+  a.button.success = t 'createyourevent'
+
+
+= render "welcome/features/registration"
+= render "welcome/features/reporting"
+= render "welcome/features/discounts-and-tiers"
+= render "welcome/features/at-the-door"
+= render "welcome/features/housing"
+= render "welcome/features/inventory"
+= render "welcome/get-started"

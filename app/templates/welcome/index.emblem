@@ -33,7 +33,7 @@ br
 br
 br
 
-.imageoverlay.text-center.panel.bg-header.header
+.imageoverlay.text-center.panel.header
   h3.text-center = t 'whatisheader'
   span = t 'whatis'
 

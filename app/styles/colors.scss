@@ -2,3 +2,6 @@ $wrapping-background: #333333;
 $footer-background: $wrapping-background;
 $body-background: $footer-background;
 $content-background: white;
+$link-color: #2ba6cb;
+$link-active-color: darken($link-color, 20%);
+$footer-link-color-small: #aaa;

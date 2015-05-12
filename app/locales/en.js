@@ -3,6 +3,7 @@ export default{
   subheader: 'Event registration designed for dancers.',
   lookingforevent: 'Looking for an event?',
   hostinganevent: 'Hosting an event?',
+  createyourevent: 'Create Your Event',
   lookingforscene: 'Looking for a scene?',
   whatisheader: 'What is ÆONVERA?',
   whatis: 'It is a system that helps event and scene organizers manage their events, lessons, and dances. \

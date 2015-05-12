@@ -1,0 +1,3 @@
+.text-center
+  h3 Lets Begin
+  a.button.success = t 'createyourevent'

@@ -5,5 +5,8 @@
   section.main-section
     .shell
       = outlet
-  = render 'shared/footer'
+
+      = outlet 'bottom-footer'
+  = outlet 'fixed-footer'
+
   a.exit-off-canvas
