@@ -45,7 +45,8 @@ br
     h3: a = t 'pricing'
     span = t 'pricinginfo'
   .columns.medium-4.text-center
-    h3: a = t 'faq'
+    h3
+      link-to 'welcome.faq' | {{t 'faq'}}
     span = t 'faqinfo'
 
 br
