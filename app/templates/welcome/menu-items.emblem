@@ -1,0 +1,8 @@
+li link-to '/' | Home
+li link-to 'welcome.features' | {{t 'features'}}
+li link-to 'welcome.pricing' | {{t 'pricing'}}
+li link-to 'welcome.faq' | {{ t 'faq' }}
+
+/ - if show_login
+/   li.divider
+/   = render partial: "/marketing/menu/user_items"

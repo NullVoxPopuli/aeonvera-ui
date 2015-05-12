@@ -39,14 +39,16 @@ br
 
 .row.center-margin
   .columns.medium-4.text-center
-    h3: a = t 'features'
+    h3
+      link-to 'welcome.features' | {{t 'features'}}
     span = t 'featuresinfo'
   .columns.medium-4.text-center
-    h3: a = t 'pricing'
+    h3
+      link-to 'welcome.pricing' | {{ t 'pricing' }}
     span = t 'pricinginfo'
   .columns.medium-4.text-center
     h3
-      link-to 'faq' | {{t 'faq'}}
+      link-to 'welcome.faq' | {{t 'faq'}}
     span = t 'faqinfo'
 
 br

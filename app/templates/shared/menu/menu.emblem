@@ -19,12 +19,12 @@
 
 .fixed
   nav.top-bar.hide-for-small data-options="is_hover:false" role="navigation" data-topbar=""
-    ul.left
-      li
-        h3
-          /= link_to back_url do
-          a
-          = fa-icon 'angle-left'
+    / ul.left
+    /   li
+    /     h3
+    /       /= link_to back_url do
+    /       a
+    /       = fa-icon 'angle-left'
 
     ul.title-area
       / title area
@@ -36,6 +36,7 @@
     section.top-bar-section
       / right nav section
       ul.right
+        = outlet 'top-nav-menu-items'
         /= render partial: '/shared/menu/right_menu_items', locals: { drop_options: true }
 
 
