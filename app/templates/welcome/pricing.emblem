@@ -1,0 +1,10 @@
+.imageoverlay.text-center.panel.callout.extra-padding.header
+  h1 Creating an Event is Free
+  h4.subheader Probably cheaper than the altervative
+  a.button.success = t 'createyourevent'
+
+= render "welcome/pricing/free-or-not"
+= render "welcome/pricing/pricing-features"
+= render "welcome/pricing/ticket-preview"
+hr
+= render "welcome/get-started"
