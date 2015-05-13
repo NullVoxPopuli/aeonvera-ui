@@ -1,6 +1,6 @@
 .off-canvas-wrap data-offcanvas='true'
   .inner-wrap
-    = render 'shared/menu/menu'
+    = outlet 'fixed-top-nav'
 
   section.main-section
     .shell

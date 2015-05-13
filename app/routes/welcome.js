@@ -5,10 +5,11 @@ export default Ember.Route.extend({
   renderTemplate: function() {
         // Render default outlet
         this.render();
-        // render extra outlets
-        this.render('welcome/menu-items', { // template to render
-            outlet: 'top-nav-left-menu-items',   // outlet name
-            into: 'shared/menu/menu'       // template to render in to
+
+        // render right nav items
+        this.render('welcome/menu/menu', {
+          outlet: 'fixed-top-nav',
+          into: 'application'
         });
 
         // render footer
@@ -16,5 +17,6 @@ export default Ember.Route.extend({
           outlet: 'bottom-footer',
           into: 'application'
         });
+
     }
 });

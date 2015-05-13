@@ -1,0 +1,42 @@
+nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
+  .show-for-small
+    if hasLeftMobileMenu
+      section.left-small
+        a.left-off-canvas-toggle.menu-icon
+          span
+
+    section.middle.tab-bar-section.show-for-small
+      ul.title-area
+        li.name
+          h1.title
+            a click="goToRoute backLinkPath" #{backLinkText}
+
+
+    if hasRightMobileMenu
+      section.right-small
+        a.right-off-canvas-toggle.menu-icon
+          span = fa-icon 'bars'
+
+  .hide-for-small
+    ul.title-area
+      li.name
+        h1
+          a click="goToRoute backLinkPath" #{backLinkText}
+
+    section.left.top-bar-section
+      ul.pages
+        = component left
+
+    section.top-bar-section
+      ul.right.auth
+        = component right
+
+
+
+/ aside.left-off-canvas-menu
+/   ul.off-canvas-list
+/     = component left
+/
+/ aside.right-off-canvas-menu
+/   ul.off-canvas-list
+/     = component right

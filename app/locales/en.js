@@ -1,3 +1,5 @@
+/*jshint multistr: true */
+
 export default{
   appname: 'ÆONVERA',
   holdingcompany: 'Precognition, LLC',

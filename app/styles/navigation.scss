@@ -1,18 +1,22 @@
-// create offset for scrollable content
-.imageoverlay.panel.callout.extra-padding{
-  margin-top: 20px;
-}
-
 .top-bar .top-bar-section ul li a:hover{
   background: #555 !important;
 }
 
-.top-bar{
-  max-height: 60px;
-  overflow: hidden;
+.top-bar,
+.top-bar li,
+.top-bar .name h1,
+.top-bar .title-area li h1,
+.top-bar section .pages li a {
+  height: 40px;
+  line-height: 40px;
+  text-transform: uppercase;
 }
 
-@media only screen and (min-width:  40.063em) {
+// section.main-section{
+//   margin-top: 40px;
+// }
+
+@media #{$large-up} {
 
   .top-bar,
   .top-bar li,
@@ -25,7 +29,7 @@
   }
 
   .top-bar .top-bar-section .button{
-    margin-top: 6px;
+    margin-top: 10px;
     margin-bottom: 6px;
   }
 
@@ -33,5 +37,11 @@
     padding-left: 6px;
     padding-right: 6px;
   }
+  //
+  // section.main-section{
+  //   margin-top: 60px;
+  // }
+
+
 
 } /* min-width 1025px, large screens */
