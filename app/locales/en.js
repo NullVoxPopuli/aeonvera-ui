@@ -64,7 +64,7 @@ export default{
       butthis: 'That\'s fine. Free will and such.',
       whystripe: '',
       pricecompare: '',
-      name: 'Names can mean a lot - they can also mean nothing. The over ÆONVERA \
+      name: 'Names can mean a lot - they can also mean nothing. The owner of ÆONVERA \
         spent numerous days looking up various prefixes and suffixes to stitch together. \
         Eventually he decided to use a sort of exotic, yet ancient word ÆON - meaning "life". \
         ÆON is a good word just by itself and has a nice ring to it, especially when pronounced \
