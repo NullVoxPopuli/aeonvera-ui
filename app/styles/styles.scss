@@ -30,34 +30,6 @@
     background: #ffcccc;
   }
 
-  ol.legal {
-    counter-reset: section;
-    list-style-type: none;
-    h2:before {
-      counter-increment: section;
-      content: counter(section) ". ";
-      margin: 0;
-    }
-    ol {
-      counter-reset: clause;
-      list-style: none outside none;
-      text-indent: 0em;
-      margin-left: 2em;
-      margin-bottom: 15px;
-      li {
-        counter-increment: clause;
-        &:before {
-          content: counter(section) "." counters(clause, ".") ". ";
-          margin: 0;
-          display: table-cell;
-        }
-        span {
-          display: table-cell;
-          padding-left: 10px;
-        }
-      }
-    }
-  }
 
   a {
     i {

@@ -10,8 +10,13 @@ export default Router.map(function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
-    this.route('tos');
+    this.route('tos', function(){
+      this.route('organizers');
+      this.route('non-organizers');
+      this.route('updates');
+    });
     this.route('privacy');
+    this.route('about');
   });
   this.resource('events', function() {});
 });

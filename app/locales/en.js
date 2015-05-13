@@ -1,5 +1,6 @@
 export default{
   appname: 'ÆONVERA',
+  holdingcompany: 'Precognition, LLC',
   subheader: 'Event registration designed for dancers.',
   lookingforevent: 'Looking for an event?',
   hostinganevent: 'Hosting an event?',
@@ -41,6 +42,7 @@ export default{
     createyourevent: 'Create Your Event',
     scenesbycity: 'Scenes By City'
   },
+
 
   faqtext: {
     questions: {

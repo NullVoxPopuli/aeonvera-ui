@@ -1,0 +1,20 @@
+.imageoverlay.callout.text-center.panel.margin-top-20
+	h2.terms-title {{t 'appname'}} Terms of Service Agreement
+	br
+	table.center-margin
+		tr
+			td.status
+				h6
+					em Last updated: February 17, 2014
+				h6
+					em
+						link-to 'welcome.tos.updates' | recent updates
+			td.tos
+				h5
+					link-to 'welcome.tos.non-organizers' | Non-Organizers
+					| &nbsp;|&nbsp;
+					link-to 'welcome.tos.organizers' | Organizers
+
+.surround-padding-20
+	.terms
+		= outlet
