@@ -1,7 +1,7 @@
 .off-canvas-wrap data-offcanvas='true'
   .inner-wrap
     = outlet 'fixed-top-nav'
-
+    
   section.main-section
     .shell
       = outlet
