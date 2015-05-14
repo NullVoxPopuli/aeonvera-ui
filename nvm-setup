@@ -1,0 +1,15 @@
+#!/bin/bash
+
+NVM_DIR=~/.nvm
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+which nvm
+
+nvm use stable
+
+which npm
+which node
+
+PATH="$(npm bin):$PATH"
+
