@@ -1,7 +1,7 @@
 .row style="margin: auto;"
   .small-12.columns
     .row
-      .medium-6.columns.medium-offset-3
+      .medium-8.columns.medium-offset-2.small-10.small-offset-1
         .pricing-table
           .title
             h3 style="color: white;" Preview Your Ticket Costs
@@ -14,7 +14,7 @@
                   .small-3.columns
                     span.prefix style="padding: 10px;" $
                   .small-9.columns
-                    input#ticketPrice type="text" placeholder="75"
+                    input#ticketPrice keyUp='reCalculate' paste='reCalculate' type="text" placeholder="75"
           .description
             .row
               .small-5.columns#serviceFee
@@ -36,5 +36,5 @@
             .row
               .small-12
                 label
-                  input#absorbFees type="checkbox" /
+                  input#absorbFees click='reCalculate' type="checkbox" /
                   | Absorb the fees into your price instead

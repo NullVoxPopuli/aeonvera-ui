@@ -5,6 +5,6 @@
 
 = render "welcome/pricing/free-or-not"
 = render "welcome/pricing/pricing-features"
-= render "welcome/pricing/ticket-preview"
+= pricing-preview
 hr
 = render "welcome/get-started"
