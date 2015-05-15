@@ -1,12 +1,18 @@
 .off-canvas-wrap data-offcanvas='true'
+  = component navigation
+
   .inner-wrap
-    = component navigation
+    a.exit-off-canvas
 
-  section.main-section
-    .shell
-      = outlet
+    / the off canvas menus may have to always be rendered, but just only optionally
+    / pass the items or not.
+    = nav/left-off-canvas-menu items=mobileMenuLeft
+    = nav/right-off-canvas-menu items=mobileMenuRight
 
-      = outlet 'bottom-footer'
-  = outlet 'fixed-footer'
 
-  a.exit-off-canvas
+    section.main-section
+      .shell
+        = outlet
+
+        = outlet 'bottom-footer'
+    = outlet 'fixed-footer'

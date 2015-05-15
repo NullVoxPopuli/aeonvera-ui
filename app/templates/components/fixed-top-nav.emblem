@@ -1,38 +1,27 @@
 nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=""
-  .show-for-small
-    if hasLeftMobileMenu
-      section.left-small
-        a.left-off-canvas-toggle.menu-icon
-          span
-          /= fa-icon 'bars'
+  if hasLeftMobileMenu
+    section.left-small.show-for-small
+      a.left-off-canvas-toggle.menu-icon: span
 
-    section.middle.tab-bar-section.show-for-small
-      ul.title-area
-        li.name
-          h1.title
-            a click="goToRoute backLinkPath" #{backLinkText}
-
-    if hasRightMobileMenu
-      section.right-small
-        a.right-off-canvas-toggle.menu-icon
-          span
-          /= fa-icon 'bars'
-
-  .hide-for-small
+  section.middle.tab-bar-section.show-for-small
     ul.title-area
       li.name
-        h1
+        h1.title
           a click="goToRoute backLinkPath" #{backLinkText}
 
-    section.left.top-bar-section
-      ul.pages
-        = component left
+  if hasRightMobileMenu
+    section.right-small.show-for-small
+      a.right-off-canvas-toggle.menu-icon: span
 
-    section.top-bar-section
-      ul.right.auth
-        = component right
+  ul.title-area.hide-for-small
+    li.name
+      h1
+        a click="linkToRoute backLinkPath" #{backLinkText}
 
+  section.left.top-bar-section.hide-for-small
+    ul.pages
+      = component left
 
-/ aside.right-off-canvas-menu
-/   ul.off-canvas-list
-/     = component right
+  section.top-bar-section.hide-for-small
+    ul.right.auth
+      = component right

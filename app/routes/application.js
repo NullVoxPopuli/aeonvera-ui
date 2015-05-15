@@ -2,18 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-	actions: {
-		linkToRoute: function(item) {
-			this.transitionTo(item.route);
-		},
+  actions: {
+    linkToRoute: function(item) {
+      console.log('waaaaaaa');
+      this.transitionTo(item.route);
+    },
 
-		setMobileMenuProperties: function() {
-			// tell the application what our mobile navigation will look like
-			this.controller.set('hasLeftMobileMenu', true);
-			this.controller.set('hasRightMobileMenu', true);
+    exitOffCanvas: function() {
+      console.log('wat');
+      this.$('a.exit-off-canvas').click();
+    }
 
-		}
-
-
-	}
+  }
 });

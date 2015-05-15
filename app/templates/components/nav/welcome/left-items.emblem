@@ -1,12 +1,8 @@
+li.show-for-small
+  link-to 'welcome' action='exitOffCanvas' | Home
 li
-  / link-to 'root' | Home
-li
-  link-to 'welcome.features' | {{t 'features'}}
+  link-to 'welcome.features' action='exitOffCanvas' | {{t 'features'}}
 li
   link-to 'welcome.pricing' | {{t 'pricing'}}
 li
   link-to 'welcome.faq' | {{ t 'faq' }}
-
-/ - if show_login
-/   li.divider
-/   = render partial: "/marketing/menu/user_items"
