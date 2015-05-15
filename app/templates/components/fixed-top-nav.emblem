@@ -11,7 +11,6 @@ nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
           h1.title
             a click="goToRoute backLinkPath" #{backLinkText}
 
-
     if hasRightMobileMenu
       section.right-small
         a.right-off-canvas-toggle.menu-icon

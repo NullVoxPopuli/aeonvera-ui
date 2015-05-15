@@ -1,6 +1,6 @@
 .off-canvas-wrap data-offcanvas='true'
   .inner-wrap
-    = outlet 'fixed-top-nav'
+    = component navigation
 
   section.main-section
     .shell

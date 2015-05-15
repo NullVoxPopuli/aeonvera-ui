@@ -1,7 +1,6 @@
-= hasLeftMobileMenu
-
 = fixed-top-nav left='nav/welcome/left-items' right='nav/welcome/right-items'
 
 / the off canvas menus may have to always be rendered, but just only optionally
 / pass the items or not.
 = nav/left-off-canvas-menu items='nav/welcome/left-items'
+= nav/right-off-canvas-menu items='nav/welcome/right-items'
