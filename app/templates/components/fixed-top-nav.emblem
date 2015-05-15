@@ -1,9 +1,10 @@
-nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
+nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=""
   .show-for-small
     if hasLeftMobileMenu
       section.left-small
         a.left-off-canvas-toggle.menu-icon
-          span = fa-icon 'bars'
+          span
+          /= fa-icon 'bars'
 
     section.middle.tab-bar-section.show-for-small
       ul.title-area
@@ -14,7 +15,8 @@ nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
     if hasRightMobileMenu
       section.right-small
         a.right-off-canvas-toggle.menu-icon
-          span = fa-icon 'bars'
+          span
+          /= fa-icon 'bars'
 
   .hide-for-small
     ul.title-area
