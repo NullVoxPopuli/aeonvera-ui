@@ -3,7 +3,7 @@ nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
     if hasLeftMobileMenu
       section.left-small
         a.left-off-canvas-toggle.menu-icon
-          span
+          span = fa-icon 'bars'
 
     section.middle.tab-bar-section.show-for-small
       ul.title-area
@@ -11,11 +11,11 @@ nav.top-bar data-options="is_hover:false" role="navigation" data-topbar=""
           h1.title
             a click="goToRoute backLinkPath" #{backLinkText}
 
-    /
-    / if hasRightMobileMenu
-    /   section.right-small
-    /     a.right-off-canvas-toggle.menu-icon
-    /       span = fa-icon 'bars'
+
+    if hasRightMobileMenu
+      section.right-small
+        a.right-off-canvas-toggle.menu-icon
+          span = fa-icon 'bars'
 
   .hide-for-small
     ul.title-area
