@@ -50,7 +50,7 @@
         br
         br
         span = t 'formoreinfo'
-        span {{how-to-pronounce-ae}}, {{aeon-wikipedia-link}}
+        span {{how-to-pronounce-ae}}, {{links/aeon-wikipedia-link}}
 
     hr
     .row

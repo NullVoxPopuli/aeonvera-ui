@@ -1,5 +1,6 @@
 li
-  a.button: span Sign Up
+  link-to 'signup' class='button'
+    span Sign Up
 /- if user_signed_in?
 /  = link_to(edit_user_registration_path, class: "button secondary") do
 /    span Edit Profile
@@ -8,7 +9,9 @@ li
 /    span Sign Up
 
 li
-  a.button: span Login
+  link-to 'login' class='button'
+    span Login
+
 /  - if user_signed_in?
 /    = link_to(destroy_user_session_url, method: "delete", class: "button secondary") do
 /      span Logout

@@ -13,8 +13,8 @@ footer
     .medium-6.columns
       .right
         ul.inline-list
-          li = mail-support-icon-link
-          li = facebook-icon-link
+          li = links/mail-support-icon-link
+          li = links/facebook-icon-link
 
   .row.copy
     .small-12.columns

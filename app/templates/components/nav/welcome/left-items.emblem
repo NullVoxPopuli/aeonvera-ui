@@ -1,7 +1,7 @@
 li.show-for-small
-  link-to 'welcome' action='exitOffCanvas' | Home
+  link-to 'application' | Home
 li
-  link-to 'welcome.features' action='exitOffCanvas' | {{t 'features'}}
+  link-to 'welcome.features' | {{t 'features'}}
 li
   link-to 'welcome.pricing' | {{t 'pricing'}}
 li
