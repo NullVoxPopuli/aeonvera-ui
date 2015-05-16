@@ -23,5 +23,7 @@ export default Router.map(function() {
     this.route('about');
   });
   this.resource('events', function() {});
+
   this.route('dashboard');
+
 });
