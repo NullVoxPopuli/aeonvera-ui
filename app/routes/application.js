@@ -20,6 +20,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.transitionTo('signup');
     },
 
+    invalidateSession: function() {
+      this.get('session').invalidate();
+    },
+
     sessionAuthenticationSucceeded: function() {
       this.transitionTo('dashboard');
       Ember.get(this, 'flashMessages').success(
