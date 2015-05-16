@@ -1,20 +1,13 @@
 li
-  link-to 'signup' class='button'
-    span Sign Up
-/- if user_signed_in?
-/  = link_to(edit_user_registration_path, class: "button secondary") do
-/    span Edit Profile
-/- else
-/  = link_to(new_user_registration_path, class: "button") do
-/    span Sign Up
+  if session.isAuthenticated
+    a.button Edit Profile
+  else
+    link-to 'signup' class='button'
+      span Sign Up
 
 li
-  link-to 'login' class='button'
-    span Login
-
-/  - if user_signed_in?
-/    = link_to(destroy_user_session_url, method: "delete", class: "button secondary") do
-/      span Logout
-/  - else
-/    = link_to(new_user_session_path, class: "button") do
-/      span Login
+  if session.isAuthenticated
+    a.button click='invalidateSession' Logout
+  else
+    link-to 'login' class='button'
+      span Login

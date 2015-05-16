@@ -12,6 +12,8 @@
 
     section.main-section
       .shell
+        each flash in flashMessages.queue
+          flash-message flash=flash messageStyle='foundation' 
         = outlet
 
         = outlet 'bottom-footer'

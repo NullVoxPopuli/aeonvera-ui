@@ -1,23 +1,34 @@
 import Ember from 'ember';
+import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ApplicationRouteMixin, {
 
-	actions: {
-		linkToRoute: function(item) {
-			this.transitionTo(item.route);
-		},
+  actions: {
+    linkToRoute: function(item) {
+      this.transitionTo(item.route);
+    },
 
-		exitOffCanvas: function() {
-			this.$('a.exit-off-canvas').click();
-		},
+    exitOffCanvas: function() {
+      this.$('a.exit-off-canvas').click();
+    },
 
-		redirectToLogin: function() {
-			this.transitionTo('login');
-		},
+    redirectToLogin: function() {
+      this.transitionTo('login');
+    },
 
-		redirectToSignup: function() {
-			this.transitionTo('signup')
-		}
+    redirectToSignup: function() {
+      this.transitionTo('signup');
+    },
 
-	}
+    sessionAuthenticationSucceeded: function() {
+      this.transitionTo('dashboard');
+      Ember.get(this, 'flashMessages').success(
+        'You have successfully logged in');
+    },
+
+    sessionAuthenticationFailed: function(error) {
+      Ember.get(this, 'flashMessages').warning(error.error);
+    }
+
+  }
 });

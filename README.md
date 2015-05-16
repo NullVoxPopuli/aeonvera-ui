@@ -1,4 +1,4 @@
-# aeonvera-ui [![Build Status](https://travis-ci.org/NullVoxPopuli/aeonvera-ui.svg)](https://travis-ci.org/NullVoxPopuli/aeonvera-ui)
+# aeonvera-ui [![Build Status](https://travis-ci.org/NullVoxPopuli/aeonvera-ui.svg)](https://travis-ci.org/NullVoxPopuli/aeonvera-ui) [![Code Climate](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/gpa.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui) [![Test Coverage](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/coverage.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/coverage)
 Ember frontend for aeonvera
 
 
@@ -17,21 +17,21 @@ or copy the latest command from [the NVM repo](https://github.com/creationix/nvm
 
     node -v # should output the version
     npm -v # should output the npm version
-    
+
 ### ember-cli
 
     npm install -g ember-cli
-    
+
 ### bower
 
     npm install -g bower
     export PATH="$(npm bin):$PATH"
-    
+
 ### Initial app dependencies
 
     npm install
     bower install
-    
+
 ## Running / Development
 
     ember server
