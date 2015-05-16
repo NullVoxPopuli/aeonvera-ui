@@ -35,6 +35,9 @@ module.exports = function(environment) {
       'img-src': "'self'",
       'style-src': "'self' swing.vhost:3000",
       'frame-src': ""
+    },
+    flashMessageDefaults: {
+      timeout: 5000
     }
   };
 

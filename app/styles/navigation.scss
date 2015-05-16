@@ -18,9 +18,6 @@ section {
   text-transform: uppercase;
 }
 
-// section.main-section{
-//   margin-top: 40px;
-// }
 
 @media #{$large-up} {
 
@@ -34,6 +31,10 @@ section {
     text-transform: uppercase !important;
   }
 
+  .alert-box{
+    top: 60px;
+  }
+
   .top-bar .top-bar-section .button{
     margin-top: 10px;
     margin-bottom: 6px;
@@ -43,10 +44,6 @@ section {
     padding-left: 6px;
     padding-right: 6px;
   }
-  //
-  // section.main-section{
-  //   margin-top: 60px;
-  // }
 
 
 
