@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 
   backLinkPath: function() {
     if (this.get('session').isAuthenticated) {
-      return '/';
+      return 'dashboard';
     } else {
       return 'welcome';
     }

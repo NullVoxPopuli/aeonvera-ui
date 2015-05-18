@@ -4,24 +4,17 @@ nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=
       a.left-off-canvas-toggle.menu-icon: span
 
   section.middle.tab-bar-section.show-for-small
-    ul.title-area
-      li.name
-        h1.title
-          <a {{bind-attr href="backLinkPath"}}>{{backLinkText}}</a>
+    ul.title-area: li.name: h1.title hi
 
     if hasRightMobileMenu
       section.right-small.show-for-small
         a.right-off-canvas-toggle.menu-icon: span
 
   ul.title-area.hide-for-small
-    li.name
-      h1
-        <a {{bind-attr href="backLinkPath"}}>{{backLinkText}}</a>
+      li.name: h1: link-to backLinkPath | {{backLinkText}}
 
   section.left.top-bar-section.hide-for-small
-    ul.pages
-      = component left
+    ul.pages = component left
 
   section.top-bar-section.hide-for-small
-    ul.right.auth
-      = component right
+    ul.right.auth = component right

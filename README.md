@@ -34,6 +34,7 @@ or copy the latest command from [the NVM repo](https://github.com/creationix/nvm
 
 ## Running / Development
 
+    source nvm-setup
     ember server
 
 * Visit your app at [http://localhost:4200](http://localhost:4200).
