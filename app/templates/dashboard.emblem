@@ -1,0 +1,26 @@
+.row.center-margin
+  .medium-6.columns
+
+    h2 Your Attended Events
+    table
+      thead
+        tr
+          th Name
+          th Date Registered
+          th Owed
+          th Paid
+          th Event Begins
+          th Registration Status
+
+      each model
+        tr
+          td = name
+          td = registeredAt
+          td = owed
+          td = paid
+          td = eventBeginsAt
+          td = registrationStatus
+
+        / = render partial: "/attended_events/attended_event_row", locals: { attendance: attendance }
+  .medium-6.columns
+    / = render partial: "home/upcoming_events"
