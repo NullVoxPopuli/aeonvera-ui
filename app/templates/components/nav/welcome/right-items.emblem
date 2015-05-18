@@ -9,5 +9,6 @@ li
   if session.isAuthenticated
     a.button click='invalidateSession' Logout
   else
-    link-to 'login' class='button'
-      span Login
+    a.button href='#' data-reveal-id='login-modal' Login
+    /link-to 'login' class='button'
+    /  span Login

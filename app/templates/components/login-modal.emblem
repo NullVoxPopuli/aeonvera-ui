@@ -1,0 +1,20 @@
+#login-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog'
+  h2#login-modal-title Login
+  p
+    <form {{action 'authenticate' on='submit'}}>
+      <label for="identification">Email</label>
+      {{input value=identification placeholder='yourname@domain.com'}}
+      <label for="password">Password</label>
+      {{input value=password placeholder='Something secure and easy to remember' type='password'}}
+      <button type="submit">Login</button>
+    </form>
+    br
+    a Sign Up
+    br
+    a Forget your password?
+
+    br
+    a Didn't receive confirmation instructions?
+    br
+    a Didn't receive unlock instructions?
+  a.close-reveal-modal aria-label="Close" &#215;

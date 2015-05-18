@@ -1,5 +1,6 @@
 .off-canvas-wrap data-offcanvas='true'
   = component navigation
+  = login-modal
 
   .inner-wrap
     a.exit-off-canvas
@@ -13,7 +14,7 @@
     section.main-section
       .shell
         each flash in flashMessages.queue
-          flash-message flash=flash messageStyle='foundation' 
+          flash-message flash=flash messageStyle='foundation'
         = outlet
 
         = outlet 'bottom-footer'

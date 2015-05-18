@@ -13,8 +13,8 @@ section {
 .top-bar .name h1,
 .top-bar .title-area li h1,
 .top-bar section .pages li a {
-  height: 40px;
-  line-height: 40px;
+  height: 40px !important;
+  line-height: 40px !important;
   text-transform: uppercase;
 }
 

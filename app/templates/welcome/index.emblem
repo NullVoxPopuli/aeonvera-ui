@@ -35,7 +35,7 @@ br
 
 .imageoverlay.text-center.panel.header
   h3.text-center = t 'whatisheader'
-  span = t 'whatis'
+  .row: span = t 'whatis'
 
 .row.center-margin
   .columns.medium-4.text-center
