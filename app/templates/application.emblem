@@ -1,6 +1,7 @@
 .off-canvas-wrap data-offcanvas='true'
   = component navigation
   = login-modal
+  = login-help-modal
 
   .inner-wrap
     a.exit-off-canvas

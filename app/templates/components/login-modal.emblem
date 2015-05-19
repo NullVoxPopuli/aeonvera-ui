@@ -13,15 +13,11 @@
         .small-9.large-10.columns
           = input value=password placeholder='Something secure and easy to remember' type='password'
 
-      button.right type='submit' Login
-      button.right Sign Up
       br
-      br
+      ul.button-group.text-center.right
+        li: button Sign Up
+        li: button type='submit' Login
 
-  .login-footer
-    a Forget your password?
-    br
-    a Didn't receive confirmation instructions?
-    br
-    a Didn't receive unlock instructions?
+      a.button href='#' data-reveal-id='login-help-modal' Help
+
   a.close-reveal-modal aria-label="Close" &#215;
