@@ -6,12 +6,13 @@
       .row.collapse
         .small-3.large-2.columns: span.prefix Email
         .small-9.large-10.columns
-          input value=identification placeholder='yourname@domain.com' type='text'
+          = input value=identification placeholder='yourname@domain.com' type='text'
 
       .row.collapse
         .small-3.large-2.columns: span.prefix Password
         .small-9.large-10.columns
-          input value=password placeholder='Something secure and easy to remember' type='password'
+          = input value=password placeholder='Something secure and easy to remember' type='password'
+
       button.right type='submit' Login
       button.right Sign Up
       br

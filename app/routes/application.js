@@ -31,7 +31,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
     sessionAuthenticationFailed: function(error) {
-      Ember.get(this, 'flashMessages').warning(error.error);
+      Ember.get(this, 'flashMessages').warning(error.error || error);
     }
 
   }
