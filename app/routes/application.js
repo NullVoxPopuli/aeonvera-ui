@@ -25,6 +25,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
     sessionAuthenticationSucceeded: function() {
+      jQuery('a.close-reveal-modal').trigger('click');
       this.transitionTo('dashboard');
       Ember.get(this, 'flashMessages').success(
         'You have successfully logged in');
