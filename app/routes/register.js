@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-	model: function(params) {
-		return this.store.find('current-registering-event');
-	}
+  model: function() {
+    return this.store.find('current-registering-event');
+  }
 
 });
