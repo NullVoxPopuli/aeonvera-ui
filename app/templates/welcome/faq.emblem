@@ -28,12 +28,12 @@
             span = t 'appname'
             span &nbsp;is cheaper than all of them.
           li
-            span The only fee I charge is 0.75% of any electronic payment. And it can be paid by the registrant. This is to help maintain the cost of running
+            span The only fee charged is 0.75% of any electronic payment. And it can be paid by the registrant. This is to help maintain the cost of running
             span &nbsp;{{t 'appname'}}
             span , upgrading infrastructure, etc
           li
             span If an event doesn't want to use electronic payments, it is perfectly fine to use
-            span = t 'appname'
+            span &nbsp;{{t 'appname'}}&nbsp;
             span for free. No charge. :-)
     hr
     .row
