@@ -4,7 +4,9 @@
   a.button.success = t 'createyourevent'
 
 = render "welcome/pricing/free-or-not"
-= render "welcome/pricing/pricing-features"
 = pricing-preview
-hr
+= render "welcome/pricing/pricing-features"
+
 = render "welcome/get-started"
+br
+br
