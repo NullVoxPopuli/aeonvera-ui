@@ -1,4 +1,4 @@
-.imageoverlay.callout.text-center.panel.margin-top-20
+.imageoverlay.callout.text-center.panel
 	h2.terms-title {{t 'appname'}} Terms of Service Agreement
 	br
 	table.center-margin

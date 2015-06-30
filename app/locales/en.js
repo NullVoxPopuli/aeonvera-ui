@@ -19,7 +19,8 @@ export default{
   pricing: 'Pricing',
   faq: 'F.A.Q.',
   faqfull: 'Frequently Asked Questions',
-
+  opensource: 'OpenSource',
+  
   featuresinfo: 'List of current and upcoming features and possible explanations of each. \
     ÆONVERA is written by, and is for Swing Dancers.',
   pricinginfo: 'Overview of pricing. \

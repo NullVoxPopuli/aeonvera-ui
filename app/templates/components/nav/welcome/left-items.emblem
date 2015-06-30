@@ -6,3 +6,5 @@ li
   link-to 'welcome.pricing' | {{t 'pricing'}}
 li
   link-to 'welcome.faq' | {{ t 'faq' }}
+li
+  link-to 'welcome.opensource' | {{ t 'opensource' }}

@@ -17,6 +17,7 @@ export default Router.map(function() {
       this.route('non-organizers');
       this.route('updates');
     });
+    this.route('opensource');
     this.route('privacy');
     this.route('about');
   });

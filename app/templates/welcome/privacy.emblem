@@ -4,7 +4,7 @@
 
 div.surround-padding-20: p Protecting your privacy is a serious matter and doing so is very important to us. Please read this Privacy Policy statement (the "Policy") to learn more about our Privacy Policy. This Policy describes the information we collect from you and what may happen to that information, and only applies to such information. This Policy applies to all sites under the aeonvera.com domain.
 
-ol.legal
+ol.legal.surround-padding-20
   li
     h3 Information Collection
     ol

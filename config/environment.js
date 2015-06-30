@@ -28,12 +28,12 @@ module.exports = function(environment) {
       identificationAttributeName: 'email'
     },
     contentSecurityPolicy: {
-      'default-src': "'none'",
+      'default-src': "*",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      // 'font-src': "'self' data: use.typekit.net",
-      'connect-src': "'self' swing.vhost:3000 *.aeonvera-staging.work",
-      'img-src': "'self'",
-      'style-src': "'self' 'unsafe-inline' swing.vhost:3000 *.aeonvera-staging.work",
+      'font-src': "*",
+      'connect-src': "*",
+      'img-src': "*",
+      'style-src': "*",
       'frame-src': ""
     },
     flashMessageDefaults: {

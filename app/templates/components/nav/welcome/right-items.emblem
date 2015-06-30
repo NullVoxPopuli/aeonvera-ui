@@ -1,14 +1,18 @@
 li
-  if session.isAuthenticated
-    a.button Edit Profile
-  else
-    link-to 'signup' class='button'
-      span Sign Up
+  a.button href="/users/sign_up"
+    span Sign Up
+  / if session.isAuthenticated
+  /   a.button Edit Profile
+  / else
+  /   link-to 'signup' class='button'
+  /     span Sign Up
 
 li
-  if session.isAuthenticated
-    a.button click='invalidateSession' Logout
-  else
-    a.button href='#' data-reveal-id='login-modal' Login
-    /link-to 'login' class='button'
-    /  span Login
+  a.button href="users/sign_in"
+    span Login
+  / if session.isAuthenticated
+  /   a.button click='invalidateSession' Logout
+  / else
+  /   a.button href='#' data-reveal-id='login-modal' Login
+  /   /link-to 'login' class='button'
+  /   /  span Login

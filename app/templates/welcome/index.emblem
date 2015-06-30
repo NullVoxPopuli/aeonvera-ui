@@ -6,28 +6,30 @@
   .columns.medium-4.text-center
     h3 = t 'lookingforevent'
     hr
-    a.button = t 'buttons.eventcalendar'
+    a.button href="/calendar" = t 'buttons.eventcalendar'
+
     /= link_to "Event Calendar", calendar_home_index_path, :class => "button success"
 
   .columns.medium-4.text-center
     h3 = t 'hostinganevent'
     hr
-    a.button.success = t 'buttons.createyourevent'
+    a.button.success href="/hosted_events/new" = t 'buttons.createyourevent'
+
     /= link_to "Create Your Event", new_hosted_event_path, :class => "button success"
 
   .columns.medium-4.text-center
     h3 = t 'lookingforscene'
     hr
-    a.button = t 'buttons.scenesbycity'
+    a.button href="/scenes" = t 'buttons.scenesbycity'
 
 br
 br
 
 .text-center
   ul.button-group
-    li: a.button.small.success = t 'buttons.login'
+    li: a.button.small.success href="/users/sign_in" = t 'buttons.login'
     /= link_to('Login', new_user_session_path, :class => "button primary")
-    li: a.button.small.success = t 'buttons.signup'
+    li: a.button.small.success href="/users/sign_up" = t 'buttons.signup'
     /= link_to('Sign Up', new_user_registration_path, :class => "button primary")
 
 br
