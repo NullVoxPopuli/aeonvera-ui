@@ -3,9 +3,17 @@ import DS from 'ember-data';
 export default DS.Model.extend({
 	name: DS.attr('string'),
 	registeredAt: DS.attr('date'),
-	owed: DS.attr('decimal'),
-	paid: DS.attr('decimal'),
+	amount_owed: DS.attr('number'),
+	amount_paid: DS.attr('number'),
 	eventBeginsAt: DS.attr('date'),
-	registrationStatus: DS.attr('status')
+	isAttending: DS.attr('boolean'),
+
+	registrationStatus: function(){
+		if (this.get("isAttending")){
+			return "Attending"
+		} else {
+			return "Not Attending"
+		}
+	}.property('isAttending')
 
 });

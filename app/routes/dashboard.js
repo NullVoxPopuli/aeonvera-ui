@@ -5,6 +5,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  activate: function() {
+    this.set('title', this.t('dashboard'));
+    this._super();
+  },
+
   /**
   	Redirect to the welcome route if not logged in.
   */
@@ -21,9 +26,22 @@ export default Ember.Route.extend({
       this.transitionTo('welcome');
     }
   },
+  // http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
+  renderTemplate: function() {
+
+    // Render default outlet
+    this.render();
+
+    // render footer
+    this.render('shared/footer', {
+      outlet: 'bottom-footer',
+      into: 'application'
+    });
+
+  },
 
 
   model: function() {
-    // return this.store.findAll('attended-event');
+    return this.store.findAll('attended-event');
   }
 });
