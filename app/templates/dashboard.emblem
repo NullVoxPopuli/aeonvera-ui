@@ -1,6 +1,5 @@
 .row.center-margin
   .medium-6.columns
-
     h2 Your Attended Events
     table
       thead
@@ -21,6 +20,7 @@
           td = eventBeginsAt
           td = registrationStatus
 
-        / = render partial: "/attended_events/attended_event_row", locals: { attendance: attendance }
+    /= render "/dashboard/attended_events"
+
   .medium-6.columns
     / = render partial: "home/upcoming_events"

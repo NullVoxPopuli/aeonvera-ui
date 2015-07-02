@@ -1,0 +1,19 @@
+h2 Your Attended Events
+table
+  thead
+    tr
+      th Name
+      th Date Registered
+      th Owed
+      th Paid
+      th Event Begins
+      th Registration Status
+
+  each model
+    tr
+      td = name
+      td = registeredAt
+      td = owed
+      td = paid
+      td = eventBeginsAt
+      td = registrationStatus

@@ -21,7 +21,8 @@ module.exports = function(environment) {
     },
 
     'simple-auth': {
-      authorizer: 'simple-auth-authorizer:devise'
+      authorizer: 'simple-auth-authorizer:devise',
+      crossOriginWhitelist: ['*']
     },
     'simple-auth-devise': {
       tokenAttributeName: 'token',
@@ -47,17 +48,17 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    //ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['simple-auth-devise'] = {
       // defaults to /users/sign_in
-      // serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
-      // crossOriginWhitelist: ['http://swing.vhost:3000']
-      serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
-      crossOriginWhitelist: ['http://aeonvera-staging.work']
+      serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
+      crossOriginWhitelist: ['http://swing.vhost:3000']
+      // serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
+      // crossOriginWhitelist: ['http://aeonvera-staging.work']
     }
   }
 

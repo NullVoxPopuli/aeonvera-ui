@@ -1,7 +1,9 @@
 #login-help-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-help-modal-title' aria-hidden='true' role='dialog'
   h2#login-help-modal-title.text-center Login Help
   p
-    a Forget your password?
+    a Forgot your email?
+    br
+    a Forgot your password?
     br
     a Didn't receive confirmation email?
     br

@@ -9,8 +9,6 @@ export default Ember.Route.extend({
   	Redirect to the welcome route if not logged in.
   */
   beforeModel: function(transition) {
-    var superResult = this._super(transition);
-
     if (!this.get('session').isAuthenticated) {
       transition.abort();
 
@@ -19,14 +17,13 @@ export default Ember.Route.extend({
       // but we want the dashboard to be the default URL
       // Ember.get(this, 'flashMessages').warning(
       // 'You must be logged in to view the dashboard');
+
       this.transitionTo('welcome');
     }
-
-    return superResult;
   },
 
 
   model: function() {
-    return this.store.findAll('attended-event');
+    // return this.store.findAll('attended-event');
   }
 });
