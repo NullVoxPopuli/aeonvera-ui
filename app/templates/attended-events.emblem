@@ -1,0 +1,19 @@
+h3 Your Attended Events
+table
+  thead
+    tr
+      th Name
+      th Date Registered
+      th Owed
+      th Paid
+      th Event Begins
+      th Registration Status
+
+  each event in model
+    tr
+      td = event.name
+      td = event.registeredAt
+      td = event.amount_owed
+      td = event.amount_paid
+      td = event.eventBeginsAt
+      td = event.registrationStatus

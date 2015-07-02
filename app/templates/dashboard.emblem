@@ -1,26 +1,8 @@
 .row.center-margin
-  .medium-6.columns
-    h2 Your Attended Events
-    table
-      thead
-        tr
-          th Name
-          th Date Registered
-          th Owed
-          th Paid
-          th Event Begins
-          th Registration Status
+  .small-12.columns
+    = partial 'attended_events'
 
-      each model
-        tr
-          td = name
-          td = registeredAt
-          td = owed
-          td = paid
-          td = eventBeginsAt
-          td = registrationStatus
 
-    /= render "/dashboard/attended_events"
-
-  .medium-6.columns
-    / = render partial: "home/upcoming_events"
+.text-center
+  link-to 'upcoming-events' classNames="button"
+    span View Upcoming Events

@@ -1,0 +1,17 @@
+.row.center-margin
+  .small-12.columns
+    h3 Upcoming Events
+    table
+      thead
+        tr
+          th Name
+          th Location
+          th Date of Event
+          th Registration Opens
+      tbody
+        each event in model
+          tr
+            td = event.name
+            td = event.location
+            th = event.date_of_event
+            th = event.registrationOpensAt

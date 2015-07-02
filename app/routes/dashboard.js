@@ -37,11 +37,10 @@ export default Ember.Route.extend({
       outlet: 'bottom-footer',
       into: 'application'
     });
-
   },
 
-
-  model: function() {
+  model: function(){
     return this.store.findAll('attended-event');
   }
+
 });
