@@ -8,14 +8,25 @@ section {
   }
 }
 
+/* style for small and medium screens */
 .top-bar,
 .top-bar li,
 .top-bar .name h1,
 .top-bar .title-area li h1,
 .top-bar section .pages li a {
-  height: 40px !important;
-  line-height: 40px !important;
+  height: 40px;
+  line-height: 40px;
   text-transform: uppercase;
+}
+
+/* remove the drop down caret */
+.top-bar-section .has-dropdown > a:after{
+  display: none;
+}
+
+/* now that the drop down caret is removed, fix the padding of the gear */
+.top-bar-section .has-dropdown > a{
+  padding: 0 5px !important; 
 }
 
 
@@ -25,10 +36,14 @@ section {
   .top-bar li,
   .top-bar .name h1,
   .top-bar .title-area li h1,
-  .top-bar section .pages li a {
-    height: 60px !important;
-    line-height: 60px !important;
-    text-transform: uppercase !important;
+  .top-bar section li.page a {
+    height: 60px;
+    line-height: 60px;
+    text-transform: uppercase;
+  }
+  .top-bar section ul li > a:not(.button),
+  .top-bar-section li:not(.has-form) a:not(.button){
+    line-height: 60px;
   }
 
   .alert-box{

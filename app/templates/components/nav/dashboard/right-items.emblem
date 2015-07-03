@@ -1,0 +1,24 @@
+li.page
+  a Upcoming Events
+li.page
+  a Communities
+li
+  a.button Host an Event
+
+li.has-dropdown
+  a href="javascript:void(0);" style="font-size: 20px"
+    = fa-icon 'cog'
+
+  ul.dropdown
+    li
+      a Edit Profile
+    li
+      if session.isAuthenticated
+        a.button click='invalidateSession' Logout
+    li.divider
+    li
+      a
+        = fa-icon 'info-circle'
+        span About
+
+  / = currentUser.name

@@ -4,6 +4,7 @@ nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=
       a.left-off-canvas-toggle.menu-icon: span
 
   section.middle.tab-bar-section.show-for-small
+    ul.left: li: h3: link-to backLinkPath | {{fa-icon 'angle-left'}}
     ul.title-area: li.name: h1.title: link-to backLinkPath | {{backLinkText}}
 
     if hasRightMobileMenu

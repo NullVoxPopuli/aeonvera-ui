@@ -11,7 +11,12 @@
       tbody
         each event in model
           tr
-            td = event.name
+            td
+              a href="{{event.url}}"
+                = event.name
             td = event.location
             th = event.date_of_event
             th = event.registrationOpensAt
+
+    link-to 'dashboard' classNames="button"
+      span Back
