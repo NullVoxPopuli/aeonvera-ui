@@ -12,8 +12,8 @@ table
   each event in model
     tr
       td = event.name
-      td = event.registeredAt
+      td = date-with-format event.registeredAt 'LLL'
       td = event.amount_owed
       td = event.amount_paid
-      td = event.eventBeginsAt
+      td = date-with-format event.eventBeginsAt 'LLL'
       td = event.registrationStatus

@@ -10,9 +10,9 @@ export default DS.Model.extend({
 
 	registrationStatus: function(){
 		if (this.get("isAttending")){
-			return "Attending"
+			return "Attending";
 		} else {
-			return "Not Attending"
+			return "Not Attending";
 		}
 	}.property('isAttending')
 
