@@ -1,12 +1,30 @@
 li.page
   a Upcoming Events
 li.page
-  a Communities
-li
+  link-to 'communities'
+   span = t 'communities'
+li.hide-for-small
   a.button Host an Event
 
-li.has-dropdown
-  a href="javascript:void(0);" style="font-size: 20px"
+li.show-for-small.divider
+li.show-for-small.page
+  a Edit Profile
+li.show-for-small
+  if session.isAuthenticated
+    a.button click='invalidateSession'
+      = fa-icon 'sign-out'
+      span Logout
+li.show-for-small
+  a
+    = fa-icon 'info-circle'
+
+    span
+      = t 'aboutSummary'
+
+
+
+li.has-dropdown.hide-for-small
+  a.cog href="javascript:void(0);"
     = fa-icon 'cog'
 
   ul.dropdown
@@ -19,6 +37,8 @@ li.has-dropdown
     li
       a
         = fa-icon 'info-circle'
-        span About
+
+        span
+          = t 'aboutSummary'
 
   / = currentUser.name

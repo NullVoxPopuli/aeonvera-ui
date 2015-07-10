@@ -23,6 +23,8 @@ export default{
   dashboard: 'Dashboard',
   attendedevents: 'Attended Events',
   upcomingevents: 'Upcoming Events',
+  communities: 'Communities',
+  aboutSummary: 'About',
 
   featuresinfo: 'List of current and upcoming features and possible explanations of each. \
     ÆONVERA is written by, and is for Swing Dancers.',

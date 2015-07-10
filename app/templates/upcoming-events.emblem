@@ -15,8 +15,8 @@
               a href="{{event.url}}"
                 = event.name
             td = event.location
-            th = event.date_of_event
-            th = event.registrationOpensAt
+            th = date-range event.startsAt event.endsAt
+            th = date-with-format event.registrationOpensAt 'llll'
 
     link-to 'dashboard' classNames="button"
       span Back

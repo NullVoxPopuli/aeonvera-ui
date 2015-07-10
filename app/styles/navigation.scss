@@ -2,6 +2,10 @@
   background: #555 !important;
 }
 
+li.has-dropdown a.cog{
+  font-size: 20px
+}
+
 section {
   &.left-small, &.right-small{
     z-index: 1;
@@ -26,7 +30,7 @@ section {
 
 /* now that the drop down caret is removed, fix the padding of the gear */
 .top-bar-section .has-dropdown > a{
-  padding: 0 5px !important; 
+  padding: 0 5px !important;
 }
 
 

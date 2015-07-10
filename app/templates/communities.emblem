@@ -1,0 +1,19 @@
+.text-center
+  h2 = t 'communities'
+
+br
+
+.center-margin
+  each community in model
+    a href="{{community.url}}"
+      ul.small-block-grid-2
+        li
+          if community.logo_is_missing
+            span.icon-thumbnail.right
+              = fa-icon 'globe'
+
+          else
+            img.right src="{{community.logo_url_thumb}}"
+        li
+          h3 = community.name
+          h6 = community.location

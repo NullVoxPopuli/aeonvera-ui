@@ -37,4 +37,5 @@ export default Router.map(function() {
 
   this.route("upcoming-events");
   this.route('attended-events');
+  this.route('communities');
 });
