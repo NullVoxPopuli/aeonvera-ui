@@ -1,6 +1,6 @@
 .row.center-margin
   .small-12.columns
-    h3 Upcoming Events
+    h2.page-title Upcoming Events
     table
       thead
         tr
@@ -16,7 +16,11 @@
                 = event.name
             td = event.location
             th = date-range event.startsAt event.endsAt
-            th = date-with-format event.registrationOpensAt 'llll'
+            th
+              if event.isRegistrationOpen
+                span Open
+              else
+                = date-with-format event.registrationOpensAt 'llll'
 
     link-to 'dashboard' classNames="button"
       span Back

@@ -1,10 +1,13 @@
 li.page
-  a Upcoming Events
+  link-to 'upcoming-events'
+    span = t 'upcomingevents'
+
 li.page
   link-to 'communities'
    span = t 'communities'
 li.hide-for-small
-  a.button Host an Event
+  a.button href='/hosted_events/new' Host an Event
+  /a.button Host an Event
 
 li.show-for-small.divider
 li.show-for-small.page

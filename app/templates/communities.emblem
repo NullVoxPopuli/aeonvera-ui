@@ -1,19 +1,19 @@
 .text-center
-  h2 = t 'communities'
+  h2.page-title = t 'communities'
 
 br
 
-.center-margin
+.center-margin.percent-width-80
   each community in model
     a href="{{community.url}}"
-      ul.small-block-grid-2
-        li
+      .row
+        .columns.small-2.medium-4
           if community.logo_is_missing
             span.icon-thumbnail.right
               = fa-icon 'globe'
 
           else
             img.right src="{{community.logo_url_thumb}}"
-        li
+        .columns.small-10.medium-8
           h3 = community.name
           h6 = community.location

@@ -5,6 +5,10 @@
 
     .shell{
       background-color: $content-background;
+
+      .page-title{
+        padding-top: 20px;
+      }
     }
 
     .panel.bg-header{
