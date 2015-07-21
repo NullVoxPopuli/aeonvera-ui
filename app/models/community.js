@@ -21,11 +21,11 @@ export default DS.Model.extend({
 
   owner: DS.belongsTo('user'),
 
-  location: function(){
+  location: function() {
     return this.get('city') + ", " + this.get('state');
   }.property('city', 'state'),
 
-  logo_is_missing: function(){
-    return (this.get('logo_url').indexOf("missing") != -1)
+  logo_is_missing: function() {
+    return (this.get('logo_url').indexOf("missing") !== -1);
   }.property('logo_url')
 });
