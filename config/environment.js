@@ -57,8 +57,10 @@ module.exports = function(environment) {
       // defaults to /users/sign_in
       serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
       crossOriginWhitelist: ['http://swing.vhost:3000']
-      // serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
-      // crossOriginWhitelist: ['http://aeonvera-staging.work']
+      /*
+      serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
+      crossOriginWhitelist: ['http://aeonvera-staging.work']
+      */
     }
   }
 

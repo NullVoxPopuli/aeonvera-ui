@@ -1,4 +1,4 @@
-h3 Your Attended Events
+h2.page-title Your Attended Events
 table
   thead
     tr

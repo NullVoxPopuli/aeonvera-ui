@@ -14,7 +14,7 @@ section {
 
 /* style for small and medium screens */
 .top-bar,
-.top-bar li,
+// .top-bar li,
 .top-bar .name h1,
 .top-bar .title-area li h1,
 .top-bar section .pages li a {
@@ -37,7 +37,7 @@ section {
 @media #{$large-up} {
 
   .top-bar,
-  .top-bar li,
+  // .top-bar li,
   .top-bar .name h1,
   .top-bar .title-area li h1,
   .top-bar section li.page a {
@@ -45,9 +45,10 @@ section {
     line-height: 60px;
     text-transform: uppercase;
   }
-  .top-bar section ul li > a:not(.button),
-  .top-bar-section li:not(.has-form) a:not(.button){
+  .top-bar section > ul > li > a:not(.button),
+  .top-bar-section > ul > div > li:not(.has-form) > a:not(.button){
     line-height: 60px;
+    height: 60px;
   }
 
   .alert-box{
@@ -59,7 +60,7 @@ section {
     margin-bottom: 6px;
   }
 
-  .top-bar .top-bar-section .auth li{
+  .top-bar .top-bar-section .auth li.auth-link{
     padding-left: 6px;
     padding-right: 6px;
   }

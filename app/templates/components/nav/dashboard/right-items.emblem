@@ -11,14 +11,14 @@ li.hide-for-small
 
 li.show-for-small.divider
 li.show-for-small.page
-  a Edit Profile
+  / a Edit Profile
 li.show-for-small
   if session.isAuthenticated
     a.button click='invalidateSession'
       = fa-icon 'sign-out'
       span Logout
 li.show-for-small
-  a
+  link-to 'welcome.about'
     = fa-icon 'info-circle'
 
     span
@@ -28,17 +28,21 @@ li.show-for-small
 
 li.has-dropdown.hide-for-small
   a.cog href="javascript:void(0);"
+    span &nbsp;
     = fa-icon 'cog'
+    span &nbsp;
 
   ul.dropdown
     li
-      a Edit Profile
+      a href='/user/edit' Edit Profile
     li
       if session.isAuthenticated
-        a.button click='invalidateSession' Logout
+        a click='invalidateSession'
+          = fa-icon 'sign-out'
+          span Logout
     li.divider
     li
-      a
+      link-to 'welcome.about'
         = fa-icon 'info-circle'
 
         span

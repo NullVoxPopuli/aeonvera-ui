@@ -17,3 +17,5 @@ br
         .columns.small-10.medium-8
           h3 = community.name
           h6 = community.location
+br
+br

@@ -4,6 +4,20 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 export default Ember.Route.extend(ApplicationRouteMixin, {
 	currentUser: Ember.inject.service(),
 
+	// http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
+	renderTemplate: function() {
+
+    // Render default outlet
+    this.render();
+
+    // render footer
+    this.render('shared/footer', {
+      outlet: 'bottom-footer',
+      into: 'application'
+    });
+
+  },
+
 	actions: {
 		linkToRoute: function(item) {
 			this.transitionTo(item.route);

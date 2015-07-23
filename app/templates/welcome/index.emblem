@@ -6,7 +6,8 @@
   .columns.medium-4.text-center
     h3 = t 'lookingforevent'
     hr
-    a.button href="/calendar" = t 'buttons.eventcalendar'
+    link-to 'upcoming-events' classNames='button'
+      = t 'buttons.eventcalendar'
 
     /= link_to "Event Calendar", calendar_home_index_path, :class => "button success"
 
@@ -20,20 +21,22 @@
   .columns.medium-4.text-center
     h3 = t 'lookingforscene'
     hr
-    a.button href="/scenes" = t 'buttons.scenesbycity'
+    link-to 'communities' classNames='button'
+      = t 'buttons.scenesbycity'
 
 br
 br
 
-.text-center
-  ul.button-group
-    li: a.button.small.success href="/users/sign_in" = t 'buttons.login'
-    /= link_to('Login', new_user_session_path, :class => "button primary")
-    li: a.button.small.success href="/users/sign_up" = t 'buttons.signup'
-    /= link_to('Sign Up', new_user_registration_path, :class => "button primary")
+unless session.isAuthenticated
+  .text-center
+    ul.button-group
+      li: a.button.small.success href="/users/sign_in" = t 'buttons.login'
+      /= link_to('Login', new_user_session_path, :class => "button primary")
+      li: a.button.small.success href="/users/sign_up" = t 'buttons.signup'
+      /= link_to('Sign Up', new_user_registration_path, :class => "button primary")
 
-br
-br
+  br
+  br
 
 .imageoverlay.text-center.panel.header
   h3.text-center = t 'whatisheader'
