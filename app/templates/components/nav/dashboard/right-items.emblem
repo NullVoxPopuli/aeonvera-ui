@@ -34,7 +34,9 @@ li.has-dropdown.hide-for-small
 
   ul.dropdown
     li
-      a href='/user/edit' Edit Profile
+      a href='/user/edit'
+       = fa-icon 'pencil'
+       span Edit Profile
     li
       if session.isAuthenticated
         a click='invalidateSession'

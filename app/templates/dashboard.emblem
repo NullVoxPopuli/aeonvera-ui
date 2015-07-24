@@ -2,7 +2,6 @@
   .small-12.columns
     = partial 'attended_events'
 
-
 .text-center
   link-to 'upcoming-events' classNames="button"
     span View Upcoming Events
