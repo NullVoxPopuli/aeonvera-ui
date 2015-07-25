@@ -7,16 +7,16 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	// http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
 	renderTemplate: function() {
 
-    // Render default outlet
-    this.render();
+		// Render default outlet
+		this.render();
 
-    // render footer
-    this.render('shared/footer', {
-      outlet: 'bottom-footer',
-      into: 'application'
-    });
+		// render footer
+		this.render('shared/footer', {
+			outlet: 'bottom-footer',
+			into: 'application'
+		});
 
-  },
+	},
 
 	actions: {
 		linkToRoute: function(item) {
@@ -48,7 +48,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
 		sessionAuthenticationFailed: function(error) {
 			Ember.get(this, 'flashMessages').warning(error.error || error);
-		}
+		},
+
+		signup: function() {},
 
 	}
 });
