@@ -3,6 +3,7 @@
 
   = login-modal
   = login-help-modal
+  = sign-up-modal
 
   .inner-wrap
     a.exit-off-canvas

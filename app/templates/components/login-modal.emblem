@@ -15,7 +15,7 @@
 
       br
       ul.button-group.text-center.right
-        li: button Sign Up
+        li: a.button href='#' data-reveal-id='signup-modal' Sign Up
         li: button type='submit' Login
 
       a.button href='#' data-reveal-id='login-help-modal' Help
