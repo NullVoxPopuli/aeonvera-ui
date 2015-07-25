@@ -4,8 +4,8 @@ li.auth-link
       = fa-icon 'pencil'
       span Edit Profile
   else
-    link-to 'signup' class='button'
-      span Sign Up
+    a.button.margin-right-5 href='#' data-reveal-id='signup-modal'
+      span  = t 'buttons.signup'
 
 li.auth-link
   if session.isAuthenticated
@@ -13,4 +13,4 @@ li.auth-link
       = fa-icon 'sign-out'
       span Logout
   else
-    a.button href='#' data-reveal-id='login-modal' Login
+    a.button.margin-right-5 href='#' data-reveal-id='login-modal' = t 'buttons.login'

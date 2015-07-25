@@ -11,16 +11,6 @@
     br
     br
 
-    ul.accordion data-accordion='true'
-      li.accordion-navigation
-        a href='#login-help-secure' Are my credentials secure?
-        #login-help-secure.content
-          span Yes. All communication is sent over a secure connection to the server, and at no point does aeonvera actually know what your password is. The database stores passwords as hashes, so there is no way to unencrypt your password.
-      li.accordion-navigation
-        a href='#login-help-why' Why do I need to make an account?
-        #login-help-why.content
-          span It helps the event organizers know who you are, and enables them to get in contact with you. It also saves you from repeating information on other events on this site and enables you to track your registration and payment history.
-
     p
     ul.button-group.text-center.left
       li: a.button href='#' data-reveal-id='login-modal' Back

@@ -1,3 +1,20 @@
+$directions: "left", "right", "bottom", "top";
+$intervals: 5, 10, 15, 20;
+
+@each $dir in $directions {
+  @each $amount in $intervals {
+
+    .padding-#{$dir}-#{$amount} {
+      padding-#{$dir}: #{$amount}px;
+    }
+
+    .margin-#{$dir}-#{$amount} {
+      margin-#{$dir}: #{$amount}px;
+    }
+  }
+}
+
+
 
 @for $i from 1 through 10 {
   .percent-width-#{$i}0 {
