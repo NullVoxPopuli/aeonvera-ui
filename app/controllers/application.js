@@ -7,5 +7,4 @@ export default Ember.Controller.extend({
   mobileMenuLeft: 'nav/welcome/left-items',
   mobileMenuRight: 'nav/welcome/right-items'
 
-
 });
