@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	initFoundation: function() {
-		this.$(document).foundation();
+		this.$(document).foundation('reflow');
 	}.on('didInsertElement'),
 
 	actions: {
