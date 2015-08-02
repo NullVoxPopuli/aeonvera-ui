@@ -1,13 +1,16 @@
 #login-help-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-help-modal-title' aria-hidden='true' role='dialog'
   h2#login-help-modal-title.text-center Login Help
   p
-    a Forgot your email?
+    / a href='/users/password/new' Forgot your email?
+    / br
+    a href='/users/password/new'
+      span Forgot your password?
     br
-    a Forgot your password?
+    a href='/users/confirmation/new'
+      span Didn't receive confirmation email?
     br
-    a Didn't receive confirmation email?
-    br
-    a Didn't receive unlock email?
+    a href='/users/unlock/new' 
+      span Didn't receive unlock email?
     br
     br
 
