@@ -16,8 +16,9 @@ export default Ember.Controller.extend({
     /**
       Create new account / new user.
     */
-    registerNewUser: function(model) {
+    registerNewUser: function() {
       var user = this.get('user');
+      var self = this;
 
       user.save().then(
         function() {
@@ -26,6 +27,11 @@ export default Ember.Controller.extend({
             - hide the modal
             - notify of confirmation email
           */
+          self.get('flashMessages').success(
+            'You will receive an email with instructions about how to confirm your account in a few minutes.'
+          );
+          jQuery('#signup-modal a.close-reveal-modal').trigger('click');
+
         },
         function() {
           /*
