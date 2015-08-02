@@ -1,9 +1,9 @@
 .off-canvas-wrap data-offcanvas='true'
   = component navigation left=mobileMenuLeft right=mobileMenuRight
 
-  /= login-modal
-  /= login-help-modal
-  = sign-up-modal
+  = login-modal
+  = login-help-modal
+  = sign-up-modal action='registerNewUser' model=user
 
   .inner-wrap
     a.exit-off-canvas

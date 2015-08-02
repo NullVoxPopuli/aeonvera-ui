@@ -4,39 +4,43 @@
   p
     form submit='register'
       .row
-        .columns.small-12.medium-6
+        = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='firstName'
+
           label
             span First Name
-            = input value=firstName placeholder='' type='text' required='true'
+            = input value=model.firstName placeholder='' type='text' required='true'
 
-        .columns.small-12.medium-6
+        = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='lastName'
+
           label
             span Last Name
-            = input value=lastName placeholder='' type='text' required='true'
+            = input value=model.lastName placeholder='' type='text' required='true'
 
       .row
-        .columns.small-12
+        = error-field-wrapper classes='columns small-12' errors=errors field='email'
+
           label
             span Email
-            = input value=email placeholder='yourname@domain.com' type='text' required='true'
-
+            = input value=model.email placeholder='yourname@domain.com' type='text' required='true'
 
       .row
-        .columns.small-12.medium-6
+        = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='password'
+
           label
             span Password
             span.padding-left-5 = tool-tip message="Length trumps complexity. If it's easier to remember a sentence, do that. This tooltip could even be your password."
-            = input value=password placeholder='Secure and easy to remember' type='password' required='true'
+            = input value=model.password placeholder='Secure and easy to remember' type='password' required='true'
 
-        .columns.small-12.medium-6
+        = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='passwordConfirmation'
+
           label
             span Password Confirmation
-            = input value=passwordConfirmation placeholder='Secure and easy to remember' type='password' required='true'
+            = input value=model.passwordConfirmation placeholder='Secure and easy to remember' type='password' required='true'
 
 
       br
       ul.button-group.text-center.right
-        li: a.button data-reveal-id='login-modal' Login
+        li: button data-reveal-id='login-modal' Login
         li: button type='submit' Sign Up
 
       a.button href='#' data-reveal-id='login-help-modal' Help

@@ -1,0 +1,6 @@
+= yield
+
+if hasError
+  span.error
+    each error in fieldErrors
+      = error.message
