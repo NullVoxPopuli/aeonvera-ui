@@ -9,11 +9,16 @@ table
       th Event Begins
       th Registration Status
 
-  each event in model
+  if eventsPresent
+    each event in model
+      tr
+        td = event.name
+        td = date-with-format event.registeredAt 'LLL'
+        td = event.amount_owed
+        td = event.amount_paid
+        td = date-with-format event.eventBeginsAt 'LLL'
+        td = event.registrationStatus
+  else
     tr
-      td = event.name
-      td = date-with-format event.registeredAt 'LLL'
-      td = event.amount_owed
-      td = event.amount_paid
-      td = date-with-format event.eventBeginsAt 'LLL'
-      td = event.registrationStatus
+      td colspan='6'
+        span You have not yet attended any events. Please view the upcoming events list to see if there is anything of interest.
