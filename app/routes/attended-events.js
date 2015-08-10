@@ -14,9 +14,5 @@ export default Ember.Route.extend({
 
   model: function() {
     return this.store.findAll('attended-event');
-  },
-
-  eventsPresent: function() {
-    return (this.get('model').length > 0);
   }
 });

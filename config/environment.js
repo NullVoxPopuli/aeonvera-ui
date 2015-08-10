@@ -77,6 +77,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    // serverTokenEndpoint: 'https://aeonvera.com/users/sign_in',
+    // crossOriginWhitelist: ['https://aeonvera.com'],
+
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",

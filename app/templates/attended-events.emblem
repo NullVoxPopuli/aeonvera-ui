@@ -9,10 +9,11 @@ table
       th Event Begins
       th Registration Status
 
-  if eventsPresent
+  if model
     each event in model
       tr
-        td = event.name
+        td
+          = event.name
         td = date-with-format event.registeredAt 'LLL'
         td = event.amount_owed
         td = event.amount_paid
