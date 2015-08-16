@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Devise from 'simple-auth-devise/authenticators/devise';
-// import Devise from 'simple-auth-devise/authorizers/devise';
 
 var alreadyRun = false;
 

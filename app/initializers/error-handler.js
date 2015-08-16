@@ -29,26 +29,10 @@ export default {
       alreadyRun = true;
     }
 
-    Ember.RSVP.on('error', function(error){
-      var errorData = {
-        message: error.status + ": " + error.responseText,
-        cause: error.statusText
-      };
-
-      reportError(errorData);
-    });
-
-    Ember.onerror = function(error){
-      var errorData = {
-        message: error.status + ": " + error.responseText,
-        method: error.responseText,
-        cause: error.statusText
-      };
-
-      reportError(errorData);
-    };
-
     Ember.Logger.error = function(message, cause, stack){
+      console.error(message);
+      console.error(stack);
+
       var errorData = {
         message: message,
         stack: stack,

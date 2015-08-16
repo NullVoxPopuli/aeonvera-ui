@@ -38,4 +38,8 @@ export default Router.map(function() {
   this.route("upcoming-events");
   this.route('attended-events');
   this.route('communities');
+
+  this.resource('user', function(){
+    this.route('edit');
+  });
 });

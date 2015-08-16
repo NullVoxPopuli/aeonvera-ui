@@ -2,11 +2,6 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
-	currentUser: Ember.inject.service(),
-
-
-
-
 	// http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
 	renderTemplate: function() {
 
@@ -44,17 +39,23 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		},
 
 		sessionAuthenticationSucceeded: function() {
-			jQuery('a.close-reveal-modal').trigger('click');
+			// close the modal
+			Ember.$('a.close-reveal-modal').trigger('click');
+
+			// set user and redirect
 			this.transitionTo('dashboard');
+
+			// notify of success
 			Ember.get(this, 'flashMessages').success(
 				'You have successfully logged in');
 		},
-
-		sessionAuthenticationFailed: function(error) {
-			Ember.get(this, 'flashMessages').warning(error.error || error);
-		},
-
-		signup: function() {},
+		//
+		// sessionAuthenticationFailed: function(error) {
+		// 	debugger;
+		// 	Ember.Logger.debug('Session authentication failed!');
+		//
+		// 	Ember.get(this, 'flashMessages').warning(error.error || error);
+		// }
 
 	}
 });

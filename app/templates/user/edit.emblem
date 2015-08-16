@@ -1,0 +1,59 @@
+.row.imageoverlay.text-center
+  .columns.small-12
+    h1 Edit Account
+
+.row
+  .small-12.columns
+    h4 Identity
+    .row
+      .medium-4.columns
+        label First Name
+        = input value=session.currentUser.firstName
+      .medium-4.columns
+        label Last Name
+        = input value=session.currentUser.lastName
+      .medium-4.columns
+        label Email
+        = input value=session.currentUser.email
+
+    if pendingConfirmation
+      span Currently waiting on confirmation for&nbsp;
+      = session.currentUser.unconfirmedEmail
+
+    h4 Password
+    .row
+      .medium-4.columns
+        label New Password
+        = input value=session.currentUser.password type='password'
+
+      .medium-4.columns
+        label New Password Confirmation
+        = input value=session.currentUser.passwordConfirmation type='password'
+
+      .medium-4.columns
+        label Current Password
+        = input value=session.currentUser.currentPassword type='password' placeholder="Only needed for changing your password"
+
+    h4 Other Settings
+    .row
+      .medium-4.columns
+        label Time Zone
+        = input value=session.currentUser.timeZone disabled=true
+
+    button.primary type='submit' click='updateCurrentUser' Update
+
+    hr
+    p
+      p Unhappy?
+      a.button.alert href="#" data-reveal-id="cancelAccount" Cancel My Account
+      #cancelAccount.reveal-modal.medium data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog"
+        h2#modalTitle.text-center  Cancel Account
+        p.lead Are you sure you wish to cancel your account? This is mostly destructive.
+        p.lead
+          span You can reactivate your account later by contacting&nbsp;
+          a href="mailto:support@aeonvera.com" support
+          span .
+        .text-center
+          button.alert click='deactivateAccount'
+            | I'm sure, cancel my account.
+        a.close-reveal-modal aria-label="Close" &#215;
