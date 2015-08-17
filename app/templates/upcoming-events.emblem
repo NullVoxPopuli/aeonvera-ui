@@ -15,8 +15,8 @@
               a href="{{event.url}}"
                 = event.name
             td = event.location
-            th = date-range event.startsAt event.endsAt
-            th
+            td = date-range event.startsAt event.endsAt
+            td
               if event.isRegistrationOpen
                 span Open
               else

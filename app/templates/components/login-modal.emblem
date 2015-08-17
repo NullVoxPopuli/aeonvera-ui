@@ -1,7 +1,11 @@
 #login-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog'
   h2#login-modal-title.text-center Login
-  br
   p
+    #login-error-message.modal-top-message.alert-box.alert data-alert='true'
+      a.close href='#' &times;
+      span.message
+      br
+
     form submit='authenticate'
       .row.collapse
         .small-3.large-2.columns: span.prefix Email

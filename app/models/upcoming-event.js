@@ -10,7 +10,7 @@ export default DS.Model.extend({
 
   isRegistrationOpen: function() {
     var opensAt = this.get('registrationOpensAt').getTime();
-    var now = Date.now;
-    return (now > opensAt);
+    var currently = Date.now();
+    return (currently > opensAt);
   }.property('registrationOpensAt')
 });

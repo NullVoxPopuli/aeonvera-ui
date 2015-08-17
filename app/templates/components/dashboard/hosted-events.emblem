@@ -1,0 +1,45 @@
+h2 Hosted Events
+if model
+  table.responsive
+    tr
+      th Name
+      th.text-center colspan="3" Attendees
+      th Shirts Sold
+      th Registration Opens
+      th Date
+    tr
+      / Name
+      th
+      / Attendances
+      th Total
+      th Leads
+      th Follows
+      / Shirts
+      th Total
+      / Registration Opens
+      th
+      / Event Start
+      th
+
+    each event in model
+      tr
+        td
+          a href='hosted_events/{{event.id}}'
+            = event.name
+        td = event.totalAttendees
+        td = event.numberOfLeads
+        td = event.numberOfFollows
+        td = event.numberOfShirtsSold
+        td
+          if event.isRegistrationOpen
+            span Open
+          else
+            if event.hasEnded
+              span Closed
+            else
+              = date-with-format event.registrationOpensAt 'llll'
+
+        td = date-range event.startsAt event.endsAt
+
+else
+  p You have not yet hosted an event. Hosting an event is free! Click the 'Host an Event' button below to get get started.

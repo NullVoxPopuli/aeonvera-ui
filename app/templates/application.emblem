@@ -18,7 +18,7 @@
       .shell
         .inner-shell
           each flash in flashMessages.queue
-            flash-message flash=flash messageStyle='foundation'
+            flash-message flash=flash messageStyle='foundation' classNames='flash-message'
           = outlet
 
         = outlet 'bottom-footer'

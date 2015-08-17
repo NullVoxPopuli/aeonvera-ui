@@ -23,9 +23,11 @@ export default Router.map(function() {
   });
   this.resource('events', function() {});
 
-  this.resource('dashboard', {
+  this.route('dashboard', {
     path: '/'
   }, function (){
+    this.route('attended-events');
+    this.route('hosted-events');
   });
 
   this.route('register', {
@@ -36,7 +38,6 @@ export default Router.map(function() {
   });
 
   this.route("upcoming-events");
-  this.route('attended-events');
   this.route('communities');
 
   this.resource('user', function(){

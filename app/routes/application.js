@@ -49,13 +49,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			Ember.get(this, 'flashMessages').success(
 				'You have successfully logged in');
 		},
-		//
-		// sessionAuthenticationFailed: function(error) {
-		// 	debugger;
-		// 	Ember.Logger.debug('Session authentication failed!');
-		//
-		// 	Ember.get(this, 'flashMessages').warning(error.error || error);
-		// }
+
+		sessionAuthenticationFailed: function(error) {
+			Ember.Logger.debug('Session authentication failed!');
+
+			Ember.$('#login-error-message .message').text(error.error || error);
+			Ember.$('#login-error-message').show();
+		}
 
 	}
 });

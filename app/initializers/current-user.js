@@ -5,10 +5,19 @@
 import Ember from "ember";
 import Session from "simple-auth/session";
 
+var alreadyRun = false;
+
 export default {
   name: "current-user",
   before: "simple-auth",
   initialize: function(container) {
+
+    if (alreadyRun){
+      return;
+    } else {
+      alreadyRun = true;
+    }
+
     Session.reopen({
       setCurrentUser: function() {
         var accessToken = this.get('secure.token');

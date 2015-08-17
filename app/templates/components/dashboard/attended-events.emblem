@@ -1,5 +1,5 @@
-h2.page-title Your Attended Events
-table
+h2.page-title Registerd Events
+table.responsive
   thead
     tr
       th Name
