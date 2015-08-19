@@ -10,5 +10,7 @@ if model
     each order in model
       tr
         td = date-with-format order.created_at 'LLL'
-        td = order.hostName
+        td
+          a href=order.hostUrl
+            = order.hostName
         td = order.paidAmount
