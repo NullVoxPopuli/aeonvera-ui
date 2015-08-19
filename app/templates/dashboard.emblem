@@ -1,38 +1,49 @@
-.row.center-margin
-  .small-12.columns
-    = component 'dashboard/attended-events' model=model.attended
 
+.row
+  .large-3.medium-4.columns
+    .sidebar
+      nav
+        ul.side-nav
+          li = session.currentUser.name
+          li
+            link-to 'user.edit'
+              span Edit Profile
+          li.divider
+          li Manage
+          li
+            link-to 'dashboard.registered-events'
+              span Registered Events
+          li
+            link-to 'dashboard.hosted-events'
+              span Hosted Events
+          li
+            link-to 'dashboard.orders'
+              span Orders
+          li.divider
+          li &nbsp;
+          li
+            a.button.success.expand href='/hosted_events/new' Create an Event
+        
 
-.text-center
-  link-to 'upcoming-events' classNames="button"
-    span View Upcoming Events
-
-  span &nbsp;&nbsp;&nbsp;&nbsp;
-  link-to 'communities' classNames="button"
-    span View Communities
-
-.row.center-margin
-  .small-12.columns
-    = component 'dashboard/hosted-events' model=model.hosted
-
-.text-center
-  a.button.success href='/hosted_events/new' Create an Event
-
-br
-br
-br
-br
-
-.row.center-margin
-  .columns.medium-6.text-center
-    h3 Now what?
+  .large-9.medium-8.columns
+    h3 Welcome, {{session.currentUser.name}}!
     hr
-    span Now that you are logged in, you can register for events, host your own event, start your own community or dance scene, have weekly lessons, memberships, and register for lessons or dances.
+    = outlet
+    br
+    br
+    br
+    br
 
-  .columns.medium-6.text-center
-    h3 Need help?
-    hr
-    span Never be afraid to ask! if you have a question about anything, just send email to&nbsp;
-    span the support email linked to at the bottom of the page
-    span &nbsp; and you should receive a response in one business day.
-    span &nbsp; There is also the facebook page linked to at the bottom of the screen, in case you want to discuss aeonvera with other people.
+    .row.center-margin
+      .columns.medium-6.text-center
+        h3 Now what?
+        hr
+        span Now that you are logged in, you can register for events, host your own event, start your own community or dance scene, have weekly lessons, memberships, and register for lessons or dances.
+
+      .columns.medium-6.text-center
+        h3 Need help?
+        hr
+        span Never be afraid to ask! if you have a question about anything, just send email to&nbsp;
+        span the support email linked to at the bottom of the page
+        span &nbsp; and you should receive a response in one business day.
+        span &nbsp; There is also the facebook page linked to at the bottom of the screen, in case you want to discuss aeonvera with other people.

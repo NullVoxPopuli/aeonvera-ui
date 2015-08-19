@@ -6,6 +6,7 @@ export default DS.Model.extend({
   numberOfLeads: DS.attr('number'),
   numberOfFollows: DS.attr('number'),
   numberOfShirtsSold: DS.attr('number'),
+  myEvent: DS.attr('boolean'),
   startsAt: DS.attr('date'),
   endsAt: DS.attr('date'),
 

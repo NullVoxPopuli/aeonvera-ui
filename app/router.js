@@ -26,8 +26,9 @@ export default Router.map(function() {
   this.route('dashboard', {
     path: '/'
   }, function (){
-    this.route('attended-events');
     this.route('hosted-events');
+    this.route('registered-events');
+    this.route('orders');
   });
 
   this.route('register', {
@@ -43,4 +44,5 @@ export default Router.map(function() {
   this.resource('user', function(){
     this.route('edit');
   });
+
 });

@@ -1,0 +1,14 @@
+h4 Payments
+
+if model
+  table.responsive
+    tr
+      th Date
+      th Event Name
+      th Paid
+
+    each order in model
+      tr
+        td = date-with-format order.created_at 'LLL'
+        td = order.hostName
+        td = order.paidAmount

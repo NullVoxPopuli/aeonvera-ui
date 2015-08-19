@@ -1,4 +1,9 @@
-h2 Hosted Events
+h4
+  | Hosted Events
+  .right
+    = input type='checkbox' checked=showMyEvents
+    label Show Only My Events
+
 if model
   table.responsive
     tr
@@ -21,7 +26,7 @@ if model
       / Event Start
       th
 
-    each event in model
+    each event in filteredModel
       tr
         td
           a href='hosted_events/{{event.id}}'
