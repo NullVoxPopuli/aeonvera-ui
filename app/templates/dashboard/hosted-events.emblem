@@ -29,7 +29,7 @@ if model
     each event in filteredModel
       tr
         td
-          a href='hosted_events/{{event.id}}'
+          link-to 'dashboard.events' event.id
             = event.name
         td = event.totalAttendees
         td = event.numberOfLeads

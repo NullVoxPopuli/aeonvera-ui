@@ -21,7 +21,6 @@ export default Router.map(function() {
     this.route('privacy');
     this.route('about');
   });
-  this.resource('events', function() {});
 
   this.route('dashboard', {
     path: '/'
@@ -29,6 +28,20 @@ export default Router.map(function() {
     this.route('hosted-events');
     this.route('registered-events');
     this.route('orders');
+
+    this.resource('events', function() {
+      this.route('housing-requests', function(){
+        this.route('new');
+      });
+      this.route('housing-provisions', function(){
+        this.route('new');
+      });
+
+      this.route('checkin', function(){
+        this.route('take-payment');
+      });
+    });
+    
   });
 
   this.route('register', {
