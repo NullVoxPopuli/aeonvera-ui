@@ -31,7 +31,7 @@ export default DS.Model.extend({
 		}
 
 		if (hasPaid && doesOwe){
-			status = status + '; '
+			status = status + '; ';
 		}
 
 		if (doesOwe) {

@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
   filteredModel: function(){
     var store = this.store;
     var onlyMe = this.get('showMyEvents');
-    var self = this;
 
     if (onlyMe){
       var promise = store.filter('hosted-event', function(e) {
