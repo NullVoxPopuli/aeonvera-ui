@@ -24,24 +24,26 @@ export default Router.map(function() {
 
   this.route('dashboard', {
     path: '/'
-  }, function (){
+  }, function() {
     this.route('hosted-events');
     this.route('registered-events');
     this.route('orders');
 
-    this.resource('events', function() {
-      this.route('housing-requests', function(){
+    this.resource('events', {
+      path: '/events/:event_id'
+    }, function() {
+      this.route('housing-requests', function() {
         this.route('new');
       });
-      this.route('housing-provisions', function(){
+      this.route('housing-provisions', function() {
         this.route('new');
       });
 
-      this.route('checkin', function(){
+      this.route('checkin', function() {
         this.route('take-payment');
       });
     });
-    
+
   });
 
   this.route('register', {
@@ -54,7 +56,7 @@ export default Router.map(function() {
   this.route("upcoming-events");
   this.route('communities');
 
-  this.resource('user', function(){
+  this.resource('user', function() {
     this.route('edit');
   });
 
