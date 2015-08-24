@@ -9,6 +9,20 @@ export default Ember.Route.extend(AuthenticatedUi, {
     dashboard.set('sidebar', 'sidebar/dashboard-sidebar');
 
     this._super();
+  },
+
+  actions: {
+    setSidebar: function(name){
+      var dashboard = this.controllerFor('dashboard');
+
+      dashboard.set('sidebar', name);
+    },
+
+    setData: function(data){
+      var dashboard = this.controllerFor('dashboard');
+
+      dashboard.set('data', data);
+    }
   }
 
 });

@@ -1,0 +1,21 @@
+h3 Welcome, {{session.currentUser.name}}!
+hr
+= outlet
+br
+br
+br
+br
+
+.row.center-margin
+  .columns.medium-6.text-center
+    h3 Now what?
+    hr
+    span Now that you are logged in, you can register for events, host your own event, start your own community or dance scene, have weekly lessons, memberships, and register for lessons or dances.
+
+  .columns.medium-6.text-center
+    h3 Need help?
+    hr
+    span Never be afraid to ask! if you have a question about anything, just send email to&nbsp;
+    span the support email linked to at the bottom of the page
+    span &nbsp; and you should receive a response in one business day.
+    span &nbsp; There is also the facebook page linked to at the bottom of the screen, in case you want to discuss aeonvera with other people.

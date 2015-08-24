@@ -2,13 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  renderTemplate: function(){
+    this.render('events/show', {
+      into: 'dashboard'
+    });
+  },
+
   afterModel: function(model, transition){
+    this._super();
+
     this.set('title', model.get('name'));
 
-    var dashboard = this.controllerFor('dashboard');
 
-    dashboard.set('data', model);
-    dashboard.set('sidebar', 'sidebar/event-sidebar');
+    transition.send('setData', model);
+    transition.send('setSidebar', 'sidebar/event-sidebar');
   },
 
   model: function(params) {
