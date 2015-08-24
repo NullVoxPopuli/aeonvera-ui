@@ -29,9 +29,8 @@ export default Router.map(function() {
     this.route('registered-events');
     this.route('orders');
 
-    this.resource('events', {
-      path: '/events/:event_id'
-    }, function() {
+    this.resource('events', function() {
+      this.route('show', { path: ':event_id'})
       this.route('housing-requests', function() {
         this.route('new');
       });

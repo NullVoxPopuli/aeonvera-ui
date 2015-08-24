@@ -1,0 +1,38 @@
+li = model.name
+li
+  a
+    span At the Door
+li.divider
+li View
+li
+  a href='/hosted_events/{{event.id}}/attendances'
+    span Attendees
+li
+  a href='/hosted_events/{{event.id}}/attendances/unpaid'
+    span Unpaid Registrations
+li
+  a href='/hosted_events/{{event.id}}/cancelled_attendances'
+    span Cancelled Registrations
+li.divider
+li
+  a href='/hosted_events/{{event.id}}/packet_printout'
+    span Packet Printout
+li
+  a href='/hosted_events/{{event.id}}/volunteers'
+    span Volunteers
+li
+  a href='/hosted_events/{{event.id}}/housing'
+    span Housing
+li.divider
+li Reporting
+li
+  a href='/hosted_events/{{event.id}}/revenue'
+    span Revenue
+li
+  a href='/hosted_events/{{event.id}}/charts'
+    span Charts
+
+li.divider
+
+li
+  a.button.expand href='/hosted_events/{{event.id}}/manage' Manage

@@ -1,0 +1,19 @@
+li = session.currentUser.name
+li
+  link-to 'user.edit'
+    span Edit Profile
+li.divider
+li Manage
+li
+  link-to 'dashboard.registered-events'
+    span Registered Events
+li
+  link-to 'dashboard.hosted-events'
+    span Hosted Events
+li
+  link-to 'dashboard.orders'
+    span Orders
+li.divider
+li &nbsp;
+li
+  a.button.success.expand href='/hosted_events/new' Create an Event
