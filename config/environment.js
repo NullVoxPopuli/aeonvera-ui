@@ -19,6 +19,7 @@ module.exports = function(environment) {
       defaultLocale: 'en'
 
     },
+    ACTIVE_MODEL_API_URL: 'http://localhost:4200/api/',
 
     'simple-auth': {
       authorizer: 'simple-auth-authorizer:devise',

@@ -1,0 +1,33 @@
+table.responsive
+  thead
+    tr
+      th Name
+      th Package
+      th Level
+      th Orientation
+      th Competitions
+      th Shirts
+      th Owe $
+      th Time Registered
+
+  tbody
+    if attendancesPresent
+      each attendance in attendances
+        tr
+          td
+            a
+              span = attendance.attendeeName
+          td = attendance.package.name
+          td = attendance.level.name
+          td = attendance.danceOrientation
+          td
+            each competition in attendance.competitions
+              = competition.name
+              br
+          td
+            /each shirt in attendance.shirts
+              /= "#{shirt.line_item.name} "
+              /= shirt_with_size_and_quantity_summary(shirt, attendance: attendance)
+
+          td.payment-status
+            / paid / owe? mark paid button

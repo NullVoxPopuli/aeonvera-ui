@@ -2,13 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  renderTemplate: function(){
+  renderTemplate: function() {
     this.render('events/show', {
       into: 'dashboard'
     });
   },
 
-  afterModel: function(model, transition){
+  afterModel: function(model, transition) {
     this._super();
 
     this.set('title', model.get('name'));
@@ -19,7 +19,7 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    return this.store.find('event', params.event_id);
+    return this.store.find('eventSummary', params.event_id);
   }
 
 });

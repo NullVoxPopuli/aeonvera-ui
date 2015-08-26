@@ -17,22 +17,26 @@ export default DS.Model.extend({
     return (open && !ended);
   }.property('registrationOpensAt', 'endsAt'),
 
-  hasRegistrationOpened: function(){
+  hasRegistrationOpened: function() {
     var opensAt = this.get('registrationOpensAt').getTime();
     var currently = Date.now();
     return (currently > opensAt);
   }.property('registrationOpensAt'),
 
-  hasEnded: function(){
+  hasEnded: function() {
     var endedAt = this.get('endsAt').getTime();
     var currently = Date.now();
     return (currently > endedAt);
   }.property('endsAt'),
 
-  totalAttendees: function(){
+  totalAttendees: function() {
     var leads = this.get('numberOfLeads');
     var follows = this.get('numberOfFollows');
 
     return leads + follows;
-  }.property('numberOfLeads', 'numberOfFollows')
+  }.property('numberOfLeads', 'numberOfFollows'),
+
+  totalRegistrants: function() {
+    return this.get('totalAttendees');
+  }.property('totalAttendees')
 });

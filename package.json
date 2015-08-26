@@ -23,6 +23,7 @@
     "broccoli-clean-css": "1.0.0",
     "broccoli-filter": "^0.1.14",
     "ember-cli": "1.13.8",
+    "ember-cli-activemodel-adapter": "0.0.3",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-content-security-policy": "^0.4.0",
@@ -46,5 +47,8 @@
     "ember-export-application-global": "^1.0.2",
     "grunt": "^0.4.5",
     "grunt-s3": "^0.1.0"
+  },
+  "dependencies": {
+    "ember-cli-activemodel-adapter": "0.0.3"
   }
 }

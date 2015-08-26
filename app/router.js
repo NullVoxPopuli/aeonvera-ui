@@ -30,7 +30,9 @@ export default Router.map(function() {
     this.route('orders');
 
     this.resource('events', function() {
-      this.route('show', { path: ':event_id'});
+      this.route('show', {
+        path: ':event_id'
+      });
       this.route('housing-requests', function() {
         this.route('new');
       });
