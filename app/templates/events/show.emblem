@@ -29,4 +29,4 @@ hr
 
   .medium-9.columns
     label Most Recent Registrations
-    = attendance-list
+    = attendance-list model=model.recentRegistrations

@@ -8,12 +8,12 @@ var reportError = function(errorData){
     method: 'POST',
     dataType: 'json',
     data: { error: errorData },
-    success: function(data, textStatus, jqXHR){
+    success: function(/*data, textStatus, jqXHR*/){
       // notify the user what happened, give link
       // similar to atom.io's editor
 
     },
-    error: function(jqXHR, textStatus, errorThrown){
+    error: function(/*jqXHR, textStatus, errorThrown*/){
       // not sure what to do if this fails... we can't report it
     }
   });

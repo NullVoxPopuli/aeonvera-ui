@@ -4,7 +4,19 @@ import config from './config/environment';
 var Router = Ember.Router.extend({
   location: config.locationType
 });
+/*
+  Notes:
 
+  route == verb
+  resource == noun
+
+  this.resource('post', function(){
+    this.route('comment'); // PostCommentRoute
+    this.resource('comment'); // CommentRoute
+  });
+
+  index route is automatic
+*/
 export default Router.map(function() {
   this.route('login');
   this.route('signup');

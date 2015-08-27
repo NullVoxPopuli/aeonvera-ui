@@ -38,7 +38,7 @@ export default {
             make a call to the server that only returns the current user
             see UserController#show
           */
-          return container.lookup('store:main')
+          return container.lookup('service:store')
             /*
               the id of 0 here doesn't actually matter,
               the server alwasy returns the current user.

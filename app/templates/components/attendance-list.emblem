@@ -12,7 +12,7 @@ table.responsive
 
   tbody
     if attendancesPresent
-      each attendance in attendances
+      each attendance in model
         tr
           td
             a
