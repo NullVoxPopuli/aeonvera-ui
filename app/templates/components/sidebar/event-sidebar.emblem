@@ -1,6 +1,9 @@
-li = model.name
 li
-  a
+  h5
+    link-to 'events.show' model.id
+      = model.name
+li
+  link-to 'event-at-the-door' event.id
     span At the Door
 li.divider
 li View

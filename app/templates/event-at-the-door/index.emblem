@@ -1,0 +1,12 @@
+.row.full-width
+	.small-12.columns
+		h2 = model.name
+		hr
+		.panel
+			ul.small-block-grid-1.medium-block-grid-2.text-center
+				li: a.button.large CheckIN
+				li: a.button.large Register
+				li: a.button.large Competition List
+				li: a.button.large Add to Registrant
+				li: a.button.large Competition Sign Up
+				li: a.button.large A la Carte
