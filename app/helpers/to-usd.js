@@ -11,6 +11,6 @@ export function toUsd(params) {
       sign = '$';
 
   return `${sign}${amount}`;
-};
+}
 
 export default Ember.HTMLBars.makeBoundHelper(toUsd);
