@@ -1,12 +1,25 @@
-.row.full-width
-	.small-12.columns
+.row
+	.small-12.columns.medium-8.medium-offset-2.text-center
 		h2 = model.name
 		hr
-		.panel
-			ul.small-block-grid-1.medium-block-grid-2.text-center
-				li: a.button.large CheckIN
-				li: a.button.large Register
-				li: a.button.large Competition List
-				li: a.button.large Add to Registrant
-				li: a.button.large Competition Sign Up
-				li: a.button.large A la Carte
+		p This is the command center for behind-the-desk operations during an event. From here you can check people in, register new people, see who's competing, add competitions to a registrant, as well as make a la carte sales.
+		hr
+		ul.small-block-grid-1.medium-block-grid-2.text-center
+			li
+				a.button.percent-width-100
+					span CheckIN
+			li
+				a.button.percent-width-100
+					span Register
+			li
+				a.button.percent-width-100
+					span Competition List
+			li
+				a.button.percent-width-100
+					span Add to Registrant
+			li
+				a.button.percent-width-100
+					span Competition Sign Up
+			li
+				a.button.percent-width-100
+					span A la Carte
