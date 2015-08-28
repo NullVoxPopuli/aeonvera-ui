@@ -19,7 +19,8 @@ module.exports = function(environment) {
       defaultLocale: 'en'
 
     },
-    ACTIVE_MODEL_API_URL: 'http://localhost:4200/api/',
+
+    ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
     'simple-auth': {
       authorizer: 'simple-auth-authorizer:devise',
@@ -30,12 +31,12 @@ module.exports = function(environment) {
       identificationAttributeName: 'email'
     },
     contentSecurityPolicy: {
-      'default-src': "*",
+      'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'font-src': "*",
+      // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
-      'img-src': "*",
-      'style-src': "*",
+      'img-src': "'self'",
+      'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': ""
     },
     flashMessageDefaults: {
@@ -49,6 +50,8 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ACTIVE_MODEL_API_URL: 'http://localhost:4200/api/',
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

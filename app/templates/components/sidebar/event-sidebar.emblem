@@ -35,4 +35,5 @@ li
 li.divider
 
 li
-  a.button.expand href='/hosted_events/{{event.id}}/manage' Manage
+  a.button.expand href='/hosted_events/{{event.id}}/edit' Manage
+  /a.button.expand href='/hosted_events/{{event.id}}/manage' Manage

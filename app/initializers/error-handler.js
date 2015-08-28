@@ -1,10 +1,12 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
+
 
 var alreadyRun = false;
 
 var reportError = function(errorData){
   Ember.$.ajax({
-    url: 'http://swing.vhost:3000/api/front_end_error',
+    url: 'https://aeonvera.com/api/front_end_error',
     method: 'POST',
     dataType: 'json',
     data: { error: errorData },
@@ -17,6 +19,7 @@ var reportError = function(errorData){
       // not sure what to do if this fails... we can't report it
     }
   });
+
 };
 
 export default {
@@ -28,18 +31,20 @@ export default {
     } else {
       alreadyRun = true;
     }
+    if (ENV.environment === 'production'){
 
-    Ember.Logger.error = function(message, cause, stack){
-      console.error(message);
-      console.error(stack);
+      Ember.Logger.error = function(message, cause, stack){
+        console.error(message);
+        console.error(stack);
 
-      var errorData = {
-        message: message,
-        stack: stack,
-        cause: cause
+        var errorData = {
+          message: message,
+          stack: stack,
+          cause: cause
+        };
+
+        reportError(errorData);
       };
-
-      reportError(errorData);
-    };
+    }
   }
 };

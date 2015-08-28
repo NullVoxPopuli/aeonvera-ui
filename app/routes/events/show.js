@@ -16,6 +16,15 @@ export default Ember.Route.extend({
 
     transition.send('setData', model);
     transition.send('setSidebar', 'sidebar/event-sidebar');
+
+    var self = this;
+    Ember.run.later(function(){
+      var dashboard = self.controllerFor('dashboard');
+      dashboard.set('data', model);
+      dashboard.set('sidebar', 'sidebar/event-sidebar');
+
+    });
+
   },
 
   model: function(params) {

@@ -5,9 +5,8 @@ table.responsive
       th Package
       th Level
       th Orientation
-      th Competitions
-      th Shirts
       th Owe $
+      / th Paid $
       th Time Registered
 
   tbody
@@ -15,19 +14,14 @@ table.responsive
       each attendance in model
         tr
           td
-            a
+            a href='/hosted_events/{{attendance.eventId}}/attendances/{{attendance.id}}'
               span = attendance.attendeeName
-          td = attendance.package.name
-          td = attendance.level.name
+          td = attendance.packageName
+          td = attendance.levelName
           td = attendance.danceOrientation
+          /td.payment-status
+          /  = attendance.paymentStatus
+          td = to-usd attendance.amountOwed
+          / td = attendance.amountPaid
           td
-            each competition in attendance.competitions
-              = competition.name
-              br
-          td
-            /each shirt in attendance.shirts
-              /= "#{shirt.line_item.name} "
-              /= shirt_with_size_and_quantity_summary(shirt, attendance: attendance)
-
-          td.payment-status
-            / paid / owe? mark paid button
+            = date-with-format attendance.registeredAt 'lll'

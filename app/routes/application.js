@@ -2,6 +2,17 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+	// intl: Ember.inject.service(),
+	// beforeModel: function(){
+	// 	// define the app's runtime locale
+	// 	// For example, here you would maybe do an API lookup to resolver
+	// 	// which locale the user should be targeted and perhaps lazily
+	// 	// load translations using XHR and calling intl's `addTranslation`/`addTranslations`
+	// 	// method with the results of the XHR request
+	// 	this.get('intl').setLocale('en-us');
+	// },
+
+
 	// http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
 	renderTemplate: function() {
 

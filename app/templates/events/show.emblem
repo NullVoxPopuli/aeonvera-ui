@@ -19,13 +19,13 @@ hr
     .row
       .small-12.columns.text-center
         label Revenue
-        h3 = model.revenue
+        h3 = to-usd model.revenue
 
     /if model.hasUnpaid
     .row
       .small-12.columns.text-center
         label Unpaid
-        h3 = model.unpaid
+        h3 = to-usd model.unpaid
 
   .medium-9.columns
     label Most Recent Registrations
