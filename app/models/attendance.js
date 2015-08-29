@@ -6,6 +6,8 @@ export default DS.Model.extend({
   amountOwed: DS.attr('number'),
   amountPaid: DS.attr('number'),
   registeredAt: DS.attr('date'),
+  checkedInAt: DS.attr('date'),
+  isCheckedIn: DS.attr('boolean'),
 
   packageName: DS.attr('string'),
   levelName: DS.attr('string'),

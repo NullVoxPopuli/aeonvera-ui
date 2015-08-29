@@ -42,7 +42,8 @@ export default Router.map(function() {
     this.route('orders');
 
     this.resource('event-at-the-door', { path: '/event-at-the-door/:event_id' }, function(){
-
+      this.route('checkin');
+      
     });
     this.resource('events', function() {
       this.route('show', {
