@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  afterModel: function(model, transition) {
+  afterModel: function(model /*, transition */ ) {
     this._super();
 
     this.set('title', model.get('name'));

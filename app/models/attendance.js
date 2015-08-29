@@ -7,13 +7,15 @@ export default DS.Model.extend({
   amountPaid: DS.attr('number'),
   registeredAt: DS.attr('date'),
   checkedInAt: DS.attr('date'),
-  isCheckedIn: DS.attr('boolean'),
 
   packageName: DS.attr('string'),
   levelName: DS.attr('string'),
 
   eventId: DS.attr('string'),
 
+  isCheckedIn: function(){
+    return Ember.isPresent(this.get('checkedInAt'));
+  }.property('checkedInAt'),
 
   paymentStatus: function(){
     var owed = this.get('amountOwed');

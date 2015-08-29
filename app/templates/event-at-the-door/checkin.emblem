@@ -1,28 +1,4 @@
-h3 Checkin Attendees
-.percent-width-100
-  table.margin-center
-    thead
-      tr
-        th Name
-        th Package
-        th Track
-        th Competitions
-        th $ Owed
-        th Date Registered
-        th Checked in at
-    tbody
-      each attendance in model
-        tr
-          td = attendance.attendeeName
-          td = attendance.packageName
-          td = attendance.levelName
-          td
-          td
-            = to-usd attendance.amountOwed
-            / add logic here for taking payment
-          td
-            = date-with-format attendance.registeredAt 'lll'
-
-          td
-            if attendance.isCheckedIn
-              = date-with-format attendance.checkedInAt 'lll'
+.row.full-width
+  .small-12.columns
+    h3 Checkin Attendees
+    = component 'event-at-the-door/checkin-list' model=model
