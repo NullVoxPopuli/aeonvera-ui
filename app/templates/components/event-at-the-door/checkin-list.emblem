@@ -30,7 +30,8 @@ table.margin-center
       tr
         td = attendance.attendeeName
         td
-          button.small.no-margins.success click='"checkin" attendance' Check in
+          unless attendance.isCheckedIn
+            button.small.no-margins.success click='"checkin" attendance' Check in
         td = attendance.packageName
         td = attendance.levelName
         td

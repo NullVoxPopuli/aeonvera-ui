@@ -58,7 +58,7 @@ export default Ember.Component.extend({
   actions: {
     checkin: function(attendance){
       attendance.set('checkedInAt', Date.now());
-      attendance.save();
+      // attendance.save();
     }
   }
 
