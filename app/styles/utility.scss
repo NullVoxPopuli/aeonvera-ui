@@ -1,6 +1,8 @@
 $directions: "left", "right", "bottom", "top";
 $intervals: 5, 10, 15, 20;
 
+$max-widths: 65em, 70em, 75em, 85em;
+
 @each $dir in $directions {
   @each $amount in $intervals {
 
@@ -14,6 +16,13 @@ $intervals: 5, 10, 15, 20;
   }
 }
 
+@each $width in $max-widths {
+
+  .max-width-#{$width} {
+    max-width: #{$width};
+  }
+
+}
 
 
 @for $i from 1 through 10 {

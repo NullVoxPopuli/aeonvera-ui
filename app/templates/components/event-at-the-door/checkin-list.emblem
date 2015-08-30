@@ -1,6 +1,15 @@
 .row
-  .small-12.columns.medium-6.columns
+  .small-12.medium-6.columns
     = input type='text' value=queryText placeholder='Search by name'
+
+  .small-12.medium-6.columns
+    = input type='checkbox' checked=showOnlyNonCheckedIn
+    label Show only non checked in
+    br
+    = input type='checkbox' checked=showOnlyThoseWhoOweMoney
+    label Show only those who owe money
+
+hr
 
 span {{percentCheckedIn}}% |&nbsp;
 span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
@@ -21,7 +30,7 @@ table.margin-center
       tr
         td = attendance.attendeeName
         td
-          button.small.no-margins.success Check in
+          button.small.no-margins.success click='"checkin" attendance' Check in
         td = attendance.packageName
         td = attendance.levelName
         td

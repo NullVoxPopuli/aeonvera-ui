@@ -17,6 +17,10 @@ export default DS.Model.extend({
     return Ember.isPresent(this.get('checkedInAt'));
   }.property('checkedInAt'),
 
+  owesMoney: function(){
+    return this.get('amountOwed') > 0;
+  }.property('amountOwed'),
+
   paymentStatus: function(){
     var owed = this.get('amountOwed');
     var paid = this.get('amountPaid');
