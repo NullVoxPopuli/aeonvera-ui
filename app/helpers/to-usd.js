@@ -1,6 +1,6 @@
 import Ember from "ember";
 
-export function toUsd(params) {
+export default Ember.Helper.helper(function(params){
   let value = params[0];
 
   if (value === undefined){
@@ -11,6 +11,4 @@ export function toUsd(params) {
       sign = '$';
 
   return `${sign}${amount}`;
-}
-
-export default Ember.HTMLBars.makeBoundHelper(toUsd);
+});

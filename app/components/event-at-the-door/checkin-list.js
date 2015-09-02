@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   showOnlyNonCheckedIn: false,
   showOnlyThoseWhoOweMoney: false,
 
+  activeRegistrant: null,
+
   attendances: function() {
     var model = this.get('model');
     var query = this.get('queryText');
@@ -13,24 +15,24 @@ export default Ember.Component.extend({
     var onlyOweMoney = this.get('showOnlyThoseWhoOweMoney');
     var lowerQuery = query.toLowerCase();
 
-    return model.filter(function(ea){
-      var show = true;
+    var filtered = model;
 
-      if (queryPresent){
+    if (onlyNonCheckedIn){
+      filtered = filtered.filterBy('isCheckedIn', false);
+    }
+
+    if (onlyOweMoney){
+      filtered = filtered.filterBy('owesMoney');
+    }
+
+    if (queryPresent){
+      filtered = filtered.filterBy('attendeeName', function(ea){
         var name = ea.get('attendeeName').toLowerCase();
-        show = name.indexOf(lowerQuery) != -1;
-      }
+        return name.indexOf(lowerQuery) !== -1;
+      });
+    }
 
-      if (show && onlyNonCheckedIn){
-        show = !ea.get('isCheckedIn');
-      }
-
-      if (show  && onlyOweMoney){
-        show = ea.get('owesMoney');
-      }
-
-      return show;
-    });
+    return filtered;
   }.property(
     'model', 'queryText',
     'showOnlyNonCheckedIn', 'showOnlyThoseWhoOweMoney'),
@@ -41,24 +43,24 @@ export default Ember.Component.extend({
     var total = this.get('model').get("length");
     var percent = checkedIn / total * 100;
 
-    return percent;
-  }.property('model.[]'),
+    return Math.round(percent, 2);
+  }.property('model.@each.isCheckedIn'),
 
   numberCheckedIn: function(){
     var model = this.get('model');
-    return model.filterProperty('isCheckedIn', true).get('length');
-  }.property('model.[]'),
+    return model.filterBy('isCheckedIn').get('length');
+  }.property('model.@each.isCheckedIn'),
 
   numberNotCheckedIn: function(){
     var model = this.get('model');
     return model.filterBy('isCheckedIn', false).get('length');
-  }.property('model.[]'),
+  }.property('model.@each.isCheckedIn'),
 
 
   actions: {
-    checkin: function(attendance){
-      attendance.set('checkedInAt', Date.now());
-      // attendance.save();
+
+    setActiveRegistrant: function(attendance){
+      this.set('activeRegistrant', attendance);
     }
   }
 

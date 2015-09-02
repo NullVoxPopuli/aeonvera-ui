@@ -1,7 +1,8 @@
 import DS from 'ember-data';
+import Host from '../models/host';
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
+
+export default Host.extend({
 	shortDescription: DS.attr('string'),
 	location: DS.attr('string'),
 
@@ -34,8 +35,21 @@ export default DS.Model.extend({
 
 	url: DS.attr('string'),
 
+	integrations: DS.hasMany('integration'),
 
 	packages: DS.hasMany('package'),
 	levels: DS.hasMany('level'),
-	competitions: DS.hasMany('competitions')
+	competitions: DS.hasMany('competitions'),
+
+	stripePublishableKey: function(){
+		var integrations = this.get('integrations').filterBy('name', "Stripe");
+		var stripeIntegration = null;
+
+		if (integrations.length > 0){
+			stripeIntegration = integrations[0];
+		}
+
+		return stripeIntegration.get('publishableKey');
+
+	}.property('integrations.[]')
 });

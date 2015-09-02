@@ -1,3 +1,5 @@
+/ = handle-payment model=activeRegistrant
+/  data-reveal-id='handle-payment-modal'
 .row
   .small-12.medium-6.columns
     = input type='text' value=queryText placeholder='Search by name'
@@ -13,7 +15,6 @@ hr
 
 span {{percentCheckedIn}}% |&nbsp;
 span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
-
 table.margin-center
   thead
     tr
@@ -27,20 +28,4 @@ table.margin-center
       th Checked in at
   tbody
     each attendance in attendances
-      tr
-        td = attendance.attendeeName
-        td
-          unless attendance.isCheckedIn
-            button.small.no-margins.success click='"checkin" attendance' Check in
-        td = attendance.packageName
-        td = attendance.levelName
-        td
-        td
-          = to-usd attendance.amountOwed
-          / add logic here for taking payment
-        td
-          = date-with-format attendance.registeredAt 'lll'
-
-        td
-          if attendance.isCheckedIn
-            = date-with-format attendance.checkedInAt 'lll'
+      = component 'event-at-the-door/checkin-attendance' model=attendance

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -12,6 +13,12 @@ export default DS.Model.extend({
   levelName: DS.attr('string'),
 
   eventId: DS.attr('string'),
+
+  unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
+
+  hasUnpaidOrder: function(){
+    return Ember.isPresent(this.get('unpaidOrder'));
+  }.property('unpaidOrder'),
 
   isCheckedIn: function(){
     return Ember.isPresent(this.get('checkedInAt'));

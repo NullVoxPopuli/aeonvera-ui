@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  i18n: Ember.inject.service(),
+
   tagName: 'div',
   classNames: ['fixed'],
 
@@ -13,7 +15,7 @@ export default Ember.Component.extend({
   }.property(),
 
   backLinkText: function() {
-    return this.t('appname');
+    return this.get('i18n').t('appname');
   }.property(),
 
   hasLeftMobileMenu: function() {

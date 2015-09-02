@@ -1,0 +1,28 @@
+td = model.attendeeName
+td
+  unless model.isCheckedIn
+    button.small.no-margins.success click='"checkin" attendance' Check in
+td = model.packageName
+td = model.levelName
+td
+td
+  if model.owesMoney
+    span  Owes {{to-usd model.amountOwed}}
+    br
+
+    a.button.small.split click='pay' href='#'
+      | Pay with {{currentPaymentMethod}}
+      span data-dropdown="payment-dropdown-{{attendance.id}}"
+    ul.f-dropdown id="payment-dropdown-{{attendance.id}}"
+      li
+        | stripe/checkout-button model=model.unpaidOrder
+      li: a Cash
+      li: a Check
+  else
+    span Paid
+td
+  = date-with-format model.registeredAt 'lll'
+
+td
+  if model.isCheckedIn
+    = date-with-format model.checkedInAt 'lll'

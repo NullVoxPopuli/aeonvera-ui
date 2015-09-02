@@ -1,6 +1,8 @@
 .off-canvas-wrap data-offcanvas='true'
   = component navigation left=mobileMenuLeft right=mobileMenuRight
 
+  = outlet 'modal'
+
   = login-modal
   = login-help-modal
   = sign-up-modal action='registerNewUser' model=user

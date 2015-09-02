@@ -1,9 +1,7 @@
 .row.full-width
   .large-3.medium-4.columns
-    .sidebar
-      nav
-        ul.side-nav
-          = component 'sidebar/event-sidebar' model=data
+    = sidebar-container
+      = sidebar/event-sidebar model=data
 
   .large-9.medium-8.columns
     = outlet

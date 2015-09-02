@@ -1,0 +1,26 @@
+#handle-payment-modal.reveal-modal.medium data-reveal='true' aria-labledby='handle-payment-modal-title' aria-hidden='true' role='dialog'
+  h2#handle-payment-modal-title.text-center = payeeName
+  p
+    h4 Choose Payment Method
+    #payment-error-message.modal-top-message.alert-box.alert data-alert='true'
+      a.close href='#' &times;
+      span.message
+      br
+    ul.tabs data-tab='true'
+      li.tab-title.active: a href='#payment-panel-stripe' Credit/Debit Card
+      li.tab-title: a href='#payment-panel-cash' Cash
+      li.tab-title: a href='#payment-panel-check' Check
+    .tabs-content
+      .content.active#payment-panel-stripe
+        button = fa-icon 'stripe'
+        / span Pay
+      .content#payment-panel-cash
+        label Amount
+        = input type='number' value=amount
+        button Pay with Cash
+      .content#payment-panel-check
+        label Check Number
+        = input type='text' value=checkNumber
+        label Amount
+        = input type='number' value=amount
+        button Pay with Check

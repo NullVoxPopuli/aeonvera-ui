@@ -8,7 +8,7 @@ footer
         li
           link-to 'welcome.privacy' | {{ t 'privacy' }}
 
-        li = submit-idea-link
+        li = links/submit-idea-link
 
     .medium-6.columns
       .right

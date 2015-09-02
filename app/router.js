@@ -43,7 +43,7 @@ export default Router.map(function() {
 
     this.resource('event-at-the-door', { path: '/event-at-the-door/:event_id' }, function(){
       this.route('checkin');
-      
+      this.route('competition-list');
     });
     this.resource('events', function() {
       this.route('show', {

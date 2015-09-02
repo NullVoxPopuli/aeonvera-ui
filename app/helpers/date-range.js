@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function dateRange(params/*, hash*/) {
+export default Ember.Helper.helper(function(params/*, hash*/){
   var startDate = params[0];
   var endDate = params[1];
 
@@ -10,6 +10,4 @@ export function dateRange(params/*, hash*/) {
   var range = formattedStartDate + " - " + formattedEndDate;
 
   return range;
-}
-
-export default Ember.HTMLBars.makeBoundHelper(dateRange);
+});

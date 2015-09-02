@@ -1,0 +1,22 @@
+.row.full-width
+  .large-3.medium-4.columns
+    = sidebar-container
+      = sidebar/event-at-the-door-sidebar model=event
+
+  .large-9.medium-8.columns
+    h2 All Competitions for {{eventName}}
+    each competition in model
+      h3 = competition.name
+      = eventName
+      span {{eventName}}
+      table
+        thead: tr
+          th Name
+          th Package
+          th Level
+          th Orientation
+          th Owe
+          th Registered At
+        tbody
+          each competitionResponse in competition.competitionResponses
+            td competitionResponse.id

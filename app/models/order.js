@@ -6,7 +6,12 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   paidAmount: DS.attr('number'),
   netAmountReceived: DS.attr('number'),
-  totalFeeAmount: DS.attr('number')
+  totalFeeAmount: DS.attr('number'),
 
+  totalInCents: DS.attr('number'),
+
+  userEmail: DS.attr('string'),
+
+  host: DS.belongsTo('host', { polymorphic: true} )
 
 });

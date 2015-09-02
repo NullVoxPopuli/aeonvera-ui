@@ -1,4 +1,4 @@
-.row.max-width-70em
+.row.max-width-75rem
   .small-12.columns
     h3 Checkin Attendees
     = component 'event-at-the-door/checkin-list' model=model

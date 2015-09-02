@@ -13,6 +13,10 @@ module.exports = function(environment) {
       }
     },
 
+    stripe: {
+      key: 'a' /* set per event */
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
