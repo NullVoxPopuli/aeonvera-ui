@@ -1,4 +1,4 @@
-h2 Payments
+h3 Payments
 
 if model
   table.responsive

@@ -1,4 +1,4 @@
-h4
+h3
   | Hosted Events
   .right
     = input type='checkbox' checked=showMyEvents
