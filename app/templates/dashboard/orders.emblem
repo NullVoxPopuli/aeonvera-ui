@@ -1,4 +1,4 @@
-h4 Payments
+h2 Payments
 
 if model
   table.responsive
@@ -9,8 +9,8 @@ if model
 
     each order in model
       tr
-        td = date-with-format order.created_at 'LLL'
+        td = date-with-format order.createdAt 'LLL'
         td
           a href=order.hostUrl
             = order.hostName
-        td = order.paidAmount
+        td = to-usd order.paidAmount

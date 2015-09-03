@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import ExternalLink from 'aeonvera/components/links/external-link';
 
 export default ExternalLink.extend({

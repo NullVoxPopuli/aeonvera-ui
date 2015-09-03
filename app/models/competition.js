@@ -11,7 +11,7 @@ export default DS.Model.extend({
   requiresPartner: DS.attr('boolean'),
 
   event: DS.belongsTo('event'),
-  competitionResponses: DS.hasMany('competitionResponse', { async: true}),
+  competitionResponses: DS.hasMany('competitionResponse', { async: false, params: 'id'}),
 
   /**
     TODO: find out if there is a better way to represent this...
@@ -20,15 +20,15 @@ export default DS.Model.extend({
     var kind = this.get('kind');
 
     if (kind === 0){
-      return "Solo Jazz"
+      return "Solo Jazz";
     } else if (kind === 1){
-      return "Jack & Jill"
+      return "Jack & Jill";
     } else if (kind === 2){
-      return "Strictly"
+      return "Strictly";
     } else if (kind === 3){
-      return "Team"
+      return "Team";
     } else if (kind === 4){
-      return "Crossover Jack & Jill"
+      return "Crossover Jack & Jill";
     }
   }.property('kind')
 });

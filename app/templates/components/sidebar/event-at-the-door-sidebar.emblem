@@ -17,5 +17,7 @@ li
   a.button.percent-width-100
     span Competition Sign Up
 li
-  a.button.percent-width-100
-    span A la Carte
+  link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
+    span A La Carte
+  /a.button.percent-width-100
+  /  span A la Carte

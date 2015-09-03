@@ -4,5 +4,4 @@
     hr
     p This is the command center for behind-the-desk operations during an event. From here you can check people in, register new people, see who's competing, add competitions to a registrant, as well as make a la carte sales.
     hr
-    ul.small-block-grid-1.medium-block-grid-2.text-center
-      = sidebar/event-at-the-door-sidebar model=model
+    = sidebar/event-at-the-door-sidebar model=model tagName='ul' classNames='small-block-grid-1 medium-block-grid-2 text-center'

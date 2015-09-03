@@ -1,0 +1,10 @@
+.row.full-width
+  .large-3.medium-4.columns
+    = sidebar-container
+      = sidebar/event-at-the-door-sidebar model=event
+
+  .large-9.medium-8.columns
+    h2 A la Carte
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each item in model
+        li: a.button.percent-width-100.secondary {{item.name}} ({{to-usd item.currentPrice}})
