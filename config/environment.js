@@ -36,12 +36,12 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://api.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
-      'img-src': "'self'",
+      'img-src': "'self' https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
-      'frame-src': ""
+      'frame-src': "https://*.stripe.com"
     },
     flashMessageDefaults: {
       timeout: 10000
@@ -91,12 +91,12 @@ module.exports = function(environment) {
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://api.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "'self' *.aeonvera.com",
-      'img-src': "'self'",
+      'img-src': "'self' https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
-      'frame-src': ""
+      'frame-src': "https://*.stripe.com"
     }
   }
 

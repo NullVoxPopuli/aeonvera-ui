@@ -3,19 +3,19 @@ li
   /link-to 'event-at-the-door.checkin'  classNames='button percent-width-100'
   /  span CheckIN
 li
-  a.button.percent-width-100
+  a.button.percent-width-100 href='hosted_events/{{model.id}}/attendances/new'
     span Register
 li
   link-to 'event-at-the-door.competition-list' classNames='button percent-width-100'
     span Competition List
   / a.button.percent-width-100
   / span Competition List
-li
-  a.button.percent-width-100
-    span Add to Registrant
-li
-  a.button.percent-width-100
-    span Competition Sign Up
+/ li
+/   a.button.percent-width-100
+/     span Add to Registrant
+/ li
+/   a.button.percent-width-100
+/     span Competition Sign Up
 li
   link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
     span A La Carte

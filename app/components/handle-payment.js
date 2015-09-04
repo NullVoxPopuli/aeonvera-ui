@@ -1,25 +1,33 @@
 import Ember from 'ember';
 
+/*
+  The model passed in to this component must be
+  an order
+*/
 export default Ember.Component.extend({
   title: 'Choose Payment Method',
-  /*
-    if -1 is shown, something will be wrong,
-    as it means the amount owed by the attendee is unknown.
 
-
-    This
-  */
-  amount: -1,
 
   checkNumber: '',
 
-  payeeName: function(){
-    return this.get('model.attendeeName');
+  order: function(){
+    return this.get('model');
   }.property('model'),
 
-  actions: {
-    pay: function(){
+  amount: function(){
+    return this.get('order.subTotal');
+  }.property('order', 'order.subTotal'),
 
+  actions: {
+    process: function(paymentMethod){
+      this.get('targetObject').send('process', {
+        checkNumber: this.get('checkNumber'),
+        paymentMethod: paymentMethod
+      });
+    },
+
+    processStripeToken: function(args){
+      this.get('targetObject').send('processStripeToken', args);
     }
   }
 

@@ -32,6 +32,12 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   }
 }
 
+@for $i from 1 through 10{
+  .width-of-#{$i}0 {
+    width: #{$i}0%;
+  }
+}
+
 .extra-padding {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
@@ -45,6 +51,10 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   width: 128px;
   text-align: center;
   text-indent: -21px;
+}
+
+.no-border{
+  border: none;
 }
 
 .no-lineheight{

@@ -42,7 +42,11 @@ export default Host.extend({
 	competitions: DS.hasMany('competitions'),
 
 	stripePublishableKey: function(){
-		var integrations = this.get('integrations').filterBy('name', "Stripe");
+		/*
+			TODO: find a way to make the 'stripe' key not a string somehow
+			so typing it over and over doesn't lead to silent errors
+		*/
+		var integrations = this.get('integrations').filterBy('name', "stripe");
 		var stripeIntegration = null;
 
 		if (integrations.length > 0){

@@ -1,16 +1,14 @@
 import DS from 'ember-data';
+import LineItem from '../models/line-item';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
+export default LineItem.extend({
   initialPrice: DS.attr('number'),
   atTheDoorPrice: DS.attr('number'),
-  currentPrice: DS.attr('number'),
   kind: DS.attr('number'),
 
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),
 
-  event: DS.belongsTo('event'),
   competitionResponses: DS.hasMany('competitionResponse', { async: false, params: 'id'}),
 
   /**

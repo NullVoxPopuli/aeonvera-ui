@@ -1,10 +1,46 @@
 .row.full-width
-  .large-3.medium-4.columns
+  div class=sidebarContainerClasses
     = sidebar-container
       = sidebar/event-at-the-door-sidebar model=event
 
-  .large-9.medium-8.columns
-    h2 A la Carte
+  div class=itemContainerClasses
+    h3 A la Carte
     ul.small-block-grid-2.medium-block-grid-3.text-center
-      each item in model
-        li: a.button.percent-width-100.secondary {{item.name}} ({{to-usd item.currentPrice}})
+      each item in model.lineItems
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Shirts
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each item in model.shirts
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Competitions
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each item in model.competitions
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+
+
+  if buildingAnOrder
+    div class=orderContainerClasses
+      h3 Current Order
+      table.width-of-100.no-border
+        each item in currentItems
+          tr
+            td = to-usd item.total
+            td
+              = item.name
+              br
+              small
+                a click='"removeItem" item' Remove
+        tfoot
+          tr
+            th = to-usd currentOrder.subTotal
+            th Total
+      hr
+
+      ul.button-group.even-2
+        li: a.button.alert click='cancelOrder' Cancel
+        li: a.button.success href='#' data-reveal-id='a-la-carte-pay-modal' Pay
+
+    = foundation-modal title='At la Carte Order' name='a-la-carte-pay'
+      = handle-payment action=process model=currentOrder

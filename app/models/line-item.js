@@ -22,6 +22,7 @@ export default DS.Model.extend(Buyable, {
   registrationClosesAt: DS.attr('date'),
   becomesAvailableAt: DS.attr('date'),
 
-  event: DS.belongsTo('event')
+  event: DS.belongsTo('event'),
+  host: DS.belongsTo('host', { polymorphic: true } )
 
 });

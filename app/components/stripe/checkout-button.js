@@ -39,12 +39,12 @@ export default Ember.Component.extend({
   }.property('host'),
 
   amountInCents: function(){
-    return this.get('model.totalInCents');
+    return (this.get('model.totalInCents') || (this.get('model.subTotal') * 100));
   }.property('model'),
 
   actions: {
-    processStripeToken: function(){
-
+    processStripeToken: function(args){
+      this.get('targetObject').send('processStripeToken', args);
     }
   }
 

@@ -26,6 +26,8 @@ export default{
   communities: 'Communities',
   aboutSummary: 'About',
 
+  atdPaymentCollectionAgree: 'You agree that by clicking the pay button below, that you have collected {{amount}} from the customer.',
+
   featuresinfo: 'List of current and upcoming features and possible explanations of each. \
     ÆONVERA is written by, and is for Swing Dancers.',
   pricinginfo: 'Overview of pricing. \
