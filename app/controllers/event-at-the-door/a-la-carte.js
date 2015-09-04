@@ -68,8 +68,10 @@ export default Ember.Controller.extend({
 
         this.get('currentOrder.lineItems').toArray().forEach(function(item){
           item.destroyRecord();
+          item.save();
         });
         this.get('currentOrder').destroyRecord();
+        this.get('currentOrder').save();
         this.set('currentOrder', null);
       },
 
@@ -100,8 +102,11 @@ export default Ember.Controller.extend({
          if (order.get('isNew')){
            order.save().then(function(o){
              o.get('lineItems').invoke('save');
-             o.save();
-             self.send('finishedOrder');
+             o.save().then(function(o){
+               self.send('finishedOrder');
+             }, function(errors){
+               alert(errors);
+             });
            });
          } else {
            order.setProperties({
@@ -113,7 +118,7 @@ export default Ember.Controller.extend({
              /* what happens if the card is declined? */
              self.send('finishedOrder');
            }, function(order){
-             console.error('watwatwat');
+             alert(order);
            });
 
          }

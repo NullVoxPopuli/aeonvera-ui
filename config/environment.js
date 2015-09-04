@@ -36,7 +36,7 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://api.stripe.com",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
       'img-src': "'self' https://*.stripe.com",
@@ -91,7 +91,7 @@ module.exports = function(environment) {
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://api.stripe.com",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "'self' *.aeonvera.com",
       'img-src': "'self' https://*.stripe.com",

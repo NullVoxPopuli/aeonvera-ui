@@ -16,6 +16,7 @@ export default DS.Model.extend({
 
   host: DS.belongsTo('host', { polymorphic: true} ),
   lineItems: DS.hasMany('orderLineItem'),
+  attendance: DS.belongsTo('attendance'),
 
   /*
     stripe specific things

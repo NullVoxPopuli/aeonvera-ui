@@ -17,6 +17,7 @@
     "animate.css": "3.2.6",
     "ember-simple-auth": "0.8.0",
     "momentjs": "~2.10.3",
-    "numeral": "~1.5.3"
+    "numeral": "~1.5.3",
+    "select2": "3.5.2"
   }
 }

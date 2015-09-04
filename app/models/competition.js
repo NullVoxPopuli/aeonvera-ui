@@ -28,5 +28,15 @@ export default LineItem.extend({
     } else if (kind === 4){
       return "Crossover Jack & Jill";
     }
-  }.property('kind')
+  }.property('kind'),
+
+
+  // requiresPartner: function(){
+  //   return this.get('kind') === 2;
+  // }.property('kind'),
+  //
+  // requiresOrientation: function(){
+  //   let kind = this.get('kind');
+  //   return (kind === 1 || kind === 4)
+  // }.property('kind')
 });
