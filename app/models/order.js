@@ -17,6 +17,15 @@ export default DS.Model.extend({
   host: DS.belongsTo('host', { polymorphic: true} ),
   lineItems: DS.hasMany('orderLineItem'),
 
+  /*
+    stripe specific things
+    TODO: think about extracting this in to an object,
+    and saving all of the toke info (like IP, maybe other stuff)
+  */
+  checkoutToken: DS.attr('string'),
+  checkoutEmail: DS.attr('string'),
+
+
   /* aliases */
   event: function(){
     return this.get('host');

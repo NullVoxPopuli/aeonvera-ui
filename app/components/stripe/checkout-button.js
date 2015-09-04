@@ -43,6 +43,10 @@ export default Ember.Component.extend({
   }.property('model'),
 
   actions: {
+    /**
+     * Receives a Stripe token after checkout succeeds
+     * The token looks like this https://stripe.com/docs/api#tokens
+     */
     processStripeToken: function(args){
       this.get('targetObject').send('processStripeToken', args);
     }

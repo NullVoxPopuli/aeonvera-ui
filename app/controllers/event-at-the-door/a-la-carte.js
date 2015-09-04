@@ -85,8 +85,39 @@ export default Ember.Controller.extend({
       },
 
       processStripeToken: function(args){
-        debugger;
-        
+        let order = this.get('currentOrder');
+        let self = this;
+        /*
+          send the token to the server to actually create the charge
+         */
+         order.setProperties({
+           paymentMethod: "Stripe",
+           checkoutToken: args.id,
+           checkoutEmail: args.email
+         });
+
+         /* save the line order first */
+         if (order.get('isNew')){
+           order.save().then(function(o){
+             o.get('lineItems').invoke('save');
+             o.save();
+             self.send('finishedOrder');
+           });
+         } else {
+           order.setProperties({
+             checkoutToken: args.id,
+             checkoutEmail: args.email
+           });
+
+           order.save().then(function(){
+             /* what happens if the card is declined? */
+             self.send('finishedOrder');
+           }, function(order){
+             console.error('watwatwat');
+           });
+
+         }
+
       },
 
       process: function(args){
@@ -94,15 +125,17 @@ export default Ember.Controller.extend({
         let checkNumber = args.checkNumber;
         let stripeData = args.stripeData;
         let order = this.get('currentOrder');
+        let self = this;
 
         order.markPaid(paymentMethod, checkNumber, stripeData);
         /* save the line order first */
         order.save().then(function(o){
           /* then line items */
           o.get('lineItems').invoke('save');
+          o.save();
+          self.send('finishedOrder');
         });
 
-        this.send('finishedOrder');
       }
     }
 });
