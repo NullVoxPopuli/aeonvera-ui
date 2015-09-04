@@ -35,12 +35,17 @@
               if item.isCompetition
                 if item.lineItem.requiresPartner
                   = input type='text' value=item.partnerName placeholder='Partner Name'
+
                 if item.lineItem.requiresOrientation
                   = radio-button value="Lead" groupValue=item.danceOrientation
                   label Lead
                   = radio-button value="Follow" groupValue=item.danceOrientation
                   label Follow
                   br
+
+              if item.isShirt
+                = select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'
+                br
               small
                 a click='"removeItem" item' Remove
         tfoot

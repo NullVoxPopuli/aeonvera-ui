@@ -56,6 +56,8 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ACTIVE_MODEL_API_URL: 'http://localhost:4200/api/',
 
+    ENV.host = 'http://swing.vhost:3000';
+
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
@@ -85,6 +87,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.host = 'https://aeonvera.com';
     // serverTokenEndpoint: 'https://aeonvera.com/users/sign_in',
     // crossOriginWhitelist: ['https://aeonvera.com'],
 
@@ -97,7 +100,7 @@ module.exports = function(environment) {
       'img-src': "'self' https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
-    }
+    };
   }
 
   return ENV;

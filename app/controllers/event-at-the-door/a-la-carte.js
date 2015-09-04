@@ -102,7 +102,7 @@ export default Ember.Controller.extend({
          if (order.get('isNew')){
            order.save().then(function(o){
              o.get('lineItems').invoke('save');
-             o.save().then(function(o){
+             o.save().then(function(){
                self.send('finishedOrder');
              }, function(errors){
                alert(errors);
@@ -137,8 +137,14 @@ export default Ember.Controller.extend({
         order.save().then(function(o){
           /* then line items */
           o.get('lineItems').invoke('save');
-          o.save();
+          o.save().then(function(){
+
+          }, function(error){
+            alert(error);
+          });
           self.send('finishedOrder');
+        }, function(error){
+          alert(error);
         });
 
       }

@@ -48,7 +48,7 @@ export default DS.Model.extend({
     });
 
     return subTotal;
-  }.property('lineItems.@each'),
+  }.property('lineItems.@each.price'),
 
   /*
     takes the line item, and makes an order line item out of it

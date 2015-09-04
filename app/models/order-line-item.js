@@ -17,8 +17,14 @@ export default DS.Model.extend({
   */
   partnerName: DS.attr('string'),
   danceOrientation: DS.attr('string'),
+  size: DS.attr('string'),
 
-
+  priceNeedsChanging: function(){
+    let lineItem = this.get('lineItem');
+    let size = this.get('size');
+    let sizePrice = lineItem.priceForSize(size);
+    this.set('price', sizePrice);
+  }.observes('size'),
 
   name: function(){
     return this.get('lineItem').get('name');
@@ -33,6 +39,12 @@ export default DS.Model.extend({
 
   isCompetition: function(){
     return (this.get('lineItem').get('constructor.typeKey') === 'competition');
+  }.property('lineItem', 'lineItemType'),
+
+  isShirt: function(){
+    return (this.get('lineItem').get('constructor.typeKey') === 'shirt');
   }.property('lineItem', 'lineItemType')
+
+
 
 });
