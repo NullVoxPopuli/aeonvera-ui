@@ -1,7 +1,7 @@
 {
   "name": "aeonvera",
   "version": "0.0.0",
-  "description": "Small description for aeonvera goes here",
+  "description": "Event Registration and At the Door Management",
   "private": true,
   "directories": {
     "doc": "doc",
