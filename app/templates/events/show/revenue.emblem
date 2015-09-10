@@ -12,6 +12,11 @@
 
   .small-6.columns
     label End Time
+    .row
+      .small-6.columns
+        = date-picker date=endDate valueFormat='YYYY-MM-DD' allowBlank=true
+
+      .small-6.columns
     /= date-time-picker date=endDate
 
 table
