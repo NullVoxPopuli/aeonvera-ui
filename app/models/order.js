@@ -32,6 +32,10 @@ export default DS.Model.extend({
     return this.get('host');
   }.property('host'),
 
+  totalInDollars: function(){
+    return this.get('totalInCents') / 100;
+  }.property('totalInCents'),
+
   hasLineItems: function(){
     return this.get('lineItems').length > 0;
   }.property('lineItems.[]'),

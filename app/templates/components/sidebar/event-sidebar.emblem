@@ -29,7 +29,7 @@ li
 li.divider
 li Reporting
 li
-  a href='/hosted_events/{{event.id}}/revenue'
+  link-to 'events.show.revenue'
     span Revenue
 li
   a href='/hosted_events/{{event.id}}/charts'

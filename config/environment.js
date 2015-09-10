@@ -39,7 +39,7 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
-      'img-src': "'self' https://*.stripe.com",
+      'img-src': "'self' data: https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
     },
@@ -97,7 +97,7 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "'self' *.aeonvera.com",
-      'img-src': "'self' https://*.stripe.com",
+      'img-src': "'self' data: https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
     };

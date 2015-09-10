@@ -51,6 +51,7 @@ export default Router.map(function() {
         path: ':event_id'
       }, function(){
         /* attendees, volunteers, etc */
+        this.route('revenue');
       });
       this.route('housing-requests', function() {
         this.route('new');

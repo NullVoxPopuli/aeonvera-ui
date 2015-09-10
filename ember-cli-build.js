@@ -25,6 +25,10 @@ module.exports = function(defaults){
   // along with the exports of each module as its value.
   app.import('bower_components/momentjs/moment.js');
 
+
+  // app.import('bower_components/pickadate/compressed/picker.js');
+  // app.import('bower_components/pickadate/compressed/themes/default.css');
+
   // tetris!
   app.import('vendor/blockrain/blockrain.css');
   app.import('vendor/blockrain/blockrain.jquery.js');

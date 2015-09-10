@@ -1,0 +1,30 @@
+.row
+  .small-6.columns
+    label Start Time
+    .row
+      .small-6.columns
+        = date-picker date=startDate valueFormat='YYYY-MM-DD' allowBlank=true
+        / | {{pick-a-date date=startDate placeholder="Pick a date" }}
+
+
+      .small-6.columns
+        = time-input value=startTime format='h:mm a' action='updateTime' class='time-edit'
+
+  .small-6.columns
+    label End Time
+    /= date-time-picker date=endDate
+
+table
+  thead: tr
+    td Time
+    td Gross Paid
+    td Net Amount Received
+    td Fees
+
+  tbody
+    each order in filteredOrders
+      tr
+        td = date-with-format order.createdAt 'lll'
+        td = to-usd order.paidAmount
+        td = to-usd order.netAmountReceived
+        td = to-usd order.totalFeeAmount
