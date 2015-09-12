@@ -18,6 +18,7 @@ var Router = Ember.Router.extend({
   index route is automatic
 */
 export default Router.map(function() {
+  this.route('logout');
   this.route('login');
   this.route('signup');
   this.resource('welcome', function() {

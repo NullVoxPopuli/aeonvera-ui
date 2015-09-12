@@ -38,6 +38,12 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   }
 }
 
+@for $i from 1 through 30{
+  .width-of-#{$i}0px{
+    width: #{$i}0px;
+  }
+}
+
 .extra-padding {
   padding-top: 30px !important;
   padding-bottom: 30px !important;

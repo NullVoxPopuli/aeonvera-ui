@@ -8,25 +8,39 @@ export default Ember.Controller.extend({
 
   startDateTime: function(){
     let startDate = this.get('startDate');
+    let startTime = this.get('startTime');
     let parsed = null;
 
     if (Ember.isPresent(startDate)){
       parsed = moment(startDate);
     }
 
-    console.log(parsed);
-    console.log(startDate);
-    console.log(parsed && parsed.toString());
+    if (Ember.isPresent(startTime)){
+      let timeArray = startTime.split(':');
+      let hours = timeArray[0];
+      let minutes = timeArray[1];
+      parsed.hours(hours);
+      parsed.minutes(minutes);
+    }
 
     return parsed;
   }.property('startTime', 'startDate'),
 
   endDateTime: function(){
     let endDate = this.get('endDate');
+    let endTime = this.get('endTime');
     let parsed = null;
 
     if (Ember.isPresent(endDate)){
       parsed = moment(endDate);
+    }
+
+    if (Ember.isPresent(endTime)){
+      let timeArray = endTime.split(':');
+      let hours = timeArray[0];
+      let minutes = timeArray[1];
+      parsed.hours(hours);
+      parsed.minutes(minutes);
     }
 
     return parsed;

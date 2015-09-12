@@ -8,7 +8,7 @@
 
 
       .small-6.columns
-        = time-input value=startTime format='h:mm a' action='updateTime' class='time-edit'
+        = input type='time' placeholder='00:00' value=startTime
 
   .small-6.columns
     label End Time
@@ -17,7 +17,7 @@
         = date-picker date=endDate valueFormat='YYYY-MM-DD' allowBlank=true
 
       .small-6.columns
-    /= date-time-picker date=endDate
+        = input type='time' placeholder='00:00' value=endTime
 
 table
   thead: tr
