@@ -53,6 +53,7 @@ export default Router.map(function() {
       }, function(){
         /* attendees, volunteers, etc */
         this.route('revenue');
+        this.route('manage');
       });
       this.route('housing-requests', function() {
         this.route('new');
