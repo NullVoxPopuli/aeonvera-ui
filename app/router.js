@@ -48,12 +48,16 @@ export default Router.map(function() {
       this.route('a-la-carte');
     });
     this.resource('events', function() {
-      this.route('show', {
-        path: ':event_id'
-      }, function(){
+      this.route('show', { path: ':event_id' }, function(){
         /* attendees, volunteers, etc */
         this.route('revenue');
         this.route('manage');
+        this.route('discounts', function(){
+          this.route('new');
+          this.route('show', { path: ':discount_id' }, function(){
+            this.route('edit');
+          });
+        });
       });
       this.route('housing-requests', function() {
         this.route('new');

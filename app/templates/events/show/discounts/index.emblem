@@ -1,0 +1,15 @@
+= page-header text='Discounts'
+
+table
+  thead: tr
+    th Code
+    th Times Used
+    th Discount
+    th Restricted To
+  tbody
+    each discount in model
+      tr
+        td = discount.code
+        td = discount.timesUsed
+        td = discount.discount
+        td = discount.restrictedTo

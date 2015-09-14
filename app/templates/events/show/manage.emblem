@@ -10,7 +10,10 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
     h4: a href='/hosted_events/{{model.id}}/levels' Levels
     p Also known as 'tracks'. Here, you can configure if different levels require auditions, as well as other requirements.
   li
-    h4: a href='/hosted_events/{{model.id}}/discounts' Discounts
+    /h4: a href='/hosted_events/{{model.id}}/discounts' Discounts
+    h4
+      link-to 'events.show.discounts'
+        span Discounts
     p Did someone win a pass to your event? Is there a sweet deal for students? Create a discount here.
   li
     h4: a href='/hosted_events/{{model.id}}/packages' Packages
