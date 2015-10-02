@@ -18,9 +18,19 @@ var Router = Ember.Router.extend({
   index route is automatic
 */
 export default Router.map(function() {
+
   this.route('logout');
   this.route('login');
   this.route('signup');
+  this.route('password-reset');
+
+  /* event registration - subdomain based */
+  this.route('dance-event');
+  /* organization registration - subdomain based */
+  this.route('dance-organization');
+
+
+  /* public facing */
   this.resource('welcome', function() {
     this.route('features');
     this.route('pricing');
@@ -35,6 +45,7 @@ export default Router.map(function() {
     this.route('about');
   });
 
+  /* must be logged in for */
   this.route('dashboard', {
     path: '/'
   }, function() {

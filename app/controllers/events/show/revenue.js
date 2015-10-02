@@ -46,6 +46,27 @@ export default Ember.Controller.extend({
     return parsed;
   }.property('endTime', 'endDate'),
 
+  totalPaidAmount: function(){
+    let orders = this.get('filteredOrders');
+    return orders.mapBy('paidAmount').reduce(function(a, b){
+      return a + b;
+    });
+  }.property('filteredOrders'),
+
+  totalAmountReceived: function(){
+    let orders = this.get('filteredOrders');
+    return orders.mapBy('netAmountReceived').reduce(function(a, b){
+      return a + b;
+    });
+  }.property('filteredOrders'),
+
+  totalFeeAmount: function(){
+    let orders = this.get('filteredOrders');
+    return orders.mapBy('totalFeeAmount').reduce(function(a, b){
+      return a + b;
+    });
+  }.property('filteredOrders'),
+
 
   filteredOrders: function(){
     let model = this.get('model');
