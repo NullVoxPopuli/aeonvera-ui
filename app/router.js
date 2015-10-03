@@ -22,7 +22,9 @@ export default Router.map(function() {
   this.route('logout');
   this.route('login');
   this.route('signup');
-  this.route('password-reset');
+  this.route('password-reset', function(){
+    this.route('success');
+  });
 
   /* event registration - subdomain based */
   this.route('dance-event');

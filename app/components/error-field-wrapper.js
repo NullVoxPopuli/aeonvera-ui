@@ -12,6 +12,6 @@ export default Ember.Component.extend({
 
   fieldErrors: function() {
     var field = this.get('field');
-    return (this.get('errors').get(field) || []);
+    return (this.get('errors.' + field) || []);
   }.property('errors.[]')
 });
