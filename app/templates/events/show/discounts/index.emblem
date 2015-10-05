@@ -7,7 +7,7 @@ table
     th Discount
     th Restricted To
   tbody
-    each discount in model
+    each model as |discount|
       tr
         td = discount.code
         td = discount.timesUsed

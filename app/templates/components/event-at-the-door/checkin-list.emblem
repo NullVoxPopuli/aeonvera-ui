@@ -27,5 +27,5 @@ table.margin-center
       th Date Registered
       th Checked in at
   tbody
-    each attendance in attendances
+    each attendances as |attendance|
       = component 'event-at-the-door/checkin-attendance' model=attendance

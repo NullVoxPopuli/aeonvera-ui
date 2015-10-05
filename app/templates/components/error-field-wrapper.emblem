@@ -2,5 +2,5 @@
 
 if hasError
   span.error
-    each error in fieldErrors
+    each fieldErrors as |error|
       = error.message

@@ -4,7 +4,7 @@
 br
 
 .center-margin.percent-width-80
-  each community in model
+  each model as |community|
     a href="{{community.url}}"
       .row
         .columns.small-2.medium-4

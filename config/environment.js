@@ -27,6 +27,8 @@ module.exports = function(environment) {
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
     'simple-auth': {
+      session: 'session:application',
+      store: 'simple-auth-session-store:local-storage',
       authorizer: 'simple-auth-authorizer:devise',
       crossOriginWhitelist: ['*']
     },
@@ -66,6 +68,7 @@ module.exports = function(environment) {
     ENV['simple-auth-devise'] = {
       // defaults to /users/sign_in
       serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
+      serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
       crossOriginWhitelist: ['http://swing.vhost:3000']
         /*
         serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',

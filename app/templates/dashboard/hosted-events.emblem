@@ -26,7 +26,7 @@ if model
       / Event Start
       th
 
-    each event in filteredModel
+    each filteredModel as |event|
       tr
         td
           link-to 'events.show' event.id

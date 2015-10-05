@@ -19,7 +19,7 @@
     section.main-section
       .shell
         .inner-shell
-          each flash in flashMessages.queue
+          each flashMessages.queue as |flash|
             flash-message flash=flash messageStyle='foundation' classNames='flash-message'
           = outlet
 

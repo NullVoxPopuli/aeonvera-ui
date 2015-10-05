@@ -11,7 +11,7 @@ table.responsive
 
   tbody
     if attendancesPresent
-      each attendance in model
+      each model as |attendance|
         tr
           td
             a href='/hosted_events/{{attendance.eventId}}/attendances/{{attendance.id}}'

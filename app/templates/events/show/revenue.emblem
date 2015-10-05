@@ -43,7 +43,7 @@ table
       td Fees
 
   tbody
-    each order in filteredOrders
+    each filteredOrders as |order|
       tr
         td = date-with-format order.createdAt 'lll'
         td = to-usd order.paidAmount

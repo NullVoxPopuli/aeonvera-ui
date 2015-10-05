@@ -9,7 +9,7 @@ table.responsive
       th Status
 
   if model
-    each event in model
+    each model as |event|
       tr
         td
           a href=event.url = event.name

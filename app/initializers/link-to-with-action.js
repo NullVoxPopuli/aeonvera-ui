@@ -13,7 +13,7 @@ export default {
 
     // http://stackoverflow.com/questions/16124381/combine-linkto-and-action-helpers-in-ember-js
 
-    Ember.LinkView.reopen({
+    Ember.LinkComponent.reopen({
       action: null,
       _invoke: function(event) {
         var action = this.get('action');

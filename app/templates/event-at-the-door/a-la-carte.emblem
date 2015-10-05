@@ -6,17 +6,17 @@
   div class=itemContainerClasses
     h3 A la Carte
     ul.small-block-grid-2.medium-block-grid-3.text-center
-      each item in model.lineItems
+      each model.lineItems as |item|
         li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
     hr
     h3 Shirts
     ul.small-block-grid-2.medium-block-grid-3.text-center
-      each item in model.shirts
+      each model.shirts as |item|
         li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
     hr
     h3 Competitions
     ul.small-block-grid-2.medium-block-grid-3.text-center
-      each item in model.competitions
+      each model.competitions as |item|
         li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
 
 
@@ -26,7 +26,7 @@
       label Optional (except for competitions):
       = select-2 content=model.attendances value=currentOrder.attendance placeholder='Assign this order to a registrant' allowClear=true optionLabelPath="attendeeName"
       table.width-of-100.no-border
-        each item in currentItems
+        each currentItems as |item|
           tr
             td = to-usd item.total
             td

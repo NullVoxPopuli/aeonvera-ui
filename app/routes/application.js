@@ -3,7 +3,7 @@ import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   // intl: Ember.inject.service(),
-  beforeModel: function(){
+  beforeModel: function(transition){
     var self = this;
     //   // define the app's runtime locale
     //   // For example, here you would maybe do an API lookup to resolver
@@ -32,7 +32,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     //     // otherwise proceed as normal?
     //   });
     // }
-
+    this._super(transition)
   },
 
   modelForSubdomain: function(){

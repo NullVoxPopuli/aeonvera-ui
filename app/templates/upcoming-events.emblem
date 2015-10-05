@@ -9,7 +9,7 @@
           th Date of Event
           th Registration Opens
       tbody
-        each event in model
+        each model as |event|
           tr
             td
               a href="{{event.url}}"
