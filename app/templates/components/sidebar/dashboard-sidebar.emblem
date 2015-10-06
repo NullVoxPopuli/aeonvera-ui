@@ -1,4 +1,4 @@
-li = session.currentUser.name
+li = currentUser.user.name
 li
   link-to 'user.edit'
     span Edit Profile

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	session: Ember.inject.service('session'),
+
 	initFoundation: function() {
 		this.$(document).foundation('reflow');
 	}.on('didInsertElement'),
@@ -8,9 +10,7 @@ export default Ember.Component.extend({
 	actions: {
 		authenticate: function() {
 			var data = this.getProperties('identification', 'password');
-			return this.session.authenticate(
-				'simple-auth-authenticator:devise',
-				data);
+			return this.session.authenticate('authenticator:devise', data);
 		}
 	}
 });

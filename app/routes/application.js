@@ -1,7 +1,8 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  session: Ember.inject.service('session'),
   // intl: Ember.inject.service(),
   beforeModel: function(transition){
     var self = this;
@@ -32,34 +33,34 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     //     // otherwise proceed as normal?
     //   });
     // }
-    this._super(transition)
+    this._super(transition);
   },
 
   modelForSubdomain: function(){
-    let currentSubdomain = this.get('currentSubdomain');
-
-    Ember.$.ajax({
-      url: '/api/host_for?subdomain=' + currentSubdomain
-    });
+    // let currentSubdomain = this.get('currentSubdomain');
+    //
+    // Ember.$.ajax({
+    //   url: '/api/host_for?subdomain=' + currentSubdomain
+    // });
 
   }.property('currentSubdomain'),
 
   hasSubdomain: function(){
-    return Ember.isPresent(this.get('currentSubdomain'));
+    // return Ember.isPresent(this.get('currentSubdomain'));
   }.property('currentSubdomain'),
 
   currentSubdomain: function(){
-    let domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
-    let domainParts = domain.split('.');
-    domainParts.pop(); // remove TLD
-    domainParts.pop(); // remove domain
-    let subdomain = domainParts.join('.');
-
-    if (subdomain.ToLowerCase() === 'www'){
-      return '';
-    }
-
-    return subdomain;
+    // let domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
+    // let domainParts = domain.split('.');
+    // domainParts.pop(); // remove TLD
+    // domainParts.pop(); // remove domain
+    // let subdomain = domainParts.join('.');
+    //
+    // if (subdomain.ToLowerCase() === 'www'){
+    //   return '';
+    // }
+    //
+    // return subdomain;
   },
 
 
@@ -99,6 +100,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('session').invalidate();
       localStorage.clear();
     },
+
+
+    // transitionToLoginRoute... could be defined
+    // when routable components
 
     sessionAuthenticationSucceeded: function() {
       // close the modal

@@ -26,15 +26,11 @@ module.exports = function(environment) {
 
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
-    'simple-auth': {
+    'ember-simple-auth': {
       session: 'session:application',
-      store: 'simple-auth-session-store:local-storage',
-      authorizer: 'simple-auth-authorizer:devise',
+      store: 'session-store:local-storage',
+      authorizer: 'ember-simple-auth-authorizer:devise',
       crossOriginWhitelist: ['*']
-    },
-    'simple-auth-devise': {
-      tokenAttributeName: 'token',
-      identificationAttributeName: 'email'
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -65,7 +61,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV['simple-auth-devise'] = {
+    ENV['ember-simple-auth-devise'] = {
       // defaults to /users/sign_in
       serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
       serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
