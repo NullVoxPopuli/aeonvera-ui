@@ -101,9 +101,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       localStorage.clear();
     },
 
-
-    // transitionToLoginRoute... could be defined
-    // when routable components
+    transitionToLoginRoute: function() {
+        //  this.transitionTo('login');
+        this.transitionTo('welcome');
+    },
 
     sessionAuthenticationSucceeded: function() {
       // close the modal

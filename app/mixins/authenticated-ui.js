@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Mixin.create({
+export default Ember.Mixin.create(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
 
   activate: function() {
@@ -14,7 +15,7 @@ export default Ember.Mixin.create({
   /**
   	Redirect to the welcome route if not logged in.
   */
-  beforeModel: function(transition) {
+  willTransition: function(transition) {
     if (!this.get('session').isAuthenticated) {
       transition.abort();
 

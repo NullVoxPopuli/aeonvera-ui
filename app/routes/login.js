@@ -1,10 +1,11 @@
 import Ember from 'ember';
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Ember.Route.extend({
-  session: Ember.inject.service('session'),
+export default Ember.Route.extend(UnauthenticatedRouteMixin, {
+  openLogin: function(){
+    Ember.$(document).foundation('reflow');
 
-  authenticate: function() {
-    var data = this.getProperties('identification', 'password');
-    return this.get('session').authenticate('authenticator:devise', data);
-  }
+    Ember.$('#login-modal').foundation('reveal', 'open');
+    // Ember.$('a[data-reveal-id="login-modal"]').click();
+  }.on('didInsertElement')
 });
