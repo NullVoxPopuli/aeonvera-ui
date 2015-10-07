@@ -33,7 +33,7 @@ export default Router.map(function() {
 
 
   /* public facing */
-  this.resource('welcome', function() {
+  this.route('welcome', { resetNamespace: true }, function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
@@ -55,12 +55,12 @@ export default Router.map(function() {
     this.route('registered-events');
     this.route('orders');
 
-    this.resource('event-at-the-door', { path: '/event-at-the-door/:event_id' }, function(){
+    this.route('event-at-the-door', { resetNamespace: true, path: '/event-at-the-door/:event_id' }, function(){
       this.route('checkin');
       this.route('competition-list');
       this.route('a-la-carte');
     });
-    this.resource('events', function() {
+    this.route('events', { resetNamespace: true }, function() {
       this.route('show', { path: ':event_id' }, function(){
         /* attendees, volunteers, etc */
         this.route('revenue');
@@ -96,7 +96,7 @@ export default Router.map(function() {
   this.route("upcoming-events");
   this.route('communities');
 
-  this.resource('user', function() {
+  this.route('user', { resetNamespace: true }, function() {
     this.route('edit');
   });
 
