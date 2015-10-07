@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 	session: Ember.inject.service('session'),
 
 	initFoundation: function() {
-		this.$(document).foundation('reflow');
+		Ember.$(document).foundation('reflow');
 	}.on('didInsertElement'),
 
 	actions: {
