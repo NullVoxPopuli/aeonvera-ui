@@ -1,41 +1,4 @@
 #login-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog'
   h2#login-modal-title.text-center Login
   p
-    #login-error-message.modal-top-message.alert-box.alert data-alert='true'
-      a.close href='#' &times;
-      span.message
-      br
-
-    form submit='authenticate'
-      .row.collapse
-        .small-3.large-2.columns: span.prefix Email
-        .small-9.large-10.columns
-          = input value=identification placeholder='yourname@domain.com' type='text'
-
-      .row.collapse
-        .small-3.large-2.columns: span.prefix Password
-        .small-9.large-10.columns
-          = input value=password placeholder='Something secure and easy to remember' type='password'
-
-      br
-
-
-
-      ul.button-group.text-center.right
-        li: a.button href='#' data-reveal-id='signup-modal' Sign Up
-        li: button type='submit' Login
-
-      a.button href='#' data-reveal-id='login-help-modal' Help
-
-      ul.no-margins.accordion data-accordion='true'
-        li.accordion-navigation
-          a href='#login-help-why' Why do I need to make an account?
-          #login-help-why.content
-            span It helps the event organizers know who you are, and enables them to get in contact with you. It also saves you from repeating information on other events on this site and enables you to track your registration and payment history.
-        li.accordion-navigation
-          a href='#login-help-secure' Are my credentials secure?
-          #login-help-secure.content
-            span Yes. All communication is sent over a secure connection to the server, and at no point does aeonvera actually know what your password is. The database stores passwords as hashes, so there is no way to unencrypt your password.
-
-
-    a.close-reveal-modal aria-label="Close" &#215;
+    = login-form

@@ -19,6 +19,10 @@ module.exports = function(environment) {
       key: 'a' /* set per event */
     },
 
+    devise: {
+      serverTokenEndpoint: '/users/sign_in'
+    },
+
 
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
@@ -56,16 +60,20 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.host = 'http://swing.vhost:3000';
 
-    ENV['ember-simple-auth-devise'] = {
-      // defaults to /users/sign_in
-      serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
-      serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
-      crossOriginWhitelist: ['http://swing.vhost:3000']
-        /*
-        serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
-        crossOriginWhitelist: ['http://aeonvera-staging.work']
-        */
-    };
+    ENV['devise']['serverTokenEndpoint'] = 'http://swing.vhost:3000/users/sign_in';
+    // {
+    //   // defaults to /users/sign_in
+    //   serverTokenEndpoint: ,
+    //   serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
+    //   crossOriginWhitelist: ['http://swing.vhost:3000']
+    //     /*
+    //     serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
+    //     crossOriginWhitelist: ['http://aeonvera-staging.work']
+    //     */
+    // };
+
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
   }
 
   if (environment === 'test') {
