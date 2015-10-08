@@ -33,6 +33,3 @@ form submit='authenticate'
       a href='#login-help-secure' Are my credentials secure?
       #login-help-secure.content
         span Yes. All communication is sent over a secure connection to the server, and at no point does aeonvera actually know what your password is. The database stores passwords as hashes, so there is no way to unencrypt your password.
-
-
-a.close-reveal-modal aria-label="Close" &#215;

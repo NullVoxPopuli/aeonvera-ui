@@ -15,7 +15,10 @@ export default Ember.Component.extend({
 			this.get('session').authenticate('authenticator:devise', identification, password)
 				.catch((reason) => {
 					this.set('errorMessage', reason.error);
-			});
+			}).then(function(){
+        // close the modal
+        Ember.$('a.close-reveal-modal').trigger('click');
+      });
 		},
 
     hideError: function(){

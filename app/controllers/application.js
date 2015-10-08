@@ -11,6 +11,11 @@ export default Ember.Controller.extend({
   },
 
   actions: {
+
+    transitionToLoginRoute() {
+      this.transitionToRoute('login');
+    },
+    
     /**
       Create new account / new user.
     */

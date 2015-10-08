@@ -27,6 +27,8 @@ module.exports = function(environment) {
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
     'ember-simple-auth': {
+      routeIfAlreadyAuthenticated: 'dashboard',
+      routeAfterAuthentication: 'dashboard',
       session: 'session:application',
       store: 'session-store:local-storage',
       authorizer: 'ember-simple-auth-authorizer:devise',

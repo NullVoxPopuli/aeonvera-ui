@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-
-export default Ember.Mixin.create(AuthenticatedRouteMixin, {
+//import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+// AuthenticatedRouteMixin,
+export default Ember.Mixin.create({
   session: Ember.inject.service('session'),
 
   activate: function() {
@@ -15,8 +15,8 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
   /**
   	Redirect to the welcome route if not logged in.
   */
-  willTransition: function(transition) {
-    if (!this.get('session').isAuthenticated) {
+  beforeModel: function(transition) {
+    if (!this.get('session.isAuthenticated')) {
       transition.abort();
 
       // don't show this message, as people just navigating to
@@ -24,8 +24,8 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
       // but we want the dashboard to be the default URL
       // Ember.get(this, 'flashMessages').warning(
       // 'You must be logged in to view the dashboard');
-
       this.transitionTo('welcome');
+
     }
 
     this._super();

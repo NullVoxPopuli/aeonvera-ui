@@ -2,3 +2,4 @@
   h2#login-modal-title.text-center Login
   p
     = login-form
+    a.close-reveal-modal aria-label="Close" &#215;
