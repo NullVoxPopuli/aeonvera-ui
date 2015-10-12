@@ -3,6 +3,8 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service('session'),
+  subdomain: Ember.inject.service('subdomain'),
+
   // intl: Ember.inject.service(),
   beforeModel: function(transition){
     var self = this;
@@ -20,47 +22,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // redirect to the appropriate route (event or organization)
     // based on what type of model comes back.
     //
-    // TODO: should this be a service?
 
-    // if (this.get('hasSubdomain')){
-    //   this.get('modelForSubdomain').then(function(model){
-    //     let type = model.get('type');
-    //     if (type === 'event'){
-    //       self.transitionTo('dance-event');
-    //     } else if (type === 'organization'){
-    //       self.transitionTo('dance-organization');
-    //     }
-    //     // otherwise proceed as normal?
-    //   });
-    // }
+    if (this.get('subdomain.present')){
+      let type = this.get('subdomain.subdomainType');
+      if (type === 'event'){
+        self.transitionTo('dance-event');
+      } else if (type === 'organization'){
+        self.transitionTo('dance-organization');
+      }
+      // otherwise proceed as normal?
+    }
+
     this._super(transition);
-  },
-
-  modelForSubdomain: function(){
-    // let currentSubdomain = this.get('currentSubdomain');
-    //
-    // Ember.$.ajax({
-    //   url: '/api/host_for?subdomain=' + currentSubdomain
-    // });
-
-  }.property('currentSubdomain'),
-
-  hasSubdomain: function(){
-    // return Ember.isPresent(this.get('currentSubdomain'));
-  }.property('currentSubdomain'),
-
-  currentSubdomain: function(){
-    // let domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
-    // let domainParts = domain.split('.');
-    // domainParts.pop(); // remove TLD
-    // domainParts.pop(); // remove domain
-    // let subdomain = domainParts.join('.');
-    //
-    // if (subdomain.ToLowerCase() === 'www'){
-    //   return '';
-    // }
-    //
-    // return subdomain;
   },
 
 
