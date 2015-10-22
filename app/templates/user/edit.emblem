@@ -8,37 +8,37 @@
     .row
       .medium-4.columns
         label First Name
-        = input value=session.currentUser.firstName
+        = input value=currentUser.user.firstName
       .medium-4.columns
         label Last Name
-        = input value=session.currentUser.lastName
+        = input value=currentUser.user.lastName
       .medium-4.columns
         label Email
-        = input value=session.currentUser.email
+        = input value=currentUser.user.email
 
     if pendingConfirmation
       span Currently waiting on confirmation for&nbsp;
-      = session.currentUser.unconfirmedEmail
+      = currentUser.user.unconfirmedEmail
 
     h4 Password
     .row
       .medium-4.columns
         label New Password
-        = input value=session.currentUser.password type='password'
+        = input value=currentUser.user.password type='password'
 
       .medium-4.columns
         label New Password Confirmation
-        = input value=session.currentUser.passwordConfirmation type='password'
+        = input value=currentUser.user.passwordConfirmation type='password'
 
       .medium-4.columns
         label Current Password
-        = input value=session.currentUser.currentPassword type='password' placeholder="Only needed for changing your password"
+        = input value=currentUser.user.currentPassword type='password' placeholder="Only needed for changing your password"
 
     h4 Other Settings
     .row
       .medium-4.columns
         label Time Zone
-        = input value=session.currentUser.timeZone disabled=true
+        = input value=currentUser.user.timeZone disabled=true
 
     button.primary type='submit' click='updateCurrentUser' Update
 

@@ -10,14 +10,19 @@ export default Ember.Service.extend({
   user: Ember.computed('session.data.authenticated.token', function() {
     const token = this.get('session.data.authenticated.token');
     if (!Ember.isEmpty(token)) {
-      return DS.PromiseObject.create({
+      let userPromise = DS.PromiseObject.create({
         /*
-          the id of 1 here doesn't actually matter,
+          the id of 0 here doesn't actually matter,
           the server always returns the current user.
           This is just to route to the show action on the controller.
         */
-        promise: this.get('store').find('user', 1)
+        promise: this.get('store').find('user', 0)
       });
+
+      /* compatibility with old implementation of currentUser */
+      this.get('session').set('currentUser', userPromise);
+
+      return userPromise;
     }
   })
 });

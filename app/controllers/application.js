@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   mobileMenuLeft: 'nav/welcome/left-items',
   mobileMenuRight: 'nav/welcome/right-items',
 
+
   init: function() {
     var store = this.get('store');
     this.set('user', store.createRecord('user'));
@@ -15,7 +16,7 @@ export default Ember.Controller.extend({
     transitionToLoginRoute() {
       this.transitionToRoute('login');
     },
-    
+
     /**
       Create new account / new user.
     */
