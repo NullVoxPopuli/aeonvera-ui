@@ -16,7 +16,10 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
         span Discounts
     p Did someone win a pass to your event? Is there a sweet deal for students? Create a discount here.
   li
-    h4: a href='/hosted_events/{{model.id}}/packages' Packages
+    h4
+      link-to 'events.show.packages'
+        span Packages
+      /: a href='/hosted_events/{{model.id}}/packages' Packages
     p Most often 'Full Weekend', and 'Dance Only'. This is the core item that people will be paying for.
   li
     h4: a href='/hosted_events/{{model.id}}/pricing_tiers' Pricing Tiers

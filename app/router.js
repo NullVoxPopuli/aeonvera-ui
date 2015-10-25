@@ -65,6 +65,12 @@ export default Router.map(function() {
         /* attendees, volunteers, etc */
         this.route('revenue');
         this.route('manage');
+        this.route('packages', function(){
+          this.route('new');
+          this.route('show', { path: ':package_id' }, function(){
+            this.route('edit');
+          });
+        });
         this.route('discounts', function(){
           this.route('new');
           this.route('show', { path: ':discount_id' }, function(){

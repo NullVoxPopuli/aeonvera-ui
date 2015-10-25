@@ -1,0 +1,28 @@
+= page-header text='Packages'
+
+table
+  thead: tr
+    th Name
+    th Leads
+    th Follows
+    th Total
+    th
+      | Current Price
+      = tool-tip message="This is calculated based on the initial price and the teir scheme."
+    th Max Attendees
+    th Requires Track
+    th Expires
+  tbody
+    each model as |package|
+      tr
+        td = package.name
+        td = package.numberOfLeads
+        td = package.numberOfFollows
+        td = package.totalRegistrants
+        td = package.currentPrice
+        td = package.attendeeLimit
+        td = package.requiresTrack
+        if package.hasExpiration
+          td = date-with-format package.expiresAt 'LLL'
+        else
+          td

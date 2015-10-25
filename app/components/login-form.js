@@ -11,10 +11,12 @@ export default Ember.Component.extend({
 
 	actions: {
 		authenticate: function() {
+      let self = this;
 			let { identification, password } = this.getProperties('identification', 'password');
-			this.get('session').authenticate('authenticator:devise', identification, password)
+			this.get('session').authenticate(
+        'authenticator:devise', identification, password)
 				.catch((reason) => {
-					this.set('errorMessage', reason.error);
+					self.set('errorMessage', reason.error);
 			}).then(function(){
         // close the modal
         Ember.$('a.close-reveal-modal').trigger('click');

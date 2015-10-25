@@ -7,5 +7,10 @@ console.log(ENV.host);
 export default  DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
   host: ENV.host,
-  authorizer: 'authorizer:application'
+  authorizer: 'authorizer:application',
+
+  pathForType: function(type) {
+    let underscored = Ember.String.underscore(type);
+    return Ember.String.pluralize(underscored);
+  }
 });

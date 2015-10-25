@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 
       return promise;
     } else {
-      return store.all('hosted-event');
+      return store.findAll('hosted-event');
     }
   }.property('model.[]', 'showMyEvents')
 
