@@ -12,4 +12,7 @@ table
         td = discount.code
         td = discount.timesUsed
         td = discount.discount
-        td = discount.restrictedTo
+        td
+          each discount.allowedPackages as |pack|
+            span = pack.name
+            br
