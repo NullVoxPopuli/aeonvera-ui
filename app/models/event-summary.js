@@ -4,5 +4,10 @@ import HostedEvent from '../models/hosted-event';
 export default HostedEvent.extend({
   revenue: DS.attr('number'),
   unpaid: DS.attr('number'),
-  recentRegistrations: DS.hasMany('recentRegistrations', { async: false })
+  eventAttendances: DS.hasMany('eventAttendances', { async: false }),
+
+  recentRegistrations: function(){
+    return this.get('eventAttendances');
+  }.property('eventAttendances')
+
 });

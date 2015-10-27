@@ -12,10 +12,9 @@ export default Ember.Route.extend({
       var dashboard = self.controllerFor('events/index');
       dashboard.set('data', model);
     });
-
   },
 
   model: function(params) {
-    return this.store.find('eventSummary', params.event_id);
+    return this.store.findRecord('eventSummary', params.event_id, {adapterOptions: {query: { include: 'event_attendances' }}});
   }
 });
