@@ -1,10 +1,9 @@
 import DS from 'ember-data';
+import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
-export default DS.Model.extend({
+export default DS.Model.extend(LeadsAndFollows, {
   name: DS.attr('string'),
   registrationOpensAt: DS.attr('date'),
-  numberOfLeads: DS.attr('number'),
-  numberOfFollows: DS.attr('number'),
   numberOfShirtsSold: DS.attr('number'),
   myEvent: DS.attr('boolean'),
   startsAt: DS.attr('date'),
@@ -27,16 +26,5 @@ export default DS.Model.extend({
     var endedAt = this.get('endsAt').getTime();
     var currently = Date.now();
     return (currently > endedAt);
-  }.property('endsAt'),
-
-  totalAttendees: function() {
-    var leads = this.get('numberOfLeads');
-    var follows = this.get('numberOfFollows');
-
-    return leads + follows;
-  }.property('numberOfLeads', 'numberOfFollows'),
-
-  totalRegistrants: function() {
-    return this.get('totalAttendees');
-  }.property('totalAttendees')
+  }.property('endsAt')
 });

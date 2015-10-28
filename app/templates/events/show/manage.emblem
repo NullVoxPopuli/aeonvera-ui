@@ -7,7 +7,10 @@ hr
 
 ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
   li
-    h4: a href='/hosted_events/{{model.id}}/levels' Levels
+    h4
+      link-to 'events.show.levels'
+        span Levels
+      / a href='/hosted_events/{{model.id}}/levels' Levels
     p Also known as 'tracks'. Here, you can configure if different levels require auditions, as well as other requirements.
   li
     /h4: a href='/hosted_events/{{model.id}}/discounts' Discounts
@@ -22,7 +25,10 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
       /: a href='/hosted_events/{{model.id}}/packages' Packages
     p Most often 'Full Weekend', and 'Dance Only'. This is the core item that people will be paying for.
   li
-    h4: a href='/hosted_events/{{model.id}}/pricing_tiers' Pricing Tiers
+    h4
+      link-to 'events.show.pricing-tiers'
+        span Pricing Tiers
+      /a href='/hosted_events/{{model.id}}/pricing_tiers' Pricing Tiers
     p These affect the price of packages either over time and/or based on number of registrations.
   li
     h4: a href='/hosted_events/{{model.id}}/line_items' A la Carte Items

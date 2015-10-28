@@ -1,0 +1,21 @@
+= page-header text='Pricing Tiers'
+
+table
+  thead: tr
+    th
+      | Increase By
+      = tool-tip message="After the 'increase after' condition is met, the price of selected items will go up by this amount."
+    th
+      | Increase After
+      = tool-tip message="Once this condition is met, the tier which defines that condition will be applied."
+    th # Leads
+    th # Follows
+    th Total
+  tbody
+    each model as |tier|
+      tr
+        td = tier.increaseBy
+        td = tier.increaseAfter
+        td = tier.numberOfLeads
+        td = tier.numberOfFollows
+        td = tier.totalRegistrants

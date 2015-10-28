@@ -65,6 +65,12 @@ export default Router.map(function() {
         /* attendees, volunteers, etc */
         this.route('revenue');
         this.route('manage');
+        this.route('levels', function(){
+          this.route('new');
+          this.route('show', { path: ':level_id' }, function(){
+            this.route('edit');
+          });
+        });
         this.route('packages', function(){
           this.route('new');
           this.route('show', { path: ':package_id' }, function(){
@@ -74,6 +80,12 @@ export default Router.map(function() {
         this.route('discounts', function(){
           this.route('new');
           this.route('show', { path: ':discount_id' }, function(){
+            this.route('edit');
+          });
+        });
+        this.route('pricing-tiers', function(){
+          this.route('new');
+          this.route('show', { path: ':pricing_tier_id' }, function(){
             this.route('edit');
           });
         });
