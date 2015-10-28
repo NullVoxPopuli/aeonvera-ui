@@ -49,5 +49,8 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
     /: a href='/hosted_events/{{model.id}}/raffles' Raffles
     p Want to give away a prize to try to make some additional money? Includes ability to choose winner.
   li
-    h4: a href='/hosted_events/{{model.id}}/custom_fields' Custom Registration Fields
+    h4
+      link-to 'events.show.custom-fields'
+        span Custom Fields
+      /a href='/hosted_events/{{model.id}}/custom_fields' Custom Registration Fields
     p Need to collect additional info? Want to display a disclaimer at the bottom of registration? This is it.
