@@ -13,6 +13,10 @@ footer
     .medium-6.columns
       .right
         ul.inline-list
+          li
+            a.js-gitter-toggle-chat-button
+              = fa-icon 'comment'
+              
           li = links/mail-support-icon-link
           li = links/facebook-icon-link
 

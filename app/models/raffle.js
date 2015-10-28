@@ -1,0 +1,13 @@
+import Ember from 'ember';
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  numberOfPurchasedTickets: DS.attr('number'),
+  winner: DS.attr('string'),
+  winnerHasBeenChosen: DS.attr('boolean'),
+
+  event: DS.belongsTo('event'),
+  availableTickets: DS.hasMany('raffle-tickets')
+
+});

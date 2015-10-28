@@ -77,6 +77,30 @@ export default Router.map(function() {
             this.route('edit');
           });
         });
+        this.route('a-la-carte-items', function(){
+          this.route('new');
+          this.route('show', { path: ':package_id' }, function(){
+            this.route('edit');
+          });
+        });
+        this.route('shirts', function(){
+          this.route('new');
+          this.route('show', { path: ':package_id' }, function(){
+            this.route('edit');
+          });
+        });
+        this.route('raffles', function(){
+          this.route('new');
+          this.route('show', { path: ':package_id' }, function(){
+            this.route('edit');
+          });
+        });
+        this.route('custom-fields', function(){
+          this.route('new');
+          this.route('show', { path: ':package_id' }, function(){
+            this.route('edit');
+          });
+        });
         this.route('discounts', function(){
           this.route('new');
           this.route('show', { path: ':discount_id' }, function(){

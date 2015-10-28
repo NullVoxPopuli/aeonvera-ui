@@ -1,0 +1,22 @@
+= page-header text='Shirts'
+
+table
+  thead: tr
+    th Name
+    th # Purchased
+    th Price
+    th Offered Sizes
+    / image
+    th
+  tbody
+    if (is-present model)
+      each model as |shirt|
+        tr
+          td = shirt.name
+          td = shirt.numberPurchased
+          td = to-usd shirt.currentPrice
+          td = shirt.offeredSizes
+          td
+            img src=shirt.pictureUrlThumb
+    else
+      tr: td colspan='5' This event does not have shirts for sale

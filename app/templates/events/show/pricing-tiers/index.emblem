@@ -14,8 +14,18 @@ table
   tbody
     each model as |tier|
       tr
-        td = tier.increaseBy
-        td = tier.increaseAfter
+        td
+          if tier.isOpeningTier
+            | Opening Tier
+          else
+            = to-usd tier.increaseBy
+        td = tier-increase-after (date-with-format tier.increaseAfterDate 'LLL' true) tier.increaseAfterTotalRegistrants
         td = tier.numberOfLeads
         td = tier.numberOfFollows
         td = tier.totalRegistrants
+  tfoot: tr
+    th
+    th
+    th = totalLeads
+    th = totalFollows
+    th = totalRegistrations

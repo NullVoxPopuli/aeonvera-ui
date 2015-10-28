@@ -6,6 +6,7 @@ export default DS.Model.extend(Buyable, {
   description: DS.attr('string'),
   price: DS.attr('number'),
   itemType: DS.attr('string'),
+  numberPurchased: DS.attr('number'),
 
   schedule: DS.attr('string'),
   durationAmount: DS.attr('number'),

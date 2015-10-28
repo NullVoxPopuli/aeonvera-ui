@@ -1,0 +1,17 @@
+= page-header text='À la Carte Items'
+
+table
+  thead: tr
+    th Name
+    th # Purchased
+    th Price
+    th Becomes Available At
+    th Expires At
+  tbody
+    each model as |item|
+      tr
+        td = item.name
+        td = item.numberPurchased
+        td = to-usd item.currentPrice
+        td = date-with-format item.becomesAvailableAt 'LLL'
+        td = date-with-format item.expiresAt 'LLL'
