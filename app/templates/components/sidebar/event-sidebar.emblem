@@ -8,36 +8,38 @@ li
 li.divider
 li View
 li
-  a href='/hosted_events/{{event.id}}/attendances'
-    span Attendees
+  link-to 'events.show.registrations'
+    span Registrations
 li
-  a href='/hosted_events/{{event.id}}/attendances/unpaid'
+  link-to 'events.show.unpaid-registrations'
     span Unpaid Registrations
 li
-  a href='/hosted_events/{{event.id}}/cancelled_attendances'
+  link-to 'events.show.cancelled-registrations'
     span Cancelled Registrations
 li.divider
 li
+  / this one should be handled by the server, as we have
+  / no need for print-only styles here
   a href='/hosted_events/{{event.id}}/packet_printout'
     span Packet Printout
 li
-  a href='/hosted_events/{{event.id}}/volunteers'
+  link-to 'events.show.volunteers'
     span Volunteers
 li
-  a href='/hosted_events/{{event.id}}/housing'
+  link-to 'events.show.housing'
     span Housing
+
 li.divider
 li Reporting
 li
   link-to 'events.show.revenue'
     span Revenue
 li
-  a href='/hosted_events/{{event.id}}/charts'
+  link-to 'events.show.charts'
     span Charts
 
 li.divider
 
 li
-  /a.button.expand href='/hosted_events/{{event.id}}/edit' Manage
   link-to 'events.show.manage' model.id classNames='button expand'
     span Manage

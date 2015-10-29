@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
 
     currentItems: function(){
       return this.get('currentOrder.lineItems');
-    }.property('currentOrder.lineItems.@each'),
+    }.property('currentOrder.lineItems.[]'),
 
     actions: {
       beginBuildingAnOrder: function(){

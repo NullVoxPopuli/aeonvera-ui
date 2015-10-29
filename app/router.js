@@ -63,8 +63,29 @@ export default Router.map(function() {
     this.route('events', { resetNamespace: true }, function() {
       this.route('show', { path: ':event_id' }, function(){
         /* attendees, volunteers, etc */
+        this.route('registrations');
+        this.route('unpaid-registrations');
+        this.route('cancelled-registrations');
         this.route('revenue');
+        this.route('charts');
         this.route('manage');
+        this.route('housing');
+        this.route('volunteers', function(){
+          this.route('new');
+        });
+        this.route('housing-requests', function() {
+          this.route('new');
+        });
+        this.route('housing-provisions', function() {
+          this.route('new');
+        });
+
+        this.route('checkin', function() {
+          this.route('take-payment');
+        });
+
+
+        /* manage routes */
         this.route('levels', function(){
           this.route('new');
           this.route('show', { path: ':level_id' }, function(){
@@ -113,16 +134,6 @@ export default Router.map(function() {
             this.route('edit');
           });
         });
-      });
-      this.route('housing-requests', function() {
-        this.route('new');
-      });
-      this.route('housing-provisions', function() {
-        this.route('new');
-      });
-
-      this.route('checkin', function() {
-        this.route('take-payment');
       });
     });
 
