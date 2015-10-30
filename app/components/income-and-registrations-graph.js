@@ -4,6 +4,10 @@ export default Ember.Component.extend({
   data: {},
   config: {},
 
+  dateToString: function(num){
+    return (new Date(num * 1000)).toDateString().substring(4);
+  },
+
   setData: function(){
 
     let model = this.get('model');
@@ -11,15 +15,25 @@ export default Ember.Component.extend({
     let registrationTimes = model.get('registrationTimes');
     let incomeTimes = model.get('incomeTimes');
     let registrations = model.get('registrations');
+    let regTimes = [];
+    let incTimes = [];
+
+    registrationTimes.forEach(function(e){regTimes.push(new Date(e * 1000))});
+    incomeTimes.forEach(function(e){incTimes.push(new Date(e * 1000))});
 
     let data = {
+      // x1: 'x1',
        xs: {
          'Registrations': 'x1',
          'Income': 'x2'
        },
+      //  xFormat: null,
+      //  x1Format: null,
+      //  x2Format: null,
+      //  x_format: null
        columns: [
-         ['x1'].concat(registrationTimes),
-         ['x2'].concat(incomeTimes),
+         ['x1'].concat(regTimes),
+         ['x2'].concat(incTimes),
          ['Registrations'].concat(registrations),
          ['Income'].concat(incomes)
        ],
@@ -31,17 +45,44 @@ export default Ember.Component.extend({
 
 
     let config = {
-      axis: {
-        y2: {
+      size: {
+        height: 700
+      },
+      zoom: {
+        enabled: true,
+        rescale: true,
+        onzoomed: function(domain){
+          console.log(domain);
+
+        }
+      },
+      grid: {
+        x: {
           show: true
+        }
+      },
+      axis: {
+        y: {
+          label: "Total Number of Registrants"
         },
-        x1: {
-          type: 'timeseries',
-          format: '%Y-%m-%d'
+        y2: {
+          show: true,
+          label: "Revenue",
+          tick: {
+                format: d3.format("$,")
+            }
         },
-        x2: {
+        x: {
           type: 'timeseries',
-          format: '%Y-%m-%d'
+          tick: {
+            culling: {
+              max: 100
+            },
+            count: 20,
+            fit: true,
+            rotate: 45,
+            format: '%Y-%m-%d %H:%M:%S'
+          }
         }
       }
     };
