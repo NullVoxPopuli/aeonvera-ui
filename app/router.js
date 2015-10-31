@@ -69,14 +69,7 @@ export default Router.map(function() {
         this.route('revenue');
         this.route('charts');
         this.route('manage');
-        this.route('housing');
         this.route('volunteers', function(){
-          this.route('new');
-        });
-        this.route('housing-requests', function() {
-          this.route('new');
-        });
-        this.route('housing-provisions', function() {
           this.route('new');
         });
 
@@ -84,6 +77,14 @@ export default Router.map(function() {
           this.route('take-payment');
         });
 
+        this.route('housing', function(){
+          this.route('requests', function(){
+            this.route('new');
+          });
+          this.route('provisions', function(){
+            this.route('new');
+          });
+        });
 
         /* manage routes */
         this.route('levels', function(){

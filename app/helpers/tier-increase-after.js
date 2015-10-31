@@ -7,18 +7,18 @@ export default Ember.Helper.helper(function(params){
   let hasDate = Ember.isPresent(date);
   let hasRegLimit = Ember.isPresent(regs);
 
-  let result = ''
+  let result = '';
 
   if (hasDate){
-      result = date
+      result = date;
   }
 
   if (hasDate && hasRegLimit){
-    result += ' or '
+    result += ' or ';
   }
 
   if (hasRegLimit){
-    result += `${regs} Registrations`
+    result += `${regs} Registrations`;
   }
 
   return result;

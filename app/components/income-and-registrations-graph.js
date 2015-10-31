@@ -1,12 +1,9 @@
 import Ember from 'ember';
+import c3 from 'c3';
 
 export default Ember.Component.extend({
   data: {},
   config: {},
-
-  dateToString: function(num){
-    return (new Date(num * 1000)).toDateString().substring(4);
-  },
 
   setData: function(){
 
@@ -18,19 +15,14 @@ export default Ember.Component.extend({
     let regTimes = [];
     let incTimes = [];
 
-    registrationTimes.forEach(function(e){regTimes.push(new Date(e * 1000))});
-    incomeTimes.forEach(function(e){incTimes.push(new Date(e * 1000))});
+    registrationTimes.forEach(function(e){regTimes.push(new Date(e * 1000));});
+    incomeTimes.forEach(function(e){incTimes.push(new Date(e * 1000));});
 
     let data = {
-      // x1: 'x1',
        xs: {
          'Registrations': 'x1',
          'Income': 'x2'
        },
-      //  xFormat: null,
-      //  x1Format: null,
-      //  x2Format: null,
-      //  x_format: null
        columns: [
          ['x1'].concat(regTimes),
          ['x2'].concat(incTimes),
@@ -45,16 +37,13 @@ export default Ember.Component.extend({
 
 
     let config = {
+      bindto: 'income-registrations-chart',
       size: {
         height: 700
       },
       zoom: {
         enabled: true,
-        rescale: true,
-        onzoomed: function(domain){
-          console.log(domain);
-
-        }
+        rescale: true
       },
       grid: {
         x: {
@@ -90,7 +79,9 @@ export default Ember.Component.extend({
     this.set('config', config);
     this.set('data', data);
 
+    // let chart = c3.generate(config);
+    // chart.load(data);
 
-  }.on('willInsertElement'),
+  }.on('willInsertElement')
 
 });

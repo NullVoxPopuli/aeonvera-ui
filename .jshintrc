@@ -4,7 +4,8 @@
     "window",
     "-Promise",
     "jQuery",
-    "moment"
+    "moment",
+    "d3"
   ],
   "browser": true,
   "boss": true,

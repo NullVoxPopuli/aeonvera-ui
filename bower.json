@@ -24,7 +24,10 @@
     "moment": ">= 2.8.0",
     "font-awesome": "~4.4.0",
     "d3": "~3.5.6",
-    "c3": "~0.4.10"
+    "c3": "~0.4.10",
+    "antiscroll": "git://github.com/Addepar/antiscroll#e0d1538cf4f3fd61c5bedd6168df86d651f125da",
+    "jquery-mousewheel": "~3.1.4",
+    "jquery-ui": "~1.11.4"
   },
   "resolutions": {
     "qunit-notifications": "~0.1.0"
