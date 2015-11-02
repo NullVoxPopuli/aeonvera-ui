@@ -3,25 +3,45 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='mailPaymentsEndAt'
       label
         span Mail Payments End At
-        = input value=model.mailPaymentsEndAt type='text'
+        = date-time-input value=model.mailPaymentsEndAt
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='electronicPaymentsEndAt'
       label
         span Electronic Payments End At
-        = input value=model.electronicPaymentsEndAt type='text'
+        = date-time-input value=model.electronicPaymentsEndAt
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='refundsEndAt'
       label
         span Refunds End At
-        = input value=model.refundsEndAt type='text'
+        = date-time-input value=model.refundsEndAt
 
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shirtSalesEndAt'
       label
         span Shirt Sales End At
-        = input value=model.shirtSalesEndAt type='text'
+        = date-time-input value=model.shirtSalesEndAt
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='showAtTheDoorPricesAt'
       label
         span Show At The Door Prices At
-        = input value=model.showAtTheDoorPricesAt type='text'
+        = date-time-input value=model.showAtTheDoorPricesAt
+
+  .row
+    .small-12.medium-6.columns
+      = input checked=model.allowDiscounts type='checkbox'
+      label Allow Discounts
+      br
+      = input checked=model.allowCombinedDiscounts type='checkbox'
+      label Allow Combined Discounts
+      br
+      = input checked=model.showOnPublicCalendar type='checkbox'
+      label Show on the Public Calendar
+    .small-12.medium-6.columns
+      = input checked=model.hasVolunteers type='checkbox'
+      label Allow Volunteer Sign Up
+      br
+      = input checked=model.makeAttendeesPayFees type='checkbox'
+      label Make Registrants Pay Fees
+      br
+      = input checked=model.acceptOnlyElectronicPayments type='checkbox'
+      label Accept Only Electronic Payments
