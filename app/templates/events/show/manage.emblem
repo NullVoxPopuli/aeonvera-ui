@@ -1,6 +1,8 @@
 = page-header text='Event Management'
 
-a.button href='/hosted_events/{{model.id}}/edit' Event Settings
+link-to 'events.show.edit' classNames='button'
+  span Event Settings
+
 
 h3 Configure
 hr

@@ -62,6 +62,13 @@ export default Router.map(function() {
     });
     this.route('events', { resetNamespace: true }, function() {
       this.route('show', { path: ':event_id' }, function(){
+        this.route('edit', function(){
+          this.route('housing');
+          this.route('options');
+          this.route('customization');
+          this.route('payment-processors');
+        });
+
         /* attendees, volunteers, etc */
         this.route('registrations');
         this.route('unpaid-registrations');

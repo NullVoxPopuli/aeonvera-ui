@@ -1,0 +1,38 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='name'
+      label
+        span Event Name
+        = input value=model.name placeholder='EventName Year' type='text' required=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shortDescription'
+      label
+        span Short Description
+        = input value=model.shortDescription placeholder='tagline or a brief summary' type='text' required=true
+
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='location'
+      label
+        span Location
+        = input value=model.location placeholder='e.g.: Indianapolis, IN' type='text' required=true
+
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
+      label
+        span Starts At
+        .row
+          .small-6.columns
+            = date-picker date=startsAtDate valueFormat='YYYY-MM-DD' allowBlank=false
+          .small-6.columns
+            = input type='time' placeholder='00:00' value=startAtTime
+        / = input value=model.startsAt type='text' required=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='endsAt'
+      label
+        span Ends At
+        .row
+          .small-6.columns
+            = date-picker date=EndsAtDate valueFormat='YYYY-MM-DD' allowBlank=false
+          .small-6.columns
+            = input type='time' placeholder='00:00' value=EndsAtTime
+        / = input value=model.endsAt type='text' required=true

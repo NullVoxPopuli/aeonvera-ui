@@ -13,7 +13,7 @@ export default Host.extend({
 	electronicPaymentsEndAt: DS.attr('date'),
 	refundsEndAt: DS.attr('date'),
 	shirtSalesEndAt: DS.attr('date'),
-	showAtTheDorPricesAt: DS.attr('date'),
+	showAtTheDoorPricesAt: DS.attr('date'),
 
 	showOnPublicCalendar: DS.attr('boolean'),
 	acceptOnlyElectronicPayments: DS.attr('boolean'),

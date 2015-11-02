@@ -1,0 +1,27 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='mailPaymentsEndAt'
+      label
+        span Mail Payments End At
+        = input value=model.mailPaymentsEndAt type='text'
+
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='electronicPaymentsEndAt'
+      label
+        span Electronic Payments End At
+        = input value=model.electronicPaymentsEndAt type='text'
+
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='refundsEndAt'
+      label
+        span Refunds End At
+        = input value=model.refundsEndAt type='text'
+
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shirtSalesEndAt'
+      label
+        span Shirt Sales End At
+        = input value=model.shirtSalesEndAt type='text'
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='showAtTheDoorPricesAt'
+      label
+        span Show At The Door Prices At
+        = input value=model.showAtTheDoorPricesAt type='text'
