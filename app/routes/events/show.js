@@ -15,6 +15,6 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    return this.store.findRecord('eventSummary', params.event_id, {adapterOptions: {query: { include: 'event_attendances' }}});
+    return this.store.findRecord('event', params.event_id, {adapterOptions: {query: { include: 'event_attendances' }}});
   }
 });

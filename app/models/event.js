@@ -1,8 +1,9 @@
 import DS from 'ember-data';
 import Host from '../models/host';
+import RegistrationOpens from '../mixins/models/registration-opens';
 
 
-export default Host.extend({
+export default Host.extend(RegistrationOpens, {
 	shortDescription: DS.attr('string'),
 	location: DS.attr('string'),
 
@@ -37,9 +38,15 @@ export default Host.extend({
 
 	integrations: DS.hasMany('integration'),
 
-	packages: DS.hasMany('package'),
-	levels: DS.hasMany('level'),
-	competitions: DS.hasMany('competitions'),
+	packages: DS.hasMany('package', { async: true }),
+	levels: DS.hasMany('level', { async: true }),
+	competitions: DS.hasMany('competitions', { async: true }),
+	summary: DS.belongsTo('eventSummary', { async: true }),
+	openingTier: DS.belongsTo('openingTier', {async: false }),
+
+	registrationOpensAt: function(){
+		return this.get('openingTier.date');
+	}.property('openingTier.date'),
 
 	stripePublishableKey: function(){
 		/*
