@@ -8,13 +8,13 @@ export default Ember.Route.extend({
     this.set('title', model.get('name'));
 
     var self = this;
-    Ember.run.later(function(){
+    Ember.run.later(function() {
       var dashboard = self.controllerFor('events/index');
       dashboard.set('data', model);
     });
   },
 
   model: function(params) {
-    return this.store.findRecord('event', params.event_id, {adapterOptions: {query: { include: 'event_attendances' }}});
+    return this.store.findRecord('event', params.event_id);
   }
 });

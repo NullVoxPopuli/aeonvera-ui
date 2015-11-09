@@ -49,6 +49,12 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   padding-bottom: 30px !important;
 }
 
+.success-color{
+  color: $success-color;
+}
+.alert-color{
+  color: $alert-color;
+}
 
 
 .icon-thumbnail{

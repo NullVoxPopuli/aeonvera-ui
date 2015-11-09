@@ -1,4 +1,4 @@
-= page-header text='Unpaid Registrations'
+= page-header text='Registrations'
 
 table
   thead: tr
@@ -23,4 +23,4 @@ table
           td = registration.paymentStatus
           td = date-with-format registration.registeredAt 'LLL'
     else
-      tr: td colspan='6' All registrants have paid
+      tr: td colspan='6' No one has registered (yet)

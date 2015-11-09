@@ -38,17 +38,24 @@ export default Host.extend(RegistrationOpens, {
 
 	integrations: DS.hasMany('integration'),
 
-	packages: DS.hasMany('package', { async: true }),
-	levels: DS.hasMany('level', { async: true }),
-	competitions: DS.hasMany('competitions', { async: true }),
-	summary: DS.belongsTo('eventSummary', { async: true }),
-	openingTier: DS.belongsTo('openingTier', {async: false }),
+	packages: DS.hasMany('package', {
+		async: true
+	}),
+	levels: DS.hasMany('level', {
+		async: true
+	}),
+	competitions: DS.hasMany('competitions', {
+		async: true
+	}),
+	openingTier: DS.belongsTo('openingTier', {
+		async: false
+	}),
 
-	registrationOpensAt: function(){
+	registrationOpensAt: function() {
 		return this.get('openingTier.date');
 	}.property('openingTier.date'),
 
-	stripePublishableKey: function(){
+	stripePublishableKey: function() {
 		/*
 			TODO: find a way to make the 'stripe' key not a string somehow
 			so typing it over and over doesn't lead to silent errors
@@ -56,7 +63,7 @@ export default Host.extend(RegistrationOpens, {
 		var integrations = this.get('integrations').filterBy('name', "stripe");
 		var stripeIntegration = null;
 
-		if (integrations.length > 0){
+		if (integrations.length > 0) {
 			stripeIntegration = integrations[0];
 		}
 

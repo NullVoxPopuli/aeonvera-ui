@@ -1,5 +1,5 @@
 br
-h3 = model.name
+h3 = model.event.name
 hr
 
 .row

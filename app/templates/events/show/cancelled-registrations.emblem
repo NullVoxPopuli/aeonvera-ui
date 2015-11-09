@@ -13,7 +13,9 @@ table
     if (is-present model)
       each model as |registration|
         tr
-          td = registration.attendeeName
+          td
+            link-to 'events.show.registrations.show' registration.id
+              = registration.attendeeName
           td = registration.danceOrientation
           td = registration.packageName
           td = registration.levelName
