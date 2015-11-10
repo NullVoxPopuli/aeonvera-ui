@@ -17,8 +17,11 @@ export default DS.Model.extend({
   host: DS.belongsTo('host', {
     polymorphic: true
   }),
-  lineItems: DS.hasMany('orderLineItem', {
-    async: true
+  orderLineItems: DS.hasMany('orderLineItem', {
+    async: true,
+    params: {
+      order_id: 'hasManyParams'
+    }
   }),
   attendance: DS.belongsTo('attendance'),
 
@@ -29,6 +32,16 @@ export default DS.Model.extend({
   */
   checkoutToken: DS.attr('string'),
   checkoutEmail: DS.attr('string'),
+
+  // TODO: this is a hack, couple with an adapter hack
+  // check ember data later if it can do hasMany query params
+  hasManyParams: function() {
+    let id = this.get('id');
+    return {
+      'order_id': id
+    };
+  }.property(),
+
 
 
   /* aliases */

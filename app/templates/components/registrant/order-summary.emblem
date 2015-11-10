@@ -5,12 +5,12 @@ table
     th Quantity
     th Total
   tbody
-    each model.lineItems as |item|
+    each model.orderLineItems as |item|
       tr
-        td item.name
-        td to-usd item.price
-        td item.quantity
-        td to-usd item.total
+        td = item.name
+        td = to-usd item.price
+        td = item.quantity
+        td = to-usd item.total
 
 button.small Resend Receipt
 span Prices as of {{date-with-format model.createdAt 'LLL'}}
