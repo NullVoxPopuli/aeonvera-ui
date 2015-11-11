@@ -4,10 +4,9 @@ ul.accordion data-accordion='true'
       a href='#order-{{order.id}}'
         span class='{{order.paidClass}}'
           if order.paid
-            | Paid {{to-usd order.totalInDollars}} via {{order.paymentMethod}}
+            | Paid {{to-usd order.paidAmount}} via {{order.paymentMethod}}
+            span &nbsp;on {{date-with-format order.paymentReceivedAt 'LLL'}}
           else
             | Owes {{to-usd order.totalInDollars}}
-        // TODO: change this date to the date the stripe payment was received
-        span &nbsp;on {{date-with-format order.createdAt 'LLL'}}
       .content id='order-{{order.id}}'
         = registrant/order-summary model=order

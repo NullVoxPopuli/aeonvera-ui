@@ -10,10 +10,10 @@ export default Ember.Mixin.create({
   }.property('amountOwed'),
 
   hasPaid: function() {
-    let owesMoney = this.get('owesMoney');
+    let amountPaid = this.get('amountPaid');
 
-    return owesMoney !== 0;
-  }.property('owesMoney'),
+    return (amountPaid !== 0 && Ember.isPresent(amountPaid));
+  }.property('amountPaid'),
 
   paymentStatus: function() {
     var owed = this.get('amountOwed');

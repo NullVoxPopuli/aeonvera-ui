@@ -16,11 +16,11 @@
     | Registered: {{date-with-format model.registeredAt 'LLL'}}
   br
   span
-    | Checked In:
+    | Checked In:&nbsp;
     if model.isCheckedIn
       = date-with-format model.checkedInAt 'LLL'
     else
-      | &nbsp;No
+      | No
 
 .clearfix
 hr
