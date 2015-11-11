@@ -7,7 +7,7 @@ table
   tbody
     each model.orderLineItems as |item|
       tr
-        td = item.name
+        td = item.lineItem.name
         td = to-usd item.price
         td = item.quantity
         td = to-usd item.total

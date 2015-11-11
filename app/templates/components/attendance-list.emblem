@@ -14,7 +14,7 @@ table.responsive
       each model as |attendance|
         tr
           td
-            a href='/hosted_events/{{attendance.eventId}}/attendances/{{attendance.id}}'
+            link-to 'events.show.registrations.show' attendance.id
               span = attendance.attendeeName
           td = attendance.packageName
           td = attendance.levelName

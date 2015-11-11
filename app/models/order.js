@@ -9,6 +9,7 @@ export default DS.Model.extend({
   totalFeeAmount: DS.attr('number'),
   paymentMethod: DS.attr('string'),
   checkNumber: DS.attr('string'),
+  paid: DS.attr('boolean'),
 
   totalInCents: DS.attr('number'),
 
@@ -18,10 +19,7 @@ export default DS.Model.extend({
     polymorphic: true
   }),
   orderLineItems: DS.hasMany('orderLineItem', {
-    async: true,
-    params: {
-      order_id: 'hasManyParams'
-    }
+    async: true
   }),
   attendance: DS.belongsTo('attendance'),
 
@@ -32,15 +30,6 @@ export default DS.Model.extend({
   */
   checkoutToken: DS.attr('string'),
   checkoutEmail: DS.attr('string'),
-
-  // TODO: this is a hack, couple with an adapter hack
-  // check ember data later if it can do hasMany query params
-  hasManyParams: function() {
-    let id = this.get('id');
-    return {
-      'order_id': id
-    };
-  }.property(),
 
 
 

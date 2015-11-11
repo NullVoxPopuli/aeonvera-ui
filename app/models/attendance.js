@@ -25,22 +25,12 @@ export default DS.Model.extend(
     eventId: DS.attr('string'),
 
     orders: DS.hasMany('order', {
-      async: true,
-      params: {
-        attendance_id: 'hasManyParams'
-      }
+      async: true
     }),
+
     unpaidOrder: DS.belongsTo('unpaidOrder', {
       async: true
     }),
-    // TODO: this is a hack, couple with an adapter hack
-    // check ember data later if it can do hasMany query params
-    hasManyParams: function() {
-      let id = this.get('id');
-      return {
-        'attendance_id': id
-      };
-    }.property(),
 
     hasUnpaidOrder: function() {
       return Ember.isPresent(this.get('unpaidOrder'));
