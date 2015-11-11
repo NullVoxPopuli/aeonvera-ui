@@ -60,6 +60,11 @@ export default DS.Model.extend({
     return subTotal;
   }.property('lineItems.[].price'),
 
+  paidClass: function() {
+    let paid = this.get('paid');
+    return paid ? 'success-color' : 'alert-color';
+  }.property('paid'),
+
   /*
     takes the line item, and makes an order line item out of it
   */

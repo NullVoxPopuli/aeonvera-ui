@@ -2,9 +2,9 @@ ul.accordion data-accordion='true'
   each model as |order|
     li.accordion-navigation
       a href='#order-{{order.id}}'
-        span class='{{paidClass}}'
-          if model.paid
-            | Paid {{to-usd order.totalInDollars}}
+        span class='{{order.paidClass}}'
+          if order.paid
+            | Paid {{to-usd order.totalInDollars}} via {{order.paymentMethod}}
           else
             | Owes {{to-usd order.totalInDollars}}
         // TODO: change this date to the date the stripe payment was received
