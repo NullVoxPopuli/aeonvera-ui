@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Discount from '../models/discount';
 
 export default DS.Model.extend({
   lineItem: DS.belongsTo('line-item', {
@@ -37,6 +38,7 @@ export default DS.Model.extend({
     return price * quantity;
   }.property('price', 'quantity'),
 
+
   isCompetition: function() {
     return (this.get('lineItem').get('constructor.typeKey') ===
       'competition');
@@ -44,8 +46,6 @@ export default DS.Model.extend({
 
   isShirt: function() {
     return (this.get('lineItem').get('constructor.typeKey') === 'shirt');
-  }.property('lineItem', 'lineItemType')
-
-
+  }.property('lineItem', 'lineItemType'),
 
 });

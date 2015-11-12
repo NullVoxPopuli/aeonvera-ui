@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Buyable from '../mixins/models/buyable';
+import IsLineItem from '../mixins/models/is-line-item';
 
-export default DS.Model.extend(Buyable, {
+export default DS.Model.extend(Buyable, IsLineItem, {
   name: DS.attr('string'),
   description: DS.attr('string'),
   price: DS.attr('number'),
@@ -24,6 +25,8 @@ export default DS.Model.extend(Buyable, {
   becomesAvailableAt: DS.attr('date'),
 
   event: DS.belongsTo('event'),
-  host: DS.belongsTo('host', { polymorphic: true } )
+  host: DS.belongsTo('host', {
+    polymorphic: true
+  })
 
 });

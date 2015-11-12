@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import IsLineItem from '../mixins/models/is-line-item';
 
-export default DS.Model.extend({
+export default DS.Model.extend(IsLineItem, {
 
   DOLLARS_OFF: 0,
   PERCENT_OFF: 1,
@@ -15,25 +16,40 @@ export default DS.Model.extend({
   appliesTo: DS.attr('string'),
   allowedNumberOfUses: DS.attr('number'),
 
-  host: DS.belongsTo('host', { polymorphic: true, async: true }),
-  allowedPackages: DS.hasMany('package', { async: true }),
+  host: DS.belongsTo('host', {
+    polymorphic: true,
+    async: true
+  }),
+  allowedPackages: DS.hasMany('package', {
+    async: true
+  }),
   // restraints: DS.hasMany('restraint')
 
-  discount: function(){
+  name: function() {
+    return this.get('code');
+  }.property('code'),
+
+  price: function() {
+    return this.get('discount');
+  }.property('discount'),
+
+  discount: function() {
     let kind = this.get('kind');
     let amount = this.get('amount');
 
-    if (kind === this.get('DOLLARS_OFF')){
+    if (kind === this.get('DOLLARS_OFF')) {
       return '$' + amount;
     }
 
     return amount + '%';
   }.property('amount', 'kind'),
 
-  restrictedTo: function(){
+  restrictedTo: function() {
     let nameArray = [];
 
-    return this.get('packages', { event_id: 16 }).then(function(pack){
+    return this.get('packages', {
+      event_id: 16
+    }).then(function(pack) {
       let name = pack.get('name');
 
       nameArray.push(name);

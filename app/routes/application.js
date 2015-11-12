@@ -1,12 +1,13 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from
+  'ember-simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service('session'),
   subdomain: Ember.inject.service('subdomain'),
 
   // intl: Ember.inject.service(),
-  beforeModel: function(transition){
+  beforeModel: function(transition) {
     var self = this;
     //   // define the app's runtime locale
     //   // For example, here you would maybe do an API lookup to resolver
@@ -23,11 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // based on what type of model comes back.
     //
 
-    if (this.get('subdomain.present')){
+    if (this.get('subdomain.present')) {
       let type = this.get('subdomain.subdomainType');
-      if (type === 'event'){
+      if (type === 'event') {
         self.transitionTo('dance-event');
-      } else if (type === 'organization'){
+      } else if (type === 'organization') {
         self.transitionTo('dance-organization');
       }
       // otherwise proceed as normal?
@@ -49,6 +50,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       into: 'application'
     });
 
+  },
+
+  sessionAuthenticated: function() {
+    this._super();
+
+    // close the modal
+    Ember.$('a.close-reveal-modal').trigger('click');
+
+    // notify of success
+    Ember.get(this, 'flashMessages').success(
+      'You have successfully logged in');
   },
 
   actions: {
@@ -75,27 +87,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     },
 
     transitionToLoginRoute: function() {
-        //  this.transitionTo('login');
-        this.transitionTo('welcome');
-    },
-
-    sessionAuthenticationSucceeded: function() {
-      // close the modal
-      Ember.$('a.close-reveal-modal').trigger('click');
-
-      // set user and redirect
-      this.transitionTo('dashboard');
-
-      // notify of success
-      Ember.get(this, 'flashMessages').success(
-        'You have successfully logged in');
-    },
-
-    sessionAuthenticationFailed: function(error) {
-      Ember.Logger.debug('Session authentication failed!');
-
-      Ember.$('#login-error-message .message').text(error.error || error);
-      Ember.$('#login-error-message').show();
+      //  this.transitionTo('login');
+      this.transitionTo('welcome');
     }
 
   }

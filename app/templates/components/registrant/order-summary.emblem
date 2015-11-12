@@ -8,9 +8,18 @@ table
     each model.orderLineItems as |item|
       tr
         td = item.lineItem.name
-        td = to-usd item.price
+        td
+          if item.lineItem.isDiscount
+            / TODO make a helper for this, since it could be $ or %
+            | - {{item.lineItem.discount}}
+          else
+            = to-usd item.price
         td = item.quantity
-        td = to-usd item.total
+        td 
+          if item.lineItem.isDiscount
+            | - {{to-usd item.total}}
+          else
+            = to-usd item.total
 
 button.small Resend Receipt
 span Prices as of {{date-with-format model.createdAt 'LLL'}}
