@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     return 'registrant/order/line-item-row';
   },
 
-  setTemplate: Ember.observes('model.orderLineItems.[]', function() {
+  setTemplate: function() {
     let items = this.get('model.orderLineItems');
     let self = this;
 
@@ -25,5 +25,11 @@ export default Ember.Component.extend({
       self.set('orderLineItems', lineItems);
     });
 
-  })
+  }.observes('model.orderLineItems.[]'),
+
+  actions: {
+    resendReceipt: function() {
+
+    }
+  }
 });

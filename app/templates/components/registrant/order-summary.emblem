@@ -8,5 +8,5 @@ table
     each orderLineItems as |item|
       = component item.template model=item
     
-button.small Resend Receipt
-span Prices as of {{date-with-format model.createdAt 'LLL'}}
+button.small click='resendReceipt' Resend Receipt
+small.right Prices as of {{date-with-format model.createdAt 'LLL'}}
