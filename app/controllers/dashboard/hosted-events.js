@@ -7,13 +7,13 @@ export default Ember.Controller.extend({
     TODO: make the checkbox call an action and then
     move this logic to the route
   */
-  filteredModel: function(){
-    var store = this.store;
-    var onlyMe = this.get('showMyEvents');
+  filteredModel: function() {
+    let store = this.store;
+    let onlyMe = this.get('showMyEvents');
 
-    if (onlyMe){
-      var promise = store.filter('hosted-event', function(e) {
-         return e.get('myEvent');
+    if (onlyMe) {
+      let promise = store.filter('hosted-event', function(e) {
+        return e.get('myEvent');
       });
 
       return promise;

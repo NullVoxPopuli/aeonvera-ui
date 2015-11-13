@@ -36,16 +36,5 @@ export default DS.Model.extend({
       quantity = this.get('quantity');
 
     return price * quantity;
-  }.property('price', 'quantity'),
-
-
-  isCompetition: function() {
-    return (this.get('lineItem').get('constructor.typeKey') ===
-      'competition');
-  }.property('lineItem', 'lineItemType'),
-
-  isShirt: function() {
-    return (this.get('lineItem').get('constructor.typeKey') === 'shirt');
-  }.property('lineItem', 'lineItemType'),
-
+  }.property('price', 'quantity')
 });

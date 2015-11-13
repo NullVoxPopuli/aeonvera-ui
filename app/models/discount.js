@@ -44,6 +44,11 @@ export default DS.Model.extend(IsLineItem, {
     return amount + '%';
   }.property('amount', 'kind'),
 
+  isDollarsOff: function() {
+    let kind = this.get('kind');
+    return kind === this.get('DOLLARS_OFF')
+  }.property('kind'),
+
   restrictedTo: function() {
     let nameArray = [];
 
