@@ -6,10 +6,10 @@ NVM_DIR=~/.nvm
 
 which nvm
 
-nvm use stable
+nvm use v0.12
+nvm alias default v0.12
 
 which npm
 which node
 
 PATH="$(npm bin):$PATH"
-
