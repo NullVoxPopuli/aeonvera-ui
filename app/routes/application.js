@@ -26,6 +26,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     if (this.get('subdomain.present')) {
       let type = this.get('subdomain.subdomainType');
+      debugger;
       if (type === 'event') {
         self.transitionTo('dance-event');
       } else if (type === 'organization') {

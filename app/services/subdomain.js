@@ -21,6 +21,10 @@ export default Ember.Service.extend({
     return subdomain;
   }.property(),
 
+  currentSubdomain: function(){
+    return this.get('current');
+  }.property('current'),
+
   present: function(){
     return Ember.isPresent(this.get('currentSubdomain'));
   }.property('current'),
@@ -29,16 +33,14 @@ export default Ember.Service.extend({
     let onSubDomain = this.get('present');
 
     if (onSubDomain){
-      // let currentSubdomain = this.get('currentSubdomain');
-      //
-      // Ember.$.ajax({
-      //   url: '/api/host_for?subdomain=' + currentSubdomain
-      // });
+      let currentSubdomain = this.get('currentSubdomain');
+
+      return this.get('store').find('host', {subdomain: currentSubdomain});
     }
   }.property('current'),
 
   subdomainType: function(){
-    return this.get('model.type');
+    return this.get('model.constructor.modelName');
   }.property('current')
 
 });

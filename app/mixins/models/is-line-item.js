@@ -12,6 +12,5 @@ export default Ember.Mixin.create({
 
   isCompetition: function() {
     return this.get('constructor.modelName') === 'competition';
-  }
-  property(),
+  }.property(),
 });
