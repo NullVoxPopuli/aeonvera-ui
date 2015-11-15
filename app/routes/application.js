@@ -8,34 +8,20 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   // intl: Ember.inject.service(),
   beforeModel: function(transition) {
-    var self = this;
     //   // define the app's runtime locale
     //   // For example, here you would maybe do an API lookup to resolver
     //   // which locale the user should be targeted and perhaps lazily
     //   // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
     //   // method with the results of the XHR request
     //   this.get('intl').setLocale('en-us');
+    this.get('subdomain.route').then(success => {
+      console.log('success:' + success);
 
-
-    // check if there is a subdomain
-    // if there is, send a request to get the model matching the subdomain, as
-    // every event / organization most have a unique subdomain.
-    // redirect to the appropriate route (event or organization)
-    // based on what type of model comes back.
-    //
-
-    if (this.get('subdomain.present')) {
-      let type = this.get('subdomain.subdomainType');
-      debugger;
-      if (type === 'event') {
-        self.transitionTo('dance-event');
-      } else if (type === 'organization') {
-        self.transitionTo('dance-organization');
-      }
-      // otherwise proceed as normal?
-    }
-
-    this._super(transition);
+      this.transitionTo(success);
+    }, failure => {
+      console.log('failed:' + failure);
+      this._super(transition);
+    });
   },
 
 

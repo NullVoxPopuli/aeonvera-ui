@@ -29,7 +29,7 @@ export default Router.map(function() {
   /* event registration - subdomain based */
   this.route('dance-event');
   /* organization registration - subdomain based */
-  this.route('dance-organization');
+  this.route('dance-community');
 
 
   /* public facing */
