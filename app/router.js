@@ -27,9 +27,36 @@ export default Router.map(function() {
   });
 
   /* event registration - subdomain based */
-  this.route('dance-event');
+  this.route('dance-event', function() {
+    this.route('register', function() {
+      this.route('review');
+      this.route('thankyou');
+      this.route('new');
+      this.route('edit');
+    });
+  });
+
   /* organization registration - subdomain based */
-  this.route('dance-community');
+  this.route('dance-community', function() {
+    this.route('unauthenticated', function() {
+
+    });
+
+    this.route('register', function() {
+      this.route('review');
+      this.route('thankyou');
+      this.route('new');
+      this.route('edit');
+    });
+
+    this.route('registration-history', function() {
+      this.route('show', {
+        path: ':order_id'
+      });
+    });
+
+
+  });
 
 
   /* public facing */

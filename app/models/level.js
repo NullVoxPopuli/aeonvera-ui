@@ -5,5 +5,8 @@ export default DS.Model.extend(LeadsAndFollows, {
   name: DS.attr('string'),
   requirement: DS.attr('string'),
 
-  event: DS.belongsTo('event')
+  event: DS.belongsTo('event'),
+  registrations: DS.hasMany('event-attendances', {
+    async: true
+  })
 });

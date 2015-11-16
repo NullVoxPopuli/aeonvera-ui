@@ -19,9 +19,8 @@
   "author": "L. Preston Sego III",
   "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^2.1.2",
     "broccoli-clean-css": "1.0.0",
-    "broccoli-filter": "^0.1.14",
+    "broccoli-filter": "^1.2.2",
     "ember-ajax": "0.6.2",
     "ember-c3-shim": "0.0.2",
     "ember-cli": "1.13.8",

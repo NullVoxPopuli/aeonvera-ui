@@ -21,8 +21,9 @@ export default Ember.Service.extend({
 
   withoutSubdomain: function() {
     let domainParts = this.get('domainParts');
-    let noSubdomain = domainParts.shift();
-    let domain = noSubdomain.join('.');
+    // pop from the front
+    domainParts.shift();
+    let domain = domainParts.join('.');
 
     return domain;
   }.property('domain'),
@@ -31,6 +32,11 @@ export default Ember.Service.extend({
     let domainParts = this.get('domainParts');
     domainParts.pop(); // remove TLD
     domainParts.pop(); // remove domain
+
+    if (!Ember.isPresent(domainParts)) {
+      return '';
+    }
+
     let subdomain = domainParts.join('.');
     let downcaseSubdomain = subdomain.toLowerCase();
 
@@ -65,19 +71,26 @@ export default Ember.Service.extend({
   }.property('current'),
 
   subdomainType: function() {
-    return this.get('model').then(m => {
-      return m.get('constructor.modelName');
-    });
+    let model = this.get('model');
+    if (model !== undefined) {
+      return model.then(m => {
+        return m.get('constructor.modelName');
+      });
+    }
   }.property('current'),
 
   routeForSubdomain: function() {
-    return this.get('subdomainType').then(type => {
-      if (type === 'event') {
-        return 'dance-event';
-      } else if (type === 'community') {
-        return 'dance-community';
-      }
-    });
+    let subdomainType = this.get('subdomainType');
+
+    if (subdomainType !== undefined) {
+      return this.get('subdomainType').then(type => {
+        if (type === 'event') {
+          return 'dance-event';
+        } else if (type === 'community') {
+          return 'dance-community';
+        }
+      });
+    }
   }.property('current'),
 
   route: function() {

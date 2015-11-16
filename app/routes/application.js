@@ -14,14 +14,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     //   // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
     //   // method with the results of the XHR request
     //   this.get('intl').setLocale('en-us');
-    this.get('subdomain.route').then(success => {
-      console.log('success:' + success);
+    let subdomainRoute = this.get('subdomain.route');
 
-      this.transitionTo(success);
-    }, failure => {
-      console.log('failed:' + failure);
-      this._super(transition);
-    });
+    if (subdomainRoute !== undefined) {
+      this.get('subdomain.route').then(success => {
+        this.transitionTo(success);
+      }, failure => {
+        this._super(transition);
+      });
+    }
   },
 
 

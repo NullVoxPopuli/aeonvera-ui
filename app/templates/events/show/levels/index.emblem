@@ -10,7 +10,9 @@ table
   tbody
     each model as |level|
       tr
-        td = level.name
+        td 
+          link-to 'events.show.levels.show' level.id
+            = level.name
         td = level.numberOfLeads
         td = level.numberOfFollows
         td = level.totalRegistrants

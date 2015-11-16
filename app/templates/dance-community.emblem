@@ -1,1 +1,21 @@
-h2 = model.name
+.panel.center-margin
+  .row
+    .small-2.columns
+      img src="{{model.logo_url_thumb}}"
+    .small-10.columns
+      h2 = model.name
+      h4 = model.tagline
+
+br
+
+.row.center-margin
+  .small-12.columns
+    button.success Register
+    button Registration History
+    
+    label Membership Status // Exires: //
+
+if isManagerOfThisCommunity
+  button Manage {{model.name}}
+    
+      
