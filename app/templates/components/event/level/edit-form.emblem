@@ -1,0 +1,26 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='name'
+      label
+        span Name
+        = input value=model.name placeholder='Level 1, Track 1, etc' type='text' required=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shortDescription'
+      label Registrants Must: 
+      = radio-button value=1 groupValue=model.requirement
+      label Audition
+      br
+      = radio-button value=2 groupValue=model.requirement
+      label Be Invitated
+      br
+      = radio-button value=0 groupValue=model.requirement
+      label No Restriction
+      br
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
+        / TODO: figure out a nice way to handle save/cancel positioning
