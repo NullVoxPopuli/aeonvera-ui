@@ -20,22 +20,18 @@ export default Ember.Component.extend({
         this.get('flashMessages').success(
           'Saved Successfully'
         );
+        this.get('router').transitionTo('events.show.levels.show');
       }, failure => {
         this.get('flashMessages').alert(
           'Saving failed: ' + failure
         );
       });
 
-      this.transitionTo('events.show.levels.show', {
-        level_id: model.get('id')
-      });
     },
 
     cancel: function() {
-      let model = this.get('model');
-      model.rollback();
-      this.transitionTo('events.show.levels.show');
-
+      this.get('model').rollbackAttributes();
+      this.get('router').transitionTo('events.show.levels.show');
     },
   }
 });
