@@ -52,15 +52,15 @@ export default DS.Model.extend(IsLineItem, {
   restrictedTo: function() {
     let nameArray = [];
 
-    return this.get('packages', {
-      event_id: 16
-    }).then(function(pack) {
-      let name = pack.get('name');
-
-      nameArray.push(name);
-    });
-
-    return nameArray.join(', ');
+    // return this.get('packages', {
+    //   event_id: 16
+    // }).then(function(pack) {
+    //   let name = pack.get('name');
+    //
+    //   nameArray.push(name);
+    // });
+    //
+    // return nameArray.join(', ');
   }.property('packages')
 
 });
