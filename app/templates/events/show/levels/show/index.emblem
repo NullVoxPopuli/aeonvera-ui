@@ -1,5 +1,8 @@
 link-to 'events.show.levels.show.edit' classNames='button'
   span Edit
+
+= delete-undelete model=model  
+
   
 h4 Registrations with this Level
 table

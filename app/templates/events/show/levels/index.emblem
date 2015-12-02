@@ -1,5 +1,9 @@
 = page-header text='Levels / Tracks'
 
+
+link-to 'events.show.levels.new' classNames='button'
+  span New Level
+  
 table
   thead: tr
     th Name

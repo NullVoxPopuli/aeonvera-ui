@@ -16,14 +16,17 @@ export default Ember.Component.extend({
   actions: {
     save: function() {
       let model = this.get('model');
-      model.save().then(() => {
+      model.save().then((level) => {
         this.get('flashMessages').success(
           'Saved Successfully'
         );
-        this.get('router').transitionTo('events.show.levels.show');
+        this.get('router').transitionTo(
+          'events.show.levels.show', {
+            level_id: level.get('id')
+          });
       }, failure => {
         this.get('flashMessages').alert(
-          'Saving failed: ' + failure
+          'Saving failed. ' + failure
         );
       });
 
