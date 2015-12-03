@@ -1,11 +1,6 @@
 import Ember from 'ember';
+import New from 'aeonvera/mixins/routes/crud/events/new';
 
-export default Ember.Route.extend({
-
-  model: function(params) {
-    let event = this.modelFor('events.show');
-    return this.store.createRecord('level', {
-      event: event
-    });
-  }
+export default Ember.Route.extend(New, {
+  modelName: 'level'
 });

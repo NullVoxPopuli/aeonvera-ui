@@ -1,5 +1,8 @@
 = page-header text='Discounts'
 
+link-to 'events.show.discounts.new' classNames='button'
+  span New Discount
+  
 table
   thead: tr
     th Code

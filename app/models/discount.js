@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import IsLineItem from '../mixins/models/is-line-item';
+import DeletedAt from '../mixins/models/deleted-at';
 
-export default DS.Model.extend(IsLineItem, {
+
+export default DS.Model.extend(IsLineItem, DeletedAt, {
 
   DOLLARS_OFF: 0,
   PERCENT_OFF: 1,

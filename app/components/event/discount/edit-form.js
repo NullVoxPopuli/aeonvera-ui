@@ -20,7 +20,10 @@ export default Ember.Component.extend({
         this.get('flashMessages').success(
           'Saved Successfully'
         );
-        // TODO: for some reason, ember loses track of the model upon redirection
+
+        // TODO: WHY does this not work? model isn't found
+        // ember inspector finds it though
+        // refresh and it's still there
         // this.get('router').transitionTo(
         //   'events.show.discounts.show', {
         //     discount_id: discount.get('id')
@@ -35,7 +38,7 @@ export default Ember.Component.extend({
 
     cancel: function() {
       this.get('model').rollbackAttributes();
-      this.get('router').transitionTo('events.show.levels.show');
+      this.get('router').transitionTo('events.show.discounts.show');
     },
   }
 });

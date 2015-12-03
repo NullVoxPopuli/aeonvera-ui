@@ -34,7 +34,7 @@ export default Ember.Component.extend({
 
     cancel: function() {
       this.get('model').rollbackAttributes();
-      this.get('router').transitionTo('events.show.levels.show');
+      this.get('router').transitionTo('events.show.levels');
     },
   }
 });

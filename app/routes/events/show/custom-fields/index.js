@@ -1,8 +1,6 @@
 import Ember from 'ember';
+import Index from 'aeonvera/mixins/routes/crud/events/index';
 
-export default Ember.Route.extend({
-  model: function(){
-    let event = this.modelFor('events.show');
-    return this.store.query('custom-field', { event_id: event.get('id') });
-  }
+export default Ember.Route.extend(Index, {
+  modelName: 'custom-field'
 });
