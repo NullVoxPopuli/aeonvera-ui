@@ -1,0 +1,2 @@
+= page-header text='New Package'
+= event/package/edit-form model=model

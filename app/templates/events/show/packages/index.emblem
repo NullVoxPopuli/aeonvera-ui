@@ -1,5 +1,8 @@
 = page-header text='Packages'
 
+link-to 'events.show.packages.new' classNames='button'
+  span New Package
+
 table
   thead: tr
     th Name
