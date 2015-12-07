@@ -1,0 +1,2 @@
+= page-header text=(tier-name tier)
+= outlet

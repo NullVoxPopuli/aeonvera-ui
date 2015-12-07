@@ -12,4 +12,17 @@ export default DS.Model.extend(LeadsAndFollows, {
   // packages?
 
   event: DS.belongsTo('event'),
+
+  // because a nil value is handled as < 0
+  // and we don't want that
+  // this is ONLY used for sorting
+  registrantsAlias: function() {
+    let num = this.get('increaseAfterTotalRegistrants');
+
+    if (!Ember.isPresent(num)) {
+      return Infinity;
+    }
+
+    return num;
+  }.property('increaseAfterTotalRegistrants')
 });

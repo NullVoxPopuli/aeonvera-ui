@@ -12,14 +12,16 @@ table
     th # Follows
     th Total
   tbody
-    each model as |tier|
+    each sortedTiers as |tier|
       tr
         td
           if tier.isOpeningTier
             | Opening Tier
           else
             = to-usd tier.increaseBy
-        td = tier-increase-after (date-with-format tier.increaseAfterDate 'LLL' true) tier.increaseAfterTotalRegistrants
+        td
+          link-to 'events.show.pricing-tiers.show' tier.id
+            = tier-increase-after (date-with-format tier.increaseAfterDate 'LLL' true) tier.increaseAfterTotalRegistrants
         td = tier.numberOfLeads
         td = tier.numberOfFollows
         td = tier.totalRegistrants

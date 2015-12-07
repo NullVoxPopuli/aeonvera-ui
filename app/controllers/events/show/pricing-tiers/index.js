@@ -6,6 +6,12 @@ export default Ember.Controller.extend({
   totalsArray: Ember.computed.mapBy('model', 'totalRegistrants'),
   totalLeads: Ember.computed.sum('leadsArray'),
   totalFollows: Ember.computed.sum('followsArray'),
-  totalRegistrations: Ember.computed.sum('totalsArray')
+  totalRegistrations: Ember.computed.sum('totalsArray'),
+
+  sortProperties: ['isOpeningTier:desc', 'registrantsAlias:asc',
+    'increaseAfterDate:asc'
+  ],
+  sortedTiers: Ember.computed.sort('model', 'sortProperties')
+
 
 });
