@@ -1,0 +1,2 @@
+= page-header text='New Pricing Tier'
+= event/pricing-tier/edit-form model=model

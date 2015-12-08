@@ -21,7 +21,7 @@ table
             = to-usd tier.increaseBy
         td
           link-to 'events.show.pricing-tiers.show' tier.id
-            = tier-increase-after (date-with-format tier.increaseAfterDate 'LLL' true) tier.increaseAfterTotalRegistrants
+            = tier-name tier
         td = tier.numberOfLeads
         td = tier.numberOfFollows
         td = tier.totalRegistrants

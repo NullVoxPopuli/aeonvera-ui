@@ -1,2 +1,2 @@
-= page-header text=(tier-name tier)
+= page-header text=(tier-name model)
 = outlet

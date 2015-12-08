@@ -8,10 +8,10 @@ import IncreaseAfter from 'aeonvera/helpers/tier-increase-after';
 export default Ember.Helper.helper(function(params) {
   let tier = params[0];
 
-  let date = tier.get(increaseAfterDate);
-  let regs = tier.get(tier.increaseAfterTotalRegistrants);
-  let formattedDate = FormatWithDate(date, 'LLL', true);
-  let result = IncreaseAfter(formattedDate, regs);
+  let date = tier.get('increaseAfterDate');
+  let regs = tier.get('increaseAfterTotalRegistrants');
+  let formattedDate = FormatWithDate.compute([date, 'LLL', true]);
+  let result = IncreaseAfter.compute([formattedDate, regs]);
 
   return result;
 });
