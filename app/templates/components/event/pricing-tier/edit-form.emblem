@@ -15,8 +15,10 @@ form submit='save'
       label
         span Increase After Date
         = date-time-input value=model.increaseAfterDate
+
     .columns.small-12.medium-1
       h5 or
+
     = error-field-wrapper  classes='columns small-12 medium-5' errors=model.errors field='increaseAfterTotalRegistrants'
       label
         span Increase After Total Number of Registrants
