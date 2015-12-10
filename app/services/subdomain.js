@@ -16,7 +16,7 @@ export default Ember.Service.extend({
   domainParts: function() {
     let domain = this.get('domain');
     let domainParts = domain.split('.');
-    return domainParts
+    return domainParts;
   }.property('domain'),
 
   withoutSubdomain: function() {

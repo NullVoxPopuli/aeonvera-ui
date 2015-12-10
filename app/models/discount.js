@@ -48,7 +48,7 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
 
   isDollarsOff: function() {
     let kind = this.get('kind');
-    return kind === this.get('DOLLARS_OFF')
+    return kind === this.get('DOLLARS_OFF');
   }.property('kind'),
 
   restrictedTo: function() {

@@ -25,7 +25,7 @@ export default Ember.Mixin.create({
           'Saved Successfully'
         );
         let path = this.get('saveSuccessPath');
-        let params = {}
+        let params = {};
         params[this.get('modelNameId')] = record.get('id');
 
         this.get('router').transitionTo(path, params);

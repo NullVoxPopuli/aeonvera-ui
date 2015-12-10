@@ -1,11 +1,10 @@
 import Ember from 'ember';
-import c3 from 'c3';
 
 export default Ember.Component.extend({
   data: {},
   config: {},
 
-  setData: function(){
+  setData: function() {
 
     let model = this.get('model');
     let incomes = model.get('incomes');
@@ -15,24 +14,27 @@ export default Ember.Component.extend({
     let regTimes = [];
     let incTimes = [];
 
-    registrationTimes.forEach(function(e){regTimes.push(new Date(e * 1000));});
-    incomeTimes.forEach(function(e){incTimes.push(new Date(e * 1000));});
+    registrationTimes.forEach(function(e) {
+      regTimes.push(new Date(e * 1000));
+    });
+    incomeTimes.forEach(function(e) {
+      incTimes.push(new Date(e * 1000));
+    });
 
     let data = {
-       xs: {
-         'Registrations': 'x1',
-         'Income': 'x2'
-       },
-       columns: [
-         ['x1'].concat(regTimes),
-         ['x2'].concat(incTimes),
-         ['Registrations'].concat(registrations),
-         ['Income'].concat(incomes)
-       ],
-       axes: {
-         'Registrations': 'y',
-         'Income': 'y2'
-       }
+      xs: {
+        'Registrations': 'x1',
+        'Income': 'x2'
+      },
+      columns: [
+        ['x1'].concat(regTimes), ['x2'].concat(incTimes), [
+          'Registrations'
+        ].concat(registrations), ['Income'].concat(incomes)
+      ],
+      axes: {
+        'Registrations': 'y',
+        'Income': 'y2'
+      }
     };
 
 
@@ -58,8 +60,8 @@ export default Ember.Component.extend({
           show: true,
           label: "Revenue",
           tick: {
-                format: d3.format("$,")
-            }
+            format: d3.format("$,")
+          }
         },
         x: {
           type: 'timeseries',

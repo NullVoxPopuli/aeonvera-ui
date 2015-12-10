@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import ENV from "../config/environment";
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
@@ -23,26 +24,26 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     }
     return url;
   },
-  findHasMany: function(store, snapshot, url, relationship) {
-    var id = snapshot.id;
-    var type = snapshot.typeKey;
-
-    url = this.urlPrefix(url, this.buildURL(type, id));
-
-    if ('params' in relationship.options) {
-      var params = snapshot.attr(relationship.options.params);
-      if (params && Em.keys(params).length) {
-        var queryParams = [];
-        _.forEach(params, function(value, key) {
-          queryParams.push(
-            '%@=%@'.fmt(encodeURIComponent(key), encodeURIComponent(
-              value))
-          );
-        });
-        url = url + '?' + queryParams.join('&');
-      }
-    }
-
-    return this.ajax(url, 'GET');
-  },
+  // findHasMany: function(store, snapshot, url, relationship) {
+  //   var id = snapshot.id;
+  //   var type = snapshot.typeKey;
+  //
+  //   url = this.urlPrefix(url, this.buildURL(type, id));
+  //
+  //   if ('params' in relationship.options) {
+  //     var params = snapshot.attr(relationship.options.params);
+  //     if (params && Ember.keys(params).length) {
+  //       var queryParams = [];
+  //       _.forEach(params, function(value, key) {
+  //         queryParams.push(
+  //           '%@=%@'.fmt(encodeURIComponent(key), encodeURIComponent(
+  //             value))
+  //         );
+  //       });
+  //       url = url + '?' + queryParams.join('&');
+  //     }
+  //   }
+  //
+  //   return this.ajax(url, 'GET');
+  // },
 });

@@ -2,18 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  date: function(){
-    return moment(this.get('value'), 'YYYY-MM-DD');
-  }.property('value'),
+  timeOptions: function() {
+    return {
+      editable: true,
+      formatSubmit: 'HH:i',
+    };
+  }.property(),
 
-  time: function(){
-    return moment(this.get('value'), 'HH:mm:ss');
-  }.property('value'),
+  dateOptions: function() {
+    return {
+      selectMonths: true,
+      selectYears: true,
+      onSet: function(context) {
+        this.close();
+      }
+    };
+  }.property()
 
-
-
-  actions: {
-    // update
-  }
 
 });
