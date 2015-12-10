@@ -5,7 +5,6 @@ export default Ember.Component.extend({
   timeOptions: function() {
     return {
       editable: true,
-      formatSubmit: 'HH:i',
     };
   }.property(),
 

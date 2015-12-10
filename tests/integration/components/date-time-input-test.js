@@ -22,7 +22,7 @@ test('Creates the text fields', function(assert) {
   var fields = this.$('.row input');
   assert.equal(fields.length, 2);
 
-  var expectedDate = '2015-12-10'; //moment(this.get('time'), 'YYYY-MM-DD');
+  var expectedDate = '10 December, 2015'; //moment(this.get('time'), 'YYYY-MM-DD');
   var expectedTime = '09:24:21'; //moment(this.get('time'), 'HH:mm:ss');
   var actualDate = $(fields[0]).val();
   var actualTime = $(fields[1]).val();
