@@ -11,10 +11,7 @@ export default Ember.Component.extend({
   dateOptions: function() {
     return {
       selectMonths: true,
-      selectYears: true,
-      onSet: function(context) {
-        this.close();
-      }
+      selectYears: true
     };
   }.property()
 
