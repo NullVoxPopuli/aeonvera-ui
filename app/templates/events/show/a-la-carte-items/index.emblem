@@ -10,7 +10,9 @@ table
   tbody
     each model as |item|
       tr
-        td = item.name
+        td 
+          link-to 'events.show.a-la-carte-items.show' item.id
+            = item.name
         td = item.numberPurchased
         td = to-usd item.currentPrice
         td = date-with-format item.becomesAvailableAt 'LLL'

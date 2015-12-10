@@ -1,0 +1,29 @@
+link-to 'events.show.a-la-carte-items.show.edit' classNames='button'
+  span Edit
+
+= delete-undelete model=model  
+
+  
+h4 Registrations that purchased {{model.name}}
+table
+  thead: tr
+    th Name
+    / lead or follow
+    th
+    th Package
+    th Payment
+    th Registered At
+  tbody
+    / if (is-present model)
+    each model.registrations as |registration|
+      tr
+        td
+          link-to 'events.show.registrations.show' registration.id
+            = registration.attendeeName
+        td = registration.danceOrientation
+        td = registration.packageName
+        / TODO: if unpaid, color this cell red
+        td = registration.paymentStatus
+        td = date-with-format registration.registeredAt 'LLL'
+    / else
+    /   tr: td colspan='5' No one has registered with this level

@@ -1,0 +1,33 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='name'
+      label
+        span Name
+        = input value=model.name placeholder='' type='text' required=true
+
+    = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='amount'
+      label
+        span Amount
+        = input value=model.amount placeholder='e.g.: 20' type='number' step='any' required=true
+
+    = error-field-wrapper  classes='columns small-6 medium-3' errors=model.errors field='kind'
+      = radio-button value=0 groupValue=model.kind
+      label Dollars Off
+      br
+      = radio-button value=1 groupValue=model.kind
+      label Percent Off
+      br
+      
+  .row
+    = error-field-wrapper classes='columns small-5 medium-4' errors=model.errors field='allowedNumberOfUses'
+      label
+        span Allowed Number of Uses
+        = input value=model.allowedNumberOfUses placeholder='e.g.: 2, default: unlimited' type='number'
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
+        / TODO: figure out a nice way to handle save/cancel positioning

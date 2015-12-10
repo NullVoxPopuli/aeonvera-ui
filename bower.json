@@ -19,7 +19,7 @@
     "numeral": "~1.5.3",
     "select2": "3.5.2",
     "moment-timezone": ">= 0.1.0",
-    "pickadate": "AddJam/pickadate.js#cd23958028a62035bd684b9368eca4444805563d",
+    "pickadate": "mdehoog/pickadate.js",
     "pikaday": "~1.3.3",
     "moment": ">= 2.8.0",
     "font-awesome": "~4.4.0",

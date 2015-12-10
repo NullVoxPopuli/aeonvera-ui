@@ -156,7 +156,7 @@ export default Router.map(function() {
         this.route('a-la-carte-items', function() {
           this.route('new');
           this.route('show', {
-            path: ':package_id'
+            path: ':line_item_id'
           }, function() {
             this.route('edit');
           });
@@ -164,7 +164,7 @@ export default Router.map(function() {
         this.route('shirts', function() {
           this.route('new');
           this.route('show', {
-            path: ':package_id'
+            path: ':shirt_id'
           }, function() {
             this.route('edit');
           });
@@ -172,7 +172,7 @@ export default Router.map(function() {
         this.route('raffles', function() {
           this.route('new');
           this.route('show', {
-            path: ':package_id'
+            path: ':raffle_id'
           }, function() {
             this.route('edit');
           });
@@ -180,7 +180,7 @@ export default Router.map(function() {
         this.route('custom-fields', function() {
           this.route('new');
           this.route('show', {
-            path: ':package_id'
+            path: ':custom_field_id'
           }, function() {
             this.route('edit');
           });

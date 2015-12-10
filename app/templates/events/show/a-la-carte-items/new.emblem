@@ -1,0 +1,2 @@
+= page-header text='New À la Carte Item'
+= event/line-item/edit-form model=model
