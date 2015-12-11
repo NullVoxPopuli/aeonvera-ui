@@ -25,6 +25,10 @@ module.exports = function(environment) {
       serverTokenEndpoint: '/users/sign_in'
     },
 
+    rollbar: {
+      accessToken: 'ca10480ec923459abdbe39a95c1181d9'
+    },
+
 
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 

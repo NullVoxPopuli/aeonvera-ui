@@ -75,6 +75,9 @@ var displayError = function(errorData) {
   jError.appendTo('body');
   jError.slideDown(200);
 
+  jError.click(function() {
+    jError.remove();
+  });
 
   setTimeout(function() {
     Ember.$(error).remove();
@@ -92,28 +95,8 @@ export default {
     }
 
     Ember.onerror = function(error) {
+      Ember.Logger.error(error);
       displayError(error);
     };
-
-    // Ember.RSVP.on('error', function(error) {
-    //   displayError(error);
-    // });
-
-    // Ember.Logger.error = function(message, cause, stack) {
-    //   // console.error(message);
-    //   // console.error(stack);
-    //
-    //   var errorData = {
-    //     message: message,
-    //     stack: stack,
-    //     cause: cause
-    //   };
-    //
-    //   // displayError(errorData);
-    //
-    //   if (ENV.environment === 'production') {
-    //     reportError(errorData);
-    //   }
-    // };
   }
 };
