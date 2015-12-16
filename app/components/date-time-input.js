@@ -4,7 +4,8 @@ export default Ember.Component.extend({
 
   timeOptions: function() {
     return {
-      // editable: true,
+      editable: true,
+      interval: 1
     };
   }.property(),
 

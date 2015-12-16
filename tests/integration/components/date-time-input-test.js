@@ -13,7 +13,7 @@ moduleForComponent('date-time-input',
 test('Creates the text fields', function(assert) {
   var timeAsString =
     'Thu Dec 10 2015 09:24:21 GMT-0500 (Eastern Standard Time)';
-  this.set('time', timeAsString);
+  this.set('time', new Date(timeAsString));
 
   this.render(hbs `
     {{date-time-input value=time}}
@@ -23,7 +23,7 @@ test('Creates the text fields', function(assert) {
   assert.equal(fields.length, 2);
 
   var expectedDate = '10 December, 2015'; //moment(this.get('time'), 'YYYY-MM-DD');
-  var expectedTime = '09:24:21'; //moment(this.get('time'), 'HH:mm:ss');
+  var expectedTime = '9:24 AM'; //moment(this.get('time'), 'HH:mm:ss');
   var actualDate = $(fields[0]).val();
   var actualTime = $(fields[1]).val();
 
