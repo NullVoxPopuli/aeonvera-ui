@@ -1,4 +1,4 @@
-# aeonvera-ui [![Build Status](https://travis-ci.org/NullVoxPopuli/aeonvera-ui.svg)](https://travis-ci.org/NullVoxPopuli/aeonvera-ui) [![Code Climate](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/gpa.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui) [![Test Coverage](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/coverage.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/coverage)
+# aeonvera-ui [![Build Status](https://travis-ci.org/NullVoxPopuli/aeonvera-ui.svg)](https://travis-ci.org/NullVoxPopuli/aeonvera-ui) [![Code Climate](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/gpa.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui) [![Test Coverage](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/badges/coverage.svg)](https://codeclimate.com/github/NullVoxPopuli/aeonvera-ui/coverage) [![Dependencies](https://david-dm.org/NullVoxPopuli/aeonvera-ui.svg)](https://david-dm.org/NullVoxPopuli/aeonvera-ui.svg)
 Ember frontend for aeonvera
 
 
