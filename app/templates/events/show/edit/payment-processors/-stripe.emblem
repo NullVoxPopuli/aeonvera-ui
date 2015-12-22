@@ -1,0 +1,22 @@
+ul.pricing-table
+  li.title
+    img src='assets/images/stripe-logo-light.png'
+  li.price
+    small
+      .row
+        .medium-5.columns
+          a href='https://stripe.com/us/pricing'
+            span 2.9% + 30¢
+        .medium-7.columns
+          span per transaction to Stripe
+  li.bullet-item
+    .row
+      .medium-5.columns
+        link-to 'welcome.tos'
+          span 0.75%
+      .medium-7.columns
+        span per transaction to ÆONVERA
+
+  li.cta-button
+    //a.button.warning: span Remove Connection With Stripe
+    a.button: span Connect With Stripe

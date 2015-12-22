@@ -1,0 +1,6 @@
+.row
+  .columns.small-6.medium-6
+    = partial 'events/show/edit/payment-processors/stripe'
+
+  .columns.small-6.medium-6
+    = partial 'events/show/edit/payment-processors/paypal'
