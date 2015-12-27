@@ -17,9 +17,20 @@ export default Ember.Mixin.create({
     }
   }.property('isDirty'),
 
+  parentModelId: function() {
+    let association = this.get('parentAssociation');
+    let parent = this.get('model').get(association);
+    if (Ember.isPresent(parent)) {
+      return parent.get('id');
+    }
+
+    return '';
+  }.property(),
+
   actions: {
     save: function() {
       let model = this.get('model');
+
       model.save().then((record) => {
         this.get('flashMessages').success(
           'Saved Successfully'
@@ -27,6 +38,14 @@ export default Ember.Mixin.create({
         let path = this.get('saveSuccessPath');
         let params = {};
         params[this.get('modelNameId')] = record.get('id');
+
+        let parentId = this.get('parentModelId');
+        if (Ember.isPresent(parentId)) {
+          params[this.get('parentId')] = parentId;
+        }
+
+        console.log(path);
+        console.log(params);
 
         this.get('router').transitionTo(path, params);
       }, failure => {

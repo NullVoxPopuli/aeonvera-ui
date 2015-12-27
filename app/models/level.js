@@ -13,5 +13,23 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
 
   eventAttendances: DS.hasMany('event-attendance', {
     async: true
-  })
+  }),
+
+  requirementName: function() {
+    let requirement = this.get('requirement');
+
+    if (requirement === 0) {
+      return 'No Restriction';
+    }
+
+    if (requirement === 1) {
+      return 'Audition';
+    }
+
+    if (requirement === 2) {
+      return 'Be Invited';
+    }
+
+    return '';
+  }.property('requirement')
 });

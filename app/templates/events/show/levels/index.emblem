@@ -1,6 +1,5 @@
 = page-header text='Levels / Tracks'
 
-
 link-to 'events.show.levels.new' classNames='button'
   span New Level
   
@@ -20,4 +19,4 @@ table
         td = level.numberOfLeads
         td = level.numberOfFollows
         td = level.totalRegistrants
-        td = level.requirement
+        td = level.requirementName

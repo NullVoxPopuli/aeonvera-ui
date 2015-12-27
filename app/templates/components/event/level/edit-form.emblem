@@ -11,7 +11,7 @@ form submit='save'
       label Audition
       br
       = radio-button value=2 groupValue=model.requirement
-      label Be Invitated
+      label Be Invited
       br
       = radio-button value=0 groupValue=model.requirement
       label No Restriction

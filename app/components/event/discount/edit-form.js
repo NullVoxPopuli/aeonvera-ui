@@ -3,6 +3,6 @@ import Form from 'aeonvera/mixins/components/edit-form';
 
 export default Ember.Component.extend(Form, {
   modelName: 'discount',
-  saveSuccessPath: 'events.show.discounts.show',
+  saveSuccessPath: 'events.show.discounts', // should be show?
   cancelPath: 'events.show.discount'
 });
