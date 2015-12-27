@@ -7,8 +7,6 @@ export default Ember.Mixin.create({
     let modelName = this.get('modelName');
     let idName = modelName.underscore() + '_id';
     let record = this.store.findRecord(modelName, params[idName]);
-    console.log(record);
-    this.set('currentModel', record);
     return record;
   }
 });
