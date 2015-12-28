@@ -1,5 +1,9 @@
 = page-header text='Custom Fields'
 
+link-to 'events.show.custom-fields.new' classNames='button'
+  span New Custom Field
+
+
 table
   thead: tr
     th Label
@@ -9,7 +13,9 @@ table
     if (is-present model)
       each model as |field|
         tr
-          td = field.label
+          td 
+            link-to 'events.show.custom-fields.show' field.id
+              = field.label
           td = field.kind
           td = field.editable
     else

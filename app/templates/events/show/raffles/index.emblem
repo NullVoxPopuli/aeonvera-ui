@@ -1,5 +1,8 @@
 = page-header text='Raffles'
 
+link-to 'events.show.raffles.new' classNames='button'
+  span New Raffle
+
 table
   thead: tr
     th Name
@@ -9,7 +12,9 @@ table
     if (is-present model)
       each model as |raffle|
         tr
-          td = raffle.name
+          td 
+            link-to 'events.show.raffles.show' raffle.id
+              = raffle.name
           td = raffle.numberOfPurchasedTickets
           td
             if raffle.winnerHasBeenChosen

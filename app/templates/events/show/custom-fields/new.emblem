@@ -1,0 +1,2 @@
+= page-header text='New Custom Field'
+= event/custom-field/edit-form model=model

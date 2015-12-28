@@ -1,0 +1,2 @@
+= page-header text='New Raffle'
+= event/raffle/edit-form model=model

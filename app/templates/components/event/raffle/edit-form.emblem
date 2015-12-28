@@ -1,0 +1,14 @@
+form submit='save'
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='name'
+      label
+        span Name of the Raffle
+      = input value=model.name placeholder='Private lesson with an Instructor' type='text' required=true
+      
+  .row
+    .small-12.medium-6.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
+        / TODO: figure out a nice way to handle save/cancel positioning

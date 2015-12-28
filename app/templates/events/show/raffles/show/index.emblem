@@ -1,0 +1,17 @@
+link-to 'events.show.raffles.show.edit' classNames='button'
+  span Edit
+
+= delete-undelete model=model  
+
+  
+h4 Tickets
+table
+  thead: tr
+    th Number of Tickets
+    th Purchaser
+  tbody
+    if (is-present model)
+      each model.registrations as |registration|
+        tr
+    else
+      tr: td colspan='2' No one has purchased any tickets

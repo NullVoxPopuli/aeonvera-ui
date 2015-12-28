@@ -18,7 +18,9 @@ table
   tbody
     each model as |package|
       tr
-        td = package.name
+        td 
+          link-to 'events.show.packages.show' package.id
+            = package.name
         td = package.numberOfLeads
         td = package.numberOfFollows
         td = package.totalRegistrants
