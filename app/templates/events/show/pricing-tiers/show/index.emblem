@@ -1,3 +1,6 @@
+link-to 'events.show.pricing-tiers' classNames='button secondary' 
+  span Back
+
 link-to 'events.show.pricing-tiers.show.edit' classNames='button'
   span Edit
 

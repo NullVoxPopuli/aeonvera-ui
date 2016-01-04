@@ -10,9 +10,12 @@ li
 li
   link-to 'dashboard.hosted-events'
     span Hosted Events
+li 
+  link-to 'my-communities'
+    span My Communities
 li
   link-to 'dashboard.orders'
-    span Orders
+    span Order History
 li.divider
 li &nbsp;
 li

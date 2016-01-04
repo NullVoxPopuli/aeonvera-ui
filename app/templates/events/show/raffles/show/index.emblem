@@ -1,3 +1,6 @@
+link-to 'events.raffles.levels' classNames='button secondary' 
+  span Back
+
 link-to 'events.show.raffles.show.edit' classNames='button'
   span Edit
 

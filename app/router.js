@@ -80,6 +80,15 @@ export default Router.map(function() {
   this.route('dashboard', {
     path: '/'
   }, function() {
+    this.route('my-communities', {
+      resetNamespace: true
+    }, function() {
+      this.route('manage-community', {
+        resetNamespace: true,
+        path: '/manage-community/:organization_id'
+      });
+    });
+
     this.route('hosted-events');
     this.route('registered-events');
     this.route('orders');

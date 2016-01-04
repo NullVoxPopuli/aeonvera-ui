@@ -40,14 +40,9 @@ export default Ember.Mixin.create({
         params[this.get('modelNameId')] = record.get('id');
 
         let parentId = this.get('parentModelId');
-        if (Ember.isPresent(parentId)) {
-          params[this.get('parentId')] = parentId;
-        }
 
-        console.log(path);
-        console.log(params);
-
-        this.get('router').transitionTo(path, params);
+        this.get('router').transitionTo(path, parentId, record.get(
+          'id'));
       }, failure => {
         this.get('flashMessages').alert(
           'Saving failed. ' + failure

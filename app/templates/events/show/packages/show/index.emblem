@@ -1,3 +1,6 @@
+link-to 'events.show.packages' classNames='button secondary' 
+  span Back
+  
 link-to 'events.show.packages.show.edit' classNames='button'
   span Edit
 

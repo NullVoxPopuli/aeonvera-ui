@@ -1,3 +1,6 @@
+link-to 'events.show.discounts' classNames='button secondary' 
+  span Back
+  
 link-to 'events.show.discounts.show.edit' classNames='button'
   span Edit
 

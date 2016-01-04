@@ -1,3 +1,6 @@
+link-to 'events.show.custom-fields' classNames='button secondary' 
+  span Back
+  
 link-to 'events.show.custom-fields.show.edit' classNames='button'
   span Edit
 

@@ -1,3 +1,6 @@
+link-to 'events.show.levels' classNames='button secondary' 
+  span Back
+
 link-to 'events.show.levels.show.edit' classNames='button'
   span Edit
 
