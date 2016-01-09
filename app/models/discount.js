@@ -13,6 +13,7 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
   amount: DS.attr('string'),
   kind: DS.attr('number'),
   timesUsed: DS.attr('number'),
+  requiresStudentId: DS.attr('boolean'),
 
   discountType: DS.attr('string'),
   appliesTo: DS.attr('string'),
