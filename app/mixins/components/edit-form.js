@@ -19,7 +19,17 @@ export default Ember.Mixin.create({
 
   parentModelId: function() {
     let association = this.get('parentAssociation');
+
+    if (!Ember.isPresent(association)) {
+      console.log('association not found');
+    }
+
     let parent = this.get('model').get(association);
+
+    if (!Ember.isPresent(parent)) {
+      console.log('parent not found');
+    }
+
     if (Ember.isPresent(parent)) {
       return parent.get('id');
     }
@@ -38,11 +48,11 @@ export default Ember.Mixin.create({
         let path = this.get('saveSuccessPath');
         let params = {};
         params[this.get('modelNameId')] = record.get('id');
-
+        //
         let parentId = this.get('parentModelId');
-
-        this.get('router').transitionTo(path, parentId, record.get(
-          'id'));
+        //
+        // this.get('router').transitionTo(path, parentId, record.get(
+        //   'id'));
       }, failure => {
         this.get('flashMessages').alert(
           'Saving failed. ' + failure

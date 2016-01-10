@@ -28,7 +28,6 @@ module.exports = function(environment) {
     rollbar: {
       captureUncaught: environment !== 'development',
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
-
     },
 
 
@@ -83,8 +82,17 @@ module.exports = function(environment) {
     //     */
     // };
 
+    // Basic logging, e.g. "Transitioned into 'post'"
     ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // Extremely detailed logging, highlighting every internal
+    // step made while transitioning into a route, including
+    // `beforeModel`, `model`, and `afterModel` hooks, and
+    // information about redirects and aborted transitions
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_RESOLVER = true;
+
   }
 
   if (environment === 'test') {
