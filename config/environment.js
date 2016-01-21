@@ -69,6 +69,7 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.host = 'http://swing.vhost:3000';
 
+
     ENV['devise']['serverTokenEndpoint'] =
       'http://swing.vhost:3000/users/sign_in';
     // {

@@ -1,4 +1,4 @@
-link-to 'events.raffles.levels' classNames='button secondary' 
+link-to 'events.show.raffles' classNames='button secondary' 
   span Back
 
 link-to 'events.show.raffles.show.edit' classNames='button'
@@ -6,15 +6,23 @@ link-to 'events.show.raffles.show.edit' classNames='button'
 
 = delete-undelete model=model  
 
+if model.winnerHasBeenChosen
+  label Winner: {{ model.winner }}
+
   
 h4 Tickets
+/link-to 'events.show.raffles.show.raffle-tickets'
+/  span Configure Ticket Options 
 table
   thead: tr
     th Number of Tickets
     th Purchaser
   tbody
     if (is-present model)
-      each model.registrations as |registration|
-        tr
+      / each model.availableTickets as |ticket|
+      /   tr
+      /     td = ticket.numberOfTickets
+      /     td = 
+      /       
     else
       tr: td colspan='2' No one has purchased any tickets

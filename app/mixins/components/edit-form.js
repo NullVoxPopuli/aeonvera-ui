@@ -18,6 +18,14 @@ export default Ember.Mixin.create({
   }.property('isDirty'),
 
   parentModelId: function() {
+
+    let passedParent = this.get('parent');
+    if (!Ember.isPresent(passedParent)) {
+      console.log('parent not passed in, moving on...');
+    } else {
+      return passedParent.get('id');
+    }
+
     let association = this.get('parentAssociation');
 
     if (!Ember.isPresent(association)) {
@@ -35,7 +43,7 @@ export default Ember.Mixin.create({
     }
 
     return '';
-  }.property(),
+  }.property('model'),
 
   actions: {
     save: function() {
@@ -46,13 +54,9 @@ export default Ember.Mixin.create({
           'Saved Successfully'
         );
         let path = this.get('saveSuccessPath');
-        let params = {};
-        params[this.get('modelNameId')] = record.get('id');
-        //
         let parentId = this.get('parentModelId');
-        //
-        // this.get('router').transitionTo(path, parentId, record.get(
-        //   'id'));
+        let recordId = record.get('id');
+        this.get('router').transitionTo(path, parentId, recordId);
       }, failure => {
         this.get('flashMessages').alert(
           'Saving failed. ' + failure

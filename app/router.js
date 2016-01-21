@@ -184,6 +184,14 @@ export default Router.map(function() {
             path: ':raffle_id'
           }, function() {
             this.route('edit');
+            this.route('raffle-tickets', function() {
+              this.route('new');
+              this.route('show', {
+                path: ':raffle_ticket_id'
+              }, function() {
+                this.route('edit');
+              });
+            });
           });
         });
         this.route('custom-fields', function() {
