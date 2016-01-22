@@ -1,12 +1,8 @@
 import Ember from 'ember';
+import Index from 'aeonvera/mixins/routes/crud/events/index';
 
-export default Ember.Mixin.create({
+export default Ember.Route.extend(Index, {
   modelName: 'raffle-ticket',
-  model: function() {
-    let modelName = this.get('modelName');
-    let raffle = this.modelFor('events.show.raffles.show');
-    return this.store.query(modelName, {
-      raffle_id: raffle.get('id')
-    });
-  }
+  parentIdKey: 'raffle_id',
+  parentPathRoot: 'events.show.raffles.show'
 });
