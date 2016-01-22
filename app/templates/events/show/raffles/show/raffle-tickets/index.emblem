@@ -1,0 +1,7 @@
+h3 Configure Raffle Ticket Options
+
+link-to 'events.show.raffles.show.raffle-tickets.new' classNames='button'
+  span New Ticket Option
+
+link-to 'events.show.raffles.show' classNames='button secondary'
+  span Back to Raffle
