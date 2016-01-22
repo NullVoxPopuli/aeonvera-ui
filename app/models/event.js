@@ -48,7 +48,7 @@ export default Host.extend(RegistrationOpens, {
 		async: true
 	}),
 	openingTier: DS.belongsTo('openingTier', {
-		async: false
+		async: true
 	}),
 
 	registrationOpensAt: function() {
