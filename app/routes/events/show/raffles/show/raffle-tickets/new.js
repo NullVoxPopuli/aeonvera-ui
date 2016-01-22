@@ -9,7 +9,7 @@ export default Ember.Mixin.create({
 
     let parentKey = 'raffle';
     let modelParams = {};
-    modelParams[key] = raffle;
+    modelParams[parentKey] = raffle;
 
     let recordPromise = this.store.createRecord(modelName, modelParams);
 
