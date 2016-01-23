@@ -1,14 +1,4 @@
 
-if model.winnerHasBeenChosen
-  / TODO: link to this registration
-  span.button.success Winner: {{ model.winner }}
-  span.button.warning Choose a Different Winner
-else
-  span.button Choose Winner
-
-br
-br
-
 link-to 'events.show.raffles' classNames='button secondary' 
   span Back
 
@@ -16,6 +6,17 @@ link-to 'events.show.raffles.show.edit' classNames='button'
   span Edit
 
 = delete-undelete model=model  
+
+br
+br
+
+if model.winnerHasBeenChosen
+  / TODO: link to this registration
+  span.button.success Winner: {{ model.winner }}
+  span.button.warning click='chooseWinner' Choose a Different Winner
+else
+  span.button Choose Winner
+
 
   
 h4 Tickets
