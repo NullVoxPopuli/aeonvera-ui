@@ -11,6 +11,7 @@ export default DS.Model.extend({
   chooseNewWinner: DS.attr('boolean'),
 
   event: DS.belongsTo('event'),
-  availableTickets: DS.hasMany('raffle-tickets')
+  raffleTickets: DS.hasMany('raffle-tickets'),
+  ticketPurchasers: DS.hasMany('raffle-ticket-purchaser')
 
 });

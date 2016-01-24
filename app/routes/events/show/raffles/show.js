@@ -2,5 +2,6 @@ import Ember from 'ember';
 import Show from 'aeonvera/mixins/routes/crud/events/show';
 
 export default Ember.Route.extend(Show, {
-  modelName: 'raffle'
+  modelName: 'raffle',
+  include: 'ticket_purchasers'
 });

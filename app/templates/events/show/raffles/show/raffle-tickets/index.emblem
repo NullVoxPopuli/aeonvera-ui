@@ -5,3 +5,15 @@ link-to 'events.show.raffles.show.raffle-tickets.new' classNames='button'
 
 link-to 'events.show.raffles.show' classNames='button secondary'
   span Back to Raffle
+
+
+table
+  thead: tr
+    th Number of Tickets
+  tbody
+    if (is-present model)
+      each model as |ticket|
+        tr
+          td = ticket.numberOfTickets
+    else
+      tr: td There are no ticket options. You must have at least one ticket option for people to particpate in the raffle.
