@@ -1,0 +1,24 @@
+h4 Ticket Option (Worth {{model.numberOfTickets}} Ticket(s)) 
+
+if isEditing
+  .row
+    = error-field-wrapper classes='columns small-6' errors=model.errors field='numberOfTickets'
+      label
+        span Number of Tickets
+      = input type='number' min='0' step='1' value=model.numberOfTickets
+      
+    = error-field-wrapper classes='columns small-6' errors=model.errors field='price'
+      label
+        span Price
+      = input type='number' min='0' step='any' value=model.price
+
+strong People who have bought this ticket option:
+
+table
+  thead: tr
+    th Name
+    th Registration Date
+  each model.attendances as |attendance|
+    tr
+      td = attendance-link model=attendance
+      td = date-with-format attendance.registeredAt 'LLL'

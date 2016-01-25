@@ -27,6 +27,8 @@ export default DS.Model.extend(Buyable, IsLineItem, {
   event: DS.belongsTo('event'),
   host: DS.belongsTo('host', {
     polymorphic: true
-  })
+  }),
+
+  attendances: DS.hasMany('attendance')
 
 });

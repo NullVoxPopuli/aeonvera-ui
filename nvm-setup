@@ -6,7 +6,7 @@ NVM_DIR=~/.nvm
 
 which nvm
 
-nvm use stable
+nvm use 0.12
 
 which npm
 which node

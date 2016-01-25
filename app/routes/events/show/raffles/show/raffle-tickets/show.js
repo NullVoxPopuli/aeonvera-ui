@@ -12,7 +12,8 @@ export default Ember.Route.extend({
     let record = this.store.findRecord(modelName, params[idName], {
       adapterOptions: {
         query: {
-          raffle_id: raffle.get('id')
+          raffle_id: raffle.get('id'),
+          include: 'attendances'
         }
       }
     });

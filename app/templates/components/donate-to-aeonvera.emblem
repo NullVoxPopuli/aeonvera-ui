@@ -1,0 +1,10 @@
+= foundation-modal title='Donate to ÆONVERA' name='donate-price-pick'
+  ul.button-group
+    li = stripe/donate-button amount=100
+    li = stripe/donate-button amount=500
+    li = stripe/donate-button amount=1000 
+    li = stripe/donate-button amount=2000 
+    
+  br
+  = input value=customAmount placeholder='Custom Amount' type='number' step='any' min='0'
+  = stripe/donate-button amount=customAmount

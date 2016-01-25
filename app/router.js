@@ -188,8 +188,6 @@ export default Router.map(function() {
               this.route('new');
               this.route('show', {
                 path: ':raffle_ticket_id'
-              }, function() {
-                this.route('edit');
               });
             });
           });
