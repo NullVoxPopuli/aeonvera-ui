@@ -22,6 +22,7 @@ export default Router.map(function() {
   this.route('logout');
   this.route('login');
   this.route('signup');
+  this.route('donation-thankyou');
   this.route('password-reset', function() {
     this.route('success');
   });

@@ -24,9 +24,9 @@ footer
     .small-12.columns
       .right = t 'copyright'
 
+  br
+  br
   .row
     .small-12.columns
       .right
-        span If you would like to support aeonvera and help pursuade Preston to add more features, you may
-        span &nbsp;
-        a href='#' data-reveal-id='donate-price-pick-modal' donate here.    
+        a.button.tiny.success href='#' data-reveal-id='donate-price-pick-modal' Donate    
