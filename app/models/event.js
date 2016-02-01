@@ -37,6 +37,7 @@ export default Host.extend(RegistrationOpens, {
 	url: DS.attr('string'),
 
 	integrations: DS.hasMany('integration'),
+	hasStripeIntegration: DS.attr('boolean'),
 
 	packages: DS.hasMany('package', {
 		async: true

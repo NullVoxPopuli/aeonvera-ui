@@ -18,5 +18,9 @@ ul.pricing-table
         span per transaction to ÆONVERA
 
   li.cta-button
-    //a.button.warning: span Remove Connection With Stripe
-    a.button: span Connect With Stripe
+    if model.hasStripeIntegration
+      a.button.warning href='https://aeonvera.com/oauth/stripe?payable_id={{model.id}}&payable_type=Event' 
+        span Remove Connection With Stripe
+    else
+      a.button href='https://aeonvera.com/oauth/stripe/new?payable_id={{model.id}}&payable_type=Event'
+        span Connect With Stripe
