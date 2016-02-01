@@ -4,7 +4,7 @@ form submit='save'
       = input checked=model.housingStatus type='checkbox'
       label Enable Housing Signups
 
-  = error-field-wrapper errors=errors field='housingNights'
-    label
-      span Housing Nights
-      = input value=model.housingNights type='text'
+  / = error-field-wrapper errors=errors field='housingNights'
+  /   label
+  /     span Housing Nights
+  /     = input value=model.housingNights type='text'

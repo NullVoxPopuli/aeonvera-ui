@@ -1,7 +1,0 @@
-.row
-  .small-6.columns
-    /= date-picker date=date valueFormat='YYYY-MM-DD' allowBlank=false
-    = pick-a-date date=(readonly value) nulls-date=true on-selected=(action (mut value)) options=(readonly dateOptions)
-  .small-6.columns
-    /= input type='time' placeholder='00:00' value=time
-    = pick-a-time date=(readonly value) on-selected=(action (mut value)) options=(readonly timeOptions)

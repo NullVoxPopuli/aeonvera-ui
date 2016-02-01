@@ -20,30 +20,19 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
       label
         span Starts At
-        .row
-          .small-6.columns
-            = date-picker date=startsAtDate valueFormat='YYYY-MM-DD' allowBlank=false
-          .small-6.columns
-            = input type='time' placeholder='00:00' value=startAtTime
-        / = input value=model.startsAt type='text' required=true
+        = bs-datetimepicker date=model.startsAt format='YYYY-MM-DD LT' updateDate=(action (mut model.startsAt)) forceDateOutput=true
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='endsAt'
       label
         span Ends At
-        .row
-          .small-6.columns
-            = date-picker date=endsAtDate valueFormat='YYYY-MM-DD' allowBlank=false
-          .small-6.columns
-            = input type='time' placeholder='00:00' value=endsAtTime
-        / = input value=model.endsAt type='text' required=true
-  
+        = bs-datetimepicker date=model.endsAt format='YYYY-MM-DD LT' updateDate=(action (mut model.endsAt)) forceDateOutput=true
+      
   .row
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='openingTier.date'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.openingTier.date'
       label
         span Registration Opens At
-        .row
-          .small-6.columns
-            = date-picker date='openingTier.date' valueFormat='YYYY-MM-DD' allowBlank=false
-          .small-6.columns
-            = input type='time' placeholder='00:00' value='openingTier.date'
+        /= bs-datetimepicker date=model.openingTier.date  format='YYYY-MM-DD LT' updateDate=(action (mut model.openingTier.date)) forceDateOutput=true
+          /.small-6.columns
+          / .small-6.columns
+          /   = input type='time' placeholder='00:00' value='openingTier.date'
         / = input value=model.endsAt type='text' required=true
