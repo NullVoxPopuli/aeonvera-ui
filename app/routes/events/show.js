@@ -15,6 +15,12 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    return this.store.findRecord('event', params.event_id);
+    return this.store.findRecord('event', params.event_id, {
+      adapterOptions: {
+        query: {
+          'include': 'opening_tier'
+        }
+      }
+    });
   }
 });

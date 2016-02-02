@@ -1,6 +1,6 @@
 span events
 .row.full-width
-  .large-3.medium-4.columns
+  .large-3.medium-4.columns.padding-left-0
     .sidebar
       nav
         ul.side-nav

@@ -1,7 +1,8 @@
 /*jshint multistr: true */
 
-export default{
+export default {
   appname: 'ÆONVERA',
+  domain: 'aeonvera.com',
   holdingcompany: 'Precognition, LLC',
   subheader: 'Event registration designed for dancers.',
   lookingforevent: 'Looking for an event?',
@@ -41,7 +42,7 @@ export default{
   tos: 'Terms of Service',
   privacy: 'Privacy',
   submitideas: 'Submit Ideas',
-  copyright: 'Copyright © 2013-2015 Precognition LLC',
+  copyright: 'Copyright © 2013-2016 Precognition LLC',
 
   formoreinfo: 'For more information: ',
 

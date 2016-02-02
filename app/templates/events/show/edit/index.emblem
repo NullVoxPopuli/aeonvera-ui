@@ -15,6 +15,15 @@ form submit='save'
       label
         span Location
         = input value=model.location placeholder='e.g.: Indianapolis, IN' type='text' required=true
+    
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='domain'
+      label
+        span Domain
+        .row.collapse
+          .columns.small-8
+            = input value=model.domain placeholder='acme' type='text' required=true
+          .columns.small-4
+            span.postfix .{{t 'domain' }}
 
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
@@ -27,12 +36,9 @@ form submit='save'
         span Ends At
         = bs-datetimepicker date=model.endsAt format='YYYY-MM-DD LT' updateDate=(action (mut model.endsAt)) forceDateOutput=true
       
+  br
   .row
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.openingTier.date'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.openingTier.increaseAfterDate'
       label
         span Registration Opens At
-        /= bs-datetimepicker date=model.openingTier.date  format='YYYY-MM-DD LT' updateDate=(action (mut model.openingTier.date)) forceDateOutput=true
-          /.small-6.columns
-          / .small-6.columns
-          /   = input type='time' placeholder='00:00' value='openingTier.date'
-        / = input value=model.endsAt type='text' required=true
+        = bs-datetimepicker date=model.openingTier.increaseAfterDate  format='YYYY-MM-DD LT' updateDate=(action (mut model.openingTier.increaseAfterDate)) forceDateOutput=true
