@@ -84,9 +84,46 @@ export default Router.map(function() {
     this.route('my-communities', {
       resetNamespace: true
     }, function() {
-      this.route('manage-community', {
-        resetNamespace: true,
-        path: '/manage-community/:organization_id'
+      this.route('manage', {
+        path: '/manage/:organization_id'
+      }, function() {
+        this.route('edit');
+        this.route('dances', function() {
+          this.route('new');
+          this.route('show', {
+            path: ':dance_id'
+          }, function() {
+            this.route('edit');
+          });
+        });
+        this.route('lessons', function() {
+          this.route('new');
+          this.route('show', {
+            path: ':lesson_id'
+          }, function() {
+            this.route('edit');
+          });
+        });
+        this.route('reports');
+        this.route('officers');
+        this.route('membership', function() {
+          this.route('discounts', function() {
+            this.route('new');
+            this.route('show', {
+              path: ':discount_id'
+            }, function() {
+              this.route('edit');
+            });
+          });
+          this.route('membership-options', function() {
+            this.route('new');
+            this.route('show', {
+              path: ':membership_option_id'
+            }, function() {
+              this.route('edit');
+            });
+          });
+        });
       });
     });
 

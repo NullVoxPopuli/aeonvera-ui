@@ -1,17 +1,23 @@
-= page-header text='My Communities'
+.center-margin
+  = page-header text='My Communities'
 
 
-.center-margin.percent-width-80
-  each model as |community|
-    a href="{{community.url}}"
-      .row
-        .columns.small-2.medium-4
-          if community.logo_is_missing
-            span.icon-thumbnail.right
-              = fa-icon 'globe'
+each model as |community|
+  table.no-border.center-margin
+    tr
+      td
+        a href="{{community.url}}"
+          .row
+            .columns.small-2.medium-4
+              if community.logo_is_missing
+                span.icon-thumbnail.right
+                  = fa-icon 'globe'
 
-          else
-            img.right src="{{community.logo_url_thumb}}"
-        .columns.small-10.medium-8
-          h3 = community.name
-          h6 = community.location
+              else
+                img.right src="{{community.logo_url_thumb}}"
+            .columns.small-10.medium-8
+              h3 = community.name
+              h6 = community.location
+      td
+        link-to 'my-communities.manage' community.id classNames='button'
+          span Manage
