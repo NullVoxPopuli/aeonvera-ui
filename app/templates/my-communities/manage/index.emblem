@@ -1,1 +1,22 @@
 h3 Recent Registrations
+
+.row
+  .medium-3.columns
+    label.text-center Over the past month
+    hr
+    .row
+      .small-12.columns.text-center
+        label Net Received
+        h3 = model.netReceivedPastMonth
+    .row
+      .small-6.columns.text-center
+        label Revenue
+        h4 = model.revenuePastMonth
+      .small-6.columns.text-center
+        label Unpaid
+        h4 = model.unpaidPastMonth
+    .row
+      .small-6.columns.text-center
+        label New Memberships
+        h4 = model.newMembershipsPastMonth
+  .medium-9.columns

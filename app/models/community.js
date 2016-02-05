@@ -1,7 +1,7 @@
 import DS from 'ember-data';
+import Host from '../models/host';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
+export default Host.extend({
   tagline: DS.attr('string'),
 
   city: DS.attr('string'),

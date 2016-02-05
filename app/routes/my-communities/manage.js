@@ -21,6 +21,6 @@ export default Ember.Route.extend({
 
   model: function(params) {
     let id = params.organization_id;
-    return this.store.findRecord('community', id);
+    return this.store.findRecord('organization-summary', id);
   }
 });

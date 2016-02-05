@@ -10,7 +10,7 @@ export default Ember.Mixin.create({
     let parent = this.modelFor(parentPathRoot);
     let query = {};
     let key = this.get('parentIdKey');
-    query[key] = parent.get('id')
+    query[key] = parent.get('id');
 
     return this.store.query(modelName, query);
   }
