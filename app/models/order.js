@@ -15,6 +15,7 @@ export default DS.Model.extend({
   totalInCents: DS.attr('number'),
 
   userEmail: DS.attr('string'),
+  userName: DS.attr('string'),
 
   host: DS.belongsTo('host', {
     polymorphic: true
@@ -32,7 +33,9 @@ export default DS.Model.extend({
   checkoutToken: DS.attr('string'),
   checkoutEmail: DS.attr('string'),
 
-
+  paidText: function() {
+    return this.get('paid') ? 'Yes' : 'No';
+  }.property('paid'),
 
   /* aliases */
   event: function() {

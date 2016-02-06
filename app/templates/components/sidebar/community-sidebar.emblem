@@ -8,16 +8,16 @@ li
 li.divider
 li View
 li
-  link-to 'events.show.registrations'
+  link-to 'my-communities.manage.registrations'
     span Registrations
 li
-  link-to 'events.show.unpaid-registrations'
+  link-to 'my-communities.manage.unpaid-registrations'
     span Unpaid Registrations
 
 li.divider
 li Reporting
 li
-  link-to 'events.show.revenue'
+  link-to 'my-communities.manage.revenue'
     span Revenue
 
 li

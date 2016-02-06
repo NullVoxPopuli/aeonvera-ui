@@ -1,0 +1,43 @@
+.row 
+  .small-12.columns.medium-6
+    label First or Last name Conatins
+    = input type='text' value=firstOrLastNameContains
+
+  .small-12.columns.medium-6
+    label Days Ago
+    = input type='number' value=pastDays
+
+= radio-button value=1 groupValue=showPaid
+label Paid
+= radio-button value=2 groupValue=showPaid
+label Unpaid
+= radio-button value=0 groupValue=showPaid
+label All
+
+table
+  thead: tr
+    th Name
+    th Purchased
+    th Paid?
+    th Paid Amount
+    th Net Amount Received
+    th Total Fees
+    th Payment Received At
+  tbody
+    each orders as |order|
+      tr
+        td
+          = order.userName 
+        td
+          each order.orderLineItems as |orderLineItem|
+            span {{orderLineItem.lineItem.name}} (x{{orderLineItem.quantity}} @ {{to-usd orderLineItem.price}})
+            br
+        td
+          if order.paid
+            span Yes
+          else
+            span Owes {{to-usd order.totalInDollars}}
+        td = to-usd order.paidAmount
+        td = to-usd order.netAmountReceived
+        td = to-usd order.totalFeeAmount
+        td = date-with-format order.createdAt 'lll'

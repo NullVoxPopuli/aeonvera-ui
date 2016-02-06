@@ -1,0 +1,21 @@
+table.responsive
+  thead
+    tr
+      th Name
+      / th Purchases
+      th Owe $
+      / th Paid $
+      th Purchased At
+
+  tbody
+    if attendancesPresent
+      each model as |attendance|
+        tr
+          td
+            link-to 'events.show.registrations.show' attendance.id
+              span = attendance.attendeeName
+          / td = attendance.levelName
+          td = to-usd attendance.amountOwed
+          / td = attendance.amountPaid
+          td
+            = date-with-format attendance.registeredAt 'lll'

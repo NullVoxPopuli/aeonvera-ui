@@ -88,6 +88,9 @@ export default Router.map(function() {
         path: '/manage/:organization_id'
       }, function() {
         this.route('edit');
+        this.route('revenue');
+        this.route('registrations');
+        this.route('unpaid-registrations');
         this.route('dances', function() {
           this.route('new');
           this.route('show', {
