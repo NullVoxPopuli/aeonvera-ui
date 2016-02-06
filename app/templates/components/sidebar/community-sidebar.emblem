@@ -1,7 +1,9 @@
 li
-  h5
-    link-to 'my-communities.manage' model.id
-      = model.name
+  .text-center
+    img src='{{model.logoUrlThumb}}'
+    h5
+      link-to 'my-communities.manage' model.id
+        = model.name
 
 li.divider
 li View

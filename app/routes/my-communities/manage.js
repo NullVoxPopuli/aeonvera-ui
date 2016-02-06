@@ -21,6 +21,12 @@ export default Ember.Route.extend({
 
   model: function(params) {
     let id = params.organization_id;
-    return this.store.findRecord('organization-summary', id);
+    return this.store.findRecord('organization-summary', id, {
+      adapterOptions: {
+        query: {
+          'include': 'attendances'
+        }
+      }
+    });
   }
 });

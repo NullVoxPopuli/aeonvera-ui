@@ -1,5 +1,4 @@
-h3 Recent Registrations
-
+= page-header text='Overview'
 .row
   .medium-3.columns
     label.text-center Over the past month
@@ -20,3 +19,6 @@ h3 Recent Registrations
         label New Memberships
         h4 = model.newMembershipsPastMonth
   .medium-9.columns
+    h3 Recent Registrations
+    = attendance-list model=model.recentRegistrations
+    
