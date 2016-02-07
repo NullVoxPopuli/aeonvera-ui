@@ -10,9 +10,9 @@ li View
 li
   link-to 'my-communities.manage.registrations'
     span Registrations
-li
-  link-to 'my-communities.manage.unpaid-registrations'
-    span Unpaid Registrations
+/ li
+/   link-to 'my-communities.manage.unpaid-registrations'
+/     span Unpaid Registrations
 
 li.divider
 li Reporting
