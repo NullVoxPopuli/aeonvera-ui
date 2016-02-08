@@ -1,1 +1,20 @@
-span hi
+= page-header text='Lessons'
+
+table
+  thead: tr
+    th Name
+    th Date
+    th Start
+    th End
+    th Registration Opens At
+    th Registration Closes At
+    
+  tbody
+    each model as |lesson|
+      tr
+        td = lesson.name
+        td = lesson.schedule
+        td = lesson.startsAt
+        td = lesson.endsAt
+        td = lesson.registrationOpensAt
+        td = lesson.registrationClosesAt
