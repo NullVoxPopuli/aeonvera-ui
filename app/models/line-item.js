@@ -15,6 +15,7 @@ export default DS.Model.extend(Buyable, IsLineItem, {
 
   pictureUrlMedium: DS.attr('string'),
   pictureUrlThumb: DS.attr('string'),
+  pictureUrl: DS.attr('string'),
 
   expiresAt: DS.attr('date'),
   startsAt: DS.attr('date'),
