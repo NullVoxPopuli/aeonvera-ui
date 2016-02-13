@@ -38,6 +38,7 @@ export default Host.extend(RegistrationOpens, {
 
 	integrations: DS.hasMany('integration'),
 	hasStripeIntegration: DS.attr('boolean'),
+	askIfLeadingOrFollowing: DS.attr('boolean'),
 
 	packages: DS.hasMany('package', {
 		async: true

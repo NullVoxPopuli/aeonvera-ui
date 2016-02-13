@@ -7,9 +7,6 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
   requirement: DS.attr('number'),
 
   event: DS.belongsTo('event'),
-  registrations: DS.hasMany('event-attendance', {
-    async: true
-  }),
 
   eventAttendances: DS.hasMany('event-attendance', {
     async: true
