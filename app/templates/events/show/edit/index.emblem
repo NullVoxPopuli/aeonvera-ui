@@ -29,16 +29,16 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
       label
         span Starts At
-        = bs-datetimepicker date=model.startsAt format='YYYY-MM-DD LT' updateDate=(action (mut model.startsAt)) forceDateOutput=true
+        = date-time-input model=model field='startsAt'
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='endsAt'
       label
         span Ends At
-        = bs-datetimepicker date=model.endsAt format='YYYY-MM-DD LT' updateDate=(action (mut model.endsAt)) forceDateOutput=true
+        = date-time-input model=model field='endsAt'
       
   br
   .row
     = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.openingTier.increaseAfterDate'
       label
         span Registration Opens At
-        = bs-datetimepicker date=model.openingTier.increaseAfterDate  format='YYYY-MM-DD LT' updateDate=(action (mut model.openingTier.increaseAfterDate)) forceDateOutput=true
+        = date-time-input model=model.openingTier field='increaseAfterDate'

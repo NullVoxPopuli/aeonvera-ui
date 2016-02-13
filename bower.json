@@ -26,7 +26,6 @@
     "antiscroll": "git://github.com/Addepar/antiscroll#e0d1538cf4f3fd61c5bedd6168df86d651f125da",
     "jquery-mousewheel": "~3.1.4",
     "jquery-ui": "~1.11.4",
-    "flatpickr": "git://github.com/chmln/flatpickr#~1.5.3",
-    "eonasdan-bootstrap-datetimepicker": "~4.14.30"
+    "flatpickr": "git://github.com/chmln/flatpickr#53c0c769fd14657bc4ae7103a93a5ad7038905c3"
   }
 }

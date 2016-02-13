@@ -1,0 +1,79 @@
+.flatpickr-wrapper{
+  box-sizing: content-box;
+  width: 100%;
+
+  .flatpickr-months{
+    .flatpickr-prev-month{
+      margin-left: 4px;
+    }
+    .flatpickr-next-month{
+      margin-right: 4px;
+    }
+  }
+
+  .flatpickr-calendar{
+    margin-top: -14px;
+
+    table{
+      margin: 0;
+      border: 0;
+      background: white;
+
+      thead {
+        background: none !important;
+      }
+
+      tbody{
+        tr{
+          background: none;
+
+          td{
+            padding: 0;
+
+            &.slot.selected .flatpickr-day{
+              background-color: $link-color;
+              border-color: $link-color;
+            }
+          }
+        }
+      }
+
+    }
+
+    .flatpickr-time{
+      background: $wrapping-background;
+
+      @mixin flatpickr-time-styles{
+        box-shadow: none;
+        background: none;
+        width: auto;
+        height: auto;
+        border: none;
+        font-size: 13px;
+        padding: 0px;
+        margin: 0px;
+        color: white;
+      }
+
+      .flatpickr-time-separator{
+        @include flatpickr-time-styles;
+        width: 5%;
+      }
+      .flatpickr-am-pm{
+        @include flatpickr-time-styles;
+        width: 25%;
+      }
+      input{
+        @include flatpickr-time-styles;
+
+        &.flatpickr-hour{
+          width: 40%;
+        }
+        &.flatpickr-minute{
+          width: 30%;
+        }
+      }
+    }
+  }
+
+}
