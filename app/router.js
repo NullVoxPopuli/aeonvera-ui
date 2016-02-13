@@ -27,6 +27,13 @@ export default Router.map(function() {
     this.route('success');
   });
 
+  this.route('register', {
+    resetNamespace: true,
+    path: ':subdomain'
+  }, function() {
+
+  });
+
   /* event registration - subdomain based */
   this.route('dance-event', function() {
     this.route('register', function() {

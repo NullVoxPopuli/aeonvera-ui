@@ -2,8 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function() {
-    return this.store.find('current-registering-event');
+  model: function(params) {
+    let subdomain = params['subdomain']
+
+    return this.get('store').findRecord('host', subdomain, {
+      adapterOptions: {
+        query: {
+          subdomain: subdomain
+        }
+      }
+    });
   }
 
 });
