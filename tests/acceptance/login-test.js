@@ -3,9 +3,8 @@ import {
   module, test
 }
 from 'qunit';
-import startApp from 'testing-guide-examples/tests/helpers/start-app';
+import startApp from 'aeonvera/tests/helpers/start-app';
 import Mirage from 'ember-cli-mirage';
-
 let application;
 
 module('Acceptance | login', {
@@ -20,23 +19,20 @@ module('Acceptance | login', {
 
 test('visiting /', function(assert) {
   visit('/');
-  andThen(() => assert.equal(currentURL(), '/'));
+  andThen(() => assert.equal(currentURL(), '/welcome'));
 
-  click('auth-link a[data-reveal-id="login-modal"]');
+  click('.auth-link a[data-reveal-id="login-modal"]');
   andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
 });
 
 test('can login', function(assert) {
   server.create('user');
-
   visit('/');
-  andThen(() => assert.equal(currentURL(), '/'));
-
-  click('auth-link a[data-reveal-id="login-modal"]');
+  click('.auth-link a[data-reveal-id="login-modal"]');
   andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
 
-  fillIn('#login-modal input[type="text"]:first', 'test@test.test');
-  fillIn('#login-modal input[type="text"]:last', 'some-password');
+  fillIn('#login-modal input[type="text"]', 'test@test.test');
+  fillIn('#login-modal input[type="password"]', 'some-password');
 
   click('#login-modal button[type="submit"]');
 
