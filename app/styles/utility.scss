@@ -44,6 +44,10 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   }
 }
 
+.inline{
+  display: inline-block;
+}
+
 .extra-padding {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
@@ -59,7 +63,6 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 .white-color{
   color: white;
 }
-
 
 .icon-thumbnail{
   font-size: 96px;

@@ -34,11 +34,11 @@ export default Ember.Component.extend({
       // query['attendance_attendee_name_cont'] = nameContains;
     }
 
-    if (showPaid != 0) {
-      if (showPaid == 1) {
-        query['paid_true'] = 1
+    if (showPaid !== 0) {
+      if (showPaid === 1) {
+        query['paid_true'] = 1;
       } else {
-        query['paid_false'] = 1
+        query['paid_false'] = 1;
       }
 
     }

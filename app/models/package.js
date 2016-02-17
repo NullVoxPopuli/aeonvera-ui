@@ -10,14 +10,15 @@ export default DS.Model.extend({
   ignorePricingTiers: DS.attr('boolean'),
   numberOfLeads: DS.attr('number'),
   numberOfFollows: DS.attr('number'),
+  currentPrice: DS.attr('number'),
 
   event: DS.belongsTo('event'),
 
-  totalRegistrants: function(){
+  totalRegistrants: function() {
     return this.get('numberOfLeads') + this.get('numberOfFollows');
   }.property('numberOfLeads', 'numberOfFollows'),
 
-  hasExpiration: function(){
+  hasExpiration: function() {
     let expiresAt = this.get('expiresAt');
     return Ember.isPresent(expiresAt);
   }.property('expiresAt')
