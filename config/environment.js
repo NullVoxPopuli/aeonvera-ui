@@ -22,7 +22,7 @@ module.exports = function(environment) {
     },
 
     devise: {
-      serverTokenEndpoint: '/users/sign_in'
+      serverTokenEndpoint: 'users/sign_in'
     },
 
     rollbar: {
@@ -43,7 +43,7 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
+      'script-src': "'self' 'swing.vhost' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im *",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
       'img-src': "'self'  '*amazonaws.com' data: https://*.stripe.com",
@@ -69,9 +69,13 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.host = 'http://swing.vhost:3000';
 
-
+    // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
       'http://swing.vhost:3000/users/sign_in';
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
     // {
     //   // defaults to /users/sign_in
     //   serverTokenEndpoint: ,

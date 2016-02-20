@@ -32,6 +32,14 @@ or copy the latest command from [the NVM repo](https://github.com/creationix/nvm
     npm install
     bower install
 
+### Updating app dependencies
+
+```
+npm install -g npm-check-updates
+npm-check-updates -u
+npm install 
+```
+
 ## Running / Development
 
     source nvm-setup

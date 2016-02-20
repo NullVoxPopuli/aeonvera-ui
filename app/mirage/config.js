@@ -34,7 +34,17 @@ export default function() {
     this.post('/contacts');
     this.post('/contacts', 'user'); // specify the type of resource to be created
   */
+  this.post('/users/sign_in', function(db, request) {
+    let id = request.params.id;
 
+    return {
+      data: {
+        type: 'users',
+        id: id,
+        attributes: db.users.find(id)
+      }
+    };
+  });
   /*
     PUT shorthands
 
