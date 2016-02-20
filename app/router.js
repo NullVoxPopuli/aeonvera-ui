@@ -118,6 +118,8 @@ export default Router.map(function() {
         this.route('reports');
         this.route('officers');
         this.route('membership', function() {
+          this.route('manage');
+          this.route('add');
           this.route('discounts', function() {
             this.route('new');
             this.route('show', {

@@ -7,5 +7,10 @@ export default DS.Model.extend({
   expired: DS.attr('boolean'),
 
   membershipOption: DS.belongsTo('membership-option'),
-  member: DS.belongsTo('member')
+  member: DS.belongsTo('member'),
+
+  current: Ember.computed('expired', function() {
+    let expired = this.get('expired');
+    return !expired;
+  }).readOnly()
 });

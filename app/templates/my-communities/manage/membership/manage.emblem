@@ -1,0 +1,17 @@
+link-to 'my-communities.manage.membership.add' classNames='button small'
+  span Add Member
+
+h3 Options
+table
+  thead: tr
+    th Name
+    th Price
+    th Duration
+    th # Members
+
+h3 Discounts
+table
+  thead: tr
+    th Name
+    th Discount
+    th Applies To

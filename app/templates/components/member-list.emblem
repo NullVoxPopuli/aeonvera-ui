@@ -1,0 +1,28 @@
+.row 
+  .small-12.columns.medium-6
+    label First or Last name Conatins
+    = input type='text' value=nameContains
+
+
+= radio-button value=1 groupValue=showMembers
+label Members
+= radio-button value=2 groupValue=showMembers
+label Non-Members
+= radio-button value=0 groupValue=showMembers
+label All
+
+table
+  thead: tr
+    th: a click="(action 'toggleSort' 'member.name')" Name {{nameSort}}
+    th Email
+    th: a click="(action 'toggleSort' 'current')" Current {{currentSort}}
+    th: a click="(action 'toggleSort' 'startDate')" Member Since {{startDateSort}}
+    th: a click="(action 'toggleSort' 'expiresAt')" Membership Expires At {{expiresAtSort}}
+  tbody
+    each sortedMemberships as |membership|
+      tr
+        td = membership.member.name
+        td = membership.member.email
+        td = membership.current
+        td = date-with-format membership.startDate 'lll'
+        td = date-with-format membership.expiresAt 'lll'
