@@ -5,9 +5,17 @@ export default Ember.Component.extend(EditModel, {
   modelName: 'membership',
   saveSuccessPath: 'my-communities.manage.membership',
   cancelPath: 'my-communities.manage.membership',
+  membershipOptions: null,
 
-  membershipOptions: function() {
-    let organization = this.get('organization');
-    return organization.get('membershipOptions');
-  }.property()
+  selectedOption: function() {
+    let model = this.get('model');
+    return model.get('membershipOption');
+  }.property('model.membershipOption'),
+
+  actions: {
+    selectOption(option) {
+      let model = this.get('model');
+      model.set('membershipOption', option);
+    }
+  }
 });

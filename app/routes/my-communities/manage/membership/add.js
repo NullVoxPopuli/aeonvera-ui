@@ -5,7 +5,8 @@ export default Ember.Route.extend({
 
   model: function(params) {
     let membership = this.store.createRecord('membership', {});
-    let organization = this.modelFor('my-communities.manage');
+    let organization = this.modelFor(
+      'my-communities.manage.membership.manage');
 
     return {
       membership: membership,
