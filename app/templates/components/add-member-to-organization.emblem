@@ -1,0 +1,22 @@
+
+.row
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='startDate'
+    label
+      span Starts Date
+      = date-time-input model=model field='startDate'
+
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='membershipOption'
+    label
+      span Membership Option
+      = select-2 content=membershipOptions value=model.membershipOption placeholder="Select Option" optionLabelPath='name' allowClear=false optionValuePath=''
+
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='member'
+    label
+      span Name
+
+.row
+  .small-12.columns
+    .right
+      ul.button-group
+        li: button.secondary click='cancel' Cancel
+        li: button disabled=isDirty title=submitTitle click='save' Add Member

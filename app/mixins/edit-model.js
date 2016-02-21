@@ -1,7 +1,22 @@
 import Ember from 'ember';
-import EditModel from 'aeonvera/mixins/edit-model';
 
-export default Ember.Mixin.create(EditModel, {
+export default Ember.Mixin.create({
+  modelNameId: function() {
+    return this.get('modelName') + '_id';
+  }.property('modelName'),
+
+  isDirty: function() {
+    return !this.get('model.hasDirtyAttributes');
+  }.property('model.hasDirtyAttributes'),
+
+  submitTitle: function() {
+    if (this.get('isDirty')) {
+      return 'Cannot save when there have been no changes';
+    } else {
+      return 'Save Changes';
+    }
+  }.property('isDirty'),
+
   parentModelId: function() {
 
     let passedParent = this.get('parent');
@@ -39,15 +54,20 @@ export default Ember.Mixin.create(EditModel, {
           'Saved Successfully'
         );
         let path = this.get('saveSuccessPath');
-        let parentId = this.get('parentModelId');
-        let recordId = record.get('id');
-        this.get('router').transitionTo(path, parentId, recordId);
+        this.get('router').transitionTo(path, recordId);
       }, failure => {
         this.get('flashMessages').alert(
           'Saving failed. ' + failure
         );
       });
 
-    }
+    },
+
+    cancel: function() {
+      let path = this.get('cancelPath');
+
+      this.get('model').rollbackAttributes();
+      this.get('router').transitionTo(path);
+    },
   }
 });

@@ -20,6 +20,8 @@ export default Host.extend({
   url: DS.attr('string'),
 
   owner: DS.belongsTo('user'),
+  membershipOptions: DS.hasMany('membership-option'),
+  membershipDiscounts: DS.hasMany('membership-discount'),
 
   location: function() {
     return this.get('city') + ", " + this.get('state');

@@ -46,7 +46,7 @@ module.exports = function(environment) {
       'script-src': "'self' 'swing.vhost' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im *",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
-      'img-src': "'self'  '*amazonaws.com' data: https://*.stripe.com",
+      'img-src': "'self'  '*amazonaws.com' data: https://*.stripe.com *",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
     },

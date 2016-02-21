@@ -7,7 +7,12 @@ table
     th Name
     th Price
     th Duration
-    th # Members
+  tbody
+    each model.membershipOptions as |option|
+      tr
+        td = option.name
+        td = to-usd option.price
+        td = option.durationInWords
 
 h3 Discounts
 table
@@ -15,3 +20,9 @@ table
     th Name
     th Discount
     th Applies To
+  tbody
+    each model.membershipDiscounts as |discount|
+      tr
+        td = discount.name
+        td = discount.discount
+        td = discount.restrictedTo
