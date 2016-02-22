@@ -12,6 +12,10 @@ export default Ember.Component.extend(EditModel, {
     return model.get('membershipOption');
   }.property('model.membershipOption'),
 
+  memberList: function() {
+    return this.store.query('member');
+  }.property(),
+
   actions: {
     selectOption(option) {
       let model = this.get('model');
