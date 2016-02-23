@@ -2,7 +2,11 @@
 
 module.exports = function(environment) {
   var ENV = {
+    APP: {},
     modulePrefix: 'aeonvera',
+    i18n: {
+      defaultLocale: 'en'
+    },
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -17,31 +21,32 @@ module.exports = function(environment) {
       key: 'a' /* set per event */
     },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-      defaultLocale: 'en'
-
+    devise: {
+      serverTokenEndpoint: 'users/sign_in'
     },
+
+    rollbar: {
+      captureUncaught: environment !== 'development',
+      accessToken: 'ca10480ec923459abdbe39a95c1181d9'
+    },
+
 
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
-    'simple-auth': {
+    'ember-simple-auth': {
+      routeIfAlreadyAuthenticated: 'dashboard',
+      routeAfterAuthentication: 'dashboard',
       session: 'session:application',
-      store: 'simple-auth-session-store:local-storage',
-      authorizer: 'simple-auth-authorizer:devise',
+      store: 'session-store:local-storage',
+      authorizer: 'ember-simple-auth-authorizer:devise',
       crossOriginWhitelist: ['*']
-    },
-    'simple-auth-devise': {
-      tokenAttributeName: 'token',
-      identificationAttributeName: 'email'
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
+      'script-src': "'self' 'swing.vhost' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im *",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "*",
-      'img-src': "'self' data: https://*.stripe.com",
+      'img-src': "'self'  '*amazonaws.com' data: https://*.stripe.com *",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
     },
@@ -55,38 +60,50 @@ module.exports = function(environment) {
     }
   };
 
-  if (environment === 'development') {
-    ACTIVE_MODEL_API_URL: 'http://localhost:4200/api/',
+  /*
+  ==========================
+    Per Environment Setups
+  ==========================
+  */
 
+  if (environment === 'development') {
     ENV.host = 'http://swing.vhost:3000';
 
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // note that the test environment is api/users/sign_in
+    ENV['devise']['serverTokenEndpoint'] =
+      'http://swing.vhost:3000/users/sign_in';
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
+    // {
+    //   // defaults to /users/sign_in
+    //   serverTokenEndpoint: ,
+    //   serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
+    //   crossOriginWhitelist: ['http://swing.vhost:3000']
+    //     /*
+    //     serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
+    //     crossOriginWhitelist: ['http://aeonvera-staging.work']
+    //     */
+    // };
+
+    // Basic logging, e.g. "Transitioned into 'post'"
     ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // Extremely detailed logging, highlighting every internal
+    // step made while transitioning into a route, including
+    // `beforeModel`, `model`, and `afterModel` hooks, and
+    // information about redirects and aborted transitions
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV['simple-auth-devise'] = {
-      // defaults to /users/sign_in
-      serverTokenEndpoint: 'http://swing.vhost:3000/users/sign_in',
-      serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
-      crossOriginWhitelist: ['http://swing.vhost:3000']
-        /*
-        serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
-        crossOriginWhitelist: ['http://aeonvera-staging.work']
-        */
-    }
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_RESOLVER = true;
+
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
-
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
-
-    ENV.APP.rootElement = '#ember-testing';
   }
 
   if (environment === 'production') {
@@ -97,14 +114,15 @@ module.exports = function(environment) {
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
       // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "'self' *.aeonvera.com",
-      'img-src': "'self' data: https://*.stripe.com",
+      'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
       'frame-src': "https://*.stripe.com"
     };
   }
+  ENV.host = 'http://swing.vhost:3000';
 
   return ENV;
 };

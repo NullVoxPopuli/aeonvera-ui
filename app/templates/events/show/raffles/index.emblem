@@ -1,0 +1,25 @@
+= page-header text='Raffles'
+
+link-to 'events.show.raffles.new' classNames='button'
+  span New Raffle
+
+table
+  thead: tr
+    th Name
+    th Purchased Tickets
+    th Winner
+  tbody
+    if (is-present model)
+      each model as |raffle|
+        tr
+          td 
+            link-to 'events.show.raffles.show' raffle.id
+              = raffle.name
+          td = raffle.numberOfPurchasedTickets
+          td
+            if raffle.winnerHasBeenChosen
+              = raffle.winner
+            else
+              | No winner has been chosen
+    else
+      tr: td colspan='3' This event has no raffles

@@ -1,0 +1,11 @@
+br
+br
+br
+
+.imageoverlay.text-center.panel.callout.extra-padding.header
+  = page-header text='Thank you!'
+
+  p: em Your monetary support is much appreciated. :-)
+
+br
+br

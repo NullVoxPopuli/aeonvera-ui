@@ -1,8 +1,19 @@
 import DS from 'ember-data';
-import HostedEvent from '../models/hosted-event';
+import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
-export default HostedEvent.extend({
+export default DS.Model.extend(LeadsAndFollows, {
   revenue: DS.attr('number'),
   unpaid: DS.attr('number'),
-  recentRegistrations: DS.hasMany('recentRegistrations', { async: false })
+  eventAttendances: DS.hasMany('eventAttendances', {
+    async: false
+  }),
+  numberOfShirtsSold: DS.attr('number'),
+  event: DS.belongsTo('event', {
+    async: true
+  }),
+
+  recentRegistrations: function() {
+    return this.get('eventAttendances');
+  }.property('eventAttendances')
+
 });

@@ -1,0 +1,48 @@
+li
+  .text-center
+    img src='{{model.logoUrlThumb}}'
+    h5
+      link-to 'my-communities.manage' model.id
+        = model.name
+
+li.divider
+li View
+li
+  link-to 'my-communities.manage.registrations'
+    span Registrations
+
+li.divider
+li Reporting
+li
+  link-to 'my-communities.manage.revenue'
+    span Revenue
+
+li
+  link-to 'my-communities.manage.membership'
+    span Membership
+    / li
+    /   link-to 'my-communities.manage.membership.membership-options'
+    /     span Membership Options
+    / li
+    /   link-to 'my-communities.manage.membership.discounts'
+    /     span Membership Options
+
+li.divider
+li Edit
+li 
+  link-to 'my-communities.manage.lessons'
+    span Lessons
+li
+  link-to 'my-communities.manage.dances'
+    span Dances
+    
+li
+  link-to 'my-communities.manage.payment-processors'
+    span Payment Proccessing
+  
+
+li.divider
+
+li
+  link-to 'my-communities.manage.edit' model.id classNames='button expand'
+    span Edit Community Settings

@@ -1,5 +1,5 @@
 $directions: "left", "right", "bottom", "top";
-$intervals: 5, 10, 15, 20;
+$intervals: 0, 5, 10, 15, 20;
 
 $max-widths: 65rem, 70rem, 75rem, 85rem;
 
@@ -44,12 +44,25 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   }
 }
 
+.inline{
+  display: inline-block;
+}
+
 .extra-padding {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
 }
 
+.success-color{
+  color: $success-color;
+}
+.alert-color{
+  color: $alert-color;
+}
 
+.white-color{
+  color: white;
+}
 
 .icon-thumbnail{
   font-size: 96px;

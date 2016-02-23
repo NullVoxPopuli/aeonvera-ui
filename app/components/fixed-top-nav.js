@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   i18n: Ember.inject.service(),
+  session: Ember.inject.service('session'),
+
 
   tagName: 'div',
   classNames: ['fixed'],

@@ -1,0 +1,28 @@
+.left
+  = page-header text=model.attendeeName
+.right
+  = payment-status-badge hasPaid=model.hasPaid owes=model.amountOwed paid=model.amountPaid
+.clearfix
+
+.left
+  = model.danceOrientation
+  br
+  span {{model.packageName}}
+  if hasLevel
+    span : {{model.levelName}}
+
+.right
+  span
+    | Registered: {{date-with-format model.registeredAt 'LLL'}}
+  br
+  span
+    | Checked In:&nbsp;
+    if model.isCheckedIn
+      = date-with-format model.checkedInAt 'LLL'
+    else
+      | No
+
+.clearfix
+hr
+
+= registrant/orders-summary model=model.orders

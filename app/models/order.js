@@ -4,18 +4,25 @@ export default DS.Model.extend({
   hostName: DS.attr('string'),
   hostUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
+  paymentReceivedAt: DS.attr('date'),
   paidAmount: DS.attr('number'),
   netAmountReceived: DS.attr('number'),
   totalFeeAmount: DS.attr('number'),
   paymentMethod: DS.attr('string'),
   checkNumber: DS.attr('string'),
+  paid: DS.attr('boolean'),
 
   totalInCents: DS.attr('number'),
 
   userEmail: DS.attr('string'),
+  userName: DS.attr('string'),
 
-  host: DS.belongsTo('host', { polymorphic: true} ),
-  lineItems: DS.hasMany('orderLineItem'),
+  host: DS.belongsTo('host', {
+    polymorphic: true
+  }),
+  orderLineItems: DS.hasMany('orderLineItem', {
+    async: true
+  }),
   attendance: DS.belongsTo('attendance'),
 
   /*
@@ -26,38 +33,47 @@ export default DS.Model.extend({
   checkoutToken: DS.attr('string'),
   checkoutEmail: DS.attr('string'),
 
+  paidText: function() {
+    return this.get('paid') ? 'Yes' : 'No';
+  }.property('paid'),
 
   /* aliases */
-  event: function(){
+  event: function() {
     return this.get('host');
   }.property('host'),
 
-  totalInDollars: function(){
+  totalInDollars: function() {
     return this.get('totalInCents') / 100;
   }.property('totalInCents'),
 
-  hasLineItems: function(){
+  hasLineItems: function() {
     return this.get('lineItems').length > 0;
   }.property('lineItems.[]'),
 
   /*
     Calculates raw total of all the order line items
   */
-  subTotal: function(){
+  subTotal: function() {
     let lineItems = this.get('lineItems'),
-        subTotal = 0;
+      subTotal = 0;
 
-    lineItems.forEach(function(item){
+    lineItems.forEach(function(item) {
       subTotal += item.get('total');
     });
 
     return subTotal;
-  }.property('lineItems.@each.price'),
+  }.property('lineItems.[].price'),
+
+  paidClass: function() {
+    let paid = this.get('paid');
+    return paid ? 'success-color' : 'alert-color';
+  }.property('paid'),
 
   /*
     takes the line item, and makes an order line item out of it
   */
-  addLineItem: function(lineItem, quantity = 1, price = lineItem.get('currentPrice')){
+  addLineItem: function(lineItem, quantity = 1, price = lineItem.get(
+    'currentPrice')) {
     let orderLineItem = this.get('lineItems').createRecord({
       lineItem: lineItem,
       price: price,
@@ -67,7 +83,7 @@ export default DS.Model.extend({
     this.get('lineItems').pushObject(orderLineItem);
   },
 
-  removeOrderLineItem: function(orderLineItem){
+  removeOrderLineItem: function(orderLineItem) {
     this.get('lineItems').removeObject(orderLineItem);
     orderLineItem.destroyRecord();
   },
@@ -78,14 +94,14 @@ export default DS.Model.extend({
     - it might actually become available on when refunds are implemented,
       but I don't know how that's going to work yet
   */
-  markPaid: function(paymentMethod, checkNumber = null, stripeData = null){
+  markPaid: function(paymentMethod, checkNumber = null, stripeData = null) {
     /*
       orders can't be changed once paid.
       - for refunds, a refund object should be associated
       - does this mean there should be a set of transactions on an order?
         which include payments and refunds?
     */
-    if (!this.get('paid')){
+    if (!this.get('paid')) {
       /*
         any other monetary properties are set by the server
       */

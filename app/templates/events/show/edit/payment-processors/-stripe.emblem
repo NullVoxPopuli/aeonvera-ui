@@ -1,0 +1,26 @@
+ul.pricing-table
+  li.title
+    img src='assets/images/stripe-logo-light.png'
+  li.price
+    small
+      .row
+        .medium-5.columns
+          a href='https://stripe.com/us/pricing'
+            span 2.9% + 30¢
+        .medium-7.columns
+          span per transaction to Stripe
+  li.bullet-item
+    .row
+      .medium-5.columns
+        link-to 'welcome.tos'
+          span 0.75%
+      .medium-7.columns
+        span per transaction to ÆONVERA
+
+  li.cta-button
+    if model.hasStripeIntegration
+      a.button.warning href='https://aeonvera.com/oauth/stripe?payable_id={{model.id}}&payable_type=Event' 
+        span Remove Connection With Stripe
+    else
+      a.button href='https://aeonvera.com/oauth/stripe/new?payable_id={{model.id}}&payable_type=Event'
+        span Connect With Stripe

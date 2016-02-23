@@ -1,0 +1,21 @@
+ul.pricing-table
+  li.title
+    img src='assets/images/paypal_logo_grau.png' style='height: 54px;'
+  li.price
+    small
+      .row
+        .medium-5.columns
+          a href='https://www.paypal.com/webapps/mpp/merchant-fees'
+            span 2.9% + 30¢
+        .medium-7.columns
+          span per transaction to PayPal
+  li.bullet-item
+    .row
+      .medium-5.columns
+        link-to 'welcome.tos'
+          span 0.75%
+      .medium-7.columns
+        span per transaction to ÆONVERA
+        
+  li.cta-button
+    a.button: span Coming Soon™

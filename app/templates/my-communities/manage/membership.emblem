@@ -1,0 +1,8 @@
+.row
+  .columns.small-6
+    = page-header text='Membership'
+  .columns.small-6
+    link-to 'my-communities.manage.membership.manage' classNames='button small margin-top-10 right' 
+      span Manage
+
+= outlet

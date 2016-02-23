@@ -1,0 +1,62 @@
+form submit='save'
+  .row
+    .columns.small-12.medium-6
+      .row
+        = error-field-wrapper classes='columns small-12' errors=model.errors field='label'
+          label
+            span Field Label
+          = input value=model.label placeholder='How many years have you been dancing?' type='text' required=true
+
+      .row
+        = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='editable'
+          label
+            span Field is Editable?
+          = input checked=model.editable type='checkbox'
+
+        = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='defaultValue'
+          label
+            span Default Value
+          = input value=model.defaultValue placeholder='4' type='text'
+      
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='kind'
+      label Kind of Field
+      = radio-button value=0 groupValue=model.kind
+      label Text
+      br
+      = radio-button value=1 groupValue=model.kind
+      label Formatted Text
+      br
+      = radio-button value=2 groupValue=model.kind
+      label Number
+      br
+      = radio-button value=3 groupValue=model.kind
+      label Date
+      br
+      = radio-button value=4 groupValue=model.kind
+      label Time
+      br
+      = radio-button value=5 groupValue=model.kind
+      label Datetime
+      br
+      = radio-button value=6 groupValue=model.kind
+      label Checkbox
+      br
+      
+      / = radio-button value=7 groupValue=model.kind
+      / label Radio
+      / br
+      
+      = radio-button value=8 groupValue=model.kind
+      label Range
+      br
+      = radio-button value=9 groupValue=model.kind
+      label Phone
+      br
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
+        / TODO: figure out a nice way to handle save/cancel positioning

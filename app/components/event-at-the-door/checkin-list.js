@@ -44,17 +44,17 @@ export default Ember.Component.extend({
     var percent = checkedIn / total * 100;
 
     return Math.round(percent, 2);
-  }.property('model.@each.isCheckedIn'),
+  }.property('model.[].isCheckedIn'),
 
   numberCheckedIn: function(){
     var model = this.get('model');
     return model.filterBy('isCheckedIn').get('length');
-  }.property('model.@each.isCheckedIn'),
+  }.property('model.[].isCheckedIn'),
 
   numberNotCheckedIn: function(){
     var model = this.get('model');
     return model.filterBy('isCheckedIn', false).get('length');
-  }.property('model.@each.isCheckedIn'),
+  }.property('model.[].isCheckedIn'),
 
 
   actions: {

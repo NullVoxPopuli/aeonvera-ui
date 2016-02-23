@@ -1,0 +1,2 @@
+= page-header text='New Discount'
+= event/discount/edit-form model=model

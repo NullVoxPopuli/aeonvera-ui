@@ -1,16 +1,6 @@
 import Ember from 'ember';
-
 export default Ember.Component.extend({
 	initFoundation: function() {
-		this.$(document).foundation('reflow');
-	}.on('didInsertElement'),
-
-	actions: {
-		authenticate: function() {
-			var data = this.getProperties('identification', 'password');
-			return this.session.authenticate(
-				'simple-auth-authenticator:devise',
-				data);
-		}
-	}
+		Ember.$(document).foundation('reflow');
+	}.on('didInsertElement')
 });

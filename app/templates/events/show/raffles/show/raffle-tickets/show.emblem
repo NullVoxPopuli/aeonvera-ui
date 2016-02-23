@@ -1,0 +1,14 @@
+h4 Ticket Option (Worth {{model.numberOfTickets}} Ticket(s)) 
+
+= event/edit-raffle-ticket model=model
+
+strong People who have bought this ticket option:
+
+table
+  thead: tr
+    th Name
+    th Registration Date
+  each model.attendances as |attendance|
+    tr
+      td = attendance-link model=attendance
+      td = date-with-format attendance.registeredAt 'LLL'

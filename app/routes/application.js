@@ -1,65 +1,28 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'simple-auth/mixins/application-route-mixin';
+import ApplicationRouteMixin from
+  'ember-simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  session: Ember.inject.service('session'),
+  subdomain: Ember.inject.service('subdomain'),
+
   // intl: Ember.inject.service(),
-  beforeModel: function(transition){
-    var self = this;
+  beforeModel: function(transition) {
     //   // define the app's runtime locale
     //   // For example, here you would maybe do an API lookup to resolver
     //   // which locale the user should be targeted and perhaps lazily
     //   // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
     //   // method with the results of the XHR request
     //   this.get('intl').setLocale('en-us');
+    let subdomainRoute = this.get('subdomain.route');
 
-
-    // check if there is a subdomain
-    // if there is, send a request to get the model matching the subdomain, as
-    // every event / organization most have a unique subdomain.
-    // redirect to the appropriate route (event or organization)
-    // based on what type of model comes back.
-    //
-    // TODO: should this be a service?
-
-    // if (this.get('hasSubdomain')){
-    //   this.get('modelForSubdomain').then(function(model){
-    //     let type = model.get('type');
-    //     if (type === 'event'){
-    //       self.transitionTo('dance-event');
-    //     } else if (type === 'organization'){
-    //       self.transitionTo('dance-organization');
-    //     }
-    //     // otherwise proceed as normal?
-    //   });
-    // }
-    this._super(transition)
-  },
-
-  modelForSubdomain: function(){
-    let currentSubdomain = this.get('currentSubdomain');
-
-    Ember.$.ajax({
-      url: '/api/host_for?subdomain=' + currentSubdomain
-    });
-
-  }.property('currentSubdomain'),
-
-  hasSubdomain: function(){
-    return Ember.isPresent(this.get('currentSubdomain'));
-  }.property('currentSubdomain'),
-
-  currentSubdomain: function(){
-    let domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
-    let domainParts = domain.split('.');
-    domainParts.pop(); // remove TLD
-    domainParts.pop(); // remove domain
-    let subdomain = domainParts.join('.');
-
-    if (subdomain.ToLowerCase() === 'www'){
-      return '';
+    if (subdomainRoute !== undefined) {
+      this.get('subdomain.route').then(success => {
+        this.transitionTo(success);
+      }, failure => {
+        this._super(transition);
+      });
     }
-
-    return subdomain;
   },
 
 
@@ -75,6 +38,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       into: 'application'
     });
 
+  },
+
+  sessionAuthenticated: function() {
+    this._super();
+
+    // close the modal
+    Ember.$('a.close-reveal-modal').trigger('click');
+
+    // notify of success
+    Ember.get(this, 'flashMessages').success(
+      'You have successfully logged in');
   },
 
   actions: {
@@ -100,23 +74,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       localStorage.clear();
     },
 
-    sessionAuthenticationSucceeded: function() {
-      // close the modal
-      Ember.$('a.close-reveal-modal').trigger('click');
-
-      // set user and redirect
-      this.transitionTo('dashboard');
-
-      // notify of success
-      Ember.get(this, 'flashMessages').success(
-        'You have successfully logged in');
-    },
-
-    sessionAuthenticationFailed: function(error) {
-      Ember.Logger.debug('Session authentication failed!');
-
-      Ember.$('#login-error-message .message').text(error.error || error);
-      Ember.$('#login-error-message').show();
+    transitionToLoginRoute: function() {
+      //  this.transitionTo('login');
+      this.transitionTo('welcome');
     }
 
   }

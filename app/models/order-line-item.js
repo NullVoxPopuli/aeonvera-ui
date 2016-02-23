@@ -1,7 +1,11 @@
 import DS from 'ember-data';
+import Discount from '../models/discount';
 
 export default DS.Model.extend({
-  lineItem: DS.belongsTo('line-item', { polymorphic: true }),
+  lineItem: DS.belongsTo('line-item', {
+    async: true,
+    polymorphic: true
+  }),
   order: DS.belongsTo('order'),
   quantity: DS.attr('number'),
   price: DS.attr('number'),
@@ -19,32 +23,18 @@ export default DS.Model.extend({
   danceOrientation: DS.attr('string'),
   size: DS.attr('string'),
 
-  priceNeedsChanging: function(){
+  priceNeedsChanging: function() {
     let lineItem = this.get('lineItem');
     let size = this.get('size');
     let sizePrice = lineItem.priceForSize(size);
     this.set('price', sizePrice);
   }.observes('size'),
 
-  name: function(){
-    return this.get('lineItem').get('name');
-  }.property('lineItem'),
 
-  total: function(){
+  total: function() {
     let price = this.get('price'),
-        quantity = this.get('quantity');
+      quantity = this.get('quantity');
 
     return price * quantity;
-  }.property('price', 'quantity'),
-
-  isCompetition: function(){
-    return (this.get('lineItem').get('constructor.typeKey') === 'competition');
-  }.property('lineItem', 'lineItemType'),
-
-  isShirt: function(){
-    return (this.get('lineItem').get('constructor.typeKey') === 'shirt');
-  }.property('lineItem', 'lineItemType')
-
-
-
+  }.property('price', 'quantity')
 });

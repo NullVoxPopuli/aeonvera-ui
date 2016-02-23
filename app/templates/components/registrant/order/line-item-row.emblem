@@ -1,0 +1,5 @@
+td = model.lineItem.name
+td = to-usd model.price
+td = model.quantity
+td = to-usd model.total
+  

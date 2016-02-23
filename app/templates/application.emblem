@@ -6,6 +6,8 @@
   = login-modal
   = login-help-modal
   = sign-up-modal action='registerNewUser' model=user
+  = donate-to-aeonvera
+
 
   .inner-wrap
     a.exit-off-canvas

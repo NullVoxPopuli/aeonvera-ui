@@ -1,10 +1,12 @@
 {
   "predef": [
+    "server",
     "document",
     "window",
     "-Promise",
     "jQuery",
-    "moment"
+    "moment",
+    "d3"
   ],
   "browser": true,
   "boss": true,
@@ -30,5 +32,5 @@
   "white": false,
   "eqnull": true,
   "esnext": true,
-  "unused": true
+  "unused": false
 }

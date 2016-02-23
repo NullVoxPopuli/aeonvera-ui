@@ -1,8 +1,9 @@
 import DS from 'ember-data';
 import Host from '../models/host';
+import RegistrationOpens from '../mixins/models/registration-opens';
 
 
-export default Host.extend({
+export default Host.extend(RegistrationOpens, {
 	shortDescription: DS.attr('string'),
 	location: DS.attr('string'),
 
@@ -13,7 +14,7 @@ export default Host.extend({
 	electronicPaymentsEndAt: DS.attr('date'),
 	refundsEndAt: DS.attr('date'),
 	shirtSalesEndAt: DS.attr('date'),
-	showAtTheDorPricesAt: DS.attr('date'),
+	showAtTheDoorPricesAt: DS.attr('date'),
 
 	showOnPublicCalendar: DS.attr('boolean'),
 	acceptOnlyElectronicPayments: DS.attr('boolean'),
@@ -36,12 +37,27 @@ export default Host.extend({
 	url: DS.attr('string'),
 
 	integrations: DS.hasMany('integration'),
+	hasStripeIntegration: DS.attr('boolean'),
+	askIfLeadingOrFollowing: DS.attr('boolean'),
 
-	packages: DS.hasMany('package'),
-	levels: DS.hasMany('level'),
-	competitions: DS.hasMany('competitions'),
+	packages: DS.hasMany('package', {
+		async: true
+	}),
+	levels: DS.hasMany('level', {
+		async: true
+	}),
+	competitions: DS.hasMany('competitions', {
+		async: true
+	}),
+	openingTier: DS.belongsTo('openingTier', {
+		async: true
+	}),
 
-	stripePublishableKey: function(){
+	registrationOpensAt: function() {
+		return this.get('openingTier.date');
+	}.property('openingTier.date'),
+
+	stripePublishableKey: function() {
 		/*
 			TODO: find a way to make the 'stripe' key not a string somehow
 			so typing it over and over doesn't lead to silent errors
@@ -49,7 +65,7 @@ export default Host.extend({
 		var integrations = this.get('integrations').filterBy('name', "stripe");
 		var stripeIntegration = null;
 
-		if (integrations.length > 0){
+		if (integrations.length > 0) {
 			stripeIntegration = integrations[0];
 		}
 

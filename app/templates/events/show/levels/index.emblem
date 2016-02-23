@@ -1,0 +1,22 @@
+= page-header text='Levels / Tracks'
+
+link-to 'events.show.levels.new' classNames='button'
+  span New Level
+  
+table
+  thead: tr
+    th Name
+    th # Leads
+    th # Follows
+    th Total
+    th Requires
+  tbody
+    each model as |level|
+      tr
+        td 
+          link-to 'events.show.levels.show' level.id
+            = level.name
+        td = level.numberOfLeads
+        td = level.numberOfFollows
+        td = level.totalRegistrants
+        td = level.requirementName

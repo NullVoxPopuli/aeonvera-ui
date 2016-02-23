@@ -1,0 +1,44 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='name'
+      label
+        span Event Name
+        = input value=model.name placeholder='EventName Year' type='text' required=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shortDescription'
+      label
+        span Short Description
+        = input value=model.shortDescription placeholder='tagline or a brief summary' type='text' required=true
+
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='location'
+      label
+        span Location
+        = input value=model.location placeholder='e.g.: Indianapolis, IN' type='text' required=true
+    
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='domain'
+      label
+        span Domain
+        .row.collapse
+          .columns.small-8
+            = input value=model.domain placeholder='acme' type='text' required=true
+          .columns.small-4
+            span.postfix .{{t 'domain' }}
+
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
+      label
+        span Starts At
+        = date-time-input model=model field='startsAt'
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='endsAt'
+      label
+        span Ends At
+        = date-time-input model=model field='endsAt'
+      
+  br
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.openingTier.increaseAfterDate'
+      label
+        span Registration Opens At
+        = date-time-input model=model.openingTier field='increaseAfterDate'

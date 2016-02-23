@@ -1,0 +1,22 @@
+= page-header text='Lessons'
+
+table
+  thead: tr
+    th Name
+    th Schedule
+    th Registration Opens At
+    th Registration Closes At
+    
+  tbody
+    each model as |lesson|
+      tr
+        td
+          link-to 'my-communities.manage.lessons.show' lesson.id
+            = lesson.name
+        td = lesson.schedule
+        td 
+          if lesson.registrationOpensAt
+            = date-with-format lesson.registrationOpensAt 'lll'
+        td 
+          if lesson.registrationClosesAt
+            = date-with-format lesson.registrationClosesAt 'lll'

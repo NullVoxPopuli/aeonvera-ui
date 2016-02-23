@@ -1,0 +1,28 @@
+= page-header text=model.name
+
+.button-bar
+  .button-group
+    li
+      link-to 'events.show.edit.index' classNames='button secondary small'
+        span Basic Information
+    li
+      link-to 'events.show.edit.housing' classNames='button secondary small'
+        span Housing
+    li
+      link-to 'events.show.edit.options' classNames='button secondary small'
+        span Options
+    li
+      link-to 'events.show.edit.customization' classNames='button secondary small'
+        span Customization
+    li
+      link-to 'events.show.edit.payment-processors' classNames='button secondary small'
+        span Payment Processors
+
+= outlet
+
+.row
+  .small-12.columns
+    .right
+      ul.button-group
+        li: button.secondary click='cancel' Cancel
+        li: button disabled=isDirty  title=submitTitle click='save' Save

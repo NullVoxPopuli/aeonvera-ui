@@ -1,0 +1,21 @@
+link-to 'my-communities.manage.lessons' classNames='button secondary' 
+  span Back
+  
+link-to 'my-communities.manage.lessons.show.edit' classNames='button'
+  span Edit
+
+= delete-undelete model=model  
+
+  
+h4 Registrations for this lesson
+table
+  thead: tr
+    th Name
+    th Registered At
+  tbody
+    each model.registrations as |registration|
+      tr
+        td
+          link-to 'events.show.registrations.show' registration.id
+            = registration.attendeeName
+        td = date-with-format registration.registeredAt 'LLL'

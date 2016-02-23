@@ -1,5 +1,5 @@
 .row.full-width
-  .large-3.medium-4.columns
+  .large-3.medium-4.columns.padding-left-0
     = sidebar-container
       = sidebar/event-at-the-door-sidebar model=event
 

@@ -1,0 +1,13 @@
+
+.center-margin.percent-width-80
+  .row
+    .small-4.columns
+      img.margin-top-15.right src="{{model.logo_url_thumb}}"
+    .small-8.columns
+      = page-header text=model.name
+      h5 = model.shortDescription
+      em 
+        = date-range startDate=model.startsAt endDate=model.endsAt
+        | &nbsp;in&nbsp;
+        = model.location
+= outlet

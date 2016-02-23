@@ -1,5 +1,8 @@
 = page-header text='Discounts'
 
+link-to 'events.show.discounts.new' classNames='button'
+  span New Discount
+  
 table
   thead: tr
     th Code
@@ -9,7 +12,12 @@ table
   tbody
     each model as |discount|
       tr
-        td = discount.code
+        td 
+          link-to 'events.show.discounts.show' discount.id
+            = discount.code
         td = discount.timesUsed
         td = discount.discount
-        td = discount.restrictedTo
+        td
+          each discount.allowedPackages as |pack|
+            span = pack.name
+            br

@@ -1,0 +1,22 @@
+= page-header text='Custom Fields'
+
+link-to 'events.show.custom-fields.new' classNames='button'
+  span New Custom Field
+
+
+table
+  thead: tr
+    th Label
+    th Kind
+    th Editable
+  tbody
+    if (is-present model)
+      each model as |field|
+        tr
+          td 
+            link-to 'events.show.custom-fields.show' field.id
+              = field.label
+          td = field.kind
+          td = field.editable
+    else
+      tr: td colspan='3' This event has no custom fields

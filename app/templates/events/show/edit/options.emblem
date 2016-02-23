@@ -1,0 +1,49 @@
+form submit='save'
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='mailPaymentsEndAt'
+      label
+        span Mail Payments End At
+        = bs-datetimepicker date=model.mailPaymentsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.mailPaymentsEndAt)) forceDateOutput=true
+
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='electronicPaymentsEndAt'
+      label
+        span Electronic Payments End At
+        = bs-datetimepicker date=model.electronicPaymentsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.electronicPaymentsEndAt)) forceDateOutput=true
+
+    = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='refundsEndAt'
+      label
+        span Refunds End At
+        = bs-datetimepicker date=model.refundsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.refundsEndAt)) forceDateOutput=true
+
+  br
+  .row
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shirtSalesEndAt'
+      label
+        span Shirt Sales End At
+        = bs-datetimepicker date=model.shirtSalesEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.shirtSalesEndAt)) forceDateOutput=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='showAtTheDoorPricesAt'
+      label
+        span Show At The Door Prices At
+        = bs-datetimepicker date=model.showAtTheDoorPricesAt format='YYYY-MM-DD LT' updateDate=(action (mut model.showAtTheDoorPricesAt)) forceDateOutput=true
+  
+  br
+  .row
+    .small-12.medium-6.columns
+      = input checked=model.allowDiscounts type='checkbox'
+      label Allow Discounts
+      br
+      = input checked=model.allowCombinedDiscounts type='checkbox'
+      label Allow Combined Discounts
+      br
+      = input checked=model.showOnPublicCalendar type='checkbox'
+      label Show on the Public Calendar
+    .small-12.medium-6.columns
+      = input checked=model.hasVolunteers type='checkbox'
+      label Allow Volunteer Sign Up
+      br
+      = input checked=model.makeAttendeesPayFees type='checkbox'
+      label Make Registrants Pay Fees
+      br
+      = input checked=model.acceptOnlyElectronicPayments type='checkbox'
+      label Accept Only Electronic Payments

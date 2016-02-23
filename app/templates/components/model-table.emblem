@@ -1,0 +1,11 @@
+table
+  thead
+    tr
+      each columnData as |column|
+        th = column.label
+
+  tbody
+    each filteredData as |row|
+      tr
+        each columnData as |column|
+          td = get-property row column.property

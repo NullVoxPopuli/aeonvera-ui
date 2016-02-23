@@ -1,0 +1,4 @@
+if model.isDeleted
+  a.button.success click='undestroy' Un-Delete
+else
+  a.button.alert click='destroy' Delete

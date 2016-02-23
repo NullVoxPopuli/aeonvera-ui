@@ -1,0 +1,27 @@
+
+.row
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='startDate'
+    label
+      span Starts Date
+      = date-time-input model=model field='startDate'
+
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='membershipOption'
+    label
+      span Membership Option
+      select onchange='selectOption' value=model.membershipOption
+        each membershipOptions as |option index|
+          option value=index
+            = option.name
+
+  = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='member'
+    label
+      span Name
+      = select-2 content=memberList value=model.member placeholder='Choose Person' allowClear=true optionLabelPath="name"
+      / each memberList as |member|
+      /   = member.name
+.row
+  .small-12.columns
+    .right
+      ul.button-group
+        li: button.secondary click='cancel' Cancel
+        li: button disabled=isDirty title=submitTitle click='save' Add Member

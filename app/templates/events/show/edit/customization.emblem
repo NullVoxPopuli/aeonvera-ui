@@ -1,0 +1,8 @@
+form submit='save'
+  label
+    span Logo
+    = file-upload url='/events/{{model.id}}/' paramNamespace='event' paramName='logo'
+
+  label
+    span Registration Email Disclaimer
+    = textarea value=model.registrationEmailDisclaimer rows="4" placeholder='This will appear underneath the registration confirmation email sent out to your registratints. By default, nothing other than what they register for shows up in the email.'

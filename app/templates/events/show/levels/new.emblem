@@ -1,0 +1,2 @@
+= page-header text='New Level'
+= event/level/edit-form model=model

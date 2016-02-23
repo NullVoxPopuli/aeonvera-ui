@@ -16,10 +16,16 @@
   </head>
   <body>
     {{content-for 'body'}}
+    {{content-for 'body-footer'}}
 
     <script src="assets/vendor.js"></script>
     <script src="assets/aeonvera.js"></script>
-
-    {{content-for 'body-footer'}}
+    <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'NullVoxPopuli/aeonvera',
+        activationElement: false
+      };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
   </body>
 </html>

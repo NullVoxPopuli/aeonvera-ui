@@ -1,0 +1,12 @@
+.payment-status-badge{
+  font-size: 1.5em;
+  line-height: 2em;
+  margin-top: 0.4rem;
+
+  &.paid{
+    color: $success-color;
+  }
+  &.unpaid{
+    color: $alert-color;
+  }
+}

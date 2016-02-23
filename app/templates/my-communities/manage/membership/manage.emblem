@@ -1,0 +1,28 @@
+link-to 'my-communities.manage.membership.add' classNames='button small'
+  span Add Member
+
+h3 Options
+table
+  thead: tr
+    th Name
+    th Price
+    th Duration
+  tbody
+    each model.membershipOptions as |option|
+      tr
+        td = option.name
+        td = to-usd option.price
+        td = option.durationInWords
+
+h3 Discounts
+table
+  thead: tr
+    th Name
+    th Discount
+    th Applies To
+  tbody
+    each model.membershipDiscounts as |discount|
+      tr
+        td = discount.name
+        td = discount.discount
+        td = discount.restrictedTo

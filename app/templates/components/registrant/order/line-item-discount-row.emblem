@@ -1,0 +1,14 @@
+
+td = model.lineItem.name
+td 
+  if isDollarsOff
+    | - {{to-usd model.lineItem.amount}}
+  else
+    | - {{model.lineItem.amount}}%
+td 
+  / = model.quantity
+td
+  if isDollarsOff
+    | - {{to-usd model.lineItem.amount}}
+  else
+    | - {{model.lineItem.amount}}%

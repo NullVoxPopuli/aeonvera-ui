@@ -1,0 +1,22 @@
+= page-header text='Dances'
+
+table
+  thead: tr
+    th Name
+    th Schedule
+    th Registration Opens At
+    th Registration Closes At
+    
+  tbody
+    each model as |dance|
+      tr
+        td
+          link-to 'my-communities.manage.dances.show' dance.id
+            = dance.name
+        td = dance.schedule
+        td 
+          if dance.registrationOpensAt
+            = date-with-format dance.registrationOpensAt 'lll'
+        td 
+          if dance.registrationClosesAt
+            = date-with-format dance.registrationClosesAt 'lll'

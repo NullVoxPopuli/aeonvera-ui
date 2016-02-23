@@ -1,0 +1,33 @@
+= page-header text='Pricing Tiers'
+
+table
+  thead: tr
+    th
+      | Increase By
+      = tool-tip message="After the 'increase after' condition is met, the price of selected items will go up by this amount."
+    th
+      | Increase After
+      = tool-tip message="Once this condition is met, the tier which defines that condition will be applied."
+    th # Leads
+    th # Follows
+    th Total
+  tbody
+    each sortedTiers as |tier|
+      tr
+        td
+          if tier.isOpeningTier
+            | Opening Tier
+          else
+            = to-usd tier.increaseBy
+        td
+          link-to 'events.show.pricing-tiers.show' tier.id
+            = tier-name tier
+        td = tier.numberOfLeads
+        td = tier.numberOfFollows
+        td = tier.totalRegistrants
+  tfoot: tr
+    th
+    th
+    th = totalLeads
+    th = totalFollows
+    th = totalRegistrations

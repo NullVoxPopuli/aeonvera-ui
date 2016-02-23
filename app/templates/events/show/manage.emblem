@@ -1,13 +1,18 @@
 = page-header text='Event Management'
 
-a.button href='/hosted_events/{{model.id}}/edit' Event Settings
+link-to 'events.show.edit' classNames='button'
+  span Event Settings
+
 
 h3 Configure
 hr
 
 ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
   li
-    h4: a href='/hosted_events/{{model.id}}/levels' Levels
+    h4
+      link-to 'events.show.levels'
+        span Levels
+      / a href='/hosted_events/{{model.id}}/levels' Levels
     p Also known as 'tracks'. Here, you can configure if different levels require auditions, as well as other requirements.
   li
     /h4: a href='/hosted_events/{{model.id}}/discounts' Discounts
@@ -16,20 +21,38 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
         span Discounts
     p Did someone win a pass to your event? Is there a sweet deal for students? Create a discount here.
   li
-    h4: a href='/hosted_events/{{model.id}}/packages' Packages
+    h4
+      link-to 'events.show.packages'
+        span Packages
+      /: a href='/hosted_events/{{model.id}}/packages' Packages
     p Most often 'Full Weekend', and 'Dance Only'. This is the core item that people will be paying for.
   li
-    h4: a href='/hosted_events/{{model.id}}/pricing_tiers' Pricing Tiers
+    h4
+      link-to 'events.show.pricing-tiers'
+        span Pricing Tiers
+      /a href='/hosted_events/{{model.id}}/pricing_tiers' Pricing Tiers
     p These affect the price of packages either over time and/or based on number of registrations.
   li
-    h4: a href='/hosted_events/{{model.id}}/line_items' A la Carte Items
+    h4
+      link-to 'events.show.a-la-carte-items'
+        span À la Carte Items
+      /a href='/hosted_events/{{model.id}}/line_items' A la Carte Items
     p Smaller things for sale, such as water bottles, or shoe bags. These will also be available at the door.
   li
-    h4: a href='/hosted_events/{{model.id}}/shirts' Shirts
+    h4
+      link-to 'events.show.shirts'
+        span Shirts
+      /a href='/hosted_events/{{model.id}}/shirts' Shirts
     p Configure your event's shirt options and available sizes here.
   li
-    h4: a href='/hosted_events/{{model.id}}/raffles' Raffles
+    h4
+      link-to 'events.show.raffles'
+        span Raffles
+    /: a href='/hosted_events/{{model.id}}/raffles' Raffles
     p Want to give away a prize to try to make some additional money? Includes ability to choose winner.
   li
-    h4: a href='/hosted_events/{{model.id}}/custom_fields' Custom Registration Fields
+    h4
+      link-to 'events.show.custom-fields'
+        span Custom Fields
+      /a href='/hosted_events/{{model.id}}/custom_fields' Custom Registration Fields
     p Need to collect additional info? Want to display a disclaimer at the bottom of registration? This is it.
