@@ -4,7 +4,7 @@ var alreadyRun = false;
 
 export default {
   name: 'model-extensions',
-  initialize: function() {
+  initialize: function () {
     if (alreadyRun) {
       return;
     } else {
@@ -19,9 +19,9 @@ export default {
       // },
 
       // TODO: how to call this?
-      isA: function(name) {
+      isA: function (name) {
         return this.get('constructor.modelName') === name;
-      }.property()
+      }.property(),
     });
-  }
+  },
 };

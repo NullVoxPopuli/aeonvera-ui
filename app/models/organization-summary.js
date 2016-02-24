@@ -6,22 +6,20 @@ export default DS.Model.extend({
 
   logoUrlThumb: DS.attr('string'),
 
-
   revenuePastMonth: DS.attr('number'),
   unpaidPastMonth: DS.attr('number'),
   newMembershipsPastMonth: DS.attr('number'),
   netReceivedPastMonth: DS.attr('number'),
 
-
   attendances: DS.hasMany('attendance', {
-    async: false
+    async: false,
   }),
 
   organization: DS.belongsTo('organization', {
-    async: true
+    async: true,
   }),
 
-  recentRegistrations: function() {
+  recentRegistrations: function () {
     return this.get('attendances');
-  }.property('attendances')
+  }.property('attendances'),
 });

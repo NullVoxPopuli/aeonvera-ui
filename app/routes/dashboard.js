@@ -4,7 +4,7 @@ import AuthenticatedUi from '../mixins/authenticated-ui';
 export default Ember.Route.extend(AuthenticatedUi, {
   i18n: Ember.inject.service(),
 
-  activate: function(){
+  activate: function () {
     this.set('title', this.get('i18n').t('dashboard'));
 
     var dashboard = this.controllerFor('dashboard');
@@ -14,17 +14,17 @@ export default Ember.Route.extend(AuthenticatedUi, {
   },
 
   actions: {
-    setSidebar: function(name){
+    setSidebar: function (name) {
       var dashboard = this.controllerFor('dashboard');
 
       dashboard.set('sidebar', name);
     },
 
-    setData: function(data){
+    setData: function (data) {
       var dashboard = this.controllerFor('dashboard');
 
       dashboard.set('data', data);
-    }
-  }
+    },
+  },
 
 });

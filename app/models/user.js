@@ -10,8 +10,8 @@ export default DS.Model.extend({
   unconfirmedEmail: DS.attr('string'),
   timeZone: DS.attr('string'),
 
-  name: function(){
+  name: function () {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  }.property('firstName', 'lastName'),
 
 });

@@ -9,27 +9,26 @@ export default LineItem.extend({
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),
 
-  competitionResponses: DS.hasMany('competitionResponse', { async: false, params: 'id'}),
+  competitionResponses: DS.hasMany('competitionResponse', { async: false, params: 'id' }),
 
   /**
     TODO: find out if there is a better way to represent this...
   */
-  kindName: function(){
+  kindName: function () {
     var kind = this.get('kind');
 
-    if (kind === 0){
-      return "Solo Jazz";
-    } else if (kind === 1){
-      return "Jack & Jill";
-    } else if (kind === 2){
-      return "Strictly";
-    } else if (kind === 3){
-      return "Team";
-    } else if (kind === 4){
-      return "Crossover Jack & Jill";
+    if (kind === 0) {
+      return 'Solo Jazz';
+    } else if (kind === 1) {
+      return 'Jack & Jill';
+    } else if (kind === 2) {
+      return 'Strictly';
+    } else if (kind === 3) {
+      return 'Team';
+    } else if (kind === 4) {
+      return 'Crossover Jack & Jill';
     }
   }.property('kind'),
-
 
   // requiresPartner: function(){
   //   return this.get('kind') === 2;

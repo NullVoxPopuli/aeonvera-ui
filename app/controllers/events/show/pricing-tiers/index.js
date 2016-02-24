@@ -9,9 +9,8 @@ export default Ember.Controller.extend({
   totalRegistrations: Ember.computed.sum('totalsArray'),
 
   sortProperties: ['isOpeningTier:desc', 'registrantsAlias:asc',
-    'increaseAfterDate:asc'
+    'increaseAfterDate:asc',
   ],
-  sortedTiers: Ember.computed.sort('model', 'sortProperties')
-
+  sortedTiers: Ember.computed.sort('model', 'sortProperties'),
 
 });

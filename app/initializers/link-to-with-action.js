@@ -4,7 +4,7 @@ var alreadyRun = false;
 
 export default {
   name: 'link-to-with-action',
-  initialize: function() {
+  initialize: function () {
     if (alreadyRun) {
       return;
     } else {
@@ -15,7 +15,7 @@ export default {
 
     Ember.LinkComponent.reopen({
       action: null,
-      _invoke: function(event) {
+      _invoke: function (event) {
         var action = this.get('action');
         if (action) {
           // There was an action specified (in handlebars) so take custom action
@@ -31,7 +31,7 @@ export default {
 
         // handle the link-to normally
         return this._super(event);
-      }
+      },
     });
-  }
+  },
 };

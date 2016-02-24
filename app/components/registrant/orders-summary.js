@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  initFoundation: function() {
+  initFoundation: function () {
     Ember.$(document).foundation('reflow');
   }.on('didInsertElement'),
 
-  lastItem: Ember.computed.alias('model.lastItem')
+  lastItem: Ember.computed.alias('model.lastItem'),
 
 });

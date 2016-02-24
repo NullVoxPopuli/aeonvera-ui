@@ -6,11 +6,10 @@ export default Ember.Component.extend({
   tagName: 'aside',
   classNames: ['right-off-canvas-menu'],
 
-
   actions: {
-    invalidateSession: function() {
+    invalidateSession: function () {
       this.get('session').invalidate();
       localStorage.clear();
-    }
-  }
+    },
+  },
 });

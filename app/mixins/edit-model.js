@@ -1,15 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  modelNameId: function() {
+  modelNameId: function () {
     return this.get('modelName') + '_id';
   }.property('modelName'),
 
-  isDirty: function() {
+  isDirty: function () {
     return !this.get('model.hasDirtyAttributes');
   }.property('model.hasDirtyAttributes'),
 
-  submitTitle: function() {
+  submitTitle: function () {
     if (this.get('isDirty')) {
       return 'Cannot save when there have been no changes';
     } else {
@@ -17,7 +17,7 @@ export default Ember.Mixin.create({
     }
   }.property('isDirty'),
 
-  parentModelId: function() {
+  parentModelId: function () {
 
     let passedParent = this.get('parent');
     if (!Ember.isPresent(passedParent)) {
@@ -46,7 +46,7 @@ export default Ember.Mixin.create({
   }.property('model'),
 
   actions: {
-    save: function() {
+    save: function () {
       let model = this.get('model');
 
       model.save().then((record) => {
@@ -56,6 +56,7 @@ export default Ember.Mixin.create({
         let path = this.get('saveSuccessPath');
         this.get('router').transitionTo(path, recordId);
       }, failure => {
+
         this.get('flashMessages').alert(
           'Saving failed. ' + failure
         );
@@ -63,11 +64,11 @@ export default Ember.Mixin.create({
 
     },
 
-    cancel: function() {
+    cancel: function () {
       let path = this.get('cancelPath');
 
       this.get('model').rollbackAttributes();
       this.get('router').transitionTo(path);
     },
-  }
+  },
 });

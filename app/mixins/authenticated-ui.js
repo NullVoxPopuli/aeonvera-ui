@@ -1,10 +1,11 @@
 import Ember from 'ember';
+
 //import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 // AuthenticatedRouteMixin,
 export default Ember.Mixin.create({
   session: Ember.inject.service('session'),
 
-  activate: function() {
+  activate: function () {
     var application = this.controllerFor('application');
     application.set('mobileMenuLeft', 'nav/dashboard/left-items');
     application.set('mobileMenuRight', 'nav/dashboard/right-items');
@@ -15,7 +16,7 @@ export default Ember.Mixin.create({
   /**
   	Redirect to the welcome route if not logged in.
   */
-  beforeModel: function(transition) {
+  beforeModel: function (transition) {
     if (!this.get('session.isAuthenticated')) {
       transition.abort();
 
@@ -29,5 +30,5 @@ export default Ember.Mixin.create({
     }
 
     this._super();
-  }
+  },
 });

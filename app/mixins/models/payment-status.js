@@ -5,36 +5,36 @@ export default Ember.Mixin.create({
   amountOwed: DS.attr('number'),
   amountPaid: DS.attr('number'),
 
-  owesMoney: function() {
+  owesMoney: function () {
     return this.get('amountOwed') > 0;
   }.property('amountOwed'),
 
-  hasPaid: function() {
+  hasPaid: function () {
     let amountPaid = this.get('amountPaid');
 
     return (amountPaid !== 0 && Ember.isPresent(amountPaid));
   }.property('amountPaid'),
 
-  paymentStatus: function() {
+  paymentStatus: function () {
     var owed = this.get('amountOwed');
     var paid = this.get('amountPaid');
     var doesOwe = owed > 0;
     var hasPaid = paid > 0;
-    var status = "";
+    var status = '';
 
     if (doesOwe) {
-      status += "Owe: $" + owed;
+      status += 'Owe: $' + owed;
     }
 
     if (doesOwe && hasPaid) {
-      status += ", ";
+      status += ', ';
     }
 
     if (hasPaid) {
-      status += "Paid: $" + paid;
+      status += 'Paid: $' + paid;
     }
 
     return status;
 
-  }.property('amountOwed', 'amountPaid')
+  }.property('amountOwed', 'amountPaid'),
 });

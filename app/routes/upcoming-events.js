@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   i18n: Ember.inject.service(),
 
-  activate: function() {
+  activate: function () {
     this.set('title', this.get('i18n').t('upcomingevents'));
 
     var application = this.controllerFor('application');
@@ -13,7 +13,7 @@ export default Ember.Route.extend({
     this._super();
   },
 
-  model: function(){
+  model: function () {
     return this.store.findAll('upcoming-event');
-  }
+  },
 });

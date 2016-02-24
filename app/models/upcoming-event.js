@@ -8,9 +8,9 @@ export default DS.Model.extend({
   location: DS.attr('string'),
   url: DS.attr('string'),
 
-  isRegistrationOpen: function() {
+  isRegistrationOpen: function () {
     var opensAt = this.get('registrationOpensAt').getTime();
     var currently = Date.now();
     return (currently > opensAt);
-  }.property('registrationOpensAt')
+  }.property('registrationOpensAt'),
 });

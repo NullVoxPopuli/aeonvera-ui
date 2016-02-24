@@ -12,5 +12,4 @@ export default DS.Model.extend({
   danceOrientation: DS.attr('string'),
   partnerName: DS.attr('string'),
 
-
 });

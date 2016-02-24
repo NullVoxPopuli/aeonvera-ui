@@ -7,7 +7,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   subdomain: Ember.inject.service('subdomain'),
 
   // intl: Ember.inject.service(),
-  beforeModel: function(transition) {
+  beforeModel: function (transition) {
     //   // define the app's runtime locale
     //   // For example, here you would maybe do an API lookup to resolver
     //   // which locale the user should be targeted and perhaps lazily
@@ -20,14 +20,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('subdomain.route').then(success => {
         this.transitionTo(success);
       }, failure => {
+
         this._super(transition);
       });
     }
   },
 
-
   // http://stackoverflow.com/questions/12150624/ember-js-multiple-named-outlet-usage
-  renderTemplate: function() {
+  renderTemplate: function () {
 
     // Render default outlet
     this.render();
@@ -35,12 +35,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // render footer
     this.render('shared/footer', {
       outlet: 'bottom-footer',
-      into: 'application'
+      into: 'application',
     });
 
   },
 
-  sessionAuthenticated: function() {
+  sessionAuthenticated: function () {
     this._super();
 
     // close the modal
@@ -53,31 +53,31 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   actions: {
 
-    linkToRoute: function(item) {
+    linkToRoute: function (item) {
       this.transitionTo(item.route);
     },
 
-    exitOffCanvas: function() {
+    exitOffCanvas: function () {
       this.$('a.exit-off-canvas').click();
     },
 
-    redirectToLogin: function() {
+    redirectToLogin: function () {
       this.transitionTo('login');
     },
 
-    redirectToSignup: function() {
+    redirectToSignup: function () {
       this.transitionTo('signup');
     },
 
-    invalidateSession: function() {
+    invalidateSession: function () {
       this.get('session').invalidate();
       localStorage.clear();
     },
 
-    transitionToLoginRoute: function() {
+    transitionToLoginRoute: function () {
       //  this.transitionTo('login');
       this.transitionTo('welcome');
-    }
+    },
 
-  }
+  },
 });

@@ -1,50 +1,50 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    atTheDoorController: Ember.inject.controller('event-at-the-door'),
-    event: Ember.computed.reads('atTheDoorController.model'),
+  atTheDoorController: Ember.inject.controller('event-at-the-door'),
+  event: Ember.computed.reads('atTheDoorController.model'),
 
-    itemsInOrder: [],
+  itemsInOrder: [],
 
-    currentOrder: null,
+  currentOrder: null,
 
-    sidebarContainerClasses: 'large-3 medium-4 columns',
-    itemContainerClasses: 'large-9 medium-8 columns',
+  sidebarContainerClasses: 'large-3 medium-4 columns',
+  itemContainerClasses: 'large-9 medium-8 columns',
 
-    defaultSidebarContainerClasses: 'large-3 medium-4 columns',
-    defaultItemContainerClasses: 'large-9 medium-8 columns',
+  defaultSidebarContainerClasses: 'large-3 medium-4 columns',
+  defaultItemContainerClasses: 'large-9 medium-8 columns',
 
-    buildingSidebarContainerClasses: 'large-3 medium-4 columns',
-    buildingItemContainerClasses: 'large-6 medium-8 columns',
-    orderContainerClasses: 'large-3 medium-3 columns',
+  buildingSidebarContainerClasses: 'large-3 medium-4 columns',
+  buildingItemContainerClasses: 'large-6 medium-8 columns',
+  orderContainerClasses: 'large-3 medium-3 columns',
 
-    buildingAnOrder: function(){
+  buildingAnOrder: function () {
       let currentOrder = this.get('currentOrder');
-      if (Ember.isPresent(currentOrder)){
+      if (Ember.isPresent(currentOrder)) {
         return true;
       }
 
       return false;
     }.property('currentOrder'),
 
-    currentItems: function(){
+  currentItems: function () {
       return this.get('currentOrder.lineItems');
     }.property('currentOrder.lineItems.[]'),
 
-    actions: {
-      beginBuildingAnOrder: function(){
+  actions: {
+      beginBuildingAnOrder: function () {
         this.set('sidebarContainerClasses', this.get('buildingSidebarContainerClasses'));
         this.set('itemContainerClasses', this.get('buildingItemContainerClasses'));
       },
 
-      addToOrder: function(item){
-        if (!this.get('buildingAnOrder')){
+      addToOrder: function (item) {
+        if (!this.get('buildingAnOrder')) {
 
           this.send('beginBuildingAnOrder');
 
           let currentEvent = this.get('event');
           let order = this.store.createRecord('order', {
-            host: currentEvent
+            host: currentEvent,
           });
 
           this.set('currentOrder', order);
@@ -53,29 +53,30 @@ export default Ember.Controller.extend({
         this.get('currentOrder').addLineItem(item);
       },
 
-      removeItem: function(item){
+      removeItem: function (item) {
         let order = this.get('currentOrder');
         order.removeOrderLineItem(item);
 
-        if (!order.get('hasLineItems')){
+        if (!order.get('hasLineItems')) {
           this.send('cancelOrder');
         }
       },
 
-      cancelOrder: function(){
+      cancelOrder: function () {
         this.set('sidebarContainerClasses', this.get('defaultSidebarContainerClasses'));
         this.set('itemContainerClasses', this.get('defaultItemContainerClasses'));
 
-        this.get('currentOrder.lineItems').toArray().forEach(function(item){
+        this.get('currentOrder.lineItems').toArray().forEach(function (item) {
           item.destroyRecord();
           item.save();
         });
+
         this.get('currentOrder').destroyRecord();
         this.get('currentOrder').save();
         this.set('currentOrder', null);
       },
 
-      finishedOrder: function(){
+      finishedOrder: function () {
         Ember.$('.close-reveal-modal').click();
 
         this.set('sidebarContainerClasses', this.get('defaultSidebarContainerClasses'));
@@ -86,46 +87,48 @@ export default Ember.Controller.extend({
         );
       },
 
-      processStripeToken: function(args){
+      processStripeToken: function (args) {
         let order = this.get('currentOrder');
         let self = this;
         /*
           send the token to the server to actually create the charge
          */
-         order.setProperties({
-           paymentMethod: "Stripe",
+        order.setProperties({
+           paymentMethod: 'Stripe',
            checkoutToken: args.id,
-           checkoutEmail: args.email
+           checkoutEmail: args.email,
          });
 
-         /* save the line order first */
-         if (order.get('isNew')){
-           order.save().then(function(o){
+        /* save the line order first */
+        if (order.get('isNew')) {
+          order.save().then(function (o) {
              o.get('lineItems').invoke('save');
-             o.save().then(function(){
+             o.save().then(function () {
                self.send('finishedOrder');
-             }, function(errors){
+             }, function (errors) {
+
                alert(errors);
              });
            });
-         } else {
-           order.setProperties({
+        } else {
+          order.setProperties({
              checkoutToken: args.id,
-             checkoutEmail: args.email
+             checkoutEmail: args.email,
            });
 
-           order.save().then(function(){
+          order.save().then(function () {
              /* what happens if the card is declined? */
              self.send('finishedOrder');
-           }, function(order){
+           }, function (order) {
+
              alert(order);
            });
 
-         }
+        }
 
       },
 
-      process: function(args){
+      process: function (args) {
         let paymentMethod = args.paymentMethod;
         let checkNumber = args.checkNumber;
         let stripeData = args.stripeData;
@@ -134,19 +137,22 @@ export default Ember.Controller.extend({
 
         order.markPaid(paymentMethod, checkNumber, stripeData);
         /* save the line order first */
-        order.save().then(function(o){
+        order.save().then(function (o) {
           /* then line items */
           o.get('lineItems').invoke('save');
-          o.save().then(function(){
+          o.save().then(function () {
 
-          }, function(error){
+          }, function (error) {
+
             alert(error);
           });
+
           self.send('finishedOrder');
-        }, function(error){
+        }, function (error) {
+
           alert(error);
         });
 
-      }
-    }
+      },
+    },
 });

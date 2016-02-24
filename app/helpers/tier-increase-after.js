@@ -1,6 +1,6 @@
-import Ember from "ember";
+import Ember from 'ember';
 
-export default Ember.Helper.helper(function(params){
+export default Ember.Helper.helper(function (params) {
   let date = params[0];
   let regs = params[1];
 
@@ -9,15 +9,15 @@ export default Ember.Helper.helper(function(params){
 
   let result = '';
 
-  if (hasDate){
-      result = date;
+  if (hasDate) {
+    result = date;
   }
 
-  if (hasDate && hasRegLimit){
+  if (hasDate && hasRegLimit) {
     result += ' or ';
   }
 
-  if (hasRegLimit){
+  if (hasRegLimit) {
     result += `${regs} Registrations`;
   }
 

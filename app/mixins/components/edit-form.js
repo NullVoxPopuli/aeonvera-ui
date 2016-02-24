@@ -2,7 +2,7 @@ import Ember from 'ember';
 import EditModel from 'aeonvera/mixins/edit-model';
 
 export default Ember.Mixin.create(EditModel, {
-  parentModelId: function() {
+  parentModelId: function () {
 
     let passedParent = this.get('parent');
     if (!Ember.isPresent(passedParent)) {
@@ -31,7 +31,7 @@ export default Ember.Mixin.create(EditModel, {
   }.property('model'),
 
   actions: {
-    save: function() {
+    save: function () {
       let model = this.get('model');
 
       model.save().then((record) => {
@@ -43,11 +43,12 @@ export default Ember.Mixin.create(EditModel, {
         let recordId = record.get('id');
         this.get('router').transitionTo(path, parentId, recordId);
       }, failure => {
+
         this.get('flashMessages').alert(
           'Saving failed. ' + failure
         );
       });
 
-    }
-  }
+    },
+  },
 });

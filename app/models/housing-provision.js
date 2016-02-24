@@ -12,8 +12,7 @@ export default DS.Model.extend({
   smokes: DS.attr('boolean'),
   notes: DS.attr('string'),
 
-  host: DS.belongsTo('host', { polymorphic: true} ),
-  attendance: DS.belongsTo('attendance', { polymorphic: true } )
-
+  host: DS.belongsTo('host', { polymorphic: true }),
+  attendance: DS.belongsTo('attendance', { polymorphic: true }),
 
 });

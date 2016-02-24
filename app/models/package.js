@@ -14,12 +14,12 @@ export default DS.Model.extend({
 
   event: DS.belongsTo('event'),
 
-  totalRegistrants: function() {
+  totalRegistrants: function () {
     return this.get('numberOfLeads') + this.get('numberOfFollows');
   }.property('numberOfLeads', 'numberOfFollows'),
 
-  hasExpiration: function() {
+  hasExpiration: function () {
     let expiresAt = this.get('expiresAt');
     return Ember.isPresent(expiresAt);
-  }.property('expiresAt')
+  }.property('expiresAt'),
 });

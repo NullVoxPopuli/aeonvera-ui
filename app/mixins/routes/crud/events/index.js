@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
   parentPathRoot: 'events.show',
   include: '',
 
-  model: function() {
+  model: function () {
     let modelName = this.get('modelName');
     let parentPathRoot = this.get('parentPathRoot');
     let parent = this.modelFor(parentPathRoot);
@@ -20,5 +20,5 @@ export default Ember.Mixin.create({
     }
 
     return this.store.query(modelName, query);
-  }
+  },
 });

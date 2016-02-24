@@ -12,9 +12,9 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   //   }
 
   actions: {
-    authenticate: function() {
+    authenticate: function () {
       var data = this.getProperties('identification', 'password');
       return this.get('session').authenticate('authenticator:devise', data);
-    }
-  }
+    },
+  },
 });

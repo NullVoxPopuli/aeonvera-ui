@@ -14,25 +14,24 @@ export default Ember.Component.extend({
     'titleId:aria-labledby',
     'hidden:aria-hidden',
     'role',
-    'elementId:id'
+    'elementId:id',
   ],
 
-  initFoundation: function() {
-		this.$(document).foundation('reflow');
-	}.on('didInsertElement'),
+  initFoundation: function () {
+    this.$(document).foundation('reflow');
+  }.on('didInsertElement'),
 
-  modalName: function(){
+  modalName: function () {
     let dashedName = (this.get('name') || '').dasherize();
     let dashedTitle = this.get('title').dasherize();
     return Ember.isPresent(dashedName) ? dashedName : dashedTitle;
   }.property('title', 'name'),
 
-
-  elementId: function(){
+  elementId: function () {
     return this.get('modalName') + '-modal';
   }.property('modalName'),
 
-  titleId: function(){
+  titleId: function () {
     return this.get('elementId') + '-title';
   }.property('elementId'),
 

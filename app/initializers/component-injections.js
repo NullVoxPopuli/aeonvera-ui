@@ -9,5 +9,5 @@ export function initialize(application) {
 
 export default {
   name: 'component-router-injector',
-  initialize: initialize
+  initialize: initialize,
 };

@@ -2,15 +2,15 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default Ember.Mixin.create({
-  isDiscount: function() {
+  isDiscount: function () {
     return this.get('constructor.modelName') === 'discount';
   }.property(),
 
-  isShirt: function() {
+  isShirt: function () {
     return this.get('constructor.modelName') === 'shirt';
   }.property(),
 
-  isCompetition: function() {
+  isCompetition: function () {
     return this.get('constructor.modelName') === 'competition';
   }.property(),
 });

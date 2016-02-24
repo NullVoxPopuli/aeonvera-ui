@@ -4,22 +4,22 @@ export default Ember.Component.extend({
   tagName: 'tr',
 
   actions: {
-    pay: function(){
+    pay: function () {
 
     },
 
-    payViaCash: function(){
+    payViaCash: function () {
 
     },
 
-    payViaCheck: function(){
+    payViaCheck: function () {
 
     },
 
-    checkin: function(attendance){
+    checkin: function (attendance) {
       attendance.set('checkedInAt', new Date());
       attendance.save();
-    }
+    },
 
-  }
+  },
 });

@@ -5,5 +5,5 @@ export default Ember.Route.extend(Index, {
   modelName: 'membership-renewal',
   parentIdKey: 'organization_id',
   parentPathRoot: 'my-communities.manage',
-  include: 'member,membership_option'
+  include: 'member,membership_option',
 });

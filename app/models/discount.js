@@ -3,7 +3,6 @@ import DS from 'ember-data';
 import IsLineItem from '../mixins/models/is-line-item';
 import DeletedAt from '../mixins/models/deleted-at';
 
-
 export default DS.Model.extend(IsLineItem, DeletedAt, {
 
   DOLLARS_OFF: 0,
@@ -21,22 +20,23 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
 
   host: DS.belongsTo('host', {
     polymorphic: true,
-    async: true
+    async: true,
   }),
   allowedPackages: DS.hasMany('package', {
-    async: true
+    async: true,
   }),
+
   // restraints: DS.hasMany('restraint')
 
-  name: function() {
+  name: function () {
     return this.get('code');
   }.property('code'),
 
-  price: function() {
+  price: function () {
     return this.get('discount');
   }.property('discount'),
 
-  discount: function() {
+  discount: function () {
     let kind = this.get('kind');
     let amount = this.get('amount');
 
@@ -47,12 +47,12 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
     return amount + '%';
   }.property('amount', 'kind'),
 
-  isDollarsOff: function() {
+  isDollarsOff: function () {
     let kind = this.get('kind');
     return kind === this.get('DOLLARS_OFF');
   }.property('kind'),
 
-  restrictedTo: function() {
+  restrictedTo: function () {
     let nameArray = [];
 
     // return this.get('packages', {
@@ -64,6 +64,6 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
     // });
     //
     // return nameArray.join(', ');
-  }.property('packages')
+  }.property('packages'),
 
 });

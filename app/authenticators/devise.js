@@ -1,14 +1,13 @@
 import Ember from 'ember';
 import Devise from 'ember-simple-auth/authenticators/devise';
-import ENV from "../config/environment";
-
+import ENV from '../config/environment';
 
 export default Devise.extend({
   tokenAttributeName: 'token',
   identificationAttributeName: 'email',
   serverTokenEndpoint: ENV['devise']['serverTokenEndpoint'],
 
-  invalidate: function() {
+  invalidate: function () {
     var self = this;
 
     /*
@@ -16,9 +15,9 @@ export default Devise.extend({
     */
     return Ember.$.ajax({
       url: ENV.host + '/users/sign_out',
-      type: 'DELETE'
-    }).then(function() {
+      type: 'DELETE',
+    }).then(function () {
       return self._super();
     });
-  }
+  },
 });

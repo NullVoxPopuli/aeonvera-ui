@@ -4,7 +4,7 @@ import Attendance from '../models/attendance';
 export default Attendance.extend({
   packageId: DS.attr('number'),
   level: DS.belongsTo('level', {
-    async: true
+    async: true,
   }),
-  competitionResponses: DS.hasMany('competitionResponse')
+  competitionResponses: DS.hasMany('competitionResponse'),
 });

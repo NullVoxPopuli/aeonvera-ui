@@ -1,17 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  activate: function(){
+  activate: function () {
     Ember.$('a.close-reveal-modal').trigger('click');
   },
 
-  model: function(){
+  model: function () {
     return this.get('store').createRecord('user');
   },
 
   actions: {
-    resetSuccess: function(){
+    resetSuccess: function () {
       this.transitionTo('password-reset.success');
-    }
-  }
+    },
+  },
 });

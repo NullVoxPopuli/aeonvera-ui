@@ -3,5 +3,5 @@ import ShowIndex from 'aeonvera/mixins/routes/crud/events/show/index';
 
 export default Ember.Route.extend(ShowIndex, {
   modelName: 'dance',
-  parentPathRoot: 'my-communities.manage'
+  parentPathRoot: 'my-communities.manage',
 });

@@ -5,22 +5,22 @@ export default Ember.Component.extend({
   beforeDate: null,
   pastDays: 35,
   firstOrLastNameContains: null,
+
   // 0 - all, 1 - paid, 2 - unpaid
   showPaid: 0,
 
   sortedOrders: Ember.computed.sort('orders', 'sortProps'),
   sortProps: ['paymentReceivedAt:desc'],
 
-  orders: function() {
+  orders: function () {
     let host = this.get('model');
     let pastDays = this.get('pastDays');
     let nameContains = this.get('firstOrLastNameContains');
     let showPaid = this.get('showPaid');
 
-
     let query = {
       host_id_eq: host.hostId,
-      host_type_eq: host.hostType
+      host_type_eq: host.hostType,
     };
 
     if (Ember.isPresent(pastDays)) {
@@ -31,6 +31,7 @@ export default Ember.Component.extend({
 
     if (Ember.isPresent(nameContains)) {
       query['user_first_name_or_user_last_name_cont'] = nameContains;
+
       // query['attendance_attendee_name_cont'] = nameContains;
     }
 
@@ -45,38 +46,37 @@ export default Ember.Component.extend({
 
     let promise = this.store.query('order', {
       q: query,
-      include: 'order_line_items.line_item'
+      include: 'order_line_items.line_item',
     });
 
     return promise;
   }.property('model', 'pastDays', 'showPaid'),
 
-
-  nameSort: function() {
+  nameSort: function () {
     return this._sortIndicator('userName');
   }.property('sortProps'),
 
-  paidSort: function() {
+  paidSort: function () {
     return this._sortIndicator('paid');
   }.property('sortProps'),
 
-  paidAmountSort: function() {
+  paidAmountSort: function () {
     return this._sortIndicator('paidAmount');
   }.property('sortProps'),
 
-  netSort: function() {
+  netSort: function () {
     return this._sortIndicator('netAmountReceived');
   }.property('sortProps'),
 
-  feeSort: function() {
+  feeSort: function () {
     return this._sortIndicator('totalFeeAmount');
   }.property('sortProps'),
 
-  receivedAtSort: function() {
+  receivedAtSort: function () {
     return this._sortIndicator('paymentReceivedAt');
   }.property('sortProps'),
 
-  _sortIndicator: function(field) {
+  _sortIndicator: function (field) {
     let currentSort = this.get('sortProps')[0];
     let sort = currentSort.split(':');
     let sortProperty = sort[0];
@@ -89,9 +89,8 @@ export default Ember.Component.extend({
     return '';
   },
 
-
   actions: {
-    toggleSort: function(property) {
+    toggleSort: function (property) {
       let currentSort = this.get('sortProps')[0];
       let sort = currentSort.split(':');
       let sortProperty = sort[0];
@@ -103,7 +102,7 @@ export default Ember.Component.extend({
       } else {
         this.set('sortProps', [property + ':asc']);
       }
-    }
-  }
+    },
+  },
 
 });

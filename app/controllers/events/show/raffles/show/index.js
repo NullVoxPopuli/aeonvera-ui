@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    chooseWinner: function() {
+    chooseWinner: function () {
       let model = this.get('model');
       model.set('chooseNewWinner', true);
       model.save().then((record) => {
@@ -10,11 +10,12 @@ export default Ember.Controller.extend({
           'A new winner has been randomly chosen.'
         );
       }, failure => {
+
         this.get('flashMessages').alert(
           'Choosing a new winner failed. ' + failure
         );
       });
-    }
+    },
 
-  }
+  },
 });

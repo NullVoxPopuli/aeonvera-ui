@@ -7,6 +7,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   increaseAfterDate: DS.attr('date'),
   increaseAfterTotalRegistrants: DS.attr('number'),
   isOpeningTier: DS.attr('boolean'),
+
   // restraints
   // allowed_packages
   // packages?
@@ -16,7 +17,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   // because a nil value is handled as < 0
   // and we don't want that
   // this is ONLY used for sorting
-  registrantsAlias: function() {
+  registrantsAlias: function () {
     let num = this.get('increaseAfterTotalRegistrants');
 
     if (!Ember.isPresent(num)) {
@@ -24,5 +25,5 @@ export default DS.Model.extend(LeadsAndFollows, {
     }
 
     return num;
-  }.property('increaseAfterTotalRegistrants')
+  }.property('increaseAfterTotalRegistrants'),
 });

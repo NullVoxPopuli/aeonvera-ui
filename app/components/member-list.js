@@ -9,19 +9,18 @@ export default Ember.Component.extend({
   sortedMemberships: Ember.computed.sort('memberships', 'sortProps'),
   sortProps: ['expiresAt:desc'],
 
-
-  memberships: function() {
+  memberships: function () {
     let model = this.get('model');
     let nameContains = this.get('nameContains');
     let showMembers = this.get('showMembers');
 
-    return model.filter(function(membership) {
+    return model.filter(function (membership) {
       var containsName = true;
       var matchesMemberFilter = true;
 
       if (Ember.isPresent(nameContains)) {
         containsName = membership.get('member.name').match(
-          new RegExp(nameContains, "i"));
+          new RegExp(nameContains, 'i'));
       }
 
       if (showMembers !== 0) {
@@ -36,23 +35,23 @@ export default Ember.Component.extend({
     });
   }.property('model', 'nameContains', 'showMembers'),
 
-  nameSort: function() {
+  nameSort: function () {
     return this._sortIndicator('member.name');
   }.property('sortProps'),
 
-  currentSort: function() {
+  currentSort: function () {
     return this._sortIndicator('current');
   }.property('sortProps'),
 
-  startDateSort: function() {
+  startDateSort: function () {
     return this._sortIndicator('startDate');
   }.property('sortProps'),
 
-  expiresAtSort: function() {
+  expiresAtSort: function () {
     return this._sortIndicator('expiresAt');
   }.property('sortProps'),
 
-  _sortIndicator: function(field) {
+  _sortIndicator: function (field) {
     let currentSort = this.get('sortProps')[0];
     let sort = currentSort.split(':');
     let sortProperty = sort[0];
@@ -65,9 +64,8 @@ export default Ember.Component.extend({
     return '';
   },
 
-
   actions: {
-    toggleSort: function(property) {
+    toggleSort: function (property) {
       let currentSort = this.get('sortProps')[0];
       let sort = currentSort.split(':');
       let sortProperty = sort[0];
@@ -79,7 +77,7 @@ export default Ember.Component.extend({
       } else {
         this.set('sortProps', [property + ':asc']);
       }
-    }
-  }
+    },
+  },
 
 });

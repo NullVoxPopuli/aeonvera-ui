@@ -18,27 +18,27 @@ import Ember from 'ember';
 */
 export default Ember.Component.extend({
 
-  host: function(){
+  host: function () {
     return this.get('model').get('host');
   }.property('model'),
 
-  image: function(){
+  image: function () {
     return this.get('host.loguUrlMedium');
   }.property('host'),
 
-  key: function(){
+  key: function () {
     return this.get('host.stripePublishableKey');
   }.property('host'),
 
-  emailForReceipt: function(){
+  emailForReceipt: function () {
     return this.get('model.userEmail');
   }.property('model'),
 
-  description: function(){
+  description: function () {
     return this.get('host.name');
   }.property('host'),
 
-  amountInCents: function(){
+  amountInCents: function () {
     return (this.get('model.totalInCents') || (this.get('model.subTotal') * 100));
   }.property('model'),
 
@@ -47,9 +47,9 @@ export default Ember.Component.extend({
      * Receives a Stripe token after checkout succeeds
      * The token looks like this https://stripe.com/docs/api#tokens
      */
-    processStripeToken: function(args){
+    processStripeToken: function (args) {
       this.get('targetObject').send('processStripeToken', args);
-    }
-  }
+    },
+  },
 
 });

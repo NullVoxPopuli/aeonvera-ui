@@ -4,7 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   domain: DS.attr('string'),
 
-  type: function() {
+  type: function () {
     return this.constructor.modelName;
-  }.property()
+  }.property(),
 });

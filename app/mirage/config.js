@@ -7,6 +7,7 @@ export default function() {
 
     Note: these only affect routes defined *after* them!
   */
+
   // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
   this.namespace = 'api'; // make this `api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
@@ -34,15 +35,15 @@ export default function() {
     this.post('/contacts');
     this.post('/contacts', 'user'); // specify the type of resource to be created
   */
-  this.post('/users/sign_in', function(db, request) {
+  this.post('/users/sign_in', function (db, request) {
     let id = request.params.id;
 
     return {
       data: {
         type: 'users',
         id: id,
-        attributes: db.users.find(id)
-      }
+        attributes: db.users.find(id),
+      },
     };
   });
   /*

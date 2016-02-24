@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
   parentIdName: 'event_id',
   include: '',
 
-  model: function(params) {
+  model: function (params) {
     let modelName = this.get('modelName');
     let idName = modelName.underscore() + '_id';
     let parentPath = this.get('parentPath');
@@ -21,9 +21,9 @@ export default Ember.Mixin.create({
 
     let record = this.store.findRecord(modelName, params[idName], {
       adapterOptions: {
-        query: query
-      }
+        query: query,
+      },
     });
     return record;
-  }
+  },
 });

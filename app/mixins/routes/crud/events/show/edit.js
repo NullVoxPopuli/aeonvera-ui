@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   parentPathRoot: 'events.show',
 
-  model: function() {
+  model: function () {
     let modelName = this.get('modelName');
     let path = this.get('parentPathRoot') + '.' + modelName + 's.show';
     let obj = this.modelFor(path);
@@ -12,12 +12,12 @@ export default Ember.Mixin.create({
 
   actions: {
 
-    willTransition: function(transition) {
+    willTransition: function (transition) {
 
       let dirty = this.get('model.hasDirtyAttributes');
       let model = this.get('controller.content');
 
-      if (dirty && !confirm("Would you like to save your changes?")) {
+      if (dirty && !confirm('Would you like to save your changes?')) {
         model.rollback();
         return true;
       } else {
@@ -25,6 +25,6 @@ export default Ember.Mixin.create({
         return true;
       }
 
-    }
-  }
+    },
+  },
 });

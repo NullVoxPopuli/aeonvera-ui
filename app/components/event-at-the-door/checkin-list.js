@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 
   activeRegistrant: null,
 
-  attendances: function() {
+  attendances: function () {
     var model = this.get('model');
     var query = this.get('queryText');
     var queryPresent = Ember.isPresent(query);
@@ -17,16 +17,16 @@ export default Ember.Component.extend({
 
     var filtered = model;
 
-    if (onlyNonCheckedIn){
+    if (onlyNonCheckedIn) {
       filtered = filtered.filterBy('isCheckedIn', false);
     }
 
-    if (onlyOweMoney){
+    if (onlyOweMoney) {
       filtered = filtered.filterBy('owesMoney');
     }
 
-    if (queryPresent){
-      filtered = filtered.filterBy('attendeeName', function(ea){
+    if (queryPresent) {
+      filtered = filtered.filterBy('attendeeName', function (ea) {
         var name = ea.get('attendeeName').toLowerCase();
         return name.indexOf(lowerQuery) !== -1;
       });
@@ -37,31 +37,30 @@ export default Ember.Component.extend({
     'model', 'queryText',
     'showOnlyNonCheckedIn', 'showOnlyThoseWhoOweMoney'),
 
-  percentCheckedIn: function(){
+  percentCheckedIn: function () {
     var checkedIn = this.get('numberCheckedIn');
     /* var checkedOut = this.get('numberCheckedOut'); */
-    var total = this.get('model').get("length");
+    var total = this.get('model').get('length');
     var percent = checkedIn / total * 100;
 
     return Math.round(percent, 2);
   }.property('model.[].isCheckedIn'),
 
-  numberCheckedIn: function(){
+  numberCheckedIn: function () {
     var model = this.get('model');
     return model.filterBy('isCheckedIn').get('length');
   }.property('model.[].isCheckedIn'),
 
-  numberNotCheckedIn: function(){
+  numberNotCheckedIn: function () {
     var model = this.get('model');
     return model.filterBy('isCheckedIn', false).get('length');
   }.property('model.[].isCheckedIn'),
 
-
   actions: {
 
-    setActiveRegistrant: function(attendance){
+    setActiveRegistrant: function (attendance) {
       this.set('activeRegistrant', attendance);
-    }
-  }
+    },
+  },
 
 });

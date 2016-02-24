@@ -12,8 +12,8 @@ export default DS.Model.extend({
   preferredGenderToHouseWith: DS.attr('string'),
   notes: DS.attr('string'),
 
-  host: DS.belongsTo('host', { polymorphic: true} ),
-  attendance: DS.belongsTo('attendance', { polymorphic: true } ),
-  housingProvision: DS.belongsTo('housing-provision')
+  host: DS.belongsTo('host', { polymorphic: true }),
+  attendance: DS.belongsTo('attendance', { polymorphic: true }),
+  housingProvision: DS.belongsTo('housing-provision'),
 
 });

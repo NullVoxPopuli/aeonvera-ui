@@ -4,9 +4,9 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
   actions: {
-    invalidateSession: function() {
+    invalidateSession: function () {
       this.get('session').invalidate();
       localStorage.clear();
-    }
-  }
+    },
+  },
 });

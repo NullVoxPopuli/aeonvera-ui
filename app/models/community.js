@@ -23,11 +23,11 @@ export default Host.extend({
   membershipOptions: DS.hasMany('membership-option'),
   membershipDiscounts: DS.hasMany('membership-discount'),
 
-  location: function() {
-    return this.get('city') + ", " + this.get('state');
+  location: function () {
+    return this.get('city') + ', ' + this.get('state');
   }.property('city', 'state'),
 
-  logo_is_missing: function() {
-    return (this.get('logo_url').indexOf("missing") !== -1);
-  }.property('logo_url')
+  logo_is_missing: function () {
+    return (this.get('logo_url').indexOf('missing') !== -1);
+  }.property('logo_url'),
 });

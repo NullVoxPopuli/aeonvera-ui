@@ -4,7 +4,7 @@ import DS from 'ember-data';
 export default Ember.Mixin.create({
   checkedInAt: DS.attr('date'),
 
-  isCheckedIn: function(){
+  isCheckedIn: function () {
     return Ember.isPresent(this.get('checkedInAt'));
-  }.property('checkedInAt')
+  }.property('checkedInAt'),
 });

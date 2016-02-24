@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+
 // provides:
 // - amountOwed
 // - amountPaid
@@ -7,6 +8,7 @@ import DS from 'ember-data';
 // - hasPaid
 // - paymentStatus
 import PaymentStatus from '../mixins/models/payment-status';
+
 // provides:
 // - checkedInAt
 // - isCheckedIn
@@ -25,15 +27,15 @@ export default DS.Model.extend(
     eventId: DS.attr('string'),
 
     orders: DS.hasMany('order', {
-      async: true
+      async: true,
     }),
 
     unpaidOrder: DS.belongsTo('unpaidOrder', {
-      async: true
+      async: true,
     }),
 
-    hasUnpaidOrder: function() {
+    hasUnpaidOrder: function () {
       return Ember.isPresent(this.get('unpaidOrder'));
-    }.property('unpaidOrder')
+    }.property('unpaidOrder'),
 
   });

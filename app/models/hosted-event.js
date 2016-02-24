@@ -10,5 +10,5 @@ export default DS.Model.extend(
   numberOfShirtsSold: DS.attr('number'),
   myEvent: DS.attr('boolean'),
   startsAt: DS.attr('date'),
-  endsAt: DS.attr('date')
+  endsAt: DS.attr('date'),
 });

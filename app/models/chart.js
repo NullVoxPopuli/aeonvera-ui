@@ -4,5 +4,5 @@ export default DS.Model.extend({
   registrationTimes: DS.attr(),
   incomeTimes: DS.attr(),
   registrations: DS.attr(),
-  incomes: DS.attr()
+  incomes: DS.attr(),
 });

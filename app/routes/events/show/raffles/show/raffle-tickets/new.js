@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   modelName: 'raffle-ticket',
 
-  model: function(params) {
+  model: function (params) {
     let modelName = this.get('modelName');
     let raffle = this.modelFor('events.show.raffles.show');
 
@@ -14,5 +14,5 @@ export default Ember.Route.extend({
     let recordPromise = this.store.createRecord(modelName, modelParams);
 
     return recordPromise;
-  }
+  },
 });

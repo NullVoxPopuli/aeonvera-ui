@@ -4,7 +4,7 @@ import Discount from '../models/discount';
 export default DS.Model.extend({
   lineItem: DS.belongsTo('line-item', {
     async: true,
-    polymorphic: true
+    polymorphic: true,
   }),
   order: DS.belongsTo('order'),
   quantity: DS.attr('number'),
@@ -23,18 +23,17 @@ export default DS.Model.extend({
   danceOrientation: DS.attr('string'),
   size: DS.attr('string'),
 
-  priceNeedsChanging: function() {
+  priceNeedsChanging: function () {
     let lineItem = this.get('lineItem');
     let size = this.get('size');
     let sizePrice = lineItem.priceForSize(size);
     this.set('price', sizePrice);
   }.observes('size'),
 
-
-  total: function() {
+  total: function () {
     let price = this.get('price'),
       quantity = this.get('quantity');
 
     return price * quantity;
-  }.property('price', 'quantity')
+  }.property('price', 'quantity'),
 });

@@ -2,25 +2,26 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 const {
-  service
+  service,
 } = Ember.inject;
 
 export default Ember.Service.extend({
   store: service(),
 
-  domain: function() {
+  domain: function () {
     let domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
     return domain;
   }.property(),
 
-  domainParts: function() {
+  domainParts: function () {
     let domain = this.get('domain');
     let domainParts = domain.split('.');
     return domainParts;
   }.property('domain'),
 
-  withoutSubdomain: function() {
+  withoutSubdomain: function () {
     let domainParts = this.get('domainParts');
+
     // pop from the front
     domainParts.shift();
     let domain = domainParts.join('.');
@@ -28,7 +29,7 @@ export default Ember.Service.extend({
     return domain;
   }.property('domain'),
 
-  current: function() {
+  current: function () {
     let domainParts = this.get('domainParts');
     domainParts.pop(); // remove TLD
     domainParts.pop(); // remove domain
@@ -47,15 +48,15 @@ export default Ember.Service.extend({
     return subdomain;
   }.property(),
 
-  currentSubdomain: function() {
+  currentSubdomain: function () {
     return this.get('current');
   }.property('current'),
 
-  present: function() {
+  present: function () {
     return Ember.isPresent(this.get('currentSubdomain'));
   }.property('current'),
 
-  model: function() {
+  model: function () {
     let onSubDomain = this.get('present');
 
     if (onSubDomain) {
@@ -63,14 +64,14 @@ export default Ember.Service.extend({
       return this.get('store').findRecord('host', currentSubdomain, {
         adapterOptions: {
           query: {
-            subdomain: currentSubdomain
-          }
-        }
+            subdomain: currentSubdomain,
+          },
+        },
       });
     }
   }.property('current'),
 
-  subdomainType: function() {
+  subdomainType: function () {
     let model = this.get('model');
     if (model !== undefined) {
       return model.then(m => {
@@ -79,7 +80,7 @@ export default Ember.Service.extend({
     }
   }.property('current'),
 
-  routeForSubdomain: function() {
+  routeForSubdomain: function () {
     let subdomainType = this.get('subdomainType');
 
     if (subdomainType !== undefined) {
@@ -93,8 +94,8 @@ export default Ember.Service.extend({
     }
   }.property('current'),
 
-  route: function() {
+  route: function () {
     return this.get('routeForSubdomain');
-  }.property('current')
+  }.property('current'),
 
 });

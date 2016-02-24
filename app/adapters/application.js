@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import ENV from "../config/environment";
+import ENV from '../config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 console.log(ENV.host);
@@ -11,7 +11,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   authorizer: 'authorizer:application',
   coalesceFindRequests: true,
 
-  pathForType: function(type) {
+  pathForType: function (type) {
     let underscored = Ember.String.underscore(type);
     return Ember.String.pluralize(underscored);
   },
@@ -22,8 +22,10 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     if (query) {
       url += '?' + Ember.$.param(query);
     }
+
     return url;
   },
+
   // findHasMany: function(store, snapshot, url, relationship) {
   //   var id = snapshot.id;
   //   var type = snapshot.typeKey;

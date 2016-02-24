@@ -9,10 +9,10 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
   event: DS.belongsTo('event'),
 
   eventAttendances: DS.hasMany('event-attendance', {
-    async: true
+    async: true,
   }),
 
-  requirementName: function() {
+  requirementName: function () {
     let requirement = this.get('requirement');
 
     if (requirement === 0) {
@@ -28,5 +28,5 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     }
 
     return '';
-  }.property('requirement')
+  }.property('requirement'),
 });

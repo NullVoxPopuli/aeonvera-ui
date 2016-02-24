@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   idName: 'raffle_ticket_id',
   modelName: 'raffle-ticket',
 
-  model: function(params) {
+  model: function (params) {
     let raffle = this.modelFor('events.show.raffles.show');
     let idName = this.get('idName');
     let modelName = this.get('modelName');
@@ -13,11 +13,11 @@ export default Ember.Route.extend({
       adapterOptions: {
         query: {
           raffle_id: raffle.get('id'),
-          include: 'attendances'
-        }
-      }
+          include: 'attendances',
+        },
+      },
     });
 
     return record;
-  }
+  },
 });

@@ -13,8 +13,9 @@ export default Mirage.Factory.extend({
   lastName: faker.name.firstName,
   email: 'test@test.test',
   password: 'some-password'
-    // age: 20,                              // numbers
-    // tall: true,                           // booleans
+
+  // age: 20,                              // numbers
+  // tall: true,                           // booleans
 
   // email: function(i) {                  // and functions
   //   return 'person' + i + '@test.com';

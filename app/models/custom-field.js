@@ -8,7 +8,7 @@ export default DS.Model.extend({
   editable: DS.attr('boolean'),
 
   host: DS.belongsTo('host', {
-    polymorphic: true
+    polymorphic: true,
   }),
 
 });

@@ -5,8 +5,7 @@ export default Ember.Controller.extend({
   mobileMenuLeft: 'nav/welcome/left-items',
   mobileMenuRight: 'nav/welcome/right-items',
 
-
-  init: function() {
+  init: function () {
     var store = this.get('store');
     this.set('user', store.createRecord('user'));
   },
@@ -20,12 +19,12 @@ export default Ember.Controller.extend({
     /**
       Create new account / new user.
     */
-    registerNewUser: function() {
+    registerNewUser: function () {
       var user = this.get('user');
       var self = this;
 
       user.save().then(
-        function() {
+        function () {
           /*
             success
             - hide the modal
@@ -37,14 +36,15 @@ export default Ember.Controller.extend({
           jQuery('#signup-modal a.close-reveal-modal').trigger('click');
 
         },
-        function() {
+
+        function () {
           /*
             error
             - show error messages
           */
         }
       );
-    }
-  }
+    },
+  },
 
 });
