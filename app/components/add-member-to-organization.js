@@ -7,12 +7,12 @@ export default Ember.Component.extend(EditModel, {
   cancelPath: 'my-communities.manage.membership',
   membershipOptions: null,
 
-  selectedOption: function () {
+  selectedOption: function() {
     let model = this.get('model');
     return model.get('membershipOption');
   }.property('model.membershipOption'),
 
-  memberList: function () {
+  memberList: function() {
     let members = this.store.findAll('member');
     return members;
   }.property(),
@@ -20,6 +20,7 @@ export default Ember.Component.extend(EditModel, {
   actions: {
     selectOption(option) {
       let model = this.get('model');
+      debugger;
       model.set('membershipOption', option);
     },
   },

@@ -8,10 +8,12 @@
   = error-field-wrapper  classes='columns small-12 medium-6 large-4' errors=errors field='membershipOption'
     label
       span Membership Option
-      select onchange='selectOption' value=model.membershipOption
-        each membershipOptions as |option index|
-          option value=index
-            = option.name
+      <select onchange={{action (mut model.membershipOption) value='target.value'}}>
+        <option value=''>None</option>
+        {{#each membershipOptions as |option|}}
+          <option value={{option}}>{{option.name}}</option>
+        {{/each}}
+      </select>
 
   = error-field-wrapper  classes='columns small-12 medium-6 large-4' errors=errors field='member'
     label
@@ -23,7 +25,7 @@
       
 br
 br
-      
+= model.membershipOption.name
 .row
   .small-12.columns
     .right

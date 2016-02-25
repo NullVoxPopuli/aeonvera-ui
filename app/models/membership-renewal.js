@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -6,10 +7,12 @@ export default DS.Model.extend({
   duration: DS.attr('string'),
   expired: DS.attr('boolean'),
 
-  membershipOption: DS.belongsTo('membership-option'),
+  membershipOption: DS.belongsTo('membership-option', {
+    async: false
+  }),
   member: DS.belongsTo('member'),
 
-  current: Ember.computed('expired', function () {
+  current: Ember.computed('expired', function() {
     let expired = this.get('expired');
     return !expired;
   }).readOnly(),
