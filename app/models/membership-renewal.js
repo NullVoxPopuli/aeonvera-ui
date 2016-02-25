@@ -8,7 +8,7 @@ export default DS.Model.extend({
   expired: DS.attr('boolean'),
 
   membershipOption: DS.belongsTo('membership-option', {
-    async: false
+    async: false,
   }),
   member: DS.belongsTo('member'),
 
