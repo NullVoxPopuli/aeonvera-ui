@@ -28,6 +28,7 @@
     "flatpickr": "git://github.com/chmln/flatpickr#53c0c769fd14657bc4ae7103a93a5ad7038905c3",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
-    "Faker": "~3.0.0"
+    "Faker": "~3.0.0",
+    "wysihtml": "^0.5.5"
   }
 }

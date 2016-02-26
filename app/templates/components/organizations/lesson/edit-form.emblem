@@ -1,0 +1,47 @@
+form submit='save'
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='name'
+      label
+        span Name
+        = input value=model.name placeholder='Beginner Lindy Hop'
+    
+  .row
+    = error-field-wrapper classes='columns small-12' errors=model.errors field='description'
+      label
+        span Description
+        = full-editor content=model.description
+    
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='price'
+      label
+        span Price
+        = input value=model.price type='number' step='any' min='0'
+
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='startsAt'
+      label
+        span Starts At
+        = date-time-input model=model field='startsAt'
+
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='endsAt'
+      label
+        span Ends At
+        = date-time-input model=model field='endsAt'
+
+
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='registrationOpensAt'
+      label
+        span Registation Opens At
+        = date-time-input model=model field='registrationOpensAt'
+        
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='registrationClosesAt'
+      label
+        span Registation Closes At
+        = date-time-input model=model field='registrationClosesAt'
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save

@@ -1,0 +1,29 @@
+.wysihtml{
+  margin-top: 2px;
+  margin-bottom: 20px;
+
+  .wysi-toolbar{
+    // background: #dfdfdf;
+    margin-bottom: 10px;
+    .wysi-btn{
+      // width: 80px;
+      // display: block;
+      // float: left;
+      // border-radius:2px;
+      // margin: 10px 10px 10px 10px;
+      padding:5px 7px;
+      text-align:center;
+      text-decoration:none;
+      font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #ecf0f1;
+      box-shadow: 0px 4px #7f8c8d;
+      background: #95a5a6;
+
+      &:hover{
+        background: lighten(#95a5a6, 5%);
+        box-shadow: 0px 4px lighten(#7f8c8d, 5%);;
+
+      }
+    }
+  }
+}
