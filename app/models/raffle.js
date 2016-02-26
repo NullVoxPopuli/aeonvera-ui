@@ -12,8 +12,6 @@ export default DS.Model.extend({
 
   event: DS.belongsTo('event'),
   raffleTickets: DS.hasMany('raffle-tickets'),
-  ticketPurchasers: DS.hasMany('raffle-ticket-purchaser', {
-    async: false,
-  }),
+  ticketPurchasers: DS.hasMany('raffle-ticket-purchaser'),
 
 });
