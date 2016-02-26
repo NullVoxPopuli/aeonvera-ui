@@ -20,7 +20,6 @@ export default Ember.Component.extend(EditModel, {
   actions: {
     selectOption(option) {
       let model = this.get('model');
-      debugger;
       model.set('membershipOption', option);
     },
   },

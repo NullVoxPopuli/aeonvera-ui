@@ -2,7 +2,7 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-module.exports = function(defaults){
+module.exports = function(defaults) {
   var app = new EmberApp({
     'ember-cli-foundation-sass': {
       'modernizr': true,
@@ -24,10 +24,6 @@ module.exports = function(defaults){
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   app.import('bower_components/momentjs/moment.js');
-
-
-  // app.import('bower_components/pickadate/compressed/picker.js');
-  // app.import('bower_components/pickadate/compressed/themes/default.css');
 
   // tetris!
   app.import('vendor/blockrain/blockrain.css');

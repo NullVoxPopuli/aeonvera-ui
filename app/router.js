@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
-  location: config.locationType,
+const Router = Ember.Router.extend({
+  location: config.locationType
 });
 /*
   Notes:
@@ -17,26 +17,26 @@ var Router = Ember.Router.extend({
 
   index route is automatic
 */
-export default Router.map(function () {
+Router.map(function() {
 
   this.route('logout');
   this.route('login');
   this.route('signup');
   this.route('donation-thankyou');
-  this.route('password-reset', function () {
+  this.route('password-reset', function() {
     this.route('success');
   });
 
   this.route('register', {
     resetNamespace: true,
     path: ':subdomain',
-  }, function () {
+  }, function() {
 
   });
 
   /* event registration - subdomain based */
-  this.route('dance-event', function () {
-    this.route('register', function () {
+  this.route('dance-event', function() {
+    this.route('register', function() {
       this.route('review');
       this.route('thankyou');
       this.route('new');
@@ -45,19 +45,19 @@ export default Router.map(function () {
   });
 
   /* organization registration - subdomain based */
-  this.route('dance-community', function () {
-    this.route('unauthenticated', function () {
+  this.route('dance-community', function() {
+    this.route('unauthenticated', function() {
 
     });
 
-    this.route('register', function () {
+    this.route('register', function() {
       this.route('review');
       this.route('thankyou');
       this.route('new');
       this.route('edit');
     });
 
-    this.route('registration-history', function () {
+    this.route('registration-history', function() {
       this.route('show', {
         path: ':order_id',
       });
@@ -68,11 +68,11 @@ export default Router.map(function () {
   /* public facing */
   this.route('welcome', {
     resetNamespace: true,
-  }, function () {
+  }, function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
-    this.route('tos', function () {
+    this.route('tos', function() {
       this.route('organizers');
       this.route('non-organizers');
       this.route('updates');
@@ -86,55 +86,55 @@ export default Router.map(function () {
   /* must be logged in for */
   this.route('dashboard', {
     path: '/',
-  }, function () {
+  }, function() {
     this.route('my-communities', {
       resetNamespace: true,
-    }, function () {
+    }, function() {
       this.route('manage', {
         path: '/manage/:organization_id',
-      }, function () {
+      }, function() {
         this.route('edit');
         this.route('payment-processors');
         this.route('revenue');
         this.route('registrations');
         this.route('unpaid-registrations');
-        this.route('dances', function () {
+        this.route('dances', function() {
           this.route('new');
           this.route('show', {
             path: ':dance_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('lessons', function () {
+        this.route('lessons', function() {
           this.route('new');
           this.route('show', {
             path: ':lesson_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
         this.route('reports');
         this.route('officers');
-        this.route('membership', function () {
+        this.route('membership', function() {
           this.route('manage');
           this.route('add');
-          this.route('discounts', function () {
+          this.route('discounts', function() {
             this.route('new');
             this.route('show', {
               path: ':discount_id',
-            }, function () {
+            }, function() {
               this.route('edit');
             });
           });
 
-          this.route('membership-options', function () {
+          this.route('membership-options', function() {
             this.route('new');
             this.route('show', {
               path: ':membership_option_id',
-            }, function () {
+            }, function() {
               this.route('edit');
             });
           });
@@ -149,7 +149,7 @@ export default Router.map(function () {
     this.route('event-at-the-door', {
       resetNamespace: true,
       path: '/event-at-the-door/:event_id',
-    }, function () {
+    }, function() {
       this.route('checkin');
       this.route('competition-list');
       this.route('a-la-carte');
@@ -157,11 +157,11 @@ export default Router.map(function () {
 
     this.route('events', {
       resetNamespace: true,
-    }, function () {
+    }, function() {
       this.route('show', {
         path: ':event_id',
-      }, function () {
-        this.route('edit', function () {
+      }, function() {
+        this.route('edit', function() {
           this.route('housing');
           this.route('options');
           this.route('customization');
@@ -169,11 +169,11 @@ export default Router.map(function () {
         });
 
         /* attendees, volunteers, etc */
-        this.route('registrations', function () {
+        this.route('registrations', function() {
           this.route('new');
           this.route('show', {
             path: ':registration_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
@@ -183,68 +183,68 @@ export default Router.map(function () {
         this.route('revenue');
         this.route('charts');
         this.route('manage');
-        this.route('volunteers', function () {
+        this.route('volunteers', function() {
           this.route('new');
         });
 
-        this.route('checkin', function () {
+        this.route('checkin', function() {
           this.route('take-payment');
         });
 
-        this.route('housing', function () {
-          this.route('requests', function () {
+        this.route('housing', function() {
+          this.route('requests', function() {
             this.route('new');
           });
 
-          this.route('provisions', function () {
+          this.route('provisions', function() {
             this.route('new');
           });
         });
 
         /* manage routes */
-        this.route('levels', function () {
+        this.route('levels', function() {
           this.route('new');
           this.route('show', {
             path: ':level_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('packages', function () {
+        this.route('packages', function() {
           this.route('new');
           this.route('show', {
             path: ':package_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('a-la-carte-items', function () {
+        this.route('a-la-carte-items', function() {
           this.route('new');
           this.route('show', {
             path: ':line_item_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('shirts', function () {
+        this.route('shirts', function() {
           this.route('new');
           this.route('show', {
             path: ':shirt_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('raffles', function () {
+        this.route('raffles', function() {
           this.route('new');
           this.route('show', {
             path: ':raffle_id',
-          }, function () {
+          }, function() {
             this.route('edit');
-            this.route('raffle-tickets', function () {
+            this.route('raffle-tickets', function() {
               this.route('new');
               this.route('show', {
                 path: ':raffle_ticket_id',
@@ -253,29 +253,29 @@ export default Router.map(function () {
           });
         });
 
-        this.route('custom-fields', function () {
+        this.route('custom-fields', function() {
           this.route('new');
           this.route('show', {
             path: ':custom_field_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('discounts', function () {
+        this.route('discounts', function() {
           this.route('new');
           this.route('show', {
             path: ':discount_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
 
-        this.route('pricing-tiers', function () {
+        this.route('pricing-tiers', function() {
           this.route('new');
           this.route('show', {
             path: ':pricing_tier_id',
-          }, function () {
+          }, function() {
             this.route('edit');
           });
         });
@@ -286,7 +286,7 @@ export default Router.map(function () {
 
   this.route('register', {
     path: 'r',
-  }, function () {
+  }, function() {
     this.route('level');
     this.route('packages');
   });
@@ -296,7 +296,7 @@ export default Router.map(function () {
 
   this.route('user', {
     resetNamespace: true,
-  }, function () {
+  }, function() {
     this.route('edit');
   });
 
@@ -307,3 +307,5 @@ export default Router.map(function () {
     path: '/*path',
   });
 });
+
+export default Router;
