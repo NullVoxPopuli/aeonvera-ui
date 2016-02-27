@@ -1,12 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  title: Ember.computed('event.name', function () {
-    return 'Register for ' + this.get('event.name');
+  title: Ember.computed('host.name', function () {
+    return 'Register for ' + this.get('host.name');
   }).readOnly(),
 
-  attendance: function () {
-    return this.store.createRecord('event-attendance');
-  }.property(),
+
+  isEvent: Ember.computed('host', function(){
+    let host = this.get('host');
+    return host.get('constructor.modelName') === 'event';
+  }).readOnly()
 
 });

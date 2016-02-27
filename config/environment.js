@@ -26,7 +26,7 @@ module.exports = function(environment) {
     },
 
     rollbar: {
-      captureUncaught: environment !== 'development',
+      captureUncaught: false,//environment !== 'development',
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
     },
 

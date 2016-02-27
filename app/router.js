@@ -27,12 +27,6 @@ Router.map(function() {
     this.route('success');
   });
 
-  this.route('register', {
-    resetNamespace: true,
-    path: ':subdomain',
-  }, function() {
-
-  });
 
   /* event registration - subdomain based */
   this.route('dance-event', function() {
@@ -285,10 +279,10 @@ Router.map(function() {
   });
 
   this.route('register', {
-    path: 'r',
+    resetNamespace: true,
+    path: ':subdomain',
   }, function() {
-    this.route('level');
-    this.route('packages');
+
   });
 
   this.route('upcoming-events');

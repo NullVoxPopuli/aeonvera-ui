@@ -1,0 +1,14 @@
+if event.askIfLeadingOrFollowing
+  label Leading or Following?
+  = radio-button value="Lead" groupValue=attendance.danceOrientation
+  label Lead
+  = radio-button value="Follow" groupValue=attendance.danceOrientation
+  label Follow
+
+label Ticket 
+each event.packages as |package|
+  = radio-button value=package.id groupValue=attendance.packageId
+  label
+    span.width-of-80px.inline = to-usd package.currentPrice
+    span = package.name
+  br

@@ -1,0 +1,55 @@
+unless session.isAuthenticated
+  .row
+    .columns.medium-4
+      label First Name
+      = input placeholder='Bruce' classNames='margin-bottom-5'
+    .columns.medium-4
+      label Last Name
+      = input placeholder='Wayne' classNames='margin-bottom-5'
+    .columns.medium-4
+      label Email *
+      = input placeholder='bruce@wayneenterprises.com' classNames='margin-bottom-5'
+      
+  small.right: em.text-right * after registering, a confirmation email will be sent to continue account creation
+
+if session.isAuthenticated
+  h4 Membership
+
+  table
+    thead: tr
+      th Price
+      th Purchase?
+      th
+    tbody
+      each model.membershipOptions as |option|
+        tr
+          td = to-usd option.price
+          td = input type='checkbox' classNames='center-margin'
+          td = option.name
+
+h4 Lessons
+table
+  thead: tr
+    th Price
+    th.width-of-100px.text-center Number of Dancers
+    th
+  tbody
+    each model.lessons as |lesson|
+      tr
+        td = to-usd lesson.price
+        td = input type='number' min='0' classNames='width-of-50px center-margin'
+        td
+          h5 = lesson.name
+          span {{{lesson.description}}}
+
+
+
+unless session.isAuthenticated
+  h4 Membership
+  span Please login to purchase and take advantage of membership benefits
+
+
+br
+br
+br
+br

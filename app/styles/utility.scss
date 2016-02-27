@@ -40,7 +40,7 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 
 @for $i from 1 through 30{
   .width-of-#{$i}0px{
-    width: #{$i}0px;
+    width: #{$i}0px !important;
   }
 }
 
@@ -85,11 +85,11 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 }
 
 .no-bottom-margin{
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .center-margin{
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 .surround-padding-10{

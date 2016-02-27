@@ -39,18 +39,12 @@ export default Host.extend(RegistrationOpens, {
   hasStripeIntegration: DS.attr('boolean'),
   askIfLeadingOrFollowing: DS.attr('boolean'),
 
-  packages: DS.hasMany('package', {
-    async: true,
-  }),
-  levels: DS.hasMany('level', {
-    async: true,
-  }),
-  competitions: DS.hasMany('competitions', {
-    async: true,
-  }),
-  openingTier: DS.belongsTo('openingTier', {
-    async: true,
-  }),
+  packages: DS.hasMany('package'),
+  levels: DS.hasMany('level'),
+  competitions: DS.hasMany('competitions'),
+  openingTier: DS.belongsTo('openingTier'),
+  lineItems: DS.hasMany('lineItems'),
+  shirts: DS.hasMany('shirts'),
 
   registrationOpensAt: function () {
     return this.get('openingTier.date');

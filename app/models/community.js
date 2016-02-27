@@ -20,6 +20,7 @@ export default Host.extend({
   url: DS.attr('string'),
 
   owner: DS.belongsTo('user'),
+  lessons: DS.hasMany('lessons'),
   membershipOptions: DS.hasMany('membership-option'),
   membershipDiscounts: DS.hasMany('membership-discount'),
 

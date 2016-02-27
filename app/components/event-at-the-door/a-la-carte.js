@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
-  atTheDoorController: Ember.inject.controller('event-at-the-door'),
-  event: Ember.computed.reads('atTheDoorController.model'),
-
+export default Ember.Component.extend({
   itemsInOrder: [],
 
   currentOrder: null,
@@ -27,9 +24,9 @@ export default Ember.Controller.extend({
       return false;
     }.property('currentOrder'),
 
-  currentItems: function () {
+  currentItems: Ember.computed('currentOrder.lineItems.[]', function () {
       return this.get('currentOrder.lineItems');
-    }.property('currentOrder.lineItems.[]'),
+    }),
 
   actions: {
       beginBuildingAnOrder: function () {

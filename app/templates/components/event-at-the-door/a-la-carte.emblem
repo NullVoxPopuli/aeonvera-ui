@@ -1,0 +1,63 @@
+.row.full-width
+  div class=sidebarContainerClasses
+    = sidebar-container
+      = sidebar/event-at-the-door-sidebar model=model
+
+  div class=itemContainerClasses
+    h3 A la Carte
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each model.lineItems as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Shirts
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each model.shirts as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Competitions
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each model.competitions as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+
+
+  if buildingAnOrder
+    div class=orderContainerClasses
+      h3 Current Order
+      label Optional (except for competitions):
+      /= select-2 content=model.attendances value=currentOrder.attendance placeholder='Assign this order to a registrant' allowClear=true optionLabelPath="attendeeName"
+      table.width-of-100.no-border
+        each currentItems as |item|
+          tr
+            td 
+              = to-usd item.total
+            td
+              = item.lineItem.name
+              br
+              if item.isCompetition
+                if item.lineItem.requiresPartner
+                  = input type='text' value=item.partnerName placeholder='Partner Name'
+
+                if item.lineItem.requiresOrientation
+                  = radio-button value="Lead" groupValue=item.danceOrientation
+                  label Lead
+                  = radio-button value="Follow" groupValue=item.danceOrientation
+                  label Follow
+                  br
+
+              if item.isShirt
+                = select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'
+                br
+              small
+                a click='"removeItem" item' Remove
+        tfoot
+          tr
+            th = to-usd currentOrder.subTotal
+            th Total
+      hr
+
+      ul.button-group.even-2
+        li: a.button.alert click='cancelOrder' Cancel
+        li: a.button.success href='#' data-reveal-id='a-la-carte-pay-modal' Pay
+    / 
+    / = foundation-modal title='At la Carte Order' name='a-la-carte-pay'
+    /   = handle-payment action=process model=currentOrder

@@ -10,6 +10,9 @@ li View
 li
   link-to 'my-communities.manage.registrations'
     span Registrations
+li
+  link-to 'register' model.domain
+    span Registration Form
 
 li.divider
 li Reporting

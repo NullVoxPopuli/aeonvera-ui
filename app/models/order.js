@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -24,6 +25,8 @@ export default DS.Model.extend({
     async: true,
   }),
   attendance: DS.belongsTo('attendance'),
+
+  lineItems: Ember.computed.alias('orderLineItems'),
 
   /*
     stripe specific things
@@ -72,8 +75,8 @@ export default DS.Model.extend({
   /*
     takes the line item, and makes an order line item out of it
   */
-  addLineItem: function (lineItem, quantity = 1, price = lineItem.get(
-    'currentPrice')) {
+  addLineItem: function (lineItem, quantity = 1, price = null) {
+    price = price ? price : lineItem.get('currentPrice');
     let orderLineItem = this.get('lineItems').createRecord({
       lineItem: lineItem,
       price: price,

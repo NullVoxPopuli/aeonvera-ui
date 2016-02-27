@@ -6,4 +6,10 @@ export default Ember.Route.extend({
       into: 'application',
     });
   },
+
+  model: function(params){
+  //   let promise = this.store.findRecord('event', params.event_id);
+  //
+    return null;
+  }
 });

@@ -9,7 +9,7 @@ export default Ember.Route.extend({
       adapterOptions: {
         query: {
           subdomain: subdomain,
-          include: 'packages,levels,competitions',
+          include: 'packages,levels,competitions,lessons,membership_options',
         },
       },
     });
