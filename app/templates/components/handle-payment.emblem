@@ -1,5 +1,5 @@
 h4 Choose Payment Method
-#payment-error-message.modal-top-message.alert-box.alert data-alert='true'
+.payment-error-message.modal-top-message.alert-box.alert data-alert='true'
   a.close href='#' &times;
   span.message
   br

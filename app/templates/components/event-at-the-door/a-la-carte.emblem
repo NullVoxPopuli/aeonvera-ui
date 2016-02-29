@@ -24,7 +24,7 @@
     div class=orderContainerClasses
       h3 Current Order
       label Optional (except for competitions):
-      /= select-2 content=model.attendances value=currentOrder.attendance placeholder='Assign this order to a registrant' allowClear=true optionLabelPath="attendeeName"
+      = select-2 content=model.attendances value=currentOrder.attendance placeholder='Assign this order to a registrant' allowClear=true optionLabelPath="attendeeName"
       table.width-of-100.no-border
         each currentItems as |item|
           tr
@@ -57,7 +57,7 @@
 
       ul.button-group.even-2
         li: a.button.alert click='cancelOrder' Cancel
-        li: a.button.success href='#' data-reveal-id='a-la-carte-pay-modal' Pay
-    / 
-    / = foundation-modal title='At la Carte Order' name='a-la-carte-pay'
-    /   = handle-payment action=process model=currentOrder
+        li: a.button.success href='#' data-reveal-id=paymentModalId Pay
+    
+    = foundation-modal title='At la Carte Order' name='a-la-carte-pay' overrideId=paymentModalId
+      = handle-payment action=process model=currentOrder

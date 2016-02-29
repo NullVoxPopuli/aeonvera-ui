@@ -1,8 +1,9 @@
-import Ember from 'ember';
+  import Ember from 'ember';
 
 export default Ember.Component.extend({
   title: '',
   name: '',
+  overrideId: '',
   role: 'dialog',
   hidden: true,
   reveal: true,
@@ -28,7 +29,12 @@ export default Ember.Component.extend({
   }.property('title', 'name'),
 
   elementId: function () {
-    return this.get('modalName') + '-modal';
+    let override = this.get('overrideId');
+    if (Ember.isPresent(override)){
+      return override;
+    }
+    let id = this.get('modalName') + '-modal';
+    return id;
   }.property('modalName'),
 
   titleId: function () {

@@ -1,6 +1,6 @@
 import Ember from 'ember';
-
-export default Ember.Component.extend({
+import string from 'aeonvera/mixins/helpers/string';
+export default Ember.Component.extend(string, {
   itemsInOrder: [],
 
   currentOrder: null,
@@ -14,6 +14,10 @@ export default Ember.Component.extend({
   buildingSidebarContainerClasses: 'large-3 medium-4 columns',
   buildingItemContainerClasses: 'large-6 medium-8 columns',
   orderContainerClasses: 'large-3 medium-3 columns',
+
+  paymentModalId: Ember.computed(function(){
+    return this.get('randomString')();
+  }).readOnly(),
 
   buildingAnOrder: function () {
       let currentOrder = this.get('currentOrder');

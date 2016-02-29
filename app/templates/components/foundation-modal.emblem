@@ -1,5 +1,4 @@
-h2.text-center id=titleId = title
+h2.text-center = title
 p
   = yield
-
   a.close-reveal-modal aria-label="Close" &#215;

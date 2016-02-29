@@ -28,5 +28,4 @@ footer
   br
   .row
     .small-12.columns
-      .right
-        a.button.tiny.success href='#' data-reveal-id='donate-price-pick-modal' Donate    
+      = donate-to-aeonvera
