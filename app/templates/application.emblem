@@ -1,3 +1,7 @@
+
+/ ember-wormhole puts modals here    
+#foundation-modals
+
 .off-canvas-wrap data-offcanvas='true'
   = component navigation left=mobileMenuLeft right=mobileMenuRight
 

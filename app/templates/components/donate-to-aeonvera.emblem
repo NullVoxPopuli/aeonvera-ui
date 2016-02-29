@@ -1,7 +1,4 @@
-.right
-  a.button.tiny.success href='#' data-reveal-id=randomId Donate    
-
-= foundation-modal title='Donate to ÆONVERA' name='donate-price-pick' overrideId=randomId
+= foundation-modal title='Donate to ÆONVERA' name='donate-price-pick' buttonText='Donate' buttonClasses='button success tiny right'
   
   ul.no-margins.accordion data-accordion='true'
     li.accordion-navigation

@@ -57,7 +57,7 @@
 
       ul.button-group.even-2
         li: a.button.alert click='cancelOrder' Cancel
-        li: a.button.success href='#' data-reveal-id=paymentModalId Pay
+        li
+          = foundation-modal title='At la Carte Order' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
+            = handle-payment action=process model=currentOrder
     
-    = foundation-modal title='At la Carte Order' name='a-la-carte-pay' overrideId=paymentModalId
-      = handle-payment action=process model=currentOrder
