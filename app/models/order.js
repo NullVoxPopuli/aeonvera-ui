@@ -36,38 +36,38 @@ export default DS.Model.extend({
   checkoutToken: DS.attr('string'),
   checkoutEmail: DS.attr('string'),
 
-  paidText: function () {
+  paidText: function() {
     return this.get('paid') ? 'Yes' : 'No';
   }.property('paid'),
 
   /* aliases */
-  event: function () {
+  event: function() {
     return this.get('host');
   }.property('host'),
 
-  totalInDollars: function () {
+  totalInDollars: function() {
     return this.get('totalInCents') / 100;
   }.property('totalInCents'),
 
-  hasLineItems: function () {
-    return this.get('lineItems').length > 0;
-  }.property('lineItems.[]'),
+  hasLineItems: function() {
+    return this.get('lineItems.length') > 0;
+  }.property('lineItems.@each'),
 
   /*
     Calculates raw total of all the order line items
   */
-  subTotal: function () {
-    let lineItems = this.get('lineItems'),
-      subTotal = 0;
+  subTotal: function() {
+    let lineItems = this.get('lineItems');
+    let subTotal = 0;
 
-    lineItems.forEach(function (item) {
+    lineItems.forEach(function(item) {
       subTotal += item.get('total');
     });
 
     return subTotal;
-  }.property('lineItems.[].price'),
+  }.property('lineItems.@each.total'),
 
-  paidClass: function () {
+  paidClass: function() {
     let paid = this.get('paid');
     return paid ? 'success-color' : 'alert-color';
   }.property('paid'),
@@ -75,20 +75,62 @@ export default DS.Model.extend({
   /*
     takes the line item, and makes an order line item out of it
   */
-  addLineItem: function (lineItem, quantity = 1, price = null) {
+  addLineItem: function(lineItem, quantity = 1, price = null) {
     price = price ? price : lineItem.get('currentPrice');
-    let orderLineItem = this.get('lineItems').createRecord({
-      lineItem: lineItem,
-      price: price,
-      quantity: quantity,
-    });
+    // is the item already in the order?
+    let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
 
-    this.get('lineItems').pushObject(orderLineItem);
+    if (quantity > 0 && !Ember.isPresent(orderLineItem)) {
+      orderLineItem = this.get('lineItems').createRecord({
+        lineItem: lineItem,
+        price: price,
+        quantity: quantity,
+      });
+
+      this.get('lineItems').pushObject(orderLineItem);
+    } else {
+      // increase quantity
+      quantity = quantity ? quantity : orderLineItem.get('quantity') + 1;
+      if (quantity === "0" || quantity === 0) {
+        this.removeOrderLineItem(orderLineItem)
+      } else {
+        orderLineItem.set('quantity', quantity);
+      }
+    }
+
   },
 
-  removeOrderLineItem: function (orderLineItem) {
+  getOrderLineItemMatching(lineItem, price) {
+    let orderLineItems = this.get('lineItems');
+    let result = null;
+    orderLineItems.forEach((orderLineItem, index, enumerable) => {
+      let currentLineItem = orderLineItem.get('lineItem');
+      let currentPrice = orderLineItem.get('price');
+      if (currentPrice === price && currentLineItem.get('id') ==
+        lineItem.get('id')) {
+        result = orderLineItem;
+        return;
+      }
+    });
+
+    return result;
+  },
+
+  hasLineItem: function(lineItem) {
+    let lineItems = this.get('lineItems');
+    let items = lineItems.mapBy('lineItem');
+    let flattenedItems = items.reduce(function(a, b) {
+      return a.concat(b);
+    }, []);
+
+    return flattenedItems.contains(lineItem);
+  },
+
+  removeOrderLineItem: function(orderLineItem) {
     this.get('lineItems').removeObject(orderLineItem);
-    orderLineItem.destroyRecord();
+    if (Ember.isPresent(orderLineItem)) {
+      orderLineItem.destroyRecord();
+    }
   },
 
   /*
@@ -97,7 +139,7 @@ export default DS.Model.extend({
     - it might actually become available on when refunds are implemented,
       but I don't know how that's going to work yet
   */
-  markPaid: function (paymentMethod, checkNumber = null, stripeData = null) {
+  markPaid: function(paymentMethod, checkNumber = null, stripeData = null) {
     /*
       orders can't be changed once paid.
       - for refunds, a refund object should be associated

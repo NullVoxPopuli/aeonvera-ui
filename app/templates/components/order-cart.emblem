@@ -1,7 +1,6 @@
 .row.full-width
   div class=itemContainerClasses
     = yield
-  
 
   if buildingAnOrder
     div class=orderContainerClasses
@@ -9,8 +8,7 @@
       table.width-of-100.no-border
         each currentItems as |item|
           tr
-            td 
-              = to-usd item.total
+            td {{item.quantity}} x {{to-usd item.total}}
             td
               = item.lineItem.name
               br
@@ -32,12 +30,12 @@
                 a click='"removeItem" item' Remove
         tfoot
           tr
-            th = to-usd currentOrder.subTotal
+            th = to-usd cart.order.subTotal
             th Total
       hr
 
       ul.button-group.even-2
-        li: a.button.alert click='cancelOrder' Cancel
+        li: a.button.alert click='cancel' Cancel
         li
-          = foundation-modal title='At la Carte Order' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
+          = foundation-modal title='Checkout' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
             = handle-payment action=process model=currentOrder

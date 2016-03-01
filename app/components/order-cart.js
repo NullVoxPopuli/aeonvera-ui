@@ -1,70 +1,40 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  currentOrder: null,
+  cart: Ember.inject.service('order-cart'),
+
+
   orderContainerClasses: 'large-3 medium-4 columns',
 
-  itemContainerClasses: Ember.computed('buildingAnOrder', function(){
+  itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
     return building ? 'large-8 medium-8 columns' : 'small-12 columns'
   }),
 
-  buildingAnOrder: Ember.computed('currentOrder', function() {
-    let currentOrder = this.get('currentOrder');
-    return Ember.isPresent(currentOrder);
+  buildingAnOrder: Ember.computed('cart.order', function() {
+    return this.get('cart.hasItems');
   }),
 
-  currentItems: Ember.computed('currentOrder.lineItems.[]', function () {
-    return this.get('currentOrder.lineItems');
+  currentItems: Ember.computed('cart.order.lineItems.[]', function() {
+    return this.get('cart.order.lineItems');
   }),
+
 
   actions: {
 
-    removeItem: function (item) {
-      let order = this.get('currentOrder');
-      order.removeOrderLineItem(item);
-
-      if (!order.get('hasLineItems')) {
-        this.send('cancelOrder');
-      }
+    removeItem: function(item) {
+      this.get('cart').remove(item);
     },
 
-    addToOrder: function (item) {
-      if (!this.get('buildingAnOrder')) {
-        this.send('beginBuildingAnOrder');
-
-        let host = this.get('host');
-        let order = this.store.createRecord('order', {
-          host: host,
-        });
-
-        this.set('currentOrder', order);
-      }
-      this.get('currentOrder').addLineItem(item);
+    cancel: function() {
+      this.get('cart').cancel();
     },
 
-    cancel: function(){
-      this.set('sidebarContainerClasses', this.get('defaultSidebarContainerClasses'));
-      this.set('itemContainerClasses', this.get('defaultItemContainerClasses'));
-    },
-
-    finishedOrder: function () {
+    finishedOrder: function() {
       Ember.$('.close-reveal-modal').click();
-
-      this.set('sidebarContainerClasses', this.get('defaultSidebarContainerClasses'));
-      this.set('itemContainerClasses', this.get('defaultItemContainerClasses'));
-      this.set('currentOrder', null);
       this.get('flashMessages').success(
         'Order was successfully created and recorded'
       );
-    },
-
-    processStripeToken: function(args){
-
-    },
-
-    process: function(args){
-
     }
   }
 
