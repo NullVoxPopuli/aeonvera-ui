@@ -6,11 +6,13 @@ h4 Choose Payment Method
 ul.tabs data-tab='true'
   li.tab-title.active: a href='#payment-panel-cash' Cash
   li.tab-title: a href='#payment-panel-check' Check
-  li.tab-title: a href='#payment-panel-stripe' Credit/Debit Card
+  if (is-present processStripeToken)
+    li.tab-title: a href='#payment-panel-stripe' Credit/Debit Card
 .tabs-content
-  .content#payment-panel-stripe
-    .right
-      = stripe/checkout-button model=order action=processStripeToken
+  if (is-present processStripeToken)
+    .content#payment-panel-stripe
+      .right
+        = stripe/checkout-button model=order action=processStripeToken
   .content.active#payment-panel-cash
     p = t 'atdPaymentCollectionAgree' amount=(to-usd amount)
     button.right click='"process" "Cash"' Pay {{to-usd amount}}

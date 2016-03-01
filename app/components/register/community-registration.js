@@ -5,5 +5,9 @@ export default Ember.Component.extend({
 
   attendance: Ember.computed(function(){
     return this.store.createRecord('organization-attendance');
+  }),
+
+  order: Ember.computed(function(){
+    return this.store.createRecord('order');
   })
 });

@@ -15,9 +15,6 @@ export default Ember.Component.extend(string, {
   buildingItemContainerClasses: 'large-6 medium-8 columns',
   orderContainerClasses: 'large-3 medium-3 columns',
 
-  paymentModalId: Ember.computed(function(){
-    return this.get('randomString')();
-  }).readOnly(),
 
   buildingAnOrder: function () {
       let currentOrder = this.get('currentOrder');
