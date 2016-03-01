@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     return building ? 'large-8 medium-8 columns' : 'small-12 columns'
   }),
 
-  buildingAnOrder: Ember.computed('cart.order', function() {
+  buildingAnOrder: Ember.computed('cart.hasItems', function() {
     return this.get('cart.hasItems');
   }),
 

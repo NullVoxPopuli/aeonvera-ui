@@ -49,9 +49,9 @@ export default DS.Model.extend({
     return this.get('totalInCents') / 100;
   }.property('totalInCents'),
 
-  hasLineItems: function() {
+  hasLineItems: Ember.computed('lineItems.@each', function() {
     return this.get('lineItems.length') > 0;
-  }.property('lineItems.@each'),
+  }),
 
   /*
     Calculates raw total of all the order line items
@@ -77,6 +77,8 @@ export default DS.Model.extend({
   */
   addLineItem: function(lineItem, quantity = 1, price = null) {
     price = price ? price : lineItem.get('currentPrice');
+    quantity = parseInt(quantity) || 0;
+
     // is the item already in the order?
     let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
 
@@ -106,7 +108,7 @@ export default DS.Model.extend({
     orderLineItems.forEach((orderLineItem, index, enumerable) => {
       let currentLineItem = orderLineItem.get('lineItem');
       let currentPrice = orderLineItem.get('price');
-      if (currentPrice === price && currentLineItem.get('id') ==
+      if (currentPrice === price && currentLineItem.get('id') ===
         lineItem.get('id')) {
         result = orderLineItem;
         return;

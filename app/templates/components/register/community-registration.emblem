@@ -27,10 +27,7 @@
           tr
             td = to-usd option.price
             td
-              / todo: instead, set a property on community-register
-              /       and pass that property in to order-cart
-              a click='"add" option' add
-              = input type='checkbox' classNames='center-margin'
+              a.button.tiny.no-margins click='"add" option' Add
             td = option.name
 
   h4 Lessons
@@ -43,11 +40,7 @@
       each model.lessons as |lesson|
         tr
           td = to-usd lesson.price
-          td 
-            = input-value-action type='number' min='0' classNames='width-of-50px center-margin' object=lesson action='addByQuantity'
-            / = input-value-action type='number' min='0' classNames='width-of-50px center-margin' object=lesson onchange='addByQuantity'
-            / = input type='number' min='0' classNames='width-of-50px center-margin'
-            / <input type='number' min='0' class='width-of-50px center-margin' onChange={{action 'addByQuantity' lesson target.value}}>
+          td = input-value-action type='number' min='0' classNames='width-of-50px center-margin' object=lesson action='addByQuantity'
           td
             h5 = lesson.name
             span {{{lesson.description}}}
