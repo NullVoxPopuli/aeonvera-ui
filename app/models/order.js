@@ -102,23 +102,39 @@ export default DS.Model.extend({
     if (!this._eligibleForDiscount()) return;
 
     let discounts = this.get('host.membershipDiscounts');
-
     let items = this.get('orderLineItems');
+    let activeDiscounts = items.filterBy('lineItem.isADiscount');
+    let activeNonDiscounts = items.filterBy('lineItem.isADiscount', false);
 
-    discounts.forEach((discount, i, e) => {
-      // only check discounts for lessons for now
-      if (discount.get('appliesTo').indexOf('Lesson') != -1) {
-        items.forEach((orderLineItem, i, e) => {
-          if (orderLineItem.get('lineItem.isLesson')) {
-            // apply the discount
-            let quantity = orderLineItem.get('quantity');
-            let price = orderLineItem.get('lineItem.price');
+    // let activeDiscounts = items.any((item, i, e) => {
+    //   return item.get('lineItem.isADiscount');
+    // });
 
-            this.addLineItem(discount, quantity);
+    if (activeNonDiscounts.get('length') > 0) {
+      discounts.forEach((discount, i, e) => {
+        // only check discounts for lessons for now
+        if (discount.get('appliesTo').indexOf('Lesson') != -1) {
+          let numberOfLessons = 0;
+          activeNonDiscounts.forEach((orderLineItem, i, e) => {
+            if (orderLineItem.get('lineItem.isLesson')) {
+              // apply the discount
+              let quantity = orderLineItem.get('quantity');
+
+              numberOfLessons += quantity;
+            }
+          });
+
+          if (numberOfLessons > 0) {
+            this.addLineItem(discount, numberOfLessons);
           }
-        });
-      }
-    });
+        }
+      });
+    } else {
+      // we can't have just discounts -- remove everything
+      activeDiscounts.forEach((discount, i, e) => {
+        this.removeOrderLineItem(discount);
+      });
+    }
   },
 
   _eligibleForDiscount() {
