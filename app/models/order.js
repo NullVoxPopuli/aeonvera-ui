@@ -83,28 +83,44 @@ export default DS.Model.extend({
     let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
 
     if (quantity > 0 && !Ember.isPresent(orderLineItem)) {
-      orderLineItem = this.get('lineItems').createRecord({
-        lineItem: lineItem,
-        price: price,
-        quantity: quantity,
-      });
-
-      this.get('lineItems').pushObject(orderLineItem);
+      this._addNewLineItem(lineItem, quantity, price);
     } else {
-      // increase quantity
-      quantity = quantity ? quantity : orderLineItem.get('quantity') + 1;
-      if (quantity === "0" || quantity === 0) {
-        this.removeOrderLineItem(orderLineItem)
-      } else {
-        orderLineItem.set('quantity', quantity);
-      }
+      this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
     }
+  },
 
+  /*
+    only valid data should be passed to this method.
+    from addLineItem
+  */
+  _addNewLineItem(lineItem, quantity, price){
+    let orderLineItem = this.get('lineItems').createRecord({
+      lineItem: lineItem,
+      price: price,
+      quantity: quantity,
+    });
+
+    this.get('lineItems').pushObject(orderLineItem);
+  },
+
+  /*
+    only valid data should be passed to this method.
+    from addLineItem
+  */
+  _increaseQuantityForItem(lineItem, orderLineItem, quantity){
+    // weird logic, cause 0 is false
+    quantity = (quantity || quantity == 0) ? quantity : orderLineItem.get('quantity') + 1;
+    if (quantity === "0" || quantity === 0) {
+      this.removeOrderLineItem(orderLineItem)
+    } else {
+      orderLineItem.set('quantity', quantity);
+    }
   },
 
   getOrderLineItemMatching(lineItem, price) {
     let orderLineItems = this.get('lineItems');
     let result = null;
+
     orderLineItems.forEach((orderLineItem, index, enumerable) => {
       let currentLineItem = orderLineItem.get('lineItem');
       let currentPrice = orderLineItem.get('price');

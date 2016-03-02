@@ -13,4 +13,12 @@ export default Ember.Mixin.create({
   isCompetition: function () {
     return this.get('constructor.modelName') === 'competition';
   }.property(),
+
+  isMembershipOption: Ember.computed(function(){
+    return this.get('constructor.modelName') === 'membership-option';
+  }),
+
+  isLesson: Ember.computed(function(){
+    return this.get('constructor.modelName') === 'lesson';
+  })
 });

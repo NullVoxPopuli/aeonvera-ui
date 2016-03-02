@@ -66,4 +66,18 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
     // return nameArray.join(', ');
   }.property('packages'),
 
+  applyToAmount(value, quantity = 1){
+    let dollarsOff = this.get('isDollarsOff');
+    let amount = this.get('amount');
+    let subTotal = 0;
+
+    if (dollarsOff){
+      subTotal = value - amount;
+    } else {
+      subTotal = value * (amount / 100.0);
+    }
+
+    subTotal = subTotal > 0 ? subTotal : 0
+    return subTotal * quantity;
+  }
 });
