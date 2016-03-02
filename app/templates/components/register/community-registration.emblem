@@ -14,7 +14,7 @@
         
     small.right: em.text-right * after registering, a confirmation email will be sent to continue account creation
 
-  if session.isAuthenticated
+  if showMembershipOptions
     h4 Membership
 
     table
@@ -56,3 +56,6 @@
   br
   br
   br
+  
+  if isCurrentMember
+    span Membership Expires on (TODO: date here)

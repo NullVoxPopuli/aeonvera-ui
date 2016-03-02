@@ -2,8 +2,9 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import IsLineItem from '../mixins/models/is-line-item';
 import DeletedAt from '../mixins/models/deleted-at';
+import Purchasable from 'aeonvera/models/purchasable';
 
-export default DS.Model.extend(IsLineItem, DeletedAt, {
+export default Purchasable.extend(IsLineItem, DeletedAt, {
 
   DOLLARS_OFF: 0,
   PERCENT_OFF: 1,
@@ -28,15 +29,15 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
 
   // restraints: DS.hasMany('restraint')
 
-  name: function () {
+  name: function() {
     return this.get('code');
   }.property('code'),
 
-  price: function () {
+  price: function() {
     return this.get('discount');
   }.property('discount'),
 
-  discount: function () {
+  discount: function() {
     let kind = this.get('kind');
     let amount = this.get('amount');
 
@@ -47,12 +48,12 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
     return amount + '%';
   }.property('amount', 'kind'),
 
-  isDollarsOff: function () {
+  isDollarsOff: function() {
     let kind = this.get('kind');
     return kind === this.get('DOLLARS_OFF');
   }.property('kind'),
 
-  restrictedTo: function () {
+  restrictedTo: function() {
     let nameArray = [];
 
     // return this.get('packages', {
@@ -66,18 +67,18 @@ export default DS.Model.extend(IsLineItem, DeletedAt, {
     // return nameArray.join(', ');
   }.property('packages'),
 
-  applyToAmount(value, quantity = 1){
+  applyToAmount(value, quantity = 1) {
     let dollarsOff = this.get('isDollarsOff');
     let amount = this.get('amount');
     let subTotal = 0;
 
-    if (dollarsOff){
+    if (dollarsOff) {
       subTotal = value - amount;
     } else {
       subTotal = value * (amount / 100.0);
     }
 
-    subTotal = subTotal > 0 ? subTotal : 0
+    subTotal = subTotal > 0 ? subTotal : 0;
     return subTotal * quantity;
-  }
+  },
 });

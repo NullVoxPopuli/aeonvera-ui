@@ -26,8 +26,6 @@ export default DS.Model.extend({
   }),
   attendance: DS.belongsTo('attendance'),
 
-  lineItems: Ember.computed.alias('orderLineItems'),
-
   /*
     stripe specific things
     TODO: think about extracting this in to an object,
@@ -49,23 +47,23 @@ export default DS.Model.extend({
     return this.get('totalInCents') / 100;
   }.property('totalInCents'),
 
-  hasLineItems: Ember.computed('lineItems.@each', function() {
-    return this.get('lineItems.length') > 0;
+  hasLineItems: Ember.computed('orderLineItems.@each', function() {
+    return this.get('orderLineItems.length') > 0;
   }),
 
   /*
     Calculates raw total of all the order line items
   */
   subTotal: function() {
-    let lineItems = this.get('lineItems');
+    let lineItems = this.get('orderLineItems');
     let subTotal = 0;
 
-    lineItems.forEach(function(item) {
+    lineItems.forEach((item) => {
       subTotal += item.get('total');
     });
 
     return subTotal;
-  }.property('lineItems.@each.total'),
+  }.property('orderLineItems.@each.total'),
 
   paidClass: function() {
     let paid = this.get('paid');
@@ -85,47 +83,118 @@ export default DS.Model.extend({
     if (quantity > 0 && !Ember.isPresent(orderLineItem)) {
       this._addNewLineItem(lineItem, quantity, price);
     } else {
+      // this will also remove
       this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
     }
+
+    if (!lineItem.get('isADiscount')) {
+      this._updateAutomaticDiscounts();
+    }
+  },
+
+  /*
+    Currently, only membership discounts are applied
+    - these are applied to lessons right now, but
+    - TODO: add support for auto-applying membership
+            discounts to events as well
+  */
+  _updateAutomaticDiscounts() {
+    if (!this._eligibleForDiscount()) return;
+
+    let discounts = this.get('host.membershipDiscounts');
+
+    let items = this.get('orderLineItems');
+
+    discounts.forEach((discount, i, e) => {
+      // only check discounts for lessons for now
+      if (discount.get('appliesTo').indexOf('Lesson') != -1) {
+        items.forEach((orderLineItem, i, e) => {
+          if (orderLineItem.get('lineItem.isLesson')) {
+            // apply the discount
+            let quantity = orderLineItem.get('quantity');
+            let price = orderLineItem.get('lineItem.price');
+
+            this.addLineItem(discount, quantity);
+          }
+        });
+      }
+    });
+  },
+
+  _eligibleForDiscount() {
+    let host = this.get('host');
+    let discounts = host.get('membershipDiscounts');
+
+    // no discounts, no change in price
+    if (!Ember.isPresent(discounts)) return false;
+
+    // check for a membership option, which may include a discount
+    let lineItems = this.get('orderLineItems');
+    let hasMembership = lineItems.any((item, index, enumerable) => {
+      return item.get('lineItem.isMembershipOption');
+    });
+
+    // check if the user is a member
+    let user = this.get('user.id');
+
+    // refetch, to ensure we get all the helper methods defined on user.
+    // TODO: WTF?
+    user = this.get('store').peekRecord('user', 0);
+
+    if (!hasMembership && Ember.isPresent(user)) {
+      hasMembership = user.isMemberOf(host);
+    }
+
+    // make sure membership status is present / true
+    // this could be from the order or pre-existing membership status
+    return hasMembership;
   },
 
   /*
     only valid data should be passed to this method.
     from addLineItem
   */
-  _addNewLineItem(lineItem, quantity, price){
-    let orderLineItem = this.get('lineItems').createRecord({
+  _addNewLineItem(lineItem, quantity, price) {
+    if (lineItem.get('isADiscount')) {
+      price = 0 - lineItem.get('amount');
+    }
+
+    let orderLineItem = this.get('orderLineItems').createRecord({
       lineItem: lineItem,
       price: price,
       quantity: quantity,
     });
 
-    this.get('lineItems').pushObject(orderLineItem);
+    this.get('orderLineItems').pushObject(orderLineItem);
   },
 
   /*
     only valid data should be passed to this method.
     from addLineItem
   */
-  _increaseQuantityForItem(lineItem, orderLineItem, quantity){
+  _increaseQuantityForItem(lineItem, orderLineItem, quantity) {
     // weird logic, cause 0 is false
-    quantity = (quantity || quantity == 0) ? quantity : orderLineItem.get('quantity') + 1;
-    if (quantity === "0" || quantity === 0) {
-      this.removeOrderLineItem(orderLineItem)
+    quantity = (quantity || quantity == 0) ? quantity : orderLineItem.get(
+      'quantity') + 1;
+    if (quantity === '0' || quantity === 0) {
+      this.removeOrderLineItem(orderLineItem);
     } else {
       orderLineItem.set('quantity', quantity);
     }
   },
 
   getOrderLineItemMatching(lineItem, price) {
-    let orderLineItems = this.get('lineItems');
+    let orderLineItems = this.get('orderLineItems');
     let result = null;
 
     orderLineItems.forEach((orderLineItem, index, enumerable) => {
       let currentLineItem = orderLineItem.get('lineItem');
       let currentPrice = orderLineItem.get('price');
-      if (currentPrice === price && currentLineItem.get('id') ===
-        lineItem.get('id')) {
+      let isDiscount = currentLineItem.get('isADiscount');
+
+
+      if (currentLineItem.get('id') === lineItem.get('id') && (
+          currentPrice === price || isDiscount)) {
         result = orderLineItem;
         return;
       }
@@ -135,7 +204,7 @@ export default DS.Model.extend({
   },
 
   hasLineItem: function(lineItem) {
-    let lineItems = this.get('lineItems');
+    let lineItems = this.get('orderLineItems');
     let items = lineItems.mapBy('lineItem');
     let flattenedItems = items.reduce(function(a, b) {
       return a.concat(b);
@@ -145,7 +214,7 @@ export default DS.Model.extend({
   },
 
   removeOrderLineItem: function(orderLineItem) {
-    this.get('lineItems').removeObject(orderLineItem);
+    this.get('orderLineItems').removeObject(orderLineItem);
     if (Ember.isPresent(orderLineItem)) {
       orderLineItem.destroyRecord();
     }

@@ -7,9 +7,9 @@ export default Ember.Route.extend({
     let promise = this.store.findRecord('event', id, {
       adapterOptions: {
         query: {
-          include: 'shirts,integrations,competitions,line_items,attendances'
-        }
-      }
+          include: 'shirts,integrations,competitions,line_items,attendances',
+        },
+      },
     });
 
     return promise;

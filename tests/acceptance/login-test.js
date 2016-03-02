@@ -12,9 +12,9 @@ module('Acceptance | login', {
       application = startApp();
     },
 
-    afterEach() {
+  afterEach() {
       Ember.run(application, 'destroy');
-    }
+    },
 });
 
 test('visiting /', function(assert) {

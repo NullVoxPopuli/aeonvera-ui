@@ -2,7 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('register/event-registration', 'Integration | Component | register/event registration', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

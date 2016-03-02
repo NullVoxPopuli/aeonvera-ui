@@ -10,8 +10,27 @@ export default DS.Model.extend({
   unconfirmedEmail: DS.attr('string'),
   timeZone: DS.attr('string'),
 
-  name: function () {
+  membershipRenewals: DS.hasMany('membership-renewal'),
+
+  name: Ember.computed('firstName', 'lastName', function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName'),
+  }).readOnly(),
+
+  isMemberOf(organization) {
+    let isMember = false;
+    let membershipRenewals = this.get('membershipRenewals');
+
+    membershipRenewals.forEach((item, index, enumerable) => {
+      let related = item.get('membershipOption.host');
+
+      if (related.get('id') === organization.get('id') &&
+        related.get('domain') === organization.get('domain')
+      ) {
+        isMember = true;
+      }
+    });
+
+    return isMember;
+  },
 
 });

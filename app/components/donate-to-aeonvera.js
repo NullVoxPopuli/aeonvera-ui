@@ -6,7 +6,7 @@ export default Ember.Component.extend(string, {
     this.$(document).foundation('reflow');
   }.on('didInsertElement'),
 
-  randomId: Ember.computed(function(){
+  randomId: Ember.computed(function() {
     return this.get('randomString')();
-  }).readOnly()
+  }).readOnly(),
 });

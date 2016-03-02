@@ -1,8 +1,9 @@
 import DS from 'ember-data';
 import Buyable from '../mixins/models/buyable';
 import IsLineItem from '../mixins/models/is-line-item';
+import Purchasable from 'aeonvera/models/purchasable';
 
-export default DS.Model.extend(Buyable, IsLineItem, {
+export default Purchasable.extend(Buyable, IsLineItem, {
   name: DS.attr('string'),
   description: DS.attr('string'),
   price: DS.attr('number'),

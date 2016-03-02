@@ -2,7 +2,7 @@ import Ember from 'ember';
 import config from './config/environment';
 
 const Router = Ember.Router.extend({
-  location: config.locationType
+  location: config.locationType,
 });
 /*
   Notes:
@@ -26,7 +26,6 @@ Router.map(function() {
   this.route('password-reset', function() {
     this.route('success');
   });
-
 
   /* event registration - subdomain based */
   this.route('dance-event', function() {

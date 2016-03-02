@@ -7,17 +7,17 @@ export default Ember.Component.extend({
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
-    return building ? 'large-8 medium-8 columns' : 'large-8 medium-12 columns'
+    return building ? 'large-8 medium-8 columns' :
+      'large-8 medium-12 columns';
   }),
 
   buildingAnOrder: Ember.computed('cart.hasItems', function() {
     return this.get('cart.hasItems');
   }),
 
-  currentItems: Ember.computed('cart.order.lineItems.[]', function() {
-    return this.get('cart.order.lineItems');
+  currentItems: Ember.computed('cart.items', function() {
+    return this.get('cart.items');
   }),
-
 
   actions: {
 
@@ -34,7 +34,7 @@ export default Ember.Component.extend({
       this.get('flashMessages').success(
         'Order was successfully created and recorded'
       );
-    }
-  }
+    },
+  },
 
 });

@@ -6,5 +6,5 @@ export default Ember.Component.extend(Form, {
   saveSuccessPath: 'my-communities.manage.lessons.show', // should be show?
   cancelPath: 'my-communities.manage.lessons',
   parentAssociation: 'organization',
-  parentId: 'organization_id'
+  parentId: 'organization_id',
 });

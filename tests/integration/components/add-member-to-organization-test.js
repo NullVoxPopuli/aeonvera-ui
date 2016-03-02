@@ -2,7 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('add-member-to-organization', 'Integration | Component | add member to organization', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

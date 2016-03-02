@@ -1,7 +1,8 @@
   import Ember from 'ember';
 
-  export default Ember.Component.extend({
+export default Ember.Component.extend({
     title: '',
+
     // name: '',
     elementId: '',
     role: 'dialog',
@@ -27,7 +28,6 @@
 
     titleId: function() {
       return this.get('elementId') + '-title';
-    }.property('elementId')
-
+    }.property('elementId'),
 
   });

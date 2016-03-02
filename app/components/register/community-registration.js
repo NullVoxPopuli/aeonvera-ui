@@ -2,7 +2,24 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
+  user: Ember.inject.service('current-user'),
   cart: Ember.inject.service('order-cart'),
+
+  isCurrentMember: Ember.computed('user.user', function() {
+    let user = this.get('store').peekRecord('user', 0);
+    let organization = this.get('model');
+
+    return user.isMemberOf(organization);
+  }),
+
+  showMembershipOptions: Ember.computed('isCurrentMember',
+    'session.isAuthenticated',
+    function() {
+      let isCurrentMember = this.get('isCurrentMember');
+      let isAuthenticated = this.get('session.isAuthenticated');
+
+      return (isAuthenticated && !isCurrentMember);
+    }),
 
   attendance: Ember.computed(function() {
     return this.store.createRecord('organization-attendance');
@@ -19,7 +36,8 @@ export default Ember.Component.extend({
     },
 
     addByQuantity(quantity, item) {
-      this.get('cart').add(item, quantity)
-    }
-  }
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').add(item, quantity);
+    },
+  },
 });

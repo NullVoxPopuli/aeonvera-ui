@@ -2,7 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('input-value-action', 'Integration | Component | input value action', {
-  integration: true
+  integration: true,
 });
 
 test('it renders', function(assert) {

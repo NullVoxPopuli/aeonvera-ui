@@ -7,5 +7,5 @@ export default Ember.TextField.extend({
     let object = this.get('object');
     return this.sendAction('action', value, object);
 
-  }.observes('value')
+  }.observes('value'),
 });
