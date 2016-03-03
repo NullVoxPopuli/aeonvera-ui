@@ -72,6 +72,9 @@ export default DS.Model.extend({
 
   /*
     takes the line item, and makes an order line item out of it
+    lineItem - the item to add or update
+    quantity - the quantity to *set* to. This does not add.
+    price - overrides the price of the lineItem
   */
   addLineItem: function(lineItem, quantity = 1, price = null) {
     price = price ? price : lineItem.get('currentPrice');
@@ -146,7 +149,8 @@ export default DS.Model.extend({
 
     // check for a membership option, which may include a discount
     let lineItems = this.get('orderLineItems');
-    let hasMembership = lineItems.any((item, i, e) => item.get('lineItem.isMembershipOption'));
+    let hasMembership = lineItems.any((item, i, e) => item.get(
+      'lineItem.isMembershipOption'));
 
     // check if the user is a member
     let user = this.get('user.id');
