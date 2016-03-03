@@ -19,7 +19,7 @@
 
     table
       thead: tr
-        th Price
+        th.width-of-80px Price
         th Purchase?
         th
       tbody
@@ -30,10 +30,15 @@
               a.button.tiny.no-margins click='"add" option' Add
             td = option.name
 
-  h4 Lessons
+  .row
+    .small-4.columns
+      h4 Lessons
+    .small-8.columns
+      if isCurrentMember
+        h6.margin-top-12.right Membership Expires on {{ date-with-format membershipExpiresAt 'lll' }}
   table
     thead: tr
-      th Price
+      th.width-of-80px Price
       th.width-of-100px.text-center Number of Dancers
       th
     tbody
@@ -56,6 +61,3 @@
   br
   br
   br
-  
-  if isCurrentMember
-    span Membership Expires on (TODO: date here)

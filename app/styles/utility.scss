@@ -1,11 +1,10 @@
 $directions: "left", "right", "bottom", "top";
-$intervals: 0, 5, 10, 15, 20;
+$intervals: 0, 5, 10, 12, 15, 20;
 
 $max-widths: 65rem, 70rem, 75rem, 85rem;
 
 @each $dir in $directions {
   @each $amount in $intervals {
-
     .padding-#{$dir}-#{$amount} {
       padding-#{$dir}: #{$amount}px;
     }
@@ -17,11 +16,9 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 }
 
 @each $width in $max-widths {
-
   .max-width-#{$width} {
     max-width: #{$width};
   }
-
 }
 
 
@@ -41,6 +38,9 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 @for $i from 1 through 30{
   .width-of-#{$i}0px{
     width: #{$i}0px !important;
+  }
+  .min-width-#{$i}0 {
+    min-width: #{$i}0px;
   }
 }
 

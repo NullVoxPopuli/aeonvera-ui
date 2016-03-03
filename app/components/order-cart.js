@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
 
-  orderContainerClasses: 'large-3 medium-4 columns',
+  orderContainerClasses: 'large-4 medium-4 columns',
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');

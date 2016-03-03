@@ -1,5 +1,5 @@
 .row.full-width
-  div class=itemContainerClasses
+  div.padding-left-0 class=itemContainerClasses
     = yield
 
   if buildingAnOrder
@@ -8,7 +8,7 @@
       table.width-of-100.no-border
         each currentItems as |item|
           tr
-            td {{item.quantity}} x {{to-usd item.total}}
+            td.min-width-100 {{item.quantity}} x {{to-usd item.total}}
             td
               = item.lineItem.name
               br
