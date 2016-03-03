@@ -111,11 +111,10 @@ test('_eligibleForDiscount | false when no discounts available', function(
 });
 
 test('_eligibleForDiscount | true when membershipOption added', function(assert) {
-  make('host');
   // let membershipOption = make('membership-option');
-  // let organization = make('organization', {
-  //   membershipOptions: [membershipOption]
-  // });
+  let organization = make('organization', {
+    // membershipOptions: [membershipOption]
+  });
   // let order = make('order', {
   //   host: organization
   // });
