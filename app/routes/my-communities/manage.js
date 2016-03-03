@@ -9,12 +9,10 @@ export default Ember.Route.extend({
 
   afterModel: function (model /*, transition */) {
     this._super();
-
     this.set('title', model.get('name'));
 
-    var self = this;
-    Ember.run.later(function () {
-      var dashboard = self.controllerFor('my-communities/manage');
+    Ember.run.later(() => {
+      var dashboard = this.controllerFor('my-communities/manage');
       dashboard.set('data', model);
     });
   },

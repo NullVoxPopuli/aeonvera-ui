@@ -74,9 +74,7 @@ export default Ember.Service.extend({
   subdomainType: function () {
     let model = this.get('model');
     if (model !== undefined) {
-      return model.then(m => {
-        return m.get('constructor.modelName');
-      });
+      return model.then(m => m.get('constructor.modelName'));
     }
   }.property('current'),
 

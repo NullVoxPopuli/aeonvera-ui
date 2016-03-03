@@ -16,7 +16,7 @@ export default Ember.Mixin.create({
     query[parentIdName] = parent.get('id');
 
     if (Ember.isPresent(include)) {
-      query['include'] = include;
+      query.include = include;
     }
 
     let record = this.store.findRecord(modelName, params[idName], {

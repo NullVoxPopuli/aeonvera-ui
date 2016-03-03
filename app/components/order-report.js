@@ -26,20 +26,20 @@ export default Ember.Component.extend({
     if (Ember.isPresent(pastDays)) {
       let m = moment(new Date());
       m.subtract(pastDays, 'days');
-      query['created_at_gteq'] = m.format();
+      query.created_at_gteq = m.format();
     }
 
     if (Ember.isPresent(nameContains)) {
-      query['user_first_name_or_user_last_name_cont'] = nameContains;
+      query.user_first_name_or_user_last_name_cont = nameContains;
 
       // query['attendance_attendee_name_cont'] = nameContains;
     }
 
     if (showPaid !== 0) {
       if (showPaid === 1) {
-        query['paid_true'] = 1;
+        query.paid_true = 1;
       } else {
-        query['paid_false'] = 1;
+        query.paid_false = 1;
       }
 
     }

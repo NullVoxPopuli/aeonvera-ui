@@ -5,7 +5,6 @@ export default Ember.Route.extend(AuthenticatedUi, {
   i18n: Ember.inject.service(),
 
   activate: function () {
-
     this.set('title', this.get('i18n').t('attendedevents'));
 
     this.controllerFor('application').set('mobileMenuLeft',
@@ -25,12 +24,11 @@ export default Ember.Route.extend(AuthenticatedUi, {
 
     deactivateAccount: function () {
       var store = this.get('store');
-      var self = this;
 
-      store.find('user', 0).then(function (user) {
+      store.find('user', 0).then((user) => {
         user.deleteRecord();
-        user.save().then(function () {
-          self.send('invalidateSession');
+        user.save().then(() => {
+          this.send('invalidateSession');
         });
       });
     },

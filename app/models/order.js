@@ -113,7 +113,7 @@ export default DS.Model.extend({
     if (activeNonDiscounts.get('length') > 0) {
       discounts.forEach((discount, i, e) => {
         // only check discounts for lessons for now
-        if (discount.get('appliesTo').indexOf('Lesson') != -1) {
+        if (discount.get('appliesTo').indexOf('Lesson') !== -1) {
           let numberOfLessons = 0;
           activeNonDiscounts.forEach((orderLineItem, i, e) => {
             if (orderLineItem.get('lineItem.isLesson')) {
@@ -146,9 +146,7 @@ export default DS.Model.extend({
 
     // check for a membership option, which may include a discount
     let lineItems = this.get('orderLineItems');
-    let hasMembership = lineItems.any((item, index, enumerable) => {
-      return item.get('lineItem.isMembershipOption');
-    });
+    let hasMembership = lineItems.any((item, i, e) => item.get('lineItem.isMembershipOption'));
 
     // check if the user is a member
     let user = this.get('user.id');
@@ -190,7 +188,7 @@ export default DS.Model.extend({
   */
   _increaseQuantityForItem(lineItem, orderLineItem, quantity) {
     // weird logic, cause 0 is false
-    quantity = (quantity || quantity == 0) ? quantity : orderLineItem.get(
+    quantity = (quantity || quantity === 0) ? quantity : orderLineItem.get(
       'quantity') + 1;
     if (quantity === '0' || quantity === 0) {
       this.removeOrderLineItem(orderLineItem);
@@ -203,11 +201,10 @@ export default DS.Model.extend({
     let orderLineItems = this.get('orderLineItems');
     let result = null;
 
-    orderLineItems.forEach((orderLineItem, index, enumerable) => {
+    orderLineItems.forEach((orderLineItem, i, e) => {
       let currentLineItem = orderLineItem.get('lineItem');
       let currentPrice = orderLineItem.get('price');
       let isDiscount = currentLineItem.get('isADiscount');
-
 
       if (currentLineItem.get('id') === lineItem.get('id') && (
           currentPrice === price || isDiscount)) {

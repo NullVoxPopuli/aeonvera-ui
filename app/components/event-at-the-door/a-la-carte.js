@@ -1,6 +1,5 @@
 import Ember from 'ember';
-import string from 'aeonvera/mixins/helpers/string';
-export default Ember.Component.extend(string, {
+export default Ember.Component.extend({
   itemsInOrder: [],
 
   currentOrder: null,
@@ -16,17 +15,17 @@ export default Ember.Component.extend(string, {
   orderContainerClasses: 'large-3 medium-3 columns',
 
   buildingAnOrder: function () {
-      let currentOrder = this.get('currentOrder');
-      if (Ember.isPresent(currentOrder)) {
-        return true;
-      }
+    let currentOrder = this.get('currentOrder');
+    if (Ember.isPresent(currentOrder)) {
+      return true;
+    }
 
-      return false;
-    }.property('currentOrder'),
+    return false;
+  }.property('currentOrder'),
 
   currentItems: Ember.computed('currentOrder.lineItems.[]', function () {
-      return this.get('currentOrder.lineItems');
-    }),
+    return this.get('currentOrder.lineItems');
+  }),
 
   actions: {
       beginBuildingAnOrder: function () {
@@ -86,7 +85,6 @@ export default Ember.Component.extend(string, {
 
       processStripeToken: function (args) {
         let order = this.get('currentOrder');
-        let self = this;
         /*
           send the token to the server to actually create the charge
          */
@@ -98,31 +96,27 @@ export default Ember.Component.extend(string, {
 
         /* save the line order first */
         if (order.get('isNew')) {
-          order.save().then(function (o) {
-             o.get('lineItems').invoke('save');
-             o.save().then(function () {
-               self.send('finishedOrder');
-             }, function (errors) {
-
-               alert(errors);
-             });
-           });
+          order.save().then((o) => {
+            o.get('lineItems').invoke('save');
+            o.save().then(() => {
+              this.send('finishedOrder');
+            }, function (errors) {
+              alert(errors);
+            });
+          });
         } else {
           order.setProperties({
-             checkoutToken: args.id,
-             checkoutEmail: args.email,
-           });
+            checkoutToken: args.id,
+            checkoutEmail: args.email,
+          });
 
-          order.save().then(function () {
-             /* what happens if the card is declined? */
-             self.send('finishedOrder');
-           }, function (order) {
-
-             alert(order);
-           });
-
+          order.save().then(() => {
+            /* what happens if the card is declined? */
+            this.send('finishedOrder');
+          }, function (order) {
+            alert(order);
+          });
         }
-
       },
 
       process: function (args) {
@@ -130,11 +124,10 @@ export default Ember.Component.extend(string, {
         let checkNumber = args.checkNumber;
         let stripeData = args.stripeData;
         let order = this.get('currentOrder');
-        let self = this;
 
         order.markPaid(paymentMethod, checkNumber, stripeData);
         /* save the line order first */
-        order.save().then(function (o) {
+        order.save().then((o) => {
           /* then line items */
           o.get('lineItems').invoke('save');
           o.save().then(function () {
@@ -144,7 +137,7 @@ export default Ember.Component.extend(string, {
             alert(error);
           });
 
-          self.send('finishedOrder');
+          this.send('finishedOrder');
         }, function (error) {
 
           alert(error);

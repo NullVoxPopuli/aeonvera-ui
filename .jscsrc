@@ -2,5 +2,7 @@
 	"preset": "airbnb",
 	"validateIndentation": 2,
 	"requireSpacesInAnonymousFunctionExpression": false,
-	"maxErrors": 200
+	"maxErrors": 200,
+	"disallowMultipleLineStrings": false,
+	"maximumLineLength": 160
 }

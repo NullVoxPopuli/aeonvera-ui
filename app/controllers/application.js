@@ -21,29 +21,23 @@ export default Ember.Controller.extend({
     */
     registerNewUser: function () {
       var user = this.get('user');
-      var self = this;
 
-      user.save().then(
-        function () {
-          /*
-            success
-            - hide the modal
-            - notify of confirmation email
-          */
-          self.get('flashMessages').success(
-            'You will receive an email with instructions about how to confirm your account in a few minutes.'
-          );
-          jQuery('#signup-modal a.close-reveal-modal').trigger('click');
-
-        },
-
-        function () {
-          /*
-            error
-            - show error messages
-          */
-        }
-      );
+      user.save().then(() => {
+        /*
+          success
+          - hide the modal
+          - notify of confirmation email
+        */
+        this.get('flashMessages').success(
+          'You will receive an email with instructions about how to confirm your account in a few minutes.'
+        );
+        jQuery('#signup-modal a.close-reveal-modal').trigger('click');
+      }, () => {
+        /*
+          error
+          - show error messages
+        */
+      });
     },
   },
 

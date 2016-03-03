@@ -13,7 +13,7 @@ export default Ember.Component.extend({
 
   actions: {
     authenticate: function () {
-      let self = this;
+      let _this = this;
       let {
         identification, password,
       } = this.getProperties('identification', 'password');
@@ -31,7 +31,7 @@ export default Ember.Component.extend({
             message = reason.error;
           }
 
-          self.set('errorMessage', message);
+          _this.set('errorMessage', message);
         }).then(function () {
           // close the modal
           // Ember.$('a.close-reveal-modal').trigger('click');

@@ -27,6 +27,6 @@ export default Ember.Mixin.create({
   }),
 
   isADiscount: Ember.computed(function() {
-    return (this.get('isDiscount') || this.get('isMembershipDiscount'))
-  })
+    return (this.get('isDiscount') || this.get('isMembershipDiscount'));
+  }),
 });

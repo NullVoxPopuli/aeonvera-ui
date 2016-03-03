@@ -1,4 +1,5 @@
 /*jshint multistr: true */
+/* jscs:disable */
 
 export default {
   appname: 'ÆONVERA',

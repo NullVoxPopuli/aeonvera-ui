@@ -12,7 +12,7 @@ export default Mirage.Factory.extend({
   firstName: faker.name.firstName, // using faker
   lastName: faker.name.firstName,
   email: 'test@test.test',
-  password: 'some-password'
+  password: 'some-password',
 
   // age: 20,                              // numbers
   // tall: true,                           // booleans

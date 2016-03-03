@@ -14,7 +14,6 @@ export default Ember.Component.extend({
 
   setTemplate: function () {
     let items = this.get('model.orderLineItems');
-    let self = this;
 
     items.then(lineItems => {
       lineItems.forEach((orderLineItem, i) => {
@@ -23,7 +22,7 @@ export default Ember.Component.extend({
           orderLineItem.set('template', template);
         });
       });
-      self.set('orderLineItems', lineItems);
+      this.set('orderLineItems', lineItems);
     });
 
   }.observes('model.orderLineItems.[]'),

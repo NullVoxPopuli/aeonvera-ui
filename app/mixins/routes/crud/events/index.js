@@ -16,7 +16,7 @@ export default Ember.Mixin.create({
     query[key] = parent.get('id');
 
     if (Ember.isPresent(include)) {
-      query['include'] = include;
+      query.include = include;
     }
 
     return this.store.query(modelName, query);

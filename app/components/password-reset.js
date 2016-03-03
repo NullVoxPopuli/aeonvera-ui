@@ -19,7 +19,7 @@ export default Ember.Component.extend({
 
   actions: {
     reset: function () {
-      let self = this;
+      let _this = this;
       let url = ENV.host + '/api/users/password.json';
       let data = {
         user: {
@@ -32,13 +32,13 @@ export default Ember.Component.extend({
         type: 'POST',
         data: data,
         success: function (data) {
-          self.sendAction('action');
+          _this.sendAction('action');
         },
 
         error: function (jqxhr, status, text) {
           let json = Ember.$.parseJSON(jqxhr.responseText);
           let errors = json.errors;
-          let modelErrors = self.get('model.errors');
+          let modelErrors = _this.get('model.errors');
           modelErrors.clear();
           for (let field in errors) {
             modelErrors.add(field, errors[field]);
