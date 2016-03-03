@@ -29,6 +29,7 @@
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
-    "wysihtml": "^0.5.5"
+    "wysihtml": "^0.5.5",
+    "jquery-mockjax": "2.0.1"
   }
 }

@@ -1,8 +1,7 @@
 
 / ember-wormhole puts modals here    
 #foundation-modals
-  / these 3 are accessed from many locations, and are not rendered in place
-  = login-modal
+  / these 2 are accessed from many locations, and are not rendered in place
   = login-help-modal
   = sign-up-modal action='registerNewUser' model=user
 

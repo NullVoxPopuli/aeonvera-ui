@@ -1,5 +1,2 @@
-#login-modal.login.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog' data-name='login-modal'
-  h2#login-modal-title.text-center Login
-  p
-    = login-form
-    a.close-reveal-modal aria-label="Close" &#215;
+= foundation-modal title='Login' name='login-modal' buttonText=(t 'buttons.login') buttonClasses='button login margin-right-5'
+  = login-form

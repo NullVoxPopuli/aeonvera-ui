@@ -26,8 +26,7 @@ test('visiting /', function(assert) {
   click('.auth-link a.button.login');
   andThen(() => {
     let text = find(
-      '.reveal-modal[data-name="login-modal"] h2').text();
-    debugger;
+      '.reveal-modal[data-name="login-modal"] h2').first().text();
     assert.equal(text, 'Login');
   });
 });
@@ -39,14 +38,14 @@ test('can login', function(assert) {
   let loginModalSelector = '.reveal-modal[data-name="login-modal"]';
   andThen(() => {
     let text = find(
-      loginModalSelector + ' h2').text();
+      loginModalSelector + ' h2').first().text();
     assert.equal(text, 'Login');
   });
 
   fillIn(loginModalSelector + ' input[type="text"]', 'test@test.test');
   fillIn(loginModalSelector + ' input[type="password"]', 'some-password');
 
-  click(loginModalSelector + 'button[type="submit"]');
+  click(loginModalSelector + ' button[type="submit"]');
 
   andThen(() => {
     let message = find('body').text();

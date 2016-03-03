@@ -1,15 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  initFoundation: function () {
+  initFoundation: function() {
     this.$(document).foundation('reflow');
   }.on('didInsertElement'),
 
-  errors: function () {
+  errors: function() {
     return this.get('model').get('errors');
   }.property('model'),
 
-  emailClass: function () {
+  emailClass: function() {
     var errors = this.get('errors');
     if (errors.get('email') && errors.get('email').length > 0) {
       return 'error';
@@ -19,7 +19,7 @@ export default Ember.Component.extend({
   }.property('errors'),
 
   actions: {
-    register: function () {
+    register: function() {
       this.sendAction('action');
     },
   },

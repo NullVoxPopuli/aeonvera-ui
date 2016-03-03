@@ -2,15 +2,23 @@ import {
   moduleForModel, test
 }
 from 'ember-qunit';
+import {
+  make
+}
+from 'ember-data-factory-guy';
+
 
 moduleForModel('order', 'Unit | Model | order', {
   // Specify the other units that are required for this test.
   needs: [],
 });
 
-test('it exists', function(assert) {
-  var model = this.subject();
+test('it hasLineItems', function(assert) {
+  let orderLineItem = make('order-line-item');
+  let order = make('order', {
+    orderLineItems: [orderLineItem]
+  });
 
-  // var store = this.store();
-  assert.ok(!!model);
+  let result = order.get('hasLineItems');
+  assert.ok(result);
 });
