@@ -1,0 +1,17 @@
+languages:
+  Ruby: false
+  JavaScript: true
+  PHP: false
+  Python: false
+
+engines:
+  watson:
+    enabled: true
+
+ratings:
+  paths:
+    - app/**/*
+
+
+exclude_paths:
+  - tests/
