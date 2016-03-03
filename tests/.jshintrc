@@ -28,7 +28,7 @@
   "node": false,
   "browser": false,
   "boss": true,
-  "curly": true,
+  "curly": false,
   "debug": false,
   "devel": false,
   "eqeqeq": true,

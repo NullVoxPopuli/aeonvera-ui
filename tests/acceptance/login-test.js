@@ -5,14 +5,16 @@ import {
 from 'qunit';
 import startApp from 'aeonvera/tests/helpers/start-app';
 import Mirage from 'ember-cli-mirage';
+
 let application;
 
 module('Acceptance | login', {
   beforeEach() {
       application = startApp();
+
     },
 
-  afterEach() {
+    afterEach() {
       Ember.run(application, 'destroy');
     },
 });
@@ -21,14 +23,14 @@ test('visiting /', function(assert) {
   visit('/');
   andThen(() => assert.equal(currentURL(), '/welcome'));
 
-  click('.auth-link a[data-reveal-id="login-modal"]');
+  click('.auth-link a.margin-right-5');
   andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
 });
 
 test('can login', function(assert) {
   server.create('user');
   visit('/');
-  click('.auth-link a[data-reveal-id="login-modal"]');
+  click('.auth-link a.margin-right-5');
   andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
 
   fillIn('#login-modal input[type="text"]', 'test@test.test');
@@ -36,6 +38,9 @@ test('can login', function(assert) {
 
   click('#login-modal button[type="submit"]');
 
-  andThen(() => assert.equal(find('.flash-message').text(),
-    'You have successfully logged in'));
+  andThen(() => {
+    let session = application.__container__.lookup('service:session');
+    let auth = session.get('isAuthenticated');
+    assert.equal(auth, true);
+  });
 });

@@ -26,7 +26,7 @@ module.exports = function(environment) {
     },
 
     rollbar: {
-      captureUncaught: false,//environment !== 'development',
+      captureUncaught: false, //environment !== 'development',
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
     },
 
@@ -103,6 +103,7 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;

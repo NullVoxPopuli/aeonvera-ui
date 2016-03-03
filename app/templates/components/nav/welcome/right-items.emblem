@@ -19,4 +19,4 @@ li.auth-link
       = fa-icon 'sign-out'
       span Logout
   else
-    a.button.margin-right-5 href='#' data-reveal-id='login-modal' = t 'buttons.login'
+    a.button.login.margin-right-5 href='#' data-reveal-id='login-modal' = t 'buttons.login'

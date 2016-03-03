@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   orderLineItems: [],
 
-  templateFor: function (item) {
+  templateFor: function(item) {
     let kind = item.get('constructor.modelName');
     if (kind === 'discount') {
       return 'registrant/order/line-item-' + kind + '-row';
@@ -12,13 +12,13 @@ export default Ember.Component.extend({
     return 'registrant/order/line-item-row';
   },
 
-  setTemplate: function () {
+  setTemplate: function() {
     let items = this.get('model.orderLineItems');
 
     items.then(lineItems => {
       lineItems.forEach((orderLineItem, i) => {
         orderLineItem.get('lineItem').then(item => {
-          let template = self.templateFor(item);
+          let template = this.templateFor(item);
           orderLineItem.set('template', template);
         });
       });
@@ -28,7 +28,7 @@ export default Ember.Component.extend({
   }.observes('model.orderLineItems.[]'),
 
   actions: {
-    resendReceipt: function () {
+    resendReceipt: function() {
 
     },
   },

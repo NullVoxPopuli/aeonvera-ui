@@ -12,7 +12,8 @@ export default function() {
   // this.urlPrefix = '';
 
   // make this `api`, for example, if your API is namespaced
-  this.namespace = 'api';
+  // don't namespace, because the sign in route isn't on the api
+  // this.namespace = 'api';
 
   // delay for each request, automatically set to 0 during testing
   // this.timing = 400;
@@ -40,7 +41,7 @@ export default function() {
     this.post('/contacts');
     this.post('/contacts', 'user'); // specify the type of resource to be created
   */
-  this.post('/users/sign_in', function (db, request) {
+  this.post('/users/sign_in', function(db, request) {
     let id = request.params.id;
 
     return {
