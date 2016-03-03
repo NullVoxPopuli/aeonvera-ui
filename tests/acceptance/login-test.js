@@ -23,22 +23,36 @@ test('visiting /', function(assert) {
   visit('/');
   andThen(() => assert.equal(currentURL(), '/welcome'));
 
-  click('.auth-link a.margin-right-5');
-  andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
+  click('.auth-link a.button.login');
+  andThen(() => {
+    let text = find(
+      '.reveal-modal[data-name="login-modal"] h2').text();
+    debugger;
+    assert.equal(text, 'Login');
+  });
 });
 
 test('can login', function(assert) {
   server.create('user');
   visit('/');
-  click('.auth-link a.margin-right-5');
-  andThen(() => assert.equal(find('#login-modal-title').text(), 'Login'));
+  click('.auth-link a.button.login');
+  let loginModalSelector = '.reveal-modal[data-name="login-modal"]';
+  andThen(() => {
+    let text = find(
+      loginModalSelector + ' h2').text();
+    assert.equal(text, 'Login');
+  });
 
-  fillIn('#login-modal input[type="text"]', 'test@test.test');
-  fillIn('#login-modal input[type="password"]', 'some-password');
+  fillIn(loginModalSelector + ' input[type="text"]', 'test@test.test');
+  fillIn(loginModalSelector + ' input[type="password"]', 'some-password');
 
-  click('#login-modal button[type="submit"]');
+  click(loginModalSelector + 'button[type="submit"]');
 
   andThen(() => {
+    let message = find('body').text();
+    let expectedMessage = 'You have successfully logged in';
+    assert.equal(message, expectedMessage);
+
     let session = application.__container__.lookup('service:session');
     let auth = session.get('isAuthenticated');
     assert.equal(auth, true);

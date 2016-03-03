@@ -26,7 +26,7 @@ br
 unless session.isAuthenticated
   .text-center
     ul.button-group
-      li: a.button.small.success href="#" data-reveal-id='login-modal' = t 'buttons.login'
+      li: a.button.small.success click='openLoginModal' = t 'buttons.login'
       li: a.button.small.success href="#" data-reveal-id='signup-modal' = t 'buttons.signup'
 
   br

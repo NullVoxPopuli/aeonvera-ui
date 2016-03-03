@@ -21,5 +21,5 @@ export default Mirage.Factory.extend({
   //   return 'person' + i + '@test.com';
   // },
 
-  // zipCode: faker.address.zipCode
+  // zipCode: faker.address         .zipCode
 });

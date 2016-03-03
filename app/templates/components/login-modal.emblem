@@ -1,4 +1,4 @@
-#login-modal.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog'
+#login-modal.login.reveal-modal.medium data-reveal='true' aria-labledby='login-modal-title' aria-hidden='true' role='dialog' data-name='login-modal'
   h2#login-modal-title.text-center Login
   p
     = login-form

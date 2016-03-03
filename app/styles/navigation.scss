@@ -33,6 +33,16 @@ section {
   padding: 0 5px !important;
 }
 
+@media #{$medium-up} {
+  .top-bar .top-bar-section .auth li.auth-link{
+    a {
+      font-size: 13px;
+      padding-left: 15px;
+      padding-right: 15px;
+      text-transform: none;
+    }
+  }
+}
 
 @media #{$large-up} {
 
@@ -63,8 +73,7 @@ section {
   .top-bar .top-bar-section .auth li.auth-link{
     padding-left: 6px;
     padding-right: 6px;
+
   }
-
-
 
 } /* min-width 1025px, large screens */

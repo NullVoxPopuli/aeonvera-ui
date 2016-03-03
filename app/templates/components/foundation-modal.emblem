@@ -1,9 +1,9 @@
 a class=buttonClasses data-reveal-id=modalId
-  = buttonText
+  span = buttonText
 
 = ember-wormhole to="foundation-modals"
   = foundation/foundation-reflow
-    div.reveal-modal.medium data-reveal=reveal aria-labeledby=titleId aria-hidden=hidden role=role id=modalId
+    div.reveal-modal.medium data-reveal=reveal aria-labeledby=titleId aria-hidden=hidden role=role id=modalId data-name=name
       h2.text-center = title
       p
         = yield
