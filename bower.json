@@ -29,5 +29,8 @@
     "Faker": "~3.0.0",
     "wysihtml": "^0.5.5",
     "jquery-mockjax": "2.0.1"
+  },
+  "resolutions": {
+    "d3": "~3.5.16"
   }
 }
