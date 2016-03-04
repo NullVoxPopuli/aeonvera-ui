@@ -116,7 +116,8 @@ export default DS.Model.extend({
     if (activeNonDiscounts.get('length') > 0) {
       discounts.forEach((discount, i, e) => {
         // only check discounts for lessons for now
-        if (discount.get('appliesTo').indexOf('Lesson') !== -1) {
+        let appliesTo = discount.get('appliesTo');
+        if (Ember.isPresent(appliesTo) && appliesTo.indexOf('Lesson') !== -1) {
           let numberOfLessons = 0;
           activeNonDiscounts.forEach((orderLineItem, i, e) => {
             if (orderLineItem.get('lineItem.isLesson')) {

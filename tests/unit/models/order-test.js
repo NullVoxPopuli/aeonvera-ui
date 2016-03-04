@@ -8,7 +8,16 @@ import { manualSetup, make } from 'ember-data-factory-guy';
 
 moduleForModel('order', 'Unit | Model | order', {
   // Specify the other units that are required for this test.
-  needs: [],
+  needs: [
+    'model:host',
+    'model:organization',
+    'model:lesson',
+    'model:order-line-item',
+    'model:membership-option',
+    'model:membership-discount',
+    'model:purchasable',
+    'model:user'
+  ],
   beforeEach: function() {
     manualSetup(this.container);
   }
@@ -113,8 +122,10 @@ test('_eligibleForDiscount | false when no discounts available', function(
 
 test('_eligibleForDiscount | true when membershipOption added', function(assert) {
   let membershipOption = make('membership-option');
+  let membershipDiscount = make('membership-discount');
   let organization = make('organization', {
-    membershipOptions: [membershipOption]
+    membershipOptions: [membershipOption],
+    membershipDiscounts: [membershipDiscount]
   });
   let order = make('order', {
     host: organization
