@@ -7,13 +7,13 @@ export default Ember.Component.extend({
   tagName: 'div',
   classNames: ['fixed'],
 
-  backLinkPath: function () {
+  backLinkPath: Ember.computed(function () {
     if (this.get('session').isAuthenticated) {
       return 'dashboard';
     } else {
       return 'welcome';
     }
-  }.property(),
+  }),
 
   backLinkText: function () {
     return this.get('i18n').t('appname');
