@@ -10,7 +10,7 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "jscs": "jscs -e app/ && jscs -e tests/",
+    "jscs": "jscs -e app/ --fix && jscs -e tests/ --fix",
     "test": "npm run jscs && npm run jshint && ember test"
   },
   "repository": "",

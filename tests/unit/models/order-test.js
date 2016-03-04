@@ -1,10 +1,5 @@
-import {
-  moduleForModel, test
-}
-from 'ember-qunit';
-
+import { moduleForModel, test } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
-
 
 moduleForModel('order', 'Unit | Model | order', {
   // Specify the other units that are required for this test.
@@ -32,7 +27,6 @@ test('hasLineItems | counts', function(assert) {
   let result = order.get('hasLineItems');
   assert.ok(result);
 });
-
 
 test('subTotal | it calculates', function(assert) {
   let orderLineItem1 = make('order-line-item', {

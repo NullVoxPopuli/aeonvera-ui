@@ -1,8 +1,5 @@
 import Ember from 'ember';
-import {
-  module, test
-}
-from 'qunit';
+import { module, test } from 'qunit';
 import startApp from 'aeonvera/tests/helpers/start-app';
 import Mirage from 'ember-cli-mirage';
 
@@ -10,13 +7,12 @@ let application;
 
 module('Acceptance | login', {
   beforeEach() {
-      application = startApp();
+    application = startApp();
+  },
 
-    },
-
-    afterEach() {
-      Ember.run(application, 'destroy');
-    },
+  afterEach() {
+    Ember.run(application, 'destroy');
+  },
 });
 
 test('visiting /', function(assert) {

@@ -36,7 +36,7 @@ export default DS.Model.extend({
     return isMember;
   },
 
-  latestRenewalFor(organization){
+  latestRenewalFor(organization) {
     let membershipRenewals = this.get('membershipRenewals');
     let renewalsMatchingOrganization = [];
 
@@ -52,7 +52,7 @@ export default DS.Model.extend({
     let latestRenewal = null;
     renewalsMatchingOrganization.forEach((item) => {
       let expiresAt = item.get('expiresAt');
-      if (latestDate == null || latestDate < expiresAt){
+      if (latestDate == null || latestDate < expiresAt) {
         latestRenewal = item;
         latestDate = expiresAt;
       }

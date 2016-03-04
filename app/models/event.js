@@ -29,9 +29,9 @@ export default Host.extend(RegistrationOpens, {
 
   registrationEmailDisclaimer: DS.attr('string'),
 
-  logo_url: DS.attr('string'),
-  logo_url_medium: DS.attr('string'),
-  logo_url_thumb: DS.attr('string'),
+  logoUrl: DS.attr('string'),
+  logoUrl_medium: DS.attr('string'),
+  logoUrl_thumb: DS.attr('string'),
 
   url: DS.attr('string'),
 
@@ -46,11 +46,11 @@ export default Host.extend(RegistrationOpens, {
   lineItems: DS.hasMany('lineItems'),
   shirts: DS.hasMany('shirts'),
 
-  registrationOpensAt: function () {
+  registrationOpensAt: function() {
     return this.get('openingTier.date');
   }.property('openingTier.date'),
 
-  stripePublishableKey: function () {
+  stripePublishableKey: function() {
     /*
     			TODO: find a way to make the 'stripe' key not a string somehow
     			so typing it over and over doesn't lead to silent errors

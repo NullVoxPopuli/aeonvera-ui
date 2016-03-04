@@ -18,7 +18,7 @@ test('it renders', function(assert) {
     someDate: null,
   });
   this.set('two', two);
-  this.render(hbs `{{date-time-input model=two field='someDate'}}`);
+  this.render(hbs`{{date-time-input model=two field='someDate'}}`);
 
   assert.notEqual(this.$().text().indexOf('2016'), -1);
 });

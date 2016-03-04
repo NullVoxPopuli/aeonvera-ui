@@ -21,7 +21,7 @@ export default Ember.Component.extend({
       return (isAuthenticated && !isCurrentMember);
     }),
 
-  membershipExpiresAt: Ember.computed(function(){
+  membershipExpiresAt: Ember.computed(function() {
     let user = this.get('store').peekRecord('user', 0);
     let organization = this.get('model');
     let renewal = user.latestRenewalFor(organization);
@@ -36,8 +36,6 @@ export default Ember.Component.extend({
   order: Ember.computed(function() {
     return this.store.createRecord('order');
   }),
-
-
 
   actions: {
     add: function(item) {

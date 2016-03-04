@@ -8,14 +8,14 @@ export default Host.extend({
   state: DS.attr('string'),
 
   beta: DS.attr('boolean'),
-  make_attendees_pay_fees: DS.attr('boolean'),
+  makeAttendeesPayFees: DS.attr('boolean'),
 
-  logo_file_name: DS.attr('string'),
-  logo_file_size: DS.attr('number'),
-  logo_updated_at: DS.attr('date'),
-  logo_url: DS.attr('string'),
-  logo_url_thumb: DS.attr('string'),
-  logo_url_medium: DS.attr('string'),
+  logoFileName: DS.attr('string'),
+  logoFileSize: DS.attr('number'),
+  logoUpdatedAt: DS.attr('date'),
+  logoUrl: DS.attr('string'),
+  logoUrlThumb: DS.attr('string'),
+  logoUrlMedium: DS.attr('string'),
 
   url: DS.attr('string'),
 
@@ -24,11 +24,11 @@ export default Host.extend({
   membershipOptions: DS.hasMany('membership-option'),
   membershipDiscounts: DS.hasMany('membership-discount'),
 
-  location: function () {
+  location: function() {
     return this.get('city') + ', ' + this.get('state');
   }.property('city', 'state'),
 
-  logo_is_missing: function () {
+  logo_is_missing: function() {
     return (this.get('logo_url').indexOf('missing') !== -1);
   }.property('logo_url'),
 });

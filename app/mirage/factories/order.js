@@ -10,7 +10,6 @@ from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
 
-
   // age: 20,                              // numbers
   // tall: true,                           // booleans
 

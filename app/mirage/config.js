@@ -52,6 +52,7 @@ export default function() {
       },
     };
   });
+
   this.post('/api/users', function(db, request) {
     return {};
   });
