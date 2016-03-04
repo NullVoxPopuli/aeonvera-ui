@@ -16,6 +16,7 @@ before_install:
 
 install:
   - npm install -g bower
+  - npm install -g jscs
   - npm install
   - bower install
   - npm install -g codeclimate-test-reporter
