@@ -2,15 +2,16 @@ import {
   moduleForModel, test
 }
 from 'ember-qunit';
-import {
-  make
-}
-from 'ember-data-factory-guy';
+
+import { manualSetup, make } from 'ember-data-factory-guy';
 
 
 moduleForModel('order', 'Unit | Model | order', {
   // Specify the other units that are required for this test.
   needs: [],
+  beforeEach: function() {
+    manualSetup(this.container);
+  }
 });
 
 test('hasLineItems | counts', function(assert) {
@@ -111,17 +112,17 @@ test('_eligibleForDiscount | false when no discounts available', function(
 });
 
 test('_eligibleForDiscount | true when membershipOption added', function(assert) {
-  // let membershipOption = make('membership-option');
+  let membershipOption = make('membership-option');
   let organization = make('organization', {
-    // membershipOptions: [membershipOption]
+    membershipOptions: [membershipOption]
   });
-  // let order = make('order', {
-  //   host: organization
-  // });
-  //
-  // order.addLineItem(membershipOption);
-  //
-  // let result = order._eligibleForDiscount();
-  //
-  // assert.equal(result, true);
+  let order = make('order', {
+    host: organization
+  });
+
+  order.addLineItem(membershipOption);
+
+  let result = order._eligibleForDiscount();
+
+  assert.equal(result, true);
 });
