@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import Random from 'aeonvera/mixins/helpers/string';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Random, {
   attributeBindings: [
     'data-tooltip',
     'data-width',
@@ -11,12 +12,6 @@ export default Ember.Component.extend({
   classNames: ['has-tip'],
 
   title: Ember.computed.alias('message'),
-
-  // each tooltip must be unique
-  'data-tooltip': Ember.computed(function () {
-    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0,
-      64);
-  }),
 
   'data-width': function () {
     return (this.get('width') || 200);
