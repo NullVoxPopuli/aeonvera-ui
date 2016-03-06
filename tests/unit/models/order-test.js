@@ -118,7 +118,7 @@ test('_eligibleForDiscount | true when membershipOption added', function(assert)
   let membershipOption = make('membership-option');
   let membershipDiscount = make('membership-discount');
   let organization = make('organization', {
-    membershipOptions: [membershipOption],
+    membershipOptions: [me+mbershipOption],
     membershipDiscounts: [membershipDiscount]
   });
   let order = make('order', {
@@ -128,6 +128,19 @@ test('_eligibleForDiscount | true when membershipOption added', function(assert)
   order.addLineItem(membershipOption);
 
   let result = order._eligibleForDiscount();
+  assert.equal(result, true);
+});
 
+test('_eligibleForDiscount | true when user is already a member' function(assert){
+  let user = make('user');
+  // stub the method, as its functionality is tested in user-test
+  user.isMemberOf = function(host){ return true; }
+  let organization = make('organization');
+  let order = make('order', {
+    host: organization,
+    user: user
+  });
+
+  let result = order._eligibleForDiscount();
   assert.equal(result, true);
 });
