@@ -81,7 +81,6 @@ export default DS.Model.extend({
     price = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
-    // debugger;
     // is the item already in the order?
     let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
 
@@ -207,8 +206,10 @@ export default DS.Model.extend({
       let currentLineItem = orderLineItem.get('lineItem');
       let currentPrice = orderLineItem.get('price');
       let isDiscount = currentLineItem.get('isADiscount');
+      let isSameKind = lineItem.isTheSameKindAs(currentLineItem);
 
-      if (currentLineItem.get('id') === lineItem.get('id') && (
+      if (//isSameKind &&
+          currentLineItem.get('id') === lineItem.get('id') && (
           currentPrice === price || isDiscount)) {
         result = orderLineItem;
         return;

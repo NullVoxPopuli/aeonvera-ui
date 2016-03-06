@@ -128,8 +128,8 @@ test('addLineItem | members could get an automatic discount when purchasing a le
   user.isMemberOf = function(host) { return true; };
 
   let membershipDiscount = make('membership-discount', {
-    name: 'discount',
-    appliesTo: 'aLessona'
+    code: 'discount',
+    appliesTo: 'Lesson'
   });
   let organization = make('organization', {
     membershipDiscounts: [membershipDiscount]
@@ -138,7 +138,7 @@ test('addLineItem | members could get an automatic discount when purchasing a le
     host: organization,
     user: user
   });
-  let lesson = make('lesson');
+  let lesson = make('lesson', { name: 'lesson' });
 
   order.addLineItem(lesson);
 
@@ -189,4 +189,13 @@ test('_eligibleForDiscount | true when user is already a member', function(asser
 
   let result = order._eligibleForDiscount();
   assert.equal(result, true);
+});
+
+test('getOrderLineItemMatching | gets a single item', function(assert){
+  let lesson = make('lesson', {name: 'lesson'});
+  let order = make('order');
+  order.addLineItem(lesson);
+  let result = order.getOrderLineItemMatching(lesson);
+
+  assert.equal(result.get('lineItem.name'), lesson.get('name'));
 });

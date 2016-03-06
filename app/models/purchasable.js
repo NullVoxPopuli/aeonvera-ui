@@ -1,2 +1,3 @@
 import DS from 'ember-data';
-export default DS.Model.extend({});
+import Comparison from 'aeonvera/mixins/models/comparison';
+export default DS.Model.extend(Comparison, {});
