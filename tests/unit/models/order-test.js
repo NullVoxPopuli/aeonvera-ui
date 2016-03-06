@@ -10,6 +10,7 @@ moduleForModel('order', 'Unit | Model | order', {
     'model:order-line-item',
     'model:membership-option',
     'model:membership-discount',
+    'model:membership-renewal',
     'model:purchasable',
     'model:user'
   ],
@@ -55,8 +56,7 @@ test('addLineItem | adds an orderLineItem', function(assert) {
   assert.equal(result, 1);
 });
 
-test('addLineItem | adding again does not add a new orderLineItem', function(
-  assert) {
+test('addLineItem | adding again does not add a new orderLineItem', function(assert) {
   let order = make('order');
   let lesson = make('lesson');
 
@@ -67,47 +67,88 @@ test('addLineItem | adding again does not add a new orderLineItem', function(
   assert.equal(result, 1);
 });
 
-test('addLineItem | adding two kinds of items adds two orderLineItems',
-  function(assert) {
-    let order = make('order');
-    let lesson = make('lesson');
-    let lesson2 = make('lesson');
+test('addLineItem | adding two kinds of items adds two orderLineItems', function(assert) {
+  let order = make('order');
+  let lesson = make('lesson');
+  let lesson2 = make('lesson');
 
-    order.addLineItem(lesson);
-    order.addLineItem(lesson2);
+  order.addLineItem(lesson);
+  order.addLineItem(lesson2);
 
-    let result = order.get('orderLineItems.length');
-    assert.equal(result, 2);
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 2);
+});
+
+test('addLineItem | adding with negative quantity removes the orderLineItem', function(assert) {
+  let order = make('order');
+  let lesson = make('lesson');
+
+  order.addLineItem(lesson);
+  order.addLineItem(lesson, 0);
+
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 0);
+});
+
+test('addLineItem | specifying quantity and price are passed on to the orderLineItem', function(assert) {
+  let order = make('order');
+  let lesson = make('lesson', {
+    price: 1
   });
 
-test('addLineItem | adding with negative quantity removes the orderLineItem',
-  function(assert) {
-    let order = make('order');
-    let lesson = make('lesson');
+  order.addLineItem(lesson, 3, 3);
 
-    order.addLineItem(lesson);
-    order.addLineItem(lesson, 0);
+  let result = order.get('subTotal');
+  assert.equal(result, 9);
+});
 
-    let result = order.get('orderLineItems.length');
-    assert.equal(result, 0);
+test('addLineItem | members get no discount if no discount is configured', function(assert) {
+  let user = make('user');
+
+  // stub the method, as its functionality is tested in user-test
+  user.isMemberOf = function(host) { return true; };
+
+  let organization = make('organization');
+  let order = make('order', {
+    host: organization,
+    user: user
   });
+  let lesson = make('lesson');
 
-test(
-  'addLineItem | specifying quantity and price are passed on to the orderLineItem',
-  function(assert) {
-    let order = make('order');
-    let lesson = make('lesson', {
-      price: 1
-    });
+  order.addLineItem(lesson);
 
-    order.addLineItem(lesson, 3, 3);
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 1);
+});
 
-    let result = order.get('subTotal');
-    assert.equal(result, 9);
+test('addLineItem | members could get an automatic discount when purchasing a lesson', function(assert) {
+  let user = make('user');
+
+  // stub the method, as its functionality is tested in user-test
+  user.isMemberOf = function(host) { return true; };
+
+  let membershipDiscount = make('membership-discount', {
+    name: 'discount',
+    appliesTo: 'aLessona'
   });
+  let organization = make('organization', {
+    membershipDiscounts: [membershipDiscount]
+  });
+  let order = make('order', {
+    host: organization,
+    user: user
+  });
+  let lesson = make('lesson');
 
-test('_eligibleForDiscount | false when no discounts available', function(
-  assert) {
+  order.addLineItem(lesson);
+
+  // sanity
+  assert.equal(order._eligibleForDiscount(), true);
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 2);
+});
+
+test('_eligibleForDiscount | false when no discounts available', function(assert) {
   let order = make('order');
   let result = order._eligibleForDiscount();
 
@@ -118,7 +159,7 @@ test('_eligibleForDiscount | true when membershipOption added', function(assert)
   let membershipOption = make('membership-option');
   let membershipDiscount = make('membership-discount');
   let organization = make('organization', {
-    membershipOptions: [me+mbershipOption],
+    membershipOptions: [membershipOption],
     membershipDiscounts: [membershipDiscount]
   });
   let order = make('order', {
@@ -131,11 +172,16 @@ test('_eligibleForDiscount | true when membershipOption added', function(assert)
   assert.equal(result, true);
 });
 
-test('_eligibleForDiscount | true when user is already a member' function(assert){
-  let user = make('user');
+test('_eligibleForDiscount | true when user is already a member', function(assert) {
+  let user = make('user', { id: 1 });
+
   // stub the method, as its functionality is tested in user-test
-  user.isMemberOf = function(host){ return true; }
-  let organization = make('organization');
+  user.isMemberOf = function(host) { return true; };
+
+  let membershipDiscount = make('membership-discount');
+  let organization = make('organization', {
+    membershipDiscounts: [membershipDiscount]
+  });
   let order = make('order', {
     host: organization,
     user: user

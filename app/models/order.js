@@ -25,6 +25,7 @@ export default DS.Model.extend({
     async: true,
   }),
   attendance: DS.belongsTo('attendance'),
+  user: DS.belongsTo('user'),
 
   /*
     stripe specific things
@@ -80,6 +81,7 @@ export default DS.Model.extend({
     price = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
+    // debugger;
     // is the item already in the order?
     let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
 
@@ -108,10 +110,6 @@ export default DS.Model.extend({
     let items = this.get('orderLineItems');
     let activeDiscounts = items.filterBy('lineItem.isADiscount');
     let activeNonDiscounts = items.filterBy('lineItem.isADiscount', false);
-
-    // let activeDiscounts = items.any((item, i, e) => {
-    //   return item.get('lineItem.isADiscount');
-    // });
 
     if (activeNonDiscounts.get('length') > 0) {
       discounts.forEach((discount, i, e) => {
@@ -154,12 +152,11 @@ export default DS.Model.extend({
       'lineItem.isMembershipOption'));
 
     // check if the user is a member
-    let user = this.get('user.id');
+    let userId = this.get('user.id');
 
     // refetch, to ensure we get all the helper methods defined on user.
     // TODO: WTF?
-    user = this.get('store').peekRecord('user', 0);
-
+    let user = this.get('store').peekRecord('user', userId);
     if (!hasMembership && Ember.isPresent(user)) {
       hasMembership = user.isMemberOf(host);
     }

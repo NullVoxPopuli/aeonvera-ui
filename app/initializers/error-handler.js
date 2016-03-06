@@ -76,6 +76,7 @@ export default {
 
     Ember.onerror = function (error) {
       Ember.Logger.error(error);
+
       // displayError(error);
     };
   },
