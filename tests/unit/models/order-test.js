@@ -1,5 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
+// setResolver(Ember.DefaultResolver.create({ namespace: 'aeonvera' }))
 
 moduleForModel('order', 'Unit | Model | order', {
   // Specify the other units that are required for this test.
@@ -69,8 +70,8 @@ test('addLineItem | adding again does not add a new orderLineItem', function(ass
 
 test('addLineItem | adding two kinds of items adds two orderLineItems', function(assert) {
   let order = make('order');
-  let lesson = make('lesson');
-  let lesson2 = make('lesson');
+  let lesson = make('lesson', {id: 1});
+  let lesson2 = make('lesson', {id: 2});
 
   order.addLineItem(lesson);
   order.addLineItem(lesson2);
@@ -129,7 +130,9 @@ test('addLineItem | members could get an automatic discount when purchasing a le
 
   let membershipDiscount = make('membership-discount', {
     code: 'discount',
-    appliesTo: 'Lesson'
+    appliesTo: 'Lesson',
+    id: 1,
+    price: 1
   });
   let organization = make('organization', {
     membershipDiscounts: [membershipDiscount]
@@ -138,7 +141,7 @@ test('addLineItem | members could get an automatic discount when purchasing a le
     host: organization,
     user: user
   });
-  let lesson = make('lesson', { name: 'lesson' });
+  let lesson = make('lesson', { name: 'lesson', id: 1, price: 1 });
 
   order.addLineItem(lesson);
 
