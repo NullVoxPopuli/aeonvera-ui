@@ -1,5 +1,6 @@
 import { moduleForModel, test, skip } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
+
 // setResolver(Ember.DefaultResolver.create({ namespace: 'aeonvera' }))
 
 moduleForModel('order', 'Unit | Model | order', {
@@ -70,8 +71,8 @@ test('addLineItem | adding again does not add a new orderLineItem', function(ass
 
 test('addLineItem | adding two kinds of items adds two orderLineItems', function(assert) {
   let order = make('order');
-  let lesson = make('lesson', {id: 1});
-  let lesson2 = make('lesson', {id: 2});
+  let lesson = make('lesson', { id: 1 });
+  let lesson2 = make('lesson', { id: 2 });
 
   order.addLineItem(lesson);
   order.addLineItem(lesson2);
@@ -132,7 +133,7 @@ test('addLineItem | members could get an automatic discount when purchasing a le
     code: 'discount',
     appliesTo: 'Lesson'
   });
-  let organization = make('organization', { membershipDiscounts: [membershipDiscount]});
+  let organization = make('organization', { membershipDiscounts: [membershipDiscount] });
   let order = make('order', { host: organization, user: user });
   let lesson = make('lesson', { name: 'lesson', id: 2, price: 1 });
   order.addLineItem(lesson);
@@ -214,8 +215,8 @@ test('_eligibleForDiscount | true when user is already a member', function(asser
   assert.equal(result, true);
 });
 
-test('getOrderLineItemMatching | gets a single item', function(assert){
-  let lesson = make('lesson', {name: 'lesson'});
+test('getOrderLineItemMatching | gets a single item', function(assert) {
+  let lesson = make('lesson', { name: 'lesson' });
   let order = make('order');
   order.addLineItem(lesson);
   let result = order.getOrderLineItemMatching(lesson);
@@ -223,7 +224,7 @@ test('getOrderLineItemMatching | gets a single item', function(assert){
   assert.equal(result.get('lineItem.name'), lesson.get('name'));
 });
 
-test('getOrderLineItemMatching | lineItem not found', function(assert){
+test('getOrderLineItemMatching | lineItem not found', function(assert) {
   let order = make('order');
   let lesson = make('lesson');
   let result = order.getOrderLineItemMatching(lesson);
@@ -231,9 +232,9 @@ test('getOrderLineItemMatching | lineItem not found', function(assert){
   assert.equal(result, null);
 });
 
-test('getOrderLineItemMatching | with two items, the correct is chosen', function(assert){
-  let lesson = make('lesson', {name: 'lesson'});
-  let lesson2 = make('lesson', {name: 'lesson2'});
+test('getOrderLineItemMatching | with two items, the correct is chosen', function(assert) {
+  let lesson = make('lesson', { name: 'lesson' });
+  let lesson2 = make('lesson', { name: 'lesson2' });
   let order = make('order');
   order.addLineItem(lesson);
   order.addLineItem(lesson2);

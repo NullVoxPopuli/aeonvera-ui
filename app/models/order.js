@@ -204,13 +204,16 @@ export default DS.Model.extend({
 
     orderLineItems.forEach((orderLineItem, i, e) => {
       let currentLineItem = orderLineItem.get('lineItem');
+
       // orderLineItem.get('lineItem').then((currentLineItem) => {})
       let currentPrice = orderLineItem.get('price');
       let isDiscount = currentLineItem.get('isADiscount');
+
       // doesn't work, because promise isn't resolved in test env.
       let isSameKind = lineItem.isTheSameKindAs(currentLineItem);
 
       if (
+
           // this needs to exist -- but breaks tests :-(
           // due to promises... GRRR
           //isSameKind &&
