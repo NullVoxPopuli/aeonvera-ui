@@ -1,4 +1,4 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { moduleForModel, test, skip } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
 // setResolver(Ember.DefaultResolver.create({ namespace: 'aeonvera' }))
 
@@ -130,21 +130,11 @@ test('addLineItem | members could get an automatic discount when purchasing a le
 
   let membershipDiscount = make('membership-discount', {
     code: 'discount',
-    appliesTo: 'Lesson',
-    id: 1,
-    price: 1
+    appliesTo: 'Lesson'
   });
-  let organization = make('organization', {
-    membershipDiscounts: [membershipDiscount]
-  });
-  let order = make('order', {
-    host: organization,
-    user: user
-  });
-  // TODO: this id should really be the same.
-  // TODO: test when the discount and purchasable item has the same id
+  let organization = make('organization', { membershipDiscounts: [membershipDiscount]});
+  let order = make('order', { host: organization, user: user });
   let lesson = make('lesson', { name: 'lesson', id: 2, price: 1 });
-
   order.addLineItem(lesson);
 
   // sanity
@@ -152,6 +142,33 @@ test('addLineItem | members could get an automatic discount when purchasing a le
   let result = order.get('orderLineItems.length');
   assert.equal(result, 2);
 });
+
+// TODO: this id should really be the same.
+// TODO: test when the discount and purchasable item has the same id
+// test('addLineItem | members could get an automatic discount when purchasing a lesson when the lesson and discount have the same id', function(assert) {
+//   let user = make('user');
+//
+//   // stub the method, as its functionality is tested in user-test
+//   user.isMemberOf = function(host) { return true; };
+//
+//   let membershipDiscount = make('membership-discount', {
+//     code: 'discount',
+//     appliesTo: 'Lesson',
+//     id: 1,
+//     price: 1
+//   });
+//   let organization = make('organization', { membershipDiscounts: [membershipDiscount] });
+//   let order = make('order', { host: organization, user: user });
+//
+//   let lesson = make('lesson', { name: 'lesson', id: 1, price: 1 });
+//
+//   order.addLineItem(lesson);
+//
+//   // sanity
+//   assert.equal(order._eligibleForDiscount(), true);
+//   let result = order.get('orderLineItems.length');
+//   assert.equal(result, 2);
+// });
 
 test('_eligibleForDiscount | false when no discounts available', function(assert) {
   let order = make('order');
@@ -204,4 +221,12 @@ test('getOrderLineItemMatching | gets a single item', function(assert){
   let result = order.getOrderLineItemMatching(lesson);
 
   assert.equal(result.get('lineItem.name'), lesson.get('name'));
+});
+
+test('getOrderLineItemMatching | lineItem not found', function(assert){
+  let order = make('order');
+  let lesson = make('lesson');
+  let result = order.getOrderLineItemMatching(lesson);
+
+  assert.equal(result, null);
 });
