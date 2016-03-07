@@ -212,7 +212,7 @@ export default DS.Model.extend({
 
       if (
           // this needs to exist -- but breaks tests :-(
-          // due to promises... GRRRR
+          // due to promises... GRRR
           //isSameKind &&
           currentLineItem.get('id') === lineItem.get('id') &&
           (currentPrice === price || isDiscount)) {

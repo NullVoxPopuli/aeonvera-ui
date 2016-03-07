@@ -141,7 +141,9 @@ test('addLineItem | members could get an automatic discount when purchasing a le
     host: organization,
     user: user
   });
-  let lesson = make('lesson', { name: 'lesson', id: 1, price: 1 });
+  // TODO: this id should really be the same.
+  // TODO: test when the discount and purchasable item has the same id
+  let lesson = make('lesson', { name: 'lesson', id: 2, price: 1 });
 
   order.addLineItem(lesson);
 
@@ -185,6 +187,7 @@ test('_eligibleForDiscount | true when user is already a member', function(asser
   let organization = make('organization', {
     membershipDiscounts: [membershipDiscount]
   });
+
   let order = make('order', {
     host: organization,
     user: user
