@@ -230,3 +230,14 @@ test('getOrderLineItemMatching | lineItem not found', function(assert){
 
   assert.equal(result, null);
 });
+
+test('getOrderLineItemMatching | with two items, the correct is chosen', function(assert){
+  let lesson = make('lesson', {name: 'lesson'});
+  let lesson2 = make('lesson', {name: 'lesson2'});
+  let order = make('order');
+  order.addLineItem(lesson);
+  order.addLineItem(lesson2);
+  let result = order.getOrderLineItemMatching(lesson2);
+
+  assert.equal(result.get('lineItem.name'), lesson2.get('name'));
+});
