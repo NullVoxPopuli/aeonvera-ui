@@ -25,7 +25,8 @@ export default DS.Model.extend({
       let related = item.get('membershipOption.host');
 
       if (related.get('id') === organization.get('id') &&
-        related.get('domain') === organization.get('domain')
+        related.get('domain') === organization.get('domain') &&
+        item.get('current')
       ) {
         // TODO: yield here or whatever it's called.
         // just need to be able to pass a block
