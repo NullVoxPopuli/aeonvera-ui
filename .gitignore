@@ -9,6 +9,8 @@
 /bower_components
 
 # misc
+/lcov.dat
+/test-output.json
 /.sass-cache
 /connect.lock
 /coverage/*
