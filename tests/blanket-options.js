@@ -9,7 +9,7 @@ var options = {
   branchTracking: true,
   cliOptions: {
     reporters: ['lcov'],
-    // autostart: true,
+    autostart: true,
     lcovOptions: {
       outputFile: 'lcov.dat',
       excludeMissingFiles: true,

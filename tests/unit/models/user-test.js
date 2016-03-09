@@ -18,7 +18,7 @@ moduleForModel('user', 'Unit | Model | user', {
   }
 });
 
-test('name | concats first and last name', function(assert){
+test('name | concats first and last name', function(assert) {
   let user = make('user', {
     firstName: 'first',
     lastName: 'last'
@@ -36,7 +36,7 @@ test('isMemberOf | is not a member', function(assert) {
   assert.notOk(result);
 });
 
-test('isMemberOf | is a member', function(assert){
+test('isMemberOf | is a member', function(assert) {
   let organization = make('organization');
   let user = make('user');
   let option = make('membership-option', { host: organization });
@@ -51,7 +51,7 @@ test('isMemberOf | is a member', function(assert){
   assert.ok(result);
 });
 
-test('isMemberOf | is not a member if the renewal is expired', function(assert){
+test('isMemberOf | is not a member if the renewal is expired', function(assert) {
   let organization = make('organization');
   let user = make('user');
   let option = make('membership-option', { host: organization });

@@ -18,7 +18,7 @@ moduleForModel('order-line-item', 'Unit | Model | order-line-item', {
   }
 });
 
-test('total | multiplies quantity by price', function(assert){
+test('total | multiplies quantity by price', function(assert) {
   let orderLineItem = make('order-line-item', {
     price: 5,
     quantity: 3
@@ -28,11 +28,11 @@ test('total | multiplies quantity by price', function(assert){
   assert.equal(result, 15);
 });
 
-test('priceNeedsChanging | price is updated if a size is changed', function(assert){
+test('priceNeedsChanging | price is updated if a size is changed', function(assert) {
   Ember.run(() => {
 
     let shirt = make('shirt');
-    shirt.priceForSize = function(a){
+    shirt.priceForSize = function(a) {
       return 5;
     };
 

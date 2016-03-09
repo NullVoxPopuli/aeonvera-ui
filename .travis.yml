@@ -27,7 +27,7 @@ install:
   - bower install
 
 script:
-  - npm test
+  - npm run ci
 
 after_script:
   - codeclimate-test-reporter < lcov.dat

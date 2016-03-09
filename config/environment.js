@@ -104,7 +104,7 @@ module.exports = function(environment) {
     ENV.baseURL = '/';
     ENV.locationType = 'none';
 
-
+    // 
     // ENV['ember-cli-mirage'] = {
     //   enabled: false
     // };
