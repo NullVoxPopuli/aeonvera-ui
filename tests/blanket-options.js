@@ -6,12 +6,16 @@ var options = {
   antifilter: '//.*(tests|template).*/',
   loaderExclusions: [],
   enableCoverage: true,
+  branchTracking: true,
   cliOptions: {
     reporters: ['json', 'lcov'],
-    autostart: true,
+    // autostart: true,
+    jsonOptions: {
+      outputFile: 'test-output.json'
+    },
     lcovOptions: {
-      outputFile: 'lcov.ae.info',
-      // excludeMissingFiles: true,
+      outputFile: 'lcov.dat',
+      excludeMissingFiles: true,
 
       // provide a function to rename es6 modules to a file path
       renamer: function(moduleName) {

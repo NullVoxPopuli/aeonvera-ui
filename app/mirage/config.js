@@ -57,7 +57,16 @@ export default function() {
     return {};
   });
 
-  this.passthrough('/write-blanket-coverage');
+  this.post(
+    '/write-blanket-coverage',
+    this.passthrough
+  );
+
+  this.pretender.post.call(
+  this.pretender,
+  '/write-blanket-coverage',
+  this.pretender.passthrough
+);
   /*
     PUT shorthands
 
