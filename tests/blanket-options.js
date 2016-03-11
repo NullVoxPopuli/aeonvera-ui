@@ -8,7 +8,7 @@ var options = {
   enableCoverage: true,
   branchTracking: true,
   cliOptions: {
-    reporters: ['lcov'],
+    reporters: ['lcov', 'json', 'html'],
     autostart: true,
     lcovOptions: {
       outputFile: 'lcov.dat',

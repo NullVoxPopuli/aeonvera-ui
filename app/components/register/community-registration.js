@@ -5,11 +5,11 @@ export default Ember.Component.extend({
   user: Ember.inject.service('current-user'),
   cart: Ember.inject.service('order-cart'),
 
-  isCurrentMember: Ember.computed('user.user', function() {
+  isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', function() {
     let user = this.get('store').peekRecord('user', 0);
     let organization = this.get('model');
 
-    return user.isMemberOf(organization);
+    return Ember.isPresent(user) ? user.isMemberOf(organization) : false;
   }),
 
   showMembershipOptions: Ember.computed('isCurrentMember',
