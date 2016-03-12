@@ -1,7 +1,7 @@
 .panel.center-margin
   .row
     .small-2.columns
-      img src="{{model.logo_url_thumb}}"
+      img src="{{model.logoUrlThumb}}"
     .small-10.columns
       h2 = model.name
       h4 = model.tagline

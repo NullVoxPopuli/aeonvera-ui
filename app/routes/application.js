@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from
-  'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   subdomain: Ember.inject.service('subdomain'),
   currentUserService: Ember.inject.service('current-user'),
@@ -46,17 +44,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   },
 
-  sessionAuthenticated: function() {
-    this._super();
-
-    // close the modal
-    Ember.$('a.close-reveal-modal').trigger('click');
-
-    // notify of success
-    Ember.get(this, 'flashMessages').success(
-      'You have successfully logged in');
-  },
-
   actions: {
 
     linkToRoute: function(item) {
@@ -77,7 +64,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     invalidateSession: function() {
       this.get('session').invalidate();
-      localStorage.clear();
+      // localStorage.clear();
     },
 
     transitionToLoginRoute: function() {

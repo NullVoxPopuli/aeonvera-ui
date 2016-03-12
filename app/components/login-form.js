@@ -5,6 +5,7 @@ const {
 
 export default Ember.Component.extend({
   session: service('session'),
+  flashMessages: Ember.inject.service(),
 
   showErrorMessage: function () {
     let msg = this.get('errorMessage');
@@ -13,13 +14,10 @@ export default Ember.Component.extend({
 
   actions: {
     authenticate: function () {
-      let _this = this;
-      let {
-        identification, password,
-      } = this.getProperties('identification', 'password');
-      this.get('session').authenticate(
-          'authenticator:devise', identification, password)
-        .catch(function (reason) {
+      let { identification, password } = this.getProperties('identification', 'password');
+
+      this.get('session').authenticate('authenticator:devise', identification, password)
+        .catch((reason) => {
           let message = 'could not reach authentication server';
           let reasonType = typeof (reason);
 
@@ -31,10 +29,14 @@ export default Ember.Component.extend({
             message = reason.error;
           }
 
-          _this.set('errorMessage', message);
-        }).then(function () {
+          this.set('errorMessage', message);
+        }).then(() => {
           // close the modal
-          // Ember.$('a.close-reveal-modal').trigger('click');
+          Ember.$('a.close-reveal-modal').trigger('click');
+
+          // yay
+          this.get('flashMessages').success(
+            'You have successfully logged in');
         });
     },
 

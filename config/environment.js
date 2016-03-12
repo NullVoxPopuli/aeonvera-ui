@@ -26,7 +26,7 @@ module.exports = function(environment) {
     },
 
     rollbar: {
-      captureUncaught: false, //environment !== 'development',
+      captureUncaught: environment !== 'development',
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
     },
 
@@ -35,7 +35,7 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'dashboard',
-      routeAfterAuthentication: 'dashboard',
+      // routeAfterAuthentication: 'dashboard',
       session: 'session:application',
       store: 'session-store:local-storage',
       authorizer: 'ember-simple-auth-authorizer:devise',
@@ -94,7 +94,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
   }

@@ -9,12 +9,12 @@ each model as |community|
         a href="{{community.url}}"
           .row
             .columns.small-2.medium-4
-              if community.logo_is_missing
+              if community.logoIsMissing
                 span.icon-thumbnail.right
                   = fa-icon 'globe'
 
               else
-                img.right src="{{community.logo_url_thumb}}"
+                img.right src="{{community.logoUrlThumb}}"
             .columns.small-10.medium-8
               h3 = community.name
               h6 = community.location

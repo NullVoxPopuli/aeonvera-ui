@@ -28,7 +28,9 @@ export default Host.extend({
     return this.get('city') + ', ' + this.get('state');
   }.property('city', 'state'),
 
-  logo_is_missing: function() {
-    return (this.get('logo_url').indexOf('missing') !== -1);
-  }.property('logo_url'),
+  logoIsMissing: function() {
+    let logoUrl = this.get('logoUrl');
+    let logoPresent = Ember.isPresent(logoUrl);
+    return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
+  }.property('logoUrl'),
 });
