@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
-
   orderContainerClasses: 'large-4 medium-4 columns',
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
@@ -17,6 +16,10 @@ export default Ember.Component.extend({
 
   currentItems: Ember.computed('cart.items', function() {
     return this.get('cart.items');
+  }),
+
+  order: Ember.computed('cart.order', function(){
+    return this.get('cart.order');
   }),
 
   actions: {

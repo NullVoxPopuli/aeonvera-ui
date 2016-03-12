@@ -24,7 +24,7 @@
                   br
 
               if item.isShirt
-                /= select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'
+                = select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'
                 br
               small
                 a click='"removeItem" item' Remove
@@ -37,5 +37,12 @@
       ul.button-group.even-2
         li: a.button.alert click='cancel' Cancel
         li
-          = foundation-modal title='Checkout' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
-            = handle-payment action=process model=currentOrder
+          if host.isEvent
+            = foundation-modal title='Checkout' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
+              = handle-payment action=process model=currentOrder
+          else
+
+            / organizations don't get the option fo cash or check
+            / cause then what's the point of pre-registering?
+            = stripe/checkout-button model=order
+            / button Pay

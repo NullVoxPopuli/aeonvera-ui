@@ -35,8 +35,6 @@ export default Host.extend(RegistrationOpens, {
 
   url: DS.attr('string'),
 
-  integrations: DS.hasMany('integration'),
-  hasStripeIntegration: DS.attr('boolean'),
   askIfLeadingOrFollowing: DS.attr('boolean'),
 
   packages: DS.hasMany('package'),
@@ -49,20 +47,4 @@ export default Host.extend(RegistrationOpens, {
   registrationOpensAt: function() {
     return this.get('openingTier.date');
   }.property('openingTier.date'),
-
-  stripePublishableKey: function() {
-    /*
-    			TODO: find a way to make the 'stripe' key not a string somehow
-    			so typing it over and over doesn't lead to silent errors
-    		*/
-    var integrations = this.get('integrations').filterBy('name', 'stripe');
-    var stripeIntegration = null;
-
-    if (integrations.length > 0) {
-      stripeIntegration = integrations[0];
-    }
-
-    return stripeIntegration.get('publishableKey');
-
-  }.property('integrations.[]'),
 });

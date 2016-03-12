@@ -18,29 +18,29 @@ import Ember from 'ember';
 */
 export default Ember.Component.extend({
 
-  host: function () {
+  host: Ember.computed('model', function () {
     return this.get('model').get('host');
-  }.property('model'),
+  }),
 
-  image: function () {
+  image: Ember.computed('host', function () {
     return this.get('host.loguUrlMedium');
-  }.property('host'),
+  }),
 
-  key: function () {
+  key: Ember.computed('host', function () {
     return this.get('host.stripePublishableKey');
-  }.property('host'),
+  }),
 
-  emailForReceipt: function () {
+  emailForReceipt: Ember.computed('model', function () {
     return this.get('model.userEmail');
-  }.property('model'),
+  }),
 
-  description: function () {
+  description: Ember.computed('host', function () {
     return this.get('host.name');
-  }.property('host'),
+  }),
 
-  amountInCents: function () {
+  amountInCents: Ember.computed('model', function () {
     return (this.get('model.totalInCents') || (this.get('model.subTotal') * 100));
-  }.property('model'),
+  }),
 
   actions: {
     /**
