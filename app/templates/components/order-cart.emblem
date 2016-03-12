@@ -44,5 +44,4 @@
 
             / organizations don't get the option fo cash or check
             / cause then what's the point of pre-registering?
-            = stripe/checkout-button model=order
-            / button Pay
+            = stripe/checkout-button model=order label='Pay'

@@ -4,6 +4,23 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   user: Ember.inject.service('current-user'),
   cart: Ember.inject.service('order-cart'),
+  firstName: '',
+  lastName: '',
+  email: '',
+
+  name: Ember.computed('firstName', 'lastName', {
+    get(key) {
+      let firstName = this.get('firstName');
+      let lastName  = this.get('lastName');
+      return firstName + ' ' + lastName;
+    },
+    set(key, value) {
+     let [firstName, lastName] = value.split(' ');
+     this.set('firstName', firstName);
+     this.set('lastName', lastName);
+     return value;
+    }
+  }),
 
   isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', function() {
     let user = this.get('store').peekRecord('user', 0);

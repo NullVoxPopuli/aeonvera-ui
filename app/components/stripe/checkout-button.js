@@ -17,6 +17,7 @@ import Ember from 'ember';
   given an order, all 3 of the above objects should be available
 */
 export default Ember.Component.extend({
+  label: 'Pay with card',
 
   host: Ember.computed('model', function () {
     return this.get('model').get('host');

@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
+  userName: '',
+  userEmail: '',
   order: null,
   host: null,
 
@@ -17,11 +19,20 @@ export default Ember.Service.extend({
 
   add(item, quantity = 1) {
     let order = this.get('order');
+    let user = this.get('session.currentUser');
+    let name = this.get('userName');
+    let email = this.get('userEmail');
+    // email could come from either the current user,
+    // or from the entered fields if the user is not logged in
+    name = Ember.isPresent(name) ? name : user.get('name');
+    email = Ember.isPresent(email) ? email : user.get('email');
 
     if (!Ember.isPresent(order)) {
       order = this.get('store').createRecord('order', {
         host: this.get('host'),
-        user: this.get('session.currentUser'),
+        user: user,
+        userName: name,
+        userEmail: email,
       });
 
       this.set('order', order);
