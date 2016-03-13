@@ -1,4 +1,4 @@
-= order-cart host=model userName=name userEmail=email
+= order-cart host=model
 
   unless session.isAuthenticated
     .row
