@@ -19,8 +19,8 @@ ul.pricing-table
 
   li.cta-button
     if model.hasStripeIntegration
-      a.button.warning href='https://aeonvera.com/oauth/stripe?payable_id={{model.id}}&payable_type=Event' 
+      a.button.warning href='https://aeonvera.com/oauth/stripe?payable_id={{model.id}}&payable_type={{model.payableType}}'
         span Remove Connection With Stripe
     else
-      a.button href='https://aeonvera.com/oauth/stripe/new?payable_id={{model.id}}&payable_type=Event'
+      a.button href='https://aeonvera.com/oauth/stripe/new?payable_id={{model.id}}&payable_type={{model.payableType}}'
         span Connect With Stripe

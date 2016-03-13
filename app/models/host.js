@@ -10,9 +10,9 @@ export default DS.Model.extend({
 
   stripePublishableKey: function() {
     /*
-    			TODO: find a way to make the 'stripe' key not a string somehow
-    			so typing it over and over doesn't lead to silent errors
-    		*/
+      TODO: find a way to make the 'stripe' key not a string somehow
+            so typing it over and over doesn't lead to silent errors
+    */
     var integrations = this.get('integrations').filterBy('name', 'stripe');
     var stripeIntegration = null;
 
@@ -40,4 +40,8 @@ export default DS.Model.extend({
   isEvent: Ember.computed(function(){
     return this.get('constructor.modelName') === 'event';
   }),
+
+  payableType: Ember.computed(function(){
+    return this.get('isEvent') ? 'Event' : 'Organization';
+  })
 });
