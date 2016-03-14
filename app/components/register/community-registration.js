@@ -6,16 +6,25 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
 
   firstName: Ember.computed({
-    get(key){ return this.get('cart.userFirstName'); },
-    set(key, value){ this.set('cart.userFirstName', value); return value; }
+    get(key) { return this.get('cart.userFirstName'); },
+
+    set(key, value) {
+      this.set('cart.userFirstName', value); return value;
+    }
   }),
   lastName: Ember.computed({
-    get(key){ return this.get('cart.userLastName'); },
-    set(key, value){ this.set('cart.userLastName'); return value;}
+    get(key) { return this.get('cart.userLastName'); },
+
+    set(key, value) {
+      this.set('cart.userLastName'); return value;
+    }
   }),
   email: Ember.computed({
-    get(key){ return this.get('cart.userEmail'); },
-    set(key, value){ this.set('cart.userEmail', value); return value;}
+    get(key) { return this.get('cart.userEmail'); },
+
+    set(key, value) {
+      this.set('cart.userEmail', value); return value;
+    }
   }),
 
   isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', function() {

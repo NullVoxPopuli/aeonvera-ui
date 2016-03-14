@@ -1,0 +1,12 @@
+{
+  "coverage": {
+    "total": {
+      "statementsTotal": 0,
+      "statementsCovered": 0,
+      "percentage": null,
+      "branchesTotal": 0,
+      "branchesCovered": 0
+    },
+    "files": []
+  }
+}

@@ -1,0 +1,18 @@
+import Ember from 'ember';
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import env from 'aeonvera/config/environment';
+
+moduleForComponent('integrations/stripe/disconnect-button', 'Integration | Component | integrations/stripe/disconnect button', {
+  integration: true
+});
+
+test('it renders', function(assert) {
+  let o = Ember.Object.extend({ id: 1, payableType: 'Test' });
+  this.set('o', o);
+
+  this.render(hbs`{{integrations/stripe/disconnect-button model=o}}`);
+
+  let expected = `${env.APP.host}/oauth/stripe?payable_id=1&payable_type=Test`;
+  assert.equal(this.get('href'), expected);
+});

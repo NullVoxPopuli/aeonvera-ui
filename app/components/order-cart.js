@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     return this.get('cart.items');
   }),
 
-  order: Ember.computed('cart.order', function(){
+  order: Ember.computed('cart.order', function() {
     return this.get('cart.order');
   }),
 

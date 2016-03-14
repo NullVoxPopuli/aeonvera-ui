@@ -10,7 +10,7 @@ export default Ember.Route.extend({
     this._super();
   },
 
-  sessionAuthenticated(){
+  sessionAuthenticated() {
     this.transitionTo('dashboard');
   },
 

@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   ticketPrice: 0,
   enteredValue: 75,
 
-  enteredValueChanged: Ember.observer('enteredValue', 'absorbFees', function(){
+  enteredValueChanged: Ember.observer('enteredValue', 'absorbFees', function() {
     this.send('reCalculate');
   }),
 

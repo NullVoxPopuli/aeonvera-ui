@@ -22,26 +22,28 @@ export default DS.Model.extend({
 
     var isPresent = Ember.isPresent(stripeIntegration);
 
-    if (isPresent){
+    if (isPresent) {
       return stripeIntegration.get('publishableKey');
     }
 
     return null;
-  }.property('integrations.[]'),
+  }.property('integrations.@each'),
 
   isOrganization: Ember.computed(function() {
     return this.get('constructor.modelName') === 'organization';
   }),
 
-  isCommunity: Ember.computed(function(){
+  isCommunity: Ember.computed(function() {
     return this.get('isOrganization');
   }),
 
-  isEvent: Ember.computed(function(){
+  isEvent: Ember.computed(function() {
     return this.get('constructor.modelName') === 'event';
   }),
 
-  payableType: Ember.computed(function(){
+  // This corresponds to the server-side model name.
+  // TODO: find a better way to do this.
+  payableType: Ember.computed(function() {
     return this.get('isEvent') ? 'Event' : 'Organization';
   })
 });

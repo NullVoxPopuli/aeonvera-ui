@@ -9,7 +9,7 @@ export default Ember.Service.extend({
   order: null,
   host: null,
 
-  userName: Ember.computed('userFirstName', 'userLastName', function(){
+  userName: Ember.computed('userFirstName', 'userLastName', function() {
     return this.get('userFirstName') + this.get('userLastName');
   }),
 
@@ -22,9 +22,9 @@ export default Ember.Service.extend({
     return this.get('order.orderLineItems');
   }),
 
-  currentOrder: Ember.computed('order', function(){
+  currentOrder: Ember.computed('order', function() {
     let order = this.get('order');
-    if (!Ember.isPresent(order)){
+    if (!Ember.isPresent(order)) {
       let user = this.get('session.currentUser');
       order = this.get('store').createRecord('order', {
         host: this.get('host'),
@@ -35,6 +35,7 @@ export default Ember.Service.extend({
 
       this.set('order', order);
     }
+
     return order;
   }),
 

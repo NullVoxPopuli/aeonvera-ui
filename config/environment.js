@@ -68,6 +68,7 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.host = 'http://swing.vhost:3000';
+    ENV.APP.host = 'http://swing.vhost:3000';
 
     // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
@@ -114,10 +115,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.host = '/';
   }
 
   if (environment === 'production') {
     ENV.host = 'https://aeonvera.com';
+    ENV.APP.host = 'https://aeonvera.com';
+
     // serverTokenEndpoint: 'https://aeonvera.com/users/sign_in',
     // crossOriginWhitelist: ['https://aeonvera.com'],
 
@@ -132,7 +136,6 @@ module.exports = function(environment) {
       'frame-src': "https://*.stripe.com"
     };
   }
-  ENV.host = 'http://swing.vhost:3000';
 
   return ENV;
 };
