@@ -14,11 +14,11 @@
                   .small-3.columns
                     span.prefix style="padding: 10px;" $
                   .small-9.columns
-                    input#ticketPrice keyUp='reCalculate' paste='reCalculate' type="text" placeholder="75"
+                    = input value=enteredValue type="text" placeholder="75"
           .description
             .row
-              .small-5.columns#serviceFee
-              .small-7.columns#cardFee
+              .small-5.columns = serviceFee
+              .small-7.columns = cardFee
             .row
               .small-5.columns
                 .text-center {{t 'appname'}} Fee
@@ -27,14 +27,14 @@
           .description
             .row
               .small-5.columns Buyer Pays
-              .small-7.columns#buyerPays
+              .small-7.columns = buyerPays
           .description
             .row
               .small-5.columns You Get
-              .small-7.columns#youGet
+              .small-7.columns = youGet
           .description
             .row
               .small-12
                 label
-                  input#absorbFees click='reCalculate' type="checkbox" /
+                  = input type="checkbox" checked=absorbFees 
                   | Absorb the fees into your price instead
