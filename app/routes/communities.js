@@ -14,6 +14,6 @@ export default Ember.Route.extend({
   },
 
   model: function () {
-    return this.store.findAll('community');
+    return this.store.findAll('organization');
   },
 });

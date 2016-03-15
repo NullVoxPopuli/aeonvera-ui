@@ -23,9 +23,7 @@
     "andThen",
     "currentURL",
     "currentPath",
-    "currentRouteName",
-    "ok",
-    "notOk"
+    "currentRouteName"
   ],
   "node": false,
   "browser": false,

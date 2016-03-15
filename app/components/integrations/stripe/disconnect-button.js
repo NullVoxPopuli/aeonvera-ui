@@ -1,18 +1,19 @@
 import Ember from 'ember';
 import env from 'aeonvera/config/environment';
 
-// TODO: this could actually be async
 export default Ember.Component.extend({
-  tagName: 'a',
-  attributeBindings: ['href'],
-  classNames: 'button warning',
-
-  href: Ember.computed(function() {
-    let host = env.APP.host;
-    let model = this.get('model');
-    let id = model.get('id');
-    let type = model.get('payableType');
-
-    return `${host}/oauth/stripe?payable_id=${id}&payable_type=${type}`;
-  })
+  actions: {
+    removeIntegration(){
+      let to = this.get('to');
+      let integration = to.get('stripeIntegration');
+      if (Ember.isPresent(integration)){
+        integration.deleteRecord();
+        integration.save().then(() => {
+          to.set('hasStripeIntegration', false);
+        });
+      } else {
+        console.warn('integration attempted to be deleted, but was not found');
+      }
+    }
+  }
 });

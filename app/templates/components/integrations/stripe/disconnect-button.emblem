@@ -1,1 +1,2 @@
-span Remove Connection With Stripe
+a.button.warning click='removeIntegration'
+  span Remove Connection With Stripe

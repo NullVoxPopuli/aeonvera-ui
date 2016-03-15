@@ -8,11 +8,12 @@ moduleForComponent('integrations/stripe/disconnect-button', 'Integration | Compo
 });
 
 test('it renders', function(assert) {
-  let o = Ember.Object.extend({ id: 1, payableType: 'Test' });
+  let o = Ember.Object.create({ id: 1, payableType: 'Test' });
   this.set('o', o);
 
-  this.render(hbs`{{integrations/stripe/disconnect-button model=o}}`);
+  this.render(hbs`{{integrations/stripe/disconnect-button to=o}}`);
 
   let expected = `${env.APP.host}/oauth/stripe?payable_id=1&payable_type=Test`;
-  assert.equal(this.get('href'), expected);
+  let actual = this.$('a').attr('href');
+  assert.equal(actual, expected);
 });

@@ -4,18 +4,18 @@
 br
 
 .center-margin.percent-width-80
-  each model as |community|
-    a href="/{{community.domain}}"
+  each model as |organization|
+    a href="/{{organization.domain}}"
       .row
         .columns.small-2.medium-4
-          if community.logoIsMissing
+          if organization.logoIsMissing
             span.icon-thumbnail.right
               = fa-icon 'globe'
 
           else
-            img.right src="{{community.logoUrlThumb}}"
+            img.right src="{{organization.logoUrlThumb}}"
         .columns.small-10.medium-8
-          h3 = community.name
-          h6 = community.location
+          h3 = organization.name
+          h6 = organization.location
 br
 br

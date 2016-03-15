@@ -1,1 +1,2 @@
-span Connect With Stripe
+a.button click='createIntegration'
+  span Connect With Stripe

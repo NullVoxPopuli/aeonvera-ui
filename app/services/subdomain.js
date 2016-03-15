@@ -85,7 +85,7 @@ export default Ember.Service.extend({
       return this.get('subdomainType').then(type => {
         if (type === 'event') {
           return 'dance-event';
-        } else if (type === 'community') {
+        } else if (type === 'organization') {
           return 'dance-community';
         }
       });

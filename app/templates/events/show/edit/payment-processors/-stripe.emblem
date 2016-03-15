@@ -19,6 +19,6 @@ ul.pricing-table
 
   li.cta-button
     if model.hasStripeIntegration
-      = integrations/stripe/disconnect-button model=model        
+      = integrations/stripe/disconnect-button to=model        
     else
-      = integrations/stripe/connect-button model=model
+      = integrations/stripe/connect-button to=model

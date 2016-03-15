@@ -16,7 +16,7 @@ moduleForModel('host', 'Unit | Model | host', {
   }
 });
 
-test('stripePublishableKey | exists', function() {
+test('stripePublishableKey | exists', function(assert) {
   let integration = make('integration', {
     name: 'stripe',
     publishableKey: 'hi'
@@ -24,49 +24,41 @@ test('stripePublishableKey | exists', function() {
   let organization = make('organization', { integrations: [integration] });
 
   let result = organization.get('stripePublishableKey');
-  ok(result);
+  assert.ok(result);
 });
 
-test('stripePublishableKey | does not exist', function() {
+test('stripePublishableKey | does not exist', function(assert) {
   let integration = make('integration', {
     publishableKey: 'hi'
   });
   let organization = make('organization', { integrations: [integration] });
 
   let result = organization.get('stripePublishableKey');
-  notOk(result);
+  assert.notOk(result);
 });
 
-test('isOrganization', _=> {
+test('isOrganization', function(assert) {
   let organization = make('organization');
 
-  ok(organization.get('isOrganization'));
-  notOk(organization.get('isEvent'));
+  assert.ok(organization.get('isOrganization'));
+  assert.notOk(organization.get('isEvent'));
 });
 
-test('isCommunity', function() {
-  let organization = make('organization');
-
-  ok(organization.get('isCommunity'));
-  notOk(organization.get('isEvent'));
-});
-
-test('isEvent', function() {
+test('isEvent', function(assert) {
   let e = make('event');
 
-  ok(e.get('isEvent'));
-  notOk(e.get('isCommunity'));
-  notOk(e.get('isOrganization'));
+  assert.ok(e.get('isEvent'));
+  assert.notOk(e.get('isOrganization'));
 });
 
-test('payableType | for event', function() {
+test('payableType | for event', function(assert) {
   let e = make('event');
   let result = e.get('payableType');
-  ok('Event', result);
+  assert.ok('Event', result);
 });
 
-test('payableType | for org', function() {
+test('payableType | for org', function(assert) {
   let e = make('organization');
   let result = e.get('payableType');
-  ok('Organization', result);
+  assert.ok('Organization', result);
 });
