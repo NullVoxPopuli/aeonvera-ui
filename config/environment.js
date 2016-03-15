@@ -109,6 +109,7 @@ module.exports = function(environment) {
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
+      'font-src': "'self' *.amazonaws.com",
       'connect-src': "'self' *.aeonvera-staging.work",
       'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera-staging.work",
