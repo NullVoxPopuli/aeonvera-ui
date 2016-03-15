@@ -14,7 +14,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{integrations/stripe/connect-button to=model}}`);
 
-  let expected = `${env.APP.host}/oauth/stripe/new?payable_id=1&payable_type=Test`;
-  let actual = this.$('a').attr('href');
+  let expected = 'Connect With Stripe';
+  let actual = this.$('button').text().trim();
   assert.equal(actual, expected);
 });

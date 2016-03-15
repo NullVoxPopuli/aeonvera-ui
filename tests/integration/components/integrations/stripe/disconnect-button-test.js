@@ -13,7 +13,7 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{integrations/stripe/disconnect-button to=o}}`);
 
-  let expected = `${env.APP.host}/oauth/stripe?payable_id=1&payable_type=Test`;
-  let actual = this.$('a').attr('href');
+  let expected = 'Remove Connection With Stripe';
+  let actual = this.$('button').text().trim();
   assert.equal(actual, expected);
 });
