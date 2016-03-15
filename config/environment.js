@@ -18,7 +18,9 @@ module.exports = function(environment) {
     },
 
     stripe: {
-      key: 'a' /* set per event */
+      key: 'a', /* set per event */
+      /* development client id */
+      clientId: 'ca_4oEqCCUzDfLTBqXsFbXyklhVUP8XdOfO'
     },
 
     devise: {
@@ -35,7 +37,6 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'dashboard',
-      // routeAfterAuthentication: 'dashboard',
       session: 'session:application',
       store: 'session-store:local-storage',
       authorizer: 'ember-simple-auth-authorizer:devise',
@@ -52,11 +53,6 @@ module.exports = function(environment) {
     },
     flashMessageDefaults: {
       timeout: 10000
-    },
-    subdomainMapping: {
-      '': 'default',
-      'www': 'default',
-      '*': 'register'
     }
   };
 
@@ -77,16 +73,6 @@ module.exports = function(environment) {
     ENV['ember-cli-mirage'] = {
       enabled: false
     };
-    // {
-    //   // defaults to /users/sign_in
-    //   serverTokenEndpoint: ,
-    //   serverTokenRevocationEndPoint: 'http://swing.vhost:3000/users/sign_out',
-    //   crossOriginWhitelist: ['http://swing.vhost:3000']
-    //     /*
-    //     serverTokenEndpoint: 'http://aeonvera-staging.work/users/sign_in',
-    //     crossOriginWhitelist: ['http://aeonvera-staging.work']
-    //     */
-    // };
 
     // Extremely detailed logging, highlighting every internal
     // step made while transitioning into a route, including
@@ -97,18 +83,35 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.torii = {
+      providers: {
+        'stripe-connect': {
+          apiKey: ENV.stripe.clientId,
+          redirectUri: 'http://swing.vhost:4200'
+          // redirectUri: `${ENV.host}/oauth/stripe/authorize`
+        }
+      }
+    };
 
+  }
+
+  if (environment === 'staging'){
+    ENV.host = 'http://aeonvera-staging.work';
+    ENV.APP.host = 'http://aeonvera-staging.work';
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
+
+    // note that the test environment is api/users/sign_in
+    ENV['devise']['serverTokenEndpoint'] =
+      'http://aeonvera-staging.work/users/sign_in';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
-
-    //
-    // ENV['ember-cli-mirage'] = {
-    //   enabled: false
-    // };
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -122,6 +125,13 @@ module.exports = function(environment) {
     ENV.host = 'https://aeonvera.com';
     ENV.APP.host = 'https://aeonvera.com';
 
+    /* somehow get the production client id from an environment variable
+      https://github.com/ember-cli/ember-cli/issues/1236#issuecomment-47839794
+
+      apparently process is the node process
+      - I think this only matters during build-time
+    */
+    ENV.stripe.clientId = process.env.STRIPE_CLIENT_ID;
     // serverTokenEndpoint: 'https://aeonvera.com/users/sign_in',
     // crossOriginWhitelist: ['https://aeonvera.com'],
 

@@ -3,10 +3,10 @@ import env from 'aeonvera/config/environment';
 
 export default Ember.Component.extend({
   actions: {
-    removeIntegration(){
+    removeIntegration() {
       let to = this.get('to');
       let integration = to.get('stripeIntegration');
-      if (Ember.isPresent(integration)){
+      if (Ember.isPresent(integration)) {
         integration.deleteRecord();
         integration.save().then(() => {
           to.set('hasStripeIntegration', false);

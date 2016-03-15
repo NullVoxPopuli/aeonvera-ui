@@ -1,14 +1,20 @@
 import Ember from 'ember';
-import env from 'aeonvera/config/environment';
 
 export default Ember.Component.extend({
+  torii: Ember.inject.service(),
+  resetButton: false,
+
   actions: {
-    createIntegration(){
-      let to = this.get('to');
-      this.get('store').createRecord('integration',{
-        owner_id: to.get('id'),
-        owner_type: to.get('payable_type')
-      });
+    createIntegration() {
+      return this.get('torii').open('stripe-connect').then(
+        result => {
+          this.set('authorizationCode', result.authorizationCode);
+          console.log(result);
+        }, error => {
+          this.get('flashMessages').alert(error);
+          this.set('resetButton', true);
+        }
+      );
     }
   }
 });
