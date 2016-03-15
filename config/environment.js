@@ -45,7 +45,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' *.stripe.com sidecar.gitter.im *",
-      // 'font-src': "'self' data: use.typekit.net",
+      'font-src': "'self' *.amazonaws.com",
       'connect-src': "*",
       'img-src': "'self'  *.amazonaws.com data: https://*.stripe.com *",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
