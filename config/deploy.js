@@ -27,15 +27,21 @@ module.exports = function(deployTarget) {
   }
 
   if (deployTarget === 'staging') {
-    ENV.build.environment = 'production';
+    ENV.build.environment = 'staging';
     // configure other plugins for staging deploy target here
     ENV.s3.bucket = 'aeonvera-staging';
+    ENV.redis.host = process.env.REDISCLOUD_URL;
+    ENV.redis.port = process.env.REDISCLOUD_PORT;
+    ENV.redis.password = process.env.REDISCLOUD_PASSWORD;
   }
 
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
     // configure other plugins for production deploy target here
     ENV.s3.bucket = 'aeonvera-production';
+    ENV.redis.host = process.env.REDISCLOUD_URL;
+    ENV.redis.port = process.env.REDISCLOUD_PORT;
+    ENV.redis.password = process.env.REDISCLOUD_PASSWORD;
   }
 
   // Note: if you need to build some configuration asynchronously, you can return

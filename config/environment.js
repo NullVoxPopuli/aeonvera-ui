@@ -88,16 +88,15 @@ module.exports = function(environment) {
         'stripe-connect': {
           apiKey: ENV.stripe.clientId,
           redirectUri: 'http://swing.vhost:4200'
-          // redirectUri: `${ENV.host}/oauth/stripe/authorize`
         }
       }
     };
-
   }
 
   if (environment === 'staging'){
     ENV.host = 'http://aeonvera-staging.work';
     ENV.APP.host = 'http://aeonvera-staging.work';
+    ENV.S3Assets = 'https://s3.amazonaws.com/aeonvera-staging/ember';
 
     ENV['ember-cli-mirage'] = {
       enabled: false
@@ -106,6 +105,16 @@ module.exports = function(environment) {
     // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
       'http://aeonvera-staging.work/users/sign_in';
+
+    ENV['contentSecurityPolicy'] = {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
+      'connect-src': "'self' *.aeonvera-staging.work",
+      'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
+      'style-src': "'self' 'unsafe-inline' *.aeonvera-staging.work",
+      'frame-src': "https://*.stripe.com"
+    };
+
   }
 
   if (environment === 'test') {
@@ -124,6 +133,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.host = 'https://aeonvera.com';
     ENV.APP.host = 'https://aeonvera.com';
+    ENV.S3Assets = 'https://s3.amazonaws.com/aeonvera-production/ember';
 
     /* somehow get the production client id from an environment variable
       https://github.com/ember-cli/ember-cli/issues/1236#issuecomment-47839794
@@ -132,14 +142,11 @@ module.exports = function(environment) {
       - I think this only matters during build-time
     */
     ENV.stripe.clientId = process.env.STRIPE_CLIENT_ID;
-    // serverTokenEndpoint: 'https://aeonvera.com/users/sign_in',
-    // crossOriginWhitelist: ['https://aeonvera.com'],
 
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
-      // 'font-src': "'self' data: use.typekit.net",
       'connect-src': "'self' *.aeonvera.com",
       'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
       'style-src': "'self' 'unsafe-inline' *.aeonvera.com",

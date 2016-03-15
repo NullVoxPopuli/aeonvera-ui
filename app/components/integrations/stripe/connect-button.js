@@ -11,6 +11,7 @@ export default Ember.Component.extend({
           this.set('authorizationCode', result.authorizationCode);
           console.log(result);
         }, error => {
+
           this.get('flashMessages').alert(error);
           this.set('resetButton', true);
         }

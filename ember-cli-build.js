@@ -1,14 +1,39 @@
 /* global require, module */
-
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var env = EmberApp.env();
+var isProductionLike = ['production', 'staging'].indexOf(env) > -1;
+
 
 module.exports = function(defaults) {
+  var fingerprintPrepend = '';
+  console.log(env);
+  switch(env){
+    case 'staging':
+      fingerprintPrepend = 'https://s3.amazonaws.com/aeonvera-staging/ember/';
+    break;
+    case 'production':
+      fingerprintPrepend = 'https://s3.amazonaws.com/aeonvera-production/ember/';
+    break;
+  };
+
+  console.log(fingerprintPrepend);
+
   var app = new EmberApp({
     'ember-cli-foundation-sass': {
       'modernizr': true,
       'fastclick': true,
       'foundationJs': 'all'
-    }
+    },
+    /* ember-cli.com/ember-cli-deploy/docs/v0.6.x/fingerprinting */
+    fingerprint: {
+      enabled: isProductionLike,
+      prepend: fingerprintPrepend
+    },
+    sourcemaps: { enabled: !isProductionLike },
+    minifyCss: { enabled: isProductionLike },
+    minifyJS: { enabled: isProductionLike },
+    tests: process.env.EMBER_CLI_TEST_COMMAND || !isProductionLike,
+    hinting: process.env.EMBER_CLI_TEST_COMMAND || !isProductionLike
   });
 
   // Use `app.import` to add additional libraries to the generated
