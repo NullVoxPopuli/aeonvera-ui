@@ -6,13 +6,16 @@ export default Ember.Component.extend({
     removeIntegration() {
       let to = this.get('to');
       let integration = to.get('stripeIntegration');
+
       if (Ember.isPresent(integration)) {
         integration.deleteRecord();
-        integration.save().then(() => {
+        return integration.save().then(() => {
           to.set('hasStripeIntegration', false);
         });
       } else {
-        console.warn('integration attempted to be deleted, but was not found');
+        to.set('hasStripeIntegration', false);
+        let msg = 'integration attempted to be deleted, but was not found';
+        this.get('flashMessages').alert(msg);
       }
     }
   }

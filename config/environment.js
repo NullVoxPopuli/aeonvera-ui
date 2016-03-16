@@ -94,8 +94,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging'){
-    ENV.host = 'http://aeonvera-staging.work';
-    ENV.APP.host = 'http://aeonvera-staging.work';
+    ENV.host = 'https://aeonvera-staging.work';
+    ENV.APP.host = 'https://aeonvera-staging.work';
     ENV.S3Assets = 'https://s3.amazonaws.com/aeonvera-staging/ember';
 
     ENV['ember-cli-mirage'] = {
@@ -104,7 +104,7 @@ module.exports = function(environment) {
 
     // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
-      'http://aeonvera-staging.work/users/sign_in';
+      'https://aeonvera-staging.work/users/sign_in';
 
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
