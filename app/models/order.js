@@ -18,12 +18,8 @@ export default DS.Model.extend({
   userEmail: DS.attr('string'),
   userName: DS.attr('string'),
 
-  host: DS.belongsTo('host', {
-    polymorphic: true,
-  }),
-  orderLineItems: DS.hasMany('orderLineItem', {
-    async: true,
-  }),
+  host: DS.belongsTo('host', { polymorphic: true }),
+  orderLineItems: DS.hasMany('orderLineItem'),
   attendance: DS.belongsTo('attendance'),
   user: DS.belongsTo('user'),
 
@@ -50,6 +46,30 @@ export default DS.Model.extend({
 
   hasLineItems: Ember.computed('orderLineItems.@each', function() {
     return this.get('orderLineItems.length') > 0;
+  }),
+
+  shouldApplyFee: Ember.computed('subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', function(){
+    let result = (
+      this.get('subTotal') > 0 &&
+      this.get('host.makeAttendeesPayFees') &&
+      this.get('paymentMethod') === 'stripe');
+
+    return result;
+  }),
+
+  fee: Ember.computed('subTotal', function(){
+    // total_fee_percentage = 0.029 # Stripe
+    // total_fee_percentage += 0.0075 unless host.beta?
+    //
+    // total = (sub + 0.3) / (1 - total_fee_percentage).round(2)
+    let subTotal = this.get('subTotal');
+    let minFee = 0.3;
+    let feePercentage = 0.029;
+    let applicationFee = 0.0075;
+
+    let totalFeePercentage = feePercentage + applicationFee;
+
+    return subTotal * totalFeePercentage + minFee;
   }),
 
   /*
@@ -83,10 +103,10 @@ export default DS.Model.extend({
 
     // is the item already in the order?
     let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
-
-    if (quantity > 0 && !Ember.isPresent(orderLineItem)) {
+    let oliExists = Ember.isPresent(orderLineItem);
+    if (quantity > 0 && !oliExists) {
       this._addNewLineItem(lineItem, quantity, price);
-    } else {
+    } else if(oliExists) {
       // this will also remove
       this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
     }

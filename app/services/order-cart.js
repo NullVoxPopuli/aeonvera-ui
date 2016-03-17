@@ -3,14 +3,32 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
+  flashMessages: Ember.inject.service('flashMessages'),
+
   userFirstName: '',
   userLastName: '',
-  userEmail: '',
+  email: '',
   order: null,
   host: null,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
     return this.get('userFirstName') + this.get('userLastName');
+  }),
+
+  userEmail: Ember.computed('session.currentUser', {
+    get(key){
+      let email = this.get('email');
+      if (!Ember.isPresent(email)){
+        let userEmail = this.get('session.currentUser.email');
+        email = userEmail;
+        this.set('email', email);
+      }
+
+      return email;
+    },
+    set(key,value){
+      this.set('email', value);
+    }
   }),
 
   hasItems: Ember.computed('order', 'order.hasLineItems', function() {
@@ -59,12 +77,59 @@ export default Ember.Service.extend({
 
   },
 
-  processStripeToken() {
+  /*
+    the params here is the response from the stripe-checkout script.
+    We'll want to add this in to the order before, and show some sort of visual
+    feedback for processing, as this data only enables us to charge the card.
+    The server will do the actual charging of the card.
 
-  },
+    Here is the data returned from stripe-checkout:
+      - client_ip
+      - created
+      - email
+      - id 'tok...'
+      - livemode
+      - object: 'token'
+      - type: 'card'
+      - used: false,
+      - card: {
+          this is a big one, only relevant information listed, see stripe docs
+          for mor details
+          - brand: 'Visa'
+          - country
+          - cvc_check
+          - exp_month
+          - exp_year
+          - id: 'card...'
+        }
+  */
+  processStripeToken(params) {
+    let token = params.id;
+    this.get('order').set('checkoutToken', token);
 
-  process() {
+    // by attempting to save,
+    // the server is going to validate all the objects,
+    // attempt to change the card.
+    //
+    // if nothing has gone wrong at this point, everything will sove
+    // and an email will be sent to the registrant.
+    //
+    // if there are errors (either in model validation or credit card),
+    // the user will be notified of all errors.
+    this.get('order').save().then(record => {
 
-  },
+      /*
+        Display some sort of thankyou
+        - TODO: in the email, there should probably be some sort of
+                readonly link to the order
+      */
+
+      let msg = 'The order was successful. You should soon receive a receipt in your email.'
+      this.get('flashMessages').success(msg);
+    }, error => {
+      this.get('flashMessages').alert(error);
+      console.error(error);
+    });
+  }
 
 });

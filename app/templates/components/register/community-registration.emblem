@@ -45,7 +45,7 @@
       each model.lessons as |lesson|
         tr
           td = to-usd lesson.price
-          td = input-value-action type='number' min='0' classNames='width-of-50px center-margin' object=lesson action='addByQuantity'
+          td = input-value-action type='number' min=0 classNames='width-of-50px center-margin' object=lesson action='addByQuantity'
           td
             h5 = lesson.name
             span {{{lesson.description}}}

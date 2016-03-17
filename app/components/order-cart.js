@@ -24,6 +24,10 @@ export default Ember.Component.extend({
 
   actions: {
 
+    processStripeToken(params){
+      this.get('cart').processStripeToken(params);
+    },
+
     removeItem: function(item) {
       this.get('cart').remove(item);
     },

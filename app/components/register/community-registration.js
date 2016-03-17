@@ -28,6 +28,7 @@ export default Ember.Component.extend({
   }),
 
   isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', function() {
+    // let user = this.get('user.user');
     let user = this.get('store').peekRecord('user', 0);
     let organization = this.get('model');
 
