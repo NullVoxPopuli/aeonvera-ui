@@ -17,7 +17,6 @@ export default Host.extend(RegistrationOpens, {
 
   showOnPublicCalendar: DS.attr('boolean'),
   acceptOnlyElectronicPayments: DS.attr('boolean'),
-  makeAttendeesPayFees: DS.attr('boolean'),
   hasVolunteers: DS.attr('boolean'),
   volunteerDescription: DS.attr('string'),
 

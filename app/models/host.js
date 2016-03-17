@@ -7,6 +7,8 @@ export default DS.Model.extend({
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),
+  makeAttendeesPayFees: DS.attr('boolean'),
+
 
   stripeIntegration: Ember.computed('integrations.@each', function() {
     let integrations = this.get('integrations').filterBy('name', 'stripe');
