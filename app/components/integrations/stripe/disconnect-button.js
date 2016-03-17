@@ -9,8 +9,12 @@ export default Ember.Component.extend({
 
       if (Ember.isPresent(integration)) {
         integration.deleteRecord();
-        return integration.save().then(() => {
+        return integration.save().then(record => {
+          this.get('store').unloadRecord(record);
           to.set('hasStripeIntegration', false);
+
+          let msg = 'Stripe integration succesfully removed';
+          this.get('flashMessages').success(msg);
         });
       } else {
         to.set('hasStripeIntegration', false);
