@@ -48,16 +48,22 @@ export default DS.Model.extend({
     return this.get('orderLineItems.length') > 0;
   }),
 
-  shouldApplyFee: Ember.computed('subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', function(){
+  shouldApplyFee: Ember.computed('subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', function() {
+    let electronicPayment = (
+      this.get('paymentMethod') === 'stripe' ||
+      this.get('host.acceptOnlyElectronicPayments') || false
+    );
+
     let result = (
       this.get('subTotal') > 0 &&
       this.get('host.makeAttendeesPayFees') &&
-      this.get('paymentMethod') === 'stripe');
+      electronicPayment);
 
     return result;
   }),
 
-  fee: Ember.computed('subTotal', function(){
+
+  fee: Ember.computed('subTotal', function() {
     // total_fee_percentage = 0.029 # Stripe
     // total_fee_percentage += 0.0075 unless host.beta?
     //
@@ -66,16 +72,17 @@ export default DS.Model.extend({
     let minFee = 0.3;
     let feePercentage = 0.029;
     let applicationFee = 0.0075;
-
     let totalFeePercentage = feePercentage + applicationFee;
 
-    return subTotal * totalFeePercentage + minFee;
+    let stringFee = (subTotal * totalFeePercentage + minFee).toFixed(2);
+    return parseFloat(stringFee);
   }),
 
   /*
     Calculates raw total of all the order line items
+     - before fees or anything
   */
-  subTotal: function() {
+  subTotal: Ember.computed('orderLineItems.@each.total', function(){
     let lineItems = this.get('orderLineItems');
     let subTotal = 0;
 
@@ -84,7 +91,19 @@ export default DS.Model.extend({
     });
 
     return subTotal;
-  }.property('orderLineItems.@each.total'),
+  }),
+
+  total: Ember.computed('subTotal', 'shouldApplyFee', function(){
+    let subTotal = this.get('subTotal');
+    let shouldApplyFee = this.get('shouldApplyFee');
+    let total = subTotal;
+
+    if (shouldApplyFee){
+      let fee = this.get('fee');
+      total += fee;
+    }
+    return total;
+  }),
 
   paidClass: function() {
     let paid = this.get('paid');
@@ -106,7 +125,7 @@ export default DS.Model.extend({
     let oliExists = Ember.isPresent(orderLineItem);
     if (quantity > 0 && !oliExists) {
       this._addNewLineItem(lineItem, quantity, price);
-    } else if(oliExists) {
+    } else if (oliExists) {
       // this will also remove
       this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
     }

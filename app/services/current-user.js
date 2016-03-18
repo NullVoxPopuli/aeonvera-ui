@@ -18,7 +18,7 @@ export default Ember.Service.extend({
           the server always returns the current user.
           This is just to route to the show action on the controller.
         */
-        promise: this.get('store').findRecord('user', 0, {
+        promise: this.get('store').findRecord('user', 'current-user', {
           adapterOptions: {
             query: {
               include: 'membership_renewals.membership_option',

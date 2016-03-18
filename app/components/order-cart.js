@@ -24,7 +24,7 @@ export default Ember.Component.extend({
 
   actions: {
 
-    processStripeToken(params){
+    processStripeToken(params) {
       this.get('cart').processStripeToken(params);
     },
 

@@ -29,8 +29,15 @@
               small
                 a click='"removeItem" item' Remove
         tfoot
+          if cart.order.shouldApplyFee
+            tr
+              th = to-usd cart.order.subTotal
+              th Sub Total
+            tr
+              th = to-usd cart.order.fee
+              th Fee
           tr
-            th = to-usd cart.order.subTotal
+            th = to-usd cart.order.total
             th Total
       hr
 

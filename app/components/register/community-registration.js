@@ -27,9 +27,9 @@ export default Ember.Component.extend({
     }
   }),
 
-  isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', function() {
+  isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', 'session.currentUser', function() {
     // let user = this.get('user.user');
-    let user = this.get('store').peekRecord('user', 0);
+    let user = this.get('store').peekRecord('user', 'current-user');
     let organization = this.get('model');
 
     return Ember.isPresent(user) ? user.isMemberOf(organization) : false;
@@ -45,7 +45,7 @@ export default Ember.Component.extend({
     }),
 
   membershipExpiresAt: Ember.computed(function() {
-    let user = this.get('store').peekRecord('user', 0);
+    let user = this.get('store').peekRecord('user', 'current-user');
     let organization = this.get('model');
     let renewal = user.latestRenewalFor(organization);
     let date = renewal.get('expiresAt');

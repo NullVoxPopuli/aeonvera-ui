@@ -34,6 +34,7 @@ export default Ember.Component.extend({
               this.set('to.hasStripeIntegration', true);
               this.set('resetButton', true);
             }, error => {
+
               this.get('flashMessages').alert(error);
             }
           );

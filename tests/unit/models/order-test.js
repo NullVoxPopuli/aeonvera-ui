@@ -8,6 +8,7 @@ moduleForModel('order', 'Unit | Model | order', {
   needs: [
     'model:host',
     'model:organization',
+    'model:event',
     'model:lesson',
     'model:order-line-item',
     'model:membership-option',
@@ -46,6 +47,76 @@ test('subTotal | it calculates', function(assert) {
 
   let result = order.get('subTotal');
   assert.equal(result, 17);
+});
+
+test('fee | it calculates', function(assert){
+  let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
+  let order = make('order', {
+    orderLineItems: [orderLineItem1]
+  });
+
+  let result = order.get('fee');
+  let expected = (5 * (0.029 + 0.0075) + 0.30).toFixed(2);
+  assert.equal(result, expected);
+});
+
+test('shouldApplyFee | subTotal is 0', function(assert){
+  let order = make('order');
+  let result = order.get('shouldApplyFee');
+  assert.equal(result, false);
+});
+
+test('shouldApplyFee | host.makeAttendeesPayFees', function(assert){
+  let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
+  let host = make('organization', { makeAttendeesPayFees: true });
+  let order = make('order', {
+    paymentMethod: 'stripe',
+    orderLineItems: [orderLineItem1],
+    host: host
+  });
+
+  let result = order.get('shouldApplyFee');
+  assert.equal(result, true);
+});
+
+test('shouldApplyFee | is not stripe payment method', function(assert){
+  let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
+  let host = make('event', { makeAttendeesPayFees: true });
+  let order = make('order', {
+    paymentMethod: 'cash',
+    orderLineItems: [orderLineItem1],
+    host: host
+  });
+
+  let result = order.get('shouldApplyFee');
+  assert.equal(result, false);
+});
+
+test('shouldApplyFee | only electronicPayments', function(assert){
+  let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
+  let host = make('organization', { makeAttendeesPayFees: true });
+  let order = make('order', {
+    paymentMethod: 'cash',
+    orderLineItems: [orderLineItem1],
+    host: host
+  });
+
+  let result = order.get('shouldApplyFee');
+  assert.equal(result, false);
+});
+
+test('total | it calculates', function(assert){
+  let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
+  let host = make('organization', { makeAttendeesPayFees: true });
+  let order = make('order', {
+    paymentMethod: 'stripe',
+    orderLineItems: [orderLineItem1],
+    host: host
+  });
+
+  let result = order.get('total');
+  let expected = (5 * (1 + 0.029 + 0.0075) + 0.30).toFixed(2);
+  assert.equal(result, expected);
 });
 
 test('addLineItem | adds an orderLineItem', function(assert) {

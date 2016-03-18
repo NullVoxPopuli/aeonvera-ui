@@ -18,7 +18,7 @@ moduleForModel('host', 'Unit | Model | host', {
 
 test('stripePublishableKey | exists', function(assert) {
   let integration = make('integration', {
-    name: 'stripe',
+    kind: 'stripe',
     publishableKey: 'hi'
   });
   let organization = make('organization', { integrations: [integration] });

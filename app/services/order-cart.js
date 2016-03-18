@@ -16,9 +16,9 @@ export default Ember.Service.extend({
   }),
 
   userEmail: Ember.computed('session.currentUser', {
-    get(key){
+    get(key) {
       let email = this.get('email');
-      if (!Ember.isPresent(email)){
+      if (!Ember.isPresent(email)) {
         let userEmail = this.get('session.currentUser.email');
         email = userEmail;
         this.set('email', email);
@@ -26,7 +26,8 @@ export default Ember.Service.extend({
 
       return email;
     },
-    set(key,value){
+
+    set(key, value) {
       this.set('email', value);
     }
   }),
@@ -83,25 +84,7 @@ export default Ember.Service.extend({
     feedback for processing, as this data only enables us to charge the card.
     The server will do the actual charging of the card.
 
-    Here is the data returned from stripe-checkout:
-      - client_ip
-      - created
-      - email
-      - id 'tok...'
-      - livemode
-      - object: 'token'
-      - type: 'card'
-      - used: false,
-      - card: {
-          this is a big one, only relevant information listed, see stripe docs
-          for mor details
-          - brand: 'Visa'
-          - country
-          - cvc_check
-          - exp_month
-          - exp_year
-          - id: 'card...'
-        }
+    The only data we need from the stripe checkout object is the 'id'
   */
   processStripeToken(params) {
     let token = params.id;
@@ -116,6 +99,23 @@ export default Ember.Service.extend({
     //
     // if there are errors (either in model validation or credit card),
     // the user will be notified of all errors.
+    // ---------------------------------------------------------------
+    // unfortunately, ember / JSON API doesn't have a way to
+    // send multiple records at a time -- which is what we need
+    // in the case of order + order line items...
+    // so, this is pretty much a hack -- luckily, it shouldn't
+    // be needed anywhere else
+    let jsonPayload = {};
+    let items = [];
+
+    this.get('order.orderLineItems').forEach(item => {
+      items.push(item.toJSON());
+    });
+
+    jsonPayload.order = this.get('order').toJSON();
+    jsonPayload.orderLineItems = items;
+    console.log(jsonPayload);
+
     this.get('order').save().then(record => {
 
       /*
@@ -124,9 +124,10 @@ export default Ember.Service.extend({
                 readonly link to the order
       */
 
-      let msg = 'The order was successful. You should soon receive a receipt in your email.'
+      let msg = 'The order was successful. You should soon receive a receipt in your email.';
       this.get('flashMessages').success(msg);
     }, error => {
+
       this.get('flashMessages').alert(error);
       console.error(error);
     });

@@ -17,26 +17,29 @@ export default Ember.Component.extend({
       let { identification, password } = this.getProperties('identification', 'password');
 
       this.get('session').authenticate('authenticator:devise', identification, password)
-        .catch((reason) => {
-          let message = 'could not reach authentication server';
-          let reasonType = typeof (reason);
+        .then(json => {
+          console.log(json);
 
-          if (reasonType === 'string') {
-            // in case rails throws the standard error text at us
-            message = reason.split('\n')[0];
-          } else if (reasonType === 'object') {
-            // normal auth errors
-            message = reason.error;
-          }
-
-          this.set('errorMessage', message);
-        }).then(() => {
           // close the modal
           Ember.$('a.close-reveal-modal').trigger('click');
 
           // yay
           this.get('flashMessages').success(
             'You have successfully logged in');
+        }, error => {
+
+          let message = error;
+          let reasonType = typeof (message);
+
+          if (reasonType === 'string') {
+            // in case rails throws the standard error text at us
+            message = message.split('\n')[0];
+          } else if (reasonType === 'object') {
+            // normal auth errors
+            message = error.error;
+          }
+
+          this.set('errorMessage', message);
         });
     },
 
