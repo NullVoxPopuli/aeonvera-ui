@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Service.extend({
   store: Ember.inject.service('store'),
@@ -74,10 +75,6 @@ export default Ember.Service.extend({
     this.set('order', null);
   },
 
-  submit() {
-
-  },
-
   /*
     the params here is the response from the stripe-checkout script.
     We'll want to add this in to the order before, and show some sort of visual
@@ -109,14 +106,23 @@ export default Ember.Service.extend({
     let items = [];
 
     this.get('order.orderLineItems').forEach(item => {
-      items.push(item.toJSON());
+      let itemJson = item.toJSON();
+      itemJson.lineItemId = item.get('lineItem.id');
+      itemJson.lineItemType = item.get('klass');
+      items.push(itemJson);
     });
 
     jsonPayload.order = this.get('order').toJSON();
+    jsonPayload.order.hostId = this.get('order.host.id');
+    jsonPayload.order.hostType = this.get('order.host.klass');
     jsonPayload.orderLineItems = items;
-    console.log(jsonPayload);
 
-    this.get('order').save().then(record => {
+
+    Ember.$.ajax({
+      type: 'POST',
+      url: config.host + '/api/orders',
+      data: jsonPayload
+    }).then(record => {
 
       /*
         Display some sort of thankyou

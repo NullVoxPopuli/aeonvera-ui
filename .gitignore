@@ -10,6 +10,7 @@
 
 # misc
 /lcov.dat
+/coverage.*
 /test-output.json
 /.sass-cache
 /connect.lock
