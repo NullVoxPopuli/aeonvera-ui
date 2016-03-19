@@ -1,4 +1,4 @@
-td = model.attendeeName
+td = attendance-link model=model
 td
   unless model.isCheckedIn
     button.small.no-margins.success click='"checkin" attendance' Check in
