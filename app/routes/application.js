@@ -4,9 +4,13 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
   subdomain: Ember.inject.service('subdomain'),
   currentUserService: Ember.inject.service('current-user'),
+  pathStore: Ember.inject.service('path-store'),
 
   // intl: Ember.inject.service(),
   beforeModel: function(transition) {
+    // post-email-confirmation
+    this.get('pathStore').redirectIfPathIsPresent();
+
     // Make sure the current user is loaded before anything else.
     if (this.get('session.isAuthenticated')) {
       this.get('currentUserService.user');

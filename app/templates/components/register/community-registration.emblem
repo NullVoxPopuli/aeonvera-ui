@@ -1,3 +1,5 @@
+=page-header text=title
+
 = order-cart host=model
 
   unless session.isAuthenticated

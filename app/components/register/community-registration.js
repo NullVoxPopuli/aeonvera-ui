@@ -5,6 +5,11 @@ export default Ember.Component.extend({
   user: Ember.inject.service('current-user'),
   cart: Ember.inject.service('order-cart'),
 
+  title: Ember.computed('model.name', function () {
+    return 'Register for ' + this.get('model.name');
+  }).readOnly(),
+
+
   firstName: Ember.computed({
     get(key) { return this.get('cart.userFirstName'); },
 

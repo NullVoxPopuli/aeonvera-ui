@@ -1,0 +1,21 @@
+.text-center
+  h1.hide-for-small
+    = model.name
+  h3.show-for-small
+    = model.name
+  h5.hide-for-small
+    = model.shortDescription
+  h6.show-for-small
+    = model.shortDescription
+
+  hr
+
+  span You must have an aeonvera account to register with this event.
+  br
+  br
+  p
+    ul.button-group
+      li: a.button.small.success click='openLoginModal' = t 'buttons.login'
+      li: a.button.small.success href="#" data-reveal-id='signup-modal' = t 'buttons.signup'
+
+  p Once you have an account, you may login and come back to this page to register.

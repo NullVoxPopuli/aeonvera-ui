@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('donation-thankyou');
   this.route('password-reset', function() {
     this.route('success');
+    this.route('edit');
   });
 
   /* event registration - subdomain based */

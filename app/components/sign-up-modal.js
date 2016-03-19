@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  pathStore: Ember.inject.service(),
+
   initFoundation: function() {
     this.$(document).foundation('reflow');
   }.on('didInsertElement'),
@@ -20,6 +22,7 @@ export default Ember.Component.extend({
 
   actions: {
     register: function() {
+      this.get('pathStore').storeCurrentRoute();
       this.sendAction('action');
     },
   },

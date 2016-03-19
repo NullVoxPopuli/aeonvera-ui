@@ -13,5 +13,9 @@ export default Ember.Route.extend({
     resetSuccess: function () {
       this.transitionTo('password-reset.success');
     },
+
+    newPasswordSet: function(){
+      this.transitionTo('dashboard');
+    },
   },
 });

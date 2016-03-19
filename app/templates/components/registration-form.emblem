@@ -1,6 +1,4 @@
 .margin-left-20
-  =page-header text=title
-
   if isEvent
     = register/event-registration model=host
   else

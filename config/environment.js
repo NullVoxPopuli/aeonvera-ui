@@ -32,6 +32,12 @@ module.exports = function(environment) {
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
     },
 
+    localSettings: {
+      serializer: 'json',
+      adapter: 'local-storage',
+      prefix: 'aeonvera/'
+    },
+
 
     ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
 
@@ -129,6 +135,8 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.host = '/';
+
+    ENV.localSettings.adapter = 'local-memory';
   }
 
   if (environment === 'production') {
