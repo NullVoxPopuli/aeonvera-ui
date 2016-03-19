@@ -2,8 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function () {
-    var fromRoute = this.modelFor('event-at-the-door');
-    return this.store.query('event-attendance', { event_id: fromRoute.get('id') });
+  model: function (params, transition) {
+    let eventId = transition.params['event-at-the-door'].event_id;
+    // TODO: if the ID is empty, all event-attendances are returned. bad.
+    return this.store.query('event-attendance', { event_id: eventId });
   },
 });
