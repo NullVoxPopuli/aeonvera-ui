@@ -8,7 +8,7 @@ form submit='save'
     = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='amount'
       label
         span Amount
-        = input value=model.amount placeholder='e.g.: 20' type='number' step='any' required=true
+        = input value=model.amount placeholder='e.g.: 20' type='number' min='0' step='any' required=true
 
     = error-field-wrapper  classes='columns small-6 medium-3' errors=model.errors field='kind'
       = radio-button value=0 groupValue=model.kind
@@ -17,13 +17,13 @@ form submit='save'
       = radio-button value=1 groupValue=model.kind
       label Percent Off
       br
-      
+
   .row
     = error-field-wrapper classes='columns small-5 medium-4' errors=model.errors field='allowedNumberOfUses'
       label
         span Allowed Number of Uses
         = input value=model.allowedNumberOfUses placeholder='e.g.: 2, default: unlimited' type='number'
-  
+
   .row
     = error-field-wrapper classes='columns small-12' errors=model.errors field='requiresStudentId'
       = input checked=model.requiresStudentId type='checkbox'
