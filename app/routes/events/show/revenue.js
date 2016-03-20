@@ -4,9 +4,9 @@ export default Ember.Route.extend({
   model: function () {
     let event = this.modelFor('events.show');
     return this.store.query('order', {
-      scope: {
-        id: event.get('id'),
-        type: 'Event',
+      q: {
+        host_id_eq: event.get('id'),
+        host_type_eq: 'Event',
       },
     });
   },

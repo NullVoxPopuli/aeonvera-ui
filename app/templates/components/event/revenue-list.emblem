@@ -1,0 +1,39 @@
+.row
+  .small-6.columns
+    label Start Time
+    = date-time-field selectedDate=startTime
+
+  .small-6.columns
+    label End Time
+    = date-time-field selectedDate=endTime
+
+h4 Transactions
+
+span Total:
+table
+  thead: tr
+    th Totals
+    th Gross Paid
+    th Net Amount Received
+    th Fees
+
+  tbody: tr
+    td
+    td = to-usd totalPaidAmount
+    td = to-usd totalAmountReceived
+    td = to-usd totalFeeAmount
+table
+  thead
+    tr
+      th: a click="(action 'toggleSort' 'createdAt')" Time {{createdSort}}
+      th: a click="(action 'toggleSort' 'paidAmount')" Gross Paid {{grossSort}}
+      th: a click="(action 'toggleSort' 'netAmountReceived')" Net Amount Received {{netSort}}
+      th: a click="(action 'toggleSort' 'totalFeeAmount')" Fees {{feeSort}}
+
+  tbody
+    each sortedOrders as |order|
+      tr
+        td = date-with-format order.createdAt 'lll'
+        td = to-usd order.paidAmount
+        td = to-usd order.netAmountReceived
+        td = to-usd order.totalFeeAmount

@@ -1,6 +1,6 @@
 import Ember from 'ember';
-
-export default Ember.Component.extend({
+import Sortable from 'aeonvera/mixins/components/sortable-helpers';
+export default Ember.Component.extend(Sortable, {
   nameContains: null,
 
   // 0 - all, 1 - members, 2 - nonmembers
@@ -50,34 +50,5 @@ export default Ember.Component.extend({
   expiresAtSort: function () {
     return this._sortIndicator('expiresAt');
   }.property('sortProps'),
-
-  _sortIndicator: function (field) {
-    let currentSort = this.get('sortProps')[0];
-    let sort = currentSort.split(':');
-    let sortProperty = sort[0];
-    let sortDirection = sort[1];
-
-    if (sortProperty === field) {
-      return (sortDirection === 'desc') ? '▼' : '▲';
-    }
-
-    return '';
-  },
-
-  actions: {
-    toggleSort: function (property) {
-      let currentSort = this.get('sortProps')[0];
-      let sort = currentSort.split(':');
-      let sortProperty = sort[0];
-      let sortDirection = sort[1];
-
-      if (property === sortProperty) {
-        sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
-        this.set('sortProps', [property + ':' + sortDirection]);
-      } else {
-        this.set('sortProps', [property + ':asc']);
-      }
-    },
-  },
 
 });
