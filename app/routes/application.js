@@ -68,8 +68,6 @@ export default Ember.Route.extend({
 
     invalidateSession: function() {
       this.get('session').invalidate();
-
-      // localStorage.clear();
     },
 
     transitionToLoginRoute: function() {

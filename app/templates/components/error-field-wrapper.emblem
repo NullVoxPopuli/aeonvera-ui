@@ -3,4 +3,6 @@
 if hasError
   span.error
     each fieldErrors as |error|
+      if includeFieldName
+        | {{fieldName}}&nbsp;
       = error.message

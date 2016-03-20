@@ -24,7 +24,7 @@ module.exports = function(environment) {
     },
 
     devise: {
-      serverTokenEndpoint: 'users/sign_in'
+      serverTokenEndpoint: 'api/users/sign_in'
     },
 
     rollbar: {
@@ -72,9 +72,8 @@ module.exports = function(environment) {
     ENV.host = 'http://swing.vhost:3000';
     ENV.APP.host = 'http://swing.vhost:3000';
 
-    // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
-      'http://swing.vhost:3000/users/sign_in';
+      'http://swing.vhost:3000/api/users/sign_in';
 
     ENV['ember-cli-mirage'] = {
       enabled: false
@@ -108,9 +107,8 @@ module.exports = function(environment) {
       enabled: false
     };
 
-    // note that the test environment is api/users/sign_in
     ENV['devise']['serverTokenEndpoint'] =
-      'https://aeonvera-staging.work/users/sign_in';
+      'https://aeonvera-staging.work/api/users/sign_in';
 
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
