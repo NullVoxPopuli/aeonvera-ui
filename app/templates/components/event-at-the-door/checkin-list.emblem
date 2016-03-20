@@ -18,14 +18,14 @@ span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 table.margin-center
   thead
     tr
-      th Name
+      th: a click="(action 'toggleSort' 'attendeeName')" Name {{nameSort}}
       th
       th Package
       th Track
       th Competitions
       th $ Owed
-      th Date Registered
-      th Checked in at
+      th: a click="(action 'toggleSort' 'registeredAt')" Date Registered {{registeredAtSort}}
+      th: a click="(action 'toggleSort' 'checkedInAt')" Checked in at {{checkedInAtSort}}
   tbody
-    each attendances as |attendance|
+    each sortedAttendances as |attendance|
       = component 'event-at-the-door/checkin-attendance' model=attendance

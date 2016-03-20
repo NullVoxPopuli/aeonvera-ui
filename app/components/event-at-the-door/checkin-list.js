@@ -1,11 +1,15 @@
 import Ember from 'ember';
+import Sortable from 'aeonvera/mixins/components/sortable-helpers';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Sortable, {
   queryText: '',
   showOnlyNonCheckedIn: false,
   showOnlyThoseWhoOweMoney: false,
 
   activeRegistrant: null,
+
+  sortedAttendances: Ember.computed.sort('attendances', 'sortProps'),
+  sortProps: ['attendeeName:asc'],
 
   attendances: function () {
     var model = this.get('model');
@@ -55,6 +59,18 @@ export default Ember.Component.extend({
     var model = this.get('model');
     return model.filterBy('isCheckedIn', false).get('length');
   }.property('model.[].isCheckedIn'),
+
+  nameSort: function () {
+    return this._sortIndicator('member.name');
+  }.property('sortProps'),
+
+  registeredAtSort: function () {
+    return this._sortIndicator('registeredAt');
+  }.property('sortProps'),
+
+  checkedInAtSort: function () {
+    return this._sortIndicator('checkedInAt');
+  }.property('sortProps'),
 
   actions: {
 
