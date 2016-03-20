@@ -3,30 +3,30 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='mailPaymentsEndAt'
       label
         span Mail Payments End At
-        = bs-datetimepicker date=model.mailPaymentsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.mailPaymentsEndAt)) forceDateOutput=true
+        = date-time-input model=model field='mailPaymentsEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='electronicPaymentsEndAt'
       label
         span Electronic Payments End At
-        = bs-datetimepicker date=model.electronicPaymentsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.electronicPaymentsEndAt)) forceDateOutput=true
+        = date-time-input model=model field='electronicPaymentsEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='refundsEndAt'
       label
         span Refunds End At
-        = bs-datetimepicker date=model.refundsEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.refundsEndAt)) forceDateOutput=true
+        = date-time-input model=model field='refundsEndAt'
 
   br
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shirtSalesEndAt'
       label
         span Shirt Sales End At
-        = bs-datetimepicker date=model.shirtSalesEndAt format='YYYY-MM-DD LT' updateDate=(action (mut model.shirtSalesEndAt)) forceDateOutput=true
+        = date-time-input model=model field='shirtSalesEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='showAtTheDoorPricesAt'
       label
         span Show At The Door Prices At
-        = bs-datetimepicker date=model.showAtTheDoorPricesAt format='YYYY-MM-DD LT' updateDate=(action (mut model.showAtTheDoorPricesAt)) forceDateOutput=true
-  
+        = date-time-input model=model field='showAtTheDoorPricesAt'
+
   br
   .row
     .small-12.medium-6.columns
@@ -43,7 +43,10 @@ form submit='save'
       label Allow Volunteer Sign Up
       br
       = input checked=model.makeAttendeesPayFees type='checkbox'
-      label Make Registrants Pay Fees
+      label Make Registrants Pay Fees *
       br
       = input checked=model.acceptOnlyElectronicPayments type='checkbox'
       label Accept Only Electronic Payments
+
+.row: .small-12.medium-offset-6.medium-6.columns: small
+  span * Note that charging an additional fee at checkout can cause a blow to the registrant's morale, as the convenience is generally not advertised along with the ticket prices.
