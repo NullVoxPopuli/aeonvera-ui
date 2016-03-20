@@ -1,11 +1,12 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent } from 'ember-qunit';
+import { test, skip } from 'qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('password-edit', 'Integration | Component | password edit', {
   integration: true
 });
 
-test('it renders', function(assert) {
+skip('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
 

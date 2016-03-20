@@ -133,6 +133,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.host = '/';
+    ENV.host = '';
 
     ENV.localSettings.adapter = 'local-memory';
   }

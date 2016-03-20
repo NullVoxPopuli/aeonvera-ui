@@ -12,7 +12,7 @@
     "build": "ember build",
     "jscs": "jscs -e app/ --fix && jscs -e tests/ --fix",
     "test": "npm run jscs && ember test",
-    "mintest": "ember test --server --test-page='tests/index.html?coverage&nojshint&hidepassed'",
+    "mintest": "ember test --server --test-page='tests/index.html?coverage&nojshint&hidepassed&nocontainer'",
     "ci": "npm run jscs && ember test --test-page='tests/index.html?coverage&nojshint'"
   },
   "repository": "",

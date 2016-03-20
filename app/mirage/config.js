@@ -1,3 +1,6 @@
+import 'aeonvera/tests/helpers/parse-query-params';
+
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -41,15 +44,22 @@ export default function() {
     this.post('/contacts');
     this.post('/contacts', 'user'); // specify the type of resource to be created
   */
-  this.post('/users/sign_in', function(db, request) {
-    let id = request.params.id;
+  this.delete('api/users/sign_out', function(db, request){
+    return {};
+  });
+  this.delete('users/sign_out', function(db, request){
+    return {};
+  });
+  this.post('/api/users/sign_in', function(db, request) {
+    let queryParams = request.requestBody;
+    let params = parseQueryParams(queryParams);
+    let email = params['user%5Bemail%5D'].replace('%40', '@');
 
+    let user = db.users.where({email: email})[0];
     return {
-      data: {
-        type: 'users',
-        id: id,
-        attributes: db.users.find(id),
-      },
+      email: user.email,
+      id: user.id,
+      token: user.token
     };
   });
 
