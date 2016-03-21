@@ -3,7 +3,6 @@ import { module, test, skip } from 'qunit';
 import startApp from 'aeonvera/tests/helpers/start-app';
 import 'aeonvera/tests/helpers/login';
 import 'aeonvera/tests/helpers/service-named';
-import Mirage from 'ember-cli-mirage';
 
 let application;
 
@@ -14,6 +13,7 @@ module('Acceptance | sign out', {
 
   afterEach() {
     Ember.run(application, 'destroy');
+    server.shutdown();
   },
 });
 

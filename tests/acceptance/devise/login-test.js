@@ -2,7 +2,6 @@ import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from 'aeonvera/tests/helpers/start-app';
 import 'aeonvera/tests/helpers/login';
-import Mirage from 'ember-cli-mirage';
 
 let application;
 
@@ -13,6 +12,7 @@ module('Acceptance | login', {
 
   afterEach() {
     Ember.run(application, 'destroy');
+    server.shutdown();
   },
 });
 

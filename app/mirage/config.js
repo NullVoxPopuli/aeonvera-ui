@@ -1,3 +1,5 @@
+import Ember from 'ember';
+import Mirage from 'ember-cli-mirage';
 // can't import from test helpers during development...
 // import 'aeonvera/tests/helpers/parse-query-params';
 // copy function here:
@@ -63,9 +65,20 @@ export default function() {
   });
 
   this.post('/api/users/sign_in', function(db, request) {
+    let params = request.params;
+    let bodyParams = request.requestBody;
+    let email = '';
+
+    let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
+    let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
+    if (paramsAreBlank && bodyParamsAreBlank){
+      return new Mirage.Response(401, {});
+    }
+
     let queryParams = request.requestBody;
-    let params = parseQueryParams(queryParams);
-    let email = params['user%5Bemail%5D'].replace('%40', '@');
+    params = parseQueryParams(queryParams);
+    email = params['user%5Bemail%5D'].replace('%40', '@');
+
 
     let user = db.users.where({ email: email })[0];
     return {
@@ -73,6 +86,12 @@ export default function() {
       id: user.id,
       token: user.token
     };
+  });
+
+  this.post('/api/users/password.json', function(db, request){
+    let email = '';
+    let user = db.users.where({ email: email })[0];
+    return {};
   });
 
   this.post('/api/users', function(db, request) {
