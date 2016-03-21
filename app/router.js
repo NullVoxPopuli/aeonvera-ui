@@ -47,9 +47,7 @@ Router.map(function() {
   });
 
   /* public facing */
-  this.route('welcome', {
-    resetNamespace: true,
-  }, function() {
+  this.route('welcome', { resetNamespace: true }, function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
@@ -65,9 +63,7 @@ Router.map(function() {
   });
 
   /* must be logged in for */
-  this.route('dashboard', {
-    path: '/',
-  }, function() {
+  this.route('dashboard', { path: '/' }, function() {
     this.route('my-communities', {
       resetNamespace: true,
     }, function() {
@@ -265,19 +261,14 @@ Router.map(function() {
 
   });
 
-  this.route('register', {
-    resetNamespace: true,
-    path: ':subdomain',
-  }, function() {
+  this.route('register', { resetNamespace: true, path: ':subdomain' }, function() {
 
   });
 
   this.route('upcoming-events');
   this.route('communities');
 
-  this.route('user', {
-    resetNamespace: true,
-  }, function() {
+  this.route('user', { resetNamespace: true, }, function() {
     this.route('edit');
   });
 

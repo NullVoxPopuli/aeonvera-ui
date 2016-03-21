@@ -13,6 +13,8 @@
     "exists",
     "fillIn",
     "click",
+    "login",
+    "logout",
     "select",
     "keyEvent",
     "triggerEvent",

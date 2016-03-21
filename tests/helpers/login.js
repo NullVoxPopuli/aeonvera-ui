@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import 'aeonvera/tests/helpers/service-named';
+
 
 export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
   server.create('user');
@@ -12,8 +14,7 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
 
   let loginModalSelector = '.reveal-modal[data-name="login-modal"]';
   andThen(() => {
-    let text = find(
-      loginModalSelector + ' h2').first().text();
+    let text = find(loginModalSelector + ' h2').first().text();
     equal(text, 'Login');
   });
 
@@ -23,8 +24,7 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
   click(loginModalSelector + ' button[type="submit"]');
 
   andThen(() => {
-    let session = app.__container__.lookup('service:session');
-    let auth = session.get('isAuthenticated');
+    let auth = serviceNamed('session').get('isAuthenticated');
     equal(auth, true);
   });
 });

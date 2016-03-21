@@ -18,19 +18,18 @@ module('Acceptance | requires-login | dashboard', {
 });
 
 test('I am redirected upon attempting to visit without being logged in', function(assert) {
-  visit('/dashboard');
+  visit('/');
   andThen(() => {
-    equal(currentRouteName(), 'welcome');
+    assert.equal(currentRouteName(), 'welcome.index');
   });
 });
 
 test('Upon logging out, I am redirected', function(assert) {
   login();
   andThen(() => {
-    visit('/dashboard');
     logout();
-    andThen(() => {
-      equal(currentRouteName(), 'welcome');
-    });
+  }) ;
+  andThen(() => {
+    assert.equal(currentRouteName(), 'welcome.index');
   });
 });
