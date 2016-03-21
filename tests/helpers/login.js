@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import 'aeonvera/tests/helpers/service-named';
 
-
 export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
   server.create('user');
 

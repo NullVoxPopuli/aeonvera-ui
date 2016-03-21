@@ -28,7 +28,7 @@ test('Upon logging out, I am redirected', function(assert) {
   login();
   andThen(() => {
     logout();
-  }) ;
+  });
   andThen(() => {
     assert.equal(currentRouteName(), 'welcome.index');
   });

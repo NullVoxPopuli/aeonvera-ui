@@ -15,14 +15,13 @@ module('Acceptance | requires-login | password-reset', {
   },
 });
 
-
-test('submitting the password for redirects to page saying you will get an email', function(assert){
+test('submitting the password for redirects to page saying you will get an email', function(assert) {
 });
 
-test('setting new password fails without a token', function(assert){
+test('setting new password fails without a token', function(assert) {
 
 });
 
-test('setting new password succeeds', function(assert){
+test('setting new password succeeds', function(assert) {
 
 });
