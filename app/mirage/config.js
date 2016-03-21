@@ -1,16 +1,15 @@
 // can't import from test helpers during development...
 // import 'aeonvera/tests/helpers/parse-query-params';
 // copy function here:
-function parseQueryParams(queryString){
+function parseQueryParams(queryString) {
   let params = {};
 
-  params = queryString.replace(/(^\?)/,'').split("&").map(function(n){
-    return n = n.split("="),this[n[0]] = n[1],this
+  params = queryString.replace(/(^\?)/, '').split('&').map(function(n) {
+    return n = n.split('='), this[n[0]] = n[1], this;
   }.bind({}))[0];
 
   return params;
 }
-
 
 export default function() {
 
@@ -55,18 +54,20 @@ export default function() {
     this.post('/contacts');
     this.post('/contacts', 'user'); // specify the type of resource to be created
   */
-  this.delete('api/users/sign_out', function(db, request){
+  this.delete('api/users/sign_out', function(db, request) {
     return {};
   });
-  this.delete('users/sign_out', function(db, request){
+
+  this.delete('users/sign_out', function(db, request) {
     return {};
   });
+
   this.post('/api/users/sign_in', function(db, request) {
     let queryParams = request.requestBody;
     let params = parseQueryParams(queryParams);
     let email = params['user%5Bemail%5D'].replace('%40', '@');
 
-    let user = db.users.where({email: email})[0];
+    let user = db.users.where({ email: email })[0];
     return {
       email: user.email,
       id: user.id,

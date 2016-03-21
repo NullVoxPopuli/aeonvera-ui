@@ -9,7 +9,6 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-
   firstName: Ember.computed({
     get(key) { return this.get('cart.userFirstName'); },
 

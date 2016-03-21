@@ -19,7 +19,6 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
     this._super();
   },
 
-
   /**
   	Redirect to the welcome route if not logged in.
   */

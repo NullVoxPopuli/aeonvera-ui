@@ -117,7 +117,6 @@ export default Ember.Service.extend({
     jsonPayload.order.hostType = this.get('order.host.klass');
     jsonPayload.orderLineItems = items;
 
-
     Ember.$.ajax({
       type: 'POST',
       url: config.host + '/api/orders',

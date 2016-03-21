@@ -7,7 +7,7 @@ export default Ember.Helper.helper(function (params) {
     return value;
   }
 
-  if (typeof(value) === 'string'){
+  if (typeof (value) === 'string') {
     value = parseFloat(value);
   }
 

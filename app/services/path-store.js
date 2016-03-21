@@ -3,33 +3,33 @@ import Ember from 'ember';
 export default Ember.Service.extend({
   localSettings: Ember.inject.service('local-settings'),
 
-  storeCurrentRoute(){
+  storeCurrentRoute() {
     let path = window.location.pathname;
     let localSettings = this.get('localSettings');
 
     localSettings.setValue('redirect-path', path);
   },
 
-  getStoredRoute(){
+  getStoredRoute() {
     let localSettings = this.get('localSettings');
     return localSettings.getValue('redirect-path');
   },
 
-  clearStoredRoute(){
+  clearStoredRoute() {
     let localSettings = this.get('localSettings');
     localSettings.setValue('redirect-path', null);
   },
 
-  redirectIfPathIsPresent(){
+  redirectIfPathIsPresent() {
     let route = this.getStoredRoute();
     let currentPath = window.location.pathname;
 
-    if (route === currentPath){
+    if (route === currentPath) {
       this.clearStoredRoute();
       return;
     }
 
-    if (Ember.isPresent(route)){
+    if (Ember.isPresent(route)) {
       // This forces a browser redirect... boo.
       this.clearStoredRoute();
       window.location.pathname = route;

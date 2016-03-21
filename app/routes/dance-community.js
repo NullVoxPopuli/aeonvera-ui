@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     // TODO: extract this to a mixin, "Requires SubDomain"
     let sub = this.get('subdomain');
     let model = sub.get('model');
-    console.log(model);
+
     if (Ember.isEmpty(model)) {
       // TODO: probably want to remove the subdomain before redirecting
       location.href = sub.get('withoutSubdomain');

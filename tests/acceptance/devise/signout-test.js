@@ -17,14 +17,14 @@ module('Acceptance | sign out', {
   },
 });
 
-test('sign out button should not be visible if already signed out', function(assert){
+test('sign out button should not be visible if already signed out', function(assert) {
   visit('/');
   let button = find('a .fa-sign-out').parent();
 
   assert.ok(Ember.isEmpty(button));
 });
 
-test('sign out button should be visible if logged in', function(assert){
+test('sign out button should be visible if logged in', function(assert) {
   login();
   andThen(() => {
     let button = find('a .fa-sign-out').first().parent();
@@ -32,7 +32,7 @@ test('sign out button should be visible if logged in', function(assert){
   });
 });
 
-skip('signs out when signed in', function(assert){
+skip('signs out when signed in', function(assert) {
   login();
   andThen(() => {
     let button = find('a .fa-sign-out').first().parent();
@@ -41,6 +41,7 @@ skip('signs out when signed in', function(assert){
       for some reason, the session doesn't invalidate....
       it does in real life though
     */
+
     // serviceNamed('session').invalidate()
     andThen(() => {
       let auth = serviceNamed('session').get('isAuthenticated');
@@ -49,7 +50,7 @@ skip('signs out when signed in', function(assert){
   });
 });
 
-skip('redirects if on a route thet requires authorization', function(assert){
+skip('redirects if on a route thet requires authorization', function(assert) {
   login();
 
-})
+});

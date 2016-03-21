@@ -8,7 +8,6 @@ export default Ember.Component.extend(Sortable, {
   sortedOrders: Ember.computed.sort('filteredOrders', 'sortProps'),
   sortProps: ['createdAt:desc'],
 
-
   totalPaidAmount: function () {
     let orders = this.get('filteredOrders');
     return orders.mapBy('paidAmount').reduce(function (a, b) {

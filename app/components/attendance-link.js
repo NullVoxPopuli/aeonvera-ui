@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     return this.get('model.id');
   }),
 
-  eventId: Ember.computed(function(){
+  eventId: Ember.computed(function() {
     return this.get('model.eventId');
   }),
 

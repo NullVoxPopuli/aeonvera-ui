@@ -6,7 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model: function () {
     let id = this.get('userService.id');
-    let query = { q: { user_id_eq: id} };
+    let query = { q: { user_id_eq: id } };
     return this.store.query('order',  query);
   },
 });

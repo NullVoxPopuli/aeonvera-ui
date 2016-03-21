@@ -49,7 +49,7 @@ test('subTotal | it calculates', function(assert) {
   assert.equal(result, 17);
 });
 
-test('fee | it calculates', function(assert){
+test('fee | it calculates', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
   let order = make('order', {
     orderLineItems: [orderLineItem1]
@@ -60,13 +60,13 @@ test('fee | it calculates', function(assert){
   assert.equal(result, expected);
 });
 
-test('shouldApplyFee | subTotal is 0', function(assert){
+test('shouldApplyFee | subTotal is 0', function(assert) {
   let order = make('order');
   let result = order.get('shouldApplyFee');
   assert.equal(result, false);
 });
 
-test('shouldApplyFee | host.makeAttendeesPayFees', function(assert){
+test('shouldApplyFee | host.makeAttendeesPayFees', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
   let host = make('organization', { makeAttendeesPayFees: true });
   let order = make('order', {
@@ -79,7 +79,7 @@ test('shouldApplyFee | host.makeAttendeesPayFees', function(assert){
   assert.equal(result, true);
 });
 
-test('shouldApplyFee | is not stripe payment method', function(assert){
+test('shouldApplyFee | is not stripe payment method', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
   let host = make('event', { makeAttendeesPayFees: true });
   let order = make('order', {
@@ -92,7 +92,7 @@ test('shouldApplyFee | is not stripe payment method', function(assert){
   assert.equal(result, false);
 });
 
-test('shouldApplyFee | only electronicPayments', function(assert){
+test('shouldApplyFee | only electronicPayments', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
   let host = make('organization', { makeAttendeesPayFees: true });
   let order = make('order', {
@@ -105,7 +105,7 @@ test('shouldApplyFee | only electronicPayments', function(assert){
   assert.equal(result, false);
 });
 
-test('total | it calculates', function(assert){
+test('total | it calculates', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
   let host = make('organization', { makeAttendeesPayFees: true });
   let order = make('order', {

@@ -9,8 +9,8 @@ export default Ember.Route.extend({
     Ember.$('a.close-reveal-modal').trigger('click');
   },
 
-  beforeModel: function(transition){
-    if (this.get('session.isAuthenticated')){
+  beforeModel: function(transition) {
+    if (this.get('session.isAuthenticated')) {
       let msg = 'Resetting your password requires that you be logged out';
       this.get('flashMessages').info(msg);
       this.transitionTo('dashboard');
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
       this.transitionTo('password-reset.success');
     },
 
-    newPasswordSet: function(){
+    newPasswordSet: function() {
       this.transitionTo('dashboard');
     },
   },

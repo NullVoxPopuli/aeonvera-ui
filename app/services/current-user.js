@@ -9,7 +9,7 @@ export default Ember.Service.extend({
   session: service('session'),
   store: service(),
 
-  id: Ember.computed('session.data.authenticated.id', function(){
+  id: Ember.computed('session.data.authenticated.id', function() {
     return this.get('session.data.authenticated.id');
   }),
 

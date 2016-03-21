@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   actions: {
-    openLoginModal(){
+    openLoginModal() {
       Ember.$('.auth-link a.login').click();
     }
   }

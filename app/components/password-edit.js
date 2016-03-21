@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     this.set('resetToken', queryParams.reset_password_token);
   },
 
-  errors: Ember.computed('errors', function(){
+  errors: Ember.computed('errors', function() {
     return this.get('model.errors');
   }),
 

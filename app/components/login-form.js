@@ -18,7 +18,6 @@ export default Ember.Component.extend({
 
       this.get('session').authenticate('authenticator:devise', identification, password)
         .then(json => {
-          console.log(json);
 
           // close the modal
           Ember.$('a.close-reveal-modal').trigger('click');

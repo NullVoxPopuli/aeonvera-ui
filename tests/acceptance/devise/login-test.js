@@ -32,7 +32,7 @@ test('can login', function(assert) {
   login();
 });
 
-test('after logging in, the login button should be hidden', function(assert){
+test('after logging in, the login button should be hidden', function(assert) {
   login();
   let button = find('.auth-link a.button.login');
 

@@ -62,7 +62,6 @@ export default DS.Model.extend({
     return result;
   }),
 
-
   fee: Ember.computed('subTotal', function() {
     // total_fee_percentage = 0.029 # Stripe
     // total_fee_percentage += 0.0075 unless host.beta?
@@ -82,7 +81,7 @@ export default DS.Model.extend({
     Calculates raw total of all the order line items
      - before fees or anything
   */
-  subTotal: Ember.computed('orderLineItems.@each.total', function(){
+  subTotal: Ember.computed('orderLineItems.@each.total', function() {
     let lineItems = this.get('orderLineItems');
     let subTotal = 0;
 
@@ -93,15 +92,16 @@ export default DS.Model.extend({
     return subTotal;
   }),
 
-  total: Ember.computed('subTotal', 'shouldApplyFee', function(){
+  total: Ember.computed('subTotal', 'shouldApplyFee', function() {
     let subTotal = this.get('subTotal');
     let shouldApplyFee = this.get('shouldApplyFee');
     let total = subTotal;
 
-    if (shouldApplyFee){
+    if (shouldApplyFee) {
       let fee = this.get('fee');
       total += fee;
     }
+
     return total;
   }),
 
