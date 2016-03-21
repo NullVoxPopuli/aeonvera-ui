@@ -4,14 +4,21 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Mixin.create(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
+  flashMessages: Ember.inject.service('flashMessages'),
 
   activate: function () {
     var application = this.controllerFor('application');
     application.set('mobileMenuLeft', 'nav/dashboard/left-items');
     application.set('mobileMenuRight', 'nav/dashboard/right-items');
 
+    this.get('session').on('invalidationSucceeded', () => {
+      let msg = 'You have logged out successfully.';
+      this.get('flashMessages').success(msg);
+      this.transitionTo('welcome');
+    });
     this._super();
   },
+
 
   /**
   	Redirect to the welcome route if not logged in.

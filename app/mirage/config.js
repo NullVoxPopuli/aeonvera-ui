@@ -1,4 +1,15 @@
-import 'aeonvera/tests/helpers/parse-query-params';
+// can't import from test helpers during development...
+// import 'aeonvera/tests/helpers/parse-query-params';
+// copy function here:
+function parseQueryParams(queryString){
+  let params = {};
+
+  params = queryString.replace(/(^\?)/,'').split("&").map(function(n){
+    return n = n.split("="),this[n[0]] = n[1],this
+  }.bind({}))[0];
+
+  return params;
+}
 
 
 export default function() {
