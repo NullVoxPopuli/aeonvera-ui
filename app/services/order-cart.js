@@ -81,41 +81,43 @@ export default Ember.Service.extend({
   // so, this is pretty much a hack -- luckily, it shouldn't
   // be needed anywhere else
   checkout(){
-
-    let jsonPayload = {};
-    let items = [];
-
-    this.get('order.orderLineItems').forEach(item => {
-      let itemJson = item.toJSON();
-      itemJson.lineItemId = item.get('lineItem.id');
-      itemJson.lineItemType = item.get('klass');
-      items.push(itemJson);
-    });
-
-    jsonPayload.order = this.get('order').toJSON();
-    jsonPayload.order.hostId = this.get('order.host.id');
-    jsonPayload.order.hostType = this.get('order.host.klass');
-    jsonPayload.orderLineItems = items;
-
-    Ember.$.ajax({
-      type: 'POST',
-      url: config.host + '/api/orders',
-      data: jsonPayload
-    }).then(record => {
-
-      /*
-        Display some sort of thankyou
-        - TODO: in the email, there should probably be some sort of
-                readonly link to the order
-      */
-
-      let msg = 'The order was successful. You should soon receive a receipt in your email.';
-      this.get('flashMessages').success(msg);
+    let order = this.get('order');
+    order.save().then(record => {
+      record.get('orderLineItems').save().then(_ => {
+        this.redirectTo('register.checkout', record.get('id'));
+      });
     }, error => {
+      //   // TODO: have a more prevelant place to display these errors
+      //   // TODO: What errors could show up here?
+        this.get('flashMessages').alert(error);
+        console.error(error);
+    })
 
-      this.get('flashMessages').alert(error);
-      console.error(error);
-    });
+    //
+    // let jsonPayload = {};
+    // let items = [];
+    //
+    // this.get('order.orderLineItems').forEach(item => {
+    //   let itemJson = item.toJSON();
+    //   itemJson.lineItemId = item.get('lineItem.id');
+    //   itemJson.lineItemType = item.get('klass');
+    //   items.push(itemJson);
+    // });
+    //
+    // jsonPayload.order = this.get('order').toJSON();
+    // jsonPayload.order.hostId = this.get('order.host.id');
+    // jsonPayload.order.hostType = this.get('order.host.klass');
+    // jsonPayload.orderLineItems = items;
+    //
+    // Ember.$.ajax({
+    //   type: 'POST',
+    //   url: config.host + '/api/orders',
+    //   data: jsonPayload
+    // }).then(record => {
+    //   // redirect to the checkout screen
+    //   this.redirectTo('register.checkout', record.get('id'));
+    // }, error => {
+    // });
   },
 
   /*
@@ -130,7 +132,8 @@ export default Ember.Service.extend({
   */
   processStripeToken(params) {
     let token = params.id;
-    this.get('order').set('checkoutToken', token);
+    let order = this.get('order');
+    order.set('checkoutToken', token);
 
     // by saving, the server is going to attempt to charge the card,
     //

@@ -263,7 +263,9 @@ Router.map(function() {
   });
 
   this.route('register', { resetNamespace: true, path: ':subdomain' }, function() {
-
+    this.route('checkout', { path: ':orderId' }, function(){
+      this.route('thankyou');
+    });
   });
 
   this.route('upcoming-events');
