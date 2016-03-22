@@ -38,8 +38,7 @@ export default Ember.Component.extend({
         data: data,
         success: data => {
           _this.sendAction('action');
-          let msg = 'Your password has been successfully reset. You may now login with your new password.';
-          this.get('flashMessages').success(msg);
+          this.transitionTo('password-reset.reset-success');
         },
 
         error: function (jqxhr, status, text) {

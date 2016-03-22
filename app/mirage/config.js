@@ -94,6 +94,15 @@ export default function() {
     return {};
   });
 
+  this.put('/api/users/password.json', function(db, request){
+    let token = request.params.reset_password_token;
+    if (Ember.isPresent(token)){
+      return new Mirage.Response(402, {});
+    } else {
+      return new Mirage.Response(402, { error: 'missing reset token' });
+    }
+  });
+
   this.post('/api/users', function(db, request) {
     return {};
   });

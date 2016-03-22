@@ -10,8 +10,8 @@ module('Acceptance | requires-login | password-reset', {
   },
 
   afterEach() {
-    server.shutdown()
     Ember.run(application, 'destroy');
+    server.shutdown();
   },
 });
 
@@ -29,11 +29,27 @@ test('submitting the password for redirects to page saying you will get an email
 
 test('setting new password fails without a token', function(assert) {
   visit('/password-reset/edit');
-  assert.ok(true);
+  andThen(_ => {
+    fillIn('form input[type="password"]:first', '12345678');
+    fillIn('form input[type="password"]:first', '12345678');
+    click('form button[type="submit"]');
+  });
+
+  andThen(_ => {
+    let formText = find('body').text().indexOf('mising reset token') !== -1;
+    assert.ok(formText);
+  });
 });
 
 test('setting new password succeeds', function(assert) {
-  visit('/password-reset/edit');
-  assert.ok(true);
+  visit('/password-reset/edit?password_reset_token="123"');
+  andThen(_ => {
+    fillIn('form input[type="password"]:first', '12345678');
+    fillIn('form input[type="password"]:first', '12345678');
+    click('form button[type="submit"]');
+  });
 
+  andThen(_ => {
+    assert.equal(currentRouteName(), 'password-reset.reset-success');
+  });
 });

@@ -8,11 +8,11 @@ var options = {
   enableCoverage: true,
   branchTracking: true,
   cliOptions: {
-    reporters: ['lcov', 'json', 'html'],
+    reporters: ['lcov'],
     autostart: true,
     lcovOptions: {
       outputFile: 'lcov.dat',
-      excludeMissingFiles: true,
+      // excludeMissingFiles: true,
 
       // provide a function to rename es6 modules to a file path
       renamer: function(moduleName) {
