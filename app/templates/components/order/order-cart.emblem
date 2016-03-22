@@ -43,12 +43,4 @@
 
       ul.button-group.even-2
         li: a.button.alert click='cancel' Cancel
-        li
-          if host.isEvent
-            = foundation-modal title='Checkout' name='a-la-carte-pay' buttonClasses='button success' buttonText='Pay'
-              = handle-payment action=process model=currentOrder
-          else
-
-            / organizations don't get the option fo cash or check
-            / cause then what's the point of pre-registering?
-            = stripe/checkout-button model=order label='Pay'
+        li: a.button click='checkout' Checkout

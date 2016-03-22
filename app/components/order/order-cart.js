@@ -23,9 +23,8 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-
-    processStripeToken(params) {
-      this.get('cart').processStripeToken(params);
+    checkout(){
+      this.get('cart').checkout();
     },
 
     removeItem: function(item) {
@@ -34,13 +33,6 @@ export default Ember.Component.extend({
 
     cancel: function() {
       this.get('cart').cancel();
-    },
-
-    finishedOrder: function() {
-      Ember.$('.close-reveal-modal').click();
-      this.get('flashMessages').success(
-        'Order was successfully created and recorded'
-      );
     },
   },
 

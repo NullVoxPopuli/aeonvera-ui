@@ -14,7 +14,6 @@ export default Ember.Component.extend({
 
   actions: {
     reset: function () {
-      let _this = this;
       let url = ENV.host + '/api/users/password.json';
       let data = {
         user: {
@@ -27,20 +26,19 @@ export default Ember.Component.extend({
       Ember.$.ajax({
         url: url,
         type: 'PUT',
-        data: data,
-        success: data => {
-          _this.sendAction('action');
-        },
-
-        error: function (jqxhr, status, text) {
-          let json = Ember.$.parseJSON(jqxhr.responseText);
+        data: data
+      }).then(data => {
+        this.sendAction('action');
+      }, error => {
+        Ember.run(_ => {
+          let json = Ember.$.parseJSON(error.responseText);
           let errors = json.errors;
-          let modelErrors = _this.get('model.errors');
+          let modelErrors = this.get('model.errors');
           modelErrors.clear();
           for (let field in errors) {
             modelErrors.add(field, errors[field]);
           }
-        },
+        });
       });
     },
   },

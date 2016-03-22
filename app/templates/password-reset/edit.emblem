@@ -1,4 +1,3 @@
 = page-header text='Enter New Password'
-
 p After setting your new password, your old password will no longer allow you to login.
 = password-edit model=model action='newPasswordSet' resetToken=passwordResetToken

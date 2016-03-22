@@ -1,0 +1,6 @@
+h4 Checkout
+
+
+h6 Your Order
+
+= stripe/checkout-button model=order label='Pay'

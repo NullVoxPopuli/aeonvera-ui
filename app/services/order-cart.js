@@ -75,33 +75,13 @@ export default Ember.Service.extend({
     this.set('order', null);
   },
 
-  /*
-    the params here is the response from the stripe-checkout script.
-    We'll want to add this in to the order before, and show some sort of visual
-    feedback for processing, as this data only enables us to charge the card.
-    The server will do the actual charging of the card.
+  // unfortunately, ember / JSON API doesn't have a way to
+  // send multiple records at a time -- which is what we need
+  // in the case of order + order line items...
+  // so, this is pretty much a hack -- luckily, it shouldn't
+  // be needed anywhere else
+  checkout(){
 
-    The only data we need from the stripe checkout object is the 'id'
-  */
-  processStripeToken(params) {
-    let token = params.id;
-    this.get('order').set('checkoutToken', token);
-
-    // by attempting to save,
-    // the server is going to validate all the objects,
-    // attempt to change the card.
-    //
-    // if nothing has gone wrong at this point, everything will sove
-    // and an email will be sent to the registrant.
-    //
-    // if there are errors (either in model validation or credit card),
-    // the user will be notified of all errors.
-    // ---------------------------------------------------------------
-    // unfortunately, ember / JSON API doesn't have a way to
-    // send multiple records at a time -- which is what we need
-    // in the case of order + order line items...
-    // so, this is pretty much a hack -- luckily, it shouldn't
-    // be needed anywhere else
     let jsonPayload = {};
     let items = [];
 
@@ -133,6 +113,46 @@ export default Ember.Service.extend({
       this.get('flashMessages').success(msg);
     }, error => {
 
+      this.get('flashMessages').alert(error);
+      console.error(error);
+    });
+  },
+
+  /*
+    the params here is the response from the stripe-checkout script.
+    We'll want to add this in to the order before, and show some sort of visual
+    feedback for processing, as this data only enables us to charge the card.
+    The server will do the actual charging of the card.
+
+    The only data we need from the stripe checkout object is the 'id'
+
+    NOTE: The order should already be saved before entering this method.
+  */
+  processStripeToken(params) {
+    let token = params.id;
+    this.get('order').set('checkoutToken', token);
+
+    // by saving, the server is going to attempt to charge the card,
+    //
+    // if nothing has gone wrong with the payment
+    // and an email will be sent to the registrant.
+    //
+    // if there are errors with the credit card,
+    // the user must be notified
+    order.save().then(record => {
+
+      /*
+        Display some sort of thankyou
+        - TODO: in the email, there should probably be some sort of
+                readonly link to the order
+      */
+
+      // redirect to success
+      let msg = 'The order was successful. You should soon receive a receipt in your email.';
+      this.get('flashMessages').success(msg);
+    }, error => {
+      // set the errors object, and the component using this service
+      // is responsible for showing those
       this.get('flashMessages').alert(error);
       console.error(error);
     });

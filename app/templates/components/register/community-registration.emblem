@@ -1,6 +1,6 @@
 =page-header text=title
 
-= order-cart host=model
+= order/order-cart host=model
 
   unless session.isAuthenticated
     .row
