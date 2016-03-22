@@ -96,10 +96,11 @@ export default function() {
 
   this.put('/api/users/password.json', function(db, request){
     let token = request.params.reset_password_token;
+
     if (Ember.isPresent(token)){
-      return new Mirage.Response(402, {});
+      return new Mirage.Response(201, {});
     } else {
-      return new Mirage.Response(402, { error: 'missing reset token' });
+      return new Mirage.Response(402, { error: { reset_password_token: 'missing reset token' }});
     }
   });
 

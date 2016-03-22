@@ -30,7 +30,7 @@ export default Ember.Route.extend({
     },
 
     newPasswordSet: function() {
-      this.transitionTo('dashboard');
+      this.transitionTo('password-reset.reset-success');
     },
   },
 });

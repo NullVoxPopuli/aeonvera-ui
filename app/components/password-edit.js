@@ -7,8 +7,11 @@ export default Ember.Component.extend({
   passwordConfirmation: null,
   resetToken: null,
 
-  didInsertElement() {
-    this._super(...arguments);
+  errors: Ember.computed('errors', function() {
+    return this.get('model.errors');
+  }),
+
+  setResetToken(){
     let router = this.get('router.router');
     let routeWithQueryParams = router.getHandler('password-reset');
     let queryParams = routeWithQueryParams.get('queryParams');
@@ -16,12 +19,10 @@ export default Ember.Component.extend({
     this.set('resetToken', queryParams.reset_password_token);
   },
 
-  errors: Ember.computed('errors', function() {
-    return this.get('model.errors');
-  }),
-
   actions: {
     reset: function () {
+      this.setResetToken();
+
       let _this = this;
       let url = ENV.host + '/api/users/password.json';
       let data = {
@@ -38,7 +39,6 @@ export default Ember.Component.extend({
         data: data,
         success: data => {
           _this.sendAction('action');
-          this.transitionTo('password-reset.reset-success');
         },
 
         error: function (jqxhr, status, text) {

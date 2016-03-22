@@ -36,7 +36,8 @@ test('setting new password fails without a token', function(assert) {
   });
 
   andThen(_ => {
-    let formText = find('body').text().indexOf('mising reset token') !== -1;
+    let text = find('form').text();
+    let formText = text.indexOf('mising reset token') !== -1;
     assert.ok(formText);
   });
 });
@@ -45,7 +46,7 @@ test('setting new password succeeds', function(assert) {
   visit('/password-reset/edit?password_reset_token="123"');
   andThen(_ => {
     fillIn('form input[type="password"]:first', '12345678');
-    fillIn('form input[type="password"]:first', '12345678');
+    fillIn('form input[type="password"]:last', '12345678');
     click('form button[type="submit"]');
   });
 
