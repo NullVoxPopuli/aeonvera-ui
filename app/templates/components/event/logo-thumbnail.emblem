@@ -1,0 +1,5 @@
+if model.logoIsMissing
+  span.icon-thumbnail class='{{align}}'
+    = fa-icon 'globe'
+else
+  img.right src="{{model.logoUrlThumb}}"

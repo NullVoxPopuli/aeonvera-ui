@@ -73,6 +73,6 @@ export default Ember.Component.extend({
     addByQuantity(quantity, item) {
       this.get('cart').set('host', this.get('model'));
       this.get('cart').add(item, quantity);
-    },
+    }
   },
 });

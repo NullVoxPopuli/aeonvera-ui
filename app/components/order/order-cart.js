@@ -24,7 +24,15 @@ export default Ember.Component.extend({
 
   actions: {
     checkout(){
-      this.get('cart').checkout();
+      this.get('cart').checkout().then(record => {
+        let id = record.get('id');
+        this.get('router').transitionTo('register.checkout', id);
+      }, error => {
+        // TODO: have a more prevelant place to display these errors
+        // TODO: What errors could show up here?
+        this.get('flashMessages').alert(error);
+        console.error(error);
+      });
     },
 
     removeItem: function(item) {

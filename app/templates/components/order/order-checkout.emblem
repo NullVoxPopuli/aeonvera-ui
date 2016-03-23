@@ -1,6 +1,24 @@
-h4 Checkout
+br
+.row
+  .small-12.medium-10.columns.medium-offset-1
+    .row
+      .columns.small-2.medium-2
+        = event/logo-thumbnail model=model.host align='left'
+      .columns.small-10.medium-10.text-center
+        h3 Review Registration for {{model.host.name}}
+
+    br
+    if errorsPresent
+      .alert-box.alert
+        a.close click='hideError' &times;
+        span.message = errors.firstObject.message
+        br
+
+    = order/order-review model=model
+
+    unless model.paid
+      p.right
+        = stripe/checkout-button model=model label='Pay' email=email
 
 
-h6 Your Order
-
-= stripe/checkout-button model=order label='Pay'
+    // TODO: give option to resend receipt

@@ -9,12 +9,7 @@ each model as |organization|
         a href="{{organization.url}}"
           .row
             .columns.small-2.medium-4
-              if organization.logoIsMissing
-                span.icon-thumbnail.right
-                  = fa-icon 'globe'
-
-              else
-                img.right src="{{organization.logoUrlThumb}}"
+              = event/logo-thumbnail model=organization align='right'
             .columns.small-10.medium-8
               h3 = organization.name
               h6 = organization.location

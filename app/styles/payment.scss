@@ -10,3 +10,11 @@
     color: $alert-color;
   }
 }
+
+table tr td.order-payment-status {
+  text-align: center;
+  background: $alert-color;
+  &[data-paid='true'] {
+    background: lighten($success-color, 5%);
+  }
+}

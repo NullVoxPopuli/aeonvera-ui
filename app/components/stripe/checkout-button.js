@@ -32,7 +32,13 @@ export default Ember.Component.extend({
   }),
 
   emailForReceipt: Ember.computed('model', function () {
-    return this.get('model.userEmail');
+    let email = this.get('email');
+
+    if (!Ember.isPresent(email)){
+      email = this.get('model.userEmail');
+    }
+    this.set('model.checkoutEmail', email);
+    return email
   }),
 
   description: Ember.computed('host', function () {

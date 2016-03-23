@@ -82,83 +82,40 @@ export default Ember.Service.extend({
   // be needed anywhere else
   checkout(){
     let order = this.get('order');
-    order.save().then(record => {
-      record.get('orderLineItems').save().then(_ => {
-        this.redirectTo('register.checkout', record.get('id'));
-      });
-    }, error => {
-      //   // TODO: have a more prevelant place to display these errors
-      //   // TODO: What errors could show up here?
-        this.get('flashMessages').alert(error);
-        console.error(error);
-    })
+    // TODO: check if order is persisted. If so, we then need to handle updating... :-(
+    // IDEA: If the order is already persisted, when items are added / removed, saving could happen then
+    let jsonPayload = {};
+    let items = [];
+    let ajaxVerb = order.get('isNew') ? 'POST' : 'PUT'
+    let store = this.get('store');
 
-    //
-    // let jsonPayload = {};
-    // let items = [];
-    //
-    // this.get('order.orderLineItems').forEach(item => {
-    //   let itemJson = item.toJSON();
-    //   itemJson.lineItemId = item.get('lineItem.id');
-    //   itemJson.lineItemType = item.get('klass');
-    //   items.push(itemJson);
-    // });
-    //
-    // jsonPayload.order = this.get('order').toJSON();
-    // jsonPayload.order.hostId = this.get('order.host.id');
-    // jsonPayload.order.hostType = this.get('order.host.klass');
-    // jsonPayload.orderLineItems = items;
-    //
-    // Ember.$.ajax({
-    //   type: 'POST',
-    //   url: config.host + '/api/orders',
-    //   data: jsonPayload
-    // }).then(record => {
-    //   // redirect to the checkout screen
-    //   this.redirectTo('register.checkout', record.get('id'));
-    // }, error => {
-    // });
-  },
-
-  /*
-    the params here is the response from the stripe-checkout script.
-    We'll want to add this in to the order before, and show some sort of visual
-    feedback for processing, as this data only enables us to charge the card.
-    The server will do the actual charging of the card.
-
-    The only data we need from the stripe checkout object is the 'id'
-
-    NOTE: The order should already be saved before entering this method.
-  */
-  processStripeToken(params) {
-    let token = params.id;
-    let order = this.get('order');
-    order.set('checkoutToken', token);
-
-    // by saving, the server is going to attempt to charge the card,
-    //
-    // if nothing has gone wrong with the payment
-    // and an email will be sent to the registrant.
-    //
-    // if there are errors with the credit card,
-    // the user must be notified
-    order.save().then(record => {
-
-      /*
-        Display some sort of thankyou
-        - TODO: in the email, there should probably be some sort of
-                readonly link to the order
-      */
-
-      // redirect to success
-      let msg = 'The order was successful. You should soon receive a receipt in your email.';
-      this.get('flashMessages').success(msg);
-    }, error => {
-      // set the errors object, and the component using this service
-      // is responsible for showing those
-      this.get('flashMessages').alert(error);
-      console.error(error);
+    order.get('orderLineItems').forEach(item => {
+      let itemJson = item.toJSON();
+      itemJson.lineItemId = item.get('lineItem.id');
+      itemJson.lineItemType = item.get('lineItem.klass');
+      items.push(itemJson);
     });
-  }
 
+    jsonPayload.order = order.toJSON();
+    jsonPayload.order.hostId = this.get('order.host.id');
+    jsonPayload.order.hostType = this.get('order.host.klass');
+    jsonPayload.orderLineItems = items;
+
+    let promise = new Ember.RSVP.Promise((resolve, reject) => {
+      Ember.$.ajax({
+        type: ajaxVerb,
+        url: config.host + '/api/orders',
+        data: jsonPayload
+      }).then(response => {
+        let id = response.data.id;
+        store.pushPayload(response);
+        let order = store.peekRecord('order', id);
+        resolve(order);
+      }, error => {
+        reject(error);
+      });
+    });
+
+    return promise;
+  },
 });

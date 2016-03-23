@@ -1,0 +1,29 @@
+table.width-of-100
+  thead: tr
+    th Item
+    th.text-right Price
+    th.text-right Quantity
+    th.text-right Sub Total
+  tbody
+    each model.orderLineItems as |item|
+      tr
+        td = item.lineItem.name
+        td.text-right = to-usd item.price
+        td.text-right = item.quantity
+        td.text-right = to-usd item.total
+  tfoot
+    tr
+      th
+      th
+      th.text-right Total
+      th.text-right = to-usd model.totalInDollars
+    if model.paid
+      tr
+        td.order-payment-status data-paid=model.paid colspan="4"
+          | Paid {{to-usd model.piadAmount}} on {{date-with-format model.updatedAt 'lll'}} via {{model.paymentMethod}}
+      if showNetReceived
+        tr
+          td
+          td
+          td Net Received: {{to-usd model.netAmountReceived}}
+          td Fees: {{to-usd model.totalFeeAmount}}
