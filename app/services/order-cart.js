@@ -80,13 +80,14 @@ export default Ember.Service.extend({
   // in the case of order + order line items...
   // so, this is pretty much a hack -- luckily, it shouldn't
   // be needed anywhere else
-  checkout(){
+  checkout() {
     let order = this.get('order');
+
     // TODO: check if order is persisted. If so, we then need to handle updating... :-(
     // IDEA: If the order is already persisted, when items are added / removed, saving could happen then
     let jsonPayload = {};
     let items = [];
-    let ajaxVerb = order.get('isNew') ? 'POST' : 'PUT'
+    let ajaxVerb = order.get('isNew') ? 'POST' : 'PUT';
     let store = this.get('store');
 
     order.get('orderLineItems').forEach(item => {
@@ -112,6 +113,7 @@ export default Ember.Service.extend({
         let order = store.peekRecord('order', id);
         resolve(order);
       }, error => {
+
         reject(error);
       });
     });

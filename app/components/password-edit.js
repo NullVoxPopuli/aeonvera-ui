@@ -30,6 +30,7 @@ export default Ember.Component.extend({
       }).then(data => {
         this.sendAction('action');
       }, error => {
+
         Ember.run(_ => {
           let json = Ember.$.parseJSON(error.responseText);
           let errors = json.errors;

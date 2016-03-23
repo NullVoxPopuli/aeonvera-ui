@@ -12,13 +12,4 @@ test('it renders', function(assert) {
   this.render(hbs`{{event/logo-thumbnail}}`);
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#event/logo-thumbnail}}
-      template block text
-    {{/event/logo-thumbnail}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });

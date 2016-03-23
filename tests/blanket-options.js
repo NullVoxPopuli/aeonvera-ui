@@ -12,6 +12,7 @@ var options = {
     autostart: true,
     lcovOptions: {
       outputFile: 'lcov.dat',
+
       // excludeMissingFiles: true,
 
       // provide a function to rename es6 modules to a file path

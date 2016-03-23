@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Mirage from 'ember-cli-mirage';
+
 // can't import from test helpers during development...
 // import 'aeonvera/tests/helpers/parse-query-params';
 // copy function here:
@@ -71,14 +72,13 @@ export default function() {
 
     let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
     let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
-    if (paramsAreBlank && bodyParamsAreBlank){
+    if (paramsAreBlank && bodyParamsAreBlank) {
       return new Mirage.Response(401, {});
     }
 
     let queryParams = request.requestBody;
     params = parseQueryParams(queryParams);
     email = params['user%5Bemail%5D'].replace('%40', '@');
-
 
     let user = db.users.where({ email: email })[0];
     return {
@@ -88,24 +88,24 @@ export default function() {
     };
   });
 
-  this.post('/api/users/password.json', function(db, request){
+  this.post('/api/users/password.json', function(db, request) {
     let email = '';
     let user = db.users.where({ email: email })[0];
     return {};
   });
 
-  this.put('/api/users/password.json', function(db, request){
+  this.put('/api/users/password.json', function(db, request) {
     let bodyParams = request.requestBody;
     let params = parseQueryParams(bodyParams);
     let token = params['user%5Breset_password_token%5D'];
 
-    if (Ember.isPresent(token)){
+    if (Ember.isPresent(token)) {
       return new Mirage.Response(201, {});
     } else {
       return new Mirage.Response(
         422,
-        { errors: { reset_password_token: 'missing reset token' }},
-        { errors: { reset_password_token: 'missing reset token' }}
+        { errors: { reset_password_token: 'missing reset token' } },
+        { errors: { reset_password_token: 'missing reset token' } }
       );
     }
   });

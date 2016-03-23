@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    checkout(){
+    checkout() {
       this.get('cart').checkout().then(record => {
         let id = record.get('id');
         this.get('router').transitionTo('register.checkout', id);
