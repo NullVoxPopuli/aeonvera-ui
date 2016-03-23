@@ -20,7 +20,7 @@ table.width-of-100
     if model.paid
       tr
         td.order-payment-status data-paid=model.paid colspan="4"
-          | Paid {{to-usd model.piadAmount}} on {{date-with-format model.updatedAt 'lll'}} via {{model.paymentMethod}}
+          | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}}
       if showNetReceived
         tr
           td

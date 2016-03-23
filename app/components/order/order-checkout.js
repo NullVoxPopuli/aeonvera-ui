@@ -47,14 +47,7 @@ export default Ember.Component.extend({
       // if there are errors with the credit card,
       // the user must be notified
       order.save().then(record => {
-
-        /*
-          Display some sort of thankyou
-          - TODO: in the email, there should probably be some sort of
-                  readonly link to the order
-        */
-
-        // redirect to success
+        this.transitionTo('register.checkout.thankyou');
       }, error => {
         // model's error object is used.
       });
