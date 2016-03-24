@@ -115,7 +115,7 @@ module.exports = function(environment) {
       enabled: false
     };
 
-    ENV['devise']['serverTokenEndpoint'] =
+    ENV['ember-simple-auth-token']['serverTokenEndpoint'] =
       'https://aeonvera-staging.work/api/users/sign_in';
 
     ENV['contentSecurityPolicy'] = {
