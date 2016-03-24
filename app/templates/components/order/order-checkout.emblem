@@ -8,11 +8,7 @@ br
         h3 Review Registration for {{model.host.name}}
 
     br
-    if errorsPresent
-      .alert-box.alert
-        a.close click='hideError' &times;
-        span.message = errors.firstObject.message
-        br
+    = error-header errors=model.errors
 
     = order/order-review model=model
 

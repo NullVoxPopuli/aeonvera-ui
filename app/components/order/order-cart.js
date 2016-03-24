@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns',
+  errors: [],
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
@@ -28,10 +29,10 @@ export default Ember.Component.extend({
         let id = record.get('id');
         this.get('router').transitionTo('register.checkout', id);
       }, error => {
-        // TODO: have a more prevelant place to display these errors
-        // TODO: What errors could show up here?
-        this.get('flashMessages').alert(error);
-        console.error(error);
+        // because the checkout request isn't using ember-data,
+        // we have to parse the errors ourselves
+        let errors = JSON.parse(error.responseText);
+        this.set('errors', errors.errors);
       });
     },
 

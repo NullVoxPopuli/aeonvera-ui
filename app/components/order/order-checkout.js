@@ -3,22 +3,12 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
   email: Ember.computed.oneWay('cart.userEmail'),
-  errors: Ember.computed('model.errors', function() {
-    return this.get('model.errors');
-  }),
-
-  errorsPresent: Ember.computed('errors.@each', function() {
-    return Ember.isPresent(this.get('errors'));
-  }),
 
   actions: {
     finishedOrder() {
       this.get('router').transitionTo('register.thankyou');
     },
 
-    hideError() {
-      this.set('errorsPresent', false);
-    },
 
     // processStripeToken(params) {
     //   this.get('cart').processStripeToken(params);
