@@ -20,7 +20,9 @@ br
       p.right
         = stripe/checkout-button model=model label='Pay' email=email
 
-
+    p.left
+      link-to 'register' model.host.domain classNames='button'
+        span Back to {{model.host.name}}
     // TODO: give option to resend receipt
 
 br

@@ -38,15 +38,22 @@ module.exports = function(environment) {
       prefix: 'aeonvera/'
     },
 
-
-    ACTIVE_MODEL_API_URL: 'https://aeonvera.com/api/',
-
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'dashboard',
       session: 'session:application',
       store: 'session-store:local-storage',
-      authorizer: 'ember-simple-auth-authorizer:devise',
+      // authorizer: 'ember-simple-auth-authorizer:token',
+      authorizer: 'authorizer:token',
       crossOriginWhitelist: ['*']
+    },
+    'ember-simple-auth-token': {
+      serverTokenEndpoint: '/api/users/sign_in',
+      identificationField: 'email',
+      passwordField: 'password',
+      tokenPropertyName: 'token',
+      authorizationPrefix: 'Bearer ',
+      authorizationHeaderName: 'Authorization',
+      headers: {},
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
@@ -72,8 +79,9 @@ module.exports = function(environment) {
     ENV.host = 'http://swing.vhost:3000';
     ENV.APP.host = 'http://swing.vhost:3000';
 
-    ENV['devise']['serverTokenEndpoint'] =
+    ENV['ember-simple-auth-token']['serverTokenEndpoint'] =
       'http://swing.vhost:3000/api/users/sign_in';
+
 
     ENV['ember-cli-mirage'] = {
       enabled: false

@@ -14,9 +14,9 @@ export default Ember.Component.extend({
 
   actions: {
     authenticate: function () {
-      let { identification, password } = this.getProperties('identification', 'password');
+      let credentials = this.getProperties('identification', 'password');
 
-      this.get('session').authenticate('authenticator:devise', identification, password)
+      this.get('session').authenticate('authenticator:token', credentials)
         .then(json => {
 
           // close the modal
