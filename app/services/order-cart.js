@@ -102,11 +102,16 @@ export default Ember.Service.extend({
     jsonPayload.order.hostType = this.get('order.host.klass');
     jsonPayload.orderLineItems = items;
 
+    let authToken = this.get('session.data.authenticated.token');
+
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
         type: ajaxVerb,
         url: config.host + '/api/orders',
-        data: jsonPayload
+        data: jsonPayload,
+        beforeSend: xhr => {
+          xhr.setRequestHeader("Authorization", "Bearer " + authToken);
+        }
       }).then(response => {
         let id = response.data.id;
         store.pushPayload(response);

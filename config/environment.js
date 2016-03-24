@@ -40,8 +40,8 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'dashboard',
-      session: 'session:application',
-      store: 'session-store:local-storage',
+      // session: 'session:application',
+      // store: 'session-store:local-storage',
       // authorizer: 'ember-simple-auth-authorizer:token',
       authorizer: 'authorizer:token',
       crossOriginWhitelist: ['*']
