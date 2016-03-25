@@ -119,6 +119,9 @@ export default Ember.Service.extend({
         let id = response.data.id;
         store.pushPayload(response);
         let order = store.peekRecord('order', id);
+        // have to re-set the order variable to the new order
+        // because otherwise the order property remains
+        // the non-server-backed version
         this.set('order', order);
         resolve(order);
       }, error => {
