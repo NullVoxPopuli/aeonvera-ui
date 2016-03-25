@@ -13,24 +13,25 @@ export default Ember.Service.extend({
   host: null,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
-    return this.get('userFirstName') + this.get('userLastName');
+    return this.get('userFirstName') + ' ' + this.get('userLastName');
   }),
 
-  userEmail: Ember.computed('session.currentUser', {
-    get(key) {
-      let email = this.get('email');
-      if (!Ember.isPresent(email)) {
-        let userEmail = this.get('session.currentUser.email');
-        email = userEmail;
-        this.set('email', email);
-      }
-
-      return email;
-    },
-
-    set(key, value) {
-      this.set('email', value);
+  userEmail: Ember.computed('session.currentUser', 'email', function(){
+    let email = this.get('email');
+    if (!Ember.isPresent(email)) {
+      let userEmail = this.get('session.currentUser.email');
+      email = userEmail;
     }
+
+    return email;
+  }),
+
+  syncEmail: Ember.observer('userEmail', function(){
+    this.set('currentOrder.userEmail', this.get('userEmail'));
+  }),
+
+  syncName: Ember.observer('userName', function(){
+    this.set('currentOrder.userName', this.get('userName'));
   }),
 
   hasItems: Ember.computed('order', 'order.hasLineItems', function() {

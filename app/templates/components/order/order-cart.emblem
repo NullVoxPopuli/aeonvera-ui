@@ -44,4 +44,4 @@
 
       ul.button-group.even-2
         li: a.button.alert click='cancel' Cancel
-        li = async-button action=(action 'checkout') default='Checkout' pending='Submitting Order...'
+        li = async-button action=(action 'checkout') default='Checkout' pending='Submitting Order...' reset=true

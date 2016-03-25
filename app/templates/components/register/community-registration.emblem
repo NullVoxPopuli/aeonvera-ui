@@ -14,8 +14,6 @@
         label Email *
         = input placeholder='bruce@wayneenterprises.com' classNames='margin-bottom-5' value=email
 
-    small.right: em.text-right * after registering, a confirmation email will be sent to continue account creation
-
   if showMembershipOptions
     h4 Membership
 

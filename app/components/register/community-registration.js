@@ -9,27 +9,9 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-  firstName: Ember.computed({
-    get(key) { return this.get('cart.userFirstName'); },
-
-    set(key, value) {
-      this.set('cart.userFirstName', value); return value;
-    }
-  }),
-  lastName: Ember.computed({
-    get(key) { return this.get('cart.userLastName'); },
-
-    set(key, value) {
-      this.set('cart.userLastName'); return value;
-    }
-  }),
-  email: Ember.computed({
-    get(key) { return this.get('cart.userEmail'); },
-
-    set(key, value) {
-      this.set('cart.userEmail', value); return value;
-    }
-  }),
+  firstName: Ember.computed.alias('cart.userFirstName'),
+  lastName: Ember.computed.alias('cart.userLastName'),
+  email: Ember.computed.alias('cart.userEmail'),
 
   isCurrentMember: Ember.computed('user.user', 'session.isAuthenticated', 'session.currentUser', function() {
     // let user = this.get('user.user');

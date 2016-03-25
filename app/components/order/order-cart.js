@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns',
   errors: [],
+  resetCheckoutButton: false,
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
@@ -28,11 +29,13 @@ export default Ember.Component.extend({
       this.get('cart').checkout().then(record => {
         let id = record.get('id');
         this.get('router').transitionTo('register.checkout', id);
+        this.set('resetCheckoutButton', true);
       }, error => {
         // because the checkout request isn't using ember-data,
         // we have to parse the errors ourselves
         let errors = JSON.parse(error.responseText);
         this.set('errors', errors.errors);
+        this.set('resetCheckoutButton', true);
       });
     },
 
