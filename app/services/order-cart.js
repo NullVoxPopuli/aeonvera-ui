@@ -88,8 +88,10 @@ export default Ember.Service.extend({
     // IDEA: If the order is already persisted, when items are added / removed, saving could happen then
     let jsonPayload = {};
     let items = [];
-    let ajaxVerb = order.get('isNew') ? 'POST' : 'PUT';
+    let isNew = order.get('isNew');
+    let ajaxVerb = isNew ? 'POST' : 'PUT';
     let store = this.get('store');
+    let url = isNew ? '/api/orders' : '/api/orders/' + order.get('id');
 
     order.get('orderLineItems').forEach(item => {
       let itemJson = item.toJSON();
@@ -108,7 +110,7 @@ export default Ember.Service.extend({
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
         type: ajaxVerb,
-        url: config.host + '/api/orders',
+        url: config.host + url,
         data: jsonPayload,
         beforeSend: xhr => {
           xhr.setRequestHeader("Authorization", "Bearer " + authToken);
@@ -117,6 +119,7 @@ export default Ember.Service.extend({
         let id = response.data.id;
         store.pushPayload(response);
         let order = store.peekRecord('order', id);
+        this.set('order', order);
         resolve(order);
       }, error => {
 
