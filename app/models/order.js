@@ -10,6 +10,7 @@ export default DS.Model.extend({
   netAmountReceived: DS.attr('number'),
   totalFeeAmount: DS.attr('number'),
   paymentMethod: DS.attr('string'),
+  paymentToken: DS.attr('string'),
   checkNumber: DS.attr('string'),
   paid: DS.attr('boolean'),
 

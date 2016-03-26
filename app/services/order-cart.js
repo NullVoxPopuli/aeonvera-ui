@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import config from '../config/environment';
+import RandomString from 'aeonvera/mixins/helpers/string';
 
-export default Ember.Service.extend({
+export default Ember.Service.extend(RandomString, {
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
   flashMessages: Ember.inject.service('flashMessages'),
@@ -53,6 +54,10 @@ export default Ember.Service.extend({
         userName: this.get('userName'),
         userEmail: this.get('userEmail'),
       });
+
+      if (Ember.isBlank(user)){
+        order.set('paymentToken', this.randomString('order', 128));
+      }
 
       this.set('order', order);
     }
