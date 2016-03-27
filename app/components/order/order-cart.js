@@ -6,6 +6,20 @@ export default Ember.Component.extend({
   errors: [],
   resetCheckoutButton: false,
 
+  /*
+    Handle optional parameters for editing an order
+  */
+  didInsertElement(){
+    this._super(...arguments);
+    let token = this.get('token');
+    let order = this.get('order');
+    this.set('cart.token', token);
+    if (Ember.isPresent(order)){
+      this.set('cart.order', order);
+      this.set('cart.email', order.get('userEmail'));
+    }
+  },
+
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
     return building ? 'large-8 medium-8 columns' :
@@ -28,7 +42,8 @@ export default Ember.Component.extend({
     checkout() {
       this.get('cart').checkout().then(record => {
         let id = record.get('id');
-        this.get('router').transitionTo('register.checkout', id);
+        let token = record.get('paymentToken');
+        this.get('router').transitionTo('register.checkout', id, {queryParams: { token: token }});
         this.set('resetCheckoutButton', true);
       }, error => {
         // because the checkout request isn't using ember-data,

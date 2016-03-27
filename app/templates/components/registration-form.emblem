@@ -1,5 +1,5 @@
 .margin-left-20
   if isEvent
-    = register/event-registration model=host
+    = register/event-registration model=host token=token order=order
   else
-    = register/community-registration model=host
+    = register/community-registration model=host token=token order=order

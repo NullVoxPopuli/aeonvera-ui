@@ -23,6 +23,14 @@ export default DS.Model.extend({
   danceOrientation: DS.attr('string'),
   size: DS.attr('string'),
 
+  /*
+    This is never received from the server, but will be set upon
+    an attempt to delete an order-line-item. The use case for this
+    is only when deleting a previously persisted order-line-item when
+    the order was created on a non-logged-in account. 
+  */
+  paymentToken: DS.attr('string'),
+
   priceNeedsChanging: function() {
     let lineItem = this.get('lineItem');
     let size = this.get('size');

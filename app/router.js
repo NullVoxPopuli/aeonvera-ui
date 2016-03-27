@@ -16,37 +16,6 @@ Router.map(function() {
     this.route('edit');
   });
 
-  /* event registration - subdomain based */
-  this.route('dance-event', function() {
-    this.route('register', function() {
-      this.route('review');
-      this.route('thankyou');
-      this.route('new');
-      this.route('edit');
-    });
-  });
-
-  /* organization registration - subdomain based */
-  this.route('dance-community', function() {
-    this.route('unauthenticated', function() {
-
-    });
-
-    this.route('register', function() {
-      this.route('review');
-      this.route('thankyou');
-      this.route('new');
-      this.route('edit');
-    });
-
-    this.route('registration-history', function() {
-      this.route('show', {
-        path: ':order_id',
-      });
-    });
-
-  });
-
   /* public facing */
   this.route('welcome', { resetNamespace: true }, function() {
     this.route('features');
@@ -264,6 +233,7 @@ Router.map(function() {
 
   this.route('register', { resetNamespace: true, path: ':subdomain' }, function() {
     this.route('checkout', { path: ':orderId' }, function() {
+      this.route('edit');
       this.route('thankyou');
     });
   });

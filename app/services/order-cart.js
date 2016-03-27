@@ -44,19 +44,34 @@ export default Ember.Service.extend(RandomString, {
     return this.get('order.orderLineItems');
   }),
 
+  /*
+    TODO: this logic kinda sucks -- find a way to break it up
+  */
   currentOrder: Ember.computed('order', function() {
     let order = this.get('order');
     if (!Ember.isPresent(order)) {
       let user = this.get('session.currentUser');
-      order = this.get('store').createRecord('order', {
-        host: this.get('host'),
-        user: user,
-        userName: this.get('userName'),
-        userEmail: this.get('userEmail'),
-      });
+      let orderId = this.get('orderId');
 
+
+      if (Ember.isPresent(orderId)){
+        order = this.get('store').peekRecord('order', orderId);
+      }
+
+      if (!Ember.isPresent(order)) {
+        order = this.get('store').createRecord('order', {
+          host: this.get('host'),
+          user: user,
+          userName: this.get('userName'),
+          userEmail: this.get('userEmail'),
+        });
+      }
+
+      let token = this.get('token');
       if (Ember.isBlank(user)){
         order.set('paymentToken', this.randomString('order', 128));
+      } else if (Ember.isPresent(token)){
+        order.set('paymentToken', token);
       }
 
       this.set('order', order);
@@ -77,9 +92,16 @@ export default Ember.Service.extend(RandomString, {
   },
 
   cancel() {
-    this.get('order').unloadRecord();
+    let order = this.get('order');
+    if (order.get('isNew')){
+      order.unloadRecord();
+    } else {
+      order.destroyRecord();
+      order.save();
+    }
     this.set('order', null);
   },
+
 
   // unfortunately, ember / JSON API doesn't have a way to
   // send multiple records at a time -- which is what we need
@@ -89,17 +111,16 @@ export default Ember.Service.extend(RandomString, {
   checkout() {
     let order = this.get('order');
 
-    // TODO: check if order is persisted. If so, we then need to handle updating... :-(
-    // IDEA: If the order is already persisted, when items are added / removed, saving could happen then
     let jsonPayload = {};
     let items = [];
     let isNew = order.get('isNew');
     let ajaxVerb = isNew ? 'POST' : 'PUT';
     let store = this.get('store');
-    let url = isNew ? '/api/orders' : '/api/orders/' + order.get('id');
+    let url = isNew ? '/api/orders' : '/api/orders/' + order.get('id')  + '/modify';
 
     order.get('orderLineItems').forEach(item => {
       let itemJson = item.toJSON();
+      itemJson.id = item.get('id');
       itemJson.lineItemId = item.get('lineItem.id');
       itemJson.lineItemType = item.get('lineItem.klass');
       items.push(itemJson);
@@ -111,6 +132,7 @@ export default Ember.Service.extend(RandomString, {
     jsonPayload.orderLineItems = items;
 
     let authToken = this.get('session.data.authenticated.token');
+    let token = this.get('order.paymentToken');
 
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
@@ -124,6 +146,13 @@ export default Ember.Service.extend(RandomString, {
         let id = response.data.id;
         store.pushPayload(response);
         let order = store.peekRecord('order', id);
+
+        // For authorizing edits, we need to add the token to the URL
+        // luckily, we have it bound already
+        if (Ember.isPresent(token)){
+          order.set('paymentToken', token);
+        }
+
         // have to re-set the order variable to the new order
         // because otherwise the order property remains
         // the non-server-backed version

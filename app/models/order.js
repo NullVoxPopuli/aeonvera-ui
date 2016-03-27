@@ -280,6 +280,7 @@ export default DS.Model.extend({
   removeOrderLineItem: function(orderLineItem) {
     this.get('orderLineItems').removeObject(orderLineItem);
     if (Ember.isPresent(orderLineItem)) {
+      orderLineItem.set('paymentToken', this.get('order.paymentToken'));
       orderLineItem.destroyRecord();
     }
   },

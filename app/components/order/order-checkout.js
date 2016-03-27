@@ -4,15 +4,22 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
   email: Ember.computed.oneWay('cart.userEmail'),
 
+  /*
+    for unauthenticated orders
+  */
+  _setOrderTokenIfPresent(){
+    let token = this.get('token');
+    if (Ember.isPresent(token)){
+      this.set('order.paymentToken', this.get('token'));
+    }
+  },
+
   actions: {
     finishedOrder() {
       this.get('router').transitionTo('register.thankyou');
     },
 
 
-    // processStripeToken(params) {
-    //   this.get('cart').processStripeToken(params);
-    // },
 
     /*
       the params here is the response from the stripe-checkout script.
@@ -28,7 +35,7 @@ export default Ember.Component.extend({
       let token = params.id;
       let order = this.get('model');
       order.set('checkoutToken', token);
-
+      this._setOrderTokenIfPresent();
       // by saving, the server is going to attempt to charge the card,
       //
       // if nothing has gone wrong with the payment
@@ -41,6 +48,7 @@ export default Ember.Component.extend({
       }, error => {
         // model's error object is used.
       });
-    }
+    },
+
   }
 });

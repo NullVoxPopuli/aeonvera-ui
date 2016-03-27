@@ -16,9 +16,9 @@ br
       p.right
         = stripe/checkout-button model=model label='Pay' email=email
 
-    p.left
-      link-to 'register' model.host.domain classNames='button'
-        span Back to {{model.host.name}}
+      p.left
+        link-to 'register.checkout.edit' model.id (query-params token=token) classNames='button' 
+          span Edit
     // TODO: give option to resend receipt
 
 br
