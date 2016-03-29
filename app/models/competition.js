@@ -1,15 +1,14 @@
 import DS from 'ember-data';
 import LineItem from '../models/line-item';
+import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
-export default LineItem.extend({
+export default LineItem.extend(LeadsAndFollows, {
   initialPrice: DS.attr('number'),
   atTheDoorPrice: DS.attr('number'),
   kind: DS.attr('number'),
 
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),
-
-  competitionResponses: DS.hasMany('competitionResponse', { async: false, params: 'id' }),
 
   /**
     TODO: find out if there is a better way to represent this...

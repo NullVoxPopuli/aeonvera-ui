@@ -1,0 +1,1 @@
+= event/competition/edit-form model=model parent=model.event

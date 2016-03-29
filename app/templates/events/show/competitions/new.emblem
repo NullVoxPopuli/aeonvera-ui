@@ -1,0 +1,2 @@
+= page-header text='New Competition'
+= event/competition/edit-form model=model
