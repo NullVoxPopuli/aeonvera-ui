@@ -1,7 +1,7 @@
 link-to 'events.show.competitions' classNames='button secondary'
   span Back
 
-link-to 'events.show.levels.competition.edit' classNames='button'
+link-to 'events.show.competitions.show.edit' classNames='button'
   span Edit
 
 = delete-undelete model=model
@@ -11,22 +11,33 @@ h4 Registrations with this Competition
 table
   thead: tr
     th Name
-    / lead or follow
-    th
-    th Package
-    th Payment
-    th Registered At
+    if model.requiresOrientation
+      th Orientation
+    if model.requiresPartner
+      th Partner
+    th Paid At
   tbody
     / if (is-present model)
-    each model.registrations as |registration|
+    each model.orderLineItems as |orderLineItem|
       tr
         td
-          link-to 'events.show.registrations.show' registration.id
-            = registration.attendeeName
-        td = registration.danceOrientation
-        td = registration.packageName
-        / TODO: if unpaid, color this cell red
-        td = registration.paymentStatus
-        td = date-with-format registration.registeredAt 'LLL'
+          if (is-present orderLineItem.order.userName)
+            link-to 'events.show.registrations.show' orderLineItem.order.attendance.id
+              = orderLineItem.order.userName
+          else
+            span Name not recorded
+        if model.requiresOrientation
+          td = orderLineItem.danceOrientation
+        if model.requiresPartner
+          td = orderLineItem.partnerName
+          
+        td 
+          / TODO: if unpaid, color this cell red
+          if (is-present orderLineItem.order.paymentReceivedAt)
+            span Paid on&nbsp;
+            span.right = date-with-format orderLineItem.order.paymentReceivedAt 'lll'
+          else
+            span Unpaid since&nbsp;
+            span.right = date-with-format orderLineItem.order.createdAt 'lll'
     / else
     /   tr: td colspan='5' No one has registered with this level

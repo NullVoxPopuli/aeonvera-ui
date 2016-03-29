@@ -10,6 +10,9 @@ export default LineItem.extend(LeadsAndFollows, {
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),
 
+  attendances: DS.hasMany('attendance'),
+  orderLineItems: DS.hasMany('order-line-item'),
+
   /**
     TODO: find out if there is a better way to represent this...
   */

@@ -6,6 +6,7 @@ export default DS.Model.extend({
   hostUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
   paymentReceivedAt: DS.attr('date'),
+  createdAt: DS.attr('date'),
   paidAmount: DS.attr('number'),
   netAmountReceived: DS.attr('number'),
   totalFeeAmount: DS.attr('number'),
@@ -16,8 +17,12 @@ export default DS.Model.extend({
 
   totalInCents: DS.attr('number'),
 
+  // TODO: think about renaming these to what
+  //       they are on the server: buyer_
   userEmail: DS.attr('string'),
   userName: DS.attr('string'),
+  // buyerEmail: DS.attr('string'),
+  // buyerName: DS.attr('string'),
 
   host: DS.belongsTo('host', { polymorphic: true }),
   orderLineItems: DS.hasMany('orderLineItem'),
