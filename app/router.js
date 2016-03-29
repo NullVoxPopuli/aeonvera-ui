@@ -185,6 +185,15 @@ Router.map(function() {
           });
         });
 
+        this.route('competitions', function() {
+          this.route('new');
+          this.route('show', {
+            path: ':competition_id',
+          }, function() {
+            this.route('edit');
+          });
+        });
+
         this.route('raffles', function() {
           this.route('new');
           this.route('show', {
