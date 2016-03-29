@@ -1,13 +1,18 @@
-link-to 'events.show.competitions' classNames='button secondary'
-  span Back
+/ br
+/ link-to 'events.show.competitions' classNames='button small secondary'
+/   span Back
+.inline-list.page-header-list
+  li
+    link-to 'events.show.competitions.show.edit' classNames='button small'
+      span Edit
+  li = page-header text=model.name
 
-link-to 'events.show.competitions.show.edit' classNames='button'
-  span Edit
 
-= delete-undelete model=model
+h4 Registrants with this Competition
+
+/ = models-table data=model.orderLineItems columns=columns showGlobalFilter=false
 
 
-h4 Registrations with this Competition
 table
   thead: tr
     th Name
@@ -30,8 +35,8 @@ table
           td = orderLineItem.danceOrientation
         if model.requiresPartner
           td = orderLineItem.partnerName
-          
-        td 
+
+        td
           / TODO: if unpaid, color this cell red
           if (is-present orderLineItem.order.paymentReceivedAt)
             span Paid on&nbsp;

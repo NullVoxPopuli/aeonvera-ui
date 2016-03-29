@@ -2,6 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'span',
+
+  deleteLabel: Ember.computed('model', function(){
+    return 'Delete this ' + this.get('model.klass')
+  }),
+
   actions: {
     destroy: function () {
       this.get('model').destroyRecord().then(() => {}, failure => {

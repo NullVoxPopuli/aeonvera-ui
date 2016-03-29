@@ -1,4 +1,5 @@
 if model.isDeleted
-  a.button.success click='undestroy' Un-Delete
+  a.button.tiny.success click='undestroy' Un-Delete
 else
-  a.button.alert click='destroy' Delete
+
+  a.button.tiny.alert click='destroy' = deleteLabel

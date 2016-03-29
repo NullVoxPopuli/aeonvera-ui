@@ -1,2 +1,61 @@
 form submit='save'
-  span fields and stuff
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='initialPrice'
+      label
+        span Name
+        = input value=model.name type='text' required='true' placeholder='Strictly Lindy'
+
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='initialPrice'
+      label
+        span Initial Price
+        .row.collapse
+          .small-3.columns: span.prefix $
+          .small-9.columns
+            = input value=model.initialPrice type='number' required=true placeholder='0.0'
+
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='atTheDoorPrice'
+      label
+        span Price at the Door
+        .row.collapse
+          .small-3.columns: span.prefix $
+          .small-9.columns
+            = input value=model.atTheDoorPrice type='number' required=true placeholder='0.0'
+
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='kind'
+      / SOLO_JAZZ = 0
+      / JACK_AND_JILL = 1
+      / STRICTLY = 2
+      / TEAM = 3
+      / CROSSOVER_JACK_AND_JILL = 4
+      = radio-button value=0 groupValue=model.kind
+      label Solo Jazz
+      br
+      = radio-button value=1 groupValue=model.kind
+      label Jack and Jill
+      br
+      = radio-button value=2 groupValue=model.kind
+      label Strictly
+      br
+      = radio-button value=3 groupValue=model.kind
+      label Team
+      br
+      = radio-button value=4 groupValue=model.kind
+      label Crossover Jack and Jill
+      br
+
+
+    = input checked=model.requiresOrientation type='checkbox'
+    label Require Orientation (Lead / Follow)
+    br
+    = input checked=model.requiresPartner type='checkbox'
+    label Require Partner
+    br
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
