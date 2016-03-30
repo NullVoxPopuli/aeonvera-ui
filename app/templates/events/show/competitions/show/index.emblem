@@ -10,7 +10,7 @@
 
 h4 Registrants with this Competition
 
-/ = models-table data=model.orderLineItems columns=columns showGlobalFilter=false customClasses='' filterWithSelect=false showTableFooter=false showColumnsDropdown=false
+= sortable-table columns=columns model=model data=model.orderLineItems
 
 table
   thead: tr

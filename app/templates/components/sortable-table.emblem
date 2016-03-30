@@ -1,0 +1,17 @@
+/ {{models-table
+/   data=data
+/   columns=columns
+/   showGlobalFilter=false
+/   customClasses=''
+/   filterWithSelect=false
+/   showTableFooter=false
+/   showColumnsDropdown=false}}
+
+table
+  thead: tr
+    each columns as |column|
+      if column.showOn
+        th = column.title
+  tbody
+    each data as |item|
+      / tr = yield item
