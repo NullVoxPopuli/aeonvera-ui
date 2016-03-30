@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     return Ember.isPresent(this.get('errors'));
   }),
 
-  firstError: Ember.computed('errors.@each', function(){
+  firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
 
     return firstErrorObject.message || firstErrorObject.detail;

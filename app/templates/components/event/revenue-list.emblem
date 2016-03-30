@@ -22,18 +22,9 @@ table
     td = to-usd totalPaidAmount
     td = to-usd totalAmountReceived
     td = to-usd totalFeeAmount
-table
-  thead
-    tr
-      th: a click="(action 'toggleSort' 'createdAt')" Time {{createdSort}}
-      th: a click="(action 'toggleSort' 'paidAmount')" Gross Paid {{grossSort}}
-      th: a click="(action 'toggleSort' 'netAmountReceived')" Net Amount Received {{netSort}}
-      th: a click="(action 'toggleSort' 'totalFeeAmount')" Fees {{feeSort}}
-
-  tbody
-    each sortedOrders as |order|
-      tr
-        td = date-with-format order.createdAt 'lll'
-        td = to-usd order.paidAmount
-        td = to-usd order.netAmountReceived
-        td = to-usd order.totalFeeAmount
+    
+= sortable-table columns=columns data=filteredOrders as |order|     
+  td = date-with-format order.createdAt 'lll'
+  td = to-usd order.paidAmount
+  td = to-usd order.netAmountReceived
+  td = to-usd order.totalFeeAmount

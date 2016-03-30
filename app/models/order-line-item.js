@@ -27,7 +27,7 @@ export default DS.Model.extend({
     This is never received from the server, but will be set upon
     an attempt to delete an order-line-item. The use case for this
     is only when deleting a previously persisted order-line-item when
-    the order was created on a non-logged-in account. 
+    the order was created on a non-logged-in account.
   */
   paymentToken: DS.attr('string'),
 

@@ -1,12 +1,15 @@
 import Ember from 'ember';
-import Sortable from 'aeonvera/mixins/components/sortable-helpers';
 
-export default Ember.Component.extend(Sortable, {
+export default Ember.Component.extend( {
   startTime: null,
   endTime: null,
 
-  sortedOrders: Ember.computed.sort('filteredOrders', 'sortProps'),
-  sortProps: ['createdAt:desc'],
+  columns: [
+    { property: 'createdAt', title: 'Time' },
+    { property: 'paidAmount', title: 'Gross Paid' },
+    { property: 'netAmountReceived', title: 'Net Amount Received' },
+    { property: 'totalFeeAmount', title: 'Fees' }
+  ],
 
   totalPaidAmount: function () {
     let orders = this.get('filteredOrders');
@@ -55,20 +58,4 @@ export default Ember.Component.extend(Sortable, {
 
     return filtered;
   }.property('model', 'startTime', 'endTime'),
-
-  createdSort: function () {
-    return this._sortIndicator('createdAt');
-  }.property('sortProps'),
-
-  grossSort: function () {
-    return this._sortIndicator('paidAmount');
-  }.property('sortProps'),
-
-  netSort: function () {
-    return this._sortIndicator('netAmountReceived');
-  }.property('sortProps'),
-
-  feeSort: function () {
-    return this._sortIndicator('totalFeeAmount');
-  }.property('sortProps'),
 });

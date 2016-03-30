@@ -1,15 +1,20 @@
 import Ember from 'ember';
-import Sortable from 'aeonvera/mixins/components/sortable-helpers';
-export default Ember.Component.extend(Sortable, {
+
+export default Ember.Component.extend({
   nameContains: null,
 
   // 0 - all, 1 - members, 2 - nonmembers
   showMembers: 0,
 
-  sortedMemberships: Ember.computed.sort('memberships', 'sortProps'),
-  sortProps: ['expiresAt:desc'],
+  columns: [
+    { property: 'member.name', title: 'Name' },
+    { property: 'member.email', title: 'Email', sort: false },
+    { property: 'current', title: 'Current' },
+    { property: 'startDate', title: 'Member Since' },
+    { property: 'expiresAt', title: 'Membership Expires At' }
+  ],
 
-  memberships: function () {
+  memberships: Ember.computed('model', 'nameContains', 'showMembers', function () {
     let model = this.get('model');
     let nameContains = this.get('nameContains');
     let showMembers = this.get('showMembers');
@@ -33,22 +38,6 @@ export default Ember.Component.extend(Sortable, {
 
       return (containsName && matchesMemberFilter);
     });
-  }.property('model', 'nameContains', 'showMembers'),
-
-  nameSort: function () {
-    return this._sortIndicator('member.name');
-  }.property('sortProps'),
-
-  currentSort: function () {
-    return this._sortIndicator('current');
-  }.property('sortProps'),
-
-  startDateSort: function () {
-    return this._sortIndicator('startDate');
-  }.property('sortProps'),
-
-  expiresAtSort: function () {
-    return this._sortIndicator('expiresAt');
-  }.property('sortProps'),
+  })
 
 });

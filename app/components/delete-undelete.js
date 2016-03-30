@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'span',
 
-  deleteLabel: Ember.computed('model', function(){
-    return 'Delete this ' + this.get('model.klass')
+  deleteLabel: Ember.computed('model', function() {
+    return 'Delete this ' + this.get('model.klass');
   }),
 
   actions: {

@@ -21,6 +21,7 @@ export default DS.Model.extend({
   //       they are on the server: buyer_
   userEmail: DS.attr('string'),
   userName: DS.attr('string'),
+
   // buyerEmail: DS.attr('string'),
   // buyerName: DS.attr('string'),
 

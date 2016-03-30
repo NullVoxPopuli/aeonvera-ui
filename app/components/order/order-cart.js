@@ -9,12 +9,12 @@ export default Ember.Component.extend({
   /*
     Handle optional parameters for editing an order
   */
-  didInsertElement(){
+  didInsertElement() {
     this._super(...arguments);
     let token = this.get('token');
     let order = this.get('order');
     this.set('cart.token', token);
-    if (Ember.isPresent(order)){
+    if (Ember.isPresent(order)) {
       this.set('cart.order', order);
       this.set('cart.email', order.get('userEmail'));
     }
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
       this.get('cart').checkout().then(record => {
         let id = record.get('id');
         let token = record.get('paymentToken');
-        this.get('router').transitionTo('register.checkout', id, {queryParams: { token: token }});
+        this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
         this.set('resetCheckoutButton', true);
       }, error => {
         // because the checkout request isn't using ember-data,

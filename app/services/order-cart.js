@@ -17,7 +17,7 @@ export default Ember.Service.extend(RandomString, {
     return this.get('userFirstName') + ' ' + this.get('userLastName');
   }),
 
-  userEmail: Ember.computed('session.currentUser', 'email', function(){
+  userEmail: Ember.computed('session.currentUser', 'email', function() {
     let email = this.get('email');
     if (!Ember.isPresent(email)) {
       let userEmail = this.get('session.currentUser.email');
@@ -27,11 +27,11 @@ export default Ember.Service.extend(RandomString, {
     return email;
   }),
 
-  syncEmail: Ember.observer('userEmail', function(){
+  syncEmail: Ember.observer('userEmail', function() {
     this.set('currentOrder.userEmail', this.get('userEmail'));
   }),
 
-  syncName: Ember.observer('userName', function(){
+  syncName: Ember.observer('userName', function() {
     this.set('currentOrder.userName', this.get('userName'));
   }),
 
@@ -53,8 +53,7 @@ export default Ember.Service.extend(RandomString, {
       let user = this.get('session.currentUser');
       let orderId = this.get('orderId');
 
-
-      if (Ember.isPresent(orderId)){
+      if (Ember.isPresent(orderId)) {
         order = this.get('store').peekRecord('order', orderId);
       }
 
@@ -68,9 +67,9 @@ export default Ember.Service.extend(RandomString, {
       }
 
       let token = this.get('token');
-      if (Ember.isBlank(user)){
+      if (Ember.isBlank(user)) {
         order.set('paymentToken', this.randomString('order', 128));
-      } else if (Ember.isPresent(token)){
+      } else if (Ember.isPresent(token)) {
         order.set('paymentToken', token);
       }
 
@@ -93,15 +92,15 @@ export default Ember.Service.extend(RandomString, {
 
   cancel() {
     let order = this.get('order');
-    if (order.get('isNew')){
+    if (order.get('isNew')) {
       order.unloadRecord();
     } else {
       order.destroyRecord();
       order.save();
     }
+
     this.set('order', null);
   },
-
 
   // unfortunately, ember / JSON API doesn't have a way to
   // send multiple records at a time -- which is what we need
@@ -140,7 +139,7 @@ export default Ember.Service.extend(RandomString, {
         url: config.host + url,
         data: jsonPayload,
         beforeSend: xhr => {
-          xhr.setRequestHeader("Authorization", "Bearer " + authToken);
+          xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
         }
       }).then(response => {
         let id = response.data.id;
@@ -149,7 +148,7 @@ export default Ember.Service.extend(RandomString, {
 
         // For authorizing edits, we need to add the token to the URL
         // luckily, we have it bound already
-        if (Ember.isPresent(token)){
+        if (Ember.isPresent(token)) {
           order.set('paymentToken', token);
         }
 

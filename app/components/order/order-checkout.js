@@ -7,9 +7,9 @@ export default Ember.Component.extend({
   /*
     for unauthenticated orders
   */
-  _setOrderTokenIfPresent(){
+  _setOrderTokenIfPresent() {
     let token = this.get('token');
-    if (Ember.isPresent(token)){
+    if (Ember.isPresent(token)) {
       this.set('order.paymentToken', this.get('token'));
     }
   },
@@ -18,8 +18,6 @@ export default Ember.Component.extend({
     finishedOrder() {
       this.get('router').transitionTo('register.thankyou');
     },
-
-
 
     /*
       the params here is the response from the stripe-checkout script.
@@ -36,6 +34,7 @@ export default Ember.Component.extend({
       let order = this.get('model');
       order.set('checkoutToken', token);
       this._setOrderTokenIfPresent();
+
       // by saving, the server is going to attempt to charge the card,
       //
       // if nothing has gone wrong with the payment

@@ -9,9 +9,13 @@
 
 table
   thead: tr
-    each columns as |column|
+    each evaluatedColumns as |column|
       if column.showOn
-        th = column.title
+        th
+          if (is-equal column.sort false)
+            = column.title
+          else
+            a click="(action 'toggleSort' column.property)" {{column.title}} {{column.sortIndicator}}
   tbody
-    each data as |item|
-      / tr = yield item
+    each sortedData as |item|
+      tr = yield item
