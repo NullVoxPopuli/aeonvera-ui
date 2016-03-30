@@ -1,12 +1,5 @@
-link-to 'events.show.packages' classNames='button secondary' 
-  span Back
-  
-link-to 'events.show.packages.show.edit' classNames='button'
-  span Edit
+= model/edit-header title=model.name editPath='events.show.packages.show.edit'
 
-= delete-undelete model=model  
-
-  
 h4 Registrations with this Package
 table
   thead: tr

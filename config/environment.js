@@ -32,6 +32,14 @@ module.exports = function(environment) {
       accessToken: 'ca10480ec923459abdbe39a95c1181d9'
     },
 
+    torii: {
+      providers: {
+        'stripe-connect': {
+          apiKey: process.env.STRIPE_CLIENT_ID
+        }
+      }
+    },
+
     localSettings: {
       serializer: 'json',
       adapter: 'local-storage',
@@ -82,6 +90,8 @@ module.exports = function(environment) {
     ENV['ember-simple-auth-token']['serverTokenEndpoint'] =
       'http://swing.vhost:3000/api/users/sign_in';
 
+    ENV.torii.providers['stripe-connect'].apiKey = ENV.stripe.clientId;
+    ENV.torii.providers['stripe-connect'].redirectUri = 'http://swing.vhost:4200';
 
     ENV['ember-cli-mirage'] = {
       enabled: false
@@ -94,16 +104,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.torii = {
-      providers: {
-        'stripe-connect': {
-          apiKey: ENV.stripe.clientId,
-          redirectUri: 'http://swing.vhost:4200'
-        }
-      }
-    };
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'staging'){
@@ -117,6 +119,9 @@ module.exports = function(environment) {
 
     ENV['ember-simple-auth-token']['serverTokenEndpoint'] =
       'https://aeonvera-staging.work/api/users/sign_in';
+
+    ENV.torii.providers['stripe-connect'].redirectUri = ENV.host;
+
 
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
@@ -158,6 +163,8 @@ module.exports = function(environment) {
       - I think this only matters during build-time
     */
     ENV.stripe.clientId = process.env.STRIPE_CLIENT_ID;
+    ENV.torii.providers['stripe-connect'].redirectUri = ENV.host;
+
 
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {

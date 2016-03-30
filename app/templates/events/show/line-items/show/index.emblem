@@ -1,11 +1,4 @@
-link-to 'events.show.a-la-carte-items' classNames='button secondary' 
-  span Back
-  
-link-to 'events.show.a-la-carte-items.show.edit' classNames='button'
-  span Edit
-
-= delete-undelete model=model  
-
+= model/edit-header title=model.name editPath='events.show.line-items.show.edit'
   
 h4 Registrations that purchased {{model.name}}
 table

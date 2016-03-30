@@ -167,7 +167,7 @@ Router.map(function() {
           });
         });
 
-        this.route('a-la-carte-items', function() {
+        this.route('line-items', function() {
           this.route('new');
           this.route('show', {
             path: ':line_item_id',

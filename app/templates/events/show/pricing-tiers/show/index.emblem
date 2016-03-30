@@ -1,10 +1,5 @@
-link-to 'events.show.pricing-tiers' classNames='button secondary' 
-  span Back
+= model/edit-header title=(tier-name model) editPath='events.show.pricing-tiers.show.edit'
 
-link-to 'events.show.pricing-tiers.show.edit' classNames='button'
-  span Edit
-
-= delete-undelete model=model  
 
   
 h4 Registrations at this pricing tier

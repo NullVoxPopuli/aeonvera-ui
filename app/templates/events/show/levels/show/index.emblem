@@ -1,11 +1,4 @@
-link-to 'events.show.levels' classNames='button secondary' 
-  span Back
-
-link-to 'events.show.levels.show.edit' classNames='button'
-  span Edit
-
-= delete-undelete model=model  
-
+= model/edit-header title=model.name editPath='events.show.levels.show.edit'
   
 h4 Registrations with this Level
 table

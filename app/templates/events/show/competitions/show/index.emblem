@@ -1,13 +1,4 @@
-/ br
-/ link-to 'events.show.competitions' classNames='button small secondary'
-/   span Back
-.inline-list.page-header-list
-  li
-    link-to 'events.show.competitions.show.edit' classNames='button small'
-      span Edit
-  li = page-header text=model.name
-
-
+= model/edit-header title=model.name editPath='events.show.competitions.show.edit'
 h4 Registrants with this Competition
 
 = sortable-table columns=columns model=model data=model.orderLineItems as |orderLineItem|

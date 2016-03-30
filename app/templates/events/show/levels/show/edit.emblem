@@ -1,1 +1,16 @@
+= page-header text=model.name
 = event/level/edit-form model=model parent=model.event
+
+br
+br
+br
+br
+br
+br
+br
+br
+.row
+  .small-12.columns
+    .right
+      ul.button-group
+        li: = delete-undelete model=model

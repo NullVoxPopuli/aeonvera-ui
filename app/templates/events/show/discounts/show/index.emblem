@@ -1,11 +1,4 @@
-link-to 'events.show.discounts' classNames='button secondary' 
-  span Back
-  
-link-to 'events.show.discounts.show.edit' classNames='button'
-  span Edit
-
-= delete-undelete model=model  
-
+= model/edit-header title=model.name editPath='events.show.discounts.show.edit'
   
 h4 Registrations with this Discount
 table
