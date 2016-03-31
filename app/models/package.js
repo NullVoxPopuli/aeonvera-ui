@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Purchasable from 'aeonvera/models/purchasable';
 
-export default DS.Model.extend({
+export default Purchasable.extend({
   name: DS.attr('string'),
   initialPrice: DS.attr('number'),
   attendeeLimit: DS.attr('number'),

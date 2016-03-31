@@ -30,6 +30,7 @@ form submit='save'
       label
         span Require Student ID?
 
+
   .row
     .small-12.columns
       .right
@@ -37,3 +38,8 @@ form submit='save'
           li: button.secondary click='cancel' Cancel
           li: button disabled=isDirty  title=submitTitle click='save' Save
         / TODO: figure out a nice way to handle save/cancel positioning
+
+  hr
+
+  unless model.isNew
+    = event/discount/restraint-editor model=model

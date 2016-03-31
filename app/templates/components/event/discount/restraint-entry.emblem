@@ -1,0 +1,18 @@
+if isEditing
+  .row
+    .columns.small-2
+      span Kind
+    .columns.small-6
+      span Select
+    .columns.small-4
+      a.button.tiny.success Save
+else
+
+  .row
+    .columns.small-2
+      = restraint.restrictedTo.klass
+    .columns.small-6
+      = restraint.restrictedTo.name
+    .columns.small-4
+      a.button.tiny click='edit' Edit
+      a.button.alert.tiny click='delete' Remove

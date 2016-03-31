@@ -1,25 +1,9 @@
 = model/edit-header title=model.name editPath='events.show.discounts.show.edit'
-  
+
 h4 Registrations with this Discount
-table
-  thead: tr
-    th Name
-    / lead or follow
-    th
-    th Package
-    th Payment
-    th Registered At
-  tbody
-    / if (is-present model)
-    each model.registrations as |registration|
-      tr
-        td
-          link-to 'events.show.registrations.show' registration.id
-            = registration.attendeeName
-        td = registration.danceOrientation
-        td = registration.packageName
-        / TODO: if unpaid, color this cell red
-        td = registration.paymentStatus
-        td = date-with-format registration.registeredAt 'LLL'
-    / else
-    /   tr: td colspan='5' No one has registered with this level
+= sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
+  td = attendance-link id=orderLineItem.order.attendance.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+  td
+    if orderLineItem.order.paid
+      = date-with-format orderLineItem.order.paymentReceivedAt 'LLL'
+  td = date-with-format orderLineItem.order.createdAt 'LLL'

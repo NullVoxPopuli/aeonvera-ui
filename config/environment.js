@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     APP: {},
     modulePrefix: 'aeonvera',
+    podModulePrefix: 'aeonvera/pods',
     i18n: {
       defaultLocale: 'en'
     },

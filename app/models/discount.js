@@ -27,7 +27,8 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
     async: true,
   }),
 
-  // restraints: DS.hasMany('restraint')
+  orderLineItems: DS.hasMany('order-line-item'),
+  restraints: DS.hasMany('restraint'),
 
   name: function() {
     return this.get('code');
