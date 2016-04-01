@@ -3,5 +3,5 @@ import Show from 'aeonvera/mixins/routes/crud/events/show';
 
 export default Ember.Route.extend(Show, {
   modelName: 'discount',
-  include: 'order_line_items.order,restraints'
+  include: 'order_line_items.order,restraints.restriction_for,restraints.restricted_to'
 });

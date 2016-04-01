@@ -2,7 +2,7 @@ h4 Restrictions
 p.small By default, this discount is allowed on everything. By adding a single constraint, the discount will <em>only</em> work on the selected item(s).
 
 each restraints as |restraint|
-  = event/discount/restraint-entry restraint=restraint
+  = event/discount/restraint-entry restraint=restraint eventId=eventId model=model
 br
 
 .row.text-center

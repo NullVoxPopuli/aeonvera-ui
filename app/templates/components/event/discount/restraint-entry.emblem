@@ -1,11 +1,30 @@
 if isEditing
+  = error-header errors=restraint.errors
   .row
-    .columns.small-2
-      span Kind
-    .columns.small-6
-      span Select
+    .columns.small-8
+      .row
+        = error-field-wrapper classes='no-padding columns small-12 medium-5' errors=errors field=''
+          .row.collapse
+            .small-4.medium-2.columns: span.prefix Kind
+            .small-8.medium-10.columns
+              = x-select value=selecetedType classNames='width-auto'
+                each kindOptions as |option|
+                  = x-option value=option
+                    = option
+
+        = error-field-wrapper classes='no-padding columns small-12 medium-7' errors=restraint.errors field='restrictable'
+          label
+            .row.collapse
+              .small-4.medium-2.columns: span.prefix Item
+              .small-8.medium-10.columns
+                = x-select value=restraint.restrictedTo classNames='width-auto'
+                  option Select Item
+                  each availableOptions as |option|
+                    = x-option value=option
+                      = option.name
     .columns.small-4
-      a.button.tiny.success Save
+      a.button.tiny click='cancel' Cancel
+      a.button.tiny.success click='save' Save
 else
 
   .row

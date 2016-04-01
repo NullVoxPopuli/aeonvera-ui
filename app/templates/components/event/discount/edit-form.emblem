@@ -42,4 +42,4 @@ form submit='save'
   hr
 
   unless model.isNew
-    = event/discount/restraint-editor model=model
+    = event/discount/restraint-editor model=model eventId=parent.id
