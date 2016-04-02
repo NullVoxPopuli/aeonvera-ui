@@ -32,7 +32,7 @@ export default Ember.Component.extend({
     save(){
       let restraint = this.get('restraint');
       restraint.set('restrictionFor', this.get('model'));
-      restraint.save(record => {
+      restraint.save().then(record => {
         this.set('isEditing', false);
       }, error => {
         // this.set('errors', error.errors);

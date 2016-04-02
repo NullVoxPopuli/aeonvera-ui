@@ -34,8 +34,11 @@ export default DS.Model.extend({
   priceNeedsChanging: function() {
     let lineItem = this.get('lineItem');
     let size = this.get('size');
-    let sizePrice = lineItem.priceForSize(size);
-    this.set('price', sizePrice);
+    let sizeMethod = lineItem.priceForSize
+    if (Ember.isPresent(sizeMethod)){
+      let sizePrice = sizeMethod(size);
+      this.set('price', sizePrice);
+    }
   }.observes('size'),
 
   total: function() {
