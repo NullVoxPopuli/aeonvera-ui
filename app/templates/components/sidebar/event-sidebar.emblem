@@ -1,45 +1,41 @@
-li
-  h5
-    link-to 'events.show' model.id
-      = model.name
-li
-  link-to 'event-at-the-door' event.id
-    span At the Door
+li: h5: link-to 'events.show' model.id
+  = model.name
+li: link-to 'event-at-the-door' event.id
+  span At the Door
+
 li.divider
+
 li View
-li
-  link-to 'events.show.registrations'
-    span Registrations
-li
-  link-to 'events.show.unpaid-registrations'
-    span Unpaid Registrations
-li
-  link-to 'events.show.cancelled-registrations'
-    span Cancelled Registrations
-li.divider
-li
-  / this one should be handled by the server, as we have
-  / no need for print-only styles here
-  a href='/hosted_events/{{event.id}}/packet_printout'
-    span Packet Printout
-li
-  link-to 'events.show.volunteers'
-    span Volunteers
-li
-  link-to 'events.show.housing'
-    span Housing
+
+li: link-to 'events.show.registrations'
+  span Registrations
+li: link-to 'events.show.unpaid-registrations'
+  span Unpaid Registrations
+li: link-to 'events.show.cancelled-registrations'
+  span Cancelled Registrations
+li: link-to 'register' event.domain
+  span Registration Form
 
 li.divider
+
+/ this one should be handled by the server, as we have
+/ no need for print-only styles here
+li: a href='/hosted_events/{{event.id}}/packet_printout'
+  span Packet Printout
+li: link-to 'events.show.volunteers'
+  span Volunteers
+li: link-to 'events.show.housing'
+  span Housing
+
+li.divider
+
 li Reporting
-li
-  link-to 'events.show.revenue'
-    span Revenue
-li
-  link-to 'events.show.charts'
-    span Charts
+li: link-to 'events.show.revenue'
+  span Revenue
+li: link-to 'events.show.charts'
+  span Charts
 
 li.divider
 
-li
-  link-to 'events.show.manage' model.id classNames='button expand'
-    span Manage
+li: link-to 'events.show.manage' model.id classNames='button expand'
+  span Manage

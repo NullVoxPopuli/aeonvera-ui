@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
-
+  event: Ember.computed.alias('model'),
+  
   // TODO: maybe eventually make requiring to login optional?
   mustLogin: Ember.computed('session.isAuthenticated', function() {
     let authed = this.get('session.isAuthenticated');
