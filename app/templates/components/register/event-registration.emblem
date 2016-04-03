@@ -45,18 +45,20 @@ else
           td = to-usd shirt.currentPrice
           td = shirt.name
 
-    h3 Housing
-    = radio-button value=0 groupValue=housingResponse
-    label: span I do not need housing
-    br
 
-    = radio-button value=1 groupValue=housingResponse
-    label: span I can provide housing
-    br
+    if event.isHousingEnabled
+      h3 Housing
+      = radio-button value=0 groupValue=housingResponse
+      label: span I do not need housing
+      br
 
-    = radio-button value=2 groupValue=housingResponse
-    label: span I would like to request housing
-    br
+      = radio-button value=1 groupValue=housingResponse
+      label: span I can provide housing
+      br
+
+      = radio-button value=2 groupValue=housingResponse
+      label: span I would like to request housing
+      br
 
 
     h3 Basic Information

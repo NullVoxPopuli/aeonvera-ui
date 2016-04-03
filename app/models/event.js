@@ -20,6 +20,7 @@ export default Host.extend(RegistrationOpens, {
   volunteerDescription: DS.attr('string'),
 
   housingStatus: DS.attr('boolean'),
+  isHousingEnabled: Ember.computed.alias('housingStatus'),
   housingNights: DS.attr(),
 
   allowDiscounts: DS.attr('boolean'),
