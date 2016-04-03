@@ -32,12 +32,4 @@ export default LineItem.extend(LeadsAndFollows, {
     }
   }.property('kind'),
 
-  // requiresPartner: function(){
-  //   return this.get('kind') === 2;
-  // }.property('kind'),
-  //
-  // requiresOrientation: function(){
-  //   let kind = this.get('kind');
-  //   return (kind === 1 || kind === 4)
-  // }.property('kind')
 });

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import Discount from '../models/discount';
 
@@ -29,7 +30,7 @@ export default DS.Model.extend({
   priceNeedsChanging: function() {
     let lineItem = this.get('lineItem');
     let size = this.get('size');
-    let sizeMethod = lineItem.priceForSize
+    let sizeMethod = lineItem.priceForSize;
     if (Ember.isPresent(sizeMethod)){
       let sizePrice = sizeMethod(size);
       this.set('price', sizePrice);

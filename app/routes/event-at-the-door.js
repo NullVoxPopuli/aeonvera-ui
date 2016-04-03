@@ -8,8 +8,6 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    //   let promise = this.store.findRecord('event', params.event_id);
-    //
-    return null;
-  },
+    return this.store.findRecord('event', params.event_id);
+  }
 });

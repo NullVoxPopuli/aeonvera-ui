@@ -4,19 +4,7 @@
       = sidebar/event-at-the-door-sidebar model=event
 
   .large-9.medium-8.columns
-    h2 All Competitions for {{eventName}}
+    h2 All Competitions for {{event.name}}
     each model as |competition|
       h3 = competition.name
-      = eventName
-      span {{eventName}}
-      table
-        thead: tr
-          th Name
-          th Package
-          th Level
-          th Orientation
-          th Owe
-          th Registered At
-        tbody
-          each competition.competitionResponses as |competitionResponse|
-            td competitionResponse.id
+      = component 'event/competition/registered-list' competition=competition

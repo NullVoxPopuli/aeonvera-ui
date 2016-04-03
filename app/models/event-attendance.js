@@ -6,5 +6,4 @@ export default Attendance.extend({
   level: DS.belongsTo('level', {
     async: true,
   }),
-  competitionResponses: DS.hasMany('competitionResponse'),
 });
