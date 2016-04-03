@@ -1,20 +1,32 @@
 if mustLogin
   = register/must-login model=model
 else
+  = order/order-cart host=model token=token order=order
 
-  =page-header text=title
+    =page-header text=title
 
-  if event.askIfLeadingOrFollowing
-    label Leading or Following?
-    = radio-button value="Lead" groupValue=attendance.danceOrientation
-    label Lead
-    = radio-button value="Follow" groupValue=attendance.danceOrientation
-    label Follow
+    if event.askIfLeadingOrFollowing
+      label Leading or Following?
+      = radio-button value="Lead" groupValue=attendance.danceOrientation
+      label Lead
+      = radio-button value="Follow" groupValue=attendance.danceOrientation
+      label Follow
 
-  label Ticket
-  each event.packages as |package|
-    = radio-button value=package.id groupValue=attendance.packageId
-    label
-      span.width-of-80px.inline = to-usd package.currentPrice
-      span = package.name
-    br
+    label Ticket
+    each event.packages as |package|
+      = radio-button value=package groupValue=selectedPackage
+      label
+        span.width-of-80px.inline = to-usd package.currentPrice
+        span = package.name
+      br
+
+
+    label Competitions
+
+    label A la carte
+
+    label Shirts
+
+    label Housing
+
+    label Basic Information

@@ -15,8 +15,8 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    this._setDefaultSortProps();
-    this._evaluateColumnProperties();
+    // this._setDefaultSortProps();
+    // this._evaluateColumnProperties();
   },
 
   _setDefaultSortProps() {

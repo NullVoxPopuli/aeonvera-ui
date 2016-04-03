@@ -85,11 +85,11 @@ export default Ember.Service.extend(RandomString, {
   },
 
   remove(item) {
-    let order = this.get('order');
+    let order = this.get('currentOrder');
     order.removeOrderLineItem(item);
     if (!order.get('hasLineItems')) { this.cancel(); }
   },
-
+  
   cancel() {
     let order = this.get('order');
     if (order.get('isNew')) {
