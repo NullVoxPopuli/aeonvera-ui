@@ -12,7 +12,7 @@ else
       = radio-button value="Follow" groupValue=attendance.danceOrientation
       label Follow
 
-    label Ticket
+    h3 Ticket
     each event.packages as |package|
       = radio-button value=package groupValue=selectedPackage
       label
@@ -21,12 +21,42 @@ else
       br
 
 
-    label Competitions
+    h3 Competitions
+    table
+      each event.competitions as |competition|
+        tr
+          td: a.button.tiny.no-margins click='"add" competition' Add
+          td = to-usd competition.currentPrice
+          td = competition.name
 
-    label A la carte
+    h3 A la carte
+    table
+      each event.lineItems as |lineItem|
+        tr
+          td: a.button.tiny.no-margins click='"add" lineItem' Add
+          td = to-usd lineItem.currentPrice
+          td = lineItem.name
 
-    label Shirts
+    h3 Shirts
+    table
+      each event.shirts as |shirt|
+        tr
+          td: a.button.tiny.no-margins click='"add" shirt' Add
+          td = to-usd shirt.currentPrice
+          td = shirt.name
 
-    label Housing
+    h3 Housing
+    = radio-button value=0 groupValue=housingResponse
+    label: span I do not need housing
+    br
 
-    label Basic Information
+    = radio-button value=1 groupValue=housingResponse
+    label: span I can provide housing
+    br
+
+    = radio-button value=2 groupValue=housingResponse
+    label: span I would like to request housing
+    br
+
+
+    h3 Basic Information

@@ -5,6 +5,11 @@ export default Ember.Component.extend({
   event: Ember.computed.alias('model'),
   cart: Ember.inject.service('order-cart'),
 
+  housingResponse: 0,
+  isWaivingHousing: Ember.computed.equal('housingResponse', 0),
+  isProvidingHousing: Ember.computed.equal('housingResponse', 1),
+  isRequestingHousing: Ember.computed.equal('housingResponse', 2),
+
   selectedPackage: null,
 
 
@@ -32,4 +37,16 @@ export default Ember.Component.extend({
   order: Ember.computed(function() {
     return this.store.createRecord('order');
   }),
+
+  actions: {
+    add: function(item) {
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').add(item);
+    },
+
+    addByQuantity(quantity, item) {
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').add(item, quantity);
+    }
+  }
 });
