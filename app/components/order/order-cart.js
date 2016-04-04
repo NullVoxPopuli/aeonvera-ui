@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
-  orderContainerClasses: 'large-4 medium-4 columns',
+  orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
   errors: [],
   resetCheckoutButton: false,
 

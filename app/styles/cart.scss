@@ -1,0 +1,30 @@
+.fixed-to-top-cart{
+  position: fixed;
+  right: 0;
+  z-index: 100;
+  background: white;
+}
+
+.fixed-cart-window-to-small{
+  top: 45px;
+
+  thead, tbody { display: block; }
+
+  tbody {
+      height: 400px;        /* this should be over-written by javascript */
+      overflow-y: auto;    /* Trigger vertical scroll    */
+      overflow-x: hidden;  /* Hide the horizontal scroll */
+      width: 260px;        /* fix the width to the width of the cart */
+  }
+}
+
+@media #{$medium-up} {
+
+}
+
+ /* min-width 1025px, large screens */
+@media #{$large-up} {
+  .fixed-cart-window-to-small{
+    top: 60px;
+  }
+} /* min-width 1025px, large screens */
