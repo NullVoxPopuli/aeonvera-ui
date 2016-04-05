@@ -2,6 +2,7 @@ import Ember from 'ember';
 import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
+
 export default Ember.Service.extend(RandomString, {
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
@@ -82,14 +83,17 @@ export default Ember.Service.extend(RandomString, {
   add(item, quantity = 1) {
     let order = this.get('currentOrder');
     this.get('order').addLineItem(item, quantity);
+    this._adjustCartMaxHeight();
   },
 
   remove(item) {
     let order = this.get('currentOrder');
     order.removeOrderLineItem(item);
     if (!order.get('hasLineItems')) { this.cancel(); }
+    this._adjustCartMaxHeight();
+
   },
-  
+
   cancel() {
     let order = this.get('order');
     if (order.get('isNew')) {
@@ -100,6 +104,28 @@ export default Ember.Service.extend(RandomString, {
     }
 
     this.set('order', null);
+  },
+
+
+  _adjustCartMaxHeight(){
+    let cart = jQuery('.fixed-to-top-cart');
+    let windowHeight = jQuery(window).height();
+
+    // cart might not be rendered right now
+    if (cart.length === 0){
+      return;
+    }
+
+    let cartTop = cart.position().top;
+    let cartHeight = cart.height();
+    let cartBottom = cartTop + cartHeight;
+    let cartTBody = cart.find('tbody');
+    let cartTBodyHeight = cartTBody.height();
+    let cartUiHeight = cartHeight - cartTBodyHeight;
+    let cartUiHeightWithTop = cartUiHeight + cartTop;
+    let availableHeight = windowHeight - cartUiHeightWithTop;
+
+    cartTBody.css({maxHeight: availableHeight + 'px'});
   },
 
   // unfortunately, ember / JSON API doesn't have a way to

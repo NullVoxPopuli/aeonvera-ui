@@ -1,5 +1,4 @@
 import Ember from 'ember';
-// import ResizeAware from 'ember-resize/mixins/resize-aware';
 import ResizeMixin from 'ember-resize-mixin/main';
 
 export default Ember.Component.extend(ResizeMixin, {
@@ -33,25 +32,7 @@ export default Ember.Component.extend(ResizeMixin, {
     for this resize, we need to get the height from the window.
   */
   debouncedDidResize: function(){
-    console.log('watwat');
-    let cart = this.$('.fixed-to-top-cart');
-    let windowHeight = this.$(window).height();
-
-    // cart might not be rendered right now
-    if (cart.length === 0){
-      return;
-    }
-
-    let cartTop = cart.position().top;
-    let cartHeight = cart.height();
-    let cartBottom = cartTop + cartHeight;
-    let cartTBody = cart.find('tbody');
-    let cartTBodyHeight = cartTBody.height();
-    let cartUiHeight = cartHeight - cartTBodyHeight;
-    let cartUiHeightWithTop = cartUiHeight + cartTop;
-    let availableHeight = windowHeight - cartUiHeightWithTop;
-
-    cartTBody.css({maxHeight: availableHeight + 'px'});
+    this.get('cart')._adjustCartMaxHeight();
   }.on('resize'),
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {

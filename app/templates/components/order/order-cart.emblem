@@ -33,7 +33,7 @@
         tfoot
           if cart.order.shouldApplyFee
             tr
-              th = to-usd cart.order.subTotal
+              th.min-width-100 = to-usd cart.order.subTotal
               th Sub Total
             tr
               th = to-usd cart.order.fee
