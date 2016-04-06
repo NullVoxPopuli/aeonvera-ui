@@ -247,6 +247,8 @@ Router.map(function() {
     });
   });
 
+  this.route('event-not-found');
+
   this.route('upcoming-events');
   this.route('communities');
 

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import Host from '../models/host';
 import RegistrationOpens from '../mixins/models/registration-opens';

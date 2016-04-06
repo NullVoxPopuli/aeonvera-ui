@@ -74,10 +74,10 @@ export default {
       alreadyRun = true;
     }
 
-    Ember.onerror = function (error) {
-      Ember.Logger.error(error);
-
-      // displayError(error);
-    };
+    // Ember.onerror = function (error) {
+    //   Ember.Logger.error(error);
+    //
+    //   // displayError(error);
+    // };
   },
 };

@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   model: function (params) {
     let subdomain = params.subdomain;
 
-    return this.get('store').findRecord('host', subdomain, {
+    let promise = this.get('store').findRecord('host', subdomain, {
       adapterOptions: {
         query: {
           subdomain: subdomain,
@@ -13,6 +13,22 @@ export default Ember.Route.extend({
         },
       },
     });
+
+    return promise;
   },
 
+
+  actions: {
+    error(reason, transition){
+      // all errors are json api-formatted
+      let status = reason.errors[0].status;
+      if (status === '404'){
+        transition.abort();
+        this.transitionTo('event-not-found');
+      } else {
+        // panic?
+        alert('a registration error has occurred, please notify support');
+      }
+    }
+  }
 });

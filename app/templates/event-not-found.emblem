@@ -1,0 +1,20 @@
+br
+br
+
+.text-center
+  h1 Gasp!
+  h4: em the event you were looking for could not be found.
+  br
+  br
+  .row
+    .columns.small-12.medium-4.medium-offset-4
+      p Please double check the spelling of the event in the URL. Note that events that have ended do not have accessible registration pages.
+    
+  span
+    em If you believe the page you're looking for should exist, please email {{links/mail-support-link}}.
+    
+br
+br
+br
+br
+br
