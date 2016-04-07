@@ -23,9 +23,18 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-  attendance: function () {
+  attendance: Ember.computed(function(){
     return this.store.createRecord('event-attendance');
-  }.property(),
+  }),
+
+  housingRequest: Ember.computed(function(){
+    return this.store.createRecord('housing-request');
+  }),
+
+  housingProvision: Ember.computed(function(){
+    return this.store.createRecord('housing-provision');
+  }),
+
 
   // TODO: remove other packages, or provide an option on the event
   //       to force only registering for one
