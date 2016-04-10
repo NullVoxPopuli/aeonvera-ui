@@ -1,0 +1,8 @@
+if (is-present event.competitions)
+  h3 Competitions
+  table
+    each event.competitions as |competition|
+      tr
+        td: a.button.tiny.no-margins click='"add" competition' Add
+        td = to-usd competition.currentPrice
+        td = competition.name

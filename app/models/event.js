@@ -43,6 +43,7 @@ export default Host.extend(RegistrationOpens, {
   openingTier: DS.belongsTo('openingTier'),
   lineItems: DS.hasMany('lineItems'),
   shirts: DS.hasMany('shirts'),
+  customFields: DS.hasMany('custom-field'),
 
   registrationOpensAt: function() {
     return this.get('openingTier.date');

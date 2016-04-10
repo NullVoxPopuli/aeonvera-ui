@@ -1,0 +1,8 @@
+if (is-present event.shirts)
+  h3 Shirts
+  table
+    each event.shirts as |shirt|
+      tr
+        td: a.button.tiny.no-margins click='"add" shirt' Add
+        td = to-usd shirt.currentPrice
+        td = shirt.name

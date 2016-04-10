@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import Discount from '../models/discount';
+import Validator from '../mixins/model-validator';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Validator, {
   lineItem: DS.belongsTo('purchasable', {
     async: true,
     polymorphic: true,
@@ -45,4 +46,39 @@ export default DS.Model.extend({
     return total;
   }.property('price', 'quantity'),
 
+
+  validations: {
+    lineItem: { presence: true },
+    order: { presence: true },
+    quantity: { presence: true },
+    price: { presence: true },
+    
+    partnerName: {
+      custom: function(key, value, model){
+        if (model.get('lineItem.isCompetition')){
+          if (model.get('lineItem.requiresPartner')){
+            return Ember.isPresent(model.get('partnerName'));
+          }
+        }
+        // always return true, this is not a required field
+        return true;
+      }
+    },
+
+    danceOrientation: {
+      custom: function(key, value, model){
+        if (model.get('lineItem.isCompetition')){
+          if (model.get('lineItem.requiresOrientation')){
+            return Ember.isPresent(model.get('danceOrientation'));
+          }
+        }
+        // always return true, this is not a required field
+        return true;
+      }
+    },
+
+    size: {
+
+    }
+  }
 });

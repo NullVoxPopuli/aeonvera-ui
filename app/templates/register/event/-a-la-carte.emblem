@@ -1,0 +1,8 @@
+if (is-present event.lineItems)
+  h3 A la carte
+  table
+    each event.lineItems as |lineItem|
+      tr
+        td: a.button.tiny.no-margins click='"add" lineItem' Add
+        td = to-usd lineItem.currentPrice
+        td = lineItem.name

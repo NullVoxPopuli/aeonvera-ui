@@ -13,6 +13,10 @@ export default Ember.Service.extend({
     return this.get('session.data.authenticated.id');
   }),
 
+  name: Ember.computed('user', function(){
+    return this.get('user.name');
+  }),
+
   user: Ember.computed('session.data.authenticated.token', function() {
     const token = this.get('session.data.authenticated.token');
     if (!Ember.isEmpty(token)) {

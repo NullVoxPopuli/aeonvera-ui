@@ -14,7 +14,7 @@
               td
                 = item.lineItem.name
                 br
-                if item.isCompetition
+                if item.lineItem.isCompetition
                   if item.lineItem.requiresPartner
                     = input type='text' value=item.partnerName placeholder='Partner Name'
 

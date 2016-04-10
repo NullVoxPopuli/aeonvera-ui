@@ -26,13 +26,16 @@ export default DS.Model.extend(
 
     eventId: DS.attr('string'),
 
-    orders: DS.hasMany('order', {
-      async: true,
-    }),
+    orders: DS.hasMany('order', { async: true }),
+    unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
 
-    unpaidOrder: DS.belongsTo('unpaidOrder', {
-      async: true,
-    }),
+    // address stuff
+    phoneNumber: DS.attr('string'),
+    address1: DS.attr('string'),
+    address2: DS.attr('string'),
+    city: DS.attr('string'),
+    state: DS.attr('string'),
+    zip: DS.attr('string'),
 
     hasUnpaidOrder: function () {
       return Ember.isPresent(this.get('unpaidOrder'));

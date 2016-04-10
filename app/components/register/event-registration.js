@@ -24,6 +24,8 @@ export default Ember.Component.extend({
   }).readOnly(),
 
   attendance: Ember.computed(function(){
+    // TODO: get current attendance for current user.
+    //       include order, housing request, housing provision, etc
     return this.store.createRecord('event-attendance');
   }),
 

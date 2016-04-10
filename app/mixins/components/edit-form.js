@@ -34,7 +34,7 @@ export default Ember.Mixin.create(EditModel, {
     save: function () {
       let model = this.get('model');
 
-      model.save().then((record) => {
+      model.save().then(record => {
         this.get('flashMessages').success(
           'Saved Successfully'
         );
@@ -43,7 +43,6 @@ export default Ember.Mixin.create(EditModel, {
         let recordId = record.get('id');
         this.get('router').transitionTo(path, parentId, recordId);
       }, failure => {
-
         this.get('flashMessages').alert(
           'Saving failed. ' + failure
         );

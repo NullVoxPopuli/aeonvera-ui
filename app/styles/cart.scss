@@ -1,45 +1,55 @@
-.fixed-to-top-cart{
-  position: fixed;
-  top: 45px;
-  right: 0;
-  z-index: 100;
-  background: white;
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-
-    tbody > tr, thead > tr{width:100%;}
-    tbody, thead{display: block;}
-    tbody {
-        overflow-y: auto;
-        overflow-x: none;
-        width: 100%;
-        tr:nth-of-type(even) {
-          background: white;
-        }
-    }
-    tfoot{
-      width: 100%;
-      display: block;
+.fixed-to-top-cart {
+  tbody{
+    input{
+      margin-bottom: 0px;
     }
   }
-
-  // tbody > tr, thead > tr{width:100%;}
-  // tbody, thead{display: block;}
-
 }
 
-.fixed-cart-window-to-small{
-  top: 45px;
+@media #{$medium-up} {
+  .fixed-to-top-cart{
+    position: fixed;
+    top: 45px;
+    right: 0;
+    z-index: 100;
+    background: white;
 
-  thead, tbody { display: block; }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
 
-  tbody {
-      max-height: 400px;        /* this should be over-written by javascript */
-      overflow-y: auto;    /* Trigger vertical scroll    */
-      overflow-x: hidden;  /* Hide the horizontal scroll */
+      tbody > tr, thead > tr{width:100%;}
+      tbody, thead{display: block;}
+      tbody {
+          overflow-y: auto;
+          overflow-x: none;
+          width: 100%;
+          tr:nth-of-type(even) {
+            background: white;
+          }
+      }
+      tfoot{
+        width: 100%;
+        display: block;
+      }
+    }
+
+    // tbody > tr, thead > tr{width:100%;}
+    // tbody, thead{display: block;}
+
+  }
+
+  .fixed-cart-window-to-small{
+    top: 45px;
+
+    thead, tbody { display: block; }
+
+    tbody {
+        max-height: 400px;        /* this should be over-written by javascript */
+        overflow-y: auto;    /* Trigger vertical scroll    */
+        overflow-x: hidden;  /* Hide the horizontal scroll */
+    }
   }
 }
 
