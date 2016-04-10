@@ -8,10 +8,6 @@ export default DS.Model.extend(LeadsAndFollows, {
   increaseAfterTotalRegistrants: DS.attr('number'),
   isOpeningTier: DS.attr('boolean'),
 
-  // restraints
-  // allowed_packages
-  // packages?
-
   event: DS.belongsTo('event'),
   attendances: DS.hasMany('attendance'),
 

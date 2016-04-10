@@ -5,4 +5,5 @@ export default Ember.Component.extend(Form, {
   modelName: 'package',
   saveSuccessPath: 'events.show.packages.show', // should be show?
   cancelPath: 'events.show.packages.show',
+  parentAssociation: 'event',
 });

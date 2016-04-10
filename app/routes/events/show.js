@@ -4,11 +4,12 @@ export default Ember.Route.extend({
 
   afterModel: function (model /*, transition */) {
     this._super();
-    this.set('title', model.get('name'));
+    let m = model || this.get('currentModel')
+    this.set('title', m.get('name'));
 
     Ember.run.later(() => {
       var dashboard = this.controllerFor('events/index');
-      dashboard.set('data', model);
+      dashboard.set('data', m);
     });
   },
 

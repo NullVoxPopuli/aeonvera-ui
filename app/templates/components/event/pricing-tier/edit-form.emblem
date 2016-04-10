@@ -2,19 +2,19 @@ form submit='save'
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='increaseBy'
       label
-        span 
+        span
           | Increase Cost of Packages by Amount of Dollars&nbsp;
           = tool-tip message="This affects all packages, but on the edit package screens, you may select for a packge to not abide by any pricing tiers so that the package remains the same price throughout your registration."
         = input value=model.increaseBy placeholder='0' type='number' step='any' required=true
 
-  h4 
+  h4
     | Conditions&nbsp;
     = tool-tip message="The above specified price increase will not be in affect until one of the below conditions is met."
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='increaseAfterDate'
       label
         span Increase After Date
-        = date-time-input value=model.increaseAfterDate
+        = date-time-input model=model field='increaseAfterDate'
 
     .columns.small-12.medium-1
       h5 or

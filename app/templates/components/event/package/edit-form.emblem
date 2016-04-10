@@ -5,18 +5,16 @@ form submit='save'
         span Name
         = input value=model.name placeholder='Dance Only, Full Weekend, etc' type='text' required=true
 
-    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='shortDescription'
-      label Registrants Must: 
-      = radio-button value=1 groupValue=model.requirement
-      label Audition
-      br
-      = radio-button value=2 groupValue=model.requirement
-      label Be Invitated
-      br
-      = radio-button value=0 groupValue=model.requirement
-      label No Restriction
-      br
+  .row
+    = error-field-wrapper  classes='columns small-12' errors=model.errors field='requiresTrack'
+      label
+        = input checked=model.requiresTrack type='checkbox'
+        span Requires Track/Level?
 
+    = error-field-wrapper classes='columns small-12' errors=model.errors field='ignorePricingTiers'
+      label
+        = input checked=model.ignorePricingTiers type='checkbox'
+        span Ignore Pricing Tiers?
   .row
     .small-12.columns
       .right

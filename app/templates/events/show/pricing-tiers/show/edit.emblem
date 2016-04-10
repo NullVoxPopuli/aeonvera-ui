@@ -1,6 +1,6 @@
 = page-header text=(tier-name model)
 
-= event/pricing-tier/edit-form model=model
+= event/pricing-tier/edit-form model=model parent=model.event
 
 
 br
