@@ -1,12 +1,3 @@
-/ {{models-table
-/   data=data
-/   columns=columns
-/   showGlobalFilter=false
-/   customClasses=''
-/   filterWithSelect=false
-/   showTableFooter=false
-/   showColumnsDropdown=false}}
-
 table
   thead: tr
     each evaluatedColumns as |column|

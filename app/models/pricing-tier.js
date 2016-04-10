@@ -13,6 +13,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   // packages?
 
   event: DS.belongsTo('event'),
+  attendances: DS.hasMany('attendance'),
 
   // because a nil value is handled as < 0
   // and we don't want that

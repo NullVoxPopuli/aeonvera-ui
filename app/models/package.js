@@ -14,6 +14,7 @@ export default Purchasable.extend({
   currentPrice: DS.attr('number'),
 
   event: DS.belongsTo('event'),
+  attendances: DS.hasMany('event-attendance'),
 
   totalRegistrants: function () {
     return this.get('numberOfLeads') + this.get('numberOfFollows');

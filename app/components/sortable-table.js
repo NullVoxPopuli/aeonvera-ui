@@ -15,8 +15,8 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    // this._setDefaultSortProps();
-    // this._evaluateColumnProperties();
+    this._setDefaultSortProps();
+    this._evaluateColumnProperties();
   },
 
   _setDefaultSortProps() {
@@ -36,8 +36,10 @@ export default Ember.Component.extend({
         column is rendered
       */
       if (Ember.isPresent(column.showOn)) {
-        let showOn = this.get(column.showOn);
-        column.showOn = showOn;
+        if (typeof(column.showOn) !== 'boolean'){
+          let showOn = this.get(column.showOn);
+          column.showOn = showOn;
+        }
       } else {
         column.showOn = true;
       }

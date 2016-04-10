@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
   parentPath: 'events.show',
   parentIdName: 'event_id',
-  include: '',
+  inclrude: '',
 
   model: function (params) {
     let modelName = this.get('modelName');
