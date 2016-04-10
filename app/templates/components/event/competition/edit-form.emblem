@@ -1,12 +1,12 @@
 form submit='save'
   .row
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='initialPrice'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='name'
       label
         span Name
         = input value=model.name type='text' required='true' placeholder='Strictly Lindy'
 
   .row
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='initialPrice'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='initialPrice'
       label
         span Initial Price
         .row.collapse
@@ -14,7 +14,7 @@ form submit='save'
           .small-9.columns
             = input value=model.initialPrice type='number' required=true placeholder='0.0'
 
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='atTheDoorPrice'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='atTheDoorPrice'
       label
         span Price at the Door
         .row.collapse
@@ -23,7 +23,7 @@ form submit='save'
             = input value=model.atTheDoorPrice type='number' required=true placeholder='0.0'
 
   .row
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='kind'
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='kind'
       / SOLO_JAZZ = 0
       / JACK_AND_JILL = 1
       / STRICTLY = 2
@@ -45,13 +45,13 @@ form submit='save'
       label Crossover Jack and Jill
       br
 
-
-    = input checked=model.requiresOrientation type='checkbox'
-    label Require Orientation (Lead / Follow)
-    br
-    = input checked=model.requiresPartner type='checkbox'
-    label Require Partner
-    br
+    / These are determined by the 'kind' - do we want these customizable?
+    / = input checked=model.requiresOrientation type='checkbox'
+    / label Require Orientation (Lead / Follow)
+    / br
+    / = input checked=model.requiresPartner type='checkbox'
+    / label Require Partner
+    / br
 
   .row
     .small-12.columns
