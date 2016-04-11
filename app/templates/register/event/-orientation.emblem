@@ -1,5 +1,5 @@
 if event.askIfLeadingOrFollowing
-  label Leading or Following?
+  h4 Leading or Following?
   = radio-button value="Lead" groupValue=attendance.danceOrientation
   label Lead
   = radio-button value="Follow" groupValue=attendance.danceOrientation

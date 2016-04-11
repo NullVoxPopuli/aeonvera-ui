@@ -15,6 +15,7 @@ if event.isHousingEnabled
 
   if isProvidingHousing
     hr
+    h4 Housing Provision Information
     .row
       .small-12.medium-6.columns
         = input type='checkbox' checked=housingProvision.hasPets
@@ -49,6 +50,7 @@ if event.isHousingEnabled
 
   if isRequestingHousing
     hr
+    h4 Housing Request Information
     .row
       .small-12.medium-6.columns
         = input type='checkbox' checked=housingRequest.needTransportation

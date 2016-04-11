@@ -28,6 +28,8 @@ export default DS.Model.extend(
 
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
+    housingRequest: DS.belongsTo('housing-request'),
+    housingProvision: DS.belongsTo('housing-provision'),
 
     // address stuff
     phoneNumber: DS.attr('string'),

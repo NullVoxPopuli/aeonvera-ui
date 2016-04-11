@@ -4,7 +4,7 @@ export default Ember.Route.extend({
 
   afterModel: function (model /*, transition */) {
     this._super();
-    let m = model || this.get('currentModel')
+    let m = model || this.get('currentModel');
     this.set('title', m.get('name'));
 
     Ember.run.later(() => {

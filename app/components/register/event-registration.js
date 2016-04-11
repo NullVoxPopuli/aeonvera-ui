@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
+  store: Ember.inject.service(),
   event: Ember.computed.alias('model'),
   cart: Ember.inject.service('order-cart'),
 
@@ -11,6 +12,19 @@ export default Ember.Component.extend({
   isRequestingHousing: Ember.computed.equal('housingResponse', 2),
 
   selectedPackage: null,
+
+  findAttendance: function () {
+    let eventId = this.get('event.id');
+    let store = this.get('store');
+    // this should include the orders, housing_provision and housing_request
+    store.queryRecord('event-attendance', {
+      current_user: true, event_id: eventId }).then(attendance => {
+        this.set('attendance', attendance);
+      }, error => {
+        let attendance = this.get('store').createRecord('event-attendance');
+        this.set('attendance', attendance);
+    });
+  }.on('didInsertElement'),
 
 
   // TODO: maybe eventually make requiring to login optional?
@@ -23,18 +37,33 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-  attendance: Ember.computed(function(){
-    // TODO: get current attendance for current user.
-    //       include order, housing request, housing provision, etc
-    return this.store.createRecord('event-attendance');
-  }),
 
-  housingRequest: Ember.computed(function(){
-    return this.store.createRecord('housing-request');
+  attendance: null,
+
+  housingRequest: Ember.computed('attendance', function(){
+    let attendance = this.get('attendance');
+    let housingRequest = attendance.get('housingRequest');
+
+    if (housingRequest.get('isFulfilled')){
+      return housingRequest;
+    }
+
+    housingRequest = this.store.createRecord('housing-request');
+    attendance.set('housingRequest', housingRequest);
+    return housingRequest;
   }),
 
   housingProvision: Ember.computed(function(){
-    return this.store.createRecord('housing-provision');
+    let attendance = this.get('attendance');
+    let housingProvision = attendance.get('housingProvision');
+
+    if (housingProvision.get('isFulfilled')){
+      return housingProvision;
+    }
+
+    housingProvision = this.store.createRecord('housing-provision');
+    attendance.set('housingProvision', housingProvision);
+    return housingProvision;
   }),
 
 
