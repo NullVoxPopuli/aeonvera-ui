@@ -16,14 +16,16 @@
                 br
                 if item.lineItem.isCompetition
                   if item.lineItem.requiresPartner
-                    = input type='text' value=item.partnerName placeholder='Partner Name'
+                    = error-field-wrapper errors=item.errors field='partnerName'
+                      = input type='text' value=item.partnerName placeholder='Partner Name'
 
                   if item.lineItem.requiresOrientation
-                    = radio-button value="Lead" groupValue=item.danceOrientation
-                    label Lead
-                    = radio-button value="Follow" groupValue=item.danceOrientation
-                    label Follow
-                    br
+                    = error-field-wrapper errors=item.errors field='danceOrientation'
+                      = radio-button value="Lead" groupValue=item.danceOrientation
+                      label Lead
+                      = radio-button value="Follow" groupValue=item.danceOrientation
+                      label Follow
+                      br
 
                 if item.isShirt
                   = select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'

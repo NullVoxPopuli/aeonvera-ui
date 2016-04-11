@@ -23,7 +23,7 @@
     "antiscroll": "git://github.com/Addepar/antiscroll#e0d1538cf4f3fd61c5bedd6168df86d651f125da",
     "jquery-mousewheel": "~3.1.4",
     "jquery-ui": "~1.11.3",
-    "flatpickr": "git://github.com/chmln/flatpickr#70ca73dcf644ebe34119f33c2979d402e96c2790",
+    "flatpickr": "git://github.com/chmln/flatpickr#^1.7.2",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
