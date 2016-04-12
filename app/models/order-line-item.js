@@ -52,28 +52,34 @@ export default DS.Model.extend(Validator, {
     order: { presence: true },
     quantity: { presence: true },
     price: { presence: true },
-    
+
     partnerName: {
-      custom: function(key, value, model){
-        if (model.get('lineItem.isCompetition')){
-          if (model.get('lineItem.requiresPartner')){
-            return Ember.isPresent(model.get('partnerName'));
+      custom: {
+        message: 'Partner Name is required.',
+        validation: function(key, value, model){
+          if (model.get('lineItem.isCompetition')){
+            if (model.get('lineItem.requiresPartner')){
+              return Ember.isPresent(model.get('partnerName'));
+            }
           }
+          // always return true, this is not a required field
+          return true;
         }
-        // always return true, this is not a required field
-        return true;
       }
     },
 
     danceOrientation: {
-      custom: function(key, value, model){
-        if (model.get('lineItem.isCompetition')){
-          if (model.get('lineItem.requiresOrientation')){
-            return Ember.isPresent(model.get('danceOrientation'));
+      custom: {
+        message: 'Dance Orientation is required.',
+        validation: function(key, value, model){
+          if (model.get('lineItem.isCompetition')){
+            if (model.get('lineItem.requiresOrientation')){
+              return Ember.isPresent(model.get('danceOrientation'));
+            }
           }
+          // always return true, this is not a required field
+          return true;
         }
-        // always return true, this is not a required field
-        return true;
       }
     },
 

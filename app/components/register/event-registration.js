@@ -20,9 +20,11 @@ export default Ember.Component.extend({
     store.queryRecord('event-attendance', {
       current_user: true, event_id: eventId }).then(attendance => {
         this.set('attendance', attendance);
+        this.get('cart').set('attendance', attendance);
       }, error => {
         let attendance = this.get('store').createRecord('event-attendance');
         this.set('attendance', attendance);
+        this.get('cart').set('attendance', attendance);
     });
   }.on('didInsertElement'),
 

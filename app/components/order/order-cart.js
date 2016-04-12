@@ -55,18 +55,21 @@ export default Ember.Component.extend(ResizeMixin, {
 
   actions: {
     checkout() {
-      this.get('cart').checkout().then(record => {
-        let id = record.get('id');
-        let token = record.get('paymentToken');
-        this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
-        this.set('resetCheckoutButton', true);
-      }, error => {
-        // because the checkout request isn't using ember-data,
-        // we have to parse the errors ourselves
-        let errors = JSON.parse(error.responseText);
-        this.set('errors', errors.errors);
-        this.set('resetCheckoutButton', true);
-      });
+      let promise = this.get('cart').checkout();
+      if (promise !== undefined){
+        promise.then(record => {
+          let id = record.get('id');
+          let token = record.get('paymentToken');
+          this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
+          this.set('resetCheckoutButton', true);
+        }, error => {
+          // because the checkout request isn't using ember-data,
+          // we have to parse the errors ourselves
+          let errors = JSON.parse(error.responseText);
+          this.set('errors', errors.errors);
+          this.set('resetCheckoutButton', true);
+        });
+      }
     },
 
     removeItem: function(item) {

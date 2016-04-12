@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Validator from '../mixins/model-validator';
 
-export default DS.Model.extend({
+export default DS.Model.extend(Validator, {
   hostName: DS.attr('string'),
   hostUrl: DS.attr('string'),
   createdAt: DS.attr('date'),
@@ -316,5 +317,9 @@ export default DS.Model.extend({
       });
     }
   },
+
+  validations: {
+    host: { presence: true }
+  }
 
 });

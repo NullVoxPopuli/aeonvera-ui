@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Validator from '../mixins/model-validator';
 
 // provides:
 // - amountOwed
@@ -15,6 +16,7 @@ import PaymentStatus from '../mixins/models/payment-status';
 import Checkinable from '../mixins/models/checkinable';
 
 export default DS.Model.extend(
+  Validator,
   PaymentStatus,
   Checkinable, {
     attendeeName: DS.attr('string'),
@@ -23,6 +25,8 @@ export default DS.Model.extend(
 
     packageName: DS.attr('string'),
     levelName: DS.attr('string'),
+
+    interestedInVolunteering: DS.attr('string'),
 
     eventId: DS.attr('string'),
 
@@ -43,4 +47,21 @@ export default DS.Model.extend(
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 
+
+    validations: {
+      city: { presence: true },
+      state: { presence: true },
+      package: { presence: true },
+      phoneNumber: {
+        custom: {
+          message: 'Phone Number is required when volunteering.',
+          validation: function(key, value, model){
+            if (model.get('interestedInVolunteering')){
+              return Ember.isPresent(value);
+            }
+            return true;
+          }
+        }
+      }
+    }
   });

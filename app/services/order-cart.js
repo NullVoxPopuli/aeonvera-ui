@@ -13,6 +13,7 @@ export default Ember.Service.extend(RandomString, {
   email: '',
   order: null,
   host: null,
+  attendance: null,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
     return this.get('userFirstName') + ' ' + this.get('userLastName');
@@ -64,6 +65,7 @@ export default Ember.Service.extend(RandomString, {
           user: user,
           userName: this.get('userName'),
           userEmail: this.get('userEmail'),
+          attendance: this.get('attendance')
         });
       }
 
@@ -128,13 +130,39 @@ export default Ember.Service.extend(RandomString, {
     cartTBody.css({maxHeight: availableHeight + 'px'});
   },
 
+  // Validate the
+  // - Order
+  // - OrderLineItems
+  // - Attendance, if applicable
+  validate(){
+    let order = this.get('order');
+    let isOrderValid = order.validate();
+    order.get('orderLineItems').map(item => {
+      let isItemValid = item.validate();
+      isOrderValid = isOrderValid && isItemValid;
+    });
+
+    let attendance = this.get('attendance');
+    if (Ember.isPresent(attendance)){
+      let isAttendanceValid = attendance.validate();
+      isOrderValid = isOrderValid && isAttendanceValid;
+    }
+
+    return isOrderValid;
+  },
+
   // unfortunately, ember / JSON API doesn't have a way to
   // send multiple records at a time -- which is what we need
   // in the case of order + order line items...
   // so, this is pretty much a hack -- luckily, it shouldn't
   // be needed anywhere else
   checkout() {
+    // Client-side validation must pass before we try to send to the server
+    if (!this.validate()){
+      return;
+    }
     let order = this.get('order');
+    order.set('attendance', this.get('attendance'));
 
     let jsonPayload = {};
     let items = [];
