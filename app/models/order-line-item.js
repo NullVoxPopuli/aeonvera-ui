@@ -84,7 +84,16 @@ export default DS.Model.extend(Validator, {
     },
 
     size: {
-
+      custom: {
+        message: 'Please select a shirt size.',
+        validation: function(key, value, model){
+          if (model.get('lineItem.isShirt')){
+            return Ember.isPresent(model.get('size'));
+          }
+          // always return true, this is not a required field
+          return true;
+        }
+      }
     }
   }
 });

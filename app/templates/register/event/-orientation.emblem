@@ -1,6 +1,8 @@
 if event.askIfLeadingOrFollowing
-  h4 Leading or Following?
-  = radio-button value="Lead" groupValue=attendance.danceOrientation
-  label Lead
-  = radio-button value="Follow" groupValue=attendance.danceOrientation
-  label Follow
+  .row: .small-12.medium-8.columns
+    = error-field-wrapper errors=attendance.errors field='danceOrientation'
+      h4 Leading or Following?
+      = radio-button value="Lead" groupValue=attendance.danceOrientation
+      label Lead
+      = radio-button value="Follow" groupValue=attendance.danceOrientation
+      label Follow

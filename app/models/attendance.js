@@ -52,16 +52,17 @@ export default DS.Model.extend(
       city: { presence: true },
       state: { presence: true },
       package: { presence: true },
+      danceOrientation: { presence: true },
       phoneNumber: {
         custom: {
           message: 'Phone Number is required when volunteering.',
-          validation: function(key, value, model){
+          validation(key, value, model){
             if (model.get('interestedInVolunteering')){
               return Ember.isPresent(value);
             }
             return true;
           }
         }
-      }
+      },
     }
   });

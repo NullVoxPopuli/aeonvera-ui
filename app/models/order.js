@@ -127,19 +127,58 @@ export default DS.Model.extend(Validator, {
     price = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
-    // is the item already in the order?
-    let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
-    let oliExists = Ember.isPresent(orderLineItem);
-    if (quantity > 0 && !oliExists) {
-      this._addNewLineItem(lineItem, quantity, price);
-    } else if (oliExists) {
-      // this will also remove
-      this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
+    if (lineItem.get('isPackage')){
+      // remove any old package
+      // - 1 package per order
+      this._setPackage(lineItem, price);
+    } else {
+
+      // is the item already in the order?
+      let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
+      let oliExists = Ember.isPresent(orderLineItem);
+      if (quantity > 0 && !oliExists) {
+        this._addNewLineItem(lineItem, quantity, price);
+      } else if (oliExists) {
+        // this will also remove
+        this._increaseQuantityForItem(lineItem, orderLineItem, quantity);
+      }
     }
+
 
     if (!lineItem.get('isADiscount')) {
       this._updateAutomaticDiscounts();
     }
+  },
+
+  _setPackage(lineItem, price){
+    // remove old packages
+    let orderLineItem = this._findFirstPackage();
+    if (Ember.isPresent(orderLineItem)){
+      this.removeOrderLineItem(orderLineItem);
+    }
+
+    // add this package - can only have 1 (at least for now)
+    this._addNewLineItem(lineItem, 1, price);
+
+    // set the package on the attendance,
+    // if the eattendance exists
+    let attendance = this.get('attendance');
+    if (Ember.isPresent(attendance)){
+      attendance.set('package', lineItem);
+    }
+  },
+
+  _findFirstPackage(){
+    let items = this.get('orderLineItems');
+    let result = null;
+    items.forEach(item => {
+      let isPackage = item.get('lineItem.isPackage');
+      if (isPackage){
+        return result = item;
+      }
+    });
+
+    return result;
   },
 
   /*

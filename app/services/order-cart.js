@@ -159,7 +159,11 @@ export default Ember.Service.extend(RandomString, {
   checkout() {
     // Client-side validation must pass before we try to send to the server
     if (!this.validate()){
-      return;
+      let failure = new Ember.RSVP.Promise((resolve, reject) => {
+        reject(null);
+      });
+
+      return failure;
     }
     let order = this.get('order');
     order.set('attendance', this.get('attendance'));
@@ -212,7 +216,6 @@ export default Ember.Service.extend(RandomString, {
         this.set('order', order);
         resolve(order);
       }, error => {
-
         reject(error);
       });
     });

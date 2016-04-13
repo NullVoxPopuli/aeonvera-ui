@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import Purchasable from 'aeonvera/models/purchasable';
+import IsLineItem from '../mixins/models/is-line-item';
 
-export default Purchasable.extend({
+export default Purchasable.extend(IsLineItem, {
   name: DS.attr('string'),
   initialPrice: DS.attr('number'),
   attendeeLimit: DS.attr('number'),

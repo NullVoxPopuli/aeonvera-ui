@@ -27,9 +27,13 @@
                       label Follow
                       br
 
-                if item.isShirt
-                  = select-2 content=item.lineItem.sizes value=item.size placeholder='Select Shirt Size' optionLabelPath='size' allowClear=false optionValuePath='size'
-                  br
+                if item.lineItem.isShirt
+                  = error-field-wrapper errors=item.errors field='size'
+                    = x-select value=item.size
+                      option Select Shirt Size
+                      each item.lineItem.sizes as |sizeData|
+                        = x-option value=sizeData.id
+                          = sizeData.size
                 small
                   a click='"removeItem" item' Remove
         tfoot
@@ -47,4 +51,6 @@
 
       ul.button-group.even-2
         li: a.button.alert click='cancel' Cancel
-        li = async-button action=(action 'checkout') default='Checkout' pending='Submitting Order...' reset=true
+        li
+          = spinner-button onclick=(action "checkout") isSpinning=checkingOut
+            | Checkout
