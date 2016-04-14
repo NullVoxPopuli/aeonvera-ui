@@ -23,6 +23,7 @@ export default Ember.Component.extend({
         this.get('cart').set('attendance', attendance);
       }, error => {
         let attendance = this.get('store').createRecord('event-attendance');
+        attendance.set('host', this.get('event'));
         this.set('attendance', attendance);
         this.get('cart').set('attendance', attendance);
     });
@@ -74,6 +75,7 @@ export default Ember.Component.extend({
   packageObserver: Ember.observer('selectedPackage', function(){
     this.get('cart').set('host', this.get('model'));
     this.get('cart').add(this.get('selectedPackage'));
+    this.get('attendance').set('package', this.get('selectedPackage'));
   }),
 
   order: Ember.computed(function() {

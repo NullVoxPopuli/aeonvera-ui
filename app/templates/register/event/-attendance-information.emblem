@@ -6,8 +6,13 @@ h3 Basic Information
     = input type='text' disabled=true value=currentUser.name
 
     if event.hasVolunteers
-      label Phone Number
-      = input type='text' value=attendance.phoneNumber
+      = input type='checkbox' checked=attendance.interestedInVolunteering
+      label Interested In Volunteering
+      if attendance.interestedInVolunteering
+        = error-field-wrapper errors=attendance.errors field='phoneNumber'
+          label 
+            span Phone Number
+            = input type='text' value=attendance.phoneNumber
 
     / label Address
     / = input type='text' value=attendance.address1

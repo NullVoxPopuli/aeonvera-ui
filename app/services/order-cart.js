@@ -151,38 +151,37 @@ export default Ember.Service.extend(RandomString, {
     return isOrderValid;
   },
 
-  // unfortunately, ember / JSON API doesn't have a way to
-  // send multiple records at a time -- which is what we need
-  // in the case of order + order line items...
-  // so, this is pretty much a hack -- luckily, it shouldn't
-  // be needed anywhere else
+  // This method must return a promise
   checkout() {
     // Client-side validation must pass before we try to send to the server
     if (!this.validate()){
-      let failure = new Ember.RSVP.Promise((resolve, reject) => {
+      return new Ember.RSVP.Promise((resolve, reject) => {
         reject(null);
       });
-
-      return failure;
     }
-    let order = this.get('order');
 
-    // 1. save the attendance and nested data
-    //    - housing request
-    //    - housing response
-    //    - custom field responses
-    // TODO: extract to method
     let attendance = this.get('attendance');
-    attendance.save().then(attendanceRecord => {
-      // 2. save the order and nested data
-      //    - order line items
-      // TODO: extract to method
-        order.set('attendance', this.get('attendance'));
-    }, error => {
+    if (Ember.isPresent(attendance)){
+      // this will first save the attendance, housing info, field responses
+      // and then it will shoot off another request to save the order and items
+      return this._saveAttendance();
+    }
 
-    });
+    // if the attendance isn't set -- odds are, we don't need it.
+    // just save the order
+    return this._saveOrder();
+  },
 
+  _saveOrder(){
+    let order = this.get('order');
+    // 2. save the order and nested data
+    //    - order line items
+    order.set('attendance', this.get('attendance'));
+
+    // TODO: how to send to modify URL if not new
+    // - maybe set a flag on the item to be read by the server?
     return order.save();
+
 
     let jsonPayload = {};
     let items = [];
@@ -241,4 +240,23 @@ export default Ember.Service.extend(RandomString, {
 
     return promise;
   },
+
+
+  _saveAttendance(){
+
+    // 1. save the attendance and nested data
+    //    - housing request
+    //    - housing response
+    //    - custom field responses
+    let attendance = this.get('attendance');
+    let promise = attendance.save().then(attendanceRecord => {
+      this.set('attendance', attendanceRecord);
+      return this._saveOrder();
+    }, error => {
+      let msg = 'Attendance could not be saved.';
+      this.get('flashMessages').alert(msg);
+    });
+
+    return promise;
+  }
 });

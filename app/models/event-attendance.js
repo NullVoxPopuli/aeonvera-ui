@@ -3,7 +3,6 @@ import Attendance from '../models/attendance';
 
 export default Attendance.extend({
   packageId: DS.attr('number'),
-  level: DS.belongsTo('level', {
-    async: true,
-  }),
+  level: DS.belongsTo('level'),
+  package: DS.belongsTo('package'),
 });

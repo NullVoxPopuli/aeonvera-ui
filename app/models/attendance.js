@@ -30,6 +30,8 @@ export default DS.Model.extend(
 
     eventId: DS.attr('string'),
 
+    attendee: DS.belongsTo('user'),
+    host: DS.belongsTo('host', { polymorphic: true }),
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
     housingRequest: DS.belongsTo('housing-request', {async: false}),
