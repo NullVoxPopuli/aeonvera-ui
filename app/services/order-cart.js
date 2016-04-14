@@ -166,7 +166,21 @@ export default Ember.Service.extend(RandomString, {
       return failure;
     }
     let order = this.get('order');
-    order.set('attendance', this.get('attendance'));
+
+    // 1. save the attendance and nested data
+    //    - housing request
+    //    - housing response
+    //    - custom field responses
+    // TODO: extract to method
+    let attendance = this.get('attendance');
+    attendance.save().then(attendanceRecord => {
+      // 2. save the order and nested data
+      //    - order line items
+      // TODO: extract to method
+        order.set('attendance', this.get('attendance'));
+    }, error => {
+
+    });
 
     return order.save();
 
