@@ -5,24 +5,27 @@ form submit='save'
         span Name
         = input value=model.name placeholder='' type='text' required=true
 
-    = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='amount'
+    = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='description'
       label
-        span Amount
-        = input value=model.amount placeholder='e.g.: 20' type='number' min='0' step='any' required=true
+        span Description
+        = input value=model.description placeholder='e.g.: This awesome thing' type='text'
 
-    = error-field-wrapper  classes='columns small-6 medium-3' errors=model.errors field='kind'
-      = radio-button value=0 groupValue=model.kind
-      label Dollars Off
-      br
-      = radio-button value=1 groupValue=model.kind
-      label Percent Off
-      br
+    = error-field-wrapper  classes='columns small-6 medium-3' errors=model.errors field='price'
+      label
+        span Price
+        = input value=model.price placeholder='0.0' type='number' min=0 step='any' required=true
 
   .row
-    = error-field-wrapper classes='columns small-5 medium-4' errors=model.errors field='allowedNumberOfUses'
+    = error-field-wrapper classes='columns small-6' errors=model.errors field='becomesAvailableAt'
       label
-        span Allowed Number of Uses
-        = input value=model.allowedNumberOfUses placeholder='e.g.: 2, default: unlimited' type='number'
+        span This item becomes available for registration on date:
+        = date-time-input model=model field='becomesAvailableAt'
+
+    = error-field-wrapper classes='columns small-6' errors=model.errors field='expiresAt'
+      label
+        span This item is no longer available for registration on date
+        = date-time-input model=model field='expiresAt'
+    
 
   .row
     .small-12.columns
