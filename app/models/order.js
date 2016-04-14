@@ -27,7 +27,7 @@ export default DS.Model.extend(Validator, {
 
   host: DS.belongsTo('host', { polymorphic: true }),
   orderLineItems: DS.hasMany('orderLineItem'),
-  attendance: DS.belongsTo('attendance'),
+  attendance: DS.belongsTo('attendance', { async: false }),
   user: DS.belongsTo('user'),
 
   /*

@@ -168,6 +168,8 @@ export default Ember.Service.extend(RandomString, {
     let order = this.get('order');
     order.set('attendance', this.get('attendance'));
 
+    return order.save();
+
     let jsonPayload = {};
     let items = [];
     let isNew = order.get('isNew');
@@ -187,6 +189,9 @@ export default Ember.Service.extend(RandomString, {
     jsonPayload.order.hostId = this.get('order.host.id');
     jsonPayload.order.hostType = this.get('order.host.klass');
     jsonPayload.orderLineItems = items;
+    jsonPayload.attendance = order.get('attendance').toJSON();
+    jsonPayload.attendance.hostId = this.get('order.host.id');
+    jsonPayload.attendance.hostType = this.get('order.host.klass');
 
     let authToken = this.get('session.data.authenticated.token');
     let token = this.get('order.paymentToken');
