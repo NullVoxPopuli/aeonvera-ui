@@ -18,12 +18,13 @@ export default Ember.Component.extend({
     let store = this.get('store');
     // this should include the orders, housing_provision and housing_request
     store.queryRecord('event-attendance', {
-      current_user: true, event_id: eventId }).then(attendance => {
+      current_user: true, event_id: eventId, include: 'package,level,pricing_tier,attendee,unpaid_order' }).then(attendance => {
         this.set('attendance', attendance);
         this.get('cart').set('attendance', attendance);
       }, error => {
         let attendance = this.get('store').createRecord('event-attendance');
         attendance.set('host', this.get('event'));
+
         this.set('attendance', attendance);
         this.get('cart').set('attendance', attendance);
     });

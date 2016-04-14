@@ -41,6 +41,7 @@ export default Host.extend(RegistrationOpens, {
   levels: DS.hasMany('level'),
   competitions: DS.hasMany('competitions'),
   openingTier: DS.belongsTo('openingTier'),
+  currentTier: DS.belongsTo('pricing-tier'),
   lineItems: DS.hasMany('lineItems'),
   shirts: DS.hasMany('shirts'),
   customFields: DS.hasMany('custom-field'),

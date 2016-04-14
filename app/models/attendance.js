@@ -30,7 +30,9 @@ export default DS.Model.extend(
 
     eventId: DS.attr('string'),
 
+
     attendee: DS.belongsTo('user'),
+    pricingTier: DS.belongsTo('pricing-tier'),
     host: DS.belongsTo('host', { polymorphic: true }),
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),

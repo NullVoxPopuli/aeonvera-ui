@@ -41,6 +41,7 @@ export default Ember.Mixin.create(EditModel, {
         let path = this.get('saveSuccessPath');
         let parentId = this.get('parentModelId');
         let recordId = record.get('id');
+        debugger;
         this.get('router').transitionTo(path, parentId, recordId);
       }, failure => {
         this.get('flashMessages').alert(
