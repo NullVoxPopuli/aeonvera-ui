@@ -33,8 +33,10 @@ export default DS.Model.extend(
     attendee: DS.belongsTo('user'),
     pricingTier: DS.belongsTo('pricing-tier'),
     host: DS.belongsTo('host', { polymorphic: true }),
+
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
+
     housingRequest: DS.belongsTo('housing-request', { async: false }),
     housingProvision: DS.belongsTo('housing-provision', { async: false }),
 
@@ -55,6 +57,23 @@ export default DS.Model.extend(
       state: { presence: true },
       package: { presence: true },
       danceOrientation: { presence: true },
+      level: {
+        custom: {
+          message: 'Level is required for the selected ticket.',
+          // value may be a promise here
+          // so we need to see if we can access the
+          // id property on it
+          validation(key, value, model){
+
+            let requiresLevel = model.get('package.requiresTrack');
+            if (requiresLevel){
+              return Ember.isPresent(value.get('id'));
+            }
+
+            return true;
+          }
+        }
+      },
       phoneNumber: {
         custom: {
           message: 'Phone Number is required when volunteering.',
