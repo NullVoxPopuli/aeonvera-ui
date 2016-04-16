@@ -5,31 +5,32 @@ export default Ember.Component.extend({
   kindOptions: ['Package', 'Competition'],
   selecetedType: 'Package',
 
-  availableOptions: Ember.computed('selecetedType', function(){
+  availableOptions: Ember.computed('selecetedType', function() {
     let selecetedType = this.get('selecetedType');
     let id = this.get('eventId');
     selecetedType = selecetedType || 'Package';
     return this.get('store').query(selecetedType, { event_id: id });
   }),
 
-  didInsertElement(){
+  didInsertElement() {
     this._super(...arguments);
 
-    if (this.get('restraint.isNew')){
+    if (this.get('restraint.isNew')) {
       this.set('isEditing', true);
     }
   },
 
   actions: {
-    cancel(){
+    cancel() {
       this.set('isEditing', false);
       this.send('delete');
     },
-    edit(){
+
+    edit() {
       this.set('isEditing', true);
     },
 
-    save(){
+    save() {
       let restraint = this.get('restraint');
       restraint.set('restrictionFor', this.get('model'));
       restraint.save().then(record => {
@@ -39,7 +40,7 @@ export default Ember.Component.extend({
       });
     },
 
-    delete(){
+    delete() {
       let restraint = this.get('restraint');
       restraint.deleteRecord();
       restraint.save().then(success => {

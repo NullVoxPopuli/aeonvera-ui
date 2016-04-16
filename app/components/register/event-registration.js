@@ -16,20 +16,21 @@ export default Ember.Component.extend({
   findAttendance: function () {
     let eventId = this.get('event.id');
     let store = this.get('store');
+
     // this should include the orders, housing_provision and housing_request
     store.queryRecord('event-attendance', {
       current_user: true, event_id: eventId, include: 'package,level,pricing_tier,attendee,unpaid_order' }).then(attendance => {
         this.set('attendance', attendance);
         this.get('cart').set('attendance', attendance);
       }, error => {
+
         let attendance = this.get('store').createRecord('event-attendance');
         attendance.set('host', this.get('event'));
 
         this.set('attendance', attendance);
         this.get('cart').set('attendance', attendance);
-    });
+      });
   }.on('didInsertElement'),
-
 
   // TODO: maybe eventually make requiring to login optional?
   mustLogin: Ember.computed('session.isAuthenticated', function() {
@@ -41,14 +42,13 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-
   attendance: null,
 
-  housingRequest: Ember.computed('attendance', function(){
+  housingRequest: Ember.computed('attendance', function() {
     let attendance = this.get('attendance');
     let housingRequest = attendance.get('housingRequest');
 
-    if (housingRequest.get('isFulfilled')){
+    if (housingRequest.get('isFulfilled')) {
       return housingRequest;
     }
 
@@ -57,11 +57,11 @@ export default Ember.Component.extend({
     return housingRequest;
   }),
 
-  housingProvision: Ember.computed(function(){
+  housingProvision: Ember.computed(function() {
     let attendance = this.get('attendance');
     let housingProvision = attendance.get('housingProvision');
 
-    if (housingProvision.get('isFulfilled')){
+    if (housingProvision.get('isFulfilled')) {
       return housingProvision;
     }
 
@@ -70,10 +70,9 @@ export default Ember.Component.extend({
     return housingProvision;
   }),
 
-
   // TODO: remove other packages, or provide an option on the event
   //       to force only registering for one
-  packageObserver: Ember.observer('selectedPackage', function(){
+  packageObserver: Ember.observer('selectedPackage', function() {
     this.get('cart').set('host', this.get('model'));
     this.get('cart').add(this.get('selectedPackage'));
     this.get('attendance').set('package', this.get('selectedPackage'));

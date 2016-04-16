@@ -16,7 +16,6 @@ export default DS.Model.extend({
   attendance: DS.belongsTo('attendance', { polymorphic: true }),
   housingProvision: DS.belongsTo('housing-provision'),
 
-
   genderOptions: ['No Preference', 'Guys', 'Gals'],
 
   // TODO: Figure out a better way to record n-number of roommates

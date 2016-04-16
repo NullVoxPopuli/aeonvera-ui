@@ -32,7 +32,7 @@ export default DS.Model.extend(Validator, {
     let lineItem = this.get('lineItem');
     let size = this.get('size');
     let sizeMethod = lineItem.priceForSize;
-    if (Ember.isPresent(sizeMethod)){
+    if (Ember.isPresent(sizeMethod)) {
       let sizePrice = sizeMethod(size);
       this.set('price', sizePrice);
     }
@@ -46,7 +46,6 @@ export default DS.Model.extend(Validator, {
     return total;
   }.property('price', 'quantity'),
 
-
   validations: {
     lineItem: { presence: true },
     order: { presence: true },
@@ -56,12 +55,13 @@ export default DS.Model.extend(Validator, {
     partnerName: {
       custom: {
         message: 'Partner Name is required.',
-        validation: function(key, value, model){
-          if (model.get('lineItem.isCompetition')){
-            if (model.get('lineItem.requiresPartner')){
+        validation: function(key, value, model) {
+          if (model.get('lineItem.isCompetition')) {
+            if (model.get('lineItem.requiresPartner')) {
               return Ember.isPresent(model.get('partnerName'));
             }
           }
+
           // always return true, this is not a required field
           return true;
         }
@@ -71,12 +71,13 @@ export default DS.Model.extend(Validator, {
     danceOrientation: {
       custom: {
         message: 'Dance Orientation is required.',
-        validation: function(key, value, model){
-          if (model.get('lineItem.isCompetition')){
-            if (model.get('lineItem.requiresOrientation')){
+        validation: function(key, value, model) {
+          if (model.get('lineItem.isCompetition')) {
+            if (model.get('lineItem.requiresOrientation')) {
               return Ember.isPresent(model.get('danceOrientation'));
             }
           }
+
           // always return true, this is not a required field
           return true;
         }
@@ -86,10 +87,11 @@ export default DS.Model.extend(Validator, {
     size: {
       custom: {
         message: 'Please select a shirt size.',
-        validation: function(key, value, model){
-          if (model.get('lineItem.isShirt')){
+        validation: function(key, value, model) {
+          if (model.get('lineItem.isShirt')) {
             return Ember.isPresent(model.get('size'));
           }
+
           // always return true, this is not a required field
           return true;
         }

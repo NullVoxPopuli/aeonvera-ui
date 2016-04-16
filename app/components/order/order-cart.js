@@ -31,7 +31,7 @@ export default Ember.Component.extend(ResizeMixin, {
     the width and height parameters given are the document width and height.
     for this resize, we need to get the height from the window.
   */
-  debouncedDidResize: function(){
+  debouncedDidResize: function() {
     this.get('cart')._adjustCartMaxHeight();
   }.on('resize'),
 
@@ -57,14 +57,15 @@ export default Ember.Component.extend(ResizeMixin, {
     checkout() {
       this.set('checkingOut', true);
       let checkoutPromise = this.get('cart').checkout();
-      if (checkoutPromise !== undefined){
+      if (checkoutPromise !== undefined) {
         checkoutPromise.then(record => {
           let id = record.get('id');
           let token = record.get('paymentToken');
           this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);
         }, error => {
-          if (Ember.isPresent(error)){
+
+          if (Ember.isPresent(error)) {
             // because the checkout request isn't using ember-data,
             // we have to parse the errors ourselves
             let errors = JSON.parse(error.responseText);

@@ -2,7 +2,6 @@ import Ember from 'ember';
 import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
-
 export default Ember.Service.extend(RandomString, {
   store: Ember.inject.service('store'),
   session: Ember.inject.service('session'),
@@ -92,6 +91,7 @@ export default Ember.Service.extend(RandomString, {
     let order = this.get('currentOrder');
     order.removeOrderLineItem(item);
     if (!order.get('hasLineItems')) { this.cancel(); }
+
     this._adjustCartMaxHeight();
 
   },
@@ -108,13 +108,12 @@ export default Ember.Service.extend(RandomString, {
     this.set('order', null);
   },
 
-
-  _adjustCartMaxHeight(){
+  _adjustCartMaxHeight() {
     let cart = jQuery('.fixed-to-top-cart');
     let windowHeight = jQuery(window).height();
 
     // cart might not be rendered right now
-    if (cart.length === 0){
+    if (cart.length === 0) {
       return;
     }
 
@@ -127,14 +126,14 @@ export default Ember.Service.extend(RandomString, {
     let cartUiHeightWithTop = cartUiHeight + cartTop;
     let availableHeight = windowHeight - cartUiHeightWithTop;
 
-    cartTBody.css({maxHeight: availableHeight + 'px'});
+    cartTBody.css({ maxHeight: availableHeight + 'px' });
   },
 
   // Validate the
   // - Order
   // - OrderLineItems
   // - Attendance, if applicable
-  validate(){
+  validate() {
     let order = this.get('order');
     let isOrderValid = order.validate();
     order.get('orderLineItems').map(item => {
@@ -143,7 +142,7 @@ export default Ember.Service.extend(RandomString, {
     });
 
     let attendance = this.get('attendance');
-    if (Ember.isPresent(attendance)){
+    if (Ember.isPresent(attendance)) {
       let isAttendanceValid = attendance.validate();
       isOrderValid = isOrderValid && isAttendanceValid;
     }
@@ -154,14 +153,14 @@ export default Ember.Service.extend(RandomString, {
   // This method must return a promise
   checkout() {
     // Client-side validation must pass before we try to send to the server
-    if (!this.validate()){
+    if (!this.validate()) {
       return new Ember.RSVP.Promise((resolve, reject) => {
         reject(null);
       });
     }
 
     let attendance = this.get('attendance');
-    if (Ember.isPresent(attendance)){
+    if (Ember.isPresent(attendance)) {
       // this will first save the attendance, housing info, field responses
       // and then it will shoot off another request to save the order and items
       return this._saveAttendance();
@@ -172,77 +171,97 @@ export default Ember.Service.extend(RandomString, {
     return this._saveOrder();
   },
 
-  _saveOrder(){
+  _saveOrder() {
     let order = this.get('order');
+
     // 2. save the order and nested data
     //    - order line items
     order.set('attendance', this.get('attendance'));
 
     // TODO: how to send to modify URL if not new
     // - maybe set a flag on the item to be read by the server?
-    return order.save();
-
-
-    let jsonPayload = {};
-    let items = [];
-    let isNew = order.get('isNew');
-    let ajaxVerb = isNew ? 'POST' : 'PUT';
-    let store = this.get('store');
-    let url = isNew ? '/api/orders' : '/api/orders/' + order.get('id')  + '/modify';
-
-    order.get('orderLineItems').forEach(item => {
-      let itemJson = item.toJSON();
-      itemJson.id = item.get('id');
-      itemJson.lineItemId = item.get('lineItem.id');
-      itemJson.lineItemType = item.get('lineItem.klass');
-      items.push(itemJson);
-    });
-
-    jsonPayload.order = order.toJSON();
-    jsonPayload.order.hostId = this.get('order.host.id');
-    jsonPayload.order.hostType = this.get('order.host.klass');
-    jsonPayload.orderLineItems = items;
-    jsonPayload.attendance = order.get('attendance').toJSON();
-    jsonPayload.attendance.hostId = this.get('order.host.id');
-    jsonPayload.attendance.hostType = this.get('order.host.klass');
-
-    let authToken = this.get('session.data.authenticated.token');
-    let token = this.get('order.paymentToken');
-
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
-      Ember.$.ajax({
-        type: ajaxVerb,
-        url: config.host + url,
-        data: jsonPayload,
-        beforeSend: xhr => {
-          xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
-        }
-      }).then(response => {
-        let id = response.data.id;
-        store.pushPayload(response);
-        let order = store.peekRecord('order', id);
+      let token = this.get('order.paymentToken');
 
+      return order.save().then(order => {
         // For authorizing edits, we need to add the token to the URL
         // luckily, we have it bound already
         if (Ember.isPresent(token)) {
           order.set('paymentToken', token);
         }
 
+        // TODO: do we need this?
         // have to re-set the order variable to the new order
         // because otherwise the order property remains
         // the non-server-backed version
         this.set('order', order);
-        resolve(order);
       }, error => {
+
         reject(error);
       });
     });
 
     return promise;
+
+    // let jsonPayload = {};
+    // let items = [];
+    // let isNew = order.get('isNew');
+    // let ajaxVerb = isNew ? 'POST' : 'PUT';
+    // let store = this.get('store');
+    // let url = isNew ? '/api/orders' : '/api/orders/' + order.get('id')  + '/modify';
+    //
+    // order.get('orderLineItems').forEach(item => {
+    //   let itemJson = item.toJSON();
+    //   itemJson.id = item.get('id');
+    //   itemJson.lineItemId = item.get('lineItem.id');
+    //   itemJson.lineItemType = item.get('lineItem.klass');
+    //   items.push(itemJson);
+    // });
+    //
+    // jsonPayload.order = order.toJSON();
+    // jsonPayload.order.hostId = this.get('order.host.id');
+    // jsonPayload.order.hostType = this.get('order.host.klass');
+    // jsonPayload.orderLineItems = items;
+    // jsonPayload.attendance = order.get('attendance').toJSON();
+    // jsonPayload.attendance.hostId = this.get('order.host.id');
+    // jsonPayload.attendance.hostType = this.get('order.host.klass');
+    //
+    // let authToken = this.get('session.data.authenticated.token');
+    // let token = this.get('order.paymentToken');
+    //
+    // let promise = new Ember.RSVP.Promise((resolve, reject) => {
+    //   Ember.$.ajax({
+    //     type: ajaxVerb,
+    //     url: config.host + url,
+    //     data: jsonPayload,
+    //     beforeSend: xhr => {
+    //       xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
+    //     }
+    //   }).then(response => {
+    //     let id = response.data.id;
+    //     store.pushPayload(response);
+    //     let order = store.peekRecord('order', id);
+    //
+    //     // For authorizing edits, we need to add the token to the URL
+    //     // luckily, we have it bound already
+    //     if (Ember.isPresent(token)) {
+    //       order.set('paymentToken', token);
+    //     }
+    //
+    //     // have to re-set the order variable to the new order
+    //     // because otherwise the order property remains
+    //     // the non-server-backed version
+    //     this.set('order', order);
+    //     resolve(order);
+    //   }, error => {
+    //     reject(error);
+    //   });
+    // });
+    //
+    // return promise;
   },
 
-
-  _saveAttendance(){
+  _saveAttendance() {
 
     // 1. save the attendance and nested data
     //    - housing request
@@ -253,6 +272,7 @@ export default Ember.Service.extend(RandomString, {
       this.set('attendance', attendanceRecord);
       return this._saveOrder();
     }, error => {
+
       let msg = 'Attendance could not be saved.';
       this.get('flashMessages').alert(msg);
     });

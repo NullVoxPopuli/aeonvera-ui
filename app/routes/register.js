@@ -17,12 +17,11 @@ export default Ember.Route.extend({
     return promise;
   },
 
-
   actions: {
-    error(reason, transition){
+    error(reason, transition) {
       // all errors are json api-formatted
       let status = reason.errors[0].status;
-      if (status === '404'){
+      if (status === '404') {
         transition.abort();
         this.transitionTo('event-not-found');
       } else {

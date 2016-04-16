@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         column is rendered
       */
       if (Ember.isPresent(column.showOn)) {
-        if (typeof(column.showOn) !== 'boolean'){
+        if (typeof (column.showOn) !== 'boolean') {
           let showOn = this.get(column.showOn);
           column.showOn = showOn;
         }

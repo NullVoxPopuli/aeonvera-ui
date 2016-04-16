@@ -30,14 +30,13 @@ export default DS.Model.extend(
 
     eventId: DS.attr('string'),
 
-
     attendee: DS.belongsTo('user'),
     pricingTier: DS.belongsTo('pricing-tier'),
     host: DS.belongsTo('host', { polymorphic: true }),
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
-    housingRequest: DS.belongsTo('housing-request', {async: false}),
-    housingProvision: DS.belongsTo('housing-provision', {async: false}),
+    housingRequest: DS.belongsTo('housing-request', { async: false }),
+    housingProvision: DS.belongsTo('housing-provision', { async: false }),
 
     // address stuff
     phoneNumber: DS.attr('string'),
@@ -51,7 +50,6 @@ export default DS.Model.extend(
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 
-
     validations: {
       city: { presence: true },
       state: { presence: true },
@@ -60,10 +58,11 @@ export default DS.Model.extend(
       phoneNumber: {
         custom: {
           message: 'Phone Number is required when volunteering.',
-          validation(key, value, model){
-            if (model.get('interestedInVolunteering')){
+          validation(key, value, model) {
+            if (model.get('interestedInVolunteering')) {
               return Ember.isPresent(value);
             }
+
             return true;
           }
         }

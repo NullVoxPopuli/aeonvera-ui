@@ -11,7 +11,7 @@ export default Ember.Mixin.create({
 
   hasRegistrationOpened: function () {
     let registrationOpensAt = this.get('registrationOpensAt');
-    if (Ember.isPresent(registrationOpensAt)){
+    if (Ember.isPresent(registrationOpensAt)) {
       var opensAt = registrationOpensAt.getTime();
       var currently = Date.now();
       return (currently > opensAt);
