@@ -26,7 +26,6 @@ export default Ember.Component.extend({
         // in case there is an existing order,
         // cancel it, and re-populate everything with our
         // own cart
-        cart.cancel();
         this.set('attendance', attendance);
         cart.set('attendance', attendance);
         let unpaidOrder = attendance.get('unpaidOrder');
@@ -37,6 +36,7 @@ export default Ember.Component.extend({
         if (Ember.isPresent(unpaidOrder.get('id'))){
           cart.set('order', unpaidOrder);
         } else {
+          cart.cancel();
           // create a new order -- how did they create an attendance with no order?
           // - possibly validation issues on the order during save, and
           //   then a refresh may have happened before the order validation
