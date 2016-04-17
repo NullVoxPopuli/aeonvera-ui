@@ -7,7 +7,11 @@ table.width-of-100
   tbody
     each model.orderLineItems as |item|
       tr
-        td = item.lineItem.name
+        td 
+          = item.lineItem.name
+          if item.lineItem.isPackage
+            if item.lineItem.requiresTrack
+              | @ {{model.attendance.levelName}}
         td.text-right = to-usd item.price
         td.text-right = item.quantity
         td.text-right = to-usd item.total

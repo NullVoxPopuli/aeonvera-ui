@@ -64,10 +64,10 @@ export default DS.Model.extend(
           // so we need to see if we can access the
           // id property on it
           validation(key, value, model){
-
             let requiresLevel = model.get('package.requiresTrack');
             if (requiresLevel){
-              return Ember.isPresent(value.get('id'));
+              // value is undefined for some reason
+              return Ember.isPresent(model.get('level'));
             }
 
             return true;

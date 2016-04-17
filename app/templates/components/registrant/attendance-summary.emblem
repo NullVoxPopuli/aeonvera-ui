@@ -1,0 +1,21 @@
+
+h3.text-center Registration Information
+table.no-colors.no-borders.center-margin
+  tbody
+    tr
+      th You: 
+      td {{attendance.attendeeName}} ({{attendance.danceOrientation}})
+    tr
+      th Registered At
+      td = date-with-format attendarce.registeredAt 'LLL'
+
+    if attendance.interestedInVolunteering
+      tr
+        th Are interesting in volunteering
+        td you may be contacted via phone or email
+    if attendance.housingRequest
+      tr
+        th And are requesting housing
+    if attendance.housingProvision
+      tr
+        th And are providing housing

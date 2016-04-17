@@ -6,6 +6,10 @@
   if buildingAnOrder
     div class=orderContainerClasses
       h3 Current Order
+      
+      = error-header errors=cart.order.errors
+      
+      
       table.width-of-100.no-border
         tbody
           each currentItems as |item|

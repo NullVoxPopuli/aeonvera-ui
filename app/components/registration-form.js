@@ -3,21 +3,23 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   isEvent: Ember.computed('host', function() {
     let host = this.get('host');
-    if (host.get('isPending')) {
+    if (host.then) {
       return host.then(h => {
         return h.get('constructor.modelName') === 'event';
-      }, error => {
-        // would this ever happen?
-        console.log('host not found in registration-form?');
       });
-    } else {
-      return host.get('constructor.modelName') === 'event';
     }
 
+    return host.get('constructor.modelName') === 'event';
   }).readOnly(),
 
   isOrganization: Ember.computed('host', function() {
     let host = this.get('host');
+    if (host.then){
+      return host.then(h => {
+        h.get('constructor.modelName') === 'organization';
+      });
+    }
+
     return host.get('constructor.modelName') === 'organization';
   }).readOnly(),
 

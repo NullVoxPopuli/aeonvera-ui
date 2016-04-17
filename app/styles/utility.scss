@@ -74,6 +74,17 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   text-indent: -21px;
 }
 
+.no-colors{
+  background: none;
+  tr:nth-of-type(even){
+    background: none;
+  }
+}
+
+.no-borders{
+  border: none;
+}
+
 .no-border{
   border: none;
 }

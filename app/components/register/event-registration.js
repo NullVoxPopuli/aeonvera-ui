@@ -13,6 +13,7 @@ export default Ember.Component.extend({
 
   selectedPackage: null,
   selectedLevel: null,
+  attendance: null,
 
   findAttendance: function () {
     let eventId = this.get('event.id');
@@ -20,9 +21,29 @@ export default Ember.Component.extend({
 
     // this should include the orders, housing_provision and housing_request
     store.queryRecord('event-attendance', {
-      current_user: true, event_id: eventId, include: 'package,level,pricing_tier,attendee,unpaid_order' }).then(attendance => {
+      current_user: true, event_id: eventId }).then(attendance => {
+        let cart = this.get('cart');
+        // in case there is an existing order,
+        // cancel it, and re-populate everything with our
+        // own cart
+        cart.cancel();
         this.set('attendance', attendance);
-        this.get('cart').set('attendance', attendance);
+        cart.set('attendance', attendance);
+        let unpaidOrder = attendance.get('unpaidOrder');
+        // if the unpaid order isn't present, then don't set it
+        // the unpaid order is a promise, which is unfulfilled
+        // if it doesn't exist. But checking if the id is empty
+        // seems more self-explanatory than checking isFulfilled
+        if (Ember.isPresent(unpaidOrder.get('id'))){
+          cart.set('order', unpaidOrder);
+        } else {
+          // create a new order -- how did they create an attendance with no order?
+          // - possibly validation issues on the order during save, and
+          //   then a refresh may have happened before the order validation
+          //   issues were resolved
+          cart.set('host', this.get('model'));
+          cart.get('currentOrder'); // builds an order.
+        }
 
         // crappy logic to get the package radio buttons to show what was selected
         let packageId = attendance.get('package.id');
@@ -53,7 +74,6 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-  attendance: null,
 
   housingRequest: Ember.computed('attendance', function() {
     let attendance = this.get('attendance');
@@ -88,9 +108,18 @@ export default Ember.Component.extend({
   // package from the list of packages on the event
   //
   packageObserver: Ember.observer('selectedPackage', function() {
-    this.get('cart').set('host', this.get('model'));
-    this.get('cart').add(this.get('selectedPackage'));
-    this.get('attendance').set('package', this.get('selectedPackage'));
+    let cart = this.get('cart');
+    let attendance = this.get('attendance');
+    let selectedPackage = this.get('selectedPackage');
+
+    // in order to protect the model from getting dirtied upon load,
+    // only add to the cart and change the attendance if the
+    // selected package is different
+    if (attendance.get('package.id') != selectedPackage.get('id')){
+      cart.set('host', this.get('model'));
+      cart.add(selectedPackage);
+      attendance.set('package', selectedPackage);
+    }
   }),
 
   // This is for syncing the attendance.level with the selected

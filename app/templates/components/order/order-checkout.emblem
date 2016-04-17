@@ -21,5 +21,12 @@ br
           span Edit
     // TODO: give option to resend receipt
 
+    .clearfix
+    if (is-present model.attendance)
+      = registrant/attendance-summary attendance=model.attendance
+  
+  
+  
+
 br
 br

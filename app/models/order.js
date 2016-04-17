@@ -311,6 +311,19 @@ export default DS.Model.extend(Validator, {
     return result;
   },
 
+  // This is needed because when saving the order, the order-line-items
+  // are saved with the order (via embedded records mixin)
+  // I don't think Ember-Data expects this, and as a result,
+  // duplicate line items appear in the association.
+  removeItemsWithNullIds(){
+    let lineItems = this.get('orderLineItems');
+    lineItems.forEach(item => {
+      if (!item.get('id')){
+        item.destroyRecord();
+      }
+    })
+  },
+
   hasLineItem: function(lineItem) {
     let lineItems = this.get('orderLineItems');
     let items = lineItems.mapBy('lineItem');
@@ -357,7 +370,19 @@ export default DS.Model.extend(Validator, {
   },
 
   validations: {
-    host: { presence: true }
+    host: { presence: true },
+    attendance: {
+      custom: {
+        message: 'Attendance must be set when registering for an event',
+        validation(key, value, model){
+          let isEvent = model.get('host.isEvent');
+          if (isEvent){
+            return Ember.isPresent(value);
+          }
+          return true;
+        }
+      }
+    }
   }
 
 });
