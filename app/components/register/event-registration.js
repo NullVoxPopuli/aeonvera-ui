@@ -92,7 +92,7 @@ export default Ember.Component.extend({
     let attendance = this.get('attendance');
     let housingProvision = attendance.get('housingProvision');
 
-    if (housingProvision.get('isFulfilled')) {
+    if (housingProvision != null && housingProvision.get('isFulfilled')) {
       return housingProvision;
     }
 
@@ -115,7 +115,7 @@ export default Ember.Component.extend({
     // in order to protect the model from getting dirtied upon load,
     // only add to the cart and change the attendance if the
     // selected package is different
-    if (attendance.get('package.id') != selectedPackage.get('id')){
+    if (attendance.get('package.id') !== selectedPackage.get('id')){
       cart.set('host', this.get('model'));
       cart.add(selectedPackage);
       attendance.set('package', selectedPackage);

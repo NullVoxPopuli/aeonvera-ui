@@ -4,7 +4,13 @@ if (is-present event.levels)
       .small-12.medium-8.columns
         = error-field-wrapper errors=attendance.errors field='level'
           h3 Level
-          each event.levels as |level|
-            = radio-button value=level.id groupValue=selectedLevel
-            label = level.name
-            / TODO: Add description or something
+          ul.medium-block-grid-3
+            each event.levels as |level|
+              li
+                = radio-button value=level.id groupValue=selectedLevel
+                label = level.name
+                if level.hasRequirement
+                  br
+                  span Requires {{level.requiresName}}
+                / TODO: Add description or something
+        hr

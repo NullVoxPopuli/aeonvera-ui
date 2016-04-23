@@ -297,7 +297,6 @@ export default DS.Model.extend(Validator, {
       let isSameKind = lineItem.isTheSameKindAs(currentLineItem);
 
       if (
-
           // this needs to exist -- but breaks tests :-(
           // due to promises... GRRR
           //isSameKind &&
@@ -321,7 +320,7 @@ export default DS.Model.extend(Validator, {
       if (!item.get('id')){
         item.destroyRecord();
       }
-    })
+    });
   },
 
   hasLineItem: function(lineItem) {

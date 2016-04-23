@@ -17,6 +17,10 @@ export default Ember.Route.extend({
     return promise;
   },
 
+  afterModel(model){
+    this.set('title', model.get('name'));
+  },
+
   actions: {
     error(reason, transition) {
       // all errors are json api-formatted

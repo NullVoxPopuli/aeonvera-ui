@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     let host = this.get('host');
     if (host.then){
       return host.then(h => {
-        h.get('constructor.modelName') === 'organization';
+        return h.get('constructor.modelName') === 'organization';
       });
     }
 
