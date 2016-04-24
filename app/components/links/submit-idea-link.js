@@ -7,7 +7,7 @@ export default ExternalLink.extend({
   layoutName: 'components/links/external-link',
   href: 'https://github.com/NullVoxPopuli/aeonvera/issues?state=open',
 
-  text:function () {
+  text: function () {
     return this.get('i18n').t('submitideas');
   }.property(),
 });

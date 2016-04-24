@@ -89,10 +89,10 @@ export default Ember.Component.extend({
           send the token to the server to actually create the charge
          */
         order.setProperties({
-           paymentMethod: 'Stripe',
-           checkoutToken: args.id,
-           checkoutEmail: args.email,
-         });
+          paymentMethod: 'Stripe',
+          checkoutToken: args.id,
+          checkoutEmail: args.email,
+        });
 
         /* save the line order first */
         if (order.get('isNew')) {

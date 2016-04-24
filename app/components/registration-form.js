@@ -14,7 +14,7 @@ export default Ember.Component.extend({
 
   isOrganization: Ember.computed('host', function() {
     let host = this.get('host');
-    if (host.then){
+    if (host.then) {
       return host.then(h => {
         return h.get('constructor.modelName') === 'organization';
       });

@@ -12,11 +12,10 @@ export default Ember.Component.extend({
   //   });
   // },
 
-  response: Ember.computed('attendance', function(){
+  response: Ember.computed('attendance', function() {
       let attendance = this.get('attendance');
 
-      if (attendance != null)
-      {
+      if (attendance != null) {
 
         let response = this.get('store').createRecord('custom-field-response', {
           value: this.get('field.defaultValue'),
@@ -28,7 +27,7 @@ export default Ember.Component.extend({
 
         return response;
       }
-  }),
+    }),
 
   actions: {
 

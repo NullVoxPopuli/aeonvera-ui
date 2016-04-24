@@ -30,9 +30,9 @@ export default Attendance.extend({
         // value may be a promise here
         // so we need to see if we can access the
         // id property on it
-        validation(key, value, model){
+        validation(key, value, model) {
           let requiresLevel = model.get('package.requiresTrack');
-          if (requiresLevel){
+          if (requiresLevel) {
             // value is undefined for some reason
             return Ember.isPresent(model.get('level.id'));
           }

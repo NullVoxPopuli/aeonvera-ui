@@ -33,7 +33,7 @@ export default Ember.Component.extend({
         // the unpaid order is a promise, which is unfulfilled
         // if it doesn't exist. But checking if the id is empty
         // seems more self-explanatory than checking isFulfilled
-        if (Ember.isPresent(unpaidOrder.get('id'))){
+        if (Ember.isPresent(unpaidOrder.get('id'))) {
           cart.set('order', unpaidOrder);
         } else {
           cart.cancel();
@@ -73,7 +73,6 @@ export default Ember.Component.extend({
   title: Ember.computed('model.name', function () {
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
-
 
   housingRequest: Ember.computed('attendance', function() {
     let attendance = this.get('attendance');
@@ -115,7 +114,7 @@ export default Ember.Component.extend({
     // in order to protect the model from getting dirtied upon load,
     // only add to the cart and change the attendance if the
     // selected package is different
-    if (attendance.get('package.id') !== selectedPackage.get('id')){
+    if (attendance.get('package.id') !== selectedPackage.get('id')) {
       cart.set('host', this.get('model'));
       cart.add(selectedPackage);
       attendance.set('package', selectedPackage);
@@ -125,7 +124,7 @@ export default Ember.Component.extend({
   // This is for syncing the attendance.level with the selected
   // level from the list of packages on the event
   //
-  levelObserver: Ember.observer('selectedLevel', function(){
+  levelObserver: Ember.observer('selectedLevel', function() {
     this.get('attendance').set('level', this.get('selectedLevel'));
   }),
 

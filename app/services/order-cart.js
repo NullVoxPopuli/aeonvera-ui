@@ -171,7 +171,7 @@ export default Ember.Service.extend(RandomString, {
     // and then it will shoot off another request to save the order and items
     if (Ember.isPresent(attendance)) {
       // don't save if we have nothing to save
-      if (attendance.get('hasDirtyAttributes')){
+      if (attendance.get('hasDirtyAttributes')) {
         return this._saveAttendance();
       }
     }
@@ -194,7 +194,7 @@ export default Ember.Service.extend(RandomString, {
     let promise = new Ember.RSVP.Promise((resolve, reject) => {
       let token = this.get('order.paymentToken');
 
-      if (!order.get('hasDirtyAttributes')){
+      if (!order.get('hasDirtyAttributes')) {
         return resolve(order);
       }
 
@@ -208,6 +208,7 @@ export default Ember.Service.extend(RandomString, {
         order.removeItemsWithNullIds();
         resolve(order);
       }, error => {
+
         reject(error);
       });
     });

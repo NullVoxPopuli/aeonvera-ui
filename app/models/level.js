@@ -13,23 +13,23 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     async: true,
   }),
 
-  hasRequirement: Ember.computed('requirement', function(){
+  hasRequirement: Ember.computed('requirement', function() {
     let requirement = this.get('requirement');
     return (requirement !== 0);
   }),
 
-  requiresName: Ember.computed('hasRequirement', function(){
+  requiresName: Ember.computed('hasRequirement', function() {
     let hasRequirement = this.get('hasRequirement');
     let requirement = this.get('requirement');
 
-    if (hasRequirement){
+    if (hasRequirement) {
       return (requirement === 1) ? 'Audition' : 'Invitation';
     }
 
     return '';
   }),
 
-  requirementName: Ember.computed('requirement', function(){
+  requirementName: Ember.computed('requirement', function() {
     let requirement = this.get('requirement');
 
     if (requirement === 0) {

@@ -17,13 +17,13 @@ export default Ember.Route.extend({
     return promise;
   },
 
-  afterModel(model){
+  afterModel(model) {
     this.set('title', model.get('name'));
   },
 
   actions: {
     error(reason, transition) {
-      if (reason.errors === undefined){
+      if (reason.errors === undefined) {
         // This is a non-API error
         console.error(reason);
         console.error(transition);
@@ -38,7 +38,7 @@ export default Ember.Route.extend({
       if (status === 404) {
         let controller = errorObject.get('meta.params.controller');
 
-        if (controller && controller.includes('orders')){
+        if (controller && controller.includes('orders')) {
           // the order was not found, transition to the main
           // register route
           let subdomain = transition.params.register.subdomain;

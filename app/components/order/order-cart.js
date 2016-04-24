@@ -64,6 +64,7 @@ export default Ember.Component.extend(ResizeMixin, {
           this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);
         }, error => {
+
           if (Ember.isPresent(error)) {
             this.set('resetCheckoutButton', true);
             this.get('flashMessages').alert(error.message);

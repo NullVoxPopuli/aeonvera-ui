@@ -4,6 +4,7 @@
 	"requireSpacesInAnonymousFunctionExpression": false,
 	"maxErrors": 200,
 	"disallowMultipleLineStrings": false,
+	"disallowNewlineBeforeBlockStatements": true,
 	"maximumLineLength": 160,
 	"requireTrailingComma": false,
 	"requireCamelCaseOrUpperCaseIdentifiers": false
