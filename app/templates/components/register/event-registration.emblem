@@ -9,7 +9,7 @@ else
       = partial 'register/event/levels' event=event attendance=attendance
       = partial 'register/event/orientation' event=event attendance=attendance
       = partial 'register/event/housing' event=event housingResponse=housingResponse housingRequest=housingRequest
-      = partial 'register/event/custom-fields' event=event
+      = partial 'register/event/custom-fields' event=event attendance=attendance
       = partial 'register/event/competitions' event=event
       = partial 'register/event/shirts' event=event
       = partial 'register/event/a-la-carte' event=event

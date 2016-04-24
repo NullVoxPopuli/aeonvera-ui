@@ -1,0 +1,19 @@
+label = field.label
+/ text
+if (is-equal field.kind 0)
+  = input type='text' value=response.value
+
+if (is-equal field.kind 2)
+  = input type='number' value=response.value
+
+if (is-equal field.kind 3)
+  = date-time-field selectedDate=response.value
+  / = date-time-input model=response field='value'
+
+if (is-equal field.kind 4)
+  = date-time-field selectedDate=response.value
+  / = date-time-input model=response field='value'
+  
+if (is-equal field.kind 5)
+  = date-time-field selectedDate=response.value
+  / = date-time-input model=response field='value'

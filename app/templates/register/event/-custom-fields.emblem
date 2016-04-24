@@ -1,2 +1,7 @@
-if (is-present event.custom)
-  h3 Custom Fields
+if (is-present event.customFields)
+  .row
+    .small-12.medium-8.columns
+      hr
+      each event.customFields as |field|
+        = register/custom-field-response field=field attendance=attendance
+      hr

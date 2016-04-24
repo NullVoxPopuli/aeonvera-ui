@@ -39,6 +39,7 @@ export default DS.Model.extend(
 
     housingRequest: DS.belongsTo('housing-request'),
     housingProvision: DS.belongsTo('housing-provision'),
+    customFieldResponses: DS.hasMany('custom-field-response'),
 
     // address stuff
     phoneNumber: DS.attr('string'),
