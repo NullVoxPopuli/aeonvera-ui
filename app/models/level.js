@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 import DeletedAt from '../mixins/models/deleted-at';
@@ -22,13 +23,13 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     let requirement = this.get('requirement');
 
     if (hasRequirement){
-      return (requirement === 1) ? 'Audition' : 'Invitation'
+      return (requirement === 1) ? 'Audition' : 'Invitation';
     }
 
     return '';
   }),
 
-  requirementName: function () {
+  requirementName: Ember.computed('requirement', function(){
     let requirement = this.get('requirement');
 
     if (requirement === 0) {
@@ -44,5 +45,5 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     }
 
     return '';
-  }.property('requirement'),
+  }),
 });

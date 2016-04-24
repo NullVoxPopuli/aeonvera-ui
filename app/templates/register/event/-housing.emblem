@@ -59,6 +59,9 @@ if event.isHousingEnabled
         = input type='checkbox' checked=housingRequest.canProvideTransportation
         label Can Provide Transportation of Others
         br
+        label Transportation Capacity
+        = input type='number' value=housingRequest.transportationCapacity min='0'
+        br
         label Preferred Gender to be Housed With
         = x-select value=housingRequest.preferredGenderToHouseWith
           each housingRequest.genderOptions as |option|

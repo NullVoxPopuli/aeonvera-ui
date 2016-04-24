@@ -37,8 +37,8 @@ export default DS.Model.extend(
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
 
-    housingRequest: DS.belongsTo('housing-request', { async: false }),
-    housingProvision: DS.belongsTo('housing-provision', { async: false }),
+    housingRequest: DS.belongsTo('housing-request'),
+    housingProvision: DS.belongsTo('housing-provision'),
 
     // address stuff
     phoneNumber: DS.attr('string'),
@@ -52,39 +52,4 @@ export default DS.Model.extend(
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 
-    validations: {
-      city: { presence: true },
-      state: { presence: true },
-      package: { presence: true },
-      danceOrientation: { presence: true },
-      level: {
-        custom: {
-          message: 'Level is required for the selected ticket.',
-          // value may be a promise here
-          // so we need to see if we can access the
-          // id property on it
-          validation(key, value, model){
-            let requiresLevel = model.get('package.requiresTrack');
-            if (requiresLevel){
-              // value is undefined for some reason
-              return Ember.isPresent(model.get('level'));
-            }
-
-            return true;
-          }
-        }
-      },
-      phoneNumber: {
-        custom: {
-          message: 'Phone Number is required when volunteering.',
-          validation(key, value, model) {
-            if (model.get('interestedInVolunteering')) {
-              return Ember.isPresent(value);
-            }
-
-            return true;
-          }
-        }
-      },
-    }
   });

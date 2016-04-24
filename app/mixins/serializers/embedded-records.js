@@ -20,7 +20,8 @@ export default Ember.Mixin.create(DS.EmbeddedRecordsMixin, {
     }
 
     let key = relationship.key.dasherize();
-    let data = json[key]['data'];
+    let jsonForKey = json[key] || {};
+    let data = jsonForKey['data'];
     delete json[key];
     if (!json.relationships) {
       json.relationships = {};

@@ -7,7 +7,7 @@ if (is-present event.levels)
           ul.medium-block-grid-3
             each event.levels as |level|
               li
-                = radio-button value=level.id groupValue=selectedLevel
+                = radio-button value=level groupValue=selectedLevel
                 label = level.name
                 if level.hasRequirement
                   br
