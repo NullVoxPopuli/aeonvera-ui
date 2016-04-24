@@ -1,20 +1,34 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  cart: Ember.inject.service('order-cart'),
 
-  response: null,
+  // response: null,
 
-  didInsertElement(){
-    this._super(...arguments);
+  // didInsertElement(){
+  //   this._super(...arguments);
+  //
+  //   Ember.run.later(() => {
+  //   });
+  // },
 
-    let response = this.get('store').createRecord('custom-field-response', {
-      value: this.get('field.defaultValue'),
-      customField: this.get('field'),
-      writer: this.get('attendance')
-    });
+  response: Ember.computed('attendance', function(){
+      let attendance = this.get('attendance');
 
-    this.set('response', response);
-  },
+      if (attendance != null)
+      {
+
+        let response = this.get('store').createRecord('custom-field-response', {
+          value: this.get('field.defaultValue'),
+          customField: this.get('field'),
+          writer: this.get('attendance')
+        });
+
+        attendance.get('customFieldResponses').pushObject(response);
+
+        return response;
+      }
+  }),
 
   actions: {
 
