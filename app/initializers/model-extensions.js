@@ -19,5 +19,13 @@ export default {
               return result;
             })
     });
+
+    Ember.CoreObject.reopen({
+      asPromiseObject: function(){
+        return DS.PromiseObject.create({
+          promise: this
+        });
+      }
+    });
   }
 };

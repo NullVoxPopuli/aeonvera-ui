@@ -171,7 +171,7 @@ export default Ember.Service.extend(RandomString, {
     // and then it will shoot off another request to save the order and items
     if (Ember.isPresent(attendance)) {
       // don't save if we have nothing to save
-      if (attendance.get('hasDirtyAttributes')) {
+      if (this._isAttendanceDirty()) {
         return this._saveAttendance();
       }
     }
@@ -183,55 +183,74 @@ export default Ember.Service.extend(RandomString, {
 
   // this method must return a promise
   _saveOrder() {
-    let order = this.get('order');
+    let orderPromise = this.get('order').asPromiseObject();
 
-    // 2. save the order and nested data
-    //    - order line items
-    order.set('attendance', this.get('attendance'));
+    orderPromise.then(order => {
+      // 2. save the order and nested data
+      //    - order line items
+      order.set('attendance', this.get('attendance'));
 
-    // TODO: how to send to modify URL if not new
-    // - maybe set a flag on the item to be read by the server?
-    let promise = new Ember.RSVP.Promise((resolve, reject) => {
-      let token = this.get('order.paymentToken');
+      // TODO: how to send to modify URL if not new
+      // - maybe set a flag on the item to be read by the server?
+      let promise = new Ember.RSVP.Promise((resolve, reject) => {
+        let token = this.get('order.paymentToken');
 
-      if (!order.get('hasDirtyAttributes')) {
-        return resolve(order);
-      }
-
-      return order.save().then(order => {
-        // For authorizing edits, we need to add the token to the URL
-        // luckily, we have it bound already
-        if (Ember.isPresent(token)) {
-          order.set('paymentToken', token);
+        if (!order.get('hasDirtyAttributes')) {
+          return resolve(order);
         }
-        // remove order line items with a null id.
-        order.removeItemsWithNullIds();
-        resolve(order);
-      }, error => {
 
-        reject(error);
+        return order.save().then(order => {
+          // For authorizing edits, we need to add the token to the URL
+          // luckily, we have it bound already
+          if (Ember.isPresent(token)) {
+            order.set('paymentToken', token);
+          }
+          // remove order line items with a null id.
+          order.removeItemsWithNullIds();
+          resolve(order);
+        }, error => {
+
+          reject(error);
+        });
       });
+
+      return promise;
     });
 
-    return promise;
+    return orderPromise;
   },
 
   _saveAttendance() {
 
     // 1. save the attendance and nested data
     //    - housing request
-    //    - housing response
+    //    - housing provision
     //    - custom field responses
     let attendance = this.get('attendance');
     let promise = attendance.save().then(attendanceRecord => {
       this.set('attendance', attendanceRecord);
       return this._saveOrder();
     }, error => {
-
       let msg = 'Attendance could not be saved.';
       this.get('flashMessages').alert(msg);
     });
 
     return promise;
+  },
+
+  // Check the following for dirtyness
+  // - attendance
+  // - housing request
+  // - housing provision
+  // - each custom field response
+  _isAttendanceDirty(){
+    let attendance = this.get('attendance');
+
+    let isDirty = attendance.get('hasDirtyAttributes');
+    isDirty = isDirty && attendance.get('housingRequest.hasDirtyAttributes');
+    isDirty = isDirty && attendance.get('housingProvision.hasDirtyAttributes');
+    isDirty = isDirty && attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
+
+    return isDirty;
   }
 });

@@ -18,8 +18,6 @@ export default JSONAPISerializer.extend({
       json.data.attributes.unwanted4,
     ];
 
-    debugger;
-
     delete json.data.attributes.requested1;
     delete json.data.attributes.requested2;
     delete json.data.attributes.requested3;

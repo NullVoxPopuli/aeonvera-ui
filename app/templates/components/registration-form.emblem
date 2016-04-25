@@ -1,8 +1,10 @@
 .margin-left-20
   if isEvent
     = register/event-registration model=host token=token order=order
-  if isOrganization
-    = register/community-registration model=host token=token order=order
+  else
+    / Apparently there is a scenario in which both isEvent and isOrg are true. o.o
+    if isOrganization
+      = register/community-registration model=host token=token order=order
   if isNeither
     br
     br

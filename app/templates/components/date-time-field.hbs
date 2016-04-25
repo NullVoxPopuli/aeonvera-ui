@@ -1,8 +1,10 @@
 {{flat-pickr
-  dateFormat='F j, Y at'
-  timeFormat='h:i K'
+  defaultValue=defaultValue
+  dateFormat=dateFormat
+  timeFormat=timeFormat
   value=selectedDate
   enableTime=enableTime
   altInput='text'
+  nocalendar=timeOnly
   onChange=(action (mut selectedDate))
 }}

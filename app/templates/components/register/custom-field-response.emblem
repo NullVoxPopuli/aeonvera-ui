@@ -1,19 +1,20 @@
 label = field.label
 / text
-if (is-equal field.kind 0)
-  = input type='text' value=response.value
+if field.editable
+  if (is-equal field.kind 0)
+    = input type='text' value=response.value
 
-if (is-equal field.kind 2)
-  = input type='number' value=response.value
+  if (is-equal field.kind 2)
+    = input type='number' value=response.value
 
-if (is-equal field.kind 3)
-  = date-time-field selectedDate=response.value
-  / = date-time-input model=response field='value'
+  if (is-equal field.kind 3)
+    / 2016-04-14T04:00:00.000Z
+    = date-time-field selectedDate=response.value enableTime=false defaultValue=response.value
 
-if (is-equal field.kind 4)
-  = date-time-field selectedDate=response.value
-  / = date-time-input model=response field='value'
-  
-if (is-equal field.kind 5)
-  = date-time-field selectedDate=response.value
-  / = date-time-input model=response field='value'
+  if (is-equal field.kind 4)
+    = date-time-field selectedDate=response.value timeOnly=true
+    
+  if (is-equal field.kind 5)
+    = date-time-field selectedDate=response.value
+else
+  = field.defaultValue

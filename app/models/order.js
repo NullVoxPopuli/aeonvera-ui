@@ -317,7 +317,7 @@ export default DS.Model.extend(Validator, {
   removeItemsWithNullIds() {
     let lineItems = this.get('orderLineItems');
     lineItems.forEach(item => {
-      if (!item.get('id')) {
+      if (!!item && !item.get('id')) {
         item.destroyRecord();
       }
     });

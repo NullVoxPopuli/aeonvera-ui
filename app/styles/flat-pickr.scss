@@ -39,7 +39,9 @@
       }
 
     }
-
+    input.cur_year{
+      max-width: 64px;
+    }
     .flatpickr-time{
       background: $wrapping-background;
 
