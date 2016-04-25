@@ -2,17 +2,17 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  needTransportation: DS.attr('boolean'),
-  canProvideTransportation: DS.attr('boolean'),
-  transportationCapacity: DS.attr('number', { defaultValue: 0 }),
-  allergicToPets: DS.attr('boolean'),
-  allergicToSmoke: DS.attr('boolean'),
-  otherAllergies: DS.attr('string'),
+  needTransportation:         DS.attr('boolean'),
+  canProvideTransportation:   DS.attr('boolean'),
+  transportationCapacity:     DS.attr('number', { defaultValue: 0 }),
+  allergicToPets:             DS.attr('boolean'),
+  allergicToSmoke:            DS.attr('boolean'),
+  otherAllergies:             DS.attr('string'),
   preferredGenderToHouseWith: DS.attr('string', { defaultValue: 'No Preference' }),
-  notes: DS.attr('string'),
+  notes:                      DS.attr('string'),
 
-  host: DS.belongsTo('host', { polymorphic: true }),
-  attendance: DS.belongsTo('attendance', { polymorphic: true }),
+  host:             DS.belongsTo('host', { polymorphic: true }),
+  attendance:       DS.belongsTo('attendance', { polymorphic: true }),
   housingProvision: DS.belongsTo('housing-provision'),
 
   genderOptions: ['No Preference', 'Guys', 'Gals'],

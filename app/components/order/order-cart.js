@@ -2,10 +2,10 @@ import Ember from 'ember';
 import ResizeMixin from 'ember-resize-mixin/main';
 
 export default Ember.Component.extend(ResizeMixin, {
-  cart: Ember.inject.service('order-cart'),
+  cart:                  Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
-  errors: [],
-  resetCheckoutButton: false,
+  errors:                [],
+  resetCheckoutButton:   false,
 
   /*
     Handle optional parameters for editing an order

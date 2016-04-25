@@ -21,7 +21,7 @@ export default {
     });
 
     Ember.CoreObject.reopen({
-      asPromiseObject: function(){
+      asPromiseObject() {
         return DS.PromiseObject.create({
           promise: this
         });

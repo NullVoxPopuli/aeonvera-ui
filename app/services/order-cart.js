@@ -3,16 +3,16 @@ import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
 export default Ember.Service.extend(RandomString, {
-  store: Ember.inject.service('store'),
-  session: Ember.inject.service('session'),
+  store:         Ember.inject.service('store'),
+  session:       Ember.inject.service('session'),
   flashMessages: Ember.inject.service('flashMessages'),
 
   userFirstName: '',
-  userLastName: '',
-  email: '',
-  order: null,
-  host: null,
-  attendance: null,
+  userLastName:  '',
+  email:         '',
+  order:         null,
+  host:          null,
+  attendance:    null,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
     return this.get('userFirstName') + ' ' + this.get('userLastName');
@@ -119,14 +119,14 @@ export default Ember.Service.extend(RandomString, {
       return;
     }
 
-    let cartTop = cart.position().top;
-    let cartHeight = cart.height();
-    let cartBottom = cartTop + cartHeight;
-    let cartTBody = cart.find('tbody');
-    let cartTBodyHeight = cartTBody.height();
-    let cartUiHeight = cartHeight - cartTBodyHeight;
+    let cartTop             = cart.position().top;
+    let cartHeight          = cart.height();
+    let cartBottom          = cartTop + cartHeight;
+    let cartTBody           = cart.find('tbody');
+    let cartTBodyHeight     = cartTBody.height();
+    let cartUiHeight        = cartHeight - cartTBodyHeight;
     let cartUiHeightWithTop = cartUiHeight + cartTop;
-    let availableHeight = windowHeight - cartUiHeightWithTop;
+    let availableHeight     = windowHeight - cartUiHeightWithTop;
 
     cartTBody.css({ maxHeight: availableHeight + 'px' });
   },
@@ -167,6 +167,7 @@ export default Ember.Service.extend(RandomString, {
     }
 
     let attendance = this.get('attendance');
+
     // this will first save the attendance, housing info, field responses
     // and then it will shoot off another request to save the order and items
     if (Ember.isPresent(attendance)) {
@@ -205,6 +206,7 @@ export default Ember.Service.extend(RandomString, {
           if (Ember.isPresent(token)) {
             order.set('paymentToken', token);
           }
+
           // remove order line items with a null id.
           order.removeItemsWithNullIds();
           resolve(order);
@@ -231,6 +233,7 @@ export default Ember.Service.extend(RandomString, {
       this.set('attendance', attendanceRecord);
       return this._saveOrder();
     }, error => {
+
       let msg = 'Attendance could not be saved.';
       this.get('flashMessages').alert(msg);
     });
@@ -243,13 +246,14 @@ export default Ember.Service.extend(RandomString, {
   // - housing request
   // - housing provision
   // - each custom field response
-  _isAttendanceDirty(){
+  _isAttendanceDirty() {
+
     let attendance = this.get('attendance');
 
     let isDirty = attendance.get('hasDirtyAttributes');
-    isDirty = isDirty && attendance.get('housingRequest.hasDirtyAttributes');
-    isDirty = isDirty && attendance.get('housingProvision.hasDirtyAttributes');
-    isDirty = isDirty && attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
+    isDirty     = isDirty && attendance.get('housingRequest.hasDirtyAttributes');
+    isDirty     = isDirty && attendance.get('housingProvision.hasDirtyAttributes');
+    isDirty     = isDirty && attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
 
     return isDirty;
   }

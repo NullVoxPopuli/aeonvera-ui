@@ -3,32 +3,32 @@ import DS from 'ember-data';
 import Validator from '../mixins/model-validator';
 
 export default DS.Model.extend(Validator, {
-  hostName: DS.attr('string'),
-  hostUrl: DS.attr('string'),
-  createdAt: DS.attr('date'),
+  hostName:          DS.attr('string'),
+  hostUrl:           DS.attr('string'),
+  createdAt:         DS.attr('date'),
   paymentReceivedAt: DS.attr('date'),
-  paidAmount: DS.attr('number'),
+  paidAmount:        DS.attr('number'),
   netAmountReceived: DS.attr('number'),
-  totalFeeAmount: DS.attr('number'),
-  paymentMethod: DS.attr('string'),
-  paymentToken: DS.attr('string'),
-  checkNumber: DS.attr('string'),
-  paid: DS.attr('boolean'),
+  totalFeeAmount:    DS.attr('number'),
+  paymentMethod:     DS.attr('string'),
+  paymentToken:      DS.attr('string'),
+  checkNumber:       DS.attr('string'),
+  paid:              DS.attr('boolean'),
 
   totalInCents: DS.attr('number'),
 
   // TODO: think about renaming these to what
   //       they are on the server: buyer_
   userEmail: DS.attr('string'),
-  userName: DS.attr('string'),
+  userName:  DS.attr('string'),
 
   // buyerEmail: DS.attr('string'),
   // buyerName: DS.attr('string'),
 
-  host: DS.belongsTo('host', { polymorphic: true }),
+  host:           DS.belongsTo('host', { polymorphic: true }),
   orderLineItems: DS.hasMany('orderLineItem'),
-  attendance: DS.belongsTo('attendance', { async: false }),
-  user: DS.belongsTo('user'),
+  attendance:     DS.belongsTo('attendance', { async: false }),
+  user:           DS.belongsTo('user'),
 
   /*
     stripe specific things
@@ -74,10 +74,10 @@ export default DS.Model.extend(Validator, {
     // total_fee_percentage += 0.0075 unless host.beta?
     //
     // total = (sub + 0.3) / (1 - total_fee_percentage).round(2)
-    let subTotal = this.get('subTotal');
-    let minFee = 0.3;
-    let feePercentage = 0.029;
-    let applicationFee = 0.0075;
+    let subTotal           = this.get('subTotal');
+    let minFee             = 0.3;
+    let feePercentage      = 0.029;
+    let applicationFee     = 0.0075;
     let totalFeePercentage = feePercentage + applicationFee;
 
     let stringFee = (subTotal * totalFeePercentage + minFee).toFixed(2);
@@ -90,7 +90,7 @@ export default DS.Model.extend(Validator, {
   */
   subTotal: Ember.computed('orderLineItems.@each.total', function() {
     let lineItems = this.get('orderLineItems');
-    let subTotal = 0;
+    let subTotal  = 0;
 
     lineItems.forEach((item) => {
       subTotal += item.get('total');
@@ -100,9 +100,9 @@ export default DS.Model.extend(Validator, {
   }),
 
   total: Ember.computed('subTotal', 'shouldApplyFee', function() {
-    let subTotal = this.get('subTotal');
+    let subTotal       = this.get('subTotal');
     let shouldApplyFee = this.get('shouldApplyFee');
-    let total = subTotal;
+    let total          = subTotal;
 
     if (shouldApplyFee) {
       let fee = this.get('fee');
@@ -124,7 +124,7 @@ export default DS.Model.extend(Validator, {
     price - overrides the price of the lineItem
   */
   addLineItem: function(lineItem, quantity = 1, price = null) {
-    price = price ? price : lineItem.get('currentPrice');
+    price    = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
     if (lineItem.get('isPackage')) {
@@ -135,7 +135,7 @@ export default DS.Model.extend(Validator, {
 
       // is the item already in the order?
       let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
-      let oliExists = Ember.isPresent(orderLineItem);
+      let oliExists     = Ember.isPresent(orderLineItem);
       if (quantity > 0 && !oliExists) {
         this._addNewLineItem(lineItem, quantity, price);
       } else if (oliExists) {
@@ -189,9 +189,9 @@ export default DS.Model.extend(Validator, {
   _updateAutomaticDiscounts() {
     if (!this._eligibleForDiscount()) return;
 
-    let discounts = this.get('host.membershipDiscounts');
-    let items = this.get('orderLineItems');
-    let activeDiscounts = items.filterBy('lineItem.isADiscount');
+    let discounts          = this.get('host.membershipDiscounts');
+    let items              = this.get('orderLineItems');
+    let activeDiscounts    = items.filterBy('lineItem.isADiscount');
     let activeNonDiscounts = items.filterBy('lineItem.isADiscount', false);
 
     if (activeNonDiscounts.get('length') > 0) {
@@ -260,7 +260,7 @@ export default DS.Model.extend(Validator, {
 
     let orderLineItem = this.get('orderLineItems').createRecord({
       lineItem: lineItem,
-      price: price,
+      price:    price,
       quantity: quantity,
     });
 
@@ -297,6 +297,7 @@ export default DS.Model.extend(Validator, {
       let isSameKind = lineItem.isTheSameKindAs(currentLineItem);
 
       if (
+
           // this needs to exist -- but breaks tests :-(
           // due to promises... GRRR
           //isSameKind &&
@@ -324,8 +325,8 @@ export default DS.Model.extend(Validator, {
   },
 
   hasLineItem: function(lineItem) {
-    let lineItems = this.get('orderLineItems');
-    let items = lineItems.mapBy('lineItem');
+    let lineItems      = this.get('orderLineItems');
+    let items          = lineItems.mapBy('lineItem');
     let flattenedItems = items.reduce(function(a, b) {
       return a.concat(b);
     }, []);
@@ -360,10 +361,10 @@ export default DS.Model.extend(Validator, {
       */
       this.setProperties({
         paymentMethod: paymentMethod,
-        checkNumber: checkNumber,
-        paid: true,
-        paidAmount: this.get('subTotal'),
-        stripeData: stripeData,
+        checkNumber:   checkNumber,
+        paid:          true,
+        paidAmount:    this.get('subTotal'),
+        stripeData:    stripeData,
       });
     }
   },
