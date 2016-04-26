@@ -6,7 +6,12 @@ export default Ember.Component.extend({
   event: Ember.computed.alias('model'),
   cart: Ember.inject.service('order-cart'),
 
-  housingResponse: 0,
+  housingResponse: Ember.computed('attendance', function() {
+    let housingRequest = this.get('attendance.housingRequest');
+    let housingProvision = this.get('attendance.housingProvision');
+
+    return !!housingRequest ? 2 : (!!housingProvision ? 1 : 0);
+  }),
   isWaivingHousing: Ember.computed.equal('housingResponse', 0),
   isProvidingHousing: Ember.computed.equal('housingResponse', 1),
   isRequestingHousing: Ember.computed.equal('housingResponse', 2),
@@ -23,12 +28,14 @@ export default Ember.Component.extend({
     store.queryRecord('event-attendance', {
       current_user: true, event_id: eventId }).then(attendance => {
         let cart = this.get('cart');
+
         // in case there is an existing order,
         // cancel it, and re-populate everything with our
         // own cart
         this.set('attendance', attendance);
         cart.set('attendance', attendance);
         let unpaidOrder = attendance.get('unpaidOrder');
+
         // if the unpaid order isn't present, then don't set it
         // the unpaid order is a promise, which is unfulfilled
         // if it doesn't exist. But checking if the id is empty
@@ -37,6 +44,7 @@ export default Ember.Component.extend({
           cart.set('order', unpaidOrder);
         } else {
           cart.cancel();
+
           // create a new order -- how did they create an attendance with no order?
           // - possibly validation issues on the order during save, and
           //   then a refresh may have happened before the order validation
@@ -77,21 +85,50 @@ export default Ember.Component.extend({
   housingRequest: Ember.computed('attendance', function() {
     let attendance = this.get('attendance');
     let housingRequest = attendance.get('housingRequest');
+    let housingProvision = attendance.get('housingProvision');
 
-    if (housingRequest.get('isFulfilled')) {
+    if (housingProvision) {
+      housingProvision.destroyRecord();
+      housingProvision.save();
+    }
+
+    if (housingRequest) {
       return housingRequest;
     }
 
+    // let hr = attendance.get('housingRequest');
+    //
+    // return Ember.RSVP.resolve(hr).then(housingRequest => {
+    //   if (Ember.isPresent(housingRequest)) {
+    //     return housingRequest;
+    //   }
+
+    // if the housing request doesn't already exist, create it
+    // this should only be triggered if the user clicks on the
+    // housing request radio button
     housingRequest = this.store.createRecord('housing-request');
+    housingRequest.set('attendance', attendance);
     attendance.set('housingRequest', housingRequest);
     return housingRequest;
+
+    // }, error => {
+    //   // would this happen?
+    //   console.error(error);
+    //   return null;
+    // });
   }),
 
-  housingProvision: Ember.computed(function() {
+  housingProvision: Ember.computed('attendance', function() {
     let attendance = this.get('attendance');
     let housingProvision = attendance.get('housingProvision');
+    let housingRequest = attendance.get('housingRequest');
 
-    if (housingProvision != null && housingProvision.get('isFulfilled')) {
+    if (housingRequest) {
+      housingRequest.destroyRecord();
+      housingRequest.save();
+    }
+
+    if (housingProvision != null) {
       return housingProvision;
     }
 

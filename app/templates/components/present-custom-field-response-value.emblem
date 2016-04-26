@@ -1,0 +1,17 @@
+if (is-equal field.kind 0)
+  = model.value
+
+if (is-equal field.kind 1)
+  = model.value
+
+if (is-equal field.kind 2)
+  = model.value
+
+if (is-equal field.kind 3)
+  = date-with-format model.value 'LL' true
+
+if (is-equal field.kind 4)
+  = date-with-format model.value 'LT' true
+  
+if (is-equal field.kind 5)
+  = date-with-format model.value 'LLL' true

@@ -8,8 +8,7 @@ export default Ember.Route.extend({
     let promise = this.get('store').findRecord('host', subdomain, {
       adapterOptions: {
         query: {
-          subdomain: subdomain,
-          include: 'opening_tier,current_tier,custom_fields,line_items,shirts,integrations,packages,levels,competitions,lessons,membership_options,membership_discounts',
+          subdomain: subdomain
         },
       },
     });

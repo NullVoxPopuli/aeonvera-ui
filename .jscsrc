@@ -7,5 +7,6 @@
 	"disallowNewlineBeforeBlockStatements": true,
 	"maximumLineLength": 160,
 	"requireTrailingComma": false,
-	"requireCamelCaseOrUpperCaseIdentifiers": false
+	"requireCamelCaseOrUpperCaseIdentifiers": false,
+	"requirePaddingNewLinesAfterBlocks":  { "allExcept": ["inProperties", "inCallExpressions"] }
 }

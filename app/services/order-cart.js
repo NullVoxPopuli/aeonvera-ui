@@ -50,6 +50,7 @@ export default Ember.Service.extend(RandomString, {
   */
   currentOrder: Ember.computed('order', function() {
     let order = this.get('order');
+
     if (!Ember.isPresent(order)) {
       let user = this.get('session.currentUser');
       let orderId = this.get('orderId');
@@ -81,33 +82,40 @@ export default Ember.Service.extend(RandomString, {
     return order;
   }),
 
+  currentOrderAsPromise: Ember.computed('currentOrder', function() {
+    return this.get('currentOrder').asPromiseObject();
+  }),
+
   add(item, quantity = 1) {
-    let order = this.get('currentOrder');
-    order.addLineItem(item, quantity);
-    this._adjustCartMaxHeight();
+    this.get('currentOrderAsPromise').then(order => {
+      order.addLineItem(item, quantity);
+      this._adjustCartMaxHeight();
+    });
   },
 
   remove(item) {
-    let order = this.get('currentOrder');
-    order.removeOrderLineItem(item);
-    if (!order.get('hasLineItems')) { this.cancel(); }
+    this.get('currentOrderAsPromise').then(order => {
+      order.removeOrderLineItem(item);
+      if (!order.get('hasLineItems')) { this.cancel(); }
 
-    this._adjustCartMaxHeight();
-
+      this._adjustCartMaxHeight();
+    });
   },
 
   cancel() {
     let order = this.get('order');
     if (order == null) return;
 
-    if (order.get('isNew')) {
-      order.unloadRecord();
-    } else {
-      order.destroyRecord();
-      order.save();
-    }
+    this.get('currentOrderAsPromise').then(order => {
+      if (order.get('isNew')) {
+        order.unloadRecord();
+      } else {
+        order.destroyRecord();
+        order.save();
+      }
 
-    this.set('order', null);
+      this.set('order', null);
+    });
   },
 
   _adjustCartMaxHeight() {
@@ -136,57 +144,53 @@ export default Ember.Service.extend(RandomString, {
   // - OrderLineItems
   // - Attendance, if applicable
   validate() {
-    let order = this.get('order');
+    return this.get('currentOrderAsPromise').then(order => {
+      let isOrderValid = order.validate();
+      order.get('orderLineItems').map(item => {
+        let isItemValid = item.validate();
+        isOrderValid = isOrderValid && isItemValid;
+      });
 
-    // upon edit, order is a PromiseObject, rather than a raw class (like in
-    // a new registration)
-    order = order.isFulfilled ? order.content : order;
+      let attendance = this.get('attendance');
+      if (Ember.isPresent(attendance)) {
+        let isAttendanceValid = attendance.validate();
+        isOrderValid = isOrderValid && isAttendanceValid;
+      }
 
-    let isOrderValid = order.validate();
-    order.get('orderLineItems').map(item => {
-      let isItemValid = item.validate();
-      isOrderValid = isOrderValid && isItemValid;
+      return isOrderValid;
     });
-
-    let attendance = this.get('attendance');
-    if (Ember.isPresent(attendance)) {
-      let isAttendanceValid = attendance.validate();
-      isOrderValid = isOrderValid && isAttendanceValid;
-    }
-
-    return isOrderValid;
   },
 
   // This method must return a promise
   checkout() {
     // Client-side validation must pass before we try to send to the server
-    if (!this.validate()) {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        reject(null);
-      });
-    }
-
-    let attendance = this.get('attendance');
-
-    // this will first save the attendance, housing info, field responses
-    // and then it will shoot off another request to save the order and items
-    if (Ember.isPresent(attendance)) {
-      // don't save if we have nothing to save
-      if (this._isAttendanceDirty()) {
-        return this._saveAttendance();
+    return this.validate().then(isValidated => {
+      if (!isValidated) {
+        return null;
       }
-    }
 
-    // if the attendance isn't set -- odds are, we don't need it.
-    // just save the order
-    return this._saveOrder();
+      let attendance = this.get('attendance');
+
+      // this will first save the attendance, housing info, field responses
+      // and then it will shoot off another request to save the order and items
+      if (Ember.isPresent(attendance)) {
+        // don't save if we have nothing to save
+        if (this._isAttendanceDirty()) {
+          return this._saveAttendance();
+        }
+      }
+
+      // if the attendance isn't set -- odds are, we don't need it.
+      // just save the order
+      return this._saveOrder();
+    });
   },
 
   // this method must return a promise
+  // TODO: this method sucks. Fix it.
   _saveOrder() {
-    let orderPromise = this.get('order').asPromiseObject();
+    return this.get('currentOrderAsPromise').then(order => {
 
-    orderPromise.then(order => {
       // 2. save the order and nested data
       //    - order line items
       order.set('attendance', this.get('attendance'));
@@ -195,6 +199,8 @@ export default Ember.Service.extend(RandomString, {
       // - maybe set a flag on the item to be read by the server?
       let promise = new Ember.RSVP.Promise((resolve, reject) => {
         let token = this.get('order.paymentToken');
+
+        this._saveOrderLineItems();
 
         if (!order.get('hasDirtyAttributes')) {
           return resolve(order);
@@ -218,8 +224,6 @@ export default Ember.Service.extend(RandomString, {
 
       return promise;
     });
-
-    return orderPromise;
   },
 
   _saveAttendance() {
@@ -229,13 +233,15 @@ export default Ember.Service.extend(RandomString, {
     //    - housing provision
     //    - custom field responses
     let attendance = this.get('attendance');
+    this._saveAttendanceItems();
+
     let promise = attendance.save().then(attendanceRecord => {
       this.set('attendance', attendanceRecord);
       return this._saveOrder();
     }, error => {
-
       let msg = 'Attendance could not be saved.';
       this.get('flashMessages').alert(msg);
+      console.error(error);
     });
 
     return promise;
@@ -251,10 +257,72 @@ export default Ember.Service.extend(RandomString, {
     let attendance = this.get('attendance');
 
     let isDirty = attendance.get('hasDirtyAttributes');
-    isDirty     = isDirty && attendance.get('housingRequest.hasDirtyAttributes');
-    isDirty     = isDirty && attendance.get('housingProvision.hasDirtyAttributes');
-    isDirty     = isDirty && attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
+    isDirty     = isDirty || attendance.get('housingRequest.hasDirtyAttributes');
+    isDirty     = isDirty || attendance.get('housingProvision.hasDirtyAttributes');
+    isDirty     = isDirty || attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
 
     return isDirty;
+  },
+
+  // Optionally save the order line items
+  // in order to save the order line items, the order must first
+  // be persisted
+  // This should only be done as an overall 'update' to the collection
+  // of order+orderLineItems
+  _saveOrderLineItems() {
+    this.get('currentOrderAsPromise').then(order => {
+      if (order.get('isPersisted')) {
+        let orderLineItems = order.get('orderLineItems');
+        orderLineItems.forEach(item => {
+          if (item.get('hasDirtyAttributes')) {
+            item.save();
+          }
+        });
+      }
+    }, error => {
+      // panic?
+    });
+  },
+
+  // Optionally save the attendance items
+  // In order to save these, the attendance must first be persisted.
+  // This should only be d one as an overall update to the
+  // attendance + housing + custom field responses
+  _saveAttendanceItems() {
+    let attendance = this.get('attendance');
+    if (attendance.get('isPersisted')) {
+      // TODO: error handling?
+      this._saveHousingRequest();
+      this._saveHousingProvision();
+      this._saveCustomFieldResponses();
+    }
+  },
+
+  _saveHousingRequest() {
+    let housingRequest = this.get('attendance.housingRequest');
+
+    if (housingRequest && housingRequest.get('hasDirtyAttributes')) {
+      housingRequest.save();
+    }
+  },
+
+  _saveHousingProvision() {
+    let housingProvision = this.get('attendance.housingProvision');
+
+    if (housingProvision && housingProvision.get('hasDirtyAttributes')) {
+      housingProvision.save();
+    }
+  },
+
+  _saveCustomFieldResponses() {
+    let customFieldResponses = this.get('attendance.customFieldResponses');
+
+    if (Ember.isPresent(customFieldResponses)) {
+      customFieldResponses.forEach(item => {
+        if (item.get('hasDirtyAttributes')) {
+          item.save();
+        }
+      });
+    }
   }
 });

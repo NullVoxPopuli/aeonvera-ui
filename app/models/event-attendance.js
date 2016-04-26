@@ -27,6 +27,7 @@ export default Attendance.extend({
     level: {
       custom: {
         message: 'Level is required for the selected ticket.',
+
         // value may be a promise here
         // so we need to see if we can access the
         // id property on it

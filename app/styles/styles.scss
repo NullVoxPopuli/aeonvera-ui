@@ -47,10 +47,6 @@
     margin: 0;
   }
 
-  table {
-    border-collapse: collapse;
-  }
-
   .print-out-page {
     page-break-after: always;
   }
@@ -63,26 +59,6 @@
   .overview {
     margin: 10px;
     // margin-top: 70px;
-  }
-
-  table th i {
-    margin-left: 5px;
-  }
-
-  table th i:hover {
-    text-decoration: none;
-  }
-
-  table tr td.deleted a {
-    color: red;
-  }
-
-  table tr td.order-payment-status {
-    text-align: center;
-    background: #ffaaaa;
-    &[data-paid='true'] {
-      background: #aaddaa;
-    }
   }
 
   .flash-message.alert-box {

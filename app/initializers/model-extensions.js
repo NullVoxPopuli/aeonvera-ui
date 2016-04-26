@@ -17,15 +17,15 @@ export default {
               let emberModelName = this.get('constructor.modelName');
               let result = emberModelName.singularize().camelize().capitalize();
               return result;
-            })
+            }),
+
+      isPersisted: Ember.computed(function() {
+                    return !this.get('isNew');
+                  }),
     });
 
     Ember.CoreObject.reopen({
-      asPromiseObject() {
-        return DS.PromiseObject.create({
-          promise: this
-        });
-      }
+      asPromiseObject() { return Ember.RSVP.resolve(this); }
     });
   }
 };

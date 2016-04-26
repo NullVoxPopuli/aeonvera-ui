@@ -31,10 +31,12 @@ export default JSONAPISerializer.extend({
     return json;
   },
 
-  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+  // normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+  normalize(modelClass, resourceHash) {
     var json = this._super(...arguments);
-    let requested = json.data.attributes.requestedRoommates;
-    let unwanted = json.data.attributes.unwantedRoommates;
+
+    let requested = json.data.attributes.requestedRoommates || [];
+    let unwanted = json.data.attributes.unwantedRoommates || [];
 
     json.data.attributes.requested1 = requested[0];
     json.data.attributes.requested2 = requested[1];
