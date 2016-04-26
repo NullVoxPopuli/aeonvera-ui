@@ -3,6 +3,8 @@ import DS from 'ember-data';
 import Validator from '../mixins/model-validator';
 
 export default DS.Model.extend(Validator, {
+  priceCalculator: Ember.inject.service(),
+
   hostName:          DS.attr('string'),
   hostUrl:           DS.attr('string'),
   createdAt:         DS.attr('date'),
@@ -69,18 +71,17 @@ export default DS.Model.extend(Validator, {
     return result;
   }),
 
-  fee: Ember.computed('subTotal', function() {
-    // total_fee_percentage = 0.029 # Stripe
-    // total_fee_percentage += 0.0075 unless host.beta?
-    //
-    // total = (sub + 0.3) / (1 - total_fee_percentage).round(2)
-    let subTotal           = this.get('subTotal');
-    let minFee             = 0.3;
-    let feePercentage      = 0.029;
-    let applicationFee     = 0.0075;
-    let totalFeePercentage = feePercentage + applicationFee;
+  priceCalculation: Ember.computed('subTotal', 'shouldApplyFee', function() {
+    let subTotal = this.get('subTotal');
+    let shouldApplyFee = this.get('shouldApplyFee');
+    let absorbTheFee = !shouldApplyFee;
+    var value = this.get('priceCalculator').calculateForSubTotal(subTotal, absorbTheFee);
+    return value;
+  }),
 
-    let stringFee = (subTotal * totalFeePercentage + minFee).toFixed(2);
+  fee: Ember.computed('subTotal', function() {
+    let calculation = this.get('priceCalculation');
+    let stringFee = calculation.totalFee;
     return parseFloat(stringFee);
   }),
 
@@ -100,16 +101,8 @@ export default DS.Model.extend(Validator, {
   }),
 
   total: Ember.computed('subTotal', 'shouldApplyFee', function() {
-    let subTotal       = this.get('subTotal');
-    let shouldApplyFee = this.get('shouldApplyFee');
-    let total          = subTotal;
-
-    if (shouldApplyFee) {
-      let fee = this.get('fee');
-      total += fee;
-    }
-
-    return total;
+    let calculation = this.get('priceCalculation');
+    return calculation.total;
   }),
 
   paidClass: function() {

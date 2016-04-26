@@ -3,6 +3,16 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
   email: Ember.computed.oneWay('cart.userEmail'),
+  showPaymentInProgress: false,
+
+  statementDescription: Ember.computed('model.host', function() {
+    let hostName = this.get('model.host.name');
+    if (hostName.length > 15) {
+      return hostName.substring(0, 15);
+    }
+
+    return hostName;
+  }),
 
   /*
     for unauthenticated orders
@@ -34,6 +44,7 @@ export default Ember.Component.extend({
       let order = this.get('model');
       order.set('checkoutToken', token);
       this._setOrderTokenIfPresent();
+      this.set('showPaymentInProgress', true);
 
       // by saving, the server is going to attempt to charge the card,
       //
@@ -43,9 +54,12 @@ export default Ember.Component.extend({
       // if there are errors with the credit card,
       // the user must be notified
       order.save().then(record => {
+        this.set('showPaymentInProgress', false);
         this.transitionTo('register.checkout.thankyou');
       }, error => {
         // model's error object is used.
+        this.get('flashMessages').alert(error);
+        this.set('showPaymentInProgress', false);
       });
     },
 

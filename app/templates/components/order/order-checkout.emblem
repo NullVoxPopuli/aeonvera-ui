@@ -23,10 +23,23 @@ br
 
     .clearfix
     if (is-present model.attendance)
-      = registrant/attendance-summary attendance=model.attendance
-  
-  
+      = registrant/attendance-summary attendance=model.attendance  
   
 
 br
 br
+
+if showPaymentInProgress
+  .payment-in-progress-container
+    .center-parent.height-of-300px.margin-top-100
+      .center-child.both
+        .payment-in-progress
+          h3: em Securely Submitting Your Payment
+          h5 
+            | This will appear on your statement as 
+            strong = statementDescription
+          = spinner/rect-spinner
+          br
+          br
+          br
+          span If it feels like this has been taking a while, feel free to refresh the page.

@@ -20,6 +20,30 @@ export default Ember.Component.extend({
   selectedLevel: null,
   attendance: null,
 
+  housingRequest: null,
+  housingProvision: null,
+  housingObserver: Ember.observer('housingResponse', function() {
+    let housingResponse = this.get('housingResponse');
+
+    // delete both
+    if (housingResponse === 0) {
+      this._deleteHousingRequest();
+      this._deleteHousingProvision();
+    }
+
+    // delete the housing request
+    if (housingResponse === 1) {
+      this._deleteHousingRequest();
+      this._setHousingProvision();
+    }
+
+    // delete the housing provision
+    if (housingResponse === 2) {
+      this._deleteHousingProvision();
+      this._setHousingRequest();
+    }
+  }),
+
   findAttendance: function () {
     let eventId = this.get('event.id');
     let store = this.get('store');
@@ -33,6 +57,9 @@ export default Ember.Component.extend({
         // cancel it, and re-populate everything with our
         // own cart
         this.set('attendance', attendance);
+        this.set('housingRequest', attendance.get('housingRequest'));
+        this.set('housingProvision', attendance.get('housingProvision'));
+
         cart.set('attendance', attendance);
         let unpaidOrder = attendance.get('unpaidOrder');
 
@@ -82,61 +109,6 @@ export default Ember.Component.extend({
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
-  housingRequest: Ember.computed('attendance', function() {
-    let attendance = this.get('attendance');
-    let housingRequest = attendance.get('housingRequest');
-    let housingProvision = attendance.get('housingProvision');
-
-    if (housingProvision) {
-      housingProvision.destroyRecord();
-      housingProvision.save();
-    }
-
-    if (housingRequest) {
-      return housingRequest;
-    }
-
-    // let hr = attendance.get('housingRequest');
-    //
-    // return Ember.RSVP.resolve(hr).then(housingRequest => {
-    //   if (Ember.isPresent(housingRequest)) {
-    //     return housingRequest;
-    //   }
-
-    // if the housing request doesn't already exist, create it
-    // this should only be triggered if the user clicks on the
-    // housing request radio button
-    housingRequest = this.store.createRecord('housing-request');
-    housingRequest.set('attendance', attendance);
-    attendance.set('housingRequest', housingRequest);
-    return housingRequest;
-
-    // }, error => {
-    //   // would this happen?
-    //   console.error(error);
-    //   return null;
-    // });
-  }),
-
-  housingProvision: Ember.computed('attendance', function() {
-    let attendance = this.get('attendance');
-    let housingProvision = attendance.get('housingProvision');
-    let housingRequest = attendance.get('housingRequest');
-
-    if (housingRequest) {
-      housingRequest.destroyRecord();
-      housingRequest.save();
-    }
-
-    if (housingProvision != null) {
-      return housingProvision;
-    }
-
-    housingProvision = this.store.createRecord('housing-provision');
-    attendance.set('housingProvision', housingProvision);
-    return housingProvision;
-  }),
-
   // TODO: remove other packages, or provide an option on the event
   //       to force only registering for one
   //
@@ -169,6 +141,8 @@ export default Ember.Component.extend({
     return this.store.createRecord('order');
   }),
 
+  genderOptions: ['No Preference', 'Guys', 'Gals'],
+
   actions: {
     add: function(item) {
       this.get('cart').set('host', this.get('model'));
@@ -179,5 +153,55 @@ export default Ember.Component.extend({
       this.get('cart').set('host', this.get('model'));
       this.get('cart').add(item, quantity);
     }
+  },
+
+  _deleteHousingRequest() {
+    let housingRequest = this.get('attendance.housingRequest');
+
+    if (housingRequest && !housingRequest.get('isDeleted')) {
+      housingRequest.destroyRecord();
+      housingRequest.save();
+      this.set('attendance.housingRequest', null);
+      this.set('housingRequest', null);
+    }
+  },
+
+  _deleteHousingProvision() {
+    let housingProvision = this.get('attendance.housingProvision');
+
+    if (housingProvision && !housingProvision.get('isDeleted')) {
+      housingProvision.destroyRecord();
+      housingProvision.save();
+      this.set('attendance.housingProvision', null);
+      this.set('housingProvision', null);
+    }
+  },
+
+  _setHousingProvision() {
+    let attendance = this.get('attendance');
+    let housingProvision = attendance.get('housingProvision');
+
+    if (housingProvision != null) {
+      return housingProvision;
+    }
+
+    housingProvision = this.store.createRecord('housing-provision');
+    attendance.set('housingProvision', housingProvision);
+    return housingProvision;
+  },
+
+  _setHousingRequest() {
+    let attendance = this.get('attendance');
+    let housingRequest = attendance.get('housingRequest');
+
+    if (housingRequest) {
+      return housingRequest;
+    }
+
+    housingRequest = this.store.createRecord('housing-request');
+    housingRequest.set('attendance', attendance);
+    attendance.set('housingRequest', housingRequest);
+    return housingRequest;
   }
+
 });

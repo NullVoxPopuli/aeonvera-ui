@@ -15,8 +15,6 @@ export default DS.Model.extend({
   attendance:       DS.belongsTo('attendance', { polymorphic: true }),
   housingProvision: DS.belongsTo('housing-provision'),
 
-  genderOptions: ['No Preference', 'Guys', 'Gals'],
-
   requested1: DS.attr(),
   requested2: DS.attr(),
   requested3: DS.attr(),

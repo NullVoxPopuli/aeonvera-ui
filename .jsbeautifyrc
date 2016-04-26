@@ -1,0 +1,9 @@
+{
+  "css": {
+    "align_assignments": true,
+    "indent_size": 2,
+    "indent_char": " ",
+    "newline_between_rules": true
+
+  }
+}

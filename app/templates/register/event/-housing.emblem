@@ -18,81 +18,81 @@ if event.isHousingEnabled
     h4 Housing Provision Information
     .row
       .small-12.medium-6.columns
-        = input type='checkbox' checked=housingProvision.hasPets
+        = input type='checkbox' checked=attendance.housingProvision.hasPets
         label I have Pets
         br
-        = input type='checkbox' checked=housingProvision.smokes
+        = input type='checkbox' checked=attendance.housingProvision.smokes
         label I Smoke
         br
       .small-12.medium-6.columns
-        = input type='checkbox' checked=housingProvision.canProvideTransportation
+        = input type='checkbox' checked=attendance.housingProvision.canProvideTransportation
         label Can Provide Transportation
 
         label Transportation Capacity
-        = input type='number' value=housingProvision.transportationCapacity min='0'
+        = input type='number' value=attendance.housingProvision.transportationCapacity min='0'
     .row
       .small-12.medium-6.columns
         label Preferred Gender to Host
-        = x-select value=housingProvision.preferredGenderToHouse
-          each housingProvision.genderOptions as |option|
+        = x-select value=attendance.housingProvision.preferredGenderToHouse
+          each genderOptions as |option|
             = x-option value=option
               = option
 
       .small-12.medium-6.columns
         label Housing Capacity
-        = input type='number' value=housingProvision.housingCapacity min='0'
+        = input type='number' value=attendance.housingProvision.housingCapacity min='0'
         label Number of Showers
-        = input type='number' value=housingProvision.numberOfShowers min='0'
+        = input type='number' value=attendance.housingProvision.numberOfShowers min='0'
 
 
     label Notes
-    = input type='text' value=housingProvision.notes
+    = input type='text' value=attendance.housingProvision.notes
 
   if isRequestingHousing
     hr
     h4 Housing Request Information
     .row
       .small-12.medium-6.columns
-        = input type='checkbox' checked=housingRequest.needTransportation
+        = input type='checkbox' checked=attendance.housingRequest.needTransportation
         label Need Transportation
         br
-        = input type='checkbox' checked=housingRequest.canProvideTransportation
+        = input type='checkbox' checked=attendance.housingRequest.canProvideTransportation
         label Can Provide Transportation of Others
         br
         label Transportation Capacity
-        = input type='number' value=housingRequest.transportationCapacity min='0'
+        = input type='number' value=attendance.housingRequest.transportationCapacity min='0'
         br
         label Preferred Gender to be Housed With
-        = x-select value=housingRequest.preferredGenderToHouseWith
-          each housingRequest.genderOptions as |option|
+        = x-select value=attendance.housingRequest.preferredGenderToHouseWith
+          each genderOptions as |option|
             = x-option value=option
               = option
 
       .small-12.medium-6.columns
-        = input type='checkbox' checked=housingRequest.allergicToPets
+        = input type='checkbox' checked=attendance.housingRequest.allergicToPets
         label Allergic to Pets
         br
-        = input type='checkbox' checked=housingRequest.allergicToSmoke
+        = input type='checkbox' checked=attendance.housingRequest.allergicToSmoke
         label Allergic to Smoke
         br
         label Other Allergies
-        = input type='text' value=housingRequest.otherAllergies
+        = input type='text' value=attendance.housingRequest.otherAllergies
 
 
     .row
       .small-12.medium-6.columns
         label Requested Roommates
-        = input type='text' value=housingRequest.requested1
-        = input type='text' value=housingRequest.requested2
-        = input type='text' value=housingRequest.requested3
-        = input type='text' value=housingRequest.requested4
+        = input type='text' value=attendance.housingRequest.requested1
+        = input type='text' value=attendance.housingRequest.requested2
+        = input type='text' value=attendance.housingRequest.requested3
+        = input type='text' value=attendance.housingRequest.requested4
 
       .small-12.medium-6.columns
         label Unwanted Roommates
-        = input type='text' value=housingRequest.unwanted1
-        = input type='text' value=housingRequest.unwanted2
-        = input type='text' value=housingRequest.unwanted3
-        = input type='text' value=housingRequest.unwanted4
+        = input type='text' value=attendance.housingRequest.unwanted1
+        = input type='text' value=attendance.housingRequest.unwanted2
+        = input type='text' value=attendance.housingRequest.unwanted3
+        = input type='text' value=attendance.housingRequest.unwanted4
 
     label Notes
     = input type='text' value=housingRequest.notes

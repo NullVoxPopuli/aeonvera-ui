@@ -16,6 +16,17 @@ table.width-of-100
         td.text-right = item.quantity
         td.text-right = to-usd item.total
   tfoot
+    if displayFee
+      tr
+        th
+        th
+        th.text-right Sub Total
+        th.text-right = to-usd model.subTotal
+      tr
+        th
+        th
+        th.text-right Fee
+        th.text-right = to-usd model.fee
     tr
       th
       th

@@ -15,6 +15,4 @@ export default DS.Model.extend({
   host: DS.belongsTo('host', { polymorphic: true }),
   attendance: DS.belongsTo('attendance', { polymorphic: true }),
 
-  genderOptions: ['No Preference', 'Guys', 'Gals'],
-
 });

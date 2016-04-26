@@ -1,5 +1,5 @@
 $directions: "left", "right", "bottom", "top";
-$intervals: 0, 5, 10, 12, 15, 20;
+$intervals: 0, 5, 10, 12, 15, 20, 50, 100, 200;
 
 $max-widths: 65rem, 70rem, 75rem, 85rem;
 
@@ -41,6 +41,11 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   .width-of-#{$i}0px{
     width: #{$i}0px !important;
   }
+
+  .height-of-#{$i}0px{
+    height: #{$i}0px !important;
+  }
+
   .min-width-#{$i}0 {
     min-width: #{$i}0px;
   }
