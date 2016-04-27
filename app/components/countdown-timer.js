@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    window.clearInterval(this.get(timer));
+    window.clearInterval(this.get('timer'));
   },
 
   _startCountDown() {
