@@ -6,7 +6,8 @@
     "-Promise",
     "jQuery",
     "moment",
-    "d3"
+    "d3",
+    "countdown"
   ],
   "browser": true,
   "boss": true,

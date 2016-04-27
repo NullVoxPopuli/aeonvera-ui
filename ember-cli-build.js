@@ -50,6 +50,9 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import('bower_components/momentjs/moment.js');
 
+  // countdowns!
+  app.import('vendor/countdown.js');
+
   // tetris!
   app.import('vendor/blockrain/blockrain.css');
   app.import('vendor/blockrain/blockrain.jquery.js');

@@ -16,9 +16,16 @@ Ember frontend for aeonvera
 
 ### Deploying
 
+For deploying to heroku, you'll need to specify
+ - AWS_ACCESS_KEY_ID
+ - AWS_SECRET_ACCESS_KEY
+ - REDISCLOUD_URL
+ - REDISCLOUD_PORT
+ - REDISCLOUD_PASSWORD
+
 * `ember deploy staging`
-  * need to specify AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-* Production deployment is handled on Travis.
+* `ember deploy production`
+  * I've learned I can't trust travis with secret keys.
 
 
 
@@ -44,6 +51,8 @@ or copy the latest command from [the NVM repo](https://github.com/creationix/nvm
     bower install
 
 ### Updating app dependencies
+
+!!! Dangerous !!!
 
 ```
 npm install -g npm-check-updates

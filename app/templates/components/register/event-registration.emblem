@@ -1,15 +1,25 @@
-if mustLogin
-  = register/must-login model=model
+if model.registrationIsOpen
+  if mustLogin
+    = register/must-login model=model
+  else
+    .margin-left-20
+      = order/order-cart host=model token=token order=order
+        =page-header text=title
+        = partial 'register/event/attendance-information' event=event attendance=attendance
+        = partial 'register/event/packages' event=event attendance=attendance
+        = partial 'register/event/levels' event=event attendance=attendance
+        = partial 'register/event/orientation' event=event attendance=attendance
+        = partial 'register/event/housing' event=event
+        = partial 'register/event/custom-fields' event=event attendance=attendance
+        = partial 'register/event/competitions' event=event
+        = partial 'register/event/shirts' event=event
+        = partial 'register/event/a-la-carte' event=event
 else
-  .margin-left-20
-    = order/order-cart host=model token=token order=order
-      =page-header text=title
-      = partial 'register/event/attendance-information' event=event attendance=attendance
-      = partial 'register/event/packages' event=event attendance=attendance
-      = partial 'register/event/levels' event=event attendance=attendance
-      = partial 'register/event/orientation' event=event attendance=attendance
-      = partial 'register/event/housing' event=event
-      = partial 'register/event/custom-fields' event=event attendance=attendance
-      = partial 'register/event/competitions' event=event
-      = partial 'register/event/shirts' event=event
-      = partial 'register/event/a-la-carte' event=event
+  .event-registration-is-not-yet-open
+    .text-center
+      h1 = model.name
+      h3: em = model.description
+      h4 = model.location
+      p Regististration is not yet open 
+      h2 = countdown-timer targetDate=model.registrationOpensAt
+      .ubuntu-loader

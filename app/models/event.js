@@ -47,6 +47,13 @@ export default Host.extend(RegistrationOpens, {
   customFields: DS.hasMany('custom-field'),
 
   registrationOpensAt: function() {
-    return this.get('openingTier.date');
-  }.property('openingTier.date'),
+    return this.get('openingTier.increaseAfterDate');
+  }.property('openingTier.increaseAfterDate'),
+
+  registrationIsOpen: Ember.computed('registrationOpensAt', function() {
+    let openDate = this.get('registrationOpensAt');
+    let now = new Date();
+
+    return now > openDate;
+  }),
 });
