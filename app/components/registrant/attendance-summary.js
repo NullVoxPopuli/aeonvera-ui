@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  customFieldResponseValues: Ember.computed.mapBy('attendance.customFieldResponses', 'values'),
+  customFieldResponseValues: Ember.computed.mapBy('attendance.customFieldResponses', 'value'),
 
   hasCustomFieldResponses: Ember.computed('customFieldResponseValues', function() {
     let values = this.get('customFieldResponseValues');

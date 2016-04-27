@@ -13,17 +13,15 @@ table.no-colors.no-borders.center-margin
       tr
         th Are interesting in volunteering
         td you may be contacted via phone or email
-    if attendance.housingRequest
-      tr
-        th And are requesting housing
-    if attendance.housingProvision
-      tr
-        th And are providing housing
+
+    = registrant/attendance/housing-request housingRequest=attendance.housingRequest
+    = registrant/attendance/housing-provision housingProvision=attendance.housingProvision
+
 
     if (is-present attendance.customFieldResponses)
       if hasCustomFieldResponses
         tr: td.divider colspan="2"
-        tr: th colspan="2" Answering the following:
+        tr: th colspan="2" And have answered:
           
         each attendance.customFieldResponses as |cfr|
           if (is-present cfr.value)

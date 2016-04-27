@@ -1,0 +1,13 @@
+if housingProvision
+  tr: th And are providing housing
+  tr: td colspan=2
+    unless hostingNoPreference
+      span You prefer to host {{housingProvision.preferredGenderToHost}}
+    if hasPets
+      span &nbsp;With Pets
+    if smokes
+      span &nbsp;{{smokingConjunction}} Smoking
+    if housingProvision.canProvideTransportation
+      span &nbsp;{{transportationConjuction}} providing transportation for {{housingProvision.transportationCapacity}} {{transportPlural}}
+    br
+    = housingProvision.notes

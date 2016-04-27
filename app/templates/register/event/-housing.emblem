@@ -33,7 +33,7 @@ if event.isHousingEnabled
     .row
       .small-12.medium-6.columns
         label Preferred Gender to Host
-        = x-select value=attendance.housingProvision.preferredGenderToHouse
+        = x-select value=attendance.housingProvision.preferredGenderToHost
           each genderOptions as |option|
             = x-option value=option
               = option

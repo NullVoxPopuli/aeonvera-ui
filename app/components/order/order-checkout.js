@@ -26,7 +26,7 @@ export default Ember.Component.extend({
 
   actions: {
     finishedOrder() {
-      this.get('router').transitionTo('register.thankyou');
+      this.get('router').transitionTo('register.checkout.thankyou');
     },
 
     /*
@@ -55,7 +55,7 @@ export default Ember.Component.extend({
       // the user must be notified
       order.save().then(record => {
         this.set('showPaymentInProgress', false);
-        this.transitionTo('register.checkout.thankyou');
+        this.get('router').transitionTo('register.checkout.thankyou');
       }, error => {
         // model's error object is used.
         this.get('flashMessages').alert(error);
