@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
-  subdomain: Ember.inject.service('subdomain'),
   currentUserService: Ember.inject.service('current-user'),
   pathStore: Ember.inject.service('path-store'),
 
@@ -14,23 +13,6 @@ export default Ember.Route.extend({
     // Make sure the current user is loaded before anything else.
     if (this.get('session.isAuthenticated')) {
       this.get('currentUserService.user');
-    }
-
-    //   // define the app's runtime locale
-    //   // For example, here you would maybe do an API lookup to resolver
-    //   // which locale the user should be targeted and perhaps lazily
-    //   // load translations using XHR and calling intl's `addTranslation`/`addTranslations`
-    //   // method with the results of the XHR request
-    //   this.get('intl').setLocale('en-us');
-    let subdomainRoute = this.get('subdomain.route');
-
-    if (subdomainRoute !== undefined) {
-      this.get('subdomain.route').then(success => {
-        this.transitionTo(success);
-      }, failure => {
-
-        this._super(transition);
-      });
     }
   },
 
