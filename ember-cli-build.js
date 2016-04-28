@@ -29,7 +29,7 @@ module.exports = function(defaults) {
       enabled: isProductionLike,
       prepend: fingerprintPrepend
     },
-    sourcemaps: { enabled: !isProductionLike },
+    sourcemaps: { enabled: true },
     minifyCss: { enabled: isProductionLike },
     minifyJS: { enabled: isProductionLike },
     tests: process.env.EMBER_CLI_TEST_COMMAND || !isProductionLike,
