@@ -14,6 +14,7 @@ export default Ember.Component.extend(ResizeMixin, {
     this._super(...arguments);
     let token = this.get('token');
     let order = this.get('order');
+    this.set('cart.host', this.get('host'));
     this.set('cart.token', token);
     if (Ember.isPresent(order)) {
       this.set('cart.order', order);
@@ -59,8 +60,12 @@ export default Ember.Component.extend(ResizeMixin, {
       let checkoutPromise = this.get('cart').checkout();
       if (checkoutPromise !== undefined) {
         checkoutPromise.then(record => {
+          if (record === null){
+            return;
+          }
           let id = record.get('id');
           let token = record.get('paymentToken');
+          // model hook isn't fired upon transition!
           this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);
         }, error => {

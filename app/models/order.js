@@ -363,7 +363,6 @@ export default DS.Model.extend(Validator, {
   },
 
   validations: {
-    host: { presence: true },
     attendance: {
       custom: {
         message: 'Attendance must be set when registering for an event',

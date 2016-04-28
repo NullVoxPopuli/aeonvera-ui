@@ -17,10 +17,10 @@ export default Ember.Component.extend({
   /*
     for unauthenticated orders
   */
-  _setOrderTokenIfPresent() {
+  _setOrderTokenIfPresent(order) {
     let token = this.get('token');
     if (Ember.isPresent(token)) {
-      this.set('order.paymentToken', this.get('token'));
+      order.set('paymentToken', this.get('token'));
     }
   },
 
@@ -42,8 +42,9 @@ export default Ember.Component.extend({
     processStripeToken(params) {
       let token = params.id;
       let order = this.get('model');
+
       order.set('checkoutToken', token);
-      this._setOrderTokenIfPresent();
+      this._setOrderTokenIfPresent(order);
       this.set('showPaymentInProgress', true);
 
       // by saving, the server is going to attempt to charge the card,
