@@ -17,8 +17,22 @@ module.exports = function(deployTarget) {
       port: '6379',
       password: '',
       allowOverwrite: true
+    },
+
+    gzip: {
+      /* default, minus map */
+      filePattern:  '\*\*/\*.{js,css,json,ico,xml,txt,svg,eot,ttf,woff,woff2}'
+    },
+
+    rollbar: {
+      accessToken: 'ca10480ec923459abdbe39a95c1181d9',
+      accessServerToken: 'ecd51b9e05084953bf2f9bc1e7dd3e77',
+      minifiedPrependUrl: function(context){
+        return ['https://s3.amazonaws.com/aeonvera-' + deployTarget + '/ember/'];
+      },
+      environment: deployTarget,
+      username: process.env.USER + '@' + process.env.HOSTNAME
     }
-    // include other plugin configuration that applies to all deploy targets here
   };
 
   if (deployTarget === 'development') {
