@@ -40,7 +40,7 @@ export default Ember.Service.extend({
       // absort the fee.
       feesPaidByEvent: absorbFees,
       receivedByEvent: youGetValue.toFixed(2),
-      subTotal: subTotal.toFixed(2),
+      subTotal: value.toFixed(2),
       cardFee: cardFeeValue.toFixed(2),
       applicationFee: serviceFeeValue.toFixed(2),
       totalFee: (cardFeeValue + serviceFeeValue).toFixed(2),
