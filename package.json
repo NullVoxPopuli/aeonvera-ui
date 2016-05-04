@@ -12,9 +12,9 @@
     "build": "ember build",
     "jscs": "jscs app/ --fix && jscs tests/ --fix",
     "test": "npm run jscs && ember test",
-    "phantom": "ember test --server --test-page='tests/index.html?&nojshint&hidepassed&nocontainer' --launch PhantomJS",
-    "mintest": "ember test --server --test-page='tests/index.html?coverage&nojshint&hidepassed&nocontainer'",
-    "ci": "npm run jscs && ember test --test-page='tests/index.html?coverage&nojshint'"
+    "phantom": "ember test --server --test-page='tests/index.html?&nolint&hidepassed&nocontainer' --launch PhantomJS",
+    "mintest": "ember test --server --test-page='tests/index.html?coverage&nolint&hidepassed&nocontainer'",
+    "ci": "npm run jscs && ember test --test-page='tests/index.html?coverage&nolint'"
   },
   "repository": "",
   "engines": {

@@ -18,8 +18,8 @@ module('Acceptance | password-reset', {
 test('submitting the password for redirects to page saying you will get an email', function(assert) {
   visit('/password-reset');
   andThen(_ => {
-    fillIn('form input[type="email"]', 'test@test.test');
-    click('form button[type="submit"]');
+    fillIn('form[name="password-reset-form"] input[type="email"]', 'test@test.test');
+    click('form[name="password-reset-form"] button[type="submit"]');
   });
 
   andThen(_ => {
@@ -28,14 +28,13 @@ test('submitting the password for redirects to page saying you will get an email
 });
 
 test('setting new password fails without a token', function(assert) {
-  // server.put('/api/users/password-reset.json', { errors: { reset_password_token: 'missing reset token' }}, 422);
   visit('/password-reset/edit');
   andThen(_ => {
-    fillIn('form input[type="password"]:first', '12345678');
-    fillIn('form input[type="password"]:first', '12345678');
+    fillIn('form[name="password-reset-form"] input[type="password"]:first', '12345678');
+    fillIn('form[name="password-reset-form"] input[type="password"]:first', '12345678');
   });
   andThen(_ => {
-    click('form button[type="submit"]');
+    click('form[name="password-reset-form"] button[type="submit"]');
   });
   andThen(_ => {
     let text = find('form[name="password-reset-form"]').text();
@@ -55,7 +54,7 @@ test('setting new password succeeds', function(assert) {
     fillIn('form[name="password-reset-form"] input[type="password"]:last', '12345678');
   });
   andThen(_ => {
-    click('form button[type="submit"]');
+    click('form[name="password-reset-form"] button[type="submit"]');
   });
   andThen(_ => {
     assert.equal(currentRouteName(), 'password-reset.reset-success');

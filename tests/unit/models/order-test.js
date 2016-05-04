@@ -15,7 +15,8 @@ moduleForModel('order', 'Unit | Model | order', {
     'model:membership-discount',
     'model:membership-renewal',
     'model:purchasable',
-    'model:user'
+    'model:user',
+    'service:priceCalculator'
   ],
   beforeEach: function() {
     manualSetup(this.container);
@@ -115,8 +116,7 @@ test('total | it calculates', function(assert) {
   });
 
   let result = order.get('total');
-  let expected = (5 * (1 + 0.029 + 0.0075) + 0.30).toFixed(2);
-  assert.equal(result, expected);
+  assert.equal(result, 5.50);
 });
 
 test('addLineItem | adds an orderLineItem', function(assert) {
