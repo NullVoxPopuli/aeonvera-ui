@@ -6,15 +6,20 @@
   .small-12.columns
     h4 Identity
     .row
-      .medium-4.columns
-        label First Name
-        = input value=currentUser.user.firstName
-      .medium-4.columns
-        label Last Name
-        = input value=currentUser.user.lastName
-      .medium-4.columns
-        label Email
-        = input value=currentUser.user.email
+      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='firstName'
+        label
+          span First Name
+          = input value=currentUser.user.firstName
+
+      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='lastName'
+        label
+          span Last Name
+          = input value=currentUser.user.lastName
+
+      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='email'
+        label
+          span Email
+          = input value=currentUser.user.email
 
     if pendingConfirmation
       span Currently waiting on confirmation for&nbsp;
@@ -22,17 +27,20 @@
 
     h4 Password
     .row
-      .medium-4.columns
-        label New Password
-        = input value=currentUser.user.password type='password'
+      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='password'
+        label
+          span New Password
+          = input value=currentUser.user.password type='password'
 
-      .medium-4.columns
-        label New Password Confirmation
-        = input value=currentUser.user.passwordConfirmation type='password'
+      = error-field-wrapper classes='columns medium-4' errors=currentUser.user.errors field='passwordConfirmation'
+        label
+          span New Password Confirmation
+          = input value=currentUser.user.passwordConfirmation type='password'
 
-      .medium-4.columns
-        label Current Password
-        = input value=currentUser.user.currentPassword type='password' placeholder="Only needed for changing your password"
+      = error-field-wrapper classes='columns medium-4' errors=currentUser.user.errors field='currentPassword'
+        label
+          span Current Password
+          = input value=currentUser.user.currentPassword type='password'
 
     h4 Other Settings
     .row

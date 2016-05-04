@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForModel, test } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
 

@@ -3,6 +3,7 @@ import AuthenticatedUi from '../../mixins/authenticated-ui';
 
 export default Ember.Route.extend(AuthenticatedUi, {
   i18n: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
 
   activate: function () {
     this.set('title', this.get('i18n').t('attendedevents'));
@@ -17,8 +18,12 @@ export default Ember.Route.extend(AuthenticatedUi, {
     updateCurrentUser: function () {
       var store = this.get('store');
 
-      store.find('user', 0).then(function (user) {
-        user.save();
+      store.find('user', 0).then(user => {
+        user.save().then(_ => {
+          this.get('flashMessages').success('Profile updated!');
+        }, error => {
+          this.get('flashMessages').alert('Profile did not update.');
+        });
       });
     },
 
