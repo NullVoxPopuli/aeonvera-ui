@@ -1,25 +1,52 @@
 import { moduleForModel, test } from 'ember-qunit';
-import startMirage from '../../helpers/setup-mirage-for-integration';
+import { manualSetup, make } from 'ember-data-factory-guy';
 
 moduleForModel('housing-request', 'Unit | Serializer | housing request', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:housing-request'],
-  beforeEach() {
-    startMirage(this.container);
-  },
-  afterEach() {
-    window.server.shutdown();
+  needs: [
+    'model:event',
+    'model:host',
+    'model:attendance',
+    'model:housing-provision',
+    'serializer:housing-request',
+  ],
+  beforeEach: function() {
+    manualSetup(this.container);
+    this.inject.service('store');
   }
 });
 
 // Replace this with your real tests.
 test('it converts requested to an array', function(assert) {
-  let record = server.create('housing-request');
-  record.set('requested1', 'one');
+  Ember.run(() => {
+    let event = make('event');
+    let record = make('housing-request', {
+      host: event
+    });
 
-  let serializedRecord = record.serialize();
+    record.set('requested1', 'one');
 
-  debugger;
+    let serializedRecord = record.serialize();
+    let requested = serializedRecord.data.attributes['requested-roommates'];
+    let expected = ['one', undefined, undefined, undefined];
 
-  assert.ok(serializedRecord);
+    assert.deepEqual(requested, expected);
+  });
+});
+
+test('it converts unwanted to an array', function(assert){
+  Ember.run(() => {
+    let event = make('event');
+    let record = make('housing-request', {
+      host: event
+    });
+
+    record.set('unwanted1', 'one');
+
+    let serializedRecord = record.serialize();
+    let unwanted = serializedRecord.data.attributes['unwanted-roommates'];
+    let expected = ['one', undefined, undefined, undefined];
+
+    assert.deepEqual(unwanted, expected);
+  });
 });

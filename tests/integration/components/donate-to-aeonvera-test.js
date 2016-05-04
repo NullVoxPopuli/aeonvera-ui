@@ -1,7 +1,5 @@
-import {
-  moduleForComponent, test
-}
-from 'ember-qunit';
+import Ember from 'ember';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('donate-to-aeonvera',
@@ -12,7 +10,6 @@ moduleForComponent('donate-to-aeonvera',
     this.register('template:components/foundation-modal', hbs`{{yield}}`);
   }
 });
-
 
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');

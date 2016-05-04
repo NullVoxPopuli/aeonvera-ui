@@ -1,5 +1,5 @@
-import { moduleForComponent, test, skip } from 'ember-qunit';
-
+import { moduleForComponent } from 'ember-qunit';
+import { test, skip } from 'qunit';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 
