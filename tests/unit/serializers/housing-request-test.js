@@ -35,7 +35,7 @@ test('it converts requested to an array', function(assert) {
   });
 });
 
-test('it converts unwanted to an array', function(assert){
+test('it converts unwanted to an array', function(assert) {
   Ember.run(() => {
     let event = make('event');
     let record = make('housing-request', {

@@ -60,11 +60,13 @@ export default Ember.Component.extend(ResizeMixin, {
       let checkoutPromise = this.get('cart').checkout();
       if (checkoutPromise !== undefined) {
         checkoutPromise.then(record => {
-          if (record === null){
+          if (record === null) {
             return;
           }
+
           let id = record.get('id');
           let token = record.get('paymentToken');
+
           // model hook isn't fired upon transition!
           this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);

@@ -5,7 +5,7 @@
 	"maxErrors": 200,
 	"disallowMultipleLineStrings": false,
 	"disallowNewlineBeforeBlockStatements": true,
-	"maximumLineLength": 160,
+	"maximumLineLength": 180,
 	"requireTrailingComma": false,
 	"requireCamelCaseOrUpperCaseIdentifiers": false,
 	"requirePaddingNewLinesAfterBlocks":  { "allExcept": ["inProperties", "inCallExpressions"] }

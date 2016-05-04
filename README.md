@@ -24,6 +24,8 @@ For deploying to heroku, you'll need to specify
  - REDISCLOUD_PASSWORD
 
 * `ember deploy staging`
+  * `grep -lr --include=*.js sourceMappingURL bower_components/ | xargs sed -i 's/sourceMappingURL//g'`
+     - In case there are source map issues
 * `ember deploy production`
   * I've learned I can't trust travis with secret keys.
 
