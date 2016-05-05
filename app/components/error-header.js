@@ -8,8 +8,12 @@ export default Ember.Component.extend({
 
   firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
+    let source = firstErrorObject.source;
+    let field = source.pointer.replace('/data/attributes/', '');
+    field = field.replace('-', ' ');
 
-    return firstErrorObject.message || firstErrorObject.detail;
+    let reason = firstErrorObject.message || firstErrorObject.detail;
+    return field + ' ' + reason;
   }),
 
   actions: {

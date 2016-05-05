@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
 
     /**
       Create new account / new user.
+      TODO: move this crap to the component
     */
     registerNewUser: function () {
       var user = this.get('user');
@@ -31,6 +32,11 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success(
           'You will receive an email with instructions about how to confirm your account in a few minutes.'
         );
+
+        // remove this copy of the user from the store.
+        // when they click the link, they'll be sent to a new page anyway.
+        user.unloadRecord();
+        this.set('user', this.get('store').createRecord('user'));
         jQuery('#signup-modal a.close-reveal-modal').trigger('click');
       }, () => {
         /*

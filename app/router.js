@@ -15,6 +15,11 @@ Router.map(function() {
     this.route('reset-success');
     this.route('edit');
   });
+  this.route('confirmation', function() {
+    this.route('success');
+    this.route('new');
+    this.route('new-success');
+  });
 
   /* public facing */
   this.route('welcome', { resetNamespace: true }, function() {

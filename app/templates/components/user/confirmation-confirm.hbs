@@ -1,0 +1,18 @@
+{{ page-header text='Confirming your email...' }}
+
+<p>Please wait while your email verification token is verified.</p>
+<br>
+{{#if (is-present errors)}}
+  {{error-header errors=errors}}
+  <br>
+  <strong>
+    {{#link-to 'confirmation.new'}}Request a new confirmation token.{{/link-to}}
+  </strong>
+{{else}}
+  <div class='ubuntu-loader' style="color: black;"></div>
+  <p>
+    If this takes longer than a couple seconds, you may want to
+    {{#link-to 'confirmation.new'}}Request a new confirmation token.{{/link-to}}
+  </p>
+{{/if}}
+<br>

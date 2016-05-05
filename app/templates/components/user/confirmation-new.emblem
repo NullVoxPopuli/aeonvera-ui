@@ -1,0 +1,7 @@
+form submit='sendNewConfirmationToken' name='confirmation-reset-form'
+  = error-header errors=errors
+  label Email
+  = input value=email placeholder='yourname@domain.tld' type='email'
+
+  br
+  button.right type='submit' Send New Confirmation Token

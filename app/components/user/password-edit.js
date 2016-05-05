@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ENV from '../config/environment';
+import ENV from 'aeonvera/config/environment';
 
 export default Ember.Component.extend({
   flashMessages: Ember.inject.service(),
