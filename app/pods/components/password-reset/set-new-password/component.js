@@ -8,13 +8,11 @@ export default Ember.Component.extend({
   passwordConfirmation: null,
   resetToken: null,
 
-  errors: Ember.computed('errors', function() {
-    return this.get('model.errors');
-  }),
+  errors: [],
 
   actions: {
     reset: function () {
-      let url = ENV.host + '/api/users/password.json';
+      let url = ENV.host + '/api/users/password/';
       let data = {
         user: {
           password: this.get('password'),
@@ -30,16 +28,10 @@ export default Ember.Component.extend({
       }).then(data => {
         this.sendAction('action');
       }, error => {
+        let json = JSON.parse(error.responseText);
+        let errors = json.errors;
 
-        Ember.run(_ => {
-          let json = Ember.$.parseJSON(error.responseText);
-          let errors = json.errors;
-          let modelErrors = this.get('model.errors');
-          modelErrors.clear();
-          for (let field in errors) {
-            modelErrors.add(field, errors[field]);
-          }
-        });
+        this.set('errors', errors);
       });
     },
   },

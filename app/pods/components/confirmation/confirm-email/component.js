@@ -9,11 +9,13 @@ export default Ember.Component.extend({
     // send a GET to the api/confirmations
     let token = this.get('confirmationToken');
     let url = ENV.host + '/api/confirmation?confirmation_token=' + token;
+
     Ember.$.getJSON(url).then(success => {
-      this.get('router').transitionTo('confirmation.success');
+      this.sendAction('successAction');
     }, error => {
       let json = JSON.parse(error.responseText);
       let errors = json.errors;
+
       this.set('errors', errors);
     });
   }

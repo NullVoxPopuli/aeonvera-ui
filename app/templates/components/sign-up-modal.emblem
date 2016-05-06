@@ -2,7 +2,7 @@
   h2#signup-modal-title.text-center Sign Up
   br
   p
-    form submit='register'
+    form
       .row
         = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='firstName'
 
@@ -40,8 +40,8 @@
 
       br
       ul.button-group.text-center.right
-        li: button data-reveal-id='login-modal' Login
-        li: button type='submit' Sign Up
+        / li: button data-reveal-id='login-modal' Login
+        li: button click='register' type='submit' Sign Up
 
       a.button href='#' data-reveal-id='login-help-modal' Help
 

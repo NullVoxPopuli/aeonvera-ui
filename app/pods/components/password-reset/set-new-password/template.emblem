@@ -7,7 +7,7 @@ form submit='reset' name='password-reset-form'
         span New Password
       = input type='password' value=password
 
-    = error-field-wrapper errors=errors field='passwordConfirmation'
+    = error-field-wrapper errors=errors field='password_confirmation'
       label
         span Confirm New Password
       = input type='password' value=passwordConfirmation

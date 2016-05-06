@@ -18,12 +18,29 @@ export default Ember.Component.extend({
   fieldName: '',
 
   hasError: function () {
-    var errors = this.get('fieldErrors');
+    let errors = this.get('fieldErrors');
     return (errors.length > 0);
   }.property('fieldErrors'),
 
   fieldErrors: function () {
-    var field = this.get('field');
-    return (this.get('errors.' + field) || []);
+    let field = this.get('field');
+    let error = (this.get('errors.' + field) || []);
+    if (Ember.isEmpty(error)) {
+      return error;
+    }
+
+    if (Ember.isArray(error)) {
+      if (error.get('firstObject.message') === undefined) {
+        return error.map(e => {
+          return {
+            message: e
+          };
+        });
+      }
+
+      return error;
+    }
+
+    return error;
   }.property('errors.[]'),
 });
