@@ -31,11 +31,7 @@ export default Ember.Component.extend({
 
     if (Ember.isArray(error)) {
       if (error.get('firstObject.message') === undefined) {
-        return error.map(e => {
-          return {
-            message: e
-          };
-        });
+        return error.map(e => ({ message: e }));
       }
 
       return error;

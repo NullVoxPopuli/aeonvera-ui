@@ -5,20 +5,18 @@ moduleForComponent('password-reset/request-reset', 'Integration | Component | pa
   integration: true
 });
 
-test('it renders', function(assert) {
+test('has an error on the email field', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
+  let model = Ember.Object.extend({
+    errors: {
+      email: { message: 'cannot be blank' }
+    }
+  });
+  this.set('model', model);
+  this.render(hbs`{{password-reset/request-reset model=model}}`);
 
-  this.render(hbs`{{password-reset/request-reset}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#password-reset/request-reset}}
-      template block text
-    {{/password-reset/request-reset}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  let text = this.$().text().trim();
+  let containsError = text.includes('cannot be blank');
+  assert.ok(containsError);
 });

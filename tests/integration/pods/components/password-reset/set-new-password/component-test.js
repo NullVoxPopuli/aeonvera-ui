@@ -5,20 +5,28 @@ moduleForComponent('password-reset/set-new-password', 'Integration | Component |
   integration: true
 });
 
-test('it renders', function(assert) {
+test('shows an error on the password field', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
+  let errors = Ember.Object.extend({
+    password: ['too short']
+  });
+  this.set('errors', errors);
+  this.render(hbs`{{password-reset/set-new-password errors=errors}}`);
 
-  this.render(hbs`{{password-reset/set-new-password}}`);
+  let text = this.$().text().trim();
+  let containsError = text.includes('too short');
+  assert.ok(containsError);
+});
 
-  assert.equal(this.$().text().trim(), '');
+test('shows an error on the password-confirmation field', function(assert) {
+  let errors = Ember.Object.extend({
+    password_confirmation: ['no match']
+  });
+  this.set('errors', errors);
+  this.render(hbs`{{password-reset/set-new-password errors=errors}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#password-reset/set-new-password}}
-      template block text
-    {{/password-reset/set-new-password}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  let text = this.$().text().trim();
+  let containsError = text.includes('no match');
+  assert.ok(containsError);
 });

@@ -88,13 +88,13 @@ export default function() {
     };
   });
 
-  this.post('/api/users/password.json', function(db, request) {
+  this.post('/api/users/password', function(db, request) {
     let email = '';
     let user = db.users.where({ email: email })[0];
     return {};
   });
 
-  this.put('/api/users/password.json', function(db, request) {
+  this.put('/api/users/password', function(db, request) {
     let bodyParams = request.requestBody;
     let params = parseQueryParams(bodyParams);
     let token = params['user%5Breset_password_token%5D'];

@@ -19,9 +19,10 @@ test('submitting the password for redirects to page saying you will get an email
   visit('/password-reset');
   andThen(_ => {
     fillIn('form[name="password-reset-form"] input[type="email"]', 'test@test.test');
+  });
+  Ember.run(_ => {
     click('form[name="password-reset-form"] button[type="submit"]');
   });
-
   andThen(_ => {
     assert.equal(currentRouteName(), 'password-reset.success');
   });
@@ -33,7 +34,7 @@ test('setting new password fails without a token', function(assert) {
     fillIn('form[name="password-reset-form"] input[type="password"]:first', '12345678');
     fillIn('form[name="password-reset-form"] input[type="password"]:first', '12345678');
   });
-  andThen(_ => {
+  Ember.run(_ => {
     click('form[name="password-reset-form"] button[type="submit"]');
   });
   andThen(_ => {
@@ -44,7 +45,7 @@ test('setting new password fails without a token', function(assert) {
 });
 
 test('setting new password succeeds', function(assert) {
-  server.put('/api/users/password-reset.json', {}, 201);
+  server.put('/api/users/password', {}, 201);
 
   visit('/password-reset/edit/?reset_password_token=123456a');
 

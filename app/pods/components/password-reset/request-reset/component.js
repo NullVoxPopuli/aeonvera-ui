@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   actions: {
     reset: function () {
       let _this = this;
-      let url = ENV.host + '/api/users/password.json';
+      let url = ENV.host + '/api/users/password';
       let data = {
         user: {
           email: this.get('email'),
