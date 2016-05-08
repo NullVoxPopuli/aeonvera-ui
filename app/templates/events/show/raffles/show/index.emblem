@@ -4,7 +4,9 @@ br
 if model.winnerHasBeenChosen
   / TODO: link to this registration
   span.button.success Winner: {{ model.winner }}
-  span.button.warning click='chooseWinner' Choose a Different Winner
+
+  unless model.event.hasEnded
+    span.button.warning click='chooseWinner' Choose a Different Winner
 else
   span.button Choose Winner
 
