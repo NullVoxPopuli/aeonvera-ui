@@ -33,6 +33,7 @@ export default Ember.Route.extend(AuthenticatedUi, {
       store.find('user', 0).then((user) => {
         user.deleteRecord();
         user.save().then(() => {
+          Ember.$('.close-reveal-modal').click();
           this.send('invalidateSession');
         });
       });
