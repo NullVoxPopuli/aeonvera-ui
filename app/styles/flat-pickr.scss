@@ -75,6 +75,9 @@
         &.flatpickr-minute{
           width: 30%;
         }
+        &:hover{
+          background: lighten($wrapping-background, 10%);
+        }
       }
     }
   }

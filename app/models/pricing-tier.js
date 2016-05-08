@@ -4,8 +4,10 @@ import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
 export default DS.Model.extend(LeadsAndFollows, {
   increaseBy: DS.attr('number'),
-  increaseAfterDate: DS.attr('date'),
-  increaseAfterTotalRegistrants: DS.attr('number'),
+  date: DS.attr('date'),
+  registrants: DS.attr('number'),
+  increaseAfterDate: Ember.computed.alias('date'),
+  increaseAfterTotalRegistrants: Ember.computed.alias('registrants'),
   isOpeningTier: DS.attr('boolean'),
 
   event: DS.belongsTo('event'),
