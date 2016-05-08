@@ -3,13 +3,13 @@
   p
     / a href='/users/password/new' Forgot your email?
     / br
-    = link-to 'password-reset'
+    a click='passwordReset'
       span Forgot your password?
     br
-    a href='/users/confirmation/new'
+    a click='newConfirmation'
       span Didn't receive confirmation email?
     br
-    a href='/users/unlock/new'
+    a click='newUnlock'
       span Didn't receive unlock email?
     br
     br

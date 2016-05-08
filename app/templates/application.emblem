@@ -1,8 +1,8 @@
 
-/ ember-wormhole puts modals here    
+/ ember-wormhole puts modals here
 #foundation-modals
   / these 2 are accessed from many locations, and are not rendered in place
-  = login-help-modal
+  = login-help-modal passwordAction='passwordReset' confirmationAction='newConfirmation' unlockAction='newUnlock'
   = sign-up-modal action='registerNewUser' model=user
 
 .off-canvas-wrap data-offcanvas='true'

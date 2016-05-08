@@ -32,6 +32,16 @@ export default Ember.Route.extend({
 
   actions: {
 
+    passwordReset() {
+      Ember.$('.close-reveal-modal').click();
+      this.transitionTo('password-reset');
+    },
+
+    newConfirmation() {
+      Ember.$('.close-reveal-modal').click();
+      this.transitionTo('confirmation.new');
+    },
+
     linkToRoute: function(item) {
       this.transitionTo(item.route);
     },

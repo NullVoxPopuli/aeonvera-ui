@@ -2,7 +2,9 @@
 
 link-to 'events.show.discounts.new' classNames='button'
   span New Discount
-  
+
+a href='//swing.vhost:3000/api/discounts.csv?event_id=4' download='true' Download
+
 table
   thead: tr
     th Code
@@ -12,7 +14,7 @@ table
   tbody
     each model as |discount|
       tr
-        td 
+        td
           link-to 'events.show.discounts.show' discount.id
             = discount.code
         td = discount.timesUsed
