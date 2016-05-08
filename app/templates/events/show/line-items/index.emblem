@@ -1,5 +1,9 @@
 = page-header text='À la Carte Items'
 
+
+link-to 'events.show.line-items.new' classNames='button'
+  span New Item
+
 table
   thead: tr
     th Name
@@ -10,7 +14,7 @@ table
   tbody
     each model as |item|
       tr
-        td 
+        td
           link-to 'events.show.line-items.show' item.id
             = item.name
         td = item.numberPurchased
