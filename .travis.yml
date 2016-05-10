@@ -1,10 +1,13 @@
 ---
 language: node_js
 node_js:
-  - "5.10.1"
-# env:
-#   - TRAVIS_NODE_VERSION="5.10.1"
-#   - TRAVIS_NODE_VERSION="5.11.0"
+  - 5.10.1
+  - stable
+
+
+matrix:
+  allowed_failures:
+    - node_js: 5.11.0
 
 sudo: false
 
@@ -22,7 +25,6 @@ before_install:
   - "npm install -g npm@^2"
 
 install:
-  # - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
   - npm install -g bower
   - npm install -g jscs
   - npm install -g jshint
