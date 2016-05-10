@@ -12,6 +12,7 @@ matrix:
 sudo: false
 
 addons:
+  firefox: "46.0"
   code_climate:
     repo_token: a267a66fea342c45c32ff52fb93592b70d9a2919ef2953b9261006aaa8e38348
 
