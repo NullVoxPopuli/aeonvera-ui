@@ -5,8 +5,8 @@ import Purchasable from 'aeonvera/models/purchasable';
 
 export default Purchasable.extend(Buyable, IsLineItem, {
   name: DS.attr('string'),
-  description: DS.attr('string'),
-  price: DS.attr('number'),
+  description: DS.attr('string', { defaultValue: '' }),
+  price: DS.attr('number', { defaultValue: 0 }),
   itemType: DS.attr('string'),
   numberPurchased: DS.attr('number'),
 

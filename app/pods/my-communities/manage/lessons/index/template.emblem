@@ -1,12 +1,16 @@
 = page-header text='Lessons'
 
+link-to 'my-communities.manage.lessons.new' classNames='button'
+  span New Lesson
+
+
 table
   thead: tr
     th Name
     th Schedule
     th Registration Opens At
     th Registration Closes At
-    
+
   tbody
     each model as |lesson|
       tr
@@ -14,9 +18,9 @@ table
           link-to 'my-communities.manage.lessons.show' lesson.id
             = lesson.name
         td = lesson.schedule
-        td 
+        td
           if lesson.registrationOpensAt
             = date-with-format lesson.registrationOpensAt 'lll'
-        td 
+        td
           if lesson.registrationClosesAt
             = date-with-format lesson.registrationClosesAt 'lll'
