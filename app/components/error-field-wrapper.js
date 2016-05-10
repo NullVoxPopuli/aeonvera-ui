@@ -17,12 +17,12 @@ export default Ember.Component.extend({
   */
   fieldName: '',
 
-  hasError: function () {
+  hasError: Ember.computed('fieldErrors.@each', function () {
     let errors = this.get('fieldErrors');
     return (errors.length > 0);
-  }.property('fieldErrors'),
+  }),
 
-  fieldErrors: function () {
+  fieldErrors: Ember.computed('errors.@each', 'field', function () {
     let field = this.get('field');
     let error = (this.get('errors.' + field) || []);
     if (Ember.isEmpty(error)) {
@@ -37,6 +37,6 @@ export default Ember.Component.extend({
       return error;
     }
 
-    return error;
-  }.property('errors.[]'),
+    return [error];
+  }),
 });

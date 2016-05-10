@@ -5,7 +5,7 @@ import ENV from 'aeonvera/config/environment';
 export default Ember.Route.extend(Index, {
   modelName: 'discount',
 
-  downloadURL: Ember.computed(function(){
+  downloadURL: Ember.computed(function() {
     return ENV.host + '/api/discounts.csv';
   }),
 });

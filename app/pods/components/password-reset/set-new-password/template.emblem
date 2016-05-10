@@ -5,12 +5,12 @@ form submit='reset' name='password-reset-form'
     = error-field-wrapper errors=errors field='password'
       label
         span New Password
-      = input type='password' value=password
+        = input type='password' value=password
 
     = error-field-wrapper errors=errors field='password_confirmation'
       label
         span Confirm New Password
-      = input type='password' value=passwordConfirmation
+        = input type='password' value=passwordConfirmation
 
     br
     button.right type='submit' Change Password

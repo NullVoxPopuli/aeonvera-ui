@@ -16,6 +16,7 @@
     "login",
     "logout",
     "equal",
+    "ok",
     "serviceNamed",
     "select",
     "keyEvent",

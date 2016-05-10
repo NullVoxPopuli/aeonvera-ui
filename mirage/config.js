@@ -61,11 +61,7 @@ export default function() {
     return {};
   });
 
-  this.delete('users/sign_out', function(db, request) {
-    return {};
-  });
-
-  this.post('/api/users/sign_in', function(db, request) {
+  this.post('/api/users/sign_in', function(message, request) {
     let params = request.params;
     let bodyParams = request.requestBody;
     let email = '';
@@ -73,14 +69,13 @@ export default function() {
     let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
     let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
     if (paramsAreBlank && bodyParamsAreBlank) {
-      return new Mirage.Response(401, {});
+      return new Response(401, {});
     }
 
     let queryParams = request.requestBody;
-    params = parseQueryParams(queryParams);
-    email = params['user%5Bemail%5D'].replace('%40', '@');
-
-    let user = db.users.where({ email: email })[0];
+    params = JSON.parse(queryParams);
+    email = params.email;
+    let user = message.db.users.where({ email: email })[0];
     return {
       email: user.email,
       id: user.id,
@@ -89,12 +84,6 @@ export default function() {
   });
 
   this.post('/api/users/password', function(db, request) {
-    let email = '';
-    let user = db.users.where({ email: email })[0];
-    return {};
-  });
-
-  this.put('/api/users/password', function(db, request) {
     let bodyParams = request.requestBody;
     let params = parseQueryParams(bodyParams);
     let token = params['user%5Breset_password_token%5D'];
