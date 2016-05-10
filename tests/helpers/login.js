@@ -11,9 +11,11 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
   visit('/');
   click('.auth-link a.button.login');
 
+  let loginModalSelector = '.reveal-modal[data-name="login-modal"]';
+
   andThen(() => {
-    let loginModalSelector = '.reveal-modal[data-name="login-modal"]';
     let text = find(loginModalSelector + ' h2').first().text();
+
     // proves that the login modal has appeared
     console.log(text);
     equal(text, 'Login');
