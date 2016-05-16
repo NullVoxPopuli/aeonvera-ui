@@ -17,14 +17,14 @@ br
         = stripe/checkout-button model=model label='Pay' email=email
 
       p.left
-        link-to 'register.checkout.edit' model.id (query-params token=token) classNames='button' 
+        link-to 'register.checkout.edit' model.id (query-params token=token) classNames='button'
           span Edit
     // TODO: give option to resend receipt
 
     .clearfix
     if (is-present model.attendance)
-      = registrant/attendance-summary attendance=model.attendance  
-  
+      = registrant/attendance-summary attendance=model.attendance
+
 
 br
 br
@@ -35,8 +35,8 @@ if showPaymentInProgress
       .center-child.both
         .payment-in-progress
           h3: em Securely Submitting Your Payment
-          h5 
-            | This will appear on your statement as 
+          h5
+            | This will appear on your statement as
             strong = statementDescription
           = spinner/rect-spinner
           br

@@ -1,4 +1,5 @@
 .margin-left-20
+  .hidden = host.name
   if isEvent
     = register/event-registration model=host token=token order=order
   else

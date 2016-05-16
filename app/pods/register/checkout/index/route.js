@@ -3,7 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   model: function (params, transition) {
-    return this.modelFor('register.checkout');
+    let order = this.modelFor('register.checkout');
+    order.removeItemsWithNullIds();
+    return order;
   },
 
 });

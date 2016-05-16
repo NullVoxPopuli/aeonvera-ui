@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   model(params, transition) {
-    return this.modelFor('register.checkout');
+    let order = this.modelFor('register.checkout');
+    return order;
   },
 
   afterModel(order, transition) {
