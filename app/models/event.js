@@ -30,8 +30,8 @@ export default Host.extend(RegistrationOpens, {
   registrationEmailDisclaimer: DS.attr('string'),
 
   logoUrl: DS.attr('string'),
-  logoUrl_medium: DS.attr('string'),
-  logoUrl_thumb: DS.attr('string'),
+  logoUrlMedium: DS.attr('string'),
+  logoUrlThumb: DS.attr('string'),
 
   url: DS.attr('string'),
 

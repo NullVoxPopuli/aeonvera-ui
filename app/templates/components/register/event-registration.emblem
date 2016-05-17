@@ -20,6 +20,8 @@ else
       h1 = model.name
       h3: em = model.description
       h4 = model.location
-      p Regististration is not yet open 
+      p
+        | Regististration opens at&nbsp;
+        em = date-with-format model.registrationOpensAt 'lll'
       h2 = countdown-timer targetDate=model.registrationOpensAt
       .ubuntu-loader
