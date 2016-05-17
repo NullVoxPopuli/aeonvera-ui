@@ -90,6 +90,7 @@ export default Ember.Component.extend(ResizeMixin, {
 
     cancel: function() {
       this.get('cart').cancel();
+      this.get('router').transitionTo('register.index');
     },
   },
 
