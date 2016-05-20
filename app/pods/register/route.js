@@ -50,6 +50,7 @@ export default Ember.Route.extend({
       }
 
       // panic?
+      console.error(reason);
       alert('a registration error has occurred, please notify support');
 
     }
