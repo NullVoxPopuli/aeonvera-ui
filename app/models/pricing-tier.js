@@ -2,12 +2,15 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
+const alias = Ember.computed.alias;
+
 export default DS.Model.extend(LeadsAndFollows, {
-  increaseBy: DS.attr('number'),
+  increaseByDollars: DS.attr('number'),
   date: DS.attr('date'),
   registrants: DS.attr('number'),
-  increaseAfterDate: Ember.computed.alias('date'),
-  increaseAfterTotalRegistrants: Ember.computed.alias('registrants'),
+  increaseBy: alias('increaseByDollars'),
+  increaseAfterDate: alias('date'),
+  increaseAfterTotalRegistrants: alias('registrants'),
   isOpeningTier: DS.attr('boolean'),
 
   event: DS.belongsTo('event'),

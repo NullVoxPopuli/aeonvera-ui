@@ -1,11 +1,11 @@
 form submit='save'
   .row
-    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='increaseBy'
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='increaseByDollars'
       label
         span
           | Increase Cost of Packages by Amount of Dollars&nbsp;
           = tool-tip message="This affects all packages, but on the edit package screens, you may select for a packge to not abide by any pricing tiers so that the package remains the same price throughout your registration."
-        = input value=model.increaseBy placeholder='0' type='number' step='any' required=true
+        = input value=model.increaseByDollars placeholder='0' type='number' step='any' required=true
 
   h4
     | Conditions&nbsp;
