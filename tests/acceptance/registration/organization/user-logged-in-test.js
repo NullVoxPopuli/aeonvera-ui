@@ -40,7 +40,7 @@ describe('User is Logged in', function() {
       visit('/testorg');
       andThen(() => {
         let h2s = find('h2');
-        assert.ok(h2s.includes('Test Org'));
+        assert.ok(h2s.text().includes('Register for Test Org'));
       });
     });
 

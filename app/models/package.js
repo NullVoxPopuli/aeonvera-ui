@@ -6,6 +6,7 @@ import IsLineItem from '../mixins/models/is-line-item';
 export default Purchasable.extend(IsLineItem, {
   name: DS.attr('string'),
   initialPrice: DS.attr('number'),
+  atTheDoorPrice: DS.attr('number'),
   attendeeLimit: DS.attr('number'),
   expiresAt: DS.attr('date'),
   requiresTrack: DS.attr('boolean'),

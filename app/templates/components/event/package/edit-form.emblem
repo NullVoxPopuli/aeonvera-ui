@@ -5,6 +5,16 @@ form submit='save'
         span Name
         = input value=model.name placeholder='Dance Only, Full Weekend, etc' type='text' required=true
 
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='initialPrice'
+      label
+        span Initial Price
+        = input value=model.initialPrice type='number' min=0 step='any' required=true
+
+    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='atTheDoorPrice'
+      label
+        span Initial Price
+        = input value=model.atTheDoorPrice type='number' min=0 step='any' required=true
+
   .row
     = error-field-wrapper  classes='columns small-12' errors=model.errors field='requiresTrack'
       label
