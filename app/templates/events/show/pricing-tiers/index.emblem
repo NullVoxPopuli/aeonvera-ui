@@ -1,5 +1,8 @@
 = page-header text='Pricing Tiers'
 
+link-to 'events.show.pricing-tiers.new' classNames='button'
+  span New Pricing Tier
+
 table
   thead: tr
     th
