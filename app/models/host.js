@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import attr from 'ember-data/attr';
 
 export default DS.Model.extend({
-  name: DS.attr('string'),
-  domain: DS.attr('string'),
+  name: attr('string'),
+  domain: attr('string'),
+  logo: attr('file'),
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),

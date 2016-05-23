@@ -1,0 +1,8 @@
+= error-field-wrapper classes=classes errors=errors field=field
+  label
+    span URL
+    .row.collapse
+      .columns.small-6.medium-6.large-4
+        span.prefix https://{{t 'domain' }}/
+      .columns.small-6.medium-6.large-8
+        = input value=model.domain placeholder='acme' type='text' required=true

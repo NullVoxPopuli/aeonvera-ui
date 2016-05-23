@@ -16,14 +16,7 @@ form submit='save'
         span Location
         = input value=model.location placeholder='e.g.: Indianapolis, IN' type='text' required=true
 
-    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='domain'
-      label
-        span URL
-        .row.collapse
-          .columns.small-6.medium-6.large-4
-            span.prefix https://{{t 'domain' }}/
-          .columns.small-6.medium-6.large-8
-            = input value=model.domain placeholder='acme' type='text' required=true
+    = form/url-namespace-field classes='columns small-12 medium-6' errors=errors field='domain' model=model
 
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='startsAt'
