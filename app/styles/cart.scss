@@ -9,6 +9,16 @@
   }
 }
 
+.proceed-to-checkout{
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 100000000000000000;
+  box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.5);
+  left: 0px;
+  margin-bottom: 0;
+}
+
 @media #{$medium-up} {
   .fixed-to-top-cart{
     position: fixed;

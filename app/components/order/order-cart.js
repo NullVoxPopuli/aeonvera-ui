@@ -6,6 +6,7 @@ export default Ember.Component.extend(ResizeMixin, {
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
   errors:                [],
   resetCheckoutButton:   false,
+  isProceedToCheckoutVisible: true,
 
   /*
     Handle optional parameters for editing an order
@@ -34,7 +35,31 @@ export default Ember.Component.extend(ResizeMixin, {
   */
   debouncedDidResize: function() {
     this.get('cart')._adjustCartMaxHeight();
+    this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
   }.on('resize'),
+
+  _isCheckoutButtonVisible(){
+    let button = this.$('li.cart-checkout-button-container');
+    return this._isElementInViewport(button);
+  },
+
+  _isElementInViewport(el) {
+    // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
+
+    //special bonus for those using jQuery
+    if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+    }
+
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    );
+  },
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
     let building = this.get('buildingAnOrder');
@@ -55,6 +80,10 @@ export default Ember.Component.extend(ResizeMixin, {
   }),
 
   actions: {
+    afterProceedToCheckout(){
+      this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
+    },
+
     checkout() {
       this.set('checkingOut', true);
       let checkoutPromise = this.get('cart').checkout();
