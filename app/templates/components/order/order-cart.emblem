@@ -4,9 +4,9 @@
     = yield
 
   if buildingAnOrder
-    if isProceedToCheckoutVisible
+    unless isProceedToCheckoutVisible
       .show-for-small
-        = scroll-to classNames='button proceed-to-checkout' href='#checkout-cart'
+        = scroll-to classNames='button proceed-to-checkout' href='#checkout-cart' afterScroll='afterProceedToCheckout'
           span &nbsp; Proceed To Checkout
 
     div#checkout-cart class=orderContainerClasses
