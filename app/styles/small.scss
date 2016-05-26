@@ -5,4 +5,17 @@
       width: inherit;
     }
   }
+
+  &.top-full-width-auth-buttons{
+    ul.button-group {
+      li {
+        margin: 0px;
+        width: 50%;
+        a {
+          width: 100%;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

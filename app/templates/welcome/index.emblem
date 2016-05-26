@@ -1,3 +1,8 @@
+.show-for-small.top-full-width-auth-buttons
+  ul.button-group
+    li: a.button.success click='openLoginModal' = t 'buttons.login'
+    li: a.button.success href="#" data-reveal-id='signup-modal' = t 'buttons.signup'
+
 .imageoverlay.text-center.panel.bg-header.header
     h1.text-center = t 'appname'
     h6.subheader.text-center = t 'subheader'
