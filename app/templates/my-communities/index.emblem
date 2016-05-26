@@ -1,16 +1,15 @@
 .center-margin
   = page-header text='My Communities'
 
-
 each model as |organization|
   table.no-border.center-margin
     tr
       td
         a href="{{organization.url}}"
           .row
-            .columns.small-2.medium-4
+            .columns.small-3.medium-4.no-padding
               = event/logo-thumbnail model=organization align='right'
-            .columns.small-10.medium-8
+            .columns.small-9.medium-8
               h3 = organization.name
               h6 = organization.location
       td

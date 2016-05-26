@@ -7,14 +7,14 @@ br
   each model as |organization|
     a href="/{{organization.domain}}"
       .row
-        .columns.small-2.medium-4
+        .columns.small-3.medium-4.no-padding
           if organization.logoIsMissing
             span.icon-thumbnail.right
               = fa-icon 'globe'
 
           else
             img.right src="{{organization.logoUrlThumb}}"
-        .columns.small-10.medium-8
+        .columns.small-9.medium-8
           h3 = organization.name
           h6 = organization.location
 br
