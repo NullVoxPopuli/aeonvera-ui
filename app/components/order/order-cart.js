@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ResizeMixin from 'ember-resize-mixin/main';
+import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
 
-export default Ember.Component.extend(ResizeMixin, {
+export default Ember.Component.extend(ResizeMixin, EmberScroll, {
   cart:                  Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
   errors:                [],
@@ -35,10 +36,18 @@ export default Ember.Component.extend(ResizeMixin, {
   */
   debouncedDidResize: function() {
     this.get('cart')._adjustCartMaxHeight();
-    this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
+    this._updateProceedToCheckoutVisibility();
   }.on('resize'),
 
-  _isCheckoutButtonVisible(){
+  didScroll() {
+    this._updateProceedToCheckoutVisibility();
+  },
+
+  _updateProceedToCheckoutVisibility() {
+    this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
+  },
+
+  _isCheckoutButtonVisible() {
     let button = this.$('li.cart-checkout-button-container');
     return this._isElementInViewport(button);
   },
@@ -80,8 +89,7 @@ export default Ember.Component.extend(ResizeMixin, {
 
   actions: {
     afterProceedToCheckout() {
-      console.log('hi');
-      this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
+      this._updateProceedToCheckoutVisibility();
     },
 
     checkout() {
