@@ -25,6 +25,10 @@ export default Host.extend({
   membershipOptions: DS.hasMany('membership-option'),
   membershipDiscounts: DS.hasMany('membership-discount'),
 
+  notifyEmail: DS.attr('string'),
+  emailAllPurchases: DS.attr('boolean'),
+  emailMembershipPurchases: DS.attr('boolean'),
+
   location: function() {
     return this.get('city') + ', ' + this.get('state');
   }.property('city', 'state'),

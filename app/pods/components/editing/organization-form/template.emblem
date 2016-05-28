@@ -12,15 +12,28 @@
   = form/url-namespace-field classes='columns small-12 medium-6' errors=errors field='domain' model=model
 
 .row
-  = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='city'
-    label
-      span City
-      = input value=model.city placeholder='Indianapolis' type='text' required=true
+  .columns.small-12.medium-6
+    = error-field-wrapper errors=errors field='city'
+      label
+        span City
+        = input value=model.city placeholder='Indianapolis' type='text' required=true
 
-  = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='state'
-    label
-      span State
-      = input value=model.state placeholder='IN' type='text' required=true
+    = error-field-wrapper errors=errors field='state'
+      label
+        span State
+        = input value=model.state placeholder='IN' type='text' required=true
+  .columns.small-12.medium-6
+    = error-field-wrapper errors=errors field='notifyEmail'
+      label
+        span Notification Email
+        = input value=model.notifyEmail placeholder='treasurer@domain.com' type='text'
+
+    label Events to trigger emails to the above address
+    = input checked=model.emailAllPurchases type='checkbox'
+    label Email All Purchases
+    br
+    = input checked=model.emailMembershipPurchases type='checkbox'
+    label Email Membership Purchases
 
 .row
   .columns.small-12.medium-6

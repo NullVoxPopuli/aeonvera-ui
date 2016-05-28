@@ -36,7 +36,7 @@ if showPaymentInProgress
         .payment-in-progress
           h3: em Securely Submitting Your Payment
           h5
-            | This will appear on your statement as
+            | This will appear on your statement as&nbsp;
             strong = statementDescription
           = spinner/rect-spinner
           br
