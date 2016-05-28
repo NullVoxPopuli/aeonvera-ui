@@ -5,7 +5,7 @@
 		tr
 			td.status
 				h6
-					em Last updated: February 17, 2014
+					em Last updated: May 28, 2016
 				h6
 					em
 						link-to 'welcome.tos.updates' | recent updates
@@ -18,3 +18,7 @@
 .surround-padding-20
 	.terms
 		= outlet
+
+	br
+	br
+	p If you would like to make a change, you may open an issue and / or pull request on the github for this project.
