@@ -91,6 +91,7 @@ Router.map(function() {
             });
           });
         });
+        this.route('embed-registration');
       });
     });
 
@@ -240,11 +241,13 @@ Router.map(function() {
             this.route('edit');
           });
         });
+        this.route('embed-registration');
       });
     });
 
   });
 
+  this.route('embed', { path: '/embed/:subdomain' });
   this.route('register', { resetNamespace: true, path: ':subdomain' }, function() {
     this.route('checkout', { path: ':orderId' }, function() {
       this.route('edit');

@@ -14,6 +14,10 @@ li
   link-to 'register' model.domain
     span Registration Form
 
+li
+  link-to 'my-communities.manage.embed-registration'
+    span Embed Code
+
 li.divider
 li Reporting
 li
@@ -32,17 +36,17 @@ li
 
 li.divider
 li Edit
-li 
+li
   link-to 'my-communities.manage.lessons'
     span Lessons
 li
   link-to 'my-communities.manage.dances'
     span Dances
-    
+
 li
   link-to 'my-communities.manage.payment-processors'
     span Payment Proccessing
-  
+
 
 li.divider
 
