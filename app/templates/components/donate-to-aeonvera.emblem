@@ -1,10 +1,10 @@
 = foundation-modal title='Donate to ÆONVERA' name='donate-price-pick' buttonText='Donate' buttonClasses='button success tiny right'
-  
+
   ul.no-margins.accordion data-accordion='true'
     li.accordion-navigation
       a href='#donate-why' Why am I taking donations?
       #donate-why.content
-        span Programming is a lot of work, and while there is a small fee attached to each transaction, I also have am married with full time job -- so I don't have a lot of time to dedicate to working on {{t 'appname'}}. 
+        span Programming is a lot of work, and while there is a small fee attached to each transaction, I also am married with full time job -- so I don't have a lot of time to dedicate to working on {{t 'appname'}}. 
     li.accordion-navigation
       a href='#donate-what' What do donations go towards?
       #donate-what.content
@@ -16,10 +16,10 @@
           li Maintaining 100% uptime (Taking time out of my day in the rare event something happens to the server)
           li Implementing the ability to take PayPal payments (or payments from any other payment processors)
           li Working on features that will eventually allow event organizers total autonomy in event management, including documentation, todos, and guides.
-  
+
   br
   br
-  
+
   span Clicking the donate button will navigate away from {{t 'appname'}}.
   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
   <input type="hidden" name="cmd" value="_s-xclick">
