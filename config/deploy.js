@@ -37,6 +37,7 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'development') {
     ENV.build.environment = 'development';
+    ENV.s3.bucket = 'aeonvera-dev';
     // configure other plugins for development deploy target here
   }
 
