@@ -2,11 +2,15 @@
 
 table
   thead: tr
+    th
     th Name
     th Invitation Accepted At
   tbody
     each collaborations as |collaboration|
       tr
+        td
+          = form/confirm-button action='removeCollaborator' target=collaboration preConfirmClasses='alert-color'
+            = fa-icon 'minus-circle'
         td = collaboration.userName
         td = date-with-format collaboration.createdAt 'lll'
 

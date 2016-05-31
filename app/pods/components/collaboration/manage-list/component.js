@@ -9,6 +9,13 @@ export default Ember.Component.extend({
     addCollaborator() {
       let email = this.get('newCollaboratorEmail');
       this.sendAction('sendInviteAction', email);
+      this.set('newCollaboratorEmail', '');
+    },
+
+    removeCollaborator(collaboration) {
+      collaboration.destroyRecord().then(success => {}, error => {
+        this.get('flashMessages').alert(error);
+      });
     }
   }
 });

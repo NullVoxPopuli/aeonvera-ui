@@ -1,0 +1,9 @@
+{{#if hasYetToConfirm }}
+  <a {{action 'preClickAction'}} class='{{preConfirmClasses}}'>
+    {{yield}}
+  </a>
+{{else}}
+  {{#spinner-button onclick=(action 'triggerAction') classNames='no-margins tiny'}}
+    Confirm
+  {{/spinner-button}}
+{{/if}}
