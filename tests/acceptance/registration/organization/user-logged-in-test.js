@@ -37,6 +37,7 @@ describe('User is Logged in', function() {
     });
 
     it('can view the name of the org', assert => {
+      server.logging = true;
       visit('/testorg');
       andThen(() => {
         let h2s = find('h2');

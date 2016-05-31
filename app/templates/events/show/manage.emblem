@@ -33,3 +33,6 @@ ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
   li
     h4: link-to 'events.show.custom-fields': span Custom Fields
     p Need to collect additional info? Want to display a disclaimer at the bottom of registration? This is it.
+  li
+    h4: link-to 'events.show.collaboration': span Collaboration
+    p Invite people to help manage the event.

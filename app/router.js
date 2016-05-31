@@ -20,6 +20,9 @@ Router.map(function() {
     this.route('new');
     this.route('new-success');
   });
+  this.route('collaboration', function() {
+    this.route('success');
+  });
 
   /* public facing */
   this.route('welcome', { resetNamespace: true }, function() {
@@ -68,6 +71,7 @@ Router.map(function() {
           });
         });
 
+        this.route('collaboration');
         this.route('reports');
         this.route('officers');
         this.route('membership', function() {
@@ -139,6 +143,8 @@ Router.map(function() {
         this.route('volunteers', function() {
           this.route('new');
         });
+
+        this.route('collaboration');
 
         this.route('checkin', function() {
           this.route('take-payment');

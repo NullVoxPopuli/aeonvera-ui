@@ -8,6 +8,11 @@ export default Ember.Component.extend({
 
   firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
+    let code = firstErrorObject.code;
+    if (code == 401) {
+      return 'Not authorized. Please login as an authorized user.';
+    }
+
     let source = firstErrorObject.source;
     let field = source.pointer.replace('/data/attributes/', '');
     field = field.replace('-', ' ');

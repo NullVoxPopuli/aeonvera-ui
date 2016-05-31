@@ -7,46 +7,33 @@ li
 
 li.divider
 li View
-li
-  link-to 'my-communities.manage.registrations'
+li: link-to 'my-communities.manage.registrations'
     span Registrations
-li
-  link-to 'register' model.domain
+li: link-to 'register' model.domain
     span Registration Form
 
-li
-  link-to 'my-communities.manage.embed-registration'
+li: link-to 'my-communities.manage.embed-registration'
     span Embed Code
 
 li.divider
 li Reporting
-li
-  link-to 'my-communities.manage.revenue'
+li: link-to 'my-communities.manage.revenue'
     span Revenue
 
-li
-  link-to 'my-communities.manage.membership'
+li: link-to 'my-communities.manage.membership'
     span Membership
-    / li
-    /   link-to 'my-communities.manage.membership.membership-options'
-    /     span Membership Options
-    / li
-    /   link-to 'my-communities.manage.membership.discounts'
-    /     span Membership Options
 
 li.divider
 li Edit
-li
-  link-to 'my-communities.manage.lessons'
+li: link-to 'my-communities.manage.lessons'
     span Lessons
-li
-  link-to 'my-communities.manage.dances'
+li: link-to 'my-communities.manage.dances'
     span Dances
 
-li
-  link-to 'my-communities.manage.payment-processors'
+li: link-to 'my-communities.manage.payment-processors'
     span Payment Proccessing
-
+li: link-to 'my-communities.manage.collaboration'
+    span Collaborators
 
 li.divider
 

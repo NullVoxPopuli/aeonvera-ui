@@ -1,0 +1,14 @@
+= page-header text='Collaborators'
+
+table
+  each collaborators as |collaborator|
+    tr
+      td = collaborator.userName
+
+if (is-present errors)
+  = error-header erorrs=errors
+
+label Add New Collaborator
+= input value=newCollaboratorEmail placeholder='president@organization.org'
+
+button click='addCollaborator' Send Invite

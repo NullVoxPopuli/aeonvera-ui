@@ -1,0 +1,14 @@
+{{ page-header text='Accepting Invite to Collaborate...' }}
+
+<p>Please wait while your invitation token is verified.</p>
+<br>
+{{#if (is-present errors)}}
+  {{error-header errors=errors}}
+  <br>
+  <strong>
+    Something went wrong. You may need to ask an event organizer to re-invite you.
+  </strong>
+{{else}}
+  <div class='ubuntu-loader' style="color: black;"></div>
+{{/if}}
+<br>
