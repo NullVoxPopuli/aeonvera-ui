@@ -1,9 +1,14 @@
 = page-header text='Collaborators'
 
 table
-  each collaborators as |collaborator|
-    tr
-      td = collaborator.userName
+  thead: tr
+    th Name
+    th Invitation Accepted At
+  tbody
+    each collaborations as |collaboration|
+      tr
+        td = collaboration.userName
+        td = date-with-format collaboration.createdAt 'lll'
 
 if (is-present errors)
   = error-header erorrs=errors
