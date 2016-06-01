@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScroll, {
   session: Ember.inject.service('session'),
   currentUserService: Ember.inject.service('current-user'),
   pathStore: Ember.inject.service('path-store'),
