@@ -103,6 +103,10 @@ export default function() {
     return {};
   });
 
+  this.get('api/hosts/:eventalias', function(db, request) {
+    return {};
+  });
+
   // this.passthrough('/write-blanket-coverage', ['post']);
   this.passthrough();
   /*
