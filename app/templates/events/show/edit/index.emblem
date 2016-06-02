@@ -35,3 +35,8 @@ form submit='save'
       label
         span Registration Opens At
         = date-time-input model=model.openingTier field='increaseAfterDate'
+
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.contactEmail'
+      label
+        span Contact Email (included in registration and order receipts)
+        = input value=model.contactEmail placeholder='bruce@wayne.com' type='text'

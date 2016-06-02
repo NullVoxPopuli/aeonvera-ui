@@ -7,6 +7,7 @@ export default DS.Model.extend({
   name: attr('string'),
   domain: attr('string'),
   logo: attr('file',  { defaultValue: function() { return File.create(); } }),
+  contactEmail: attr('string'),
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),

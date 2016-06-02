@@ -10,6 +10,10 @@
       = input value=model.tagline placeholder='e.g.: Vintage Dancing, Modern Fun.' type='text' required=true
 .row
   = form/url-namespace-field classes='columns small-12 medium-6' errors=errors field='domain' model=model
+  = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='model.contactEmail'
+    label
+      span Contact Email (included in registration and order receipts)
+      = input value=model.contactEmail placeholder='bruce@wayne.com' type='text'
 
 .row
   .columns.small-12.medium-6
