@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import AuthenticatedUi from '../../mixins/authenticated-ui';
+import AuthenticatedUi from 'aeonvera/mixins/authenticated-ui';
 
 export default Ember.Route.extend(AuthenticatedUi, {
   i18n: Ember.inject.service(),
@@ -25,18 +25,6 @@ export default Ember.Route.extend(AuthenticatedUi, {
           this.get('flashMessages').alert('Profile did not update.');
         });
       });
-    },
-
-    deactivateAccount: function () {
-      var store = this.get('store');
-
-      store.find('user', 0).then((user) => {
-        user.deleteRecord();
-        user.save().then(() => {
-          Ember.$('.close-reveal-modal').click();
-          this.send('invalidateSession');
-        });
-      });
-    },
+    }
   },
 });

@@ -61,6 +61,12 @@
           span You can reactivate your account later by contacting&nbsp;
           a href="mailto:support@aeonvera.com" support
           span .
+
+        p.lead
+          = error-header errors=deleteErrors
+          label Please provide your current password
+          = input value=deleteAccountPassword type='password'
+
         .text-center
           button.alert click='deactivateAccount'
             | I'm sure, cancel my account.
