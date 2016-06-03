@@ -1,3 +1,4 @@
+= error-header errors=errors
 form submit='reset' name='password-reset-form'
   .row.collapse
     = error-field-wrapper errors=errors field='email'

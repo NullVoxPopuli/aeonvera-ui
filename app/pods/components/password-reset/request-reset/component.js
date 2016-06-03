@@ -3,10 +3,7 @@ import ENV from 'aeonvera/config/environment';
 
 export default Ember.Component.extend({
   email: null,
-
-  errors: function () {
-    return this.get('model.errors');
-  }.property('model'),
+  errors: [],
 
   emailClass: function () {
     var errors = this.get('errors');
@@ -38,11 +35,7 @@ export default Ember.Component.extend({
         error: function (jqxhr, status, text) {
           let json = Ember.$.parseJSON(jqxhr.responseText);
           let errors = json.errors;
-          let modelErrors = _this.get('model.errors');
-          modelErrors.clear();
-          for (let field in errors) {
-            modelErrors.add(field, errors[field]);
-          }
+          _this.set('errors', errors);
         },
       });
     },
