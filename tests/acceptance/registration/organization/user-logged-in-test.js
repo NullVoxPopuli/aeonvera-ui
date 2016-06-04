@@ -16,11 +16,10 @@ module('Acceptance | Registration | Organization | User is Logged In', {
     application = startApp();
 
     let org = server.create('organization', {
+      id: 'testorg',
       name: 'Test Org',
       domain: 'testorg'
     });
-
-    // server.get('api/hosts/testorg', org);
   },
 
   afterEach() {

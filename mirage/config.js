@@ -103,7 +103,16 @@ export default function() {
     return {};
   });
 
-  this.get('api/hosts/:host');
+  this.get('api/hosts/:host', (schema, request) => {
+    let hostId = request.params.host;
+
+    // stupid hack for testing
+    if (hostId.includes('org')){
+      return schema.db.organizations.find(hostId);
+    }
+
+    return schema.events.find(hostId);
+  });
 
   // this.passthrough('/write-blanket-coverage', ['post']);
   this.passthrough();
