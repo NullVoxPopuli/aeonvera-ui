@@ -20,7 +20,7 @@ module('Acceptance | Registration | Organization | User is Logged In', {
       domain: 'testorg'
     });
 
-    server.get('api/hosts/testorg', org);
+    // server.get('api/hosts/testorg', org);
   },
 
   afterEach() {

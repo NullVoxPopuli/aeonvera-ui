@@ -12,6 +12,9 @@ if (is-equal field.kind 3)
 
 if (is-equal field.kind 4)
   = date-with-format model.value 'LT' true
-  
+
 if (is-equal field.kind 5)
   = date-with-format model.value 'LLL' true
+
+if (is-equal field.kind 6)
+  = to-bool model.value

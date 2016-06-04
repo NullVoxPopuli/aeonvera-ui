@@ -15,7 +15,7 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
 
   hasRequirement: Ember.computed('requirement', function() {
     let requirement = this.get('requirement');
-    return (requirement !== 0);
+    return (requirement !== 0 && requirement !== null);
   }),
 
   requiresName: Ember.computed('hasRequirement', function() {

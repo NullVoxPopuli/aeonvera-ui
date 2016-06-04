@@ -3,10 +3,10 @@ import DS from 'ember-data';
 import PaymentStatus from '../mixins/models/payment-status';
 
 export default DS.Model.extend({
-  housingCapacity: DS.attr('number'),
-  numberOfShowers: DS.attr('number'),
+  housingCapacity: DS.attr('number', { defaultValue: 0 } ),
+  numberOfShowers: DS.attr('number', { defaultValue: 0 } ),
   canProvideTransportation: DS.attr('boolean'),
-  transportationCapacity: DS.attr('number'),
+  transportationCapacity: DS.attr('number', { defaultValue: 0 }),
   preferredGenderToHost: DS.attr('string', { defaultValue: 'No Preference' }),
   hasPets: DS.attr('boolean'),
   smokes: DS.attr('boolean'),
