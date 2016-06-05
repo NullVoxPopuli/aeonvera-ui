@@ -108,7 +108,7 @@ export default function() {
 
     // stupid hack for testing
     if (hostId.includes('org')){
-      return schema.db.organizations.find(hostId);
+      return schema.organizations.find(hostId);
     }
 
     return schema.events.find(hostId);

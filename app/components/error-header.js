@@ -8,6 +8,11 @@ export default Ember.Component.extend({
 
   firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
+
+    if (firstErrorObject === undefined){
+      return;
+    }
+
     let code = firstErrorObject.code;
     if (code === 401) {
       return 'Not authorized. Please login as an authorized user.';
