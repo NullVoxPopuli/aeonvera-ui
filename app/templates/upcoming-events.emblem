@@ -1,26 +1,6 @@
 .row.center-margin
   .small-12.columns
     h2.page-title Upcoming Events
-    table
-      thead
-        tr
-          th Name
-          th Location
-          th Date of Event
-          th Registration Opens
-      tbody
-        each model as |event|
-          tr
-            td
-              a href="{{event.url}}"
-                = event.name
-            td = event.location
-            td = date-range event.startsAt event.endsAt
-            td
-              if event.isRegistrationOpen
-                span Open
-              else
-                = date-with-format event.registrationOpensAt 'llll'
-
+    = upcoming-events model=model
     link-to 'dashboard' classNames="button"
       span Back

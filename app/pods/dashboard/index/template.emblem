@@ -1,6 +1,13 @@
 h3 Welcome, {{currentUser.user.name}}!
 hr
+br
+h4 Upcoming Events
+/ TODO: Limit this to 10 events or whatever when the time comes
+= upcoming-events model=model
 = outlet
+br
+br
+br
 br
 .row.center-margin
   .columns.medium-6.text-center
