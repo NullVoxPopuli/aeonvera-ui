@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from 'aeonvera/tests/helpers/start-app';
-import 'aeonvera/tests/helpers/login';
+import { currentSession, authenticateSession, invalidateSession } from 'aeonvera/tests/helpers/ember-simple-auth';
 
 let application;
 
@@ -11,14 +11,25 @@ let describe = function(name, tests) {
   tests();
 };
 
+let orgId = 'testorg';
+let userId = 'current-user';
+
 module('Acceptance | Registration | Organization | User is Logged In', {
   beforeEach() {
     application = startApp();
 
     let org = server.create('organization', {
-      id: 'testorg',
+      id: orgId,
       name: 'Test Org',
       domain: 'testorg'
+    });
+    // server.logging=true;
+    let user = server.create('user', { id: userId});
+
+    authenticateSession(application, {
+      email: user.email,
+      id: user.id,
+      token: user.token
     });
   },
 
@@ -36,7 +47,6 @@ describe('User is Logged in', function() {
     });
 
     it('can view the name of the org', assert => {
-      server.logging = true;
       visit('/testorg');
       andThen(() => {
         let h2s = find('h2');
@@ -45,7 +55,12 @@ describe('User is Logged in', function() {
     });
 
     it('does not show the name and email fields', (assert) => {
-      assert.ok(true);
+      visit('/testorg');
+      andThen(() => {
+        let labels = find('.row .columns.medium-4 label');
+        assert.notOk(labels.text().includes('Name'));
+        assert.notOk(labels.text().includes('Email'));
+      });
     });
 
     it('shows the membership options', (assert) => {

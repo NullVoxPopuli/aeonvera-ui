@@ -103,6 +103,11 @@ export default function() {
     return {};
   });
 
+  this.get('/api/users/:current_user', (schema, request) => {
+    let id = request.params.current_user
+    return schema.users.find(id);
+  });
+
   this.get('api/hosts/:host', (schema, request) => {
     let hostId = request.params.host;
 
