@@ -7,7 +7,7 @@ table.width-of-100
   tbody
     each model.orderLineItems as |item|
       tr
-        td 
+        td
           = item.lineItem.name
           if item.lineItem.isPackage
             if item.lineItem.requiresTrack
@@ -25,7 +25,9 @@ table.width-of-100
       tr
         th
         th
-        th.text-right Fee
+        th.text-right
+          | Fee
+          = tool-tip message='This is the online payment processing fee. To read more about fees, visit the aeonvera pricing page.'
         th.text-right = to-usd model.fee
     tr
       th

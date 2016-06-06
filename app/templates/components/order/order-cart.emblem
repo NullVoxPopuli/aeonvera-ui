@@ -52,7 +52,9 @@
               th Sub Total
             tr
               th = to-usd cart.order.fee
-              th Fee
+              th
+                | Fee
+                = tool-tip message='This is the online payment processing fee. To read more about fees, visit the aeonvera pricing page.'
           tr
             th = to-usd cart.order.total
             th Total
