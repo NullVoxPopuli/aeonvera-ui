@@ -3,14 +3,14 @@ h3 Basic Information
 .row
   .small-12.medium-8.columns
     label Name
-    = input type='text' disabled=true value=currentUser.name
+    p: em = currentUser.name
 
     if event.hasVolunteers
       = input type='checkbox' checked=attendance.interestedInVolunteering
       label Interested In Volunteering
       if attendance.interestedInVolunteering
         = error-field-wrapper errors=attendance.errors field='phoneNumber'
-          label 
+          label
             span Phone Number
             = input type='text' value=attendance.phoneNumber
 

@@ -65,7 +65,8 @@ export default Ember.Service.extend(RandomString, {
           user: user,
           userName: this.get('userName'),
           userEmail: this.get('userEmail'),
-          attendance: this.get('attendance')
+          attendance: this.get('attendance'),
+          pricingTier: this.get('host.currentTier')
         });
       }
 

@@ -31,6 +31,7 @@ export default DS.Model.extend(Validator, {
   orderLineItems: DS.hasMany('orderLineItem'),
   attendance:     DS.belongsTo('attendance', { async: false }),
   user:           DS.belongsTo('user'),
+  pricingTier:    DS.belongsTo('pricingTier'),
 
   /*
     stripe specific things
