@@ -8,12 +8,13 @@ if housingRequest
       span You can provide transportation for {{housingRequest.transportationCapacity}} {{transportPlural}}.
     unless noPreference
       br
-      span You prefer to host {{housingProvision.preferredGenderToHouseWith}}
+      span
+        | You prefer to house with: {{housingRequest.preferredGenderToHouseWith}}
     = allergyText
     if (is-present requested)
       br
       span You'd like to be housed with {{requested}}
-      if (is-present unwanted) 
+      if (is-present unwanted)
         span ,&nbsp;while avoiding {{unwanted}}
     else
       if (is-present unwanted)
