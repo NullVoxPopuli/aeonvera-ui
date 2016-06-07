@@ -23,8 +23,9 @@ module('Acceptance | Registration | Organization | User is Logged In', {
       name: 'Test Org',
       domain: 'testorg'
     });
+
     // server.logging=true;
-    let user = server.create('user', { id: userId});
+    let user = server.create('user', { id: userId });
 
     authenticateSession(application, {
       email: user.email,

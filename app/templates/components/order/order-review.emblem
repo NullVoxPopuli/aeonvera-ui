@@ -33,7 +33,10 @@ table.width-of-100
       th
       th
       th.text-right Total
-      th.text-right = to-usd model.totalInDollars
+      if model.paid
+        th.text-right = to-usd model.totalInDollars
+      else
+        th.text-right = to-usd model.total
     if model.paid
       tr
         td.order-payment-status data-paid=model.paid colspan="4"

@@ -9,8 +9,12 @@ export default Ember.Component.extend({
   firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
 
-    if (firstErrorObject === undefined){
+    if (firstErrorObject === undefined) {
       return;
+    }
+
+    if (typeof (firstErrorObject) === 'string') {
+      return firstErrorObject;
     }
 
     let code = firstErrorObject.code;

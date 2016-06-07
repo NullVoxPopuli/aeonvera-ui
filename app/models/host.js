@@ -14,6 +14,13 @@ export default DS.Model.extend({
   makeAttendeesPayFees: DS.attr('boolean'),
   acceptOnlyElectronicPayments: DS.attr('boolean'),
 
+  logoFileName: DS.attr('string'),
+  logoFileSize: DS.attr('number'),
+  logoUpdatedAt: DS.attr('date'),
+  logoUrl: DS.attr('string'),
+  logoUrlThumb: DS.attr('string'),
+  logoUrlMedium: DS.attr('string'),
+
   stripeIntegration: Ember.computed('integrations.@each', function() {
     let integrations = this.get('integrations').filterBy('name', 'stripe');
     let stripeIntegration = null;
@@ -53,5 +60,11 @@ export default DS.Model.extend({
   // TODO: find a better way to do this.
   payableType: Ember.computed(function() {
     return this.get('isEvent') ? 'Event' : 'Organization';
-  })
+  }),
+
+  logoIsMissing: Ember.computed('logoUrl', function() {
+    let logoUrl = this.get('logoUrl');
+    let logoPresent = Ember.isPresent(logoUrl);
+    return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
+  }),
 });

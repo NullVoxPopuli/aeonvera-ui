@@ -3,7 +3,7 @@ h3 Basic Information
 .row
   .small-12.medium-8.columns
     label Name
-    p: em = currentUser.name
+    p: em = currentUser.user.name
 
     if event.hasVolunteers
       = input type='checkbox' checked=attendance.interestedInVolunteering

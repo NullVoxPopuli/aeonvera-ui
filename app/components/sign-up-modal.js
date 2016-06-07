@@ -21,7 +21,7 @@ export default Ember.Component.extend({
   }.property('errors'),
 
   actions: {
-    register: function() {
+    register() {
       this.get('pathStore').storeCurrentRoute();
       this.sendAction('action');
     },

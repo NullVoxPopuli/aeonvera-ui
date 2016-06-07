@@ -52,7 +52,12 @@ export default Ember.Component.extend({
   }),
 
   noPreference: Ember.computed('housingRequest.preferredGenderToHouseWith', function() {
-    return this.get('housingRequest.preferredGenderToHouseWith').includes('No');
+    let pref = this.get('housingRequest.preferredGenderToHouseWith');
+    if (typeof pref === 'string') return pref.includes('No');
+
+    // why wouldn't this be a string?
+    console.error(pref);
+    return true;
   }),
 
   requested: Ember.computed('housingRequest', function() {

@@ -15,6 +15,7 @@ export default Ember.Component.extend({
       let value = this.get('model.' + fieldName);
       return value;
     },
+
     set(key, value) {
       let model = this.get('model');
       let field = this.get('field');

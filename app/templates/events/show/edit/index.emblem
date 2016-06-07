@@ -40,3 +40,11 @@ form submit='save'
       label
         span Contact Email (included in registration and order receipts)
         = input value=model.contactEmail placeholder='bruce@wayne.com' type='text'
+
+  .row
+    .columns.small-12.medium-6.medium-offset-6
+      label Logo
+      = form/file-upload property='logo' model=model
+
+      unless model.logoIsMissing
+        img src=model.logoUrlThumb

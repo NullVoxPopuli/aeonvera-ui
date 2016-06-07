@@ -29,10 +29,9 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
 
   orderLineItems: DS.hasMany('order-line-item'),
   restraints: DS.hasMany('restraint'),
+  name: DS.attr('string'),
 
-  name: function() {
-    return this.get('code');
-  }.property('code'),
+  // name: Ember.computed.alias('code'),
 
   price: function() {
     return this.get('discount');

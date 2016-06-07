@@ -2,11 +2,11 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  needTransportation:         DS.attr('boolean', { defaultValue: false } ),
-  canProvideTransportation:   DS.attr('boolean', { defaultValue: false } ),
+  needTransportation:         DS.attr('boolean', { defaultValue: false }),
+  canProvideTransportation:   DS.attr('boolean', { defaultValue: false }),
   transportationCapacity:     DS.attr('number', { defaultValue: 0 }),
-  allergicToPets:             DS.attr('boolean', { defaultValue: false } ),
-  allergicToSmoke:            DS.attr('boolean', { defaultValue: true } ),
+  allergicToPets:             DS.attr('boolean', { defaultValue: false }),
+  allergicToSmoke:            DS.attr('boolean', { defaultValue: true }),
   otherAllergies:             DS.attr('string'),
   preferredGenderToHouseWith: DS.attr('string', { defaultValue: 'No Preference' }),
   notes:                      DS.attr('string'),

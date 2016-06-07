@@ -8,7 +8,7 @@ table.responsive
       th Event Begins
       th Status
 
-  if model
+  if (is-present model)
     each model as |event|
       tr
         td

@@ -35,7 +35,7 @@ export default Ember.Mixin.create({
   },
 
   _unbindScrolling() {
-     Ember.$(window).unbind('scroll');
-     Ember.$(document).unbind('touchmove');
-   }
+    Ember.$(window).unbind('scroll');
+    Ember.$(document).unbind('touchmove');
+  }
 });

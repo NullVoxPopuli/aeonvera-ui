@@ -174,6 +174,12 @@ export default DS.Model.extend(Validator, {
     return result;
   },
 
+  hasDiscount() {
+    let items           = this.get('orderLineItems');
+    let activeDiscounts = items.filterBy('lineItem.isADiscount');
+    return Ember.isPresent(activeDiscounts);
+  },
+
   /*
     Currently, only membership discounts are applied
     - these are applied to lessons right now, but
@@ -285,10 +291,15 @@ export default DS.Model.extend(Validator, {
 
       // orderLineItem.get('lineItem').then((currentLineItem) => {})
       let currentPrice = orderLineItem.get('price');
+
+      // due to how ember's polymorphism works, currentLineItem
+      // is always going to be of type 'LineItem'
+
       let isDiscount = currentLineItem.get('isADiscount');
 
       // doesn't work, because promise isn't resolved in test env.
       let isSameKind = lineItem.isTheSameKindAs(currentLineItem);
+      isSameKind = isSameKind || (lineItem.get('klass') === currentLineItem.get('klass'));
 
       if (
 
