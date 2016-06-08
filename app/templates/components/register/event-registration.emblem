@@ -17,6 +17,10 @@ if model.registrationIsOpen
 else
   .event-registration-is-not-yet-open
     .text-center
+      br
+      br
+      unless model.logoIsMissing
+        img src=model.logoUrlMedium
       h1 = model.name
       h3: em = model.description
       h4 = model.location

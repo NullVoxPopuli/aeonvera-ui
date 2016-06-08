@@ -10,6 +10,8 @@ table
       tr
         td
           a href="{{event.url}}"
+            unless event.logoIsMissing
+              img src=event.logoUrlThumb
             = event.name
         td = event.location
         td = date-range event.startsAt event.endsAt
