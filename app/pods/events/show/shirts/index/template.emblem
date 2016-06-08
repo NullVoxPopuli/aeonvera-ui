@@ -1,5 +1,8 @@
 = page-header text='Shirts'
 
+link-to 'events.show.shirts.new' classNames='button'
+  span New Shirt
+
 table
   thead: tr
     th Name
@@ -12,7 +15,8 @@ table
     if (is-present model)
       each model as |shirt|
         tr
-          td = shirt.name
+          td: link-to 'events.show.shirts.show' shirt.id
+            = shirt.name
           td = shirt.numberPurchased
           td = to-usd shirt.currentPrice
           td = shirt.offeredSizes

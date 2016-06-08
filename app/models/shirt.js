@@ -15,7 +15,7 @@ export default LineItem.extend({
     return sizes.join(', ');
   }.property('sizes'),
 
-  priceForSize: function (size) {
+  priceForSize(size) {
     let sizes = this.get('sizes');
     let price = this.get('price');
     sizes.forEach(function (sizeData) {
@@ -25,6 +25,24 @@ export default LineItem.extend({
     });
 
     return price;
+  },
+
+  addSize(name, price) {
+    let sizeData = {
+      id: name,
+      size: name,
+      price: price
+    };
+
+    this.get('sizes').pushObject(sizeData);
+  },
+
+  removeSize(id) {
+    let sizes = this.get('sizes');
+    let sizeData = sizes.findBy('id', id);
+
+    sizes.removeObject(sizeData);
+    this.set('sizes', sizes);
   },
 
 });

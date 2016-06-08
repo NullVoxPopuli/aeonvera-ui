@@ -1,0 +1,18 @@
+table
+  thead: tr
+    th Size
+    th Price
+    th
+  each model.sizes as |sizeData|
+    tr
+      td = sizeData.size
+      td = sizeData.price
+      td: a click="'removeSize' sizeData.id" Delete
+
+  if addingNewSize
+    tr
+      td = input value=newSizeName
+      td = input value=newSizePrice
+      td: a click='addSize' Save
+  tr: td.text-center colspan='3'
+    button.tiny.success.no-margins click='addNewSizeRow' Add Size
