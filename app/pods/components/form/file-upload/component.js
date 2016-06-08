@@ -10,8 +10,13 @@ export default TextField.extend({
   change(e) {
     let property = this.get('property');
     let model = this.get('model');
+    let file = e.target.files[0];
 
-    model.get(property).update(e.target.files[0]);
+    let fileName = file.name;
+    let fileSize = file.size;
+    model.set(property + 'FileName', fileName);
+    model.set(property + 'FileSize', fileSize);
+    model.get(property).update(file);
     model.send('becomeDirty');
   }
 });

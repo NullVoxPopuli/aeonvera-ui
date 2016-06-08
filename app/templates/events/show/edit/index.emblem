@@ -44,7 +44,4 @@ form submit='save'
   .row
     .columns.small-12.medium-6.medium-offset-6
       label Logo
-      = form/file-upload property='logo' model=model
-
-      unless model.logoIsMissing
-        img src=model.logoUrlThumb
+      = form/image-upload property='logo' model=model

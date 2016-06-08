@@ -42,11 +42,7 @@
 .row
   .columns.small-12.medium-6
     label Logo
-    = form/file-upload property='logo' model=model
-
-    unless model.logoIsMissing
-      img src=model.logoUrlThumb
-
+    = form/image-upload property='logo' model=model
 
 .row
   .small-12.columns
