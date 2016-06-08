@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import LineItem from '../models/line-item';
+
+const { isEmpty } = Ember;
 
 export default LineItem.extend({
   sizes: DS.attr(),
@@ -34,7 +37,13 @@ export default LineItem.extend({
       price: price
     };
 
-    this.get('sizes').pushObject(sizeData);
+    let sizes = this.get('sizes');
+    if (isEmpty(sizes)) {
+      sizes = Ember.A();
+    }
+
+    sizes.pushObject(sizeData);
+    this.set('sizes', sizes);
   },
 
   removeSize(id) {

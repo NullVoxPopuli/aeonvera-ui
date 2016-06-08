@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
 
@@ -36,5 +37,11 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   event: DS.belongsTo('event'),
   host: DS.belongsTo('host', { polymorphic: true }),
   attendances: DS.hasMany('attendance'),
+
+  pictureIsMissing: Ember.computed('pictureUrl', function() {
+    let pictureUrl = this.get('pictureUrl');
+    let picturePresent = Ember.isPresent(pictureUrl);
+    return picturePresent ? pictureUrl.indexOf('missing') !== -1 : true;
+  }),
 
 });

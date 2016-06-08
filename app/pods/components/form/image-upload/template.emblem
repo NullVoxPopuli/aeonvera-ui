@@ -1,4 +1,4 @@
-= form/file-upload property='logo' model=model
+= form/file-upload property=property model=model
 
-unless model.logoIsMissing
-  img src=model.logoUrlThumb
+unless imageMissing
+  img src=thumbUrl

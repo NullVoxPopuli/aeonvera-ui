@@ -14,5 +14,6 @@ table
       td = input value=newSizeName
       td = input value=newSizePrice
       td: a click='addSize' Save
-  tr: td.text-center colspan='3'
-    button.tiny.success.no-margins click='addNewSizeRow' Add Size
+  else
+    tr: td.text-center colspan='3'
+      button.tiny.success.no-margins click='addNewSizeRow' Add Size
