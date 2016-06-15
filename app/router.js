@@ -103,21 +103,15 @@ Router.map(function() {
     this.route('registered-events');
     this.route('orders');
 
-    this.route('event-at-the-door', {
-      resetNamespace: true,
-      path: '/event-at-the-door/:event_id',
-    }, function() {
+    this.route('event-at-the-door', { resetNamespace: true, path: '/event-at-the-door/:event_id' }, function() {
       this.route('checkin');
       this.route('competition-list');
       this.route('a-la-carte');
     });
 
-    this.route('events', {
-      resetNamespace: true,
-    }, function() {
-      this.route('show', {
-        path: ':event_id',
-      }, function() {
+    this.route('events', { resetNamespace: true }, function() {
+      this.route('new');
+      this.route('show', { path: ':event_id' }, function() {
         this.route('edit', function() {
           this.route('housing');
           this.route('options');

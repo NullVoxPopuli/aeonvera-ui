@@ -8,8 +8,7 @@ export default Ember.Route.extend(AuthenticatedUi, {
   activate: function () {
     this.set('title', this.get('i18n').t('attendedevents'));
 
-    this.controllerFor('application').set('mobileMenuLeft',
-      'nav/dashboard/left-items');
+    this.controllerFor('application').set('mobileMenuLeft', 'nav/dashboard/left-items');
 
     this._super();
   },

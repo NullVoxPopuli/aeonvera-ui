@@ -54,7 +54,7 @@ export default Ember.Mixin.create({
           'Saved Successfully'
         );
         let path = this.get('saveSuccessPath');
-        this.get('router').transitionTo(path);
+        this.get('router').transitionTo(path, record);
       }, failure => {
 
         this.get('flashMessages').alert(

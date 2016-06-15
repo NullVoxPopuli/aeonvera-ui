@@ -1,7 +1,10 @@
 .imageoverlay.text-center.panel.callout.extra-padding.header
   h1 Creating an Event is Free
   h4.subheader Probably cheaper than the altervative
-  a.button.success href="/hosted_events/new" = t 'createyourevent'
+  link-to 'events.new' classNames='button success'
+    = t 'createyourevent'
+
+
 
 = render "welcome/pricing/free-or-not"
 = pricing-preview

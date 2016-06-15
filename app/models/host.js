@@ -11,8 +11,8 @@ export default DS.Model.extend({
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),
-  makeAttendeesPayFees: DS.attr('boolean'),
-  acceptOnlyElectronicPayments: DS.attr('boolean'),
+  makeAttendeesPayFees: DS.attr('boolean', { defaultValue: false }),
+  acceptOnlyElectronicPayments: DS.attr('boolean', { defaultValue: true }),
 
   logoFileName: DS.attr('string'),
   logoFileSize: DS.attr('number'),

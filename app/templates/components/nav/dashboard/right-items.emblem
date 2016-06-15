@@ -6,8 +6,8 @@ li.page
   link-to 'communities'
    span = t 'communities'
 li.hide-for-small
-  a.button href='/hosted_events/new' Host an Event
-  /a.button Host an Event
+  link-to 'events.new' classNames='button'
+    | Host an Event
 
 li.show-for-small.divider
 li.show-for-small.page

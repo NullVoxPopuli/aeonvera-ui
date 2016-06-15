@@ -1,7 +1,10 @@
 .row.full-width
   .large-3.medium-4.columns.padding-left-0
     = sidebar-container
-      = sidebar/event-sidebar model=data
+      if data.isPersisted
+        = sidebar/event-sidebar model=data
+      else
+        = sidebar/dashboard-sidebar
 
   .large-9.medium-8.columns
     = outlet

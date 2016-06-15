@@ -17,7 +17,8 @@
   .columns.medium-4.text-center
     h3 = t 'hostinganevent'
     hr
-    a.button.success href="/hosted_events/new" = t 'buttons.createyourevent'
+    link-to 'events.new' classNames='button success'
+      = t 'buttons.createyourevent'
 
   .columns.medium-4.text-center
     h3 = t 'lookingforscene'
