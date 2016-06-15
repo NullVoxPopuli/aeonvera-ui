@@ -1,4 +1,7 @@
+import Ember from 'ember';
 import JSONAPISerializer from 'ember-data/serializers/json-api';
+
+const { isEmpty } = Ember;
 
 export default JSONAPISerializer.extend({
 
@@ -8,6 +11,10 @@ export default JSONAPISerializer.extend({
     let sizes = attributes.sizes;
 
     let sizeDatas = [];
+
+    if (isEmpty(sizes)) {
+      return json;
+    }
 
     // This converts the Ember objects to a POJO
     sizes.forEach((sizeData) => {
