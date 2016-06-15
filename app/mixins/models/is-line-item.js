@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
+const { computed } = Ember;
+
 export default Ember.Mixin.create({
   isDiscount: function() {
     return this.get('constructor.modelName') === 'discount';
@@ -14,23 +16,27 @@ export default Ember.Mixin.create({
     return this.get('constructor.modelName') === 'competition';
   }.property(),
 
-  isMembershipOption: Ember.computed(function() {
+  isMembershipOption: computed(function() {
     return this.get('constructor.modelName') === 'membership-option';
   }),
 
-  isMembershipDiscount: Ember.computed(function() {
+  isMembershipDiscount: computed(function() {
     return this.get('constructor.modelName') === 'membership-discount';
   }),
 
-  isLesson: Ember.computed(function() {
+  isLesson: computed(function() {
     return this.get('constructor.modelName') === 'lesson';
   }),
 
-  isADiscount: Ember.computed(function() {
+  isADiscount: computed(function() {
     return (this.get('isDiscount') || this.get('isMembershipDiscount'));
   }),
 
-  isPackage: Ember.computed(function() {
+  isPackage: computed(function() {
     return this.get('constructor.modelName') === 'package';
+  }),
+
+  isShirt: computed(function() {
+    return this.get('constructor.modelName') === 'shirt';
   })
 });

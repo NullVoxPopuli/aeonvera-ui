@@ -1,5 +1,11 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+
+// LineItem also imports:
+// - Buyable
+// - IsLineItem
+// - Purchasable
+// - File
 import LineItem from '../models/line-item';
 
 const { isEmpty } = Ember;

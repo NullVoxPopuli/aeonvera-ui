@@ -12,6 +12,8 @@ table.width-of-100
           if item.lineItem.isPackage
             if item.lineItem.requiresTrack
               | @ {{model.attendance.levelName}}
+          if item.lineItem.isShirt
+            | &nbsp;- {{item.size}}
         td.text-right = to-usd item.price
         td.text-right = item.quantity
         td.text-right = to-usd item.total
