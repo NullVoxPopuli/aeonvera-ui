@@ -1,12 +1,14 @@
-link-to 'events.show.custom-fields' classNames='button secondary' 
+= page-header text=model.label
+
+link-to 'events.show.custom-fields' classNames='button secondary'
   span Back
-  
+
 link-to 'events.show.custom-fields.show.edit' classNames='button'
   span Edit
 
-= delete-undelete model=model  
+= delete-undelete model=model
 
-  
+
 h4 Answers
 table
   thead: tr
