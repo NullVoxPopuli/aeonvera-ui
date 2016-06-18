@@ -1,15 +1,22 @@
 import Ember from 'ember';
-const { computed } = Ember;
+const { computed, isPresent } = Ember;
 
 export default Ember.Component.extend({
   event: null, // set by caller
   organizations: [], // set by caller
+  discounts: [], // set by caller
   model: computed.alias('event'),
   currentSponsorships: computed.alias('event.sponsorships'),
 
   isAdding: false,
   selectedOrganization: null,
-  enteredDiscountAmount: 0,
+  selectedDiscount: null,
+  saveDisabled: computed('selectedOrganization', 'selectedDiscount', function() {
+    let org = this.get('selectedOrganization');
+    let discount = this.get('selectedDiscount');
+
+    return !(isPresent(org) && isPresent(discount));
+  }),
 
   actions: {
     setIntentToAdd() {
@@ -19,10 +26,10 @@ export default Ember.Component.extend({
     saveSponsorship() {
       let event = this.get('event');
       let org = this.get('selectedOrganization');
-      let discount = this.get('enteredDiscountAmount');
+      let discount = this.get('selectedDiscount');
 
       let sponsorship = this.get('store').createRecord('sponsorship', {
-        discountAmount: discount,
+        discount: discount,
         sponsor: org,
         sponsored: event
       });
@@ -34,7 +41,7 @@ export default Ember.Component.extend({
       });
 
       this.set('selectedOrganization', null);
-      this.set('enteredDiscountAmount', 0);
+      this.set('selectedDiscount', null);
     },
 
     deleteSponsorship(sponsorship) {

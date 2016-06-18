@@ -10,7 +10,7 @@ table
       each currentSponsorships as |sponsorship|
         tr
           td = sponsorship.sponsor.name
-          td = sponsorship.discountAmount
+          td {{sponsorship.discount.code}} - {{sponsorship.discount.discount}}
           td: a click="'deleteSponsorship' sponsorship" Delete
     else
       tr: td colspan='3' No one is sponsoring this event
@@ -23,7 +23,19 @@ table
             each organizations as |org|
               = x-option value=org
                 = org.name
-        td = input value=enteredDiscountAmount
-        td: button.success.tiny click='saveSponsorship' Save
+        td
+          if (is-present discounts)
+            = x-select value=selectedDiscount
+              option Select Discount
+              each discounts as |discount|
+                = x-option value=discount
+                  = discount.code
+          else
+            span This event doesn't have any discounts to apply.
+            br
+            link-to 'events.show.discounts'
+              span Discounts can be created here
+
+        td: button.success.tiny disabled=saveDisabled click='saveSponsorship' Save
 
 a.button.tiny click='setIntentToAdd' Add Sponsor
