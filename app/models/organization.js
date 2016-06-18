@@ -2,25 +2,28 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Host from '../models/host';
 
+const { attr, belongsTo, hasMany } = DS;
+
 export default Host.extend({
-  tagline: DS.attr('string'),
+  tagline: attr('string'),
 
-  city: DS.attr('string'),
-  state: DS.attr('string'),
+  city: attr('string'),
+  state: attr('string'),
 
-  beta: DS.attr('boolean'),
-  makeAttendeesPayFees: DS.attr('boolean'),
+  beta: attr('boolean'),
+  makeAttendeesPayFees: attr('boolean'),
 
-  url: DS.attr('string'),
+  url: attr('string'),
 
-  owner: DS.belongsTo('user'),
-  lessons: DS.hasMany('lessons'),
-  membershipOptions: DS.hasMany('membership-option'),
-  membershipDiscounts: DS.hasMany('membership-discount'),
+  owner:               belongsTo('user'),
+  lessons:             hasMany('lessons'),
+  membershipOptions:   hasMany('membership-option'),
+  membershipDiscounts: hasMany('membership-discount'),
+  sponsorships:        hasMany('sponsorship'),
 
-  notifyEmail: DS.attr('string'),
-  emailAllPurchases: DS.attr('boolean'),
-  emailMembershipPurchases: DS.attr('boolean'),
+  notifyEmail:              attr('string'),
+  emailAllPurchases:        attr('boolean'),
+  emailMembershipPurchases: attr('boolean'),
 
   location: function() {
     return this.get('city') + ', ' + this.get('state');

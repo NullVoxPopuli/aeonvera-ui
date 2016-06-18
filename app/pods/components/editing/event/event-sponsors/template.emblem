@@ -1,0 +1,29 @@
+h5 Current Sponsors
+
+table
+  thead: tr
+    th Sponsor Name
+    th Discount
+    th
+  tbody
+    if (is-present currentSponsorships)
+      each currentSponsorships as |sponsorship|
+        tr
+          td = sponsorship.sponsor.name
+          td = sponsorship.discountAmount
+          td: a click="'deleteSponsorship' sponsorship" Delete
+    else
+      tr: td colspan='3' No one is sponsoring this event
+
+    if isAdding
+      tr
+        td
+          = x-select value=selectedOrganization
+            option Select Organization
+            each organizations as |org|
+              = x-option value=org
+                = org.name
+        td = input value=enteredDiscountAmount
+        td: button.success.tiny click='saveSponsorship' Save
+
+a.button.tiny click='setIntentToAdd' Add Sponsor

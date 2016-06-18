@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     return this.store.findRecord('event', params.event_id, {
       adapterOptions: {
         query: {
-          include: 'opening_tier,integrations',
+          include: 'opening_tier,integrations,sponsorships',
         },
       },
     });

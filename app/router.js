@@ -117,6 +117,7 @@ Router.map(function() {
           this.route('options');
           this.route('customization');
           this.route('payment-processors');
+          this.route('sponsors');
         });
 
         /* attendees, volunteers, etc */

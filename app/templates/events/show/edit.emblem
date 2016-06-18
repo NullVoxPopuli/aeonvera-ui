@@ -17,6 +17,8 @@
     li
       link-to 'events.show.edit.payment-processors' classNames='button secondary small'
         span Payment Processors
+    li: link-to 'events.show.edit.sponsors' classNames='button secondary small'
+      span Sponsors
 
 = outlet
 

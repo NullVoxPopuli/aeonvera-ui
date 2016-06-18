@@ -3,44 +3,47 @@ import DS from 'ember-data';
 import Host from '../models/host';
 import RegistrationOpens from '../mixins/models/registration-opens';
 
+const { attr, belongsTo, hasMany } = DS;
+
 export default Host.extend(RegistrationOpens, {
-  shortDescription: DS.attr('string'),
-  location: DS.attr('string'),
+  shortDescription:        attr('string'),
+  location:                attr('string'),
 
-  startsAt: DS.attr('date'),
-  endsAt: DS.attr('date'),
+  startsAt:                attr('date'),
+  endsAt:                  attr('date'),
 
-  mailPaymentsEndAt: DS.attr('date'),
-  electronicPaymentsEndAt: DS.attr('date'),
-  refundsEndAt: DS.attr('date'),
-  shirtSalesEndAt: DS.attr('date'),
-  showAtTheDoorPricesAt: DS.attr('date'),
+  mailPaymentsEndAt:       attr('date'),
+  electronicPaymentsEndAt: attr('date'),
+  refundsEndAt:            attr('date'),
+  shirtSalesEndAt:         attr('date'),
+  showAtTheDoorPricesAt:   attr('date'),
 
-  showOnPublicCalendar: DS.attr('boolean'),
-  hasVolunteers: DS.attr('boolean'),
-  volunteerDescription: DS.attr('string'),
+  showOnPublicCalendar:    attr('boolean'),
+  hasVolunteers:           attr('boolean'),
+  volunteerDescription:    attr('string'),
 
-  housingStatus: DS.attr('boolean'),
+  housingStatus:    attr('boolean'),
   isHousingEnabled: Ember.computed.alias('housingStatus'),
-  housingNights: DS.attr(),
+  housingNights:    attr(),
 
-  allowDiscounts: DS.attr('boolean'),
-  allowCombinedDiscounts: DS.attr('boolean'),
+  allowDiscounts:         attr('boolean'),
+  allowCombinedDiscounts: attr('boolean'),
 
-  registrationEmailDisclaimer: DS.attr('string'),
+  registrationEmailDisclaimer: attr('string'),
 
-  url: DS.attr('string'),
+  url: attr('string'),
 
-  askIfLeadingOrFollowing: DS.attr('boolean'),
+  askIfLeadingOrFollowing: attr('boolean'),
 
-  packages: DS.hasMany('package'),
-  levels: DS.hasMany('level'),
-  competitions: DS.hasMany('competitions'),
-  openingTier: DS.belongsTo('openingTier'),
-  currentTier: DS.belongsTo('pricing-tier'),
-  lineItems: DS.hasMany('lineItems'),
-  shirts: DS.hasMany('shirts'),
-  customFields: DS.hasMany('custom-field'),
+  openingTier:  belongsTo('openingTier'),
+  currentTier:  belongsTo('pricing-tier'),
+  packages:     hasMany('package'),
+  levels:       hasMany('level'),
+  competitions: hasMany('competitions'),
+  lineItems:    hasMany('lineItems'),
+  shirts:       hasMany('shirts'),
+  customFields: hasMany('custom-field'),
+  sponsorships: hasMany('sponsorship'),
 
   registrationOpensAt: function() {
     return this.get('openingTier.increaseAfterDate');

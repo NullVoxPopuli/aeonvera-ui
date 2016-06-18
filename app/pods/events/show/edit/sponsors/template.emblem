@@ -1,0 +1,3 @@
+p Sponsors promote the event. Here is where you can configure how much of a discount people who are members of the selected organizations get.
+
+= editing/event/event-sponsors event=model.event organizations=model.organizations
