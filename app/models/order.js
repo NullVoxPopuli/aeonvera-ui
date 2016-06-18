@@ -2,44 +2,47 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Validator from '../mixins/model-validator';
 
-export default DS.Model.extend(Validator, {
+const { isPresent, isBlank, computed } = Ember;
+const { attr, belongsTo, hasMany, Model } = DS;
+
+export default Model.extend(Validator, {
   priceCalculator: Ember.inject.service(),
 
-  hostName:          DS.attr('string'),
-  hostUrl:           DS.attr('string'),
-  createdAt:         DS.attr('date'),
-  paymentReceivedAt: DS.attr('date'),
-  paidAmount:        DS.attr('number'),
-  netAmountReceived: DS.attr('number'),
-  totalFeeAmount:    DS.attr('number'),
-  paymentMethod:     DS.attr('string'),
-  paymentToken:      DS.attr('string'),
-  checkNumber:       DS.attr('string'),
-  paid:              DS.attr('boolean'),
+  hostName:          attr('string'),
+  hostUrl:           attr('string'),
+  createdAt:         attr('date'),
+  paymentReceivedAt: attr('date'),
+  paidAmount:        attr('number'),
+  netAmountReceived: attr('number'),
+  totalFeeAmount:    attr('number'),
+  paymentMethod:     attr('string'),
+  paymentToken:      attr('string'),
+  checkNumber:       attr('string'),
+  paid:              attr('boolean'),
 
-  totalInCents: DS.attr('number'),
+  totalInCents: attr('number'),
 
   // TODO: think about renaming these to what
   //       they are on the server: buyer_
-  userEmail: DS.attr('string'),
-  userName:  DS.attr('string'),
+  userEmail: attr('string'),
+  userName:  attr('string'),
 
-  // buyerEmail: DS.attr('string'),
-  // buyerName: DS.attr('string'),
+  // buyerEmail: attr('string'),
+  // buyerName: attr('string'),
 
-  host:           DS.belongsTo('host', { polymorphic: true }),
-  orderLineItems: DS.hasMany('orderLineItem'),
-  attendance:     DS.belongsTo('attendance', { async: false }),
-  user:           DS.belongsTo('user'),
-  pricingTier:    DS.belongsTo('pricingTier'),
+  host:           belongsTo('host', { polymorphic: true }),
+  orderLineItems: hasMany('orderLineItem'),
+  attendance:     belongsTo('attendance', { async: false }),
+  user:           belongsTo('user'),
+  pricingTier:    belongsTo('pricingTier'),
 
   /*
     stripe specific things
     TODO: think about extracting this in to an object,
     and saving all of the toke info (like IP, maybe other stuff)
   */
-  checkoutToken: DS.attr('string'),
-  checkoutEmail: DS.attr('string'),
+  checkoutToken: attr('string'),
+  checkoutEmail: attr('string'),
 
   paidText: function() {
     return this.get('paid') ? 'Yes' : 'No';
@@ -159,6 +162,40 @@ export default DS.Model.extend(Validator, {
     if (Ember.isPresent(attendance)) {
       attendance.set('package', lineItem);
     }
+
+    // if we are an event, check for sponsorship discount
+    this._addSponsorshipDiscount();
+  },
+
+  _addSponsorshipDiscount() {
+    let host = this.get('host');
+
+    if (isBlank(host)) { return; }
+
+    let sponsorships = host.get('sponsorships');
+
+    if (isBlank(sponsorships)) { return; }
+
+    // have to pull the record out of the store so we get our methods defined on
+    // the model, rather than just being able to interact with the raw data
+    let user = this.get('store').peekRecord('user', this.get('attendance.attendee.id'));
+    if (isBlank(user)) { return; }
+
+    sponsorships.forEach(sponsorship => {
+      let organization = sponsorship.get('sponsor');
+      let discountId = sponsorship.get('discount.id');
+      // have to pull the record out of the store so we get our methods defined on
+      // the model, rather than just being able to interact with the raw data
+      let discount = this.get('store').peekRecord('discount', discountId);
+
+      // is the user a member of this organization?
+      // if so, apply the discount
+      let isMember = user.isMemberOf(organization);
+      if (isMember) {
+        // add the discount
+        this.addLineItem(discount);
+      }
+    });
   },
 
   _findFirstPackage() {

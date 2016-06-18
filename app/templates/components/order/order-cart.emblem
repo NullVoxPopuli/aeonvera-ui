@@ -14,14 +14,16 @@
 
       = error-header errors=cart.order.errors
 
-
       table.width-of-100.no-border
         tbody
           each currentItems as |item|
             tr
               td.min-width-100 {{item.quantity}} x {{to-usd item.total}}
               td
-                = item.lineItem.name
+                if item.lineItem.isDiscount
+                  = item.lineItem.code
+                else
+                  = item.lineItem.name
                 br
                 if item.lineItem.isCompetition
                   if item.lineItem.requiresPartner
