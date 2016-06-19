@@ -3,7 +3,7 @@ h3.text-center Registration Information
 table.no-colors.no-borders.center-margin
   tbody
     tr
-      th You: 
+      th You:
       td {{attendance.attendeeName}} ({{attendance.danceOrientation}})
     tr
       th Registered At
@@ -22,10 +22,10 @@ table.no-colors.no-borders.center-margin
       if hasCustomFieldResponses
         tr: td.divider colspan="2"
         tr: th colspan="2" And have answered:
-          
+
         each attendance.customFieldResponses as |cfr|
-          if (is-present cfr.value)
-            tr
-              td: em = cfr.customField.label
-              td = present-custom-field-response-value model=cfr
-          
+          unless (is-equal cfr.value null)
+            if (is-present cfr.id)
+              tr
+                td: em = cfr.customField.label
+                td = present-custom-field-response-value model=cfr

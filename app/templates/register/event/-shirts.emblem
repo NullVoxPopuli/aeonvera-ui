@@ -5,4 +5,8 @@ if (is-present event.shirts)
       tr
         td: a.button.tiny.no-margins click='"add" shirt' Add
         td = to-usd shirt.currentPrice
+        td
+          unless shirt.pictureIsMissing
+            img src="{{shirt.pictureUrlThumb}}"
+
         td = shirt.name

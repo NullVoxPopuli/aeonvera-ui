@@ -361,7 +361,7 @@ export default Model.extend(Validator, {
     let lineItems = this.get('orderLineItems');
     lineItems.forEach(item => {
       if (!!item && !item.get('id')) {
-        item.destroyRecord();
+        item.deleteRecord();
       }
     });
   },
