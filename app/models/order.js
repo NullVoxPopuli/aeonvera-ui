@@ -2,11 +2,11 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Validator from '../mixins/model-validator';
 
-const { isPresent, isBlank, computed } = Ember;
+const { isPresent, isBlank, computed, inject } = Ember;
 const { attr, belongsTo, hasMany, Model } = DS;
 
 export default Model.extend(Validator, {
-  priceCalculator: Ember.inject.service(),
+  priceCalculator: inject.service(),
 
   hostName:          attr('string'),
   hostUrl:           attr('string'),
@@ -178,7 +178,7 @@ export default Model.extend(Validator, {
 
     // have to pull the record out of the store so we get our methods defined on
     // the model, rather than just being able to interact with the raw data
-    let user = this.get('store').peekRecord('user', this.get('attendance.attendee.id'));
+    let user = this.get('store').peekRecord('user', 'current-user');
     if (isBlank(user)) { return; }
 
     sponsorships.forEach(sponsorship => {

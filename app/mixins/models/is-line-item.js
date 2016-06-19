@@ -8,10 +8,6 @@ export default Ember.Mixin.create({
     return this.get('constructor.modelName') === 'discount';
   }.property(),
 
-  isShirt: function() {
-    return this.get('constructor.modelName') === 'shirt';
-  }.property(),
-
   isCompetition: function() {
     return this.get('constructor.modelName') === 'competition';
   }.property(),
