@@ -25,7 +25,11 @@ form submit='save'
       label
         span This item is no longer available for registration on date
         = date-time-input model=model field='expiresAt'
-    
+
+  .row
+    .columns.small-12.medium-6
+      label Picture
+      = form/image-upload property='picture' model=model
 
   .row
     .small-12.columns

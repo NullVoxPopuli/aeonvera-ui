@@ -82,7 +82,7 @@ test('shouldApplyFee | host.makeAttendeesPayFees', function(assert) {
 
 test('shouldApplyFee | is not stripe payment method', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
-  let host = make('event', { makeAttendeesPayFees: true });
+  let host = make('event', { makeAttendeesPayFees: true, acceptOnlyElectronicPayments: false });
   let order = make('order', {
     paymentMethod: 'cash',
     orderLineItems: [orderLineItem1],
@@ -95,7 +95,7 @@ test('shouldApplyFee | is not stripe payment method', function(assert) {
 
 test('shouldApplyFee | only electronicPayments', function(assert) {
   let orderLineItem1 = make('order-line-item', { price: 5, quantity: 1 });
-  let host = make('organization', { makeAttendeesPayFees: true });
+  let host = make('organization', { makeAttendeesPayFees: true, acceptOnlyElectronicPayments: true });
   let order = make('order', {
     paymentMethod: 'cash',
     orderLineItems: [orderLineItem1],
@@ -103,7 +103,7 @@ test('shouldApplyFee | only electronicPayments', function(assert) {
   });
 
   let result = order.get('shouldApplyFee');
-  assert.equal(result, false);
+  assert.equal(result, true);
 });
 
 test('total | it calculates', function(assert) {
