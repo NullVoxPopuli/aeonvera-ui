@@ -358,10 +358,10 @@ export default Model.extend(Validator, {
   // I don't think Ember-Data expects this, and as a result,
   // duplicate line items appear in the association.
   removeItemsWithNullIds() {
-    let lineItems = this.get('orderLineItems');
-    lineItems.forEach(item => {
-      if (!!item && !item.get('id')) {
-        item.deleteRecord();
+    let items = this.get('store').peekAll('orderLineItem');
+    items.forEach(item => {
+      if (item.get('id') === null) {
+        item.unloadRecord();
       }
     });
   },

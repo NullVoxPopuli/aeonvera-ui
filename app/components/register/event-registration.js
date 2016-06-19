@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { inject, computed, observer } = Ember;
+
 export default Ember.Component.extend({
   session: Ember.inject.service(),
   store: Ember.inject.service(),

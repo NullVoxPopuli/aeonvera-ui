@@ -208,14 +208,15 @@ export default Ember.Service.extend(RandomString, {
         }
 
         return order.save().then(order => {
+          // remove order line items with a null id.
+          order.removeItemsWithNullIds();
+
           // For authorizing edits, we need to add the token to the URL
           // luckily, we have it bound already
           if (Ember.isPresent(token)) {
             order.set('paymentToken', token);
           }
 
-          // remove order line items with a null id.
-          order.removeItemsWithNullIds();
           resolve(order);
         }, error => {
 
