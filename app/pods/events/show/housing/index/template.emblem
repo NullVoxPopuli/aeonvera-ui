@@ -7,13 +7,13 @@ br
     .small-5.columns
       link-to 'events.show.housing.requests'
         h1 style='font-size: 4em;' = model.requests
-        button View Housing Requests
+        button.small View Housing Requests
 
     .small-2.columns
       h1 style='font-size: 4em;' = model.neededSpots
-      span spots needed
+      span spot(s) needed
 
     .small-5.columns
       link-to 'events.show.housing.provisions'
         h1 style='font-size: 4em;' = model.provisions
-        button View Housing Provisions
+        button.small View Housing Provisions
