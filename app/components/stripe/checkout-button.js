@@ -46,8 +46,8 @@ export default Ember.Component.extend({
     return this.get('host.name');
   }),
 
-  amountInCents: Ember.computed('model', function () {
-    return (this.get('model.totalInCents') || (this.get('model.subTotal') * 100));
+  amountInCents: Ember.computed('model', 'model.totalInCents', 'model.total', function () {
+    return (this.get('model.totalInCents') || (this.get('model.total') * 100));
   }),
 
   actions: {

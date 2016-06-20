@@ -67,12 +67,31 @@ export default Ember.Component.extend({
       discountService.lookupDiscount(host, discountCode).then(discounts => {
 
         // only take the first object
-        let discount = discounts.get('firstObject');
-        if (discounts.get('length') > 1) {
+        let allLoadedDiscounts = this.get('store').peekAll('discount');
+        let filteredDiscounts = Ember.A();
+
+        allLoadedDiscounts.forEach(discount => {
+          if (discount.get('code') === discountCode) {
+            filteredDiscounts.pushObject(discount);
+          }
+        });
+
+        let discount = filteredDiscounts.get('firstObject');
+        if (filteredDiscounts.get('length') > 1) {
           this.set('discountApplicationErrors', ['code does not exist']);
         } else if (Ember.isPresent(discount)) {
           cart.add(discount);
-          cart._saveOrderLineItems();
+
+          cart._saveOrderLineItems().then(() => {
+            Ember.run.later(() => {
+              // a run later in a then?
+              // this is weird.
+              // but it somehome provides enough time for
+              // the order to actually return the correct
+              // amountInCents :-/
+              cart.get('order').reload();
+            });
+          });
           this.set('discountCode', '');
         } else {
           this.set('discountApplicationErrors', ['discount not found']);

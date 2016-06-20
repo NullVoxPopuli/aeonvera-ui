@@ -272,18 +272,24 @@ export default Ember.Service.extend(RandomString, {
   // This should only be done as an overall 'update' to the collection
   // of order+orderLineItems
   _saveOrderLineItems() {
-    this.get('currentOrderAsPromise').then(order => {
-      if (order.get('isPersisted')) {
-        let orderLineItems = order.get('orderLineItems');
-        orderLineItems.forEach(item => {
-          if (item.get('hasDirtyAttributes')) {
-            item.save();
-          }
-        });
-      }
-    }, error => {
-      // panic?
+    let promise = new Ember.RSVP.Promise((resolve, reject) => {
+      this.get('currentOrderAsPromise').then(order => {
+        if (order.get('id') !== null) {
+          let orderLineItems = order.get('orderLineItems');
+          orderLineItems.forEach(item => {
+            if (item.get('hasDirtyAttributes')) {
+              item.save();
+            }
+          });
+          resolve();
+        }
+      }, error => {
+        // panic?
+        reject(error);
+      });
     });
+
+    return promise;
   },
 
   // Optionally save the attendance items
