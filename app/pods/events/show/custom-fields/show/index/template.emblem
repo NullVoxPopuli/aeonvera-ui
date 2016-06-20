@@ -1,0 +1,18 @@
+= page-header text=model.label
+
+link-to 'events.show.custom-fields' classNames='button secondary'
+  span Back
+
+link-to 'events.show.custom-fields.show.edit' classNames='button'
+  span Edit
+
+= delete-undelete model=model
+
+
+h4 Answers
+= sortable-table columns=columns data=model.customFieldResponses as |response|
+  td = attendance-link model=response.writer
+  td = present-custom-field-response-value model=response
+  td = response.writer.danceOrientation
+  td = response.writer.packageName
+  td = date-with-format response.writer.registeredAt 'LLL'
