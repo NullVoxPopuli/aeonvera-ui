@@ -20,7 +20,7 @@
             tr
               td.min-width-100 {{item.quantity}} x {{order/price-display item=item value=item.total}}
               td
-                if item.lineItem.isDiscount
+                if (is-present item.lineItem.code)
                   = item.lineItem.code
                 else
                   = item.lineItem.name
