@@ -14,9 +14,24 @@ table.width-of-100
               | @ {{model.attendance.levelName}}
           if item.lineItem.isShirt
             | &nbsp;- {{item.size}}
-        td.text-right = to-usd item.price
+        td.text-right
+          if item.lineItem.isDiscount
+            if (is-equal item.lineItem.kind 0)
+              = to-usd item.price
+            else
+              | {{item.price}}%
+          else
+            = to-usd item.price
+
         td.text-right = item.quantity
-        td.text-right = to-usd item.total
+        td.text-right
+          if item.lineItem.isDiscount
+            if (is-equal item.lineItem.kind 0)
+              = to-usd item.total
+            else
+              | {{item.total}}%
+          else
+            = to-usd item.total
   tfoot
     if displayFee
       tr
