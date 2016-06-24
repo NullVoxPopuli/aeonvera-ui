@@ -1,8 +1,8 @@
 {{#if item.lineItem.isDiscount}}
   {{#if (is-equal item.lineItem.kind 0)}}
-    {{to-usd value}}
+    - {{to-usd value}}
   {{else}}
-    {{value}}%
+    - {{value}}%
   {{/if}}
 {{else}}
   {{to-usd value}}
