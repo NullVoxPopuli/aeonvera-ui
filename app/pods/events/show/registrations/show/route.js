@@ -9,6 +9,7 @@ export default Ember.Route.extend({
       adapterOptions: {
         query: {
           event_id: event.get('id'),
+          // include: 'orders.order_line_items',
         },
       },
     });

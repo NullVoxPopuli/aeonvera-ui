@@ -4,8 +4,11 @@ ul.accordion data-accordion='true'
       a href='#order-{{order.id}}'
         span class='{{order.paidClass}}'
           if order.paid
-            | Paid {{to-usd order.paidAmount}} via {{order.paymentMethod}}
-            span &nbsp;on {{date-with-format order.paymentReceivedAt 'LLL'}}
+            if (is-present order.paymentReceivedAt)
+              | Paid {{to-usd order.paidAmount}} via {{order.paymentMethod}}
+              span &nbsp;on {{date-with-format order.paymentReceivedAt 'LLL'}}
+            else
+              | Paid {{to-usd order.paidAmount}}
           else
             | Owes {{to-usd order.totalInDollars}}
       if (isEqual item  lastItem)
