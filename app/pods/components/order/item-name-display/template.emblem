@@ -1,0 +1,10 @@
+if (is-present orderLineItem.lineItem.code)
+  = orderLineItem.lineItem.code
+else
+  = orderLineItem.lineItem.name
+
+if orderLineItem.lineItem.isPackage
+  if orderLineItem.lineItem.requiresTrack
+    | @ {{order.attendance.levelName}}
+if orderLineItem.lineItem.isShirt
+  | &nbsp;- {{orderLineItem.size}}

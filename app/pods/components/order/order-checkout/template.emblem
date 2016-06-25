@@ -13,18 +13,19 @@ br
     = order/order-review model=model
 
     unless model.paid
-      if canAddDiscount
-        .row: .medium-4.medium-offset-8.columns
-          = error-header errors=discountApplicationErrors
-          .row.collapse
-            .small-9.columns = input value=discountCode type='text' placeholder='Discount Code'
-            .small-3.columns: a.button.postfix click='applyDiscount' Apply
+      if model.hasNonZeroBalance
+        if canAddDiscount
+          .row: .medium-4.medium-offset-8.columns
+            = error-header errors=discountApplicationErrors
+            .row.collapse
+              .small-9.columns = input value=discountCode type='text' placeholder='Discount Code'
+              .small-3.columns: a.button.postfix click='applyDiscount' Apply
 
-      .row: .small-12.columns
-        p.right = stripe/checkout-button model=model label='Pay' email=email
-        p.left
-          link-to 'register.checkout.edit' model (query-params token=token) classNames='button'
-            span Edit
+        .row: .small-12.columns
+          p.right = stripe/checkout-button model=model label='Pay' email=email
+          p.left
+            link-to 'register.checkout.edit' model (query-params token=token) classNames='button'
+              span Edit
     // TODO: give option to resend receipt
 
     .clearfix

@@ -1,12 +1,4 @@
-table
-  thead: tr
-    th Item
-    th Price
-    th Quantity
-    th Total
-  tbody
-    each orderLineItems as |item|
-      = component item.template model=item
-    
+= order/order-review model=model
+
 button.small click='resendReceipt' Resend Receipt
 small.right Prices as of {{date-with-format model.createdAt 'LLL'}}

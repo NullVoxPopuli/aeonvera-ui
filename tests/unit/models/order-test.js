@@ -10,13 +10,17 @@ moduleForModel('order', 'Unit | Model | order', {
     'model:organization',
     'model:event',
     'model:lesson',
+    'model:discount',
+    'model:package',
+    'model:restraint',
     'model:order-line-item',
     'model:membership-option',
     'model:membership-discount',
     'model:membership-renewal',
     'model:purchasable',
     'model:user',
-    'service:priceCalculator'
+    'service:priceCalculator',
+    'service:orderCalculator'
   ],
   beforeEach: function() {
     manualSetup(this.container);
@@ -48,6 +52,38 @@ test('subTotal | it calculates', function(assert) {
 
   let result = order.get('subTotal');
   assert.equal(result, 17);
+});
+
+test('subTotal | it calculates with a percent discount tied to a package', function(assert) {
+  let discount = make('discount', {
+    amount: 90,
+    kind: 1, // percent
+  });
+
+  let pkg = make('package', {
+
+  });
+
+  let restraint = make('restraint', {
+    restrictionFor: discount,
+    restrictedTo: pkg
+  });
+  let packageLineItem = make('order-line-item', {
+    price: 70,
+    quantity: 1,
+    lineItem: pkg
+  });
+
+  let discountLineItem = make('order-line-item', {
+    lineItem: discount
+  });
+
+  let order = make('order', {
+    orderLineItems: [packageLineItem, discountLineItem]
+  });
+
+  let result = order.get('subTotal');
+  assert.equal(result, 7);
 });
 
 test('fee | it calculates', function(assert) {
@@ -217,30 +253,40 @@ test('addLineItem | members could get an automatic discount when purchasing a le
 
 // TODO: this id should really be the same.
 // TODO: test when the discount and purchasable item has the same id
-// test('addLineItem | members could get an automatic discount when purchasing a lesson when the lesson and discount have the same id', function(assert) {
-//   let user = make('user');
-//
-//   // stub the method, as its functionality is tested in user-test
-//   user.isMemberOf = function(host) { return true; };
-//
-//   let membershipDiscount = make('membership-discount', {
-//     code: 'discount',
-//     appliesTo: 'Lesson',
-//     id: 1,
-//     price: 1
-//   });
-//   let organization = make('organization', { membershipDiscounts: [membershipDiscount] });
-//   let order = make('order', { host: organization, user: user });
-//
-//   let lesson = make('lesson', { name: 'lesson', id: 1, price: 1 });
-//
-//   order.addLineItem(lesson);
-//
-//   // sanity
-//   assert.equal(order._eligibleForDiscount(), true);
-//   let result = order.get('orderLineItems.length');
-//   assert.equal(result, 2);
-// });
+test('addLineItem | members could get an automatic discount when purchasing a lesson when the lesson and discount have the same id', function(assert) {
+  let user = make('user');
+
+  // stub the method, as its functionality is tested in user-test
+  user.isMemberOf = function(host) { return true; };
+
+  let membershipDiscount = make('membership-discount', {
+    code: 'discount',
+    appliesTo: 'Lesson',
+    id: 1,
+    price: 1
+  });
+  let organization = make('organization', { membershipDiscounts: [membershipDiscount] });
+  let order = make('order', { host: organization, user: user });
+
+  let lesson = make('lesson', { name: 'lesson', id: 1, price: 1 });
+
+  order.addLineItem(lesson);
+
+  // sanity
+  assert.equal(order._eligibleForDiscount(), true);
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 2);
+});
+
+test('addLineItem | discount cannot be used twice', function(assert) {
+  let discount = make('discount', { code: 'discountcode' });
+  let order = make('order');
+  order.addLineItem(discount);
+  order.addLineItem(discount);
+
+  let result = order.get('orderLineItems.length');
+  assert.equal(result, 1);
+});
 
 test('_eligibleForDiscount | false when no discounts available', function(assert) {
   let order = make('order');
@@ -293,6 +339,15 @@ test('getOrderLineItemMatching | gets a single item', function(assert) {
   let result = order.getOrderLineItemMatching(lesson);
 
   assert.equal(result.get('lineItem.name'), lesson.get('name'));
+});
+
+test('getOrderLineItemMatching | gets a single discount', function(assert) {
+  let discount = make('discount', { code: 'discountcode' });
+  let order = make('order');
+  order.addLineItem(discount);
+  let result = order.getOrderLineItemMatching(discount);
+
+  assert.equal(result.get('lineItem.code'), discount.get('code'));
 });
 
 test('getOrderLineItemMatching | lineItem not found', function(assert) {

@@ -1,6 +1,6 @@
 
 td = model.lineItem.code
-td = order/price-display item=model value=model.lineItem.amount
+td = order/price-display item=model value=model.total
 td
   / = model.quantity
-td = order/price-display item=model value=model.lineItem.amount
+td = order/price-display item=model value=model.total

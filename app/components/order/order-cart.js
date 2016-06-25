@@ -44,6 +44,10 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
   },
 
   _updateProceedToCheckoutVisibility() {
+    if (this.get('isDestroyed') || this.get('isDestroying')) {
+      return;
+    }
+
     this.set('isProceedToCheckoutVisible', this._isCheckoutButtonVisible());
   },
 
@@ -55,7 +59,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
   _isElementInViewport(el) {
     // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
     // get internal element  from jQuery object
-    if (el.length === 0) return false;
+    if (Ember.isBlank(el) || el.length === 0) return false;
     el = el[0];
 
     let rect = el.getBoundingClientRect();

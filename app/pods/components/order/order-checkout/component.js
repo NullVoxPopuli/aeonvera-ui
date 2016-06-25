@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  store:            Ember.inject.service('store'),
+  store:           Ember.inject.service('store'),
   cart:            Ember.inject.service('order-cart'),
   discountService: Ember.inject.service('order-apply-discount'),
   email:           Ember.computed.oneWay('cart.userEmail'),
@@ -83,14 +83,14 @@ export default Ember.Component.extend({
           cart.add(discount);
 
           cart._saveOrderLineItems().then(() => {
-            Ember.run.later(() => {
-              // a run later in a then?
-              // this is weird.
-              // but it somehome provides enough time for
-              // the order to actually return the correct
-              // amountInCents :-/
-              cart.get('order').reload();
-            });
+            // Ember.run.later(() => {
+            //   // a run later in a then?
+            //   // this is weird.
+            //   // but it somehome provides enough time for
+            //   // the order to actually return the correct
+            //   // amountInCents :-/
+            //   cart.get('order').reload();
+            // });
           });
           this.set('discountCode', '');
         } else {

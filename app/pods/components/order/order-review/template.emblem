@@ -7,14 +7,8 @@ table.width-of-100
   tbody
     each model.orderLineItems as |item|
       tr
-        td
-          = item.lineItem.name
-          if item.lineItem.isPackage
-            if item.lineItem.requiresTrack
-              | @ {{model.attendance.levelName}}
-          if item.lineItem.isShirt
-            | &nbsp;- {{item.size}}
-        td.text-right = order/price-display item=item value=item.price
+        td = order/item-name-display order=model orderLineItem=item
+        td.text-right = order/price-display item=item value=item.total
         td.text-right = item.quantity
         td.text-right = order/price-display item=item value=item.total
 
@@ -37,7 +31,8 @@ table.width-of-100
       th
       th.text-right Total
       if model.paid
-        th.text-right = to-usd model.totalInDollars
+        th.text-right = to-usd model.total
+        / th.text-right = to-usd model.totalInDollars
       else
         th.text-right = to-usd model.total
     if model.paid
@@ -50,3 +45,6 @@ table.width-of-100
           td
           td Net Received: {{to-usd model.netAmountReceived}}
           td Fees: {{to-usd model.totalFeeAmount}}
+    unless model.hasNonZeroBalance
+      tr: td.order-payment-status data-paid='true' colspan="4"
+        | Your balance is zero, so there is nothing to pay. You're registered!

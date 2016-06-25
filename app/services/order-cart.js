@@ -124,7 +124,7 @@ export default Ember.Service.extend(RandomString, {
     let windowHeight = jQuery(window).height();
 
     // cart might not be rendered right now
-    if (cart.length === 0) {
+    if (Ember.isBlank(cart) || cart.length === 0) {
       return;
     }
 
