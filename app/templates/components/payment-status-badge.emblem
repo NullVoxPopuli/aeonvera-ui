@@ -1,4 +1,4 @@
-if hasPaid
+if showPaid
   span {{fa-icon 'check-circle'}} Paid {{to-usd paid}}
 else
   span {{fa-icon 'exclamation-circle'}} Owes {{to-usd owes}}

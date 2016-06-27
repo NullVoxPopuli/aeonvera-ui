@@ -36,15 +36,21 @@ table.width-of-100
       else
         th.text-right = to-usd model.total
     if model.paid
-      tr
-        td.order-payment-status data-paid=model.paid colspan="4"
-          | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}}
+      if model.hasNonZeroBalance
+        tr
+          td.order-payment-status data-paid=model.paid colspan="4"
+            | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}}
+      else
+        tr: td.order-payment-status data-paid=model.paid colspan="4"
+          | Nothing needs to be paid, because there is a balance of Zero.
       if showNetReceived
         tr
           td
           td
           td Net Received: {{to-usd model.netAmountReceived}}
           td Fees: {{to-usd model.totalFeeAmount}}
-    unless model.hasNonZeroBalance
-      tr: td.order-payment-status data-paid='true' colspan="4"
-        | Your balance is zero, so there is nothing to pay. You're registered!
+
+    else
+      unless model.hasNonZeroBalance
+        tr: td.order-payment-status data-paid='true' colspan="4"
+          | Your balance is zero, so there is nothing to pay. You're registered!

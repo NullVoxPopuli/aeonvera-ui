@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
+
+/*jshint multistr: true */
 const includeString = '\
 attendance,\
 attendance.custom_field_responses,attendance.housing_request,\
