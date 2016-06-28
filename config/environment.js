@@ -123,7 +123,9 @@ module.exports = function(environment) {
 
     ENV.torii.providers['stripe-connect'].redirectUri = ENV.host;
 
-
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
