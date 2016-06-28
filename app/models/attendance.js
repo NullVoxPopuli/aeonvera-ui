@@ -37,9 +37,9 @@ export default DS.Model.extend(
     orders: DS.hasMany('order', { async: true }),
     unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
 
-    housingRequest: DS.belongsTo('housing-request', { async: false }),
-    housingProvision: DS.belongsTo('housing-provision', { async: false }),
-    customFieldResponses: DS.hasMany('custom-field-response', { async: false }),
+    housingRequest: DS.belongsTo('housing-request', { async: true }),
+    housingProvision: DS.belongsTo('housing-provision', { async: true }),
+    customFieldResponses: DS.hasMany('custom-field-response', { async: true }),
 
     // address stuff
     phoneNumber: DS.attr('string'),

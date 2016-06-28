@@ -32,7 +32,7 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
 
   host:           belongsTo('host', { polymorphic: true }),
   orderLineItems: hasMany('orderLineItem'),
-  attendance:     belongsTo('attendance', { async: false }),
+  attendance:     belongsTo('attendance', { async: true }),
   user:           belongsTo('user'),
   pricingTier:    belongsTo('pricingTier'),
 
