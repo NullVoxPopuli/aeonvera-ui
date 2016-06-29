@@ -95,4 +95,4 @@ if event.isHousingEnabled
         = input type='text' value=attendance.housingRequest.unwanted4
 
     label Notes
-    = input type='text' value=housingRequest.notes
+    = input type='text' value=attendance.housingRequest.notes

@@ -101,7 +101,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
       let checkoutPromise = this.get('cart').checkout();
       if (checkoutPromise !== undefined) {
         checkoutPromise.then(record => {
-          if (record === null) {
+          if (record === null || record === undefined) {
             return;
           }
 
