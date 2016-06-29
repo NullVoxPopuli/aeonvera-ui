@@ -1,8 +1,37 @@
 {{page-header text='Housing Requests'}}
 
 
-{{model-table
-  model=model
-  columns='attendeeName:Name,hasPaid:Paid,attendeeEmail:Email,phoneNumber:Phone,isCheckedIn:Checked In'
-  sortableColumns='attendeeName,attendeeEmail'
-}}
+{{#sortable-table columns=columns data=model as |request| }}
+  <td>{{attendance-link model=request.attendance}}</td>
+  <td>{{request.attendance.hasPaid}}</td>
+  <td>
+    {{#if request.allergicToPets}}
+      Pets
+    {{/if}}
+    {{#if request.allergicToSmoke}}
+      Smoke
+    {{/if}}
+    {{request.otherAllergies}}
+  </td>
+  <td>
+    {{request.requested1}}&nbsp;
+    {{request.requested2}}&nbsp;
+    {{request.requested3}}&nbsp;
+    {{request.requested4}}
+  </td>
+  <td>
+    {{request.unwanted1}}&nbsp;
+    {{request.unwanted2}}&nbsp;
+    {{request.unwanted3}}&nbsp;
+    {{request.unwanted4}}
+  </td>
+  <td>
+    {{#if request.canProvideTransportation}}
+      Yes, {{request.transportationCapacity}}
+    {{else}}
+      No, {{request.transportationCapacity}}
+    {{/if}}
+  </td>
+  <td>{{request.notes}}</td>
+  <td>{{date-with-format request.attendance.registeredAt 'LLL'}}</td>
+{{/sortable-table}}
