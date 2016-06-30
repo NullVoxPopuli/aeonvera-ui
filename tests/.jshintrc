@@ -29,7 +29,8 @@
     "currentURL",
     "currentPath",
     "currentRouteName",
-    "countdown"
+    "countdown",
+    "moment"
   ],
   "node": false,
   "browser": false,

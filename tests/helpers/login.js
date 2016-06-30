@@ -17,7 +17,7 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
     let text = this.$(loginModalSelector + ' h2').first().text();
 
     // proves that the login modal has appeared
-    console.log(text);
+    // console.log(text);
     equal(text, 'Login');
   });
 
@@ -29,8 +29,9 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
   andThen(() => {
     let service = serviceNamed('session');
     let auth = service.get('isAuthenticated');
-    console.log(auth);
-    console.log(service.get('data'));
+
+    // console.log(auth);
+    // console.log(service.get('data'));
     equal(auth, true);
   });
 });

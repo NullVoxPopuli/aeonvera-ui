@@ -27,5 +27,5 @@ else
       p
         | Regististration opens at&nbsp;
         em = date-with-format model.registrationOpensAt 'lll'
-      h2 = countdown-timer targetDate=model.registrationOpensAt
+      h2 = countdown-timer targetDate=model.registrationOpensAt model=model
       .ubuntu-loader

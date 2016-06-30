@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   targetDate: 5,
   output: '',
   timer: null,
+  model: null, // optional
 
   didInsertElement() {
     this._super(...arguments);
@@ -25,8 +26,16 @@ export default Ember.Component.extend({
 
     let timer = countdown(targetDate, timer => {
       this.set('output', timer);
+      this._updateForm();
     }, words);
 
     this.set('timer', timer);
+  },
+
+  _updateForm() {
+    let model = this.get('model');
+    if (Ember.isPresent(model)) {
+      model.notifyPropertyChange('registrationIsOpen');
+    }
   }
 });

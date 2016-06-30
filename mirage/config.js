@@ -104,7 +104,7 @@ export default function() {
   });
 
   this.get('/api/users/:current_user', (schema, request) => {
-    let id = request.params.current_user
+    let id = request.params.current_user;
     return schema.users.find(id);
   });
 
@@ -112,7 +112,7 @@ export default function() {
     let hostId = request.params.host;
 
     // stupid hack for testing
-    if (hostId.includes('org')){
+    if (hostId.includes('org')) {
       return schema.organizations.find(hostId);
     }
 
