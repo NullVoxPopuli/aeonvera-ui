@@ -5,7 +5,8 @@ li: link-to 'event-at-the-door' event.id
 
 li.divider
 
-li View
+li.show-for-medium-up View
+li.show-for-small-only.white-color.margin-top-10 View
 
 li: link-to 'events.show.registrations'
   span Registrations
@@ -31,7 +32,8 @@ li: link-to 'events.show.housing'
 
 li.divider
 
-li Reporting
+li.show-for-medium-up Reporting
+li.show-for-small-only.white-color.margin-top-10 Reporting
 li: link-to 'events.show.revenue'
   span Revenue
 li: link-to 'events.show.charts'

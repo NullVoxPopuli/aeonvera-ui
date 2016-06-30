@@ -16,7 +16,7 @@
 
     / the off canvas menus may have to always be rendered, but just only optionally
     / pass the items or not.
-    = nav/left-off-canvas-menu items=mobileMenuLeft
+    = nav/left-off-canvas-menu items=mobileMenuLeft model=mobileModelLeft
     = nav/right-off-canvas-menu items=mobileMenuRight
 
 

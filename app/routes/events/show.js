@@ -10,6 +10,9 @@ export default Ember.Route.extend({
     Ember.run.later(() => {
       var dashboard = this.controllerFor('events/index');
       dashboard.set('data', m);
+
+      let application = this.controllerFor('application');
+      application.set('mobileModelLeft', m);
     });
   },
 
