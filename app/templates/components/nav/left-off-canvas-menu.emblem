@@ -1,4 +1,2 @@
 ul.off-canvas-list
-  = component items
-  if (is-present model)
-    = sidebar/event-sidebar model=model
+  = component items model=model

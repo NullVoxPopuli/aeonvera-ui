@@ -50,6 +50,7 @@ export default function() {
     this.get('/contacts/:id', 'user');
     this.get('/contacts/:id', ['contact', 'addresses']);
   */
+  this.get('api/upcoming_events', 'upcoming-event');
 
   /*
     POST shorthands

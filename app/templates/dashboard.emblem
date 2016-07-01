@@ -1,7 +1,7 @@
 
 .row.full-width
   .large-3.medium-4.columns.padding-left-0
-    .sidebar
+    .sidebar.show-for-medium-up
       nav
         ul.side-nav
           = component sidebar model=data

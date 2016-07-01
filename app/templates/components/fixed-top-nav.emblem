@@ -4,7 +4,7 @@ nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=
       a.left-off-canvas-toggle.menu-icon: span
 
   section.middle.tab-bar-section.show-for-small
-    ul.title-area: li.name: h1.title: link-to backLinkPath | {{backLinkText}}
+    ul.title-area: li.name: h1.title: a click='linkToDashboard' {{backLinkText}}
 
     if hasRightMobileMenu
       section.right-small.show-for-small
@@ -13,8 +13,8 @@ nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=
   ul.title-area.hide-for-small
       li.name: h1: link-to backLinkPath | {{backLinkText}}
 
-  section.left.top-bar-section.hide-for-small
-    ul.pages = component left
+  / section.left.top-bar-section.hide-for-small
+  /   ul.pages = component left
 
   section.top-bar-section.hide-for-small
     ul.right.auth = component right

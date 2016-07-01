@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
+import SetSidebar from 'aeonvera/mixins/routes/set-sidebar';
 
-export default Ember.Route.extend(ResetScroll, {
+export default Ember.Route.extend(ResetScroll, SetSidebar, {
   session: Ember.inject.service('session'),
   currentUserService: Ember.inject.service('current-user'),
   pathStore: Ember.inject.service('path-store'),
@@ -57,6 +58,11 @@ export default Ember.Route.extend(ResetScroll, {
 
     redirectToSignup: function() {
       this.transitionTo('signup');
+    },
+
+    linkToDashboard() {
+      this._setMobileLeftMenu('sidebar/dashboard-sidebar');
+      this.transitionTo('dashboard');
     },
 
     invalidateSession: function() {

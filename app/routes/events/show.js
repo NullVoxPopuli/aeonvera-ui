@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SetSidebar from 'aeonvera/mixins/routes/set-sidebar';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SetSidebar, {
 
   afterModel: function (model /*, transition */) {
     this._super();
@@ -11,8 +12,7 @@ export default Ember.Route.extend({
       var dashboard = this.controllerFor('events/index');
       dashboard.set('data', m);
 
-      let application = this.controllerFor('application');
-      application.set('mobileModelLeft', m);
+      this._setMobileLeftMenu('sidebar/event-sidebar', m);
     });
   },
 

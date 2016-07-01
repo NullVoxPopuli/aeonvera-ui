@@ -6,7 +6,8 @@ li
         = model.name
 
 li.divider
-li View
+li.show-for-medium-up View
+li.show-for-small-only.white-color.margin-top-10 View
 li: link-to 'my-communities.manage.registrations'
     span Registrations
 li: link-to 'register' model.domain
@@ -16,7 +17,8 @@ li: link-to 'my-communities.manage.embed-registration'
     span Embed Code
 
 li.divider
-li Reporting
+li.show-for-medium-up Reporting
+li.show-for-small-only.white-color.margin-top-10 Reporting
 li: link-to 'my-communities.manage.revenue'
     span Revenue
 
@@ -24,7 +26,8 @@ li: link-to 'my-communities.manage.membership'
     span Membership
 
 li.divider
-li Edit
+li.show-for-medium-up Edit
+li.show-for-small-only.white-color.margin-top-10 Edit
 li: link-to 'my-communities.manage.lessons'
     span Lessons
 li: link-to 'my-communities.manage.dances'

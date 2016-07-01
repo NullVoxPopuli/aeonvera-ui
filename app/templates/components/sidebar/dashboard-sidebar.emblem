@@ -1,9 +1,11 @@
-li = currentUser.user.name
+li.show-for-medium-up = currentUser.user.name
+li.show-for-small-only.white-color.margin-top-10 = currentUser.user.name
 li
   link-to 'user.edit'
     span Edit Profile
 li.divider
-li Manage
+li.show-for-medium-up Manage
+li.show-for-small-only.white-color.margin-top-10 Manage
 li
   link-to 'dashboard.registered-events'
     span Registered Events

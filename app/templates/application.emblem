@@ -6,7 +6,7 @@
   = sign-up-modal action='registerNewUser' model=user
 
 .off-canvas-wrap data-offcanvas='true'
-  = component navigation left=mobileMenuLeft right=mobileMenuRight
+  = component navigation left=mobileMenuLeft right=mobileMenuRight toDashboardAction='linkToDashboard'
 
   = outlet 'modal'
 

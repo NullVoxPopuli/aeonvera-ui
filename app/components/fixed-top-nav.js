@@ -31,5 +31,9 @@ export default Ember.Component.extend({
     goToRoute: function (path) {
       this.transitionTo(path);
     },
+
+    linkToDashboard() {
+      this.sendAction('toDashboardAction');
+    }
   },
 });
