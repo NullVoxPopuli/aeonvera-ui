@@ -3,6 +3,11 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
 export default Ember.Route.extend(ResetScroll, {
 
+  beforeModel() {
+    let application = this.controllerFor('application');
+    application.set('mobileMenuLeft', 'nav/welcome/left-items');
+  },
+
   model: function (params) {
     let subdomain = params.subdomain;
 
