@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
+const { isBlank, computed } = Ember;
+
 export default DS.Model.extend({
   name: DS.attr('string'),
   registrationOpensAt: DS.attr('date'),
@@ -12,11 +14,22 @@ export default DS.Model.extend({
   logoUrlThumb: DS.attr('string'),
   logoUrlMedium: DS.attr('string'),
 
-  isRegistrationOpen: function () {
-    var opensAt = this.get('registrationOpensAt').getTime();
+  isRegistrationOpen: computed('registrationOpensAt', function() {
+    let registrationOpensAt = this.get('registrationOpensAt');
+
+    // registration opening depends on the opening tier
+    // the opening tier is required,
+    // but this is handled on the server side.
+    // Here we are making sure we don't error.
+    if (isBlank(registrationOpensAt)) {
+      return false;
+    }
+
+    // getTime() gets the integer representation of time.
+    var opensAt = registrationOpensAt.getTime();
     var currently = Date.now();
     return (currently > opensAt);
-  }.property('registrationOpensAt'),
+  }),
 
   logoIsMissing: Ember.computed('logoUrl', function() {
     let logoUrl = this.get('logoUrl');
