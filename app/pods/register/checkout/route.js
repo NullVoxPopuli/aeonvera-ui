@@ -14,7 +14,9 @@ export default Ember.Route.extend(ResetScroll, {
     return this.get('store').findRecord('order', params.orderId, {
       adapterOptions: {
         query: {
-          include: ''
+          // the include string needs to be here so that the checkout review
+          // can have everything loaded at once to correctly calculate prices.
+          include: includeString
         }
       }
     });

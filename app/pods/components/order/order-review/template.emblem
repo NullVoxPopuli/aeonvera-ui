@@ -7,7 +7,11 @@ table.width-of-100
   tbody
     each model.orderLineItems as |item|
       tr
-        td = order/item-name-display order=model orderLineItem=item
+        td
+          = order/item-name-display order=model orderLineItem=item
+          if item.lineItem.isDiscount
+            small: a click='"removeItem" item' Remove
+
         td.text-right = order/price-display item=item value=item.total
         td.text-right = item.quantity
         td.text-right = order/price-display item=item value=item.total

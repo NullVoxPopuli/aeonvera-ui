@@ -17,5 +17,12 @@ export default Ember.Component.extend({
 
     let result = (paid && fee > 0) || shouldApplyFee;
     return result;
-  })
+  }),
+
+  actions: {
+    removeItem(item) {
+      let order = this.get('model');
+      order.removeOrderLineItem(item);
+    }
+  }
 });
