@@ -36,6 +36,16 @@ export default LineItem.extend({
     return price;
   },
 
+  setPriceForSize(size, price) {
+    let sizes = this.get('sizes');
+
+    sizes.forEach(function (sizeData) {
+      if (sizeData.size === size) {
+        sizeData.price = price;
+      }
+    });
+  },
+
   addSize(name, price) {
     let sizeData = {
       id: name,

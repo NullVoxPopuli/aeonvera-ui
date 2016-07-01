@@ -11,6 +11,8 @@ form submit='save'
         = input value=model.description placeholder='e.g.: This awesome thing' type='text'
 
     = form/dollar-field classes='columns small-6 medium-3' errors=model.errors model=model labelText='Price' field='price'
+      if showSetAllToPriceButton
+        a.right.small click='setAllSizesToPrice' &nbsp;Set All Sizes
 
   .row
     = error-field-wrapper classes='columns small-6' errors=model.errors field='becomesAvailableAt'

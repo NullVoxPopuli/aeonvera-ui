@@ -1,6 +1,8 @@
 = error-field-wrapper classes=classes errors=errors field=field
   label
-    span = labelText
+    span
+      = labelText
+      = yield
     .row.collapse
       .columns.small-1.medium-2
         span.prefix $
