@@ -1,4 +1,4 @@
-table.width-of-100
+table.width-of-100.order-review-table
   thead: tr
     th Item
     th.text-right Price
@@ -59,3 +59,23 @@ table.width-of-100
       unless model.hasNonZeroBalance
         tr: td.order-payment-status data-paid='true' colspan="4"
           | Your balance is zero, so there is nothing to pay. You're registered!
+
+if (is-present model.stripeRefunds)
+  = foundation/foundation-reflow
+    ul.no-margins.accordion.refunds data-accordion='refunds'
+      li.accordion-navigation
+        a href='#order{{model.id}}-refunds' Refunds
+        div.content id='order{{model.id}}-refunds'
+          each model.stripeRefunds as |refund|
+            .left = to-usd (cents-to-dollars refund.amount)
+            .right = date-with-format refund.created 'lll'
+            .clearfix
+          hr
+          .row
+            .small-4.columns Sub Total
+            .small-4.columns Fee
+            .small-4.columns Total
+          .row
+            .small-4.columns = to-usd model.currentNetAmountReceived
+            .small-4.columns = to-usd model.currentTotalFeeAmount
+            .small-4.columns = to-usd model.currentPaidAmount

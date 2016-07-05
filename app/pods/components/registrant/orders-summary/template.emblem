@@ -9,6 +9,8 @@ ul.accordion data-accordion='true'
               span &nbsp;on {{date-with-format order.paymentReceivedAt 'LLL'}}
             else
               | Paid {{to-usd order.paidAmount}}
+            if order.hasRefunds
+              = tool-tip message='This order has been (partially) refunded.'
           else
             | Owes {{to-usd order.totalInDollars}}
       if (isEqual item  lastItem)

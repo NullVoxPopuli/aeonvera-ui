@@ -1,4 +1,15 @@
 = order/order-review model=model
-
-button.small click='resendReceipt' Resend Receipt
 small.right Prices as of {{date-with-format model.createdAt 'LLL'}}
+br
+= foundation/foundation-reflow
+  button.small data-dropdown='order{{model.id}}-dropdown' data-options='align:top' Actions &raquo;
+  ul.f-dropdown id='order{{model.id}}-dropdown' data-dropdown-content='true'
+    li: a click='resendReceipt' Resend Receipt
+    li = order/refund-modal order=model
+
+    /a click='refund' Refund
+    if (is-equal model.paymentMethod 'Stripe')
+      li
+        a click='refreshStripe'
+          = tool-tip message='if you have refunded via stripe directly, this will update aeonvera with that information.'
+          | Refresh Stripe Payment Data

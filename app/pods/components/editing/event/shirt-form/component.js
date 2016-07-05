@@ -19,7 +19,7 @@ export default Ember.Component.extend(Form, {
   actions: {
     setAllSizesToPrice() {
       let currentPrice = this.get('model.price');
-      let sizes = this.get('model.sizes')
+      let sizes = this.get('model.sizes');
 
       sizes.forEach(function (sizeData) {
         Ember.set(sizeData, 'price', currentPrice);

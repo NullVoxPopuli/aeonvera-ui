@@ -20,6 +20,10 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   checkNumber:       attr('string'),
   paid:              attr('boolean'),
 
+  currentPaidAmount:        attr('number'),
+  currentNetAmountReceived: attr('number'),
+  currentTotalFeeAmount:    attr('number'),
+
   totalInCents: attr('number'),
 
   // TODO: think about renaming these to what
@@ -35,6 +39,7 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   attendance:     belongsTo('attendance', { async: true }),
   user:           belongsTo('user'),
   pricingTier:    belongsTo('pricingTier'),
+  stripeRefunds:  attr(),
 
   /*
     stripe specific things
@@ -43,6 +48,10 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   */
   checkoutToken: attr('string'),
   checkoutEmail: attr('string'),
+
+  hasRefunds: Ember.computed('stripeRefunds', {
+    get(key) { return Ember.isPresent(this.get('stripeRefunds')); }
+  }),
 
   paidText: function() {
     return this.get('paid') ? 'Yes' : 'No';

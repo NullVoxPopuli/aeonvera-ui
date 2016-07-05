@@ -3,6 +3,7 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
 /*jshint multistr: true */
 const includeString = `
+stripe_refunds,
 attendance,
 attendance.custom_field_responses,attendance.housing_request,
 attendance.housing_provision,host,

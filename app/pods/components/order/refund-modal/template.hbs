@@ -1,0 +1,29 @@
+{{#foundation-modal
+  title='Refund Payment'
+  name=modalName
+  buttonText='Refund'}}
+
+  {{radio-button value='full' groupValue=refundType}}
+  <label>Full Refund</label>
+  <br>
+  {{radio-button value='partial' groupValue=refundType}}
+  <label>Partial Refund</label>
+
+  {{#if isRefundPartial}}
+    {{form/dollar-field value=partialRefundValue}}
+  {{/if}}
+
+  <br>
+  <em><small>
+    Refunds take 5 to 10 days to appear on your customer's statement.<br>
+    It may take a couple of minutes for a receipt to be sent to your customer.
+  </small></em>
+  <hr>
+  <ul class='button-group right'>
+    <li>
+      <button {{action 'refundPayment'}}
+        class='small'
+        disabled={{isRefundButtonDisabled}}>Refund</button>
+    </li>
+  </ul>
+{{/foundation-modal}}
