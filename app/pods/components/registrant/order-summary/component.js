@@ -23,8 +23,7 @@ export default Ember.Component.extend({
           xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
         }
       }).then(data => {
-
-        // this.get('store').push(data);
+        this.get('store').pushPayload(data);
         this.get('flashMessages').success('Stripe Data Refreshed');
       }, error => {
         let json = JSON.parse(error.responseText);

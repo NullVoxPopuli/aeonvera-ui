@@ -62,8 +62,7 @@ export default Ember.Component.extend({
           xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
         }
       }).then(data => {
-
-        // this.get('store').push(data);
+        this.get('store').pushPayload(data);
         this.get('flashMessages').success('Refund Succeeded');
         Ember.$('.close-reveal-modal').click();
       }, error => {
