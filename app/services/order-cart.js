@@ -102,7 +102,7 @@ export default Ember.Service.extend(RandomString, {
         order.addLineItem(item, oli.get('quantity') + 1);
       } else {
         order.addLineItem(item, 1);
-      };
+      }
 
       order._updateAutomaticDiscounts();
       this._adjustCartMaxHeight();
@@ -119,7 +119,7 @@ export default Ember.Service.extend(RandomString, {
         } else {
           oli.set('quantity', quantity);
         }
-      };
+      }
 
       order._updateAutomaticDiscounts();
       this._adjustCartMaxHeight();
