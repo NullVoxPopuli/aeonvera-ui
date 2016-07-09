@@ -55,6 +55,24 @@ export default Ember.Component.extend({
     addByQuantity(quantity, item) {
       this.get('cart').set('host', this.get('model'));
       this.get('cart').add(item, quantity);
+    },
+
+    subtractOneQuantity(item) {
+      let counter = Ember.$(`#item-option-${item.id}`);
+      let num = parseInt(counter.text());
+      if (num > 0) {
+        counter.text(num - 1);
+      }
+
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').subtractOne(item);
+    },
+
+    addOneQuantity(item) {
+      let counter = Ember.$(`#item-option-${item.id}`);
+      counter.text(parseInt(counter.text()) + 1);
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').addOne(item);
     }
   },
 });

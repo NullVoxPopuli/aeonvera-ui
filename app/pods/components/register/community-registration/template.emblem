@@ -39,16 +39,21 @@
   table
     thead: tr
       th.width-of-80px Price
-      th.width-of-100px.text-center Number of Dancers
+      th.medium-up-width-of-160px.text-center Number of Dancers
       th
     tbody
       each model.lessons as |lesson|
         tr
           td = to-usd lesson.price
-          td = input-value-action type='number' min=0 classNames='width-of-50px center-margin' object=lesson action='addByQuantity'
+          td
+            .medium-block-grid-3
+              li.no-margins.no-padding: button.tiny.no-margins click='"addOneQuantity" lesson' = fa-icon 'plus'
+              li.no-margins.text-center: span id="item-option-{{lesson.id}}" 0
+              / li.no-margins.no-padding = input-value-action type='number' min=0 classNames='width-of-50px no-margins' object=lesson action='addByQuantity'
+              li.no-margins.no-padding: button.tiny.no-margins click='"subtractOneQuantity" lesson' = fa-icon 'minus'
           td
             h5 = lesson.name
-            span {{{lesson.description}}}
+            span.truncate-text-for-small-only-to-2-lines {{{lesson.description}}}
 
 
 

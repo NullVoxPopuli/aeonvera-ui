@@ -94,6 +94,38 @@ export default Ember.Service.extend(RandomString, {
     });
   },
 
+  addOne(item) {
+    this.get('currentOrderAsPromise').then(order => {
+      let oli = order.getOrderLineItemMatching(item);
+
+      if (Ember.isPresent(oli)) {
+        order.addLineItem(item, oli.get('quantity') + 1);
+      } else {
+        order.addLineItem(item, 1);
+      };
+
+      order._updateAutomaticDiscounts();
+      this._adjustCartMaxHeight();
+    });
+  },
+
+  subtractOne(item) {
+    this.get('currentOrderAsPromise').then(order => {
+      let oli = order.getOrderLineItemMatching(item);
+      if (Ember.isPresent(oli)) {
+        let quantity = oli.get('quantity') - 1;
+        if (quantity === 0){
+          order._increaseQuantityForItem(item, oli, quantity);
+        } else {
+          oli.set('quantity', quantity);
+        }
+      };
+
+      order._updateAutomaticDiscounts();
+      this._adjustCartMaxHeight();
+    });
+  },
+
   remove(item) {
     this.get('currentOrderAsPromise').then(order => {
       order.removeOrderLineItem(item);

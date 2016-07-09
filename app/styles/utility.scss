@@ -2,6 +2,8 @@ $directions: "left", "right", "bottom", "top";
 $intervals: 0, 5, 10, 12, 15, 20, 50, 100, 200;
 
 $max-widths: 65rem, 70rem, 75rem, 85rem;
+$breakpoints: $small-only, $small-up, $medium-up, $large-up, $xlarge-up;
+$breakpointNames: "small-only", "small-up", "medium-up", "large-up", "xlarge-up";
 
 @each $dir in $directions {
   @each $amount in $intervals {
@@ -35,6 +37,7 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
   .width-of-#{$i}0 {
     width: #{$i}0%;
   }
+
 }
 
 @for $i from 1 through 30{
@@ -48,6 +51,33 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 
   .min-width-#{$i}0 {
     min-width: #{$i}0px;
+  }
+
+  @for $j from 1 through length($breakpoints) {
+    $breakpoint: nth($breakpoints, $j);
+    $name: nth($breakpointNames, $j);
+
+    @media #{$breakpoint} {
+      .#{$name}-width-of-#{$i}0px {
+        width: #{$i}0px;
+      }
+    }
+  }
+}
+
+@for $j from 1 through length($breakpoints) {
+  $breakpoint: nth($breakpoints, $j);
+  $name: nth($breakpointNames, $j);
+
+  @media #{$breakpoint} {
+    @for $i from 1 through 5 {
+      .truncate-text-for-#{$name}-to-#{$i}-lines {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+    }
   }
 }
 
@@ -81,11 +111,11 @@ $max-widths: 65rem, 70rem, 75rem, 85rem;
 }
 
 .no-margins{
-  margin: 0;
+  margin: 0 !important;
 }
 
 .no-padding{
-  padding: 0;
+  padding: 0 !important;
 }
 
 .no-bottom-margin{
