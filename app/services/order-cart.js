@@ -114,7 +114,7 @@ export default Ember.Service.extend(RandomString, {
       let oli = order.getOrderLineItemMatching(item);
       if (Ember.isPresent(oli)) {
         let quantity = oli.get('quantity') - 1;
-        if (quantity === 0){
+        if (quantity === 0) {
           order._increaseQuantityForItem(item, oli, quantity);
         } else {
           oli.set('quantity', quantity);

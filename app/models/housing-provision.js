@@ -11,8 +11,19 @@ export default DS.Model.extend({
   hasPets: DS.attr('boolean', { defaultValue: false }),
   smokes: DS.attr('boolean', { defaultValue: false }),
   notes: DS.attr('string'),
+  name: DS.attr('string'),
 
   host: DS.belongsTo('host', { polymorphic: true }),
   attendance: DS.belongsTo('attendance', { polymorphic: true }),
+
+  // for sorting
+  providingName: Ember.computed('attendance', 'name', function() {
+    let name = this.get('attendance.attendeeName');
+    if (Ember.isPresent(name)) {
+      return name;
+    }
+
+    return this.get('name');
+  }),
 
 });

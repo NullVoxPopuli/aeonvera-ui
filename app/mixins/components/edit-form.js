@@ -41,7 +41,13 @@ export default Ember.Mixin.create(EditModel, {
         let path = this.get('saveSuccessPath');
         let parentId = this.get('parentModelId');
         let recordId = record.get('id');
-        this.get('router').transitionTo(path, parentId, recordId);
+
+        let numberOfShows = path.match(/show/g).length;
+        if (numberOfShows === 2) {
+          this.get('router').transitionTo(path, parentId, recordId);
+        } else { //(numberOfShows === 1) {
+          this.get('router').transitionTo(path, parentId);
+        }
       }, failure => {
 
         this.get('flashMessages').alert(

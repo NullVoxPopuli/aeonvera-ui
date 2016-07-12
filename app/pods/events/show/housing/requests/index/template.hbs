@@ -1,8 +1,24 @@
-{{page-header text='Housing Requests'}}
+<div class='row'>
+  <div class='columns small-6'>
+    {{page-header text='Housing Requests'}}
+  </div>
+  <div class='columns small-6'>
+    {{#link-to 'events.show.housing.requests.new' classNames='button small margin-top-10 right'}}
+      <span>Add Request</span>
+    {{/link-to}}
+  </div>
+</div>
+
 
 
 {{#sortable-table columns=columns data=model as |request| }}
-  <td>{{attendance-link model=request.attendance}}</td>
+  <td>
+    {{#if (is-present request.attendance.attendeeName)}}
+      {{attendance-link model=request.attendance}}
+    {{else}}
+      {{request.name}}
+    {{/if}}
+  </td>
   <td>{{request.attendance.hasPaid}}</td>
   <td>
     {{#if request.allergicToPets}}

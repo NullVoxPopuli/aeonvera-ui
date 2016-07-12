@@ -5,7 +5,7 @@ export default Ember.Helper.helper(function (params) {
   let format = params[1];
   let allowBlank = params[2];
 
-  if (typeof(date) === 'number') {
+  if (typeof (date) === 'number') {
     date = new Date(date * 1000);
   }
 

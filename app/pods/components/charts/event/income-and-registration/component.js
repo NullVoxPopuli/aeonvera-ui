@@ -37,12 +37,11 @@ export default Ember.Component.extend({
         fit: true,
         rotate: 45,
         format: '%Y-%m-%d %H:%M:%S',
-        // format: function (x) { return new Date(x).toString(); },
       },
     },
   },
 
-  willRender () {
+  willRender() {
     this._super(...arguments);
 
     let model = this.get('model');

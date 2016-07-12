@@ -70,7 +70,6 @@
     "ember-load-initializers": "^0.5.1",
     "ember-local-settings": "1.0.3",
     "ember-model-validator": "^2.0.0",
-    "ember-power-select": "0.8.6",
     "ember-radio-button": "1.0.7",
     "ember-resize-mixin": "0.1.1",
     "ember-resolver": "^2.0.3",

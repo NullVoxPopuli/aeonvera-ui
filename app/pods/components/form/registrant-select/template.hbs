@@ -1,0 +1,10 @@
+{{select-2
+  placeholder="Select a registrant"
+  value=value
+  optionLabelPath='attendeeName'
+  typeaheadSearchingText="Searching registrants"
+  typeaheadNoMatchesText="No registrants with name: '%@'"
+  typeaheadErrorText="Loading failed: %@"
+  minimumInputLength=3
+  delay=500
+  query="searchRegistrants"}}

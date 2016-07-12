@@ -8,7 +8,6 @@ export default Ember.Route.extend(SetSidebar, {
     });
   },
 
-
   afterModel: function (model /*, transition */) {
     this._super();
     Ember.run.later(() => {

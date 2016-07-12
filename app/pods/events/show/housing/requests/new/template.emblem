@@ -1,0 +1,2 @@
+= page-header text='New Housing Request'
+= editing/event/housing/request-form model=model

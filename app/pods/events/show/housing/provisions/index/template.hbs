@@ -1,8 +1,41 @@
-{{page-header text='Housing Provisions'}}
+<div class='row'>
+  <div class='columns small-6'>
+    {{page-header text='Housing Provisions'}}
+  </div>
+  <div class='columns small-6'>
+    {{#link-to 'events.show.housing.provisions.new' classNames='button small margin-top-10 right'}}
+      <span>Add Provision</span>
+    {{/link-to}}
+  </div>
+</div>
 
 
-{{model-table
-  model=model
-  columns='attendance.attendeeName:Name,housingCapacity,numberOfShowers'
-  sortableColumns='attendeeName,attendeeEmail'
-}}
+{{#sortable-table columns=columns data=model as |provision| }}
+  <td>
+    {{#if (is-present provision.attendance.attendeeName)}}
+      {{attendance-link model=provision.attendance}}
+    {{else}}
+      {{provision.name}}
+    {{/if}}
+  </td>
+  <td>{{provision.housingCapacity}}</td>
+  <td>{{provision.numberOfShowers}}</td>
+  <td>{{provision.attendance.hasPaid}}</td>
+  <td>
+    {{#if provision.hasPets}}
+      Pets
+    {{/if}}
+    {{#if provision.smokes}}
+      Smoke
+    {{/if}}
+  </td>
+  <td>
+    {{#if provision.canProvideTransportation}}
+      Yes, {{provision.transportationCapacity}}
+    {{else}}
+      No, {{provision.transportationCapacity}}
+    {{/if}}
+  </td>
+  <td>{{provision.notes}}</td>
+  <td>{{date-with-format provision.attendance.registeredAt 'LLL'}}</td>
+{{/sortable-table}}

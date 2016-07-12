@@ -2,6 +2,8 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  genderOptions: ['No Preference', 'Guys', 'Gals'],
+
   needTransportation:         DS.attr('boolean', { defaultValue: false }),
   canProvideTransportation:   DS.attr('boolean', { defaultValue: false }),
   transportationCapacity:     DS.attr('number', { defaultValue: 0 }),
@@ -10,6 +12,7 @@ export default DS.Model.extend({
   otherAllergies:             DS.attr('string'),
   preferredGenderToHouseWith: DS.attr('string', { defaultValue: 'No Preference' }),
   notes:                      DS.attr('string'),
+  name:                       DS.attr('string'),
 
   host:             DS.belongsTo('host', { polymorphic: true }),
   attendance:       DS.belongsTo('attendance', { polymorphic: true }),
@@ -30,4 +33,14 @@ export default DS.Model.extend({
   // the above 8 properties
   requestedRoommates: DS.attr(),
   unwantedRoommates: DS.attr(),
+
+  // for sorting
+  requesterName: Ember.computed('attendance', 'name', function() {
+    let name = this.get('attendance.attendeeName');
+    if (Ember.isPresent(name)) {
+      return name;
+    }
+
+    return this.get('name');
+  }),
 });
