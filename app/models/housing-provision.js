@@ -3,6 +3,8 @@ import DS from 'ember-data';
 import PaymentStatus from '../mixins/models/payment-status';
 
 export default DS.Model.extend({
+  genderOptions: ['No Preference', 'Guys', 'Gals'],
+
   housingCapacity: DS.attr('number', { defaultValue: 0 }),
   numberOfShowers: DS.attr('number', { defaultValue: 0 }),
   canProvideTransportation: DS.attr('boolean', { defaultValue: false }),

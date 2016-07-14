@@ -1,0 +1,51 @@
+form submit='save'
+  .row
+    .columns.small-6
+      label Who is providing housing?
+      .row
+        .columns.large-6
+          = radio-button value=0 groupValue=whoIsProvidingType
+          label A Registrant
+          br
+          = radio-button value=1 groupValue=whoIsProvidingType
+          label Enter Name
+        .columns.large-6
+          if isRegistrantProviding
+            = form/registrant-select value=model.attendance host=model.host
+          else
+            = input type='text' value=model.name
+      hr
+  .row
+    .columns.small-6
+      label Housing Capacity
+      = input type='number' min=0 value=model.housingCapacity
+    .columns.small-6
+      label Number of Showers
+      = input type='number' min=0 value=model.numberOfShowers
+  .row
+    .columns.small-6
+      = input type='checkbox' checked=model.canProvideTransportation
+      label Can Provide Transportation
+      br
+      label Transportation Capacity
+      = input type='number' min='0' value=model.transportationCapacity placeholder=0
+    .columns.small-6
+      = input type='checkbox' checked=model.hasPets
+      label does this person have pets?
+      br
+      = input type='checkbox' checked=model.smokes
+      label does this person smoke?
+      br
+      label Preferred Gender to House
+      = x-select value=model.preferredGenderToHost
+        each model.genderOptions as |option|
+          = x-option value=option
+            = option
+
+  .row
+    .small-12.columns
+      .right
+        ul.button-group
+          li: button.secondary click='cancel' Cancel
+          li: button disabled=isDirty  title=submitTitle click='save' Save
+        / TODO: figure out a nice way to handle save/cancel positioning
