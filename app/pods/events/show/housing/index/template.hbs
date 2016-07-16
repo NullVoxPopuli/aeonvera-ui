@@ -1,0 +1,34 @@
+{{page-header text='Housing'}}
+
+<br />
+<br />
+<div class='text-center'>
+  <div class='row'>
+    <div class='small-5 columns'>
+      {{#link-to 'events.show.housing.requests'}}
+        <h1 style='font-size: 4em;'> {{model.requests}} </h1>
+        <button
+          class='small'
+          disabled={{is-equal 0 model.requests}}>
+          View Housing Requests
+        </button>
+      {{/link-to}}
+    </div>
+
+    <div class='small-2 columns'>
+      <h1 style='font-size: 4em;'>{{model.neededSpots}}</h1>
+      spot(s) needed
+    </div>
+
+    <div class='small-5 columns'>
+      {{#link-to 'events.show.housing.provisions'}}
+        <h1 style='font-size: 4em;'>{{model.provisions}}</h1>
+        <button
+          class='small'
+          disabled={{is-equal 0 model.provisions}}>
+          View Housing Provisions
+        </button>
+      {{/link-to}}
+    </div>
+  </div>
+</div>
