@@ -6,12 +6,20 @@
     {{#link-to 'events.show.housing.requests.new' classNames='button small margin-top-10 right'}}
       <span>Add Request</span>
     {{/link-to}}
+
+    {{download/csv-modal
+      model=requests
+      kind='housing-request'
+      relationships='event-attendance,attendance'
+      params=paramsForDownload
+      path=path
+    }}
   </div>
 </div>
 
 
 
-{{#sortable-table columns=columns data=model as |request| }}
+{{#sortable-table columns=columns data=requests as |request| }}
   <td>
     {{#if (is-present request.attendance.attendeeName)}}
       {{attendance-link model=request.attendance}}

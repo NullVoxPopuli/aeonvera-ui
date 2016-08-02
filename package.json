@@ -67,6 +67,7 @@
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-i18n": "4.2.0",
+    "ember-inline-component": "0.1.3",
     "ember-load-initializers": "^0.5.1",
     "ember-local-settings": "1.0.3",
     "ember-model-validator": "^2.0.0",

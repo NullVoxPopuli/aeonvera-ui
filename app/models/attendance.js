@@ -20,6 +20,7 @@ export default DS.Model.extend(
   PaymentStatus,
   Checkinable, {
     attendeeName: DS.attr('string'),
+    attendeeEmail: DS.attr('string'),
     danceOrientation: DS.attr('string'),
     registeredAt: DS.attr('date'),
 

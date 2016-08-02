@@ -1,0 +1,15 @@
+{{#foundation-modal
+  title='Download'
+  name='download-csv-modal'
+  buttonText='Download'
+  buttonClasses='button small right margin-top-10'}}
+
+  {{download/csv-form
+    model=model
+    kind=kind
+    relationships=relationships
+    path=path
+    params=params
+  }}
+
+{{/foundation-modal}}

@@ -6,11 +6,19 @@
     {{#link-to 'events.show.housing.provisions.new' classNames='button small margin-top-10 right'}}
       <span>Add Provision</span>
     {{/link-to}}
+
+    {{download/csv-modal
+      model=provisions
+      kind='housing-provision'
+      relationships='event-attendance,attendance'
+      params=paramsForDownload
+      path=path
+    }}
   </div>
 </div>
 
 
-{{#sortable-table columns=columns data=model as |provision| }}
+{{#sortable-table columns=columns data=provisions as |provision| }}
   <td>
     {{#if (is-present provision.attendance.attendeeName)}}
       {{attendance-link model=provision.attendance}}

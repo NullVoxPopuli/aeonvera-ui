@@ -4,10 +4,16 @@ export default Ember.Route.extend({
 
   model: function () {
     let event = this.modelFor('events.show');
+    let eventId = event.get('id');
     let housingStats = this.modelFor('events.show.housing');
-    return this.store.query('housing-request', {
-      event_id: event.get('id'),
+    let requests =  this.store.query('housing-request', {
+      event_id: eventId,
       include: 'attendance'
     });
+
+    return {
+      requests: requests,
+      eventId: eventId
+    };
   },
 });

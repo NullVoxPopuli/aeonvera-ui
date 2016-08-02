@@ -105,7 +105,6 @@ describe('Event has not yet started', function() {
   });
 });
 
-
 describe('Event has started', function() {
   describe('housing', function() {
 
