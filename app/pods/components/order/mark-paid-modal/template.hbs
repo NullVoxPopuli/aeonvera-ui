@@ -3,27 +3,59 @@
   name=modalName
   buttonText='Mark Paid'}}
 
-  {{radio-button value=paymentMethods.CASH groupValue=paymentMethod}}
-  <label>Cash</label>
-  <br>
-  {{radio-button value=paymentMethods.STRIPE groupValue=paymentMethod}}
-  <label>Stripe</label>
+  <div class='row'>
+    <div class='columns small-4'>
+      {{radio-button value=paymentMethods.CASH groupValue=paymentMethod}}
+      <label>Cash</label>
+    </div>
+    <div class='columns small-4'>
+      {{radio-button value=paymentMethods.CHECK groupValue=paymentMethod}}
+      <label>Check</label>
+    </div>
+    <div class='columns small-4'>
+      {{radio-button value=paymentMethods.STRIPE groupValue=paymentMethod}}
+      <label>Stripe</label>
+    </div>
+  </div>
 
-  {{#if isRefundPartial}}
-    {{form/dollar-field value=partialRefundValue}}
+
+  {{#if (isEqual paymentMethod paymentMethods.CASH)}}
+    <label>Amount</label>
+    {{form/dollar-field value=cashOrCheckAmount}}
+    <hr>
+    <ul class='button-group right'>
+      <li>
+        <button {{action 'markPaid'}}
+        class='small'
+        disabled={{isPaying}}>Refund</button>
+      </li>
+    </ul>
   {{/if}}
 
-  <br>
-  <em><small>
-    Refunds take 5 to 10 days to appear on your customer's statement.<br>
-    It may take a couple of minutes for a receipt to be sent to your customer.
-  </small></em>
-  <hr>
-  <ul class='button-group right'>
-    <li>
-      <button {{action 'refundPayment'}}
+  {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
+    <div class='row'>
+      <div class='columns medium-6'>
+        <label>Amount</label>
+        {{form/dollar-field value=cashOrCheckAmount}}
+      </div>
+      <div class='columns medium-6'>
+        <label>Check Number</label>
+        {{input type='text' value=checkNumber}}
+      </div>
+    </div>
+    <hr>
+    <ul class='button-group right'>
+      <li>
+        <button {{action 'markPaid'}}
         class='small'
-        disabled={{isRefundButtonDisabled}}>Refund</button>
-    </li>
-  </ul>
+        disabled={{isPaying}}>Refund</button>
+      </li>
+    </ul>
+  {{/if}}
+
+  {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
+    <ul class='button-group right'>
+      <li>{{stripe/checkout-button model=order label='Pay' email=order.checkoutEmail}}</li>
+    </ul>
+  {{/if}}
 {{/foundation-modal}}

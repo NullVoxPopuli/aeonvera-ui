@@ -16,8 +16,9 @@ export default Ember.Component.extend({
     CASH: "Cash",
     STRIPE: "Stripe"
   },
-  paymentMethod: computed.alias('paymentMethods.CASH'),
-  cashOrCheckAmount: 0,
+  paymentMethod: 'Cash',
+  cashOrCheckAmount: computed.oneWay('model.total'),
+  checkNumber: '',
 
   modalName: computed('order', {
     get() { return `mark-paid-${this.get('order.id')}`; }
