@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'aeonvera/config/environment';
 
 export default Ember.Controller.extend({
   columns: [
@@ -9,4 +10,20 @@ export default Ember.Controller.extend({
     { property: 'paymentStatus', title: 'Payment' },
     { property: 'registeredAt', title: 'Registered At' }
   ],
+
+  eventId: Ember.computed.alias('model.eventId'),
+  registrations: Ember.computed.alias('model.registrations'),
+  paramsForDownload: Ember.computed('model.eventId', {
+    get(key) {
+      return {
+        event_id: this.get('model.eventId')
+      };
+    }
+  }),
+
+  path: Ember.computed('model.eventId', {
+    get(key) {
+      return `${ENV.host}/api/event_attendances.csv?`;
+    }
+  })
 });

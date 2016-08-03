@@ -1,6 +1,9 @@
-= page-header text='Registrations'
+.row
+  .columns.small-6 = page-header text='Registrations'
+  .columns.small-6
+    = download/csv-modal model=registrations kind='event-attendance' params=paramsForDownload path=path relationships=''
 
-= sortable-table columns=columns data=model as |registration|
+= sortable-table columns=columns data=registrations as |registration|
   td
     link-to 'events.show.registrations.show' registration.id
       = registration.attendeeName
