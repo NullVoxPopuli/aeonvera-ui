@@ -19,8 +19,9 @@ export default Ember.Component.extend({
     STRIPE: 'Stripe'
   },
   paymentMethod: 'Cash',
-  cashOrCheckAmount: null,
+  cashOrCheckAmount: 0,
   checkNumber: '',
+  notes: '',
 
   modalName: computed('order', {
     get() { return `mark-paid-${this.get('order.id')}`; }
@@ -32,8 +33,9 @@ export default Ember.Component.extend({
       let url = '/api/orders/' + id  + '/mark_paid';
       let data = {
         payment_method: this.get('paymentMethod'),
-        amount: this.get('cashOrCheckAmount'),
-        check_number: this.get('checkNumber')
+        check_number:   this.get('checkNumber'),
+        amount:         this.get('cashOrCheckAmount'),
+        notes:          this.get('notes')
       };
 
       this.get('ajax').PUT(url, data).then(data => {

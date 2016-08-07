@@ -22,6 +22,8 @@
   {{#if (isEqual paymentMethod paymentMethods.CASH)}}
     <label>Amount</label>
     {{form/dollar-field value=cashOrCheckAmount}}
+    <label>Notes</label>
+    {{input value=notes}}
     <hr>
     <ul class='button-group right'>
       <li>
@@ -41,6 +43,10 @@
       <div class='columns medium-6'>
         <label>Check Number</label>
         {{input type='text' value=checkNumber}}
+      </div>
+      <div class='columns small-12'>
+        <label>Notes</label>
+        {{input value=notes}}
       </div>
     </div>
     <hr>

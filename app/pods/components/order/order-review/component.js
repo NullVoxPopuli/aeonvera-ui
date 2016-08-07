@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  // 1. Fee Exists
+  // 2. SubTotal and Total are different
   displayFee: Ember.computed(
     'model.shouldApplyFee',
     'fee',  'model.subTotal', function() {
