@@ -1,0 +1,20 @@
+td = attendance-link model=model
+td
+  unless model.isCheckedIn
+    button.small.no-margins.success click='checkin' Check in
+td = model.packageName
+td = model.levelName
+td
+td
+  if model.owesMoney
+    span  Owes {{to-usd model.amountOwed}}
+    br
+    = order/mark-paid-modal order=model.unpaidOrder
+  else
+    span Paid
+td
+  = date-with-format model.registeredAt 'lll'
+
+td
+  if model.isCheckedIn
+    = date-with-format model.checkedInAt 'lll'

@@ -5,7 +5,7 @@ ul.accordion data-accordion='true'
         span class='{{order.paidClass}}'
           if order.paid
             if (is-present order.paymentReceivedAt)
-              | Paid {{to-usd order.paidAmount}} via {{order.paymentMethod}}
+              | Paid {{to-usd order.paidAmount}} via {{order.paymentMethod}} {{order.checkNumber}}
               span &nbsp;on {{date-with-format order.paymentReceivedAt 'LLL'}}
             else
               | Paid {{to-usd order.paidAmount}}

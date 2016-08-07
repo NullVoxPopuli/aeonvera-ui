@@ -10,6 +10,7 @@ const { attr, belongsTo, hasMany, Model } = DS;
 export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   hostName:          attr('string'),
   hostUrl:           attr('string'),
+  notes:             attr('string'),
   createdAt:         attr('date'),
   paymentReceivedAt: attr('date'),
   paidAmount:        attr('number'),

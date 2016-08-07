@@ -44,7 +44,7 @@ table.width-of-100.order-review-table
       if model.hasNonZeroBalance
         tr
           td.order-payment-status data-paid=model.paid colspan="4"
-            | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}}
+            | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}} {{model.checkNumber}}
       else
         tr: td.order-payment-status data-paid=model.paid colspan="4"
           | Nothing needs to be paid, because there is a balance of Zero.

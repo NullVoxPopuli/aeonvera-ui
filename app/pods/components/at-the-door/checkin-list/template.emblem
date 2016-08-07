@@ -17,4 +17,4 @@ span {{percentCheckedIn}}% |&nbsp;
 span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 
 = sortable-table columns=columns data=attendances as |attendance|
-  = event-at-the-door/checkin-attendance model=attendance
+  = at-the-door/checkin-attendance model=attendance
