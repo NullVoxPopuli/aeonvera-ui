@@ -107,6 +107,7 @@ Router.map(function() {
       this.route('checkin');
       this.route('competition-list');
       this.route('a-la-carte');
+      this.route('register');
     });
 
     this.route('events', { resetNamespace: true }, function() {

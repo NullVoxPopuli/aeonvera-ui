@@ -1,13 +1,9 @@
 ul.small-block-grid-4
-  li
-    link-to 'event-at-the-door.checkin'  classNames='button percent-width-100'
+  li: link-to 'event-at-the-door.checkin'  classNames='button percent-width-100'
       span CheckIN
-  li
-    a.button.percent-width-100 href='/hosted_events/{{model.id}}/attendances/new'
+  li: link-to 'event-at-the-door.register'  classNames='button percent-width-100'
       span Register
-  li
-    link-to 'event-at-the-door.competition-list' classNames='button percent-width-100'
+  li: link-to 'event-at-the-door.competition-list' classNames='button percent-width-100'
       span Competition List
-  li
-    link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
+  li: link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
       span A La Carte
