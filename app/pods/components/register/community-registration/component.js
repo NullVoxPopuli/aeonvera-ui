@@ -47,6 +47,11 @@ export default Ember.Component.extend({
   }),
 
   actions: {
+    cancel() {
+      // NOTE: they are already on this page
+      // this.get('router').transitionTo('register.index');
+    },
+
     add: function(item) {
       this.get('cart').set('host', this.get('model'));
       this.get('cart').add(item);

@@ -27,8 +27,6 @@ export default Host.extend(RegistrationOpens, {
   housingNights:    attr(),
 
   allowDiscounts:         attr('boolean'),
-  allowCombinedDiscounts: attr('boolean'),
-
   registrationEmailDisclaimer: attr('string'),
 
   url: attr('string'),
@@ -44,6 +42,8 @@ export default Host.extend(RegistrationOpens, {
   shirts:       hasMany('shirts'),
   customFields: hasMany('custom-field'),
   sponsorships: hasMany('sponsorship'),
+  eventAttendances: hasMany('event-attendance'),
+  attendances: hasMany('attendance'),
 
   registrationOpensAt: function() {
     return this.get('openingTier.increaseAfterDate');

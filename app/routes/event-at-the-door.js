@@ -8,6 +8,8 @@ export default Ember.Route.extend({
   },
 
   model: function(params) {
-    return this.store.findRecord('event', params.event_id);
+    return this.store.findRecord('event', params.event_id, {
+      include: 'shirts,integrations,competitions,line_items,discounts'
+    });
   }
 });

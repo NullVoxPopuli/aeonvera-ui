@@ -110,6 +110,8 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
         validation(key, value, model) {
           let isEvent = model.get('host.isEvent');
           if (isEvent) {
+            // TODO: move to parent component of the cart
+            // let attendance = model.get('attendance.id');
             return Ember.isPresent(value);
           }
 

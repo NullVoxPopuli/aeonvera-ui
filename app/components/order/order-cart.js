@@ -1,13 +1,15 @@
 import Ember from 'ember';
 import ResizeMixin from 'ember-resize-mixin/main';
 import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
+import SlotsMixin from 'ember-block-slots';
 
-export default Ember.Component.extend(ResizeMixin, EmberScroll, {
+export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
   cart:                  Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
   errors:                [],
   resetCheckoutButton:   false,
   isProceedToCheckoutVisible: false,
+  afterCheckout: null,
 
   /*
     Handle optional parameters for editing an order
@@ -105,6 +107,11 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
             return;
           }
 
+          if (Ember.isPresent(this.get('afterCheckout'))) {
+            this.sendAction('afterCheckout', record);
+            return;
+          }
+
           let id = record.get('id');
           let token = record.get('paymentToken');
 
@@ -112,7 +119,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
           this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);
         }, error => {
-
+          console.log(error);
           if (Ember.isPresent(error)) {
             this.set('resetCheckoutButton', true);
             this.get('flashMessages').alert(error.message);
@@ -131,7 +138,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, {
 
     cancel: function() {
       this.get('cart').cancel();
-      this.get('router').transitionTo('register.index');
+      this.sendAction('afterCancel');
     },
   },
 

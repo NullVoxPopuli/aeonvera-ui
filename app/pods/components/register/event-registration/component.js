@@ -146,6 +146,10 @@ export default Ember.Component.extend({
   genderOptions: ['No Preference', 'Guys', 'Gals'],
 
   actions: {
+    cancel() {
+      this.get('router').transitionTo('register.index');
+    },
+
     add: function(item) {
       this.get('cart').set('host', this.get('model'));
       this.get('cart').add(item);

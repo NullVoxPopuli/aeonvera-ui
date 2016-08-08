@@ -3,7 +3,7 @@ if model.registrationIsOpen
     = register/must-login model=model
   else
     .margin-left-20
-      = order/order-cart host=model token=token order=order
+      = order/order-cart host=model token=token order=order afterCancel='cancel'
         =page-header text=title
         = partial 'register/event/attendance-information' event=event attendance=attendance
         = partial 'register/event/packages' event=event attendance=attendance

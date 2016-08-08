@@ -2,6 +2,8 @@
 .row.full-width
   div.padding-left-0 class=itemContainerClasses
     = yield
+    = yield-slot 'listItems'
+      = yield
 
   if buildingAnOrder
     unless isProceedToCheckoutVisible
@@ -16,9 +18,14 @@
 
       table.width-of-100.no-border
         tbody
+          = yield-slot 'attendanceSetter'
+            = yield
+
           each currentItems as |item|
             tr
-              td.min-width-100 {{item.quantity}} x {{order/price-display item=item value=item.total}}
+              td.min-width-100
+                / | {{order/item-quantity-select orderLineItem=item order=cart.order}}
+                | {{item.quantity}} x {{order/price-display item=item value=item.total}}
               td
                 if (is-present item.lineItem.code)
                   = item.lineItem.code

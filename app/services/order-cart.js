@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
+const { isBlank } = Ember;
+
 export default Ember.Service.extend(RandomString, {
   store:         Ember.inject.service('store'),
   session:       Ember.inject.service('session'),
@@ -226,7 +228,9 @@ export default Ember.Service.extend(RandomString, {
 
       // 2. save the order and nested data
       //    - order line items
-      order.set('attendance', this.get('attendance'));
+      if (isBlank(order.get('attendance'))) {
+        order.set('attendance', this.get('attendance'));
+      }
 
       // TODO: how to send to modify URL if not new
       // - maybe set a flag on the item to be read by the server?

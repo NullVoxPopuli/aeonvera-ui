@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   firstError: Ember.computed('errors.@each', function() {
     let firstErrorObject = this.get('errors.firstObject');
 
+    // No error
     if (firstErrorObject === undefined) {
       return;
     }
@@ -17,15 +18,27 @@ export default Ember.Component.extend({
       return firstErrorObject;
     }
 
+    // Generic Unauthorized Error
     let code = firstErrorObject.code;
     if (code === 401) {
       return 'Not authorized. Please login as an authorized user.';
     }
 
     let source = firstErrorObject.source;
-    let field = source.pointer.replace('/data/attributes/', '');
-    field = field.replace('-', ' ');
+    let field = firstErrorObject.attribute;
 
+    if (source !== undefined) {
+      // JSON API Errors
+      field = source.pointer.replace('/data/attributes/', '');
+      field = field.replace('-', ' ');
+    }
+
+    if (Array.isArray(firstErrorObject.message)) {
+      // ember-model-validator
+      return firstErrorObject.message[0];
+    }
+
+    // ember-data model error || JSON API error
     let reason = firstErrorObject.message || firstErrorObject.detail;
     return field + ' ' + reason;
   }),

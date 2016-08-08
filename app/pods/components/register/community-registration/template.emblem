@@ -1,6 +1,6 @@
 =page-header text=title
 
-= order/order-cart host=model token=token order=order
+= order/order-cart host=model token=token order=order afterCancel='cancel'
 
   unless session.isAuthenticated
     .row

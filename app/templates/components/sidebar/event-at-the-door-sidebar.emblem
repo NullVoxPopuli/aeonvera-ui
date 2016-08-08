@@ -1,5 +1,4 @@
 li
-  / a.button.percent-width-100 href='/hosted_events/{{model.id}}/checkin' Checkin
   link-to 'event-at-the-door.checkin'  classNames='button percent-width-100'
     span CheckIN
 li

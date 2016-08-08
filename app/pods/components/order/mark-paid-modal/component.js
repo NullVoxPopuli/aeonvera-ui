@@ -19,9 +19,21 @@ export default Ember.Component.extend({
     STRIPE: 'Stripe'
   },
   paymentMethod: 'Cash',
-  cashOrCheckAmount: 0,
+  orderTotal: computed.alias('order.total'),
+  cashOrCheckAmount: null,
   checkNumber: '',
   notes: '',
+  amount: computed('orderTotal', 'cashOrCheckAmount', {
+    get() {
+      let orderTotal = this.get('orderTotal');
+      let enteredAmount = this.get('cashOrCheckAmount');
+
+      return enteredAmount || orderTotal;
+    },
+    set(key, value) {
+      this.set('cashOrCheckAmount', value);
+    }
+  }),
 
   modalName: computed('order', {
     get() { return `mark-paid-${this.get('order.id')}`; }
@@ -34,12 +46,13 @@ export default Ember.Component.extend({
       let data = {
         payment_method: this.get('paymentMethod'),
         check_number:   this.get('checkNumber'),
-        amount:         this.get('cashOrCheckAmount'),
+        amount:         this.get('amount'),
         notes:          this.get('notes')
       };
 
       this.get('ajax').PUT(url, data).then(data => {
         this.get('store').pushPayload(data);
+        this.sendAction('afterPayment');
         this.get('flashMessages').success('Order was successfully marked as paid.');
         Ember.$('.close-reveal-modal').click();
       }, error => {

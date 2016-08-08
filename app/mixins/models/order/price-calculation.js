@@ -28,18 +28,24 @@ export default Ember.Mixin.create({
     return value;
   }),
 
-  shouldApplyFee: Ember.computed('subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', function() {
-    let electronicPayment = (
-      this.get('paymentMethod') === 'stripe' ||
-      this.get('host.acceptOnlyElectronicPayments') || false
-    );
+  forceAbsorbFee: false,
+  shouldApplyFee: Ember.computed('forceAbsorbFee', 'subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', {
+    get() {
+      let forceAbsorbFee = this.get('forceAbsorbFee');
+      if (forceAbsorbFee) return !forceAbsorbFee;
 
-    let result = (
-      this.get('subTotal') > 0 &&
-      this.get('host.makeAttendeesPayFees') &&
-      electronicPayment);
+      let electronicPayment = (
+        this.get('paymentMethod') === 'stripe' ||
+        this.get('host.acceptOnlyElectronicPayments') || false
+      );
 
-    return result;
+      let result = (
+        this.get('subTotal') > 0 &&
+        this.get('host.makeAttendeesPayFees') &&
+        electronicPayment);
+
+      return result;
+    }
   }),
 
   fee: Ember.computed('subTotal', function() {

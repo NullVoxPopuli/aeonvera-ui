@@ -1,0 +1,31 @@
+= order/order-cart host=model afterCheckout='openPaymentModal' attendanceNotRequired=true
+
+  = block-slot 'attendanceSetter'
+    tr: td colspan='2'
+      if cart.order
+        label Optional (except for competitions):
+        = form/registrant-select value=cart.order.attendance host=event
+
+    tr: td colspan='2'
+      | <input type='checkbox' checked={{absorbFees}} onclick={{action 'absorbFeesClick' value='target.checked'}}>
+      label Absorb Service Fee
+
+  = block-slot 'listItems'
+
+    .hidden-mark-paid-container
+      = order/mark-paid-modal order=cart.order afterPayment='clearOrder'
+
+    h3 A la Carte
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each event.lineItems as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Shirts
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each event.shirts as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+    hr
+    h3 Competitions
+    ul.small-block-grid-2.medium-block-grid-3.text-center
+      each event.competitions as |item|
+        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
