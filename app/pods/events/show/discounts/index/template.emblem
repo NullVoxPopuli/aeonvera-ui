@@ -1,4 +1,7 @@
-= page-header text='Discounts'
+.row
+  .columns.small-6 = page-header text='Discounts'
+  .columns.small-6
+    = download/csv-modal model=registrations kind='discount' params=paramsForDownload path=path relationships=''
 
 link-to 'events.show.discounts.new' classNames='button'
   span New Discount
