@@ -1,5 +1,13 @@
 = order/order-cart host=event afterCancel='cancel' afterCheckout='submitOrder'
-  = page-header text=title
+  = page-header text='At the door registration'
+
+  h4 Does this person have an account?
+  = input type='checkbox' checked=hasAccount
+
+  if hasAccount
+    label What is this person's email address?
+    = input type='email' value=emailAddress
+
   / OPTIONS:
   / select to sign up user
   / - to create a new account for the attendance

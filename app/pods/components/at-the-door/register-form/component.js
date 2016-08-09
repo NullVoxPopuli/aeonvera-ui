@@ -8,6 +8,10 @@ export default Ember.Component.extend({
 
   event: computed.alias('model'),
 
+  // for building user/attendance for the order
+  hasAccount: false,
+  emailAddress: '',
+
   actions: {
     openPaymentModal() {
 
