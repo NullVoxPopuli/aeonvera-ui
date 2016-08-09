@@ -1,0 +1,16 @@
+= order/order-cart host=event afterCancel='cancel' afterCheckout='submitOrder'
+  = page-header text=title
+  / OPTIONS:
+  / select to sign up user
+  / - to create a new account for the attendance
+  / skip user and attendance
+  / - all money related things are already based on order line items
+  = partial 'register/event/attendance-information' event=event attendance=attendance
+  = partial 'register/event/packages' event=event attendance=attendance
+  = partial 'register/event/levels' event=event attendance=attendance
+  = partial 'register/event/orientation' event=event attendance=attendance
+  = partial 'register/event/housing' event=event
+  = partial 'register/event/custom-fields' event=event attendance=attendance
+  = partial 'register/event/competitions' event=event
+  = partial 'register/event/shirts' event=event
+  = partial 'register/event/a-la-carte' event=event

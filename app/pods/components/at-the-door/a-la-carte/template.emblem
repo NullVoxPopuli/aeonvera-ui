@@ -6,6 +6,14 @@
         label Optional (except for competitions):
         = form/registrant-select value=cart.order.attendance host=event
 
+    unless cart.order.attendance
+      tr: td colspan='2'
+        label Buyer Name
+        = input type='text' value=cart.order.userName
+      tr: td colspan='2'
+        label Buyer Email
+        = input type='email' value=cart.order.userEmail
+
     tr: td colspan='2'
       | <input type='checkbox' checked={{absorbFees}} onclick={{action 'absorbFeesClick' value='target.checked'}}>
       label Absorb Service Fee

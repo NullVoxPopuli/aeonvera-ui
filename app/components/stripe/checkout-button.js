@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { isPresent, isBlank } = Ember;
+
 /*
   The stripe script sends a submit action to it's containing form.
   So, we must have a form.
@@ -20,7 +22,7 @@ export default Ember.Component.extend({
   label: 'Pay with card',
 
   host: Ember.computed('model', function () {
-    return this.get('model').get('host');
+    return this.get('model.host');
   }),
 
   image: Ember.computed('host', function () {
