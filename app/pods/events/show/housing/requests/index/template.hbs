@@ -58,4 +58,9 @@
   </td>
   <td>{{request.notes}}</td>
   <td>{{date-with-format request.attendance.registeredAt 'LLL'}}</td>
+  <td>
+    {{#form/confirm-button action='delete' target=request preConfirmClasses='alert-color'}}
+      Delete
+    {{/form/confirm-button}}
+  </td>
 {{/sortable-table}}

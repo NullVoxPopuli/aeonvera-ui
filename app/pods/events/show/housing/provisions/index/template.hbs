@@ -46,4 +46,9 @@
   </td>
   <td>{{provision.notes}}</td>
   <td>{{date-with-format provision.attendance.registeredAt 'LLL'}}</td>
+  <td>
+    {{#form/confirm-button action='delete' target=provision preConfirmClasses='alert-color'}}
+      Delete
+    {{/form/confirm-button}}
+  </td>
 {{/sortable-table}}
