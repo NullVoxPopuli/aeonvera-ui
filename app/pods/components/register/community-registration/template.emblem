@@ -42,6 +42,10 @@
       th.medium-up-width-of-160px.text-center Number of Dancers
       th
     tbody
+      unless (is-present model.lessons)
+        tr: td colspan='3'
+          | There are currently no lessons available for registration.
+
       each model.lessons as |lesson|
         tr
           td = to-usd lesson.price
