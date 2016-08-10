@@ -1,0 +1,13 @@
+table.no-colors.no-borders.center-margin
+  tbody
+    = registrant/attendance/housing-request housingRequest=model.housingRequest
+    = registrant/attendance/housing-provision housingProvision=model.housingProvision
+    if (is-present model.customFieldResponses)
+      tr: td.divider colspan="2"
+
+      each model.customFieldResponses as |cfr|
+        unless (is-equal cfr.value null)
+          if (is-present cfr.id)
+            tr
+              td: em = cfr.customField.label
+              td = present-custom-field-response-value model=cfr

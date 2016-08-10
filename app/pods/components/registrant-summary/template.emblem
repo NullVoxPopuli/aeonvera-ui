@@ -23,6 +23,12 @@
       | No
 
 .clearfix
+ul.accordion data-accordion=true
+  li.accordion-navigation
+    a.text-center.white-background href='#attendance-details-{{model.id}}' Show Details
+    div id="attendance-details-{{model.id}}" class="content"
+      = registrant-summary/detail-view model=model
+
 hr
 
 = registrant/orders-summary model=model.orders

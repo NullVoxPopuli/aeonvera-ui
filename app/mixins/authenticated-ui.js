@@ -16,7 +16,7 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
       this.get('flashMessages').success(msg);
       this.transitionTo('welcome');
     });
-    this._super();
+    this._super(...arguments);
   },
 
   /**

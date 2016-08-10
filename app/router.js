@@ -42,12 +42,8 @@ Router.map(function() {
 
   /* must be logged in for */
   this.route('dashboard', { path: '/' }, function() {
-    this.route('my-communities', {
-      resetNamespace: true,
-    }, function() {
-      this.route('manage', {
-        path: '/manage/:organization_id',
-      }, function() {
+    this.route('my-communities', { resetNamespace: true }, function() {
+      this.route('manage', { path: '/manage/:organization_id' }, function() {
         this.route('edit');
         this.route('payment-processors');
         this.route('revenue');
