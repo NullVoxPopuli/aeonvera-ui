@@ -1,7 +1,7 @@
-{{flat-pickr
-  dateFormat='F j, Y at'
-  timeFormat='h:i K'
-  value=fieldValue
+{{ember-flatpickr
+  dateFormat='F j, Y at H:i K'
+  timeFormat='H:i K'
+  value=(readonly fieldValue)
   enableTime=true
   altInput='text'
   onChange=(action 'dateChanged')

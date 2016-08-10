@@ -55,4 +55,12 @@ export default Host.extend(RegistrationOpens, {
 
     return now > openDate;
   }),
+
+  shirtSalesHaveEnded: Ember.computed('shirtSalesEndAt', {
+    get() {
+      let expiresAt = this.get('shirtSalesEndAt');
+      return expiresAt < new Date();
+    }
+  })
+
 });

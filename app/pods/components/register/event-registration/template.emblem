@@ -12,7 +12,8 @@ if model.registrationIsOpen
         = partial 'register/event/housing' event=event
         = partial 'register/event/custom-fields' event=event attendance=attendance
         = partial 'register/event/competitions' event=event
-        = partial 'register/event/shirts' event=event
+        unless event.shirtSalesHaveEnded
+          = partial 'register/event/shirts' event=event
         = partial 'register/event/a-la-carte' event=event
 else
   .event-registration-is-not-yet-open
