@@ -30,6 +30,7 @@ export default Ember.Component.extend({
 
       return enteredAmount || orderTotal;
     },
+
     set(key, value) {
       this.set('cashOrCheckAmount', value);
     }
