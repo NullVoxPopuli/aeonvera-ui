@@ -13,11 +13,17 @@ footer
     .medium-6.columns
       .right
         ul.inline-list
+          / li.hide-for-small.small: span Questions?
+          li: span Questions?
           li
             a.js-gitter-toggle-chat-button
               = fa-icon 'comment'
-              
-          li = links/mail-support-icon-link
+            .hide-for-small Chat
+
+          li
+            = links/mail-support-icon-link
+            .hide-for-small Email
+
           li = links/facebook-icon-link
 
   .row.copy
