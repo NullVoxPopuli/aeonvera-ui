@@ -1,0 +1,10 @@
+= page-header text='Payments'
+
+= sortable-table columns=columns data=model as |order|
+  td
+    link-to 'dashboard.orders.show' order
+      = date-with-format order.createdAt 'LLL'
+  td
+    a href=order.hostUrl
+      = order.hostName
+  td = to-usd order.paidAmount

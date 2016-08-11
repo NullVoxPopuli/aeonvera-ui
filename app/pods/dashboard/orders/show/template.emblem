@@ -1,0 +1,7 @@
+= page-header
+  | Your payment to {{model.hostName}}
+
+em This transaction occurred on {{date-with-format model.createdAt 'LLL'}}
+br
+br
+= order/order-review model=model
