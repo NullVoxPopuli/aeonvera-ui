@@ -97,7 +97,9 @@ Router.map(function() {
 
     this.route('hosted-events');
     this.route('registered-events');
-    this.route('orders');
+    this.route('orders', function() {
+      this.route('show', { path: ':order_id' });
+    });
 
     this.route('event-at-the-door', { resetNamespace: true, path: '/event-at-the-door/:event_id' }, function() {
       this.route('checkin');

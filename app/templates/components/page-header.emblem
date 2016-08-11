@@ -1,1 +1,4 @@
-h2 = text
+if text
+  h2 = text
+else
+  h2 = yield
