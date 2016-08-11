@@ -1,0 +1,10 @@
+= model/edit-header title=model.name editPath='events.show.line-items.show.edit'
+
+h4 Registrations that purchased {{model.name}}
+
+= sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
+  td = attendance-link id=orderLineItem.order.attendance.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+  td
+    if orderLineItem.order.paid
+      = date-with-format orderLineItem.order.paymentReceivedAt 'LLL'
+  td = date-with-format orderLineItem.order.createdAt 'LLL'

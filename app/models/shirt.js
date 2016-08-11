@@ -12,7 +12,6 @@ const { isEmpty } = Ember;
 
 export default LineItem.extend({
   sizes: DS.attr(),
-  orderLineItems: DS.hasMany('order-line-item'),
 
   offeredSizes: function () {
     let sizeData = this.get('sizes');

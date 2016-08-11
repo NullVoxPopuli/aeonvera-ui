@@ -37,6 +37,7 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   event: DS.belongsTo('event'),
   host: DS.belongsTo('host', { polymorphic: true }),
   attendances: DS.hasMany('attendance'),
+  orderLineItems: DS.hasMany('order-line-item'),
 
   pictureIsMissing: Ember.computed('pictureUrl', function() {
     let pictureUrl = this.get('pictureUrl');
