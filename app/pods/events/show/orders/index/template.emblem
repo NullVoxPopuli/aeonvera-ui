@@ -1,0 +1,16 @@
+.row
+  .columns.small-6 = page-header text='Orders'
+  .columns.small-6
+    = download/csv-modal model=registrations kind='order' params=paramsForDownload path=path relationships=''
+
+= sortable-table columns=columns data=orders as |order|
+  td
+    link-to 'events.show.orders.show' order
+      = order.userName
+  td = to-usd order.total
+  td = to-bool order.paid
+  td = date-with-format order.createdAt 'LLL'
+  td
+    if (is-present order.attendance.id)
+      link-to 'events.show.registrations.show' order.attendance.id
+        = to-bool (is-present order.attendance.id)

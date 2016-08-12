@@ -1,11 +1,11 @@
 .row
   .small-6.columns
     label Start Time
-    = date-time-field selectedDate=startTime
+    = form/date-time-field selectedDate=startTime
 
   .small-6.columns
     label End Time
-    = date-time-field selectedDate=endTime
+    = form/date-time-field selectedDate=endTime
 
 h4 Transactions
 

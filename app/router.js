@@ -122,15 +122,17 @@ Router.map(function() {
         /* attendees, volunteers, etc */
         this.route('registrations', function() {
           this.route('new');
-          this.route('show', {
-            path: ':registration_id',
-          }, function() {
+          this.route('show', { path: ':registration_id' }, function() {
             this.route('edit');
           });
         });
 
         this.route('unpaid-registrations');
         this.route('cancelled-registrations');
+        this.route('orders', function() {
+          this.route('show', { path: ':order_id' });
+        });
+
         this.route('revenue');
         this.route('charts');
         this.route('manage');

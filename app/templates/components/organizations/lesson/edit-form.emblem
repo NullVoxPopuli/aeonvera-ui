@@ -21,23 +21,23 @@ form submit='save'
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='startsAt'
       label
         span Starts At
-        = date-time-input model=model field='startsAt'
+        = form/date-time-input model=model field='startsAt'
 
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='endsAt'
       label
         span Ends At
-        = date-time-input model=model field='endsAt'
+        = form/date-time-input model=model field='endsAt'
 
 
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='registrationOpensAt'
       label
         span Registation Opens At
-        = date-time-input model=model field='registrationOpensAt'
+        = form/date-time-input model=model field='registrationOpensAt'
         
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='registrationClosesAt'
       label
         span Registation Closes At
-        = date-time-input model=model field='registrationClosesAt'
+        = form/date-time-input model=model field='registrationClosesAt'
 
   .row
     .small-12.columns

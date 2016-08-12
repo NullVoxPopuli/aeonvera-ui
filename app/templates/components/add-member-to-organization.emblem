@@ -3,7 +3,7 @@
   = error-field-wrapper  classes='columns small-12 medium-6 large-4' errors=errors field='startDate'
     label
       span Starts Date
-      = date-time-input model=model field='startDate'
+      = form/date-time-input model=model field='startDate'
 
   = error-field-wrapper  classes='columns small-12 medium-6 large-4' errors=errors field='membershipOption'
     label

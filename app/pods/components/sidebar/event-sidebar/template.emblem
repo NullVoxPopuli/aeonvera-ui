@@ -14,6 +14,8 @@ li: link-to 'events.show.unpaid-registrations'
   span Unpaid Registrations
 li: link-to 'events.show.cancelled-registrations'
   span Cancelled Registrations
+li: link-to 'events.show.orders'
+  span Orders
 li: link-to 'register' event.domain
   span Registration Form
 li: link-to 'events.show.embed-registration'

@@ -14,7 +14,7 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='increaseAfterDate'
       label
         span Increase After Date
-        = date-time-input model=model field='increaseAfterDate'
+        = form/date-time-input model=model field='increaseAfterDate'
 
     .columns.small-12.medium-1
       h5 or

@@ -9,13 +9,13 @@ if field.editable
 
   if (is-equal field.kind 3)
     / 2016-04-14T04:00:00.000Z
-    = date-time-field selectedDate=response.value enableTime=false defaultValue=response.value
+    = form/date-time-field selectedDate=response.value enableTime=false defaultValue=response.value
 
   if (is-equal field.kind 4)
-    = date-time-field selectedDate=response.value timeOnly=true
+    = form/date-time-field selectedDate=response.value timeOnly=true
 
   if (is-equal field.kind 5)
-    = date-time-field selectedDate=response.value
+    = form/date-time-field selectedDate=response.value
 
   if (is-equal field.kind 6)
     = input type='checkbox' checked=response.value

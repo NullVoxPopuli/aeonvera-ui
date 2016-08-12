@@ -3,29 +3,29 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='mailPaymentsEndAt'
       label
         span Mail Payments End At
-        = date-time-input model=model field='mailPaymentsEndAt'
+        = form/date-time-input model=model field='mailPaymentsEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='electronicPaymentsEndAt'
       label
         span Electronic Payments End At
-        = date-time-input model=model field='electronicPaymentsEndAt'
+        = form/date-time-input model=model field='electronicPaymentsEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-4' errors=errors field='refundsEndAt'
       label
         span Refunds End At
-        = date-time-input model=model field='refundsEndAt'
+        = form/date-time-input model=model field='refundsEndAt'
 
   br
   .row
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='shirtSalesEndAt'
       label
         span Shirt Sales End At
-        = date-time-input model=model field='shirtSalesEndAt'
+        = form/date-time-input model=model field='shirtSalesEndAt'
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=errors field='showAtTheDoorPricesAt'
       label
         span Show At The Door Prices At
-        = date-time-input model=model field='showAtTheDoorPricesAt'
+        = form/date-time-input model=model field='showAtTheDoorPricesAt'
 
   br
   .row

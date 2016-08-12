@@ -22,19 +22,19 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='startsAt'
       label
         span Event Starts At
-        = date-time-input model=model field='startsAt'
+        = form/date-time-input model=model field='startsAt'
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='endsAt'
       label
         span Event Ends At
-        = date-time-input model=model field='endsAt'
+        = form/date-time-input model=model field='endsAt'
 
   br
   .row
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='opening-tier.date' model=model
       label
         span Registration Opens At
-        = date-time-input model=model.openingTier field='date'
+        = form/date-time-input model=model.openingTier field='date'
 
     = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='contactEmail'
       label
