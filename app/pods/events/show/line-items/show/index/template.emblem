@@ -3,7 +3,12 @@
 h4 Registrations that purchased {{model.name}}
 
 = sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
-  td = attendance-link id=orderLineItem.order.attendance.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+  td
+    if (is-present orderLineItem.order.attendance.id)
+      = attendance-link id=orderLineItem.order.attendance.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+    else
+      link-to 'events.show.orders.show' orderLineItem.order
+        = orderLineItem.order.userName
   td
     if orderLineItem.order.paid
       = date-with-format orderLineItem.order.paymentReceivedAt 'LLL'
