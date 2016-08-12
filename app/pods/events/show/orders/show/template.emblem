@@ -1,0 +1,7 @@
+= page-header
+  | Order for {{model.userName}}
+
+em This transaction occurred on {{date-with-format model.createdAt 'LLL'}}
+br
+br
+= registrant/order-summary model=model
