@@ -1,4 +1,8 @@
-td = attendance-link model=model
+td
+  = attendance-link model=model
+
+  if model.hasUsedStudentDiscount
+    em: small: strong Used Student Discount
 td
   unless model.isCheckedIn
     button.small.no-margins.success click='checkin' Check in

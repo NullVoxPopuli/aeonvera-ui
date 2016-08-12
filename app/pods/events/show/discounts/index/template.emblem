@@ -1,28 +1,18 @@
 .row
   .columns.small-6 = page-header text='Discounts'
   .columns.small-6
-    = download/csv-modal model=registrations kind='discount' params=paramsForDownload path=path relationships=''
+    = download/csv-modal model=model kind='discount' params=paramsForDownload path=path relationships=''
 
 link-to 'events.show.discounts.new' classNames='button'
   span New Discount
 
-/a href='//swing.vhost:3000/api/discounts.csv?event_id=4' download='true' Download
-
-table
-  thead: tr
-    th Code
-    th Times Used
-    th Discount
-    th Restricted To
-  tbody
-    each model as |discount|
-      tr
-        td
-          link-to 'events.show.discounts.show' discount.id
-            = discount.code
-        td = discount.timesUsed
-        td = discount.discount
-        td
-          each discount.allowedPackages as |pack|
-            span = pack.name
-            br
+= sortable-table columns=columns data=model as |discount|
+  td
+    link-to 'events.show.discounts.show' discount.id
+      = discount.code
+  td = discount.timesUsed
+  td = discount.discount
+  td
+    each discount.allowedPackages as |pack|
+      span = pack.name
+      br

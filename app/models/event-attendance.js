@@ -7,6 +7,22 @@ export default Attendance.extend({
   level: DS.belongsTo('level'),
   package: DS.belongsTo('package'),
 
+  hasUsedStudentDiscount: Ember.computed('orders.@each', {
+    get() {
+      let result = false
+      this.get('orders').forEach(order => {
+        order.get('orderLineItems').forEach(orderLineItem => {
+          let requiresStudentId = orderLineItem.get('lineItem.requiresStudentId');
+          if (requiresStudentId) {
+            result = true;
+          }
+        });
+      });
+
+      return result;
+    }
+  }),
+
   validations: {
     city: { presence: true },
     state: { presence: true },
