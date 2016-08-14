@@ -37,6 +37,8 @@ export default Ember.Component.extend({
       let cart = this.get('cart');
       cart.get('currentOrder').unloadRecord();
       cart.set('order', null);
+      let attendance = this.get('attendance');
+      this.sendAction('onComplete');
     },
 
     openPaymentModal(order) {
