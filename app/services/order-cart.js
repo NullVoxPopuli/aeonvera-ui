@@ -137,6 +137,12 @@ export default Ember.Service.extend(RandomString, {
     });
   },
 
+  // like cancel, but without deleting anything
+  clear() {
+    this.set('order', null);
+    this.set('attendance', null);
+  },
+
   cancel() {
     let order = this.get('order');
     if (order == null) return;

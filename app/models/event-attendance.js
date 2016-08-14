@@ -9,7 +9,7 @@ export default Attendance.extend({
 
   hasUsedStudentDiscount: Ember.computed('orders.@each', {
     get() {
-      let result = false
+      let result = false;
       this.get('orders').forEach(order => {
         order.get('orderLineItems').forEach(orderLineItem => {
           let requiresStudentId = orderLineItem.get('lineItem.requiresStudentId');

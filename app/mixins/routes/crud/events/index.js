@@ -4,6 +4,7 @@ export default Ember.Mixin.create({
   parentIdKey: 'event_id',
   parentPathRoot: 'events.show',
   include: '',
+  q: {},
 
   model: function () {
     let modelName = this.get('modelName');
@@ -17,6 +18,11 @@ export default Ember.Mixin.create({
 
     if (Ember.isPresent(include)) {
       query.include = include;
+    }
+
+    let search = this.get('q');
+    if (Ember.isPresent(search)) {
+      query.q = search;
     }
 
     return this.store.query(modelName, query);

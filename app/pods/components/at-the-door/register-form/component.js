@@ -9,8 +9,18 @@ export default Ember.Component.extend({
   event: computed.alias('model'),
 
   // for building user/attendance for the order
-  hasAccount: false,
-  emailAddress: '',
+  attendance: computed({
+    get() {
+      return this.get('store').createRecord('event-attendance');
+    }
+  }),
+
+  init() {
+    this._super(...arguments);
+    let cart = this.get('cart');
+    cart.clear();
+    cart.set('attendance', this.get('attendance'));
+  },
 
   actions: {
     openPaymentModal() {
@@ -18,11 +28,16 @@ export default Ember.Component.extend({
     },
 
     clearOrder() {
-
+      this.get('cart').cancel();
     },
 
     submitOrder() {
 
+    },
+
+    add(item) {
+      this.get('cart').set('host', this.get('model'));
+      this.get('cart').add(item, 1); // quantity
     }
   }
 });
