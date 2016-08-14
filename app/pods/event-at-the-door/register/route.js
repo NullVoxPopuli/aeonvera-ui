@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    newRegistrationComplete() {
+    completed() {
       this.transitionTo('event-at-the-door');
     }
   }

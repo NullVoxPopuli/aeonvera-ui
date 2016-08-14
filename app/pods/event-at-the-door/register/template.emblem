@@ -1,4 +1,4 @@
 = at-the-door/quick-nav
 
 .margin-left-20
-  = at-the-door/register-form model=model onComplete='newRegistrationComplete'
+  = at-the-door/register-form model=model onComplete='completed'
