@@ -1,0 +1,29 @@
+{{#if show}}
+
+  {{#error-field-wrapper errors=errors filed='level'}}
+    <h3>Select Level</h3>
+
+    <ul class='medium-block-grid-3'>
+        {{#each levels as |level|}}
+          <li>
+            {{radio-button
+              value=level
+              changed='selectionChanged'
+              groupValue=_levelSelection
+            }}
+
+            <label>
+              {{level.name}}
+
+              {{#if level.hasRequirement}}
+                <br />
+                <em>Requires {{level.requirementName}}</em>
+              {{/if}}
+            </label>
+
+          </li>
+        {{/each}}
+    </ul>
+
+  {{/error-field-wrapper}}
+{{/if}}

@@ -59,6 +59,8 @@ export default Ember.Mixin.create({
 
   _addSponsorshipDiscount() {
     let host = this.get('host');
+    let automaticDiscounts = this.get('automaticDiscounts');
+    if (false === automaticDiscounts) return false;
 
     if (isBlank(host)) { return; }
 
@@ -148,9 +150,12 @@ export default Ember.Mixin.create({
     }
   },
 
+  automaticDiscounts: true,
   _eligibleForDiscount() {
     let host = this.get('host');
     let discounts = host.get('membershipDiscounts');
+    let automaticDiscounts = this.get('automaticDiscounts');
+    if (false === automaticDiscounts) return false;
 
     // no discounts, no change in price
     if (!Ember.isPresent(discounts)) return false;

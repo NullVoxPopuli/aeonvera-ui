@@ -1,0 +1,15 @@
+<div class='row'>
+  {{#error-field-wrapper classes='columns small-8' errors=errors field='city'}}
+    <label>
+      <span>City</span>
+      {{input type='text' value=city placeholder='Minneapolis'}}
+    </label>
+  {{/error-field-wrapper}}
+
+  {{#error-field-wrapper classes='columns small-4' errors=errors field='state'}}
+    <label>
+      <span>State</span>
+      {{input type='text' value=state placeholder='MN'}}
+    </label>
+  {{/error-field-wrapper}}
+</div>

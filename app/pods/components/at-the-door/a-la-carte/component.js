@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     },
 
     absorbFeesClick(value) {
-      this.get('cart.currentOrder').set('forceAbsorbFee', !value);
+      this.get('cart.currentOrder').set('forceAbsorbFee', value);
     },
 
     openPaymentModal(order) {

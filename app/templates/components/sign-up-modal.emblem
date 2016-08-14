@@ -1,7 +1,7 @@
 #signup-modal.reveal-modal.medium data-reveal='true' aria-labeledby='signup-modal-title' aria-hidden='true' role='dialog'
   h2#signup-modal-title.text-center Sign Up
   br
-  p: form
+  p
     .row
       = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='firstName'
         label
@@ -35,7 +35,10 @@
     br
     ul.button-group.text-center.right
       / li: button data-reveal-id='login-modal' Login
-      li: button click='register' type='submit' Sign Up
+      li
+        /= async-button action='register' default='Sign Up' pending='Submitting...'
+        | {{async-button action="register" default='Sign Up' pending='Submitting...'}}
+
 
     a.button href='#' data-reveal-id='login-help-modal' Help
 

@@ -1,0 +1,53 @@
+{{#order/order-cart host=event afterCancel='cancel' afterCheckout='openPaymentModal'}}
+
+  {{#block-slot 'attendanceSetter'}}
+    <tr><td colspan='2'>
+      <input type='checkbox' checked={{absorbFees}} onclick={{action 'absorbFeesClick' value='target.checked'}}>
+      <label>Absorb Service Fee</label>
+    </td></tr>
+  {{/block-slot}}
+
+  {{#block-slot 'listItems'}}
+
+    {{page-header text='At the door registration'}}
+
+    {{order/hidden-mark-paid-modal
+      show=cart.order
+      order=cart.order
+      afterPayment='clearOrder'
+    }}
+
+    <label>What is this person's name?</label>
+    {{input type='text' value=attendance.attendeeName}}
+
+    <label>What is this person's email address?</label>
+    {{input type='email' value=attendance.attendeeEmail}}
+
+    {{form/city-state
+      city=attendance.city
+      state=attendance.state
+      errors=attendance.errors
+    }}
+    <a {{action 'setToEventLocation'}}>Set to Event Location</a>
+    <hr />
+
+    {{at-the-door/register-form/package-select
+      packages=event.packages
+      onSelect='setPackage'
+      errors=attendance.errors
+    }}
+
+    {{at-the-door/register-form/level-select
+      levels=event.levels
+      onSelect='setLevel'
+      show=attendance.package.requiresTrack
+      errors=attendance.errors
+    }}
+
+    {{partial 'register/event/orientation' event=event attendance=attendance}}
+    {{partial 'register/event/competitions' event=event}}
+    {{partial 'register/event/shirts' event=event}}
+    {{partial 'register/event/a-la-carte' event=event}}
+
+  {{/block-slot}}
+{{/order/order-cart}}

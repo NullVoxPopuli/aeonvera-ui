@@ -3,7 +3,7 @@
 #foundation-modals
   / these 2 are accessed from many locations, and are not rendered in place
   = login-help-modal passwordAction='passwordReset' confirmationAction='newConfirmation' unlockAction='newUnlock'
-  = sign-up-modal action='registerNewUser' model=user
+  = sign-up-modal successAction='newUserRegistered'
 
 .off-canvas-wrap data-offcanvas='true'
   = component navigation left=mobileMenuLeft right=mobileMenuRight toDashboardAction='linkToDashboard'

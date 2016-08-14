@@ -15,6 +15,7 @@ export default Ember.Service.extend(RandomString, {
   order:         null,
   host:          null,
   attendance:    null,
+  automaticDiscounts: true,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
     return this.get('userFirstName') + ' ' + this.get('userLastName');
@@ -70,6 +71,7 @@ export default Ember.Service.extend(RandomString, {
           attendance: this.get('attendance'),
           pricingTier: this.get('host.currentTier')
         });
+        order.set('automaticDiscounts', this.get('automaticDiscounts'));
       }
 
       let token = this.get('token');
@@ -90,7 +92,7 @@ export default Ember.Service.extend(RandomString, {
   }),
 
   add(item, quantity = 1) {
-    this.get('currentOrderAsPromise').then(order => {
+    return this.get('currentOrderAsPromise').then(order => {
       order.addLineItem(item, quantity);
       this._adjustCartMaxHeight();
     });
