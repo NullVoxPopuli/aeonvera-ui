@@ -61,6 +61,25 @@
     // margin-top: 70px;
   }
 
+  .sunburst-chart {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    .center-info-container {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      width: 300px;
+      .center-info {
+        position: absolute;
+        left: -50%;
+        width: 300px;
+      }
+    }
+  }
+
   .flash-message.alert-box {
     position: fixed;
     top: 45px;

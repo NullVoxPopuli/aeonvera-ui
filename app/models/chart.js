@@ -5,4 +5,5 @@ export default DS.Model.extend({
   incomeTimes: DS.attr(),
   registrations: DS.attr(),
   incomes: DS.attr(),
+  rootNode: DS.attr(),
 });

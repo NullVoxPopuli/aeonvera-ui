@@ -8,6 +8,7 @@ export default Ember.Route.extend({
       adapterOptions: {
         query: {
           event_id: event.get('id'),
+          chart_type: 'line-income-and-registrations'
         },
       },
     });
