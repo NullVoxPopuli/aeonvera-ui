@@ -17,6 +17,7 @@ export default Ember.Service.extend({
       // currently, event_id is required, because discounts
       // are only on events
       event_id: host.get('id'),
+      include: 'restraints',
       q: {
         name_eq: discountCode
       }

@@ -18,7 +18,8 @@ export default Ember.Component.extend(ResizeMixin, {
   },
 
   // debouncedDidResize: function() {
-  //   this._drawGraph();
+  //   // this._drawGraph();
+  //
   // }.on('resize'),
 
   _buildData() {
@@ -60,12 +61,22 @@ export default Ember.Component.extend(ResizeMixin, {
     // var y = d3.scale.sqrt().range([0, radius]);
     var y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]);
 
-    var svg = d3.select(`#${chartId}`).append('svg')
-        .attr('width', width)
-        .attr('height', height)
+    var svg = d3.select(`#${chartId}`)
+      .append('div')
+        .classed('d3-svg-container', true)
+      .append('svg')
+        //responsive SVG needs these 2 attributes and no width and height attr
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        //class to make it responsive
+        .classed("svg-content-responsive", true)
+        // .attr('width', width)
+        // .attr('height', height)
       .append('g')
         .attr('id', 'container')
         .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+    this.set('svg', svg);
 
     var partition = d3.layout.partition()
         .sort(function(a, b) { return d3.ascending(a.name, b.name); })

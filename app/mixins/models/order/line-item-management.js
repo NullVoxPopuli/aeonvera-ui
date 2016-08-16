@@ -277,7 +277,7 @@ export default Ember.Mixin.create({
   removeItemsWithNullIds() {
     let items = this.get('store').peekAll('orderLineItem');
     items.forEach(item => {
-      if (item.get('id') === null) {
+      if (item.get('id') === null && !item.get('isSaving')) {
         item.unloadRecord();
       }
     });
