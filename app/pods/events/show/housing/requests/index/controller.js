@@ -4,6 +4,7 @@ import ENV from 'aeonvera/config/environment';
 export default Ember.Controller.extend({
   columns: [
     { property: 'requesterName', title: 'Name' },
+    { property: 'housingProvision.providingName', title: 'Hosted By' },
     { property: 'attendance.hasPaid', title: 'Paid' },
     { property: '', title: 'Allergies' },
     { property: '', title: 'Requested', sort: false },
@@ -15,6 +16,7 @@ export default Ember.Controller.extend({
   ],
 
   eventId: Ember.computed.alias('model.eventId'),
+  provisions: Ember.computed.alias('model.provisions'),
   requests: Ember.computed.alias('model.requests'),
   paramsForDownload: Ember.computed('model.eventId', {
     get(key) {

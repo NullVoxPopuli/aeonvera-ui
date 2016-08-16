@@ -27,6 +27,9 @@
       {{request.name}}
     {{/if}}
   </td>
+  <td>
+    {{form/provision-select request=request provisions=provisions}}
+  </td>
   <td>{{request.attendance.hasPaid}}</td>
   <td>
     {{#if request.allergicToPets}}

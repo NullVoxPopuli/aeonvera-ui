@@ -1,0 +1,20 @@
+{{#if isEditing}}
+  {{select-2
+    content=provisions
+    placeholder="Select a housing provision"
+    value=request.housingProvision
+    optionLabelPath='providingName'
+    typeaheadSearchingText="Searching provisions"
+    typeaheadNoMatchesText="No provisions by name: '%@'"
+    typeaheadErrorText="Loading failed: %@"
+    delay=500
+    allowClear=true}}
+
+  <a {{action 'cancel'}}>Cancel</a> | <a {{action 'save'}}>Save</a>
+{{else}}
+  {{request.housingProvision.providingName}}
+  <a {{action 'change'}}>Change</a>
+  {{#if request.hasDirtyAttributes}}
+    Not Saved! | <a {{action 'save'}}>Save</a>
+  {{/if}}
+{{/if}}

@@ -11,8 +11,14 @@ export default Ember.Route.extend({
       include: 'attendance'
     });
 
+    let provisions = this.store.query('housing-provision', {
+      event_id: eventId,
+      include: 'attendance'
+    });
+
     return {
       requests: requests,
+      provisions: provisions,
       eventId: eventId
     };
   },
