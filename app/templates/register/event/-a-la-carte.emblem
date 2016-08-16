@@ -2,11 +2,12 @@ if (is-present event.lineItems)
   h3 A la carte
   table
     each event.lineItems as |lineItem|
-      tr
-        td: a.button.tiny.no-margins click='"add" lineItem' Add
-        td = to-usd lineItem.currentPrice
-        td
-          unless lineItem.pictureIsMissing
-            img src="{{lineItem.pictureUrlThumb}}"
+      unless (has-expired lineItem.expiresAt)
+        tr
+          td: a.button.tiny.no-margins click='"add" lineItem' Add
+          td = to-usd lineItem.currentPrice
+          td
+            unless lineItem.pictureIsMissing
+              img src="{{lineItem.pictureUrlThumb}}"
 
-        td = lineItem.name
+          td = lineItem.name

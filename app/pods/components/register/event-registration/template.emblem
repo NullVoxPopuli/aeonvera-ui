@@ -14,7 +14,8 @@ if model.registrationIsOpen
         = partial 'register/event/competitions' event=event
         unless event.shirtSalesHaveEnded
           = partial 'register/event/shirts' event=event
-        = partial 'register/event/a-la-carte' event=event
+        if event.hasActiveLineItems
+          = partial 'register/event/a-la-carte' event=event
 else
   .event-registration-is-not-yet-open
     .text-center

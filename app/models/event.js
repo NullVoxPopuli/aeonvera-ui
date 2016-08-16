@@ -61,6 +61,14 @@ export default Host.extend(RegistrationOpens, {
       let expiresAt = this.get('shirtSalesEndAt');
       return expiresAt < new Date();
     }
+  }),
+
+  hasActiveLineItems: Ember.computed('lineItems', {
+    get() {
+      let lineItems = this.get('lineItems');
+      let notExpired = lineItems.filter(item => new Date() < item.get('expiresAt'));
+      return Ember.isPresent(notExpired);
+    }
   })
 
 });
