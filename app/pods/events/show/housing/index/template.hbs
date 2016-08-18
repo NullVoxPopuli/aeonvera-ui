@@ -30,5 +30,24 @@
         </button>
       {{/link-to}}
     </div>
+
+
   </div>
+  <div class='row'>
+    <div class='small-3 columns'>
+
+    </div>
+
+    <div class='center-margin'>
+      {{charts/event/assigned-housing model=model}}
+      <div class='center-margin row width-of-200px'>
+        <div class='small-6 columns'>{{model.assigned}} Assigned</div>
+        <div class='small-6 columns'>{{model.remaining}} Remaining</div>
+      </div>
+    </div>
+    <div class='small-3 columns'>
+    </div>
+  </div>
+
+
 </div>
