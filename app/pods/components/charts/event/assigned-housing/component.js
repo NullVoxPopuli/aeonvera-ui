@@ -19,12 +19,12 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    setTimeout(() => {
+    Ember.run.later(() => {
       let requests = this.get('model.requests');
       let assigned = this.get('model.assigned');
       let percent = assigned / requests * 100;
       this.set('data.columns', [['assigned', percent]]);
       this.notifyPropertyChange('data');
-    }, 1000);
+    });
   }
 });
