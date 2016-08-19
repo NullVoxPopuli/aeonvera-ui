@@ -66,7 +66,7 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' *.stripe.com sidecar.gitter.im *",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *",
       'font-src': "'self' *.amazonaws.com",
       'connect-src': "*",
       'img-src': "'self'  *.amazonaws.com data: https://*.stripe.com *",
@@ -125,7 +125,7 @@ module.exports = function(environment) {
 
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    
+
     ENV['contentSecurityPolicy'] = {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
