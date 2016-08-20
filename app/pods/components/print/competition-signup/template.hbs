@@ -1,0 +1,26 @@
+<div class='do-not-print'>
+  <label>How many more rows?</label>
+  {{input type='number' value=additionalRows}}
+</div>
+
+<div class='printable-signup-sheet'>
+  {{#if competition.isSoloJazz}}
+
+  {{/if}}
+
+  {{#if competition.isJackAndJill}}
+    {{print/competition-signup/jack-and-jill competition=competition additionalRows=additionalRows}}
+  {{/if}}
+
+  {{#if competition.isStrictly}}
+    {{print/competition-signup/strictly-signup competition=competition additionalRows=additionalRows}}
+  {{/if}}
+
+  {{#if competition.isTeam}}
+
+  {{/if}}
+
+  {{#if competition.isCrossover}}
+
+  {{/if}}
+</div>

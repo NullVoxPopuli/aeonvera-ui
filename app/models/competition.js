@@ -1,6 +1,9 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import LineItem from '../models/line-item';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
+
+const { computed } = Ember;
 
 export default LineItem.extend(LeadsAndFollows, {
   initialPrice: DS.attr('number'),
@@ -32,4 +35,23 @@ export default LineItem.extend(LeadsAndFollows, {
     }
   }.property('kind'),
 
+  isSoloJazz: computed('kind', {
+    get() { return this.get('kind') === 0; }
+  }),
+
+  isJackAndJill: computed('kind', {
+    get() { return this.get('kind') === 1; }
+  }),
+
+  isStrictly: computed('kind', {
+    get() { return this.get('kind') === 2; }
+  }),
+
+  isTeam: computed('kind', {
+    get() { return this.get('kind') === 3; }
+  }),
+
+  isCrossover: computed('kind', {
+    get() { return this.get('kind') === 4; }
+  })
 });
