@@ -8,6 +8,10 @@
 /node_modules
 /bower_components
 
+# vim
+*.swp
+*.swo
+
 # misc
 /lcov.dat
 /coverage.*

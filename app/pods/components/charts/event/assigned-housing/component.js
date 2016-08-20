@@ -15,7 +15,11 @@ export default Ember.Component.extend({
   size: {
     height: 180
   },
-  guage: {},
+  gauge: {
+    label: {
+      show: false
+    }
+  },
 
   init() {
     this._super(...arguments);
@@ -23,7 +27,8 @@ export default Ember.Component.extend({
       let requests = this.get('model.requests');
       let assigned = this.get('model.assigned');
       let percent = assigned / requests * 100;
-      this.set('data.columns', [['assigned', percent]]);
+
+      this.set('data.columns', [['Assigned', percent]]);
       this.notifyPropertyChange('data');
     });
   }
