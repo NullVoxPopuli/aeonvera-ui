@@ -19,11 +19,7 @@ export default Ember.Mixin.create({
       query.include = include;
     }
 
-    let record = this.store.findRecord(modelName, params[idName], {
-      adapterOptions: {
-        query: query,
-      },
-    });
+    let record = this.store.findRecord(modelName, params[idName], query);
     return record;
   },
 });

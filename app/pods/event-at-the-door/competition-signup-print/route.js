@@ -1,6 +1,8 @@
 import Ember from 'ember';
-import ShowIndex from 'aeonvera/mixins/routes/crud/events/show/index';
+import Show from 'aeonvera/mixins/routes/crud/events/show';
 
-export default Ember.Route.extend(ShowIndex, {
+export default Ember.Route.extend(Show, {
   modelName: 'competition',
+  parentPath: 'event-at-the-door',
+  include: 'order_line_items.order'
 });

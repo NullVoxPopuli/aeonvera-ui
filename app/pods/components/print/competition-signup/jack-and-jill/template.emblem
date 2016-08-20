@@ -1,45 +1,46 @@
-h2 {{competition.name}} (Leads)
-table
-  thead: tr
-    th width='5%' #
-    th width='5%' Bid#
-    th width='5%' Paid
-    th Name
-  tbody
-    each leads as |oli index|
-      tr
-        td {{plus index 1}}
-        td
-        td = oli.order.paid
-        td = oli.order.userName
+.row
+  .columns.small-6
+    h2 {{competition.name}} (Leads)
+    table
+      thead: tr
+        th width='5%' #
+        th width='5%' Bid#
+        th width='5%' Paid
+        th Name
+      tbody
+        each leads as |oli index|
+          tr
+            td {{plus index 1}}
+            td
+            td = to-bool oli.order.paid
+            td = oli.order.userName
 
-    each additionalRowsArray as |index|
-      tr
-        td {{plus 1 (plus index numberOfLeads)}}
-        td
-        td &nbsp;
-        td
+        each additionalRowsArray as |index|
+          tr
+            td {{plus 1 (plus index numberOfLeads)}}
+            td
+            td &nbsp;
+            td
 
-.page-break &nbsp;
+  .columns.small-6
+    h2 {{competition.name}} (Follows)
+    table
+      thead: tr
+        th width='5%' #
+        th width='5%' Bid#
+        th width='5%' Paid
+        th Name
+      tbody
+        each follows as |oli index|
+          tr
+            td {{plus index 1}}
+            td
+            td = to-bool oli.order.paid
+            td = oli.order.userName
 
-h2 {{competition.name}} (Follows)
-table
-  thead: tr
-    th width='5%' #
-    th width='5%' Bid#
-    th width='5%' Paid
-    th Name
-  tbody
-    each follows as |oli index|
-      tr
-        td {{plus index 1}}
-        td
-        td = oli.order.paid
-        td = oli.order.userName
-
-    each additionalRowsArray as |_ index|
-      tr
-        td {{plus 1 (plus index numberOfFollows)}}
-        td
-        td &nbsp;
-        td
+        each additionalRowsArray as |_ index|
+          tr
+            td {{plus 1 (plus index numberOfFollows)}}
+            td
+            td &nbsp;
+            td
