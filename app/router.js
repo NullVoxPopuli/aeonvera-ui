@@ -104,6 +104,7 @@ Router.map(function() {
     this.route('event-at-the-door', { resetNamespace: true, path: '/event-at-the-door/:event_id' }, function() {
       this.route('checkin');
       this.route('competition-list');
+      this.route('competition-signup-print', { path: 'competition/:competition_id/print' });
       this.route('a-la-carte');
       this.route('register');
     });
