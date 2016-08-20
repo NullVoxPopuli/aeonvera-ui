@@ -10,6 +10,7 @@ table
     th # Leads
     th # Follows
     th Total
+    th
   tbody
     each model as |competition|
       tr
@@ -20,3 +21,5 @@ table
         td = competition.numberOfLeads
         td = competition.numberOfFollows
         td = competition.totalRegistrants
+        td: link-to 'events.show.competitions.show.print' competition
+          | Print Sign-Up Sheet

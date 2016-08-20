@@ -1,0 +1,50 @@
+@media print {
+  nav,
+  .sidebar,
+  .do-not-print,
+  footer {
+    display: none;
+  }
+
+
+    @page{
+        margin: 150px 0px 150px 0px !important;
+        padding: 0px !important;
+    }
+
+    table { page-break-after:auto;}
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    td    { page-break-inside:avoid; page-break-after:auto }
+    thead {
+        display:table-row-group;
+    }
+
+
+  .printable-signup-sheet {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 1000000000;
+    display: block;
+  }
+}
+
+.printable-signup-sheet {
+  table {
+    width: 100%;
+
+    tr {
+      border-bottom: 1px solid black;
+    }
+
+    td {
+      padding: 15px;
+      border-right: 1px solid black;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
