@@ -6,28 +6,28 @@ export default Ember.Component.extend({
 
   columns: [
     { property: 'createdAt', title: 'Time' },
-    { property: 'paidAmount', title: 'Gross Paid' },
-    { property: 'netAmountReceived', title: 'Net Amount Received' },
-    { property: 'totalFeeAmount', title: 'Fees' }
+    { property: 'currentPaidAmount', title: 'Gross Paid' },
+    { property: 'currentNetAmountReceived', title: 'Net Amount Received' },
+    { property: 'currentTotalFeeAmount', title: 'Fees' }
   ],
 
   totalPaidAmount: function () {
     let orders = this.get('filteredOrders');
-    return orders.mapBy('paidAmount').reduce(function (a, b) {
+    return orders.mapBy('currentPaidAmount').reduce(function (a, b) {
       return a + b;
     }, 0);
   }.property('filteredOrders'),
 
   totalAmountReceived: function () {
     let orders = this.get('filteredOrders');
-    return orders.mapBy('netAmountReceived').reduce(function (a, b) {
+    return orders.mapBy('currentNetAmountReceived').reduce(function (a, b) {
       return a + b;
     }, 0);
   }.property('filteredOrders'),
 
   totalFeeAmount: function () {
     let orders = this.get('filteredOrders');
-    return orders.mapBy('totalFeeAmount').reduce(function (a, b) {
+    return orders.mapBy('currentTotalFeeAmount').reduce(function (a, b) {
       return a + b;
     }, 0);
   }.property('filteredOrders'),
