@@ -1,44 +1,43 @@
-form submit='save'
-  .row
-    = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='name'
-      label
-        span Name
-        = input value=model.name placeholder='' type='text' required=true
+.row
+  = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='name'
+    label
+      span Name
+      = input value=model.name placeholder='' type='text' required=true
 
-    = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='description'
-      label
-        span Description
-        = input value=model.description placeholder='e.g.: This awesome thing' type='text'
+  = error-field-wrapper classes='columns small-6 medium-3' errors=model.errors field='description'
+    label
+      span Description
+      = input value=model.description placeholder='e.g.: This awesome thing' type='text'
 
-    = form/dollar-field classes='columns small-6 medium-3' errors=model.errors model=model labelText='Price' field='price'
-      if showSetAllToPriceButton
-        a.right.small click='setAllSizesToPrice' &nbsp;Set All Sizes
+  = form/dollar-field classes='columns small-6 medium-3' errors=model.errors model=model labelText='Price' field='price'
+    if showSetAllToPriceButton
+      a.right.small click='setAllSizesToPrice' &nbsp;Set All Sizes
 
-  .row
-    = error-field-wrapper classes='columns small-6' errors=model.errors field='becomesAvailableAt'
-      label
-        span This item becomes available for registration on date:
-        = form/date-time-input model=model field='becomesAvailableAt'
+.row
+  = error-field-wrapper classes='columns small-6' errors=model.errors field='becomesAvailableAt'
+    label
+      span This item becomes available for registration on date:
+      = form/date-time-input model=model field='becomesAvailableAt'
 
-    = error-field-wrapper classes='columns small-6' errors=model.errors field='expiresAt'
-      label
-        span This item is no longer available for registration on date
-        = form/date-time-input model=model field='expiresAt'
+  = error-field-wrapper classes='columns small-6' errors=model.errors field='expiresAt'
+    label
+      span This item is no longer available for registration on date
+      = form/date-time-input model=model field='expiresAt'
 
-  .row
-    .columns.small-12.medium-6
-      label Picture
-      = form/image-upload property='picture' model=model
+.row
+  .columns.small-12.medium-6
+    label Picture
+    = form/image-upload property='picture' model=model
 
-    .columns.small-12.medium-6
-      label Sizes
-      = editing/event/shirt-form/size-editor model=model
+  .columns.small-12.medium-6
+    label Sizes
+    = editing/event/shirt-form/size-editor model=model
 
 
-  .row
-    .small-12.columns
-      .right
-        ul.button-group
-          li: button.secondary click='cancel' Cancel
-          li: button disabled=isDirty  title=submitTitle click='save' Save
-        / TODO: figure out a nice way to handle save/cancel positioning
+.row
+  .small-12.columns
+    .right
+      ul.button-group
+        li: button.secondary click='cancel' Cancel
+        li: button disabled=isDirty  title=submitTitle click='save' Save
+      / TODO: figure out a nice way to handle save/cancel positioning

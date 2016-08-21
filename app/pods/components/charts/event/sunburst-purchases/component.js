@@ -44,18 +44,18 @@ export default Ember.Component.extend(ResizeMixin, {
     const radius = Math.min(width, height) / 2;
     const padding = 0;
     // https://www.materialui.co/colors
-    const c2olor = d3.scale.ordinal().range([
-      // blues
-      '#0D47A1', '#1565C0', '#1976D2', '#1E88E5', '#2196F3', '#42A5F5',
-      // purples
-      '#311B92', '#4527A0', '#512DA8', '#5E35B1', '#673AB7', '#7E57C2',
+    const color = d3.scale.ordinal().range([
+      //       Green   Blue      Yellow     Red
+      '#fff', '#B3D2B2', '#9FBBCC', '#AF87C6', '#EDB8B8',
+
+      '#bcc3db', '#c0a9b0', '#7880b5', '#6987c9', '#6bbaec'
 
       // attempt to make the two halves their own color scheme
       // inner,
-      // '#bbbbbb', '#0D47A1', '#4A148C', '#f00', '#00f', '#0f0', '#ff0', '#0ff', '#f0f', '#f00', '#fc9'
+      // '#bbbbbb', '#0D47A1', '#4A148C', '#f00', '#00f', '#0f0', '#ff0', '#0ff', '#f0f', '#f00', '#fc9',
       // '#fff', '#0D47A1', '#4A148C', '#FDD835', '#F4511E', '#f44336', '#E91E63', '#009688', '#E91E63', '#FFEB3B', '#03A9F4'
     ]);
-    const color = d3.scale.category20c();
+    // const color = d3.scale.category20c();
 
     var x = d3.scale.linear().range([0, 2 * Math.PI]);
     // var y = d3.scale.sqrt().range([0, radius]);
@@ -101,7 +101,7 @@ export default Ember.Component.extend(ResizeMixin, {
         .attr('d', arc)
         .style('stroke', '#fff')
         .style('fill-rule', 'evenodd')
-        .style('fill', d => color((d.children ? d : d.parent).name))
+        .style('fill', d => color(d.name))
         .on('click', click);
 
     // Computes the label angle of an arc, converting from radians to degrees.
@@ -135,15 +135,15 @@ export default Ember.Component.extend(ResizeMixin, {
         .on('click', click);
     textEnter.append('tspan')
         .attr('x', 0)
-        .text(d => d.depth ? d.name.split(' - ')[0] : '');
+        .text(d => d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '');
     textEnter.append('tspan')
         .attr('x', 0)
         .attr('dy', '1em')
-        .text(d => d.depth ? d.name.split(' - ')[1] || '' : '');
-    textEnter.append('tspan')
-        .attr('x', 0)
-        .attr('dy', '2em')
-        .text(d => d.size);
+        .text(d => d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '');
+    // textEnter.append('tspan')
+    //     .attr('x', 0)
+    //     .attr('dy', d => d.depth ? (d.name.split(' - ').length > 1 ? '-2em' : '-1em') : '')
+    //     .text(d => d.size);
 
     function click(d) {
       path.transition()
