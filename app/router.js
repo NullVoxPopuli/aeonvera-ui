@@ -106,6 +106,7 @@ Router.map(function() {
       this.route('competition-list');
       this.route('competition-signup-print', { path: 'competition/:competition_id/print' });
       this.route('a-la-carte');
+      this.route('a-la-carte-print', { path: 'a-la-carte/print' });
       this.route('register');
     });
 

@@ -1,0 +1,18 @@
+.printable-signup-sheet.talley-sheet
+  h3 Shirts
+  each model.shirts as |shirt|
+    span {{to-usd shirt.price}} - {{shirt.name}}
+    hr
+  br
+
+  h3 A la carte
+  each model.lineItems as |item|
+    span {{to-usd item.currentPrice}} - {{item.name}}
+    hr
+  br
+
+  h3 Competitions
+  each model.competitions as |competition|
+    span {{to-usd competition.currentPrice}} - {{competition.name}}
+    hr
+  br
