@@ -7,6 +7,14 @@
     label End Time
     = form/date-time-field selectedDate=endTime
 
+= input type='checkbox' checked=showCash
+label Cash
+= input type='checkbox' checked=showChecks
+label Checks
+= input type='checkbox' checked=showStripe
+label Stripe
+
+
 h4 Transactions
 
 span Total:
@@ -22,8 +30,8 @@ table
     td = to-usd totalPaidAmount
     td = to-usd totalAmountReceived
     td = to-usd totalFeeAmount
-    
-= sortable-table columns=columns data=filteredOrders as |order|     
+
+= sortable-table columns=columns data=filteredOrders as |order|
   td = date-with-format order.createdAt 'lll'
   td = to-usd order.currentPaidAmount
   td = to-usd order.currentNetAmountReceived

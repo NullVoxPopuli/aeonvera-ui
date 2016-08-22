@@ -8,6 +8,13 @@ const { isPresent, isBlank, computed, inject } = Ember;
 const { attr, belongsTo, hasMany, Model } = DS;
 
 export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
+
+  PAYPAL: 'PayPal',
+  CHECK: 'Check',
+  CASH: 'Cash',
+  STRIPE: 'Stripe',
+  DEBIT: 'Debit',
+
   hostName:          attr('string'),
   hostUrl:           attr('string'),
   notes:             attr('string'),
