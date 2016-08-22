@@ -61,6 +61,30 @@ export default Ember.Component.extend({
         let errors = json.errors;
         this.get('flashMessages').alert(errors);
       });
+    },
+
+    processStripeToken(params) {
+      let token = params.id;
+      let order = this.get('model');
+
+      order.set('checkoutToken', token);
+
+      // by saving, the server is going to attempt to charge the card,
+      //
+      // if nothing has gone wrong with the payment
+      // and an email will be sent to the registrant.
+      //
+      // if there are errors with the credit card,
+      // the user must be notified
+      order.save().then(record => {
+        this.sendAction('afterPayment');
+        this.get('flashMessages').success('Order was successfully marked as paid.');
+        Ember.$('.close-reveal-modal').click();
+      }, error => {
+        // model's error object is used.
+        this.get('flashMessages').alert(error);
+        this.set('showPaymentInProgress', false);
+      });
     }
   }
 });

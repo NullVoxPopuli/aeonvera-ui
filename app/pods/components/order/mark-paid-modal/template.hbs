@@ -61,7 +61,11 @@
 
   {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
     <ul class='button-group right'>
-      <li>{{stripe/checkout-button model=order label='Pay' email=order.checkoutEmail}}</li>
+      <li>
+        {{stripe/checkout-button
+          model=order
+          label='Pay'
+          email=order.checkoutEmail}}</li>
     </ul>
   {{/if}}
 {{/foundation-modal}}
