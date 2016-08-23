@@ -37,9 +37,9 @@ export default Ember.Component.extend({
     }
 
     if (queryPresent) {
-      filtered = filtered.filterBy('attendeeName', function (ea) {
+      filtered = filtered.filter(function (ea) {
         var name = ea.get('attendeeName').toLowerCase();
-        return name.indexOf(lowerQuery) !== -1;
+        return name.includes(lowerQuery);
       });
     }
 
