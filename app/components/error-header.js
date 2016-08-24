@@ -40,6 +40,13 @@ export default Ember.Component.extend({
 
     // ember-data model error || JSON API error
     let reason = firstErrorObject.message || firstErrorObject.detail;
+
+    // Errors on the root model
+    // https://www.youtube.com/watch?v=IfeyUGZt8nk
+    if (field === 'base') {
+      return reason;
+    }
+
     return field + ' ' + reason;
   }),
 
