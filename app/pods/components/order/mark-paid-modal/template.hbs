@@ -3,69 +3,89 @@
   name=modalName
   buttonText='Mark Paid'}}
 
+  {{#if showOrder}}
+    {{order/order-review model=order}}
+    <hr / />
+  {{/if}}
+
   <div class='row'>
-    <div class='columns small-4'>
-      {{radio-button value=paymentMethods.CASH groupValue=paymentMethod}}
-      <label>Cash</label>
+    <div class='columns medium-6'>
+      <label>Amount
+        <a class='right' {{action 'setToOrderTotal'}}>Set to order total</a>
+      </label>
+      {{form/dollar-field
+        value=cashOrCheckAmount
+        placeholder=amount
+      }}
+
+      {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
+        <label>Check Number</label>
+        {{input type='text' value=checkNumber}}
+      {{/if}}
+
+      <label>Notes</label>
+      {{input value=notes}}
     </div>
-    <div class='columns small-4'>
-      {{radio-button value=paymentMethods.CHECK groupValue=paymentMethod}}
-      <label>Check</label>
-    </div>
-    <div class='columns small-4'>
-      {{radio-button value=paymentMethods.STRIPE groupValue=paymentMethod}}
-      <label>Stripe</label>
+
+    <div class='columns medium-6'>
+      <div class='row'>
+        {{radio-button value=paymentMethods.CASH groupValue=paymentMethod}}
+        <label>Cash</label>
+        <br />
+        {{radio-button value=paymentMethods.CHECK groupValue=paymentMethod}}
+        <label>Check</label>
+        <br />
+        {{radio-button value=paymentMethods.STRIPE groupValue=paymentMethod}}
+        <label>Stripe</label>
+
+        {{#if (isEqual paymentMethod paymentMethods.CASH)}}
+        <hr>
+        <ul class='button-group right'>
+          <li>
+            {{#form/confirm-button
+              action='markPaid'
+              confirmText=confirmText
+              showCancel=true
+              cancelClasses='small'
+              confirmClasses='small'
+            }}
+              <button class='small'>Mark Paid</button>
+            {{/form/confirm-button}}
+            {{!-- <button {{action 'markPaid'}}
+            class='small'
+            disabled={{isPaying}}>Mark Paid</button> --}}
+          </li>
+        </ul>
+        {{/if}}
+
+        {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
+          <hr>
+          <ul class='button-group right'>
+            <li>
+              <button {{action 'markPaid'}}
+              class='small'
+              disabled={{isPaying}}>Mark Paid</button>
+            </li>
+          </ul>
+        {{/if}}
+
+
+        {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
+          <ul class='button-group right'>
+            <li>
+              {{stripe/checkout-button
+                model=order
+                label='Pay'
+                paymentAmountOverride=amount
+                email=order.checkoutEmail}}</li>
+          </ul>
+        {{/if}}
+
+      </div>
     </div>
   </div>
 
 
-  {{#if (isEqual paymentMethod paymentMethods.CASH)}}
-    <label>Amount</label>
-    {{form/dollar-field value=amount}}
-    <label>Notes</label>
-    {{input value=notes}}
-    <hr>
-    <ul class='button-group right'>
-      <li>
-        <button {{action 'markPaid'}}
-        class='small'
-        disabled={{isPaying}}>Mark Paid</button>
-      </li>
-    </ul>
-  {{/if}}
 
-  {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
-    <div class='row'>
-      <div class='columns medium-6'>
-        <label>Amount</label>
-        {{form/dollar-field value=amount}}
-      </div>
-      <div class='columns medium-6'>
-        <label>Check Number</label>
-        {{input type='text' value=checkNumber}}
-      </div>
-      <div class='columns small-12'>
-        <label>Notes</label>
-        {{input value=notes}}
-      </div>
-    </div>
-    <hr>
-    <ul class='button-group right'>
-      <li>
-        <button {{action 'markPaid'}}
-        class='small'
-        disabled={{isPaying}}>Mark Paid</button>
-      </li>
-    </ul>
-  {{/if}}
 
-  {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
-    <ul class='button-group right'>
-      <li>
-        {{stripe/checkout-button
-          model=order
-          label='Pay'
-          email=order.checkoutEmail}}</li>
-    </ul>
-  {{/if}}
 {{/foundation-modal}}

@@ -13,7 +13,7 @@ td
   if model.owesMoney
     span  Owes {{to-usd model.amountOwed}}
     br
-    = order/mark-paid-modal order=model.unpaidOrder
+    = order/mark-paid-modal order=model.unpaidOrder showOrder=true
   else
     span Paid
 td

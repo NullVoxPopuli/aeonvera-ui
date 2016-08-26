@@ -2,7 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   preConfirmClasses: '', // set by caller
+  cancelClasses: '',
+  confirmClasses: 'no-margins tiny',
   target: null, // set by caller
+  confirmText: 'Confirm',
+  showCancel: false,
   hasYetToConfirm: true,
 
   actions: {
@@ -12,6 +16,10 @@ export default Ember.Component.extend({
 
     triggerAction() {
       this.sendAction('action', this.get('target'));
+    },
+
+    cancel() {
+      this.set('hasYetToConfirm', true);
     }
   }
 });

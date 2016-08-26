@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const { computed, isPresent } = Ember;
 
 export default Ember.Component.extend({
   ajax: Ember.inject.service('authenticated-ajax'),
 
   // passed in
   order: null,
+  showOrder: false,
 
   // set in template via radio buttons
   paymentMethods: {
@@ -28,7 +29,8 @@ export default Ember.Component.extend({
       let orderTotal = this.get('orderTotal');
       let enteredAmount = this.get('cashOrCheckAmount');
 
-      return enteredAmount || orderTotal;
+      let result = isPresent(enteredAmount) ? enteredAmount :orderTotal;
+      return parseFloat(result);
     },
 
     set(key, value) {
@@ -36,11 +38,19 @@ export default Ember.Component.extend({
     }
   }),
 
+  confirmText: computed({
+    get() { return `You have collected $${this.get('amount')}?`; }
+  }),
+
   modalName: computed('order', {
     get() { return `mark-paid-${this.get('order.id')}`; }
   }),
 
   actions: {
+    setToOrderTotal() {
+      this.set('cashOrCheckAmount', null);
+    },
+
     markPaid() {
       let id = this.get('order.id');
       let url = '/api/orders/' + id  + '/mark_paid';

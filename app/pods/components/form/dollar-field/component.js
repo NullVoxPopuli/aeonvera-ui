@@ -8,6 +8,8 @@ export default Ember.Component.extend({
   field: '',
   errors: [],
   classes: '',
+  disabled: false,
+  placeholder: '',
 
   // if value is passed in, we can ignore model and field
   // when passed, it must be initialized to something other
