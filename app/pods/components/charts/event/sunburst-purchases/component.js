@@ -24,7 +24,7 @@ export default Ember.Component.extend(ResizeMixin, {
 
   _buildData() {
     let event = this.get('event');
-    return this.store.findRecord('chart', event.get('id'), {
+    return this.store.findRecord('chart', `${event.id}-registration-breakdown`, {
       adapterOptions: {
         query: {
           event_id: event.get('id'),

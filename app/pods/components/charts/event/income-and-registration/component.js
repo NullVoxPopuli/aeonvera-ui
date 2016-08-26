@@ -43,7 +43,12 @@ export default Ember.Component.extend({
 
   willRender() {
     this._super(...arguments);
+    this._fillData();
+  },
 
+
+
+  _fillData() {
     let model = this.get('model');
     let incomes = model.get('incomes');
     let registrationTimes = model.get('registrationTimes');

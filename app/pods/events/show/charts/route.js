@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function () {
-    let event = this.modelFor('events.show');
-    return this.store.findRecord('chart', event.get('id'), {
+  model(params, transition) {
+    let id = transition.params['events.show'].event_id;
+    return this.store.findRecord('chart', `${id}-income-and-registration`, {
       adapterOptions: {
         query: {
-          event_id: event.get('id'),
+          event_id: id,
           chart_type: 'line-income-and-registrations'
-        },
-      },
+        }
+      }
     });
   },
 });
