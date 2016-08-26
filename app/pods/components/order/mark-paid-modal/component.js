@@ -65,7 +65,7 @@ export default Ember.Component.extend({
 
     processStripeToken(params) {
       let token = params.id;
-      let order = this.get('model');
+      let order = this.get('order');
 
       order.set('checkoutToken', token);
 
@@ -76,14 +76,16 @@ export default Ember.Component.extend({
       //
       // if there are errors with the credit card,
       // the user must be notified
-      order.save().then(record => {
-        this.sendAction('afterPayment');
-        this.get('flashMessages').success('Order was successfully marked as paid.');
-        Ember.$('.close-reveal-modal').click();
-      }, error => {
-        // model's error object is used.
-        this.get('flashMessages').alert(error);
-        this.set('showPaymentInProgress', false);
+      order.asPromiseObject().then(order => {
+        order.save().then(record => {
+          this.sendAction('afterPayment');
+          this.get('flashMessages').success('Order was successfully marked as paid.');
+          Ember.$('.close-reveal-modal').click();
+        }, error => {
+          // model's error object is used.
+          this.get('flashMessages').alert(error);
+          this.set('showPaymentInProgress', false);
+        });
       });
     }
   }

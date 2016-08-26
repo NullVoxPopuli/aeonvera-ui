@@ -17,10 +17,16 @@
       afterPayment='clearOrder'
     }}
 
-    <label>What is this person's name?</label>
-    {{input type='text' value=attendance.attendeeName}}
+    {{#error-field-wrapper errors=attendance.errors field='first name' includeFieldName=true fieldName='First name'}}
+      {{#error-field-wrapper errors=attendance.errors field='last name' includeFieldName=true fieldName='Last name'}}
+      <label>
+        <span>What is this person's name?</span>
+        {{input type='text' value=attendance.attendeeName placeholder='First Last'}}
+      </label>
+      {{/error-field-wrapper}}
+    {{/error-field-wrapper}}
 
-    <label>What is this person's email address?</label>
+    <label>What is this person's email address? (Optional, receipt goes here)</label>
     {{input type='email' value=attendance.attendeeEmail}}
 
     {{form/city-state

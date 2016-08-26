@@ -21,6 +21,7 @@ export default DS.Model.extend(
   Checkinable, {
     attendeeName: DS.attr('string'),
     attendeeEmail: DS.attr('string'),
+
     danceOrientation: DS.attr('string'),
     registeredAt: DS.attr('date'),
 
@@ -53,5 +54,11 @@ export default DS.Model.extend(
     hasUnpaidOrder: function () {
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
+
+    fullName: Ember.computed('firstName', 'lastName', {
+      get(key) {
+        return `${this.get('firstName')} ${this.get('lastName')}`;
+      }
+    })
 
   });
