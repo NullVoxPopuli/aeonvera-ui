@@ -9,7 +9,8 @@ if model.registrationIsOpen
         = partial 'register/event/packages' event=event attendance=attendance
         = partial 'register/event/levels' event=event attendance=attendance
         = partial 'register/event/orientation' event=event attendance=attendance
-        = partial 'register/event/housing' event=event
+        if event.isHousingEnabled
+          = partial 'register/event/housing' event=event
         = partial 'register/event/custom-fields' event=event attendance=attendance
         = partial 'register/event/competitions' event=event
         unless event.shirtSalesHaveEnded
