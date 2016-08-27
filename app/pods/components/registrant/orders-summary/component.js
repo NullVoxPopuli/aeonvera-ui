@@ -6,5 +6,4 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   lastItem: Ember.computed.alias('model.lastItem'),
-
 });

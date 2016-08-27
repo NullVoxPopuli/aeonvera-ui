@@ -57,9 +57,11 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   checkoutToken: attr('string'),
   checkoutEmail: attr('string'),
 
-  hasRefunds: Ember.computed('stripeRefunds', {
+  hasRefunds: computed('stripeRefunds', {
     get(key) { return Ember.isPresent(this.get('stripeRefunds')); }
   }),
+
+  unpaid: computed.not('paid'),
 
   paidText: function() {
     return this.get('paid') ? 'Yes' : 'No';

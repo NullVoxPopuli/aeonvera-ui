@@ -9,6 +9,11 @@ br
     /a click='refund' Refund
     unless model.paid
       li = order/mark-paid-modal order=model
+    / if (or (not model.hasLineItems) (not model.paid))
+    if (or (not model.hasLineItems) model.unpaid)
+      li
+        = form/confirm-button action='delete' showCancel=true cancelClasses='tiny no-margins' confirmText='Really, Delete'
+          | Delete
 
     if (is-equal model.paymentMethod 'Stripe')
       if model.paid

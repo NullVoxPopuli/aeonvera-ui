@@ -11,6 +11,14 @@ export default Ember.Component.extend({
 
     },
 
+    delete() {
+      let order = this.get('model');
+      order.destroyRecord();
+      if (this.get('afterDelete')) {
+        this.sendAction('afterDelete');
+      }
+    },
+
     refreshStripe() {
       let id = this.get('model.id');
       let url = ENV.host + '/api/orders/' + id  + '/refresh_stripe';
