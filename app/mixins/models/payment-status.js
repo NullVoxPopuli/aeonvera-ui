@@ -34,6 +34,18 @@ export default Ember.Mixin.create({
       status += 'Paid: $' + paid;
     }
 
+    if (Ember.isBlank(status)) {
+      // something is off...
+
+
+      // do we have an order?
+      let orders = this.get('orders');
+
+      if (orders.get('length') === 0) {
+        return 'Potentially Cancelled';
+      }
+    }
+
     return status;
 
   }.property('amountOwed', 'amountPaid'),
