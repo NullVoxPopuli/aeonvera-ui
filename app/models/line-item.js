@@ -2,29 +2,33 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
 
+import { belongsTo, hasMany } from 'ember-data/relationships';
+
 import Buyable from '../mixins/models/buyable';
 import IsLineItem from '../mixins/models/is-line-item';
 import Purchasable from 'aeonvera/models/purchasable';
 import File from 'ember-data-paperclip/objects/file';
 
 export default Purchasable.extend(Buyable, IsLineItem, {
-  name: DS.attr('string'),
-  description: DS.attr('string', { defaultValue: '' }),
-  price: DS.attr('number', { defaultValue: 0 }),
-  itemType: DS.attr('string'),
-  numberPurchased: DS.attr('number'),
+  name: attr('string'),
+  description: attr('string', { defaultValue: '' }),
+  price: attr('number', { defaultValue: 0 }),
+  itemType: attr('string'),
+  numberPurchased: attr('number'),
+  initialStock: attr('number'),
+  remainingStock: attr('number'),
 
-  schedule: DS.attr('string'),
-  durationAmount: DS.attr('number'),
-  durationUnit: DS.attr('number'),
+  schedule: attr('string'),
+  durationAmount: attr('number'),
+  durationUnit: attr('number'),
 
-  expiresAt: DS.attr('date'),
-  startsAt: DS.attr('date'),
-  endsAt: DS.attr('date'),
+  expiresAt: attr('date'),
+  startsAt: attr('date'),
+  endsAt: attr('date'),
 
-  registrationOpensAt: DS.attr('date'),
-  registrationClosesAt: DS.attr('date'),
-  becomesAvailableAt: DS.attr('date'),
+  registrationOpensAt: attr('date'),
+  registrationClosesAt: attr('date'),
+  becomesAvailableAt: attr('date'),
 
   picture: attr('file', { defaultValue: function() { return File.create(); } }),
   pictureFileName: attr('string'),
@@ -34,10 +38,10 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   pictureUrlThumb: attr('string'),
   pictureUrlMedium: attr('string'),
 
-  event: DS.belongsTo('event'),
-  host: DS.belongsTo('host', { polymorphic: true }),
-  attendances: DS.hasMany('attendance'),
-  orderLineItems: DS.hasMany('order-line-item'),
+  event: belongsTo('event'),
+  host: belongsTo('host', { polymorphic: true }),
+  attendances: hasMany('attendance'),
+  orderLineItems: hasMany('order-line-item'),
 
   pictureIsMissing: Ember.computed('pictureUrl', function() {
     let pictureUrl = this.get('pictureUrl');

@@ -11,6 +11,7 @@ export default DS.Model.extend(Validator, {
   order: DS.belongsTo('order'),
   quantity: DS.attr('number'),
   price: DS.attr('number'),
+  pickedUpAt: DS.attr('date'),
 
   /*
     these properties are for additional objects that need to be created on the
@@ -27,6 +28,12 @@ export default DS.Model.extend(Validator, {
     the order was created on a non-logged-in account.
   */
   paymentToken: DS.attr('string'),
+
+  pickedUp: Ember.computed('pickedUpAt', {
+    get() {
+      return Ember.isPresent(this.get('pickedUpAt'));
+    }
+  }),
 
   priceNeedsChanging: function() {
     let lineItem = this.get('lineItem');

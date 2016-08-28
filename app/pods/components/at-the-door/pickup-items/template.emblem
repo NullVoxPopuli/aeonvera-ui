@@ -1,0 +1,28 @@
+.row
+  .small-12.medium-6.columns
+    = input type='text' value=queryText placeholder='Search by name'
+
+  .small-12.medium-6.columns
+    = input type='checkbox' checked=showOnlyNonPickedUp
+    label Show only non picked up
+hr
+
+span {{percentPickedUp}}% | &nbsp;
+span Picked Up: {{numberPickedUp}} | Not Picked Up: {{numberNotPickedUp}}
+
+= sortable-table columns=columns data=filteredOrderLineItems as |orderLineItem|
+  td = orderLineItem.order.userName
+  td = orderLineItem.lineItem.name
+  td = orderLineItem.quantity
+  td = orderLineItem.size
+  td
+    if orderLineItem.order.paid
+      | Paid
+    else
+      | Owes {{to-usd orderLineItem.order.totalInDollars}}
+  td
+    if (is-empty orderLineItem.pickedUpAt)
+      = form/confirm-button action='setPickedUp' target=orderLineItem confirmText='Confirm Picked Up' showCancel=true cancelClasses='tiny'
+        button.tiny Mark as Picked Up
+    else
+      = date-with-format orderLineItem.pickedUpAt 'LLL' true

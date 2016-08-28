@@ -1,9 +1,11 @@
-ul.small-block-grid-4
-  li: link-to 'event-at-the-door.checkin'  classNames='button percent-width-100'
-      span CheckIN
-  li: link-to 'event-at-the-door.register'  classNames='button percent-width-100'
-      span Register
+ul.small-block-grid-5
+  li: link-to 'event-at-the-door.checkin' classNames='button percent-width-100'
+    span Check-in
+  li: link-to 'event-at-the-door.register' classNames='button percent-width-100'
+    span Register
   li: link-to 'event-at-the-door.competition-list' classNames='button percent-width-100'
-      span Competition List
+    span Competition List
   li: link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
-      span A La Carte
+    span A La Carte
+  li: link-to 'event-at-the-door.shirts' model.id classNames='button percent-width-100'
+    span Shirt Pickup

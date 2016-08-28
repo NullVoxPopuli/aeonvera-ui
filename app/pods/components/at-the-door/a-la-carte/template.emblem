@@ -32,7 +32,9 @@
     h3 Shirts
     ul.small-block-grid-2.medium-block-grid-3.text-center
       each event.shirts as |item|
-        li: a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+        li
+          a.button.percent-width-100.secondary click='"addToOrder" item' {{item.name}} ({{to-usd item.currentPrice}})
+          = item.remainingStock
     hr
     h3 Competitions
     ul.small-block-grid-2.medium-block-grid-3.text-center
