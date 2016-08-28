@@ -26,6 +26,11 @@
 
 .row
   .columns.small-12.medium-6
+    label Quantity Available
+    = input value=model.initialStock type='number' min=0 placeholder=0 step=1
+
+.row
+  .columns.small-12.medium-6
     label Picture
     = form/image-upload property='picture' model=model
 
