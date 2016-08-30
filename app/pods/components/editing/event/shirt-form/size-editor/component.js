@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   addingNewSize: false,
   newSizeName: '',
   newSizePrice: '',
+  newSizeInventory: '',
 
   defaultPrice: computed('model.price', function() {
     return this.get('model.price');
@@ -18,6 +19,7 @@ export default Ember.Component.extend({
     addNewSizeRow() {
       this.set('addingNewSize', true);
       this.set('newSizePrice', this.get('defaultPrice'));
+      this.set('newSizeInventory', 0);
     },
 
     removeSize(id) {
@@ -27,15 +29,20 @@ export default Ember.Component.extend({
     addSize() {
       let name = this.get('newSizeName');
       let price = this.get('newSizePrice');
+      let inventory = this.get('newSizeInventory');
 
       if (!isPresent(price)) {
         price = this.get('defaultPrice');
       }
 
-      this.get('model').addSize(name, price);
+      this.get('model').addSize(name, price, inventory);
 
       this.set('newSizeName', '');
       this.set('addingNewSize', false);
+    },
+
+    setDirty() {
+      this.get('model').send('becomeDirty');
     }
   }
 });

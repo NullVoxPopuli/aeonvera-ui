@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-const { isEmpty } = Ember;
+const { isEmpty, isPresent } = Ember;
 
 export default JSONAPISerializer.extend({
 
@@ -20,7 +20,8 @@ export default JSONAPISerializer.extend({
     sizes.forEach((sizeData) => {
       sizeDatas.push({
         size: sizeData.size,
-        price: sizeData.price
+        price: sizeData.price,
+        inventory: sizeData.inventory
       });
     });
 

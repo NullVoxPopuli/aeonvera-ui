@@ -25,15 +25,10 @@ export default LineItem.extend({
   }.property('sizes'),
 
   priceForSize(size) {
-    let sizes = this.get('sizes');
+    let sizeData = this._sizeDataForSize(size);
     let price = this.get('price');
-    sizes.forEach(function (sizeData) {
-      if (sizeData.size === size) {
-        price = sizeData.price;
-      }
-    });
 
-    return price;
+    return sizeData.price || price;
   },
 
   setPriceForSize(size, price) {
@@ -46,11 +41,37 @@ export default LineItem.extend({
     });
   },
 
-  addSize(name, price) {
+  inventoryForSize(size) {
+    let sizeData = this._sizeDataForSize(size);
+    return sizeData.inventory || 0;
+  },
+
+  purchasedForSize(size) {
+    let sizeData = this._sizeDataForSize(size);
+    return sizeData.purchased || 0;
+  },
+
+  remainingForSize(size) {
+    let sizeData = this._sizeDataForSize(size);
+    return sizeData.remaining || 0;
+  },
+
+  setInventoryForSize(size, inventory) {
+    let sizes = this.get('sizes');
+
+    sizes.forEach(sizeData => {
+      if (sizeData.size === size) {
+        sizeData.inventory = inventory;
+      }
+    });
+  },
+
+  addSize(name, price, inventory) {
     let sizeData = {
       id: name,
       size: name,
-      price: price
+      price: price,
+      inventory: inventory
     };
 
     let sizes = this.get('sizes');
@@ -69,5 +90,17 @@ export default LineItem.extend({
     sizes.removeObject(sizeData);
     this.set('sizes', sizes);
   },
+
+  _sizeDataForSize(size) {
+    let sizes = this.get('sizes');
+
+    sizes.forEach(sizeData => {
+      if (sizeData.size === size) {
+        return sizeData;
+      }
+    });
+
+    return null;
+  }
 
 });

@@ -1,0 +1,39 @@
+{{#if isEditing}}
+  <td>{{input value=sizeData.size}}</td>
+  <td>
+    {{input
+      value=sizeData.price
+      type='number'
+      min=0
+      step='any'
+    }}
+  </td>
+  <td>
+    {{input
+      value=sizeData.inventory
+      type='number'
+      min=0
+      step=1
+    }}
+  </td>
+  <td>
+    <a {{action 'done'}}>Done</a>
+  </td>
+  <td>
+
+  </td>
+{{else}}
+  <td>{{sizeData.size}}</td>
+  <td>{{to-usd sizeData.price}}</td>
+  <td>{{sizeData.inventory}}</td>
+  <td>
+    <a {{action 'toggleEditing'}}>
+      Edit
+    </a>
+  </td>
+  <td>
+    <a class='alert-color' {{action 'onDelete' sizeData.id}}>
+      Delete
+    </a>
+  </td>
+{{/if}}

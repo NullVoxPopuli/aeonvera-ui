@@ -2,18 +2,24 @@ table
   thead: tr
     th Size
     th Price
+    th Initial Stock
+    th
     th
   each model.sizes as |sizeData|
-    tr
-      td = sizeData.size
-      td = sizeData.price
-      td: a click="'removeSize' sizeData.id" Delete
+    = editing/event/shirt-form/size-editor/size-row sizeData=sizeData onDelete=(action 'removeSize') onChange='setDirty'
+    / tr
+    /   td = sizeData.size
+    /   td = to-usd sizeData.price
+    /   td = sizeData.inventory
+    /   td: a click="'removeSize' sizeData.id" Delete
 
   if addingNewSize
     tr
       td = input value=newSizeName
-      td = input value=newSizePrice
+      td = input type='number' min=0 step='any' value=newSizePrice
+      td = input type='number' min=0 step=1 value=newSizeInventory
       td: a click='addSize' Save
+      td
   else
-    tr: td.text-center colspan='3'
+    tr: td.text-center colspan='5'
       button.tiny.success.no-margins click='addNewSizeRow' Add Size
