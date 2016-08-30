@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Host from '../models/host';
 import RegistrationOpens from '../mixins/models/registration-opens';
+import { hasDateExpired } from 'aeonvera/helpers/has-expired';
 
 const { attr, belongsTo, hasMany } = DS;
 
@@ -63,10 +64,10 @@ export default Host.extend(RegistrationOpens, {
     }
   }),
 
-  hasActiveLineItems: Ember.computed('lineItems', {
+  hasActiveLineItems: Ember.computed('lineItems.@each', {
     get() {
       let lineItems = this.get('lineItems');
-      let notExpired = lineItems.filter(item => new Date() < item.get('expiresAt'));
+      let notExpired = lineItems.filter(item => hasDateExpired(item.get('expiresAt')));
       return Ember.isPresent(notExpired);
     }
   })
