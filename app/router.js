@@ -109,6 +109,7 @@ Router.map(function() {
       this.route('a-la-carte-print', { path: 'a-la-carte/print' });
       this.route('register');
       this.route('shirts');
+      this.route('exchange');
     });
 
     this.route('events', { resetNamespace: true }, function() {

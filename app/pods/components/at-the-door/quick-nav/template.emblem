@@ -9,3 +9,5 @@ ul.small-block-grid-5
     span A La Carte
   li: link-to 'event-at-the-door.shirts' model.id classNames='button percent-width-100'
     span Shirt Pickup
+  li: link-to 'event-at-the-door.exchange' model.id classNames='button percent-width-100'
+    span Shirt Exchange

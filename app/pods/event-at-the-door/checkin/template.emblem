@@ -1,6 +1,6 @@
-= at-the-door/quick-nav
+= at-the-door/quick-nav model=model
 
 .row.max-width-75rem
   .small-12.columns
     h3 Checkin Attendees
-    = at-the-door/checkin-list model=model
+    = at-the-door/checkin-list model=model.attendances

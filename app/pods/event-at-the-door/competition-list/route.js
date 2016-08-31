@@ -14,10 +14,15 @@ export default Ember.Route.extend({
 
   model() {
     var host = this.get('event');
-    return this.get('store').query('competition', {
+    let competitions = this.get('store').query('competition', {
       event_id: host.get('id'),
       include: 'order_line_items.order.attendance'
     });
+
+    return {
+      competitions,
+      id: host.get('id')
+    };
   },
 
 });

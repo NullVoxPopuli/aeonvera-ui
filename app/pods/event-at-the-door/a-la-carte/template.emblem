@@ -1,4 +1,4 @@
-= at-the-door/quick-nav
+= at-the-door/quick-nav model=model
 = link-to 'event-at-the-door.a-la-carte-print' model
   | Print Talley Sheet
 = at-the-door/a-la-carte model=model

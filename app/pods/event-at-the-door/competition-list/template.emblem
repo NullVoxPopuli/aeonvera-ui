@@ -1,11 +1,11 @@
 .row.full-width
   .large-3.medium-4.columns.padding-left-0
     = sidebar-container
-      = sidebar/event-at-the-door-sidebar model=event
+      = sidebar/event-at-the-door-sidebar model=model
 
   .large-9.medium-8.columns
     h2 All Competitions for {{event.name}}
-    each model as |competition|
+    each model.competitions as |competition|
       h3 = competition.name
       link-to 'event-at-the-door.competition-signup-print' competition
         | Print Sign-Up Sheet

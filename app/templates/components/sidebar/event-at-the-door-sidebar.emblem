@@ -7,4 +7,6 @@ li: link-to 'event-at-the-door.competition-list' classNames='button percent-widt
 li: link-to 'event-at-the-door.a-la-carte' classNames='button percent-width-100'
   span A La Carte
 li: link-to 'event-at-the-door.shirts' model.id classNames='button percent-width-100'
-  span Shirts
+  span Shirt Pickup
+li: link-to 'event-at-the-door.exchange' model.id classNames='button percent-width-100'
+  span Shirt Exchange
