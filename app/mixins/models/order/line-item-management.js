@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject, isBlank } = Ember;
+const { computed, inject, isBlank, isPresent } = Ember;
 
 export default Ember.Mixin.create({
 
@@ -220,7 +220,7 @@ export default Ember.Mixin.create({
 
     orderLineItems.forEach((orderLineItem, i, e) => {
       // just ignore it if it has the size already set
-      if (orderLineItem.size !== null) return;
+      if (isPresent(orderLineItem.get('size'))) return;
 
       let currentLineItem = orderLineItem.get('lineItem');
 

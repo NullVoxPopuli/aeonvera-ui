@@ -17,7 +17,7 @@ export default Ember.Service.extend({
     let buyerPaysValue = 0;
     let youGetValue = 0;
 
-    if (value > 0) {
+    // if (value > 0) {
       if (absorbFees) {
         serviceFeeValue = value * 0.0075;
         cardFeeValue = value * 0.029 + 0.3;
@@ -32,7 +32,7 @@ export default Ember.Service.extend({
         serviceFeeValue = buyerPaysValue * 0.0075;
         cardFeeValue = buyerPaysValue * 0.029 + 0.3;
       }
-    }
+    // }
 
     return {
       // estimated - actual fee is calculated on the total

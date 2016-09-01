@@ -67,6 +67,7 @@
           tr
             th = to-usd cart.order.total
             th Total
+
       hr
 
       ul.button-group.even-2

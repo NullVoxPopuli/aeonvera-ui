@@ -29,7 +29,7 @@ export default Ember.Component.extend({
       let orderTotal = this.get('orderTotal');
       let enteredAmount = this.get('cashOrCheckAmount');
 
-      let result = isPresent(enteredAmount) ? enteredAmount :orderTotal;
+      let result = isPresent(enteredAmount) ? enteredAmount : orderTotal;
       return parseFloat(result);
     },
 
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  confirmText: computed({
+  confirmText: computed('amount', {
     get() { return `You have collected $${this.get('amount')}?`; }
   }),
 
