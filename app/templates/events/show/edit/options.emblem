@@ -26,6 +26,11 @@ form submit='save'
       label
         span Show At The Door Prices At
         = form/date-time-input model=model field='showAtTheDoorPricesAt'
+        
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='onlineCompetitionSalesEndAt'
+      label
+        span Online Competition Sales End At
+        = form/date-time-input model=model field='onlineCompetitionSalesEndAt'
 
   br
   .row

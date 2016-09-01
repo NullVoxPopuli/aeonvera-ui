@@ -12,7 +12,8 @@ if model.registrationIsOpen
         if event.isHousingEnabled
           = partial 'register/event/housing' event=event
         = partial 'register/event/custom-fields' event=event attendance=attendance
-        = partial 'register/event/competitions' event=event
+        unless event.competitionSalesHaveEnded
+          = partial 'register/event/competitions' event=event
         unless event.shirtSalesHaveEnded
           = partial 'register/event/shirts' event=event
         if event.hasActiveLineItems

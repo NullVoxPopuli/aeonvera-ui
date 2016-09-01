@@ -18,6 +18,7 @@ export default Host.extend(RegistrationOpens, {
   refundsEndAt:            attr('date'),
   shirtSalesEndAt:         attr('date'),
   showAtTheDoorPricesAt:   attr('date'),
+  onlineCompetitionSalesEndAt: attr('date'),
 
   showOnPublicCalendar:    attr('boolean'),
   hasVolunteers:           attr('boolean'),
@@ -60,7 +61,14 @@ export default Host.extend(RegistrationOpens, {
   shirtSalesHaveEnded: Ember.computed('shirtSalesEndAt', {
     get() {
       let expiresAt = this.get('shirtSalesEndAt');
-      return expiresAt < new Date();
+      return hasDateExpired(expiresAt);
+    }
+  }),
+
+  competitionSalesHaveEnded: Ember.computed('onlineCompetitionSalesEndAt', {
+    get() {
+      let endedAt = this.get('onlineCompetitionSalesEndAt');
+      return hasDateExpired(endedAt);
     }
   }),
 
