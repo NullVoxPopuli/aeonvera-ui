@@ -1,4 +1,4 @@
-ul.small-block-grid-5
+ul.small-block-grid-6
   li: link-to 'event-at-the-door.checkin' classNames='button percent-width-100'
     span Check-in
   li: link-to 'event-at-the-door.register' classNames='button percent-width-100'

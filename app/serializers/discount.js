@@ -1,6 +1,7 @@
 import JSONAPISerializer from 'ember-data/serializers/json-api';
+import ApplicationSerializer from 'aeonvera/serializers/application';
 
-export default JSONAPISerializer.extend({
+export default ApplicationSerializer.extend({
 
   // normalizeResponse(store, primaryModelClass, payload, id, requestType) {
   normalize(modelClass, resourceHash) {

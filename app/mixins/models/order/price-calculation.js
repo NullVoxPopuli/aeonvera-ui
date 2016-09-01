@@ -20,7 +20,7 @@ export default Ember.Mixin.create({
   priceCalculator: inject.service(),
   orderCalculator: inject.service(),
 
-  priceCalculation: Ember.computed('subTotal', 'shouldApplyFee', function() {
+  priceCalculation: computed('subTotal', 'shouldApplyFee', function() {
     let subTotal = this.get('subTotal');
     let shouldApplyFee = this.get('shouldApplyFee');
     let absorbTheFee = !shouldApplyFee;
@@ -29,7 +29,7 @@ export default Ember.Mixin.create({
   }),
 
   forceAbsorbFee: false,
-  shouldApplyFee: Ember.computed('forceAbsorbFee', 'subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', {
+  shouldApplyFee: computed('forceAbsorbFee', 'subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', {
     get() {
       let forceAbsorbFee = this.get('forceAbsorbFee');
       if (forceAbsorbFee) return !forceAbsorbFee;
@@ -48,7 +48,7 @@ export default Ember.Mixin.create({
     }
   }),
 
-  fee: Ember.computed('subTotal', function() {
+  fee: computed('subTotal', function() {
     let calculation = this.get('priceCalculation');
     let stringFee = calculation.totalFee;
     return parseFloat(stringFee);
@@ -58,19 +58,19 @@ export default Ember.Mixin.create({
     Calculates raw total of all the order line items
      - before fees or anything
   */
-  subTotal: Ember.computed('orderLineItems.@each.total', function() {
+  subTotal: computed('orderLineItems.@each.total', function() {
     let lineItems = this.get('orderLineItems');
     let subTotal = this.get('orderCalculator').calculateSubTotal(this);
 
     return subTotal;
   }),
 
-  total: Ember.computed('subTotal', 'shouldApplyFee', function() {
+  total: computed('subTotal', 'shouldApplyFee', function() {
     let calculation = this.get('priceCalculation');
     return calculation.total;
   }),
 
-  hasNonZeroBalance: Ember.computed('total', function() {
+  hasNonZeroBalance: computed('total', function() {
     return parseFloat(this.get('total')) > 0;
   }),
 });

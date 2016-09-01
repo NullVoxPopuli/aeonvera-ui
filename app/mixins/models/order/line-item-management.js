@@ -10,7 +10,7 @@ export default Ember.Mixin.create({
     quantity - the quantity to *set* to. This does not add.
     price - overrides the price of the lineItem
   */
-  addLineItem: function(lineItem, quantity = 1, price = null) {
+  addLineItem(lineItem, quantity = 1, price = null, allowNegative = false) {
     price    = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
@@ -23,7 +23,8 @@ export default Ember.Mixin.create({
       // is the item already in the order?
       let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
       let oliExists     = Ember.isPresent(orderLineItem);
-      if (quantity > 0 && !oliExists) {
+      let canAdd = !oliExists && (allowNegative || quantity > 0);
+      if (canAdd) {
         this._addNewLineItem(lineItem, quantity, price);
       } else if (oliExists) {
         // this will also remove
@@ -218,6 +219,9 @@ export default Ember.Mixin.create({
     let result = null;
 
     orderLineItems.forEach((orderLineItem, i, e) => {
+      // just ignore it if it has the size already set
+      if (orderLineItem.size !== null) return;
+
       let currentLineItem = orderLineItem.get('lineItem');
 
       // orderLineItem.get('lineItem').then((currentLineItem) => {})

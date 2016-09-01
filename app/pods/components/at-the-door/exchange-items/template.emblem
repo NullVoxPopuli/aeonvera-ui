@@ -1,0 +1,39 @@
+= order/order-cart host=event afterCancel='clearOrder' afterCheckout='openPaymentModal'
+
+  = block-slot 'attendanceSetter'
+    tr: td colspan='2'
+      input type='checkbox' checked=absorbFees change='absorbFeesClick'
+      label Absorb Service Fee
+
+  = block-slot 'listItems'
+
+    =order/hidden-mark-paid-modal show=cart.order order=cart.order afterPayment='clearOrder'
+
+    .row
+      .columns.small-6
+        label Exchange
+        = x-select value=givingBackItem
+          option Select Item
+          each items as |item|
+            = x-option value=item
+              = item.name
+
+        label Quantity
+        = input type='number' step=1 min=0 value=givingBackQuantity
+
+        br
+        button click='setGivingBack' disabled=isGivingBackDisabled Set 'Exchanging'
+
+      .columns.small-6
+        label For
+        = x-select value=exchangingForItem
+          option Select Item
+          each items as |item|
+            = x-option value=item
+              = item.name
+
+        label Quantity
+        = input type='number' step=1 min=0 value=exchangingForQuantity
+
+        br
+        button click='setExchangingFor' disabled=isExchangingForDisabled Set 'Exchanging For'

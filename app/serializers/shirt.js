@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import JSONAPISerializer from 'ember-data/serializers/json-api';
+import ApplicationSerializer from 'aeonvera/serializers/application';
 
 const { isEmpty, isPresent } = Ember;
 
-export default JSONAPISerializer.extend({
+export default ApplicationSerializer.extend({
 
   serialize(snapshot, options) {
     let json = this._super(...arguments);

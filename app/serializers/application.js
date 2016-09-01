@@ -3,9 +3,10 @@ import DS from 'ember-data';
 
 //import SerializerMixin from 'ember-data-paperclip/mixins/serializer-mixin';
 
-// var underscore = Ember.String.underscore;
+const { underscore } = Ember.String;
 
 export default DS.JSONAPISerializer.extend({
+  // TODO: re-enable when bf4 finishes his belongs_to PR (I have so many relationships that key transform isn't an issue)
   // keyForAttribute: function (attr) {
   //   return underscore(attr);
   // },
