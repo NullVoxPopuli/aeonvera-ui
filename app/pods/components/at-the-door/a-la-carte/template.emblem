@@ -1,4 +1,4 @@
-= order/order-cart host=model afterCheckout='openPaymentModal' attendanceNotRequired=true
+= order/order-cart host=model afterCheckout='openPaymentModal' attendanceNotRequired=true quantitySelect=true
 
   = block-slot 'attendanceSetter'
     tr: td colspan='2'
@@ -20,7 +20,7 @@
 
   = block-slot 'listItems'
 
-    = order/hidden-mark-paid-modal show=cart.order order=cart.order afterPayment='clearOrder'
+    = order/hidden-mark-paid-modal show=cart.order showOrder=true order=cart.order afterPayment='clearOrder'
 
     h3 A la Carte
     ul.small-block-grid-2.medium-block-grid-3.text-center

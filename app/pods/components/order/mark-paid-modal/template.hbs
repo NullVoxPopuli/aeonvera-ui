@@ -26,6 +26,9 @@
         {{input type='text' value=checkNumber}}
       {{/if}}
 
+      <label>Email for Receipt</label>
+      {{input type='email' value=order.checkoutEmail}}
+
       <label>Notes</label>
       {{input value=notes}}
     </div>
@@ -74,8 +77,6 @@
 
 
         {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
-          <label>Email for Receipt</label>
-          {{input type='email' value=order.checkoutEmail}}
           <hr />
           <ul class='button-group right'>
             <li>
