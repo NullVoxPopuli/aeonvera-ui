@@ -61,7 +61,7 @@ export default Ember.Component.extend({
 
     clearOrder() {
       let cart = this.get('cart');
-      cart.get('currentOrder').unloadRecord();
+      // cart.get('currentOrder').unloadRecord();
       cart.set('order', null);
       this.sendAction('onComplete');
     }

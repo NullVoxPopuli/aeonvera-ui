@@ -2,7 +2,7 @@ h2 {{competition.name}}
 table
   thead: tr
     th width='5%' #
-    th width='5%' Bid#
+    th width='5%' Bib#
     th width='5%' Paid
     th Names
   tbody
