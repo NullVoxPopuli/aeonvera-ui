@@ -39,7 +39,15 @@ export default Ember.Component.extend({
   }),
 
   confirmText: computed('amount', {
-    get() { return `You have collected $${this.get('amount')}?`; }
+    get() {
+      let amount = this.get('amount');
+
+      if (amount < 0) {
+        return `You have given $${Math.abs(amount)}?`;
+      }
+
+      return `You have collected $${amount}?`;
+    }
   }),
 
   modalName: computed('order', {

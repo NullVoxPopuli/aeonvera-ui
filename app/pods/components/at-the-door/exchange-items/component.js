@@ -73,6 +73,7 @@ export default Ember.Component.extend({
     this.get('cart.currentOrderAsPromise').then(order => {
       // make sure that the cart has this up to date.
       order.set('forceAbsorbFee', this.get('absorbFees'));
+      order.set('allowNegative', true);
       order.addLineItem(item, quantity, null, true);
     });
   }

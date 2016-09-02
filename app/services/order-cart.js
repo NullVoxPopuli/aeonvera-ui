@@ -153,8 +153,10 @@ export default Ember.Service.extend(RandomString, {
       if (order.get('isNew')) {
         order.unloadRecord();
       } else {
-        order.destroyRecord();
-        order.save();
+        if (!order.get('isDeleted')) {
+          order.destroyRecord();
+          order.save();
+        }
       }
 
       this.set('order', null);

@@ -11,7 +11,7 @@
 
     .row
       .columns.small-6
-        label Exchange
+        label Returning
         = x-select value=givingBackItem
           option Select Item
           each items as |item|
@@ -22,10 +22,10 @@
         = input type='number' step=1 min=0 value=givingBackQuantity
 
         br
-        button click='setGivingBack' disabled=isGivingBackDisabled Set 'Exchanging'
+        button click='setGivingBack' disabled=isGivingBackDisabled Return this Item
 
       .columns.small-6
-        label For
+        label Purchase / Receiving
         = x-select value=exchangingForItem
           option Select Item
           each items as |item|
@@ -36,4 +36,4 @@
         = input type='number' step=1 min=0 value=exchangingForQuantity
 
         br
-        button click='setExchangingFor' disabled=isExchangingForDisabled Set 'Exchanging For'
+        button click='setExchangingFor' disabled=isExchangingForDisabled Add this item for purchase
