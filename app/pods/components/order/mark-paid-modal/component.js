@@ -24,6 +24,8 @@ export default Ember.Component.extend({
   cashOrCheckAmount: null,
   checkNumber: '',
   notes: '',
+  absorbFees: false,
+
   amount: computed('orderTotal', 'cashOrCheckAmount', {
     get() {
       let orderTotal = this.get('orderTotal');
@@ -59,9 +61,14 @@ export default Ember.Component.extend({
       this.set('cashOrCheckAmount', null);
     },
 
+    absorbFeesClick() {
+      this.set('absorbFees', !this.get('absorbFees'));
+      this.get('order').set('forceAbsorbFee', this.get('absorbFees'));
+    },
+
     markPaid() {
       let id = this.get('order.id');
-      let url = '/api/orders/' + id  + '/mark_paid';
+      let url = '/api/orders/' + id  + '/mark_paid?include=attendance';
       let data = {
         payment_method: this.get('paymentMethod'),
         check_number:   this.get('checkNumber'),

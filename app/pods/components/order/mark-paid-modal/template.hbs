@@ -10,6 +10,9 @@
 
   <div class='row'>
     <div class='columns medium-6'>
+      <input type='checkbox' onchange={{action 'absorbFeesClick'}} />
+      <label>Absorb Service Fee</label>
+
       <label>Amount
         <a class='right' {{action 'setToOrderTotal'}}>Set to order total</a>
       </label>
@@ -71,6 +74,9 @@
 
 
         {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
+          <label>Email for Receipt</label>
+          {{input type='email' value=order.checkoutEmail}}
+          <hr />
           <ul class='button-group right'>
             <li>
               {{stripe/checkout-button
