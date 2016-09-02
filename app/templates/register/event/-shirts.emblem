@@ -9,4 +9,13 @@ if (is-present event.shirts)
           unless shirt.pictureIsMissing
             img src="{{shirt.pictureUrlThumb}}"
 
-        td = shirt.name
+        td
+          = shirt.name
+          / - if showQuantities
+          /   br
+          /   br
+          /   | Quantities Remaining:
+          /   br
+          /
+          /   each shirt.sizes as |sizeData|
+          /     span {{sizeData.size}}: {{sizeData.remaining}} &nbsp;&nbsp;&nbsp;&nbsp;

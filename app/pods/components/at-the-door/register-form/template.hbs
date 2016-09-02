@@ -1,4 +1,4 @@
-{{#order/order-cart host=event afterCancel='clearOrder' afterCheckout='openPaymentModal'}}
+{{#order/order-cart host=event afterCancel='clearOrder' afterCheckout='openPaymentModal' quantitySelect=true}}
 
   {{#block-slot 'attendanceSetter'}}
     <tr><td colspan='2'>
@@ -37,22 +37,31 @@
     <a {{action 'setToEventLocation'}}>Set to Event Location</a>
     <hr />
 
-    {{at-the-door/register-form/package-select
-      packages=event.packages
-      onSelect='setPackage'
-      errors=attendance.errors
-    }}
+    <div class='row'>
+      <div class='columns medium-6'>
+        {{at-the-door/register-form/package-select
+          packages=event.packages
+          onSelect='setPackage'
+          errors=attendance.errors
+        }}
 
-    {{at-the-door/register-form/level-select
-      levels=event.levels
-      onSelect='setLevel'
-      show=attendance.package.requiresTrack
-      errors=attendance.errors
-    }}
 
-    {{partial 'register/event/orientation' event=event attendance=attendance}}
+      </div>
+      <div class='columns medium-6'>
+        {{partial 'register/event/orientation' event=event attendance=attendance}}
+
+        {{at-the-door/register-form/level-select
+          levels=event.levels
+          onSelect='setLevel'
+          show=attendance.package.requiresTrack
+          errors=attendance.errors
+        }}
+      </div>
+    </div>
+
+
     {{partial 'register/event/competitions' event=event}}
-    {{partial 'register/event/shirts' event=event}}
+    {{!-- {{partial 'register/event/shirts' event=event}} --}}
     {{partial 'register/event/a-la-carte' event=event}}
 
   {{/block-slot}}

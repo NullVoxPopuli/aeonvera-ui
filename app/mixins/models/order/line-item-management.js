@@ -222,6 +222,9 @@ export default Ember.Mixin.create({
       // just ignore it if it has the size already set
       if (isPresent(orderLineItem.get('size'))) return;
 
+      // also ignore competitions or anything with the danceOrientation already set
+      if (isPresent(orderLineItem.get('danceOrientation'))) return;
+
       let currentLineItem = orderLineItem.get('lineItem');
 
       // orderLineItem.get('lineItem').then((currentLineItem) => {})

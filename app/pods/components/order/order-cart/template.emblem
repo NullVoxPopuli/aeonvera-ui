@@ -24,7 +24,8 @@
           each currentItems as |item|
             tr
               td.min-width-100
-                / | {{order/item-quantity-select orderLineItem=item order=cart.order}}
+                if quantitySelect
+                  | {{order/item-quantity-select orderLineItem=item order=cart.order}}
                 | {{item.quantity}} x {{order/price-display item=item value=item.total}}
               td
                 if (is-present item.lineItem.code)

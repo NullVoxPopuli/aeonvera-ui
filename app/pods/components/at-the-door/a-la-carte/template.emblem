@@ -20,9 +20,7 @@
 
   = block-slot 'listItems'
 
-    .hidden-mark-paid-container
-      if cart.order
-        = order/mark-paid-modal order=cart.order afterPayment='clearOrder'
+    = order/hidden-mark-paid-modal show=cart.order order=cart.order afterPayment='clearOrder'
 
     h3 A la Carte
     ul.small-block-grid-2.medium-block-grid-3.text-center
