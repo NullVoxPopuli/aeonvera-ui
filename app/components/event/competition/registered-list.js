@@ -7,5 +7,5 @@ export default Ember.Component.extend({
     { property: 'danceOrientation', title: 'Orientation', showOn: 'model.requiresOrientation' },
     { property: 'partnerName', title: 'Partner', showOn: 'model.requiresPartner' },
     { property: 'order.paymentReceivedAt', title: 'Paid At' }
-  ]
+  ],
 });
