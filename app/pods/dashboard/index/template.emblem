@@ -1,7 +1,7 @@
 h3 Welcome, {{currentUser.user.name}}!
 hr
 br
-h4 Upcoming Events
+h4 Register for an Event
 / TODO: Limit this to 10 events or whatever when the time comes
 = upcoming-events model=model
 = outlet
