@@ -1,11 +1,17 @@
 .row
-  .small-6.columns
+  .small-6.medium-3.columns
     label Start Time
     = form/date-time-field selectedDate=startTime
 
-  .small-6.columns
+  .small-6.medium-3.columns
     label End Time
     = form/date-time-field selectedDate=endTime
+  .small-6.medium-3.columns
+    label Paid Start Time
+    = form/date-time-field selectedDate=paidStartTime
+  .small-6.medium-3.columns
+    label Paid End Time
+    = form/date-time-field selectedDate=paidEndTime
 
 = input type='checkbox' checked=showCash
 label Cash
@@ -33,6 +39,7 @@ table
 
 = sortable-table columns=columns data=filteredOrders as |order|
   td = date-with-format order.createdAt 'lll'
+  td = date-with-format order.paymentReceivedAt 'lll' true
   td = to-usd order.currentPaidAmount
   td = to-usd order.currentNetAmountReceived
   td = to-usd order.currentTotalFeeAmount
