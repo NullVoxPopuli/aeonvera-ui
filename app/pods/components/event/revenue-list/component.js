@@ -20,6 +20,7 @@ export default Ember.Component.extend({
   columns: [
     { property: 'createdAt', title: 'Time' },
     { property: 'paymentReceivedAt', title: 'Paid At' },
+    { property: 'paymentMethod', title: 'Paid With' },
     { property: 'currentPaidAmount', title: 'Gross Paid' },
     { property: 'currentNetAmountReceived', title: 'Net Amount Received' },
     { property: 'currentTotalFeeAmount', title: 'Fees' }
