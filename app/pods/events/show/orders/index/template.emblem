@@ -7,7 +7,7 @@
   td
     link-to 'events.show.orders.show' order
       = order.userName
-  td = to-usd order.total
+  td = to-usd order.currentPaidAmount
   td = to-bool order.paid
   td = date-with-format order.createdAt 'LLL'
   td
