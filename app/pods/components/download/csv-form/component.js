@@ -12,6 +12,9 @@ export default Ember.Component.extend({
   kind: '',
   relationships: '',
 
+  // overrides modelAttributes
+  fields: [],
+
   downloadLink: computed('selectedAttributes', {
     get(key) {
       let path = this.get('path');
@@ -54,6 +57,12 @@ export default Ember.Component.extend({
   _modelAttributes: [],
   modelAttributes: computed('modelType', {
     get(key) {
+      const fields = this.get('fields');
+
+      if (Ember.isPresent(fields)) {
+        return fields;
+      }
+
       let modelType = this.get('modelType');
       let modelAttributes = this.get('_modelAttributes');
       if (Ember.isBlank(modelAttributes)) {

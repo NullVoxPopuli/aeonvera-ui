@@ -1,0 +1,11 @@
+.row
+  .columns.small-6
+    = page-header text='Membership'
+
+  .columns.small-6
+    ul.button-group.margin-top-10.right
+      li: link-to 'my-communities.manage.membership.manage' classNames='button small'
+          span Manage
+      li = download/csv-modal model=model kind='member' params=paramsForDownload path=path relationships='' fields=fieldsForCSV
+
+= outlet

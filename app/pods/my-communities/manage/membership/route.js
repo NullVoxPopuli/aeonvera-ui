@@ -11,4 +11,11 @@ export default Ember.Route.extend({
       },
     });
   },
+
+  setupController(controller, model) {
+    this._super(...arguments);
+
+    let org = this.modelFor('my-communities.manage');
+    controller.set('organizationId', org.get('id'));
+  }
 });

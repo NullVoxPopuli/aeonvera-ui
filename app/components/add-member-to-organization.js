@@ -13,7 +13,7 @@ export default Ember.Component.extend(EditModel, {
   }.property('model.membershipOption'),
 
   memberList: function() {
-    let members = this.store.findAll('member');
+    let members = this.store.query('member', { all: true });
     return members;
   }.property(),
 
