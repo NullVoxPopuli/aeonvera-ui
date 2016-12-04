@@ -1,17 +1,21 @@
 .center-margin
   = page-header text='My Communities'
 
+  p Coming Soon - A list of communities you've participated in, and a viewable order/registration history for each
+hr
+.center-margin
+  = page-header text='Communities I Help Run'
+
 each model as |organization|
-  table.no-border.center-margin
-    tr
-      td
-        a href="{{organization.url}}"
-          .row
-            .columns.small-3.medium-4.no-padding
-              = event/logo-thumbnail model=organization align='right'
-            .columns.small-9.medium-8
-              h3 = organization.name
-              h6 = organization.location
-      td
-        link-to 'my-communities.manage' organization.id classNames='button'
-          span Manage
+  .row
+    .columns.small-8
+      a href="{{organization.url}}"
+        .row
+          .columns.small-3.medium-4.no-padding
+            = event/logo-thumbnail model=organization align='right'
+          .columns.small-9.medium-8
+            h3 = organization.name
+            h6 = organization.location
+    .columns.small-4
+      link-to 'my-communities.manage' organization.id classNames='button'
+        span Manage

@@ -4,8 +4,11 @@
 
   .columns.small-6
     ul.button-group.margin-top-10.right
-      li: link-to 'my-communities.manage.membership.manage' classNames='button small'
+      li = download/csv-modal model=model kind='member' params=paramsForDownload path=path relationships='' fields=fieldsForCSV buttonClasses='button small'
+      li
+        link-to 'my-communities.manage.membership.manage' classNames='button small'
           span Manage
-      li = download/csv-modal model=model kind='member' params=paramsForDownload path=path relationships='' fields=fieldsForCSV
-
+      li
+        link-to 'my-communities.manage.membership.add' classNames='button small'
+          span Add Member
 = outlet

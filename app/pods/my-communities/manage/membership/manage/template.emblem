@@ -1,6 +1,3 @@
-link-to 'my-communities.manage.membership.add' classNames='button small'
-  span Add Member
-
 h3 Options
 table
   thead: tr
