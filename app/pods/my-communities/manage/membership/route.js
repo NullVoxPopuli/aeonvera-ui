@@ -6,7 +6,7 @@ export default Ember.Route.extend({
     return this.store.findRecord('organization', id, {
       adapterOptions: {
         query: {
-          include: 'membership_options,membership_discounts',
+          include: 'membership_options.membership_renewals,membership_discounts',
         },
       },
     });
@@ -17,5 +17,6 @@ export default Ember.Route.extend({
 
     let org = this.modelFor('my-communities.manage');
     controller.set('organizationId', org.get('id'));
+    controller.set('organization', org);
   }
 });

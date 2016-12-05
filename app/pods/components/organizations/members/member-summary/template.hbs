@@ -1,0 +1,29 @@
+<h4 class='right'>Active: {{to-bool activeMembership}}</h4>
+<h3>{{member.name}}</h3>
+
+Member Until: {{date-with-format expireDate 'lll'}}
+<hr />
+
+{{#if (is-present member.membershipRenewals)}}
+  <h4>Renewals</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>Expire Date</th>
+        <th>Expired</th>
+        <th>Length of Membership</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each member.membershipRenewals as |renewal|}}
+      <tr>
+        <td>{{date-with-format renewal.startDate 'lll'}}</td>
+        <td>{{date-with-format renewal.expiresAt 'lll'}}</td>
+        <td>{{to-bool renewal.expired}}</td>
+        <td>{{duration renewal.duration}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/if}}

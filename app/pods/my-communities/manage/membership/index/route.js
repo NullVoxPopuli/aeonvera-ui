@@ -6,4 +6,11 @@ export default Ember.Route.extend(Index, {
   parentIdKey: 'organization_id',
   parentPathRoot: 'my-communities.manage',
   include: 'member,membership_option',
+
+  setupController(controller, model) {
+    this._super(...arguments);
+
+    const organization = this.modelFor('my-communities.manage');
+    controller.set('organization', organization);
+  }
 });

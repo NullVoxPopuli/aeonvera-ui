@@ -1,4 +1,4 @@
-.row 
+.row
   .small-12.columns.medium-6
     label First or Last name Conatins
     = input type='text' value=nameContains
@@ -12,7 +12,9 @@ label Non-Members
 label All
 
 = sortable-table columns=columns data=memberships as |membership|
-  td = membership.member.name
+  td
+    link-to 'my-communities.manage.membership.show' (as-hash id=membership.member.id member=membership.member organization=organization)
+      = membership.member.name
   td = membership.member.email
   td = membership.current
   td = date-with-format membership.startDate 'lll'

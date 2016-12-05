@@ -73,6 +73,7 @@ Router.map(function() {
         this.route('membership', function() {
           this.route('manage');
           this.route('add');
+          this.route('show', { path: ':user_id' });
           this.route('discounts', function() {
             this.route('new');
             this.route('show', {
