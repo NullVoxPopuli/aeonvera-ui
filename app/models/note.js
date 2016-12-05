@@ -6,6 +6,7 @@ const { Model, attr, belongsTo } = DS;
 
 export default Model.extend(DeletedAt, {
   note: attr('string'),
+  authorName: attr('string'),
 
   author: belongsTo('user'),
   host:   belongsTo('host', { polymorphic: true }),

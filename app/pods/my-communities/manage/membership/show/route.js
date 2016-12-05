@@ -4,7 +4,7 @@ const { isBlank } = Ember;
 
 export default Ember.Route.extend({
   model(params) {
-    const organization = this.modelFor('my-communities.manage');
+    const organization = this.modelFor('my-communities.manage.membership');
     const organizationId = organization.get('id');
 
     let member = this.store.findRecord('member', params.user_id, {
