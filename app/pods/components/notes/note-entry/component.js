@@ -6,15 +6,18 @@ export default Ember.Component.extend({
   text: '',
 
   actions: {
-    createRecord() {
-      this.store.createRecord('note', {
+    createRecord(callback) {
+      let promise = this.store.createRecord('note', {
         host: this.get('host'),
         target: this.get('target'),
         note: this.get('text')
-      }).save().then(note => {
-        this.set('text', '');
-        // call action to update
-      });
+      }).save()
+        .then(note => {
+          this.set('text', '');
+          this.sendAction('afterCreate', note);
+        });
+
+      callback(promise);
     }
   },
 

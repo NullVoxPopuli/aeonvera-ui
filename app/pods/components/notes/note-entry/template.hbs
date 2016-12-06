@@ -1,2 +1,5 @@
-{{input value=text}}
-<button class='small' {{action 'createRecord'}}>Submit</button>
+<form {{action "createRecord" on="submit"}}>
+  {{input value=text}}
+  {{async-button action=(action 'createRecord') default='Submit' pending='Submitting...' }}
+  {{!-- <button type='submit' class='small' {{action 'createRecord'}}>Submit</button> --}}
+</form>

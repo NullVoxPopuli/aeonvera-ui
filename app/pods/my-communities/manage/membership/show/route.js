@@ -12,9 +12,19 @@ export default Ember.Route.extend({
       include: 'memberships,membership_renewals.membership_options'
     });
 
+    let notes = this.store.query('note', {
+      host_id: organization.get('id'),
+      host_type: organization.get('klass'),
+      q: {
+        target_id_eq: params.user_id,
+        target_type_eq: 'User'
+      }
+    });
+
     return {
       member,
-      organization
+      organization,
+      notes
     };
   }
 });
