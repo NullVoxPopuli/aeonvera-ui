@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
+const { computed, isPresent } = Ember;
+
 export default Ember.Component.extend({
   afterDate: null,
   beforeDate: null,
   pastDays: 35,
   firstOrLastNameContains: null,
+  selectedLineItem: null,
 
   // 0 - all, 1 - paid, 2 - unpaid
   showPaid: 0,
@@ -12,24 +15,28 @@ export default Ember.Component.extend({
   sortedOrders: Ember.computed.sort('orders', 'sortProps'),
   sortProps: ['paymentReceivedAt:desc'],
 
-  orders: function () {
+  hostId: computed.alias('model.hostId'),
+  hostType: computed.alias('model.hostType'),
+
+  orders: computed('model', 'pastDays', 'showPaid', 'selectedLineItem', function() {
     let host = this.get('model');
     let pastDays = this.get('pastDays');
     let nameContains = this.get('firstOrLastNameContains');
     let showPaid = this.get('showPaid');
+    let selectedLineItem = this.get('selectedLineItem');
 
     let query = {
       host_id_eq: host.hostId,
       host_type_eq: host.hostType,
     };
 
-    if (Ember.isPresent(pastDays)) {
+    if (isPresent(pastDays)) {
       let m = moment(new Date());
       m.subtract(pastDays, 'days');
       query.created_at_gteq = m.format();
     }
 
-    if (Ember.isPresent(nameContains)) {
+    if (isPresent(nameContains)) {
       query.user_first_name_or_user_last_name_cont = nameContains;
 
       // query['attendance_attendee_name_cont'] = nameContains;
@@ -44,13 +51,18 @@ export default Ember.Component.extend({
 
     }
 
+    if (isPresent(selectedLineItem)) {
+      query.order_line_items_line_item_id_cont = selectedLineItem.get('id');
+      query.order_line_items_line_item_type_eq = selectedLineItem.get('klass');
+    }
+
     let promise = this.store.query('order', {
       q: query,
       include: 'order_line_items.line_item',
     });
 
     return promise;
-  }.property('model', 'pastDays', 'showPaid'),
+  }),
 
   nameSort: function () {
     return this._sortIndicator('userName');

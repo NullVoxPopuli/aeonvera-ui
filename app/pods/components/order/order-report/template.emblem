@@ -1,11 +1,15 @@
-.row 
-  .small-12.columns.medium-6
+.row
+  .small-12.columns.medium-4
     label First or Last name Conatins
     = input type='text' value=firstOrLastNameContains
 
-  .small-12.columns.medium-6
+  .small-12.columns.medium-4
     label Days Ago
     = input type='number' value=pastDays
+
+  .small-12.columns.medium-4
+    label Order Contains Item
+    = form/line-item-select value=selectedLineItem hostId=hostId hostType=hostType
 
 = radio-button value=1 groupValue=showPaid
 label Paid
@@ -26,7 +30,7 @@ table
   tbody
     each sortedOrders as |order|
       tr
-        td = order.userName 
+        td = order.userName
         td
           each order.orderLineItems as |orderLineItem|
             span {{orderLineItem.lineItem.name}} (x{{orderLineItem.quantity}} @ {{to-usd orderLineItem.price}})
