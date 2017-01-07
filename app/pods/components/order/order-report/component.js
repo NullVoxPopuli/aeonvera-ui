@@ -53,7 +53,7 @@ export default Ember.Component.extend({
 
     if (isPresent(selectedLineItem)) {
       query.order_line_items_line_item_id_eq = selectedLineItem.get('id');
-      query.order_line_items_line_item_type_eq = selectedLineItem.get('klass');
+      query.order_line_items_line_item_type_like = selectedLineItem.get('klass');
     }
 
     let promise = this.store.query('order', {
