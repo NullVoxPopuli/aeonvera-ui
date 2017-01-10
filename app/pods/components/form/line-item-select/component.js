@@ -7,12 +7,16 @@ export default Ember.Component.extend({
   content: [],
   value: null,
 
+  modelName: 'line-item',
+  labelPath: 'name',
+
   actions: {
-    searchLineItems(query, deferred) {
+    search(query, deferred) {
       let hostId = this.get('hostId');
       let hostType = this.get('hostType');
+      let modelName = this.get('modelName');
 
-      return this.store.query('line-item', {
+      return this.store.query(modelName, {
         host_id: hostId,
         host_type: hostType,
         q: {

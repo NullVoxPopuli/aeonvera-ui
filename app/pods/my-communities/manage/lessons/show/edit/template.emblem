@@ -1,0 +1,1 @@
+= organizations/lesson/edit-form model=model.lesson hostId=model.hostId hostType=model.hostType

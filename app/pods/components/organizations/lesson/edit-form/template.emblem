@@ -4,13 +4,18 @@ form submit='save'
       label
         span Name
         = input value=model.name placeholder='Beginner Lindy Hop'
-    
+
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='membershipDiscount'
+      label
+        span Override Default Membership Discount
+        = form/membership-discount-select value=(mut model.membershipDiscount) hostId=hostId hostType=hostType action='changedMembershipDiscount'
   .row
     = error-field-wrapper classes='columns small-12' errors=model.errors field='description'
       label
         span Description
         = full-editor content=model.description
-    
+
   .row
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='price'
       label
@@ -33,7 +38,7 @@ form submit='save'
       label
         span Registation Opens At
         = form/date-time-input model=model field='registrationOpensAt'
-        
+
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='registrationClosesAt'
       label
         span Registation Closes At

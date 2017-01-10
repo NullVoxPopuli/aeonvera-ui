@@ -40,6 +40,7 @@ export default Purchasable.extend(Buyable, IsLineItem, {
 
   event: belongsTo('event'),
   host: belongsTo('host', { polymorphic: true }),
+  membershipDiscount: belongsTo('membership-discount'),
   attendances: hasMany('attendance'),
   orderLineItems: hasMany('order-line-item'),
 
