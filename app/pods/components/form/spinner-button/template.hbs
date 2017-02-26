@@ -1,0 +1,21 @@
+{{#if isSpinning}}
+  {{ember-spinner
+    lines=lines
+    length=length
+    radius=radius
+    width=width
+    rotate=rotate
+    speed=speed
+    corners=corners
+    rotate=rotate
+    direction=direction
+    trail=trail
+    lspeed=speed
+    shadow=shadow
+    hwaccel=hwaccell
+    left=left
+    top=top
+    color=color}}
+{{else}}
+  {{yield}}
+{{/if}}

@@ -95,7 +95,7 @@ export default Ember.Component.extend({
       // This is a MayWithDefault object :-(
       let relationships = [];
       relationshipData.forEach((meta, relationship) => {
-        if (allowedRelationships.contains(relationship)) {
+        if (allowedRelationships.includes(relationship)) {
           relationships.push(relationship);
         }
       });

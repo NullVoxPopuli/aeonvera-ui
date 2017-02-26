@@ -11,7 +11,7 @@ nav.top-bar.tab-bar data-options="is_hover:false" role="navigation" data-topbar=
         a.right-off-canvas-toggle.menu-icon: span
 
   ul.title-area.hide-for-small
-      li.name: h1: link-to backLinkPath | {{backLinkText}}
+    li.name: h1: link-to backLinkPath | {{backLinkText}}
 
   / section.left.top-bar-section.hide-for-small
   /   ul.pages = component left

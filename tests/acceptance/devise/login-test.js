@@ -1,20 +1,9 @@
 import Ember from 'ember';
-import { module, test } from 'qunit';
-import startApp from 'aeonvera/tests/helpers/start-app';
+import { test } from 'qunit';
 import 'aeonvera/tests/helpers/login';
+import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
-let application;
-
-module('Acceptance | login', {
-  beforeEach() {
-    application = startApp();
-  },
-
-  afterEach() {
-    Ember.run(application, 'destroy');
-    server.shutdown();
-  },
-});
+moduleForAcceptance('Acceptance | login');
 
 test('visiting /', function(assert) {
   visit('/');

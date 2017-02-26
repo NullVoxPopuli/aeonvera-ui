@@ -4,7 +4,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('error-field-wrapper',
   'Integration | Component | error-field-wrapper', {
-    integration: true
+    unit: true
   });
 
 test('it renders with no error', function(assert) {

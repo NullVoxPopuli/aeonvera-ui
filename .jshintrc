@@ -7,7 +7,8 @@
     "jQuery",
     "moment",
     "d3",
-    "countdown"
+    "countdown",
+    "Promise"
   ],
   "browser": true,
   "boss": true,
@@ -32,6 +33,6 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": true,
+  "esversion": 6,
   "unused": false
 }

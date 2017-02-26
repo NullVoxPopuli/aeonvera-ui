@@ -18,7 +18,7 @@ module.exports = function(defaults) {
 
   console.log(fingerprintPrepend);
 
-  var app = new EmberApp({
+  var app = new EmberApp(defaults, {
     'ember-cli-foundation-sass': {
       'modernizr': true,
       'fastclick': true,

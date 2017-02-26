@@ -46,8 +46,6 @@ export default Ember.Component.extend({
     this._fillData();
   },
 
-
-
   _fillData() {
     let model = this.get('model');
     let incomes = model.get('incomes');

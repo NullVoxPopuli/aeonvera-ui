@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  renderTemplate: function () {
-    this.render('not-found', {
-      into: 'application',
-    });
-  },
+  // renderTemplate: function () {
+  //   this.render('not-found', {
+  //     into: 'application',
+  //   });
+  // },
 
   activate: function () {
     Ember.run.later(function () {

@@ -297,7 +297,7 @@ export default Ember.Mixin.create({
       return a.concat(b);
     }, []);
 
-    return flattenedItems.contains(lineItem);
+    return flattenedItems.includes(lineItem);
   },
 
   removeOrderLineItem: function(orderLineItem) {

@@ -26,6 +26,7 @@ export default DS.Model.extend({
     return this.get('attendances');
   }.property('attendances'),
 
-  hostId: computed('id', { get() { return this.get('id'); }}),
-  hostType: computed({ get() { return 'Organization'; }})
+  hostId: computed('id', { get() { return this.get('id'); } }),
+
+  hostType: computed({ get() { return 'Organization'; } })
 });

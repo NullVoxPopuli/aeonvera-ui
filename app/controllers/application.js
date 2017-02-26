@@ -21,7 +21,6 @@ export default Ember.Controller.extend({
         'You will receive an email with instructions about how to confirm your account in a few minutes.'
       );
 
-
       jQuery('#signup-modal a.close-reveal-modal').trigger('click');
     },
   },

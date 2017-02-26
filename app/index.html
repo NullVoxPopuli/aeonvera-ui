@@ -9,8 +9,8 @@
 
     {{content-for 'head'}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/aeonvera.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/aeonvera.css">
 
     {{content-for 'head-footer'}}
   </head>
@@ -18,8 +18,8 @@
     {{content-for 'body'}}
     {{content-for 'body-footer'}}
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/aeonvera.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/aeonvera.js"></script>
     <script>
       ((window.gitter = {}).chat = {}).options = {
         room: 'NullVoxPopuli/aeonvera',

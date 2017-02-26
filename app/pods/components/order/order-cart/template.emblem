@@ -74,5 +74,5 @@
       ul.button-group.even-2
         li: a.button.alert click='cancel' Cancel
         li.cart-checkout-button-container
-          = spinner-button onclick=(action "checkout") isSpinning=checkingOut
+          = form/spinner-button onclick=(action "checkout") isSpinning=checkingOut
             | Checkout

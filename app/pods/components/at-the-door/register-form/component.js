@@ -28,6 +28,7 @@ export default Ember.Component.extend({
 
   actions: {
     add(item) { this._add(item); },
+
     absorbFeesClick(value) {
       this.set('absorbFees', value);
       this.get('cart.currentOrder').set('forceAbsorbFee', value);

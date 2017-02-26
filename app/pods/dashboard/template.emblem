@@ -1,0 +1,10 @@
+if sidebar
+  .row.full-width
+    .large-3.medium-4.columns.padding-left-0
+      .sidebar.show-for-medium-up
+        nav: ul.side-nav
+          = component sidebar model=data
+    .large-9.medium-8.columns
+      = outlet
+else
+  = outlet

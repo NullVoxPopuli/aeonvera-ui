@@ -4,9 +4,9 @@
   </a>
 {{else}}
 
-  {{#spinner-button onclick=(action 'triggerAction') classNames=confirmClasses}}
+  {{#form/spinner-button onclick=(action 'triggerAction') classNames=confirmClasses}}
     {{confirmText}}
-  {{/spinner-button}}
+  {{/form/spinner-button}}
 
   {{#if showCancel}}
     <button class='alert {{cancelClasses}}' {{action 'cancel'}}>Cancel</button>

@@ -34,5 +34,5 @@ else
       = restraint.restrictedTo.name
     .columns.small-4
       a.button.tiny click='edit' Edit
-      = spinner-button onclick=(action 'delete') classNames='alert tiny'
+      = form/spinner-button onclick=(action 'delete') classNames='alert tiny'
         | Remove

@@ -10,7 +10,6 @@
 
   = outlet 'modal'
 
-
   .inner-wrap
     a.exit-off-canvas
 

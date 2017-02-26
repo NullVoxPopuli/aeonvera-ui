@@ -69,7 +69,7 @@ export default Ember.Component.extend(ResizeMixin, {
         .attr('preserveAspectRatio', 'xMinYMin meet')
         .attr('viewBox', `0 0 ${width} ${height}`)
         //class to make it responsive
-        .classed("svg-content-responsive", true)
+        .classed('svg-content-responsive', true)
         // .attr('width', width)
         // .attr('height', height)
       .append('g')

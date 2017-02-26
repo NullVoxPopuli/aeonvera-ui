@@ -55,6 +55,7 @@ export default Ember.Component.extend({
     if (isPresent(paymentOverride)) {
       return paymentOverride * 100;
     }
+
     return this.get('model.total') * 100;
   }),
 

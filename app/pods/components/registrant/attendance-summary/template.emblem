@@ -4,7 +4,7 @@ table.no-colors.no-borders.center-margin
   tbody
     tr
       th You:
-      td {{attendance.attendeeName}} ({{attendance.danceOrientation}})
+      td = youText
     tr
       th Registered At
       td = date-with-format attendarce.registeredAt 'LLL'

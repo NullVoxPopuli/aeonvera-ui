@@ -30,7 +30,7 @@ br
 
     .clearfix
     if (is-present model.attendance)
-      = registrant/attendance-summary attendance=model.attendance
+      = registrant/attendance-summary attendance=model.attendance order=model
 
 
 br
