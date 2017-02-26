@@ -1,0 +1,6 @@
+test-server:
+  build: .
+  dockerfile: ./Dockerfile
+  command: ember test --server
+  volumes:
+    - .:/web

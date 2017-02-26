@@ -22,12 +22,12 @@ cache:
 
 before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
+  - npm config set spin false
+  - npm install -g bower phantomjs-prebuilt
+  - bower --version
+  - phantomjs --version
 
 install:
-  - npm install -g bower
-  - npm install -g jshint
   - npm install -g codeclimate-test-reporter
   - npm install
   - bower install

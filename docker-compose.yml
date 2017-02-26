@@ -1,0 +1,31 @@
+version: "2"
+services:
+  # for development only
+  # assets are compiled and stored on s3 for production
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nullvoxpopuli/aeonvera-ui
+
+    command: bash -c "ember server"
+    ports:
+      - 4200:4200
+      - 49152:49152
+
+    volumes:
+      # Mount the app code inside the container's `/usr/src/app` directory:
+      # - .:/usr/src/app
+      - .:/web
+
+    # Keep the stdin open, so we can attach to our app container's process
+    # and do things such as debugging, etc:
+    # stdin_open: true
+
+    # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+    # tty: true
+
+    # ember deploy production / ember deploy staging
+    # change / create this to deploy
+    env_file:
+      - .env

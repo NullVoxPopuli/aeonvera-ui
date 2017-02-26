@@ -4,15 +4,25 @@ Ember frontend for aeonvera
 
 ## Running / Development
 
-    source nvm-setup
-    ember server
+Once / when dependencies change
+```bash
+docker-compose build
+docker-compose run --rm server npm install && bower install
+```
+
+```bash
+docker-compose up
+```
 
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
+There is also a `./run` script that saves typing for the above commands.
+
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+```bash
+docker-compose -f docker-compose.test.ci.yml up # to run the test server
+```
 
 ### Deploying
 
@@ -28,37 +38,3 @@ For deploying to heroku, you'll need to specify
      - In case there are source map issues
 * `ember deploy production`
   * I've learned I can't trust travis with secret keys.
-
-
-
-## Setup on Ubuntu 15.04
-
-### nvm
-
-    git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-
-or copy the latest command from [the NVM repo](https://github.com/creationix/nvm)
-
-    nvm install stable
-    nvm current # should output current node version
-
-
-### bower
-
-    npm install -g bower
-
-### Initial app dependencies
-
-    npm install
-    bower install
-
-### Updating app dependencies
-
-!!! Dangerous !!!
-
-```
-npm install -g npm-check-updates
-npm-check-updates -u
-npm install
-```
-This is, for the most part, somewhat destructive.

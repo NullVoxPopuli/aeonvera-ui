@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+docker-compose.yml
+logs
+
+*.log
+
+dist/
+tmp/
+node_modules/
+bower_components/
