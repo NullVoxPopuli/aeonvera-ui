@@ -8,7 +8,8 @@ export default Ember.Route.extend({
     return this.store.findRecord('event-attendance', params.registration_id, {
       adapterOptions: {
         query: {
-          event_id: event.get('id')
+          event_id: event.get('id'),
+          include: 'custom_field_responses,housing_request,housing_provision,orders.order_line_items.line_item.restraints,orders.stripe_refunds'
         }
       }
     });
