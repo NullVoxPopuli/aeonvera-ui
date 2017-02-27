@@ -5,8 +5,9 @@ export default Ember.Component.extend({
   email: null,
   errors: [],
 
-  emailClass: function () {
-    var errors = this.get('errors');
+  emailClass: function() {
+    const errors = this.get('errors');
+
     if (errors.get('email') && errors.get('email').length > 0) {
       return 'error';
     }
@@ -15,29 +16,30 @@ export default Ember.Component.extend({
   }.property('errors'),
 
   actions: {
-    reset: function () {
-      let _this = this;
-      let url = ENV.host + '/api/users/password';
-      let data = {
+    reset: function() {
+      const _this = this;
+      const url = ENV.host + '/api/users/password';
+      const data = {
         user: {
-          email: this.get('email'),
-        },
+          email: this.get('email')
+        }
       };
 
       Ember.$.ajax({
         url: url,
         type: 'POST',
         data: data,
-        success: function (data) {
+        success: function(data) {
           _this.sendAction('action');
         },
 
-        error: function (jqxhr, status, text) {
-          let json = Ember.$.parseJSON(jqxhr.responseText);
-          let errors = json.errors;
+        error: function(jqxhr, status, text) {
+          const json = Ember.$.parseJSON(jqxhr.responseText);
+          const errors = json.errors;
+
           _this.set('errors', errors);
-        },
+        }
       });
-    },
-  },
+    }
+  }
 });

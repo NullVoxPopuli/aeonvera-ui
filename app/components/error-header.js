@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   }),
 
   firstError: Ember.computed('errors.@each', function() {
-    let firstErrorObject = this.get('errors.firstObject');
+    const firstErrorObject = this.get('errors.firstObject');
 
     // No error
     if (firstErrorObject === undefined) {
@@ -19,12 +19,13 @@ export default Ember.Component.extend({
     }
 
     // Generic Unauthorized Error
-    let code = firstErrorObject.code;
+    const code = firstErrorObject.code;
+
     if (code === 401) {
       return 'Not authorized. Please login as an authorized user.';
     }
 
-    let source = firstErrorObject.source;
+    const source = firstErrorObject.source;
     let field = firstErrorObject.attribute;
 
     if (source !== undefined) {
@@ -39,7 +40,7 @@ export default Ember.Component.extend({
     }
 
     // ember-data model error || JSON API error
-    let reason = firstErrorObject.message || firstErrorObject.detail;
+    const reason = firstErrorObject.message || firstErrorObject.detail;
 
     // Errors on the root model
     // https://www.youtube.com/watch?v=IfeyUGZt8nk
@@ -53,7 +54,7 @@ export default Ember.Component.extend({
   actions: {
     hideError() {
       this.set('errorsPresent', false);
-    },
+    }
   }
 
 });

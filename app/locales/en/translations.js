@@ -1,4 +1,4 @@
-/*jshint multistr: true */
+/* jshint multistr: true */
 /* jscs:disable */
 
 export default {
@@ -51,7 +51,7 @@ export default {
     signup: 'Sign Up',
     eventcalendar: 'Event Calendar',
     createyourevent: 'Create Your Event',
-    scenesbycity: 'Scenes By City',
+    scenesbycity: 'Scenes By City'
   },
 
   faqtext: {
@@ -62,7 +62,7 @@ export default {
       name: 'How did ÆONVERA get its name?',
       pronounce: 'How do you pronounce "ÆONVERA"?',
       butthis: 'Your system is great, but I want to use this other one.',
-      idea: 'I have an idea, will you please implement it?',
+      idea: 'I have an idea, will you please implement it?'
     },
     answers: {
       howhelp: 'If you have general question about ÆONVERA, you can contact Preston \
@@ -89,7 +89,7 @@ export default {
         some pronounce it as "eh", as in "esophagus".  \
         The creator of ÆONVERA pronounces it as a long "a" sound like in "ape".\
         "Vera" is pronounced like in \
-        Aloe Vera. No tricks on that one.',
-    },
-  },
+        Aloe Vera. No tricks on that one.'
+    }
+  }
 };

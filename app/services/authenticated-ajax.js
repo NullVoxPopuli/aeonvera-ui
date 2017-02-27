@@ -17,8 +17,8 @@ export default Ember.Service.extend({
   },
 
   _perform(method, path, data) {
-    let url = ENV.host + path;
-    let authToken = this.get('session.data.authenticated.token');
+    const url = ENV.host + path;
+    const authToken = this.get('session.data.authenticated.token');
 
     return Ember.$.ajax({
       url: url,

@@ -7,7 +7,8 @@ export default Ember.Component.extend({
   }),
 
   hostObserver: Ember.observer('order', 'order.host.isFulfilled', function() {
-    let host = this.get('host');
+    const host = this.get('host');
+
     this.set('_isEvent', host.get('isEvent'));
     this.set('_isOrganization', host.get('isOrganization'));
   }),

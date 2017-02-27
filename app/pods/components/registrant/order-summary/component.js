@@ -12,7 +12,8 @@ export default Ember.Component.extend({
     },
 
     delete() {
-      let order = this.get('model');
+      const order = this.get('model');
+
       order.destroyRecord();
       if (this.get('afterDelete')) {
         this.sendAction('afterDelete');
@@ -20,9 +21,9 @@ export default Ember.Component.extend({
     },
 
     refreshStripe() {
-      let id = this.get('model.id');
-      let url = ENV.host + '/api/orders/' + id  + '/refresh_stripe';
-      let authToken = this.get('session.data.authenticated.token');
+      const id = this.get('model.id');
+      const url = ENV.host + '/api/orders/' + id + '/refresh_stripe';
+      const authToken = this.get('session.data.authenticated.token');
 
       Ember.$.ajax({
         url: url,
@@ -34,10 +35,11 @@ export default Ember.Component.extend({
         this.get('store').pushPayload(data);
         this.get('flashMessages').success('Stripe Data Refreshed');
       }, error => {
-        let json = JSON.parse(error.responseText);
-        let errors = json.errors;
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
+
         this.get('flashMessages').alert(errors);
       });
     }
-  },
+  }
 });

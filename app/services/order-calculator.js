@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject, isPresent, isBlank } = Ember;
+const {computed, inject, isPresent, isBlank} = Ember;
 
 export default Ember.Service.extend({
   store: inject.service(),
@@ -21,7 +21,7 @@ export default Ember.Service.extend({
   // restraints need to be resolved for each lineItem, because they
   // will tell us what to apply the discount to (such as a package)
   calculateSubTotal(order) {
-    let orderLineItems = order.get('orderLineItems');
+    const orderLineItems = order.get('orderLineItems');
     let subTotal = 0;
 
     orderLineItems.forEach(item => {
@@ -36,7 +36,7 @@ export default Ember.Service.extend({
   },
 
   amountOfDiscount(order, orderLineItem) {
-    let lineItem = orderLineItem.get('lineItem');
+    const lineItem = orderLineItem.get('lineItem');
 
     if (lineItem.get('kind') === lineItem.get('DOLLARS_OFF')) {
       return orderLineItem.get('total');
@@ -46,8 +46,8 @@ export default Ember.Service.extend({
   },
 
   amountRepresentedByPercentOff(order, orderLineItem) {
-    let lineItem = orderLineItem.get('lineItem');
-    let restraints = lineItem.get('restraints');
+    const lineItem = orderLineItem.get('lineItem');
+    const restraints = lineItem.get('restraints');
 
     // do we have the thing that this discount applies to?
     // (package, competition, etc)
@@ -56,7 +56,7 @@ export default Ember.Service.extend({
       return 0;
     }
 
-    let restrainedToOrderLineItem = this.itemCorrespondingToDiscount(order, restraints, lineItem);
+    const restrainedToOrderLineItem = this.itemCorrespondingToDiscount(order, restraints, lineItem);
 
     if (isBlank(restrainedToOrderLineItem)) {
       // the discount does not apply to anything, it will be removed
@@ -66,7 +66,7 @@ export default Ember.Service.extend({
 
     // convert to decimal
     // it's safe to call amount, because this is discount only territory
-    let discountPercent = lineItem.get('amount') / 100.0;
+    const discountPercent = lineItem.get('amount') / 100.0;
 
     // convert discount to dollar amount
     let price = restrainedToOrderLineItem.get('total') * discountPercent;
@@ -93,7 +93,8 @@ export default Ember.Service.extend({
       // does the order.orderLineItems contain a match, such that
       // both sides of the restraint relationship are met
       // in an orderLineItem
-      let restrictedTo = restraint.get('restrictedTo');
+      const restrictedTo = restraint.get('restrictedTo');
+
       if (order.hasLineItem(restrictedTo)) {
         result = true;
         return;
@@ -109,11 +110,12 @@ export default Ember.Service.extend({
     restraints.forEach(restraint => {
       // the discount is the restrictionFor
       // the package is the restrictedTo
-      let restrictedTo = restraint.get('restrictedTo');
+      const restrictedTo = restraint.get('restrictedTo');
 
-      let price = restrictedTo.get('currentPrice');
+      const price = restrictedTo.get('currentPrice');
 
-      let orderLineItem = order.getOrderLineItemMatching(restrictedTo, price);
+      const orderLineItem = order.getOrderLineItemMatching(restrictedTo, price);
+
       if (isPresent(orderLineItem)) {
         result = orderLineItem;
         return;

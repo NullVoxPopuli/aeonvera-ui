@@ -9,14 +9,14 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     // send a GET to the api/confirmations
-    let token = this.get('token');
-    let hostId = this.get('hostId');
-    let hostType = this.get('hostType');
+    const token = this.get('token');
+    const hostId = this.get('hostId');
+    const hostType = this.get('hostType');
 
-    let url = ENV.host + '/api/users/collaborations?token=' + token +
+    const url = ENV.host + '/api/users/collaborations?token=' + token +
       '&host_id=' + hostId + '&host_type=' + hostType;
 
-    let authToken = this.get('session.data.authenticated.token');
+    const authToken = this.get('session.data.authenticated.token');
 
     Ember.$.ajax(url, {
       method: 'PUT',
@@ -26,8 +26,8 @@ export default Ember.Component.extend({
     }).then(success => {
       this.sendAction('successAction');
     }, error => {
-      let json = JSON.parse(error.responseText);
-      let errors = json.errors;
+      const json = JSON.parse(error.responseText);
+      const errors = json.errors;
 
       this.set('errors', errors);
     });

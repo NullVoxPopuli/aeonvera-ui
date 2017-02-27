@@ -27,7 +27,7 @@ export default Ember.Route.extend(ResetScroll, SetSidebar, {
     // render footer
     this.render('shared/footer', {
       outlet: 'bottom-footer',
-      into: 'application',
+      into: 'application'
     });
 
   },
@@ -72,7 +72,7 @@ export default Ember.Route.extend(ResetScroll, SetSidebar, {
     transitionToLoginRoute: function() {
       //  this.transitionTo('login');
       this.transitionTo('welcome');
-    },
+    }
 
-  },
+  }
 });

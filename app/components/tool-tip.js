@@ -6,19 +6,19 @@ export default Ember.Component.extend(Random, {
     'data-tooltip',
     'data-width',
     'title',
-    'id',
+    'id'
   ],
   tagName: 'span',
   classNames: ['has-tip'],
 
   title: Ember.computed.alias('message'),
 
-  'data-width': function () {
+  'data-width': function() {
     return (this.get('width') || 200);
   }.property('width'),
 
-  initFoundation: function () {
+  initFoundation: function() {
     this.$(document).foundation('reflow');
-  }.on('didInsertElement'),
+  }.on('didInsertElement')
 
 });

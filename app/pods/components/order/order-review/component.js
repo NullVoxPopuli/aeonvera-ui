@@ -5,25 +5,27 @@ export default Ember.Component.extend({
   // 2. SubTotal and Total are different
   displayFee: Ember.computed(
     'model.shouldApplyFee',
-    'fee',  'model.subTotal', function() {
-    let shouldApplyFee = this.get('model.shouldApplyFee');
-    let fee = this.get('model.fee');
-    let paid = this.get('model.paid');
+    'fee', 'model.subTotal', function() {
+      const shouldApplyFee = this.get('model.shouldApplyFee');
+      const fee = this.get('model.fee');
+      const paid = this.get('model.paid');
 
-    let subTotal = this.get('model.subTotal');
-    let total = this.get('model.total');
+      const subTotal = this.get('model.subTotal');
+      const total = this.get('model.total');
 
-    if (parseFloat(subTotal) === parseFloat(total)) {
-      return false;
-    }
+      if (parseFloat(subTotal) === parseFloat(total)) {
+        return false;
+      }
 
-    let result = (paid && fee > 0) || shouldApplyFee;
-    return result;
-  }),
+      const result = (paid && fee > 0) || shouldApplyFee;
+
+      return result;
+    }),
 
   actions: {
     removeItem(item) {
-      let order = this.get('model');
+      const order = this.get('model');
+
       order.removeOrderLineItem(item);
     }
   }

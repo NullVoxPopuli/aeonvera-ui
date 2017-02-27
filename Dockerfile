@@ -22,6 +22,7 @@ RUN \
   npm install -g ember-cli@2.11.1 && \
   npm install -g bower@1.8.0 && \
   npm install -g phantomjs-prebuilt@2.1.14 && \
+  npm install -g eslint && \
   # install watchman
   # Note: See the README.md to find out how to increase the
   # fs.inotify.max_user_watches value so that watchman will
@@ -33,6 +34,7 @@ RUN \
   ./configure && \
   make && \
   make install
+
 
 # ember server on port 4200
 # livereload server on port 49152

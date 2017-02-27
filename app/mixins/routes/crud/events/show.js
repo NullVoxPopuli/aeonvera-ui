@@ -5,21 +5,23 @@ export default Ember.Mixin.create({
   parentIdName: 'event_id',
   include: '',
 
-  model: function (params, transition) {
-    let modelName = this.get('modelName');
-    let idName = modelName.underscore() + '_id';
-    let parentPath = this.get('parentPath');
-    let parent = this.modelFor(parentPath);
-    let query = {};
-    let parentIdName = this.get('parentIdName');
-    let include = this.get('include');
+  model: function(params, transition) {
+    const modelName = this.get('modelName');
+    const idName = modelName.underscore() + '_id';
+    const parentPath = this.get('parentPath');
+    const parent = this.modelFor(parentPath);
+    const query = {};
+    const parentIdName = this.get('parentIdName');
+    const include = this.get('include');
+
     query[parentIdName] = parent.get('id');
 
     if (Ember.isPresent(include)) {
       query.include = include;
     }
 
-    let record = this.store.findRecord(modelName, params[idName], query);
+    const record = this.store.findRecord(modelName, params[idName], query);
+
     return record;
-  },
+  }
 });

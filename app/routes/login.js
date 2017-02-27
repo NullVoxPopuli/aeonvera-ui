@@ -3,9 +3,10 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   actions: {
-    authenticate: function () {
-      var data = this.getProperties('identification', 'password');
+    authenticate: function() {
+      const data = this.getProperties('identification', 'password');
+
       return this.get('session').authenticate('authenticator:token', data);
-    },
-  },
+    }
+  }
 });

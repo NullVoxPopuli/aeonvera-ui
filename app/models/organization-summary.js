@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const { computed } = Ember;
+const {computed} = Ember;
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -15,18 +15,22 @@ export default DS.Model.extend({
   netReceivedPastMonth: DS.attr('number'),
 
   attendances: DS.hasMany('attendance', {
-    async: false,
+    async: false
   }),
 
   organization: DS.belongsTo('organization', {
-    async: true,
+    async: true
   }),
 
-  recentRegistrations: function () {
+  recentRegistrations: function() {
     return this.get('attendances');
   }.property('attendances'),
 
-  hostId: computed('id', { get() { return this.get('id'); } }),
+  hostId: computed('id', {get() {
+    return this.get('id');
+  }}),
 
-  hostType: computed({ get() { return 'Organization'; } })
+  hostType: computed({get() {
+    return 'Organization';
+  }})
 });

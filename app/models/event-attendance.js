@@ -10,9 +10,11 @@ export default Attendance.extend({
   hasUsedStudentDiscount: Ember.computed('orders.@each', {
     get() {
       let result = false;
+
       this.get('orders').forEach(order => {
         order.get('orderLineItems').forEach(orderLineItem => {
-          let requiresStudentId = orderLineItem.get('lineItem.requiresStudentId');
+          const requiresStudentId = orderLineItem.get('lineItem.requiresStudentId');
+
           if (requiresStudentId) {
             result = true;
           }
@@ -24,9 +26,9 @@ export default Attendance.extend({
   }),
 
   validations: {
-    city: { presence: true },
-    state: { presence: true },
-    danceOrientation: { presence: true },
+    city: {presence: true},
+    state: {presence: true},
+    danceOrientation: {presence: true},
     phoneNumber: {
       custom: {
         message: 'Phone Number is required when volunteering.',
@@ -39,7 +41,7 @@ export default Attendance.extend({
         }
       }
     },
-    package: { presence: true },
+    package: {presence: true},
     level: {
       custom: {
         message: 'Level is required for the selected ticket.',
@@ -48,7 +50,8 @@ export default Attendance.extend({
         // so we need to see if we can access the
         // id property on it
         validation(key, value, model) {
-          let requiresLevel = model.get('package.requiresTrack');
+          const requiresLevel = model.get('package.requiresTrack');
+
           if (requiresLevel) {
             // value is undefined for some reason
             return Ember.isPresent(model.get('level.id'));
@@ -57,6 +60,6 @@ export default Attendance.extend({
           return true;
         }
       }
-    },
+    }
   }
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, isPresent, inject } = Ember;
+const {computed, isPresent, inject} = Ember;
 
 export default Ember.Component.extend({
   ajax: inject.service('authenticated-ajax'),
@@ -12,12 +12,12 @@ export default Ember.Component.extend({
   showOnlyNonPickedIn: false,
   queryText: '',
   columns: [
-    { property: 'order.userName', title: 'Name' },
-    { property: 'lineItem.name', title: 'Item Name' },
-    { property: 'quantity', title: 'Quantity' },
-    { property: 'size', title: 'Size' },
-    { property: 'order.paid', title: 'Paid Status' },
-    { property: 'pickedUpAt', title: 'Picked Up At' }
+    {property: 'order.userName', title: 'Name'},
+    {property: 'lineItem.name', title: 'Item Name'},
+    {property: 'quantity', title: 'Quantity'},
+    {property: 'size', title: 'Size'},
+    {property: 'order.paid', title: 'Paid Status'},
+    {property: 'pickedUpAt', title: 'Picked Up At'}
   ],
 
   filteredOrderLineItems: computed(
@@ -36,7 +36,8 @@ export default Ember.Component.extend({
 
         if (queryPresent) {
           filtered = filtered.filter(item => {
-            let name = item.get('order.userName');
+            const name = item.get('order.userName');
+
             return name.toLowerCase().includes(query);
           });
         }
@@ -69,15 +70,16 @@ export default Ember.Component.extend({
 
   actions: {
     setPickedUp(item) {
-      let id = item.get('id');
-      let ajax = this.get('ajax');
-      let path = `/api/order_line_items/${id}/mark_as_picked_up`;
+      const id = item.get('id');
+      const ajax = this.get('ajax');
+      const path = `/api/order_line_items/${id}/mark_as_picked_up`;
 
       ajax.PUT(path).then(data => {
         this.get('store').pushPayload(data);
       }, error => {
-        let json = JSON.parse(error.responseText);
-        let errors = json.errors;
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
+
         this.get('flashMessages').alert(errors);
       });
     }

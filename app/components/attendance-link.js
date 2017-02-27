@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  id: Ember.computed(function () {
+  id: Ember.computed(function() {
     return this.get('model.id');
   }),
 
@@ -9,11 +9,11 @@ export default Ember.Component.extend({
     return this.get('model.eventId');
   }),
 
-  name: Ember.computed(function () {
-    let model = this.get('model');
-    let aName = model.get('attendeeName');
-    let name = model.get('name');
+  name: Ember.computed(function() {
+    const model = this.get('model');
+    const aName = model.get('attendeeName');
+    const name = model.get('name');
 
     return aName || name;
-  }),
+  })
 });

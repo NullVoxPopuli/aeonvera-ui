@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject } = Ember;
+const {computed, inject} = Ember;
 
 export default Ember.Component.extend({
   cart: inject.service('order-cart'),
@@ -11,7 +11,7 @@ export default Ember.Component.extend({
 
   actions: {
     addToOrder(item) {
-      let cart = this.get('cart');
+      const cart = this.get('cart');
 
       // TODO: doesn't need to be set every time - just once
       cart.set('host', this.get('event'));
@@ -28,7 +28,8 @@ export default Ember.Component.extend({
     },
 
     clearOrder() {
-      let cart = this.get('cart');
+      const cart = this.get('cart');
+
       cart.get('currentOrder').unloadRecord();
       cart.set('order', null);
     }

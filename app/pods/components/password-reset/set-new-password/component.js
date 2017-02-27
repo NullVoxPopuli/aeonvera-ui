@@ -11,14 +11,14 @@ export default Ember.Component.extend({
   errors: [],
 
   actions: {
-    reset: function () {
-      let url = ENV.host + '/api/users/password/';
-      let data = {
+    reset: function() {
+      const url = ENV.host + '/api/users/password/';
+      const data = {
         user: {
           password: this.get('password'),
           password_confirmation: this.get('passwordConfirmation'),
           reset_password_token: this.get('resetToken')
-        },
+        }
       };
 
       Ember.$.ajax({
@@ -28,12 +28,12 @@ export default Ember.Component.extend({
       }).then(data => {
         this.sendAction('action');
       }, error => {
-        let json = JSON.parse(error.responseText);
-        let errors = json.errors;
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
 
         this.set('errors', errors);
       });
-    },
-  },
+    }
+  }
 
 });

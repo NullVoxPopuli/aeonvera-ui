@@ -13,5 +13,5 @@ export default Ember.Component.extend(Form, {
   // - 1: Entered Name
   whoIsRequestingType: 0,
 
-  isRegistrantRequesting: Ember.computed.equal('whoIsRequestingType', 0),
+  isRegistrantRequesting: Ember.computed.equal('whoIsRequestingType', 0)
 });

@@ -4,10 +4,10 @@ import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
 import SlotsMixin from 'ember-block-slots';
 
 export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
-  cart:                  Ember.inject.service('order-cart'),
+  cart: Ember.inject.service('order-cart'),
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
-  errors:                [],
-  resetCheckoutButton:   false,
+  errors: [],
+  resetCheckoutButton: false,
   isProceedToCheckoutVisible: false,
   afterCheckout: null,
 
@@ -16,8 +16,9 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
   */
   didInsertElement() {
     this._super(...arguments);
-    let token = this.get('token');
-    let order = this.get('order');
+    const token = this.get('token');
+    const order = this.get('order');
+
     this.set('cart.host', this.get('host'));
     this.set('cart.token', token);
     if (Ember.isPresent(order)) {
@@ -54,29 +55,33 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
   },
 
   _isCheckoutButtonVisible() {
-    let button = this.$('li.cart-checkout-button-container');
+    const button = this.$('li.cart-checkout-button-container');
+
     return this._isElementInViewport(button);
   },
 
   _isElementInViewport(el) {
     // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
     // get internal element  from jQuery object
-    if (Ember.isBlank(el) || el.length === 0) return false;
+    if (Ember.isBlank(el) || el.length === 0) {
+      return false;
+    }
     el = el[0];
 
-    let rect = el.getBoundingClientRect();
-    let isVisible = (
+    const rect = el.getBoundingClientRect();
+    const isVisible = (
       rect.top >= 0 &&
       rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
     );
 
     return isVisible;
   },
 
   itemContainerClasses: Ember.computed('buildingAnOrder', function() {
-    let building = this.get('buildingAnOrder');
+    const building = this.get('buildingAnOrder');
+
     return building ? 'large-8 medium-8 columns' :
       'large-8 medium-12 columns';
   }),
@@ -100,7 +105,8 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
 
     checkout() {
       this.set('checkingOut', true);
-      let checkoutPromise = this.get('cart').checkout();
+      const checkoutPromise = this.get('cart').checkout();
+
       if (checkoutPromise !== undefined) {
         checkoutPromise.then(record => {
           if (record === null || record === undefined) {
@@ -112,11 +118,11 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
             return;
           }
 
-          let id = record.get('id');
-          let token = record.get('paymentToken');
+          const id = record.get('id');
+          const token = record.get('paymentToken');
 
           // model hook isn't fired upon transition!
-          this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
+          this.get('router').transitionTo('register.checkout', id, {queryParams: {token: token}});
           this.set('resetCheckoutButton', true);
         }, error => {
           console.log(error);
@@ -139,7 +145,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
     cancel: function() {
       this.get('cart').cancel();
       this.sendAction('afterCancel');
-    },
-  },
+    }
+  }
 
 });

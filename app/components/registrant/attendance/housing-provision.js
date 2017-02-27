@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   tagName: 'tbody',
   hasPets: Ember.computed.alias('housingProvision.hasPets'),
   smokes: Ember.computed.alias('housingProvision.smokes'),
-  smokingConjunction: Ember.computed('hasPets',  function() {
+  smokingConjunction: Ember.computed('hasPets', function() {
     return this.get('hasPets') ? 'and' : 'With';
   }),
   transportationConjuction: Ember.computed('hasPets', 'smokes', function() {
@@ -26,5 +26,5 @@ export default Ember.Component.extend({
 
   hostingNoPreference: Ember.computed('housingProvision.preferredGenderToHost', function() {
     return this.get('housingProvision.preferredGenderToHost').includes('No');
-  }),
+  })
 });

@@ -7,6 +7,6 @@ export default Ember.Component.extend(Form, {
   cancelPath: 'events.show.pricing-tiers',
   /* used for creating / navigating */
   parentAssociation: 'event',
-  parentId: 'event_id',
+  parentId: 'event_id'
 
 });

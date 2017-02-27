@@ -4,20 +4,20 @@ export default Ember.Route.extend({
   idName: 'raffle_ticket_id',
   modelName: 'raffle-ticket',
 
-  model: function (params) {
-    let raffle = this.modelFor('events.show.raffles.show');
-    let idName = this.get('idName');
-    let modelName = this.get('modelName');
+  model: function(params) {
+    const raffle = this.modelFor('events.show.raffles.show');
+    const idName = this.get('idName');
+    const modelName = this.get('modelName');
 
-    let record = this.store.findRecord(modelName, params[idName], {
+    const record = this.store.findRecord(modelName, params[idName], {
       adapterOptions: {
         query: {
           raffle_id: raffle.get('id'),
-          include: 'attendances',
-        },
-      },
+          include: 'attendances'
+        }
+      }
     });
 
     return record;
-  },
+  }
 });

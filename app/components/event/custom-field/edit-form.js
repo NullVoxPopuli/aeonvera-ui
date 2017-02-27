@@ -5,5 +5,5 @@ export default Ember.Component.extend(Form, {
   modelName: 'custom-field',
   saveSuccessPath: 'events.show.custom-fields.show', // should be show?
   cancelPath: 'events.show.custom-fields',
-  parentAssociation: 'host',
+  parentAssociation: 'host'
 });

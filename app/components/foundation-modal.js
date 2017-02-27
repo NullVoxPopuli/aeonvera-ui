@@ -1,33 +1,34 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    title: '',
+  title: '',
 
     // name: '',
-    elementId: '',
-    role: 'dialog',
-    hidden: true,
-    reveal: true,
-    buttonClasses: '',
-    buttonText: '',
+  elementId: '',
+  role: 'dialog',
+  hidden: true,
+  reveal: true,
+  buttonClasses: '',
+  buttonText: '',
 
-    didInsertElement() {
-      this._super(...arguments);
-      this.set('elementId', this.$().attr('id'));
-    },
+  didInsertElement() {
+    this._super(...arguments);
+    this.set('elementId', this.$().attr('id'));
+  },
 
-    modalName: function() {
-      let dashedName = (this.get('name') || '').dasherize();
-      let dashedTitle = this.get('title').dasherize();
-      return Ember.isPresent(dashedName) ? dashedName : dashedTitle;
-    }.property('title', 'name'),
+  modalName: function() {
+    const dashedName = (this.get('name') || '').dasherize();
+    const dashedTitle = this.get('title').dasherize();
 
-    modalId: Ember.computed('elementId', function() {
-      return this.get('elementId') + '-modal';
-    }),
+    return Ember.isPresent(dashedName) ? dashedName : dashedTitle;
+  }.property('title', 'name'),
 
-    titleId: function() {
-      return this.get('elementId') + '-title';
-    }.property('elementId'),
+  modalId: Ember.computed('elementId', function() {
+    return this.get('elementId') + '-modal';
+  }),
 
-  });
+  titleId: function() {
+    return this.get('elementId') + '-title';
+  }.property('elementId')
+
+});

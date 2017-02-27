@@ -20,15 +20,15 @@ export default Ember.Component.extend({
   },
 
   _setDefaultSortProps() {
-    let columns = this.get('columns');
-    let firstProperty = columns.firstObject.property;
+    const columns = this.get('columns');
+    const firstProperty = columns.firstObject.property;
 
     this.set('sortProps', [firstProperty + ':asc']);
   },
 
   _evaluateColumnProperties() {
-    let columns = this.get('columns');
-    let evaluatedColumns = [];
+    const columns = this.get('columns');
+    const evaluatedColumns = [];
 
     columns.forEach(column => {
       /*
@@ -37,7 +37,8 @@ export default Ember.Component.extend({
       */
       if (Ember.isPresent(column.showOn)) {
         if (typeof (column.showOn) !== 'boolean') {
-          let showOn = this.get(column.showOn);
+          const showOn = this.get(column.showOn);
+
           column.showOn = showOn;
         }
       } else {
@@ -56,10 +57,10 @@ export default Ember.Component.extend({
   },
 
   _sortIndicator(field) {
-    let currentSort = this.get('sortProps')[0];
-    let sort = currentSort.split(':');
-    let sortProperty = sort[0];
-    let sortDirection = sort[1];
+    const currentSort = this.get('sortProps')[0];
+    const sort = currentSort.split(':');
+    const sortProperty = sort[0];
+    const sortDirection = sort[1];
 
     if (sortProperty === field) {
       return (sortDirection === 'desc') ? '▼' : '▲';
@@ -69,8 +70,8 @@ export default Ember.Component.extend({
   },
 
   _updateIndicatorForProperty(property) {
-    let columns = this.get('evaluatedColumns');
-    let sortIndicator = this._sortIndicator(property);
+    const columns = this.get('evaluatedColumns');
+    const sortIndicator = this._sortIndicator(property);
 
     columns.forEach(item => {
       if (item.property === property) {
@@ -84,9 +85,9 @@ export default Ember.Component.extend({
 
   actions: {
     toggleSort(property) {
-      let currentSort = this.get('sortProps')[0];
-      let sort = currentSort.split(':');
-      let sortProperty = sort[0];
+      const currentSort = this.get('sortProps')[0];
+      const sort = currentSort.split(':');
+      const sortProperty = sort[0];
       let sortDirection = sort[1];
 
       if (property === sortProperty) {
@@ -97,6 +98,6 @@ export default Ember.Component.extend({
       }
 
       this._updateIndicatorForProperty(property);
-    },
-  },
+    }
+  }
 });

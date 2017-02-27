@@ -13,7 +13,7 @@ ul.accordion data-accordion='true'
               = tool-tip message='This order has been (partially) refunded.'
           else
             | Owes {{to-usd order.totalInDollars}}
-      if (isEqual item  lastItem)
+      if (is-equal item  lastItem)
         .content.active id='order-{{order.id}}'
           = registrant/order-summary model=order
       else

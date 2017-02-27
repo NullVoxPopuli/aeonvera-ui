@@ -17,14 +17,14 @@ export default Ember.Component.extend({
   },
 
   _startCountDown() {
-    let targetDate = this.get('targetDate');
-    let words = countdown.MONTHS |
+    const targetDate = this.get('targetDate');
+    const words = countdown.MONTHS |
                 countdown.DAYS |
                 countdown.HOURS |
-                countdown. MINUTES |
+                countdown.MINUTES |
                 countdown.SECONDS;
 
-    let timer = countdown(targetDate, timer => {
+    const timer = countdown(targetDate, timer => {
       this.set('output', timer);
       this._updateForm();
     }, words);
@@ -33,7 +33,8 @@ export default Ember.Component.extend({
   },
 
   _updateForm() {
-    let model = this.get('model');
+    const model = this.get('model');
+
     if (Ember.isPresent(model)) {
       model.notifyPropertyChange('registrationIsOpen');
     }

@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    destroy: function () {
+    destroy: function() {
       this.get('model').destroyRecord().then(() => {}, failure => {
 
         this.get('flashMessages').alert(
@@ -17,8 +17,9 @@ export default Ember.Component.extend({
       });
     },
 
-    undestroy: function () {
-      let model = this.get('model');
+    undestroy: function() {
+      const model = this.get('model');
+
       model.set('deletedAt', null);
       model.save().then(() => {}, failure => {
 
@@ -26,6 +27,6 @@ export default Ember.Component.extend({
           'Undeleting failed. ' + failure
         );
       });
-    },
-  },
+    }
+  }
 });

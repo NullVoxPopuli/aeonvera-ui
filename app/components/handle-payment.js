@@ -9,25 +9,25 @@ export default Ember.Component.extend({
 
   checkNumber: '',
 
-  order: function () {
+  order: function() {
     return this.get('model');
   }.property('model'),
 
-  amount: function () {
+  amount: function() {
     return this.get('order.subTotal');
   }.property('order', 'order.subTotal'),
 
   actions: {
-    process: function (paymentMethod) {
+    process: function(paymentMethod) {
       this.get('targetObject').send('process', {
         checkNumber: this.get('checkNumber'),
-        paymentMethod: paymentMethod,
+        paymentMethod: paymentMethod
       });
     },
 
-    processStripeToken: function (args) {
+    processStripeToken: function(args) {
       this.get('targetObject').send('processStripeToken', args);
-    },
-  },
+    }
+  }
 
 });

@@ -2,22 +2,23 @@ import Ember from 'ember';
 import EditModel from 'aeonvera/mixins/edit-model';
 
 export default Ember.Mixin.create(EditModel, {
-  parentModelId: function () {
+  parentModelId: function() {
 
-    let passedParent = this.get('parent');
+    const passedParent = this.get('parent');
+
     if (!Ember.isPresent(passedParent)) {
       console.log('parent not passed in, moving on...');
     } else {
       return passedParent.get('id');
     }
 
-    let association = this.get('parentAssociation');
+    const association = this.get('parentAssociation');
 
     if (!Ember.isPresent(association)) {
       console.log('association not found');
     }
 
-    let parent = this.get('model').get(association);
+    const parent = this.get('model').get(association);
 
     if (!Ember.isPresent(parent)) {
       console.log('parent not found');
@@ -31,21 +32,22 @@ export default Ember.Mixin.create(EditModel, {
   }.property('model'),
 
   actions: {
-    save: function () {
-      let model = this.get('model');
+    save: function() {
+      const model = this.get('model');
 
       model.save().then(record => {
         this.get('flashMessages').success(
           'Saved Successfully'
         );
-        let path = this.get('saveSuccessPath');
-        let parentId = this.get('parentModelId');
-        let recordId = record.get('id');
+        const path = this.get('saveSuccessPath');
+        const parentId = this.get('parentModelId');
+        const recordId = record.get('id');
 
-        let numberOfShows = path.match(/show/g).length;
+        const numberOfShows = path.match(/show/g).length;
+
         if (numberOfShows === 2) {
           this.get('router').transitionTo(path, parentId, recordId);
-        } else { //(numberOfShows === 1) {
+        } else { // (numberOfShows === 1) {
           this.get('router').transitionTo(path, parentId);
         }
       }, failure => {
@@ -55,6 +57,6 @@ export default Ember.Mixin.create(EditModel, {
         );
       });
 
-    },
-  },
+    }
+  }
 });

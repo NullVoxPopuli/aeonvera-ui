@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  attendances: function () {
+  attendances: function() {
     return this.get('model');
   }.property('model'),
 
-  attendancesPresent: function () {
+  attendancesPresent: function() {
     return true;
-  }.property('model'),
+  }.property('model')
 });

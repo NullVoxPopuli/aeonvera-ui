@@ -1,18 +1,18 @@
 import Ember from 'ember';
 
-const { isBlank } = Ember;
+const {isBlank} = Ember;
 
 export default Ember.Route.extend({
   model(params) {
     const organization = this.modelFor('my-communities.manage.membership');
     const organizationId = organization.get('id');
 
-    let member = this.store.findRecord('member', params.user_id, {
+    const member = this.store.findRecord('member', params.user_id, {
       organization_id: organizationId,
       include: 'memberships,membership_renewals.membership_options'
     });
 
-    let notes = this.store.query('note', {
+    const notes = this.store.query('note', {
       host_id: organization.get('id'),
       host_type: organization.get('klass'),
       q: {

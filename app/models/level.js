@@ -10,17 +10,18 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
   event: DS.belongsTo('event'),
 
   attendances: DS.hasMany('event-attendance', {
-    async: true,
+    async: true
   }),
 
   hasRequirement: Ember.computed('requirement', function() {
-    let requirement = this.get('requirement');
+    const requirement = this.get('requirement');
+
     return (requirement !== 0 && requirement !== null);
   }),
 
   requiresName: Ember.computed('hasRequirement', function() {
-    let hasRequirement = this.get('hasRequirement');
-    let requirement = this.get('requirement');
+    const hasRequirement = this.get('hasRequirement');
+    const requirement = this.get('requirement');
 
     if (hasRequirement) {
       return (requirement === 1) ? 'Audition' : 'Invitation';
@@ -30,7 +31,7 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
   }),
 
   requirementName: Ember.computed('requirement', function() {
-    let requirement = this.get('requirement');
+    const requirement = this.get('requirement');
 
     if (requirement === 0) {
       return 'No Restriction';
@@ -45,5 +46,5 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     }
 
     return '';
-  }),
+  })
 });

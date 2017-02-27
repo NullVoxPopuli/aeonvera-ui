@@ -6,7 +6,8 @@ export default Ember.Route.extend({
 
   beforeModel(transition) {
     if (this.get('session.isAuthenticated')) {
-      let msg = 'Resetting your password requires that you be logged out';
+      const msg = 'Resetting your password requires that you be logged out';
+
       this.get('flashMessages').info(msg);
       this.transitionTo('dashboard');
       return;

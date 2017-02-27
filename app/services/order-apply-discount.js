@@ -2,11 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   store: Ember.inject.service(),
-  cart:  Ember.inject.service('order-cart'),
+  cart: Ember.inject.service('order-cart'),
 
   lookupDiscount(host, discountCode) {
-    let store = this.get('store');
-    let cart = this.get('cart');
+    const store = this.get('store');
+    const cart = this.get('cart');
 
     return store.query('discount', {
 
@@ -22,5 +22,5 @@ export default Ember.Service.extend({
         name_eq: discountCode
       }
     });
-  },
+  }
 });

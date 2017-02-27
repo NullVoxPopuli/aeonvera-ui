@@ -11,14 +11,15 @@ export default Ember.Component.extend({
 
   actions: {
     increase() {
-      let quantity = this.get('quantity');
+      const quantity = this.get('quantity');
+
       this.get('orderLineItem').set('quantity', quantity + 1);
     },
 
     decrease() {
-      let quantity = this.get('quantity');
-      let newQuantity = quantity - 1;
-      let oli = this.get('orderLineItem');
+      const quantity = this.get('quantity');
+      const newQuantity = quantity - 1;
+      const oli = this.get('orderLineItem');
 
       if (newQuantity < 1) {
         this.get('order').removeOrderLineItem(oli);

@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   classNames: ['right-off-canvas-menu'],
 
   actions: {
-    invalidateSession: function () {
+    invalidateSession: function() {
       this.get('session').invalidate();
-    },
-  },
+    }
+  }
 });

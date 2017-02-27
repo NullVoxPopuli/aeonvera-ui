@@ -8,10 +8,12 @@ export default AjaxService.extend({
   host: ENV.host,
   headers: Ember.computed('session.authToken', {
     get() {
-      let headers = {};
-      let authToken = this.get('session.data.authenticated.token');
+      const headers = {};
+      const authToken = this.get('session.data.authenticated.token');
+
       if (authToken) {
-        let token = 'Bearer ' + authToken;
+        const token = 'Bearer ' + authToken;
+
         headers.Authorization = token;
       }
 

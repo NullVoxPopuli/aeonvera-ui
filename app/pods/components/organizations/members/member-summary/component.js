@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
+import {task, timeout} from 'ember-concurrency';
 
-import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
-import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
+import {userLatestRenewalFor} from 'aeonvera/helpers/user/latest-renewal-for';
+import {userIsMemberOf} from 'aeonvera/helpers/user/is-member-of';
 
-const { computed } = Ember;
+const {computed} = Ember;
 
 const ProxyPromise = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
 
@@ -33,7 +33,9 @@ export default Ember.Component.extend({
   activeMembershipTask: task(function * () {
     const organization = this.get('organization');
     const memberPromise = this.get('memberPromise');
-    const active = yield memberPromise.then(member => userIsMemberOf({}, { user: member, organization }));
+    const active = yield memberPromise.then(member => {
+      return userIsMemberOf({}, {user: member, organization});
+    });
 
     this.set('activeMembership', active);
   }),
@@ -41,7 +43,9 @@ export default Ember.Component.extend({
   latestRenewalTask: task(function * () {
     const organization = this.get('organization');
     const memberPromise = this.get('memberPromise');
-    const renewal = yield memberPromise.then(member =>  userLatestRenewalFor({}, { user: member, organization }));
+    const renewal = yield memberPromise.then(member => {
+      return userLatestRenewalFor({}, {user: member, organization});
+    });
 
     this.set('latestRenewal', renewal);
   }),
@@ -49,6 +53,8 @@ export default Ember.Component.extend({
   // if the page is refreshed, member will be a promise,
   // otherwise member will already be a resolved value
   memberPromise: computed('member', {
-    get() { return this.get('member').asPromiseObject(); }
+    get() {
+      return this.get('member').asPromiseObject();
+    }
   })
 });

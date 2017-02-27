@@ -9,9 +9,11 @@ export default Ember.Component.extend({
 
   actions: {
     addNew() {
-      let newRestraint = this.get('store').createRecord('restraint');
+      const newRestraint = this.get('store').createRecord('restraint');
+
       newRestraint.set('restrictionFor', this.get('model'));
-      let restraints = this.get('restraints');
+      const restraints = this.get('restraints');
+
       restraints.pushObject(newRestraint);
     }
   }

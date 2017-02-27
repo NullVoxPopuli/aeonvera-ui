@@ -1,16 +1,16 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const { attr, belongsTo, hasMany } = DS;
+const {attr, belongsTo, hasMany} = DS;
 
 export default DS.Model.extend({
-  label:        attr('string'),
-  kind:         attr('number'),
+  label: attr('string'),
+  kind: attr('number'),
   defaultValue: attr('string'),
-  editable:     attr('boolean'),
+  editable: attr('boolean'),
 
-  host: belongsTo('host', { polymorphic: true }),
-  customFieldResponses: hasMany('custom-field-response'),
+  host: belongsTo('host', {polymorphic: true}),
+  customFieldResponses: hasMany('custom-field-response')
 
   //
   // # TODO: is it worth it to make subclasses for all these

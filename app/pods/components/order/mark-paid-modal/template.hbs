@@ -21,7 +21,7 @@
         placeholder=amount
       }}
 
-      {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
+      {{#if (is-equal paymentMethod paymentMethods.CHECK)}}
         <label>Check Number</label>
         {{input type='text' value=checkNumber}}
       {{/if}}
@@ -44,7 +44,7 @@
         {{radio-button value=paymentMethods.STRIPE groupValue=paymentMethod}}
         <label>Stripe</label>
 
-        {{#if (isEqual paymentMethod paymentMethods.CASH)}}
+        {{#if (is-equal paymentMethod paymentMethods.CASH)}}
         <hr>
         <ul class='button-group right'>
           <li>
@@ -64,7 +64,7 @@
         </ul>
         {{/if}}
 
-        {{#if (isEqual paymentMethod paymentMethods.CHECK)}}
+        {{#if (is-equal paymentMethod paymentMethods.CHECK)}}
           <hr>
           <ul class='button-group right'>
             <li>
@@ -76,7 +76,7 @@
         {{/if}}
 
 
-        {{#if (isEqual paymentMethod paymentMethods.STRIPE)}}
+        {{#if (is-equal paymentMethod paymentMethods.STRIPE)}}
           <hr />
           <ul class='button-group right'>
             <li>

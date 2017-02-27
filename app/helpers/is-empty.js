@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
-export function isEmpty(params/*, hash*/) {
-  let value = params[0];
+export function isEmpty(params/* , hash*/) {
+  const value = params[0];
+
   return Ember.isEmpty(value);
 }
 

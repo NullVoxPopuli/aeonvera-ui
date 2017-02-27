@@ -4,19 +4,20 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 export default Ember.Route.extend(ResetScroll, {
 
   beforeModel() {
-    let application = this.controllerFor('application');
+    const application = this.controllerFor('application');
+
     application.set('mobileMenuLeft', 'nav/welcome/left-items');
   },
 
-  model: function (params) {
-    let subdomain = params.subdomain;
+  model: function(params) {
+    const subdomain = params.subdomain;
 
-    let promise = this.get('store').findRecord('host', subdomain, {
+    const promise = this.get('store').findRecord('host', subdomain, {
       adapterOptions: {
         query: {
           subdomain: subdomain
-        },
-      },
+        }
+      }
     });
 
     return promise;
@@ -35,18 +36,19 @@ export default Ember.Route.extend(ResetScroll, {
         return;
       }
 
-      let firstError = reason.errors[0];
-      let errorObject = new Ember.Object(firstError);
-      let status = firstError.code;
+      const firstError = reason.errors[0];
+      const errorObject = new Ember.Object(firstError);
+      const status = firstError.code;
 
       // all errors are json api-formatted
       if (status === 404) {
-        let controller = errorObject.get('meta.params.controller');
+        const controller = errorObject.get('meta.params.controller');
 
         if (controller && controller.includes('orders')) {
           // the order was not found, transition to the main
           // register route
-          let subdomain = transition.params.register.subdomain;
+          const subdomain = transition.params.register.subdomain;
+
           transition.abort();
           return this.transitionTo('register', subdomain);
         }

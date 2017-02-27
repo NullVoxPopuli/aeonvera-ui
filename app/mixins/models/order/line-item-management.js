@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject, isBlank, isPresent } = Ember;
+const {computed, inject, isBlank, isPresent} = Ember;
 
 export default Ember.Mixin.create({
 
@@ -11,7 +11,7 @@ export default Ember.Mixin.create({
     price - overrides the price of the lineItem
   */
   addLineItem(lineItem, quantity = 1, price = null, allowNegative = false) {
-    price    = price ? price : lineItem.get('currentPrice');
+    price = price ? price : lineItem.get('currentPrice');
     quantity = parseInt(quantity) || 0;
 
     if (lineItem.get('isPackage')) {
@@ -21,9 +21,10 @@ export default Ember.Mixin.create({
     } else {
 
       // is the item already in the order?
-      let orderLineItem = this.getOrderLineItemMatching(lineItem, price);
-      let oliExists     = Ember.isPresent(orderLineItem);
-      let canAdd = !oliExists && (allowNegative || quantity > 0);
+      const orderLineItem = this.getOrderLineItemMatching(lineItem, price);
+      const oliExists = Ember.isPresent(orderLineItem);
+      const canAdd = !oliExists && (allowNegative || quantity > 0);
+
       if (canAdd) {
         this._addNewLineItem(lineItem, quantity, price);
       } else if (oliExists) {
@@ -39,7 +40,8 @@ export default Ember.Mixin.create({
 
   _setPackage(lineItem, price) {
     // remove old packages
-    let orderLineItem = this._findFirstPackage();
+    const orderLineItem = this._findFirstPackage();
+
     if (Ember.isPresent(orderLineItem)) {
       this.removeOrderLineItem(orderLineItem);
     }
@@ -49,7 +51,8 @@ export default Ember.Mixin.create({
 
     // set the package on the attendance,
     // if the eattendance exists
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
+
     if (Ember.isPresent(attendance)) {
       attendance.set('package', lineItem);
     }
@@ -59,32 +62,43 @@ export default Ember.Mixin.create({
   },
 
   _addSponsorshipDiscount() {
-    let host = this.get('host');
-    let automaticDiscounts = this.get('automaticDiscounts');
-    if (false === automaticDiscounts) return false;
+    const host = this.get('host');
+    const automaticDiscounts = this.get('automaticDiscounts');
 
-    if (isBlank(host)) { return; }
+    if (automaticDiscounts === false) {
+      return false;
+    }
 
-    let sponsorships = host.get('sponsorships');
+    if (isBlank(host)) {
+      return;
+    }
 
-    if (isBlank(sponsorships)) { return; }
+    const sponsorships = host.get('sponsorships');
+
+    if (isBlank(sponsorships)) {
+      return;
+    }
 
     // have to pull the record out of the store so we get our methods defined on
     // the model, rather than just being able to interact with the raw data
-    let user = this.get('store').peekRecord('user', 'current-user');
-    if (isBlank(user)) { return; }
+    const user = this.get('store').peekRecord('user', 'current-user');
+
+    if (isBlank(user)) {
+      return;
+    }
 
     sponsorships.forEach(sponsorship => {
-      let organization = sponsorship.get('sponsor');
-      let discountId = sponsorship.get('discount.id');
+      const organization = sponsorship.get('sponsor');
+      const discountId = sponsorship.get('discount.id');
 
       // have to pull the record out of the store so we get our methods defined on
       // the model, rather than just being able to interact with the raw data
-      let discount = this.get('store').peekRecord('discount', discountId);
+      const discount = this.get('store').peekRecord('discount', discountId);
 
       // is the user a member of this organization?
       // if so, apply the discount
-      let isMember = user.isMemberOf(organization);
+      const isMember = user.isMemberOf(organization);
+
       if (isMember) {
         // add the discount
         this.addLineItem(discount);
@@ -93,10 +107,12 @@ export default Ember.Mixin.create({
   },
 
   _findFirstPackage() {
-    let items = this.get('orderLineItems');
+    const items = this.get('orderLineItems');
     let result = null;
+
     items.forEach(item => {
-      let isPackage = item.get('lineItem.isPackage');
+      const isPackage = item.get('lineItem.isPackage');
+
       if (isPackage) {
         return result = item;
       }
@@ -106,8 +122,9 @@ export default Ember.Mixin.create({
   },
 
   hasDiscount() {
-    let items           = this.get('orderLineItems');
-    let activeDiscounts = items.filterBy('lineItem.isADiscount');
+    const items = this.get('orderLineItems');
+    const activeDiscounts = items.filterBy('lineItem.isADiscount');
+
     return Ember.isPresent(activeDiscounts);
   },
 
@@ -116,23 +133,27 @@ export default Ember.Mixin.create({
     - these are applied to lessons right now, but
   */
   _updateAutomaticDiscounts() {
-    if (!this._eligibleForDiscount()) return;
+    if (!this._eligibleForDiscount()) {
+      return;
+    }
 
-    let discounts          = this.get('host.membershipDiscounts');
-    let items              = this.get('orderLineItems');
-    let activeDiscounts    = items.filterBy('lineItem.isADiscount');
-    let activeNonDiscounts = items.filterBy('lineItem.isADiscount', false);
+    const discounts = this.get('host.membershipDiscounts');
+    const items = this.get('orderLineItems');
+    const activeDiscounts = items.filterBy('lineItem.isADiscount');
+    const activeNonDiscounts = items.filterBy('lineItem.isADiscount', false);
 
     if (activeNonDiscounts.get('length') > 0) {
       discounts.forEach((discount, i, e) => {
         // only check discounts for lessons for now
-        let appliesTo = discount.get('appliesTo');
+        const appliesTo = discount.get('appliesTo');
+
         if (Ember.isPresent(appliesTo) && appliesTo.indexOf('Lesson') !== -1) {
           let numberOfLessons = 0;
+
           activeNonDiscounts.forEach((orderLineItem, i, e) => {
             if (orderLineItem.get('lineItem.isLesson')) {
               // apply the discount
-              let quantity = orderLineItem.get('quantity');
+              const quantity = orderLineItem.get('quantity');
 
               numberOfLessons += quantity;
             }
@@ -153,25 +174,33 @@ export default Ember.Mixin.create({
 
   automaticDiscounts: true,
   _eligibleForDiscount() {
-    let host = this.get('host');
-    let discounts = host.get('membershipDiscounts');
-    let automaticDiscounts = this.get('automaticDiscounts');
-    if (false === automaticDiscounts) return false;
+    const host = this.get('host');
+    const discounts = host.get('membershipDiscounts');
+    const automaticDiscounts = this.get('automaticDiscounts');
+
+    if (automaticDiscounts === false) {
+      return false;
+    }
 
     // no discounts, no change in price
-    if (!Ember.isPresent(discounts)) return false;
+    if (!Ember.isPresent(discounts)) {
+      return false;
+    }
 
     // check for a membership option, which may include a discount
-    let lineItems = this.get('orderLineItems');
-    let hasMembership = lineItems.any((item, i, e) => item.get(
-      'lineItem.isMembershipOption'));
+    const lineItems = this.get('orderLineItems');
+    let hasMembership = lineItems.any((item, i, e) => {
+      return item.get(
+      'lineItem.isMembershipOption');
+    });
 
     // check if the user is a member
-    let userId = this.get('user.id');
+    const userId = this.get('user.id');
 
     // refetch, to ensure we get all the helper methods defined on user.
     // TODO: WTF?
-    let user = this.get('store').peekRecord('user', userId);
+    const user = this.get('store').peekRecord('user', userId);
+
     if (!hasMembership && Ember.isPresent(user)) {
       hasMembership = user.isMemberOf(host);
     }
@@ -190,10 +219,10 @@ export default Ember.Mixin.create({
       price = 0 - lineItem.get('amount');
     }
 
-    let orderLineItem = this.get('orderLineItems').createRecord({
+    const orderLineItem = this.get('orderLineItems').createRecord({
       lineItem: lineItem,
-      price:    price,
-      quantity: quantity,
+      price: price,
+      quantity: quantity
     });
 
     this.get('orderLineItems').pushObject(orderLineItem);
@@ -215,27 +244,31 @@ export default Ember.Mixin.create({
   },
 
   getOrderLineItemMatching(lineItem, price) {
-    let orderLineItems = this.get('orderLineItems');
+    const orderLineItems = this.get('orderLineItems');
     let result = null;
 
     orderLineItems.forEach((orderLineItem, i, e) => {
       // just ignore it if it has the size already set
-      if (isPresent(orderLineItem.get('size'))) return;
+      if (isPresent(orderLineItem.get('size'))) {
+        return;
+      }
 
       // also ignore competitions or anything with the danceOrientation already set
-      if (isPresent(orderLineItem.get('danceOrientation'))) return;
+      if (isPresent(orderLineItem.get('danceOrientation'))) {
+        return;
+      }
 
-      let currentLineItem = orderLineItem.get('lineItem');
+      const currentLineItem = orderLineItem.get('lineItem');
 
       // orderLineItem.get('lineItem').then((currentLineItem) => {})
-      let currentPrice = orderLineItem.get('price');
+      const currentPrice = orderLineItem.get('price');
 
       // due to how ember's polymorphism works, currentLineItem
       // is always going to be of type 'LineItem'
 
-      let isDiscount = currentLineItem.get('isADiscount');
+      const isDiscount = currentLineItem.get('isADiscount');
 
-      let isSameKind = this.lineItemIsTheSameTypeAs(lineItem, currentLineItem);
+      const isSameKind = this.lineItemIsTheSameTypeAs(lineItem, currentLineItem);
 
       if (
           isSameKind &&
@@ -255,8 +288,8 @@ export default Ember.Mixin.create({
       return false;
     }
 
-    let modelNameSource = this.modelNameFor(source);
-    let modelNameOther = this.modelNameFor(other);
+    const modelNameSource = this.modelNameFor(source);
+    const modelNameOther = this.modelNameFor(other);
 
     if (isBlank(modelNameSource) && isBlank(modelNameOther)) {
       return false;
@@ -282,7 +315,8 @@ export default Ember.Mixin.create({
   // I don't think Ember-Data expects this, and as a result,
   // duplicate line items appear in the association.
   removeItemsWithNullIds() {
-    let items = this.get('store').peekAll('orderLineItem');
+    const items = this.get('store').peekAll('orderLineItem');
+
     items.forEach(item => {
       if (item.get('id') === null && !item.get('isSaving')) {
         item.unloadRecord();
@@ -291,9 +325,9 @@ export default Ember.Mixin.create({
   },
 
   hasLineItem: function(lineItem) {
-    let lineItems      = this.get('orderLineItems');
-    let items          = lineItems.mapBy('lineItem');
-    let flattenedItems = items.reduce(function(a, b) {
+    const lineItems = this.get('orderLineItems');
+    const items = lineItems.mapBy('lineItem');
+    const flattenedItems = items.reduce(function(a, b) {
       return a.concat(b);
     }, []);
 
@@ -306,5 +340,5 @@ export default Ember.Mixin.create({
       orderLineItem.set('paymentToken', this.get('order.paymentToken'));
       orderLineItem.destroyRecord();
     }
-  },
+  }
 });

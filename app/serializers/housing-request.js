@@ -3,20 +3,20 @@ import ApplicationSerializer from 'aeonvera/serializers/application';
 
 export default ApplicationSerializer.extend({
   serialize(snapshot, options) {
-    var json = this._super(...arguments);
+    const json = this._super(...arguments);
 
     json.data.attributes['requested-roommates'] = [
       json.data.attributes.requested1,
       json.data.attributes.requested2,
       json.data.attributes.requested3,
-      json.data.attributes.requested4,
+      json.data.attributes.requested4
     ];
 
     json.data.attributes['unwanted-roommates'] = [
       json.data.attributes.unwanted1,
       json.data.attributes.unwanted2,
       json.data.attributes.unwanted3,
-      json.data.attributes.unwanted4,
+      json.data.attributes.unwanted4
     ];
 
     delete json.data.attributes.requested1;
@@ -34,10 +34,10 @@ export default ApplicationSerializer.extend({
 
   // normalizeResponse(store, primaryModelClass, payload, id, requestType) {
   normalize(modelClass, resourceHash) {
-    var json = this._super(...arguments);
+    const json = this._super(...arguments);
 
-    let requested = json.data.attributes.requestedRoommates || [];
-    let unwanted = json.data.attributes.unwantedRoommates || [];
+    const requested = json.data.attributes.requestedRoommates || [];
+    const unwanted = json.data.attributes.unwantedRoommates || [];
 
     json.data.attributes.requested1 = requested[0];
     json.data.attributes.requested2 = requested[1];

@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  store:           Ember.inject.service('store'),
-  cart:            Ember.inject.service('order-cart'),
+  store: Ember.inject.service('store'),
+  cart: Ember.inject.service('order-cart'),
   discountService: Ember.inject.service('order-apply-discount'),
-  email:           Ember.computed.oneWay('cart.userEmail'),
+  email: Ember.computed.oneWay('cart.userEmail'),
 
   // Set when in the process of paying / waiting on stripe.
   // This triggers an overlay that prevents the user from
@@ -18,7 +18,8 @@ export default Ember.Component.extend({
   discountApplicationErrors: null,
 
   statementDescription: Ember.computed('model.host', function() {
-    let hostName = this.get('model.host.name');
+    const hostName = this.get('model.host.name');
+
     if (hostName.length > 15) {
       return hostName.substring(0, 15);
     }
@@ -27,9 +28,9 @@ export default Ember.Component.extend({
   }),
 
   canAddDiscount: Ember.computed('model', 'model.orderLineItems.@each', function() {
-    let hostAllowsDiscounts = this.get('model.host.allowDiscounts');
-    let hostAllowsMultipleDiscounts = this.get('model.host.allowCombinedDiscounts');
-    let alreadyHasDiscount = this.get('model').hasDiscount();
+    const hostAllowsDiscounts = this.get('model.host.allowDiscounts');
+    const hostAllowsMultipleDiscounts = this.get('model.host.allowCombinedDiscounts');
+    const alreadyHasDiscount = this.get('model').hasDiscount();
 
     return (
       hostAllowsDiscounts && (!alreadyHasDiscount || hostAllowsMultipleDiscounts)
@@ -45,7 +46,8 @@ export default Ember.Component.extend({
     for unauthenticated orders
   */
   _setOrderTokenIfPresent(order) {
-    let token = this.get('token');
+    const token = this.get('token');
+
     if (Ember.isPresent(token)) {
       order.set('paymentToken', this.get('token'));
     }
@@ -57,18 +59,18 @@ export default Ember.Component.extend({
     },
 
     applyDiscount() {
-      let discountCode = this.get('discountCode');
-      let discountService = this.get('discountService');
-      let store = this.get('store');
-      let order = this.get('model');
-      let host = order.get('host');
-      let cart = this.get('cart');
+      const discountCode = this.get('discountCode');
+      const discountService = this.get('discountService');
+      const store = this.get('store');
+      const order = this.get('model');
+      const host = order.get('host');
+      const cart = this.get('cart');
 
       discountService.lookupDiscount(host, discountCode).then(discounts => {
 
         // only take the first object
-        let allLoadedDiscounts = this.get('store').peekAll('discount');
-        let filteredDiscounts = Ember.A();
+        const allLoadedDiscounts = this.get('store').peekAll('discount');
+        const filteredDiscounts = Ember.A();
 
         allLoadedDiscounts.forEach(discount => {
           if (discount.get('code') === discountCode) {
@@ -76,7 +78,8 @@ export default Ember.Component.extend({
           }
         });
 
-        let discount = filteredDiscounts.get('firstObject');
+        const discount = filteredDiscounts.get('firstObject');
+
         if (filteredDiscounts.get('length') > 1) {
           this.set('discountApplicationErrors', ['code does not exist']);
         } else if (Ember.isPresent(discount)) {
@@ -112,8 +115,8 @@ export default Ember.Component.extend({
       NOTE: The order should already be saved before entering this method.
     */
     processStripeToken(params) {
-      let token = params.id;
-      let order = this.get('model');
+      const token = params.id;
+      const order = this.get('model');
 
       order.set('checkoutToken', token);
       this._setOrderTokenIfPresent(order);
@@ -134,7 +137,7 @@ export default Ember.Component.extend({
         this.get('flashMessages').alert(error);
         this.set('showPaymentInProgress', false);
       });
-    },
+    }
 
   }
 });

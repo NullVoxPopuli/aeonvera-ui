@@ -3,14 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   isEditing: false,
   actions: {
-    toggleEdit: function () {
+    toggleEdit: function() {
       this.set('isEditing', !this.get('isEditing'));
     },
 
-    save: function () {
-      let model = this.get('model');
+    save: function() {
+      const model = this.get('model');
 
-      model.save().then((record) => {
+      model.save().then(record => {
         this.get('flashMessages').success(
           'Saved Successfully'
         );
@@ -21,6 +21,6 @@ export default Ember.Component.extend({
           'Saving failed. ' + failure
         );
       });
-    },
-  },
+    }
+  }
 });

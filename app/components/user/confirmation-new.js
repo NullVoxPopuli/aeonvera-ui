@@ -6,13 +6,14 @@ export default Ember.Component.extend({
 
   actions: {
     sendNewConfirmationToken() {
-      let url = ENV.host + '/api/users/confirmation';
-      let data = {
+      const url = ENV.host + '/api/users/confirmation';
+      const data = {
         user: {
-          email: this.get('email'),
-        },
+          email: this.get('email')
+        }
       };
-      let _this = this;
+      const _this = this;
+
       Ember.$.ajax({
         url: url,
         type: 'POST',
@@ -22,8 +23,9 @@ export default Ember.Component.extend({
         },
 
         error(jqxhr, status, text) {
-          let json = JSON.parse(jqxhr.responseText);
-          let errors = json.errors;
+          const json = JSON.parse(jqxhr.responseText);
+          const errors = json.errors;
+
           _this.set('errors', errors);
         }
       });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const {computed} = Ember;
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
@@ -17,11 +17,11 @@ export default Ember.Component.extend({
 
   downloadLink: computed('selectedAttributes', {
     get(key) {
-      let path = this.get('path');
-      let selectedAttributes = this.get('selectedAttributes').mapBy('name');
-      let params = this.get('params');
-      let queryParams = Ember.isBlank(params) ? '' : Ember.$.param(params);
-      let fields = `fields=${selectedAttributes.join(',')}&${queryParams}`;
+      const path = this.get('path');
+      const selectedAttributes = this.get('selectedAttributes').mapBy('name');
+      const params = this.get('params');
+      const queryParams = Ember.isBlank(params) ? '' : Ember.$.param(params);
+      const fields = `fields=${selectedAttributes.join(',')}&${queryParams}`;
 
       return `${path}${fields}`;
     }
@@ -35,15 +35,16 @@ export default Ember.Component.extend({
 
   modelName: computed('kind', {
     get(key) {
-      let noDashes = this.get('kind').replace('-', ' ');
+      const noDashes = this.get('kind').replace('-', ' ');
+
       return noDashes.pluralize();
     }
   }),
 
   modelType: computed('kind', {
     get(key) {
-      let kind = this.get('kind');
-      let model = this.store.modelFor(kind);
+      const kind = this.get('kind');
+      const model = this.store.modelFor(kind);
 
       return model;
     }
@@ -63,15 +64,18 @@ export default Ember.Component.extend({
         return fields;
       }
 
-      let modelType = this.get('modelType');
+      const modelType = this.get('modelType');
       let modelAttributes = this.get('_modelAttributes');
+
       if (Ember.isBlank(modelAttributes)) {
         modelAttributes = this._attributesForModelType(modelType, true);
 
-        let relationships = this.get('modelRelationships');
+        const relationships = this.get('modelRelationships');
+
         relationships.forEach(relationship => {
-          let modelType = this.store.modelFor(relationship);
-          let attributes = this._attributesForModelType(modelType, false, `${relationship}.`);
+          const modelType = this.store.modelFor(relationship);
+          const attributes = this._attributesForModelType(modelType, false, `${relationship}.`);
+
           attributes.forEach(attribute => {
             modelAttributes.push(attribute);
           });
@@ -86,14 +90,15 @@ export default Ember.Component.extend({
 
   modelRelationships: computed('modelType', {
     get(key) {
-      let modelType = this.get('modelType');
-      let allowedRelationships = this.get('relationships').split(',');
-      let relationshipData = Ember.get(modelType, 'relationships');
+      const modelType = this.get('modelType');
+      const allowedRelationships = this.get('relationships').split(',');
+      const relationshipData = Ember.get(modelType, 'relationships');
 
       // return relationshipData.map(r => r.name)
       // TODO: is there a fancy ES6 way to do this?
       // This is a MayWithDefault object :-(
-      let relationships = [];
+      const relationships = [];
+
       relationshipData.forEach((meta, relationship) => {
         if (allowedRelationships.includes(relationship)) {
           relationships.push(relationship);
@@ -106,11 +111,12 @@ export default Ember.Component.extend({
 
   modelRelationshipsAttributeMap: computed('modelRelationships', {
     get(key) {
-      let relationships = this.get('modelRelationships');
-      let result = {};
+      const relationships = this.get('modelRelationships');
+      const result = {};
 
       relationships.forEach(relationship => {
-        let modelType = this.store.modelFor(relationship);
+        const modelType = this.store.modelFor(relationship);
+
         result[relationship] = this._attributesForModelType(modelType, false, `${relationship}.`);
       });
 
@@ -119,25 +125,27 @@ export default Ember.Component.extend({
   }),
 
   _attributesForModelType(modelType, included = false, prefix = '') {
-    let attributeData = Ember.get(modelType, 'attributes');
+    const attributeData = Ember.get(modelType, 'attributes');
 
     // return attributeData.map((meta, attr) => attr);
     // TODO: is there a fancy ES6 way to do this?
     // This is a MayWithDefault object :-(
-    let attributes = [];
+    const attributes = [];
+
     attributeData.forEach((meta, attribute) => {
-      attributes.pushObject({ name: `${prefix}${attribute}`, included: included });
+      attributes.pushObject({name: `${prefix}${attribute}`, included: included});
     });
 
     return attributes;
   },
 
   _triggerDownload(response) {
-    let encoded = encodeURIComponent(response);
-    let fileName = this.get('fileName');
-    let data = `data:application/csv;filename=${fileName};charset=UTF-8,${encoded}`;
+    const encoded = encodeURIComponent(response);
+    const fileName = this.get('fileName');
+    const data = `data:application/csv;filename=${fileName};charset=UTF-8,${encoded}`;
 
-    let link = document.createElement('a');
+    const link = document.createElement('a');
+
     link.download = fileName;
     link.href = data;
     link.click();
@@ -145,10 +153,10 @@ export default Ember.Component.extend({
 
   actions: {
     download() {
-      let path = this.get('downloadLink');
+      const path = this.get('downloadLink');
 
       // authenticated request, requires token
-      let authToken = this.get('session.data.authenticated.token');
+      const authToken = this.get('session.data.authenticated.token');
 
       Ember.$.ajax({
         url: path,
@@ -156,7 +164,9 @@ export default Ember.Component.extend({
         beforeSend(xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
         }
-      }).then(data => this._triggerDownload(data));
+      }).then(data => {
+        return this._triggerDownload(data);
+      });
     }
   }
 });

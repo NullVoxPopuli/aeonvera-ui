@@ -19,9 +19,10 @@ export default Ember.Mixin.create(DS.EmbeddedRecordsMixin, {
       return;
     }
 
-    let key = relationship.key.dasherize();
-    let jsonForKey = json[key] || {};
-    let data = jsonForKey.data;
+    const key = relationship.key.dasherize();
+    const jsonForKey = json[key] || {};
+    const data = jsonForKey.data;
+
     delete json[key];
     if (!json.relationships) {
       json.relationships = {};
@@ -37,8 +38,9 @@ export default Ember.Mixin.create(DS.EmbeddedRecordsMixin, {
       return;
     }
 
-    let key = relationship.key.dasherize();
-    let data = json[key].mapBy('data');
+    const key = relationship.key.dasherize();
+    const data = json[key].mapBy('data');
+
     delete json[key];
     if (!json.relationships) {
       json.relationships = {};
@@ -47,5 +49,5 @@ export default Ember.Mixin.create(DS.EmbeddedRecordsMixin, {
     json.relationships[key] = {
       data
     };
-  },
+  }
 });

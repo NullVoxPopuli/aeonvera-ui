@@ -5,14 +5,15 @@ export default Ember.Component.extend({
   classNameBindings: ['showPaid:paid:unpaid'],
 
   isBalanceZero: Ember.computed('owes', function() {
-    let owes = this.get('owes');
+    const owes = this.get('owes');
+
     return (owes === 0.0);
   }),
 
   showPaid: Ember.computed('isBalanceZero', 'hasPaid', function() {
-    let isBalanceZero = this.get('isBalanceZero');
-    let hasPaid = this.get('hasPaid');
+    const isBalanceZero = this.get('isBalanceZero');
+    const hasPaid = this.get('hasPaid');
 
     return (hasPaid || isBalanceZero);
-  }),
+  })
 });

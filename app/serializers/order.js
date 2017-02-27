@@ -4,6 +4,6 @@ import ApplicationSerializer from 'aeonvera/serializers/application';
 
 export default ApplicationSerializer.extend(EmbeddedRecords, {
   attrs: {
-    orderLineItems: { embedded: 'always' },
+    orderLineItems: {embedded: 'always'}
   }
 });

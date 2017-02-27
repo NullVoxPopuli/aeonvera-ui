@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
-import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
+import {userIsMemberOf} from 'aeonvera/helpers/user/is-member-of';
+import {userLatestRenewalFor} from 'aeonvera/helpers/user/latest-renewal-for';
 
 export default DS.Model.extend({
   firstName: DS.attr('string'),
@@ -21,11 +21,11 @@ export default DS.Model.extend({
   }).readOnly(),
 
   isMemberOf(organization) {
-    return userIsMemberOf({}, { user: this, organization });
+    return userIsMemberOf({}, {user: this, organization});
   },
 
   latestRenewalFor(organization) {
-    return userLatestRenewalFor({}, { user: this, organization });
-  },
+    return userLatestRenewalFor({}, {user: this, organization});
+  }
 
 });

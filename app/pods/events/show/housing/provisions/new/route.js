@@ -3,5 +3,5 @@ import New from 'aeonvera/mixins/routes/crud/events/new';
 
 export default Ember.Route.extend(New, {
   modelName: 'housing-provision',
-  isPolymorphicHost: true,
+  isPolymorphicHost: true
 });

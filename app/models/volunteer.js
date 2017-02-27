@@ -10,6 +10,6 @@ export default DS.Model.extend(
     attendeeEmail: DS.attr('string'),
     phoneNumber: DS.attr('string'),
 
-    event: DS.belongsTo('event'),
+    event: DS.belongsTo('event')
 
   });

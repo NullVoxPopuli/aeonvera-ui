@@ -8,11 +8,12 @@ export default Ember.Route.extend(Index, {
   setupController(controller, model) {
     this._super(...arguments);
 
-    let event = this.modelFor('events.show');
+    const event = this.modelFor('events.show');
+
     controller.set('eventId', event.get('id'));
   },
 
   downloadURL: Ember.computed(function() {
     return ENV.host + '/api/discounts.csv';
-  }),
+  })
 });

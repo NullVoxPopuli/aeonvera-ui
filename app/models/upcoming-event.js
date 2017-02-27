@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const { isBlank, computed } = Ember;
+const {isBlank, computed} = Ember;
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -15,7 +15,7 @@ export default DS.Model.extend({
   logoUrlMedium: DS.attr('string'),
 
   isRegistrationOpen: computed('registrationOpensAt', function() {
-    let registrationOpensAt = this.get('registrationOpensAt');
+    const registrationOpensAt = this.get('registrationOpensAt');
 
     // registration opening depends on the opening tier
     // the opening tier is required,
@@ -26,14 +26,16 @@ export default DS.Model.extend({
     }
 
     // getTime() gets the integer representation of time.
-    var opensAt = registrationOpensAt.getTime();
-    var currently = Date.now();
+    const opensAt = registrationOpensAt.getTime();
+    const currently = Date.now();
+
     return (currently > opensAt);
   }),
 
   logoIsMissing: Ember.computed('logoUrl', function() {
-    let logoUrl = this.get('logoUrl');
-    let logoPresent = Ember.isPresent(logoUrl);
+    const logoUrl = this.get('logoUrl');
+    const logoPresent = Ember.isPresent(logoUrl);
+
     return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
-  }),
+  })
 });

@@ -15,8 +15,8 @@ export default Ember.Component.extend({
 
   isGivingBackDisabled: Ember.computed('givingBackItem', 'givingBackQuantity', {
     get() {
-      let item = this.get('givingBackItem');
-      let quantity = this.get('givingBackQuantity');
+      const item = this.get('givingBackItem');
+      const quantity = this.get('givingBackQuantity');
 
       return (item === null || quantity <= 0);
     }
@@ -24,8 +24,8 @@ export default Ember.Component.extend({
 
   isExchangingForDisabled: Ember.computed('exchangingForItem', 'exchangingForQuantity', {
     get() {
-      let item = this.get('exchangingForItem');
-      let quantity = this.get('exchangingForQuantity');
+      const item = this.get('exchangingForItem');
+      const quantity = this.get('exchangingForQuantity');
 
       return (item === null || quantity <= 0);
     }
@@ -60,8 +60,9 @@ export default Ember.Component.extend({
     },
 
     clearOrder() {
-      let cart = this.get('cart');
+      const cart = this.get('cart');
       // cart.get('currentOrder').unloadRecord();
+
       cart.set('order', null);
       this.sendAction('onComplete');
     }

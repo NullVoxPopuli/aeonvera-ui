@@ -3,5 +3,5 @@ import LineItem from '../models/line-item';
 
 export default LineItem.extend({
   durationInWords: DS.attr('string'),
-  organization: DS.belongsTo('organization'),
+  organization: DS.belongsTo('organization')
 });

@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function () {
-    let event = this.modelFor('events.show');
-    let eventId = event.get('id');
+  model: function() {
+    const event = this.modelFor('events.show');
+    const eventId = event.get('id');
 
-    let orders = this.modelFor('events.show.orders');
+    const orders = this.modelFor('events.show.orders');
 
     return {
       orders: orders,
       eventId: eventId
     };
-  },
+  }
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Helper.helper(function (params) {
+export default Ember.Helper.helper(function(params) {
   let value = params[0];
 
   if (value === undefined) {
@@ -11,8 +11,8 @@ export default Ember.Helper.helper(function (params) {
     value = parseFloat(value);
   }
 
-  let amount = (value || 0).toFixed(2);
-  let sign = '$';
+  const amount = (value || 0).toFixed(2);
+  const sign = '$';
 
   return `${sign} ${amount}`;
 });

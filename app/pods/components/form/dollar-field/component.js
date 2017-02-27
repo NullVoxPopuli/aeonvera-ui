@@ -18,10 +18,13 @@ export default Ember.Component.extend({
 
   fieldValue: Ember.computed('model', 'field', 'value', {
     get(key) {
-      if (this.get('value') !== undefined) { return this.get('value'); }
+      if (this.get('value') !== undefined) {
+        return this.get('value');
+      }
 
-      let fieldName = this.get('field');
-      let value = this.get('model.' + fieldName);
+      const fieldName = this.get('field');
+      const value = this.get('model.' + fieldName);
+
       return value;
     },
 
@@ -31,10 +34,11 @@ export default Ember.Component.extend({
         return value;
       }
 
-      let model = this.get('model');
-      let field = this.get('field');
+      const model = this.get('model');
+      const field = this.get('field');
+
       model.set(field, value);
       return value;
     }
-  }),
+  })
 });

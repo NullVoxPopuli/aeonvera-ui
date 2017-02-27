@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
       );
 
       jQuery('#signup-modal a.close-reveal-modal').trigger('click');
-    },
-  },
+    }
+  }
 
 });

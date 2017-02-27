@@ -6,12 +6,12 @@ export default Ember.Component.extend({
 
   actions: {
     searchRegistrants: function(query, deferred) {
-      let host = this.get('host');
+      const host = this.get('host');
 
       return this.store.query('event-attendance', {
         // TODO: currently only works for events.
         event_id: host.get('id'),
-        q: { attendee_full_name_cont: query.term }
+        q: {attendee_full_name_cont: query.term}
       }).then(deferred.resolve, deferred.reject);
     }
   }

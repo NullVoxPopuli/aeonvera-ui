@@ -34,14 +34,14 @@ export default DS.Model.extend(
 
     attendee: DS.belongsTo('user'),
     pricingTier: DS.belongsTo('pricing-tier'),
-    host: DS.belongsTo('host', { polymorphic: true }),
+    host: DS.belongsTo('host', {polymorphic: true}),
 
-    orders: DS.hasMany('order', { async: true }),
-    unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
+    orders: DS.hasMany('order', {async: true}),
+    unpaidOrder: DS.belongsTo('unpaidOrder', {async: true}),
 
-    housingRequest: DS.belongsTo('housing-request', { async: false }),
-    housingProvision: DS.belongsTo('housing-provision', { async: false }),
-    customFieldResponses: DS.hasMany('custom-field-response', { async: true }),
+    housingRequest: DS.belongsTo('housing-request', {async: false}),
+    housingProvision: DS.belongsTo('housing-provision', {async: false}),
+    customFieldResponses: DS.hasMany('custom-field-response', {async: true}),
 
     // address stuff
     phoneNumber: DS.attr('string'),
@@ -51,7 +51,7 @@ export default DS.Model.extend(
     state: DS.attr('string'),
     zip: DS.attr('string'),
 
-    hasUnpaidOrder: function () {
+    hasUnpaidOrder: function() {
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 

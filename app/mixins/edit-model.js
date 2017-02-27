@@ -12,27 +12,28 @@ export default Ember.Mixin.create({
   submitTitle: function() {
     if (this.get('isDirty')) {
       return 'Cannot save when there have been no changes';
-    } else {
-      return 'Save Changes';
     }
+    return 'Save Changes';
+
   }.property('isDirty'),
 
   parentModelId: function() {
 
-    let passedParent = this.get('parent');
+    const passedParent = this.get('parent');
+
     if (!Ember.isPresent(passedParent)) {
       console.log('parent not passed in, moving on...');
     } else {
       return passedParent.get('id');
     }
 
-    let association = this.get('parentAssociation');
+    const association = this.get('parentAssociation');
 
     if (!Ember.isPresent(association)) {
       console.log('association not found');
     }
 
-    let parent = this.get('model').get(association);
+    const parent = this.get('model').get(association);
 
     if (!Ember.isPresent(parent)) {
       console.log('parent not found');
@@ -47,13 +48,14 @@ export default Ember.Mixin.create({
 
   actions: {
     save: function() {
-      let model = this.get('model');
+      const model = this.get('model');
 
-      model.save().then((record) => {
+      model.save().then(record => {
         this.get('flashMessages').success(
           'Saved Successfully'
         );
-        let path = this.get('saveSuccessPath');
+        const path = this.get('saveSuccessPath');
+
         this.get('router').transitionTo(path, record);
       }, failure => {
 
@@ -65,10 +67,10 @@ export default Ember.Mixin.create({
     },
 
     cancel: function() {
-      let path = this.get('cancelPath');
+      const path = this.get('cancelPath');
 
       this.get('model').rollbackAttributes();
       this.get('router').transitionTo(path);
-    },
-  },
+    }
+  }
 });

@@ -6,13 +6,13 @@ export default Ember.Mixin.create({
   include: '',
   q: {},
 
-  model: function () {
-    let modelName = this.get('modelName');
-    let parentPathRoot = this.get('parentPathRoot');
-    let parent = this.modelFor(parentPathRoot);
-    let query = {};
-    let key = this.get('parentIdKey');
-    let include = this.get('include');
+  model: function() {
+    const modelName = this.get('modelName');
+    const parentPathRoot = this.get('parentPathRoot');
+    const parent = this.modelFor(parentPathRoot);
+    const query = {};
+    const key = this.get('parentIdKey');
+    const include = this.get('include');
 
     query[key] = parent.get('id');
 
@@ -20,11 +20,12 @@ export default Ember.Mixin.create({
       query.include = include;
     }
 
-    let search = this.get('q');
+    const search = this.get('q');
+
     if (Ember.isPresent(search)) {
       query.q = search;
     }
 
     return this.store.query(modelName, query);
-  },
+  }
 });

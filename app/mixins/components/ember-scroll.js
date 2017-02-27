@@ -22,12 +22,17 @@ export default Ember.Mixin.create({
 
   _bindScrolling(opts = null) {
     let onScroll;
-    opts = opts || { debounce: 250 };
+
+    opts = opts || {debounce: 250};
 
     if (opts.debounce) {
-      onScroll = _ => Ember.run.debounce(this, this.didScroll, opts.debounce, false);
+      onScroll = _ => {
+        return Ember.run.debounce(this, this.didScroll, opts.debounce, false);
+      };
     } else {
-      onScroll = _ => this.didScroll();
+      onScroll = _ => {
+        return this.didScroll();
+      };
     }
 
     Ember.$(document).bind('touchmove', onScroll);

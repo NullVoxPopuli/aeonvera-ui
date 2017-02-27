@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject } = Ember;
+const {computed, inject} = Ember;
 
 // Because calculating the total amount of an order is complicated,
 // the logic for summing line items, and applying discounts
@@ -22,26 +22,30 @@ export default Ember.Mixin.create({
 
   allowNegative: false,
   priceCalculation: computed('subTotal', 'shouldApplyFee', function() {
-    let subTotal = this.get('subTotal');
-    let shouldApplyFee = this.get('shouldApplyFee');
-    let absorbTheFee = !shouldApplyFee;
-    let allowNegative = this.get('allowNegative');
-    var value = this.get('priceCalculator').calculateForSubTotal(subTotal, absorbTheFee, allowNegative);
+    const subTotal = this.get('subTotal');
+    const shouldApplyFee = this.get('shouldApplyFee');
+    const absorbTheFee = !shouldApplyFee;
+    const allowNegative = this.get('allowNegative');
+    const value = this.get('priceCalculator').calculateForSubTotal(subTotal, absorbTheFee, allowNegative);
+
     return value;
   }),
 
   forceAbsorbFee: false,
   shouldApplyFee: computed('forceAbsorbFee', 'subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', {
     get() {
-      let forceAbsorbFee = this.get('forceAbsorbFee');
-      if (forceAbsorbFee) return !forceAbsorbFee;
+      const forceAbsorbFee = this.get('forceAbsorbFee');
 
-      let electronicPayment = (
+      if (forceAbsorbFee) {
+        return !forceAbsorbFee;
+      }
+
+      const electronicPayment = (
         this.get('paymentMethod') === 'stripe' ||
         this.get('host.acceptOnlyElectronicPayments') || false
       );
 
-      let result = (
+      const result = (
         this.get('subTotal') > 0 &&
         this.get('host.makeAttendeesPayFees') &&
         electronicPayment);
@@ -51,8 +55,9 @@ export default Ember.Mixin.create({
   }),
 
   fee: computed('subTotal', function() {
-    let calculation = this.get('priceCalculation');
-    let stringFee = calculation.totalFee;
+    const calculation = this.get('priceCalculation');
+    const stringFee = calculation.totalFee;
+
     return parseFloat(stringFee);
   }),
 
@@ -61,18 +66,19 @@ export default Ember.Mixin.create({
      - before fees or anything
   */
   subTotal: computed('orderLineItems.@each.total', function() {
-    let lineItems = this.get('orderLineItems');
-    let subTotal = this.get('orderCalculator').calculateSubTotal(this);
+    const lineItems = this.get('orderLineItems');
+    const subTotal = this.get('orderCalculator').calculateSubTotal(this);
 
     return subTotal;
   }),
 
   total: computed('subTotal', 'shouldApplyFee', function() {
-    let calculation = this.get('priceCalculation');
+    const calculation = this.get('priceCalculation');
+
     return calculation.total;
   }),
 
   hasNonZeroBalance: computed('total', function() {
     return parseFloat(this.get('total')) > 0;
-  }),
+  })
 });

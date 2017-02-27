@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ENV from '../config/environment';
 
-var alreadyRun = false;
+let alreadyRun = false;
 
 /*
   Adapter Error:
@@ -13,30 +13,34 @@ var alreadyRun = false;
         - status
         - title
 */
-var displayError = function (errorData) {
+const displayError = function(errorData) {
   // debugger;
 
-  var specific = '';
+  let specific = '';
+
   if (errorData.errors) {
     specific = '(' + errorData.errors[0].status + ') ' + errorData.errors[0].title;
   }
 
-  var message = '';
+  let message = '';
+
   if (errorData.message) {
     message = errorData.message;
   }
 
-  var name = 'Error';
+  let name = 'Error';
+
   if (errorData.name) {
     name = errorData.name + ': ';
   }
 
-  var stack = '';
+  let stack = '';
+
   if (errorData.stack) {
     stack = errorData.stack;
   }
 
-  let errorBody = '' +
+  const errorBody = '' +
     '<span class="title"' +
     '<strong>' + name + '</strong>' + message +
     '</span>' +
@@ -45,21 +49,22 @@ var displayError = function (errorData) {
     '<hr>' +
     specific + '<br>' + stack;
 
-  let id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 64);
-  var error = Ember.$('<div/>', {
+  const id = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 64);
+  const error = Ember.$('<div/>', {
     id: 'error-' + id,
     class: 'ember-error-notification',
-    html: errorBody,
+    html: errorBody
   });
-  let jError = Ember.$(error);
+  const jError = Ember.$(error);
+
   jError.appendTo('body');
   jError.slideDown(200);
 
-  jError.click(function () {
+  jError.click(function() {
     jError.remove();
   });
 
-  setTimeout(function () {
+  setTimeout(function() {
     Ember.$(error).remove();
   }, 15000);
 };
@@ -67,17 +72,17 @@ var displayError = function (errorData) {
 export default {
   name: 'error-handler',
 
-  initialize: function () {
+  initialize: function() {
     if (alreadyRun) {
       return;
-    } else {
-      alreadyRun = true;
     }
+    alreadyRun = true;
+
 
     // Ember.onerror = function (error) {
     //   Ember.Logger.error(error);
     //
     //   // displayError(error);
     // };
-  },
+  }
 };

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Host from '../models/host';
 
-const { attr, belongsTo, hasMany } = DS;
+const {attr, belongsTo, hasMany} = DS;
 
 export default Host.extend({
   tagline: attr('string'),
@@ -15,17 +15,17 @@ export default Host.extend({
 
   url: attr('string'),
 
-  owner:               belongsTo('user'),
-  lessons:             hasMany('lessons'),
-  membershipOptions:   hasMany('membership-option'),
+  owner: belongsTo('user'),
+  lessons: hasMany('lessons'),
+  membershipOptions: hasMany('membership-option'),
   membershipDiscounts: hasMany('membership-discount'),
-  sponsorships:        hasMany('sponsorship'),
+  sponsorships: hasMany('sponsorship'),
 
-  notifyEmail:              attr('string'),
-  emailAllPurchases:        attr('boolean'),
+  notifyEmail: attr('string'),
+  emailAllPurchases: attr('boolean'),
   emailMembershipPurchases: attr('boolean'),
 
   location: function() {
     return this.get('city') + ', ' + this.get('state');
-  }.property('city', 'state'),
+  }.property('city', 'state')
 });

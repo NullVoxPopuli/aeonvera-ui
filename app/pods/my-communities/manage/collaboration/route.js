@@ -5,8 +5,9 @@ export default Ember.Route.extend({
   hostType: null,
 
   model() {
-    let id = this.modelFor('my-communities.manage').get('id');
-    let type = 'Organization';
+    const id = this.modelFor('my-communities.manage').get('id');
+    const type = 'Organization';
+
     this.set('hostId', id);
     this.set('hostType', type);
 
@@ -26,7 +27,7 @@ export default Ember.Route.extend({
   actions: {
     invite(email) {
       this.store.findRecord('organization', this.get('hostId')).then(org => {
-        let collaboration = this.store.createRecord('collaboration', {
+        const collaboration = this.store.createRecord('collaboration', {
           email: email,
           host: org
         });

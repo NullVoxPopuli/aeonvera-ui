@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, isPresent } = Ember;
+const {computed, isPresent} = Ember;
 
 export default Ember.Component.extend({
   afterDate: null,
@@ -19,19 +19,20 @@ export default Ember.Component.extend({
   hostType: computed.alias('model.hostType'),
 
   orders: computed('model', 'pastDays', 'showPaid', 'selectedLineItem', function() {
-    let host = this.get('model');
-    let pastDays = this.get('pastDays');
-    let nameContains = this.get('firstOrLastNameContains');
-    let showPaid = this.get('showPaid');
-    let selectedLineItem = this.get('selectedLineItem');
+    const host = this.get('model');
+    const pastDays = this.get('pastDays');
+    const nameContains = this.get('firstOrLastNameContains');
+    const showPaid = this.get('showPaid');
+    const selectedLineItem = this.get('selectedLineItem');
 
-    let query = {
+    const query = {
       host_id_eq: host.hostId,
-      host_type_eq: host.hostType,
+      host_type_eq: host.hostType
     };
 
     if (isPresent(pastDays)) {
-      let m = moment(new Date());
+      const m = moment(new Date());
+
       m.subtract(pastDays, 'days');
       query.created_at_gteq = m.format();
     }
@@ -56,43 +57,43 @@ export default Ember.Component.extend({
       query.order_line_items_line_item_type_like = selectedLineItem.get('klass');
     }
 
-    let promise = this.store.query('order', {
+    const promise = this.store.query('order', {
       q: query,
-      include: 'order_line_items.line_item',
+      include: 'order_line_items.line_item'
     });
 
     return promise;
   }),
 
-  nameSort: function () {
+  nameSort: function() {
     return this._sortIndicator('userName');
   }.property('sortProps'),
 
-  paidSort: function () {
+  paidSort: function() {
     return this._sortIndicator('paid');
   }.property('sortProps'),
 
-  paidAmountSort: function () {
+  paidAmountSort: function() {
     return this._sortIndicator('paidAmount');
   }.property('sortProps'),
 
-  netSort: function () {
+  netSort: function() {
     return this._sortIndicator('netAmountReceived');
   }.property('sortProps'),
 
-  feeSort: function () {
+  feeSort: function() {
     return this._sortIndicator('totalFeeAmount');
   }.property('sortProps'),
 
-  receivedAtSort: function () {
+  receivedAtSort: function() {
     return this._sortIndicator('paymentReceivedAt');
   }.property('sortProps'),
 
-  _sortIndicator: function (field) {
-    let currentSort = this.get('sortProps')[0];
-    let sort = currentSort.split(':');
-    let sortProperty = sort[0];
-    let sortDirection = sort[1];
+  _sortIndicator: function(field) {
+    const currentSort = this.get('sortProps')[0];
+    const sort = currentSort.split(':');
+    const sortProperty = sort[0];
+    const sortDirection = sort[1];
 
     if (sortProperty === field) {
       return (sortDirection === 'desc') ? '▼' : '▲';
@@ -102,10 +103,10 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    toggleSort: function (property) {
-      let currentSort = this.get('sortProps')[0];
-      let sort = currentSort.split(':');
-      let sortProperty = sort[0];
+    toggleSort: function(property) {
+      const currentSort = this.get('sortProps')[0];
+      const sort = currentSort.split(':');
+      const sortProperty = sort[0];
       let sortDirection = sort[1];
 
       if (property === sortProperty) {
@@ -114,7 +115,7 @@ export default Ember.Component.extend({
       } else {
         this.set('sortProps', [property + ':asc']);
       }
-    },
-  },
+    }
+  }
 
 });

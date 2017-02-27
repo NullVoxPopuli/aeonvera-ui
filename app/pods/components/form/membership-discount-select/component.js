@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Component, computed } = Ember;
+const {Component, computed} = Ember;
 
 export default Component.extend({
   hostId: null,
@@ -13,9 +13,9 @@ export default Component.extend({
 
   membershipDiscounts: computed('hostId', 'hostType', 'modelName', {
     get() {
-      let hostId = this.get('hostId');
-      let hostType = this.get('hostType');
-      let modelName = this.get('modelName');
+      const hostId = this.get('hostId');
+      const hostType = this.get('hostType');
+      const modelName = this.get('modelName');
 
       return this.store.query(modelName, {
         host_id: hostId,

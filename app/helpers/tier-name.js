@@ -6,13 +6,13 @@ import IncreaseAfter from 'aeonvera/helpers/tier-increase-after';
 // tier-increase-after \
 //    (date-with-format tier.increaseAfterDate 'LLL' true)
 //    tier.increaseAfterTotalRegistrants
-export default Ember.Helper.helper(function (params) {
-  let tier = params[0];
+export default Ember.Helper.helper(function(params) {
+  const tier = params[0];
 
-  let date = tier.get('increaseAfterDate');
-  let regs = tier.get('increaseAfterTotalRegistrants');
-  let formattedDate = FormatWithDate.compute([date, 'LLL', true]);
-  let result = IncreaseAfter.compute([formattedDate, regs]);
+  const date = tier.get('increaseAfterDate');
+  const regs = tier.get('increaseAfterTotalRegistrants');
+  const formattedDate = FormatWithDate.compute([date, 'LLL', true]);
+  const result = IncreaseAfter.compute([formattedDate, regs]);
 
   return result;
 });

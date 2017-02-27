@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
-/*jshint multistr: true */
+/* jshint multistr: true */
 const includeString = `
 stripe_refunds,
 attendance,
@@ -11,7 +11,7 @@ order_line_items.line_item.restraints,host.integrations`;
 
 export default Ember.Route.extend(ResetScroll, {
 
-  model: function (params) {
+  model: function(params) {
     return this.get('store').findRecord('order', params.orderId, {
       adapterOptions: {
         query: {
@@ -21,6 +21,6 @@ export default Ember.Route.extend(ResetScroll, {
         }
       }
     });
-  },
+  }
 
 });

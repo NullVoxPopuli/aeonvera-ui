@@ -6,7 +6,7 @@ export default Ember.Service.extend({
   constantCardFee: 0.3,
 
   calculateForSubTotal(subTotal, absorbFees = false, allowNegative = false) {
-    var value = parseFloat(subTotal);
+    let value = parseFloat(subTotal);
 
     if (isNaN(value)) {
       value = 0;
@@ -47,5 +47,5 @@ export default Ember.Service.extend({
       total: buyerPaysValue.toFixed(2),
       buyerPays: buyerPaysValue.toFixed(2)
     };
-  },
+  }
 });

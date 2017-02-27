@@ -9,5 +9,5 @@ export default DS.Model.extend({
   name: Ember.computed.alias('kind'),
 
   // only used during the connecting process
-  authorizationCode: DS.attr('string'),
+  authorizationCode: DS.attr('string')
 });

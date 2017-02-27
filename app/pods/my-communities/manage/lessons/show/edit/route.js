@@ -6,14 +6,14 @@ export default Ember.Route.extend(ShowEdit, {
   parentPathRoot: 'my-communities.manage',
 
   model() {
-    let modelName = this.get('modelName');
-    let parentPath = this.get('parentPathRoot');
-    let path = parentPath + '.' + modelName + 's.show';
-    let obj = this.modelFor(path);
+    const modelName = this.get('modelName');
+    const parentPath = this.get('parentPathRoot');
+    const path = parentPath + '.' + modelName + 's.show';
+    const obj = this.modelFor(path);
 
-    let parent = this.modelFor(parentPath);
-    let hostId = parent.get('hostId');
-    let hostType = parent.get('hostType');
+    const parent = this.modelFor(parentPath);
+    const hostId = parent.get('hostId');
+    const hostType = parent.get('hostType');
 
     return {
       lesson: obj,

@@ -11,6 +11,7 @@ export default Ember.Route.extend(Index, {
     this._super(...arguments);
 
     const organization = this.modelFor('my-communities.manage.membership');
+
     controller.set('organization', organization);
   }
 });

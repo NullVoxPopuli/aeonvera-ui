@@ -3,5 +3,5 @@ import ShowEdit from 'aeonvera/mixins/routes/crud/events/show/edit';
 
 export default Ember.Route.extend(ShowEdit, {
   modelName: 'dance',
-  parentPathRoot: 'my-communities.manage',
+  parentPathRoot: 'my-communities.manage'
 });

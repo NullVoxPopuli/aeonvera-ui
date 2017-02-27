@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-//import SerializerMixin from 'ember-data-paperclip/mixins/serializer-mixin';
+// import SerializerMixin from 'ember-data-paperclip/mixins/serializer-mixin';
 
-const { underscore } = Ember.String;
+const {underscore} = Ember.String;
 
 export default DS.JSONAPISerializer.extend({
   // TODO: re-enable when bf4 finishes his belongs_to PR (I have so many relationships that key transform isn't an issue)

@@ -6,15 +6,16 @@ export default Ember.Route.extend({
   eventName: 'why',
 
   beforeModel() {
-    var fromRoute = this.modelFor('event-at-the-door');
+    const fromRoute = this.modelFor('event-at-the-door');
+
     this.set('eventId', fromRoute.get('id'));
     this.set('event', fromRoute);
     return fromRoute;
   },
 
   model() {
-    var host = this.get('event');
-    let competitions = this.get('store').query('competition', {
+    const host = this.get('event');
+    const competitions = this.get('store').query('competition', {
       event_id: host.get('id'),
       include: 'order_line_items.order.attendance'
     });
@@ -23,6 +24,6 @@ export default Ember.Route.extend({
       competitions,
       id: host.get('id')
     };
-  },
+  }
 
 });

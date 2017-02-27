@@ -9,21 +9,21 @@ export default DS.Model.extend({
   isAttending: DS.attr('boolean'),
   url: DS.attr('string'),
 
-  registrationStatus: function () {
+  registrationStatus: function() {
     if (this.get('isAttending')) {
       return 'Attending';
-    } else {
-      return 'Not Attending';
     }
+    return 'Not Attending';
+
   }.property('isAttending'),
 
-  paymentStatus: function () {
-    var paid = this.get('amountPaid');
-    var owe = this.get('amountOwed');
-    var hasPaid = paid > 0;
-    var doesOwe = owe > 0;
+  paymentStatus: function() {
+    const paid = this.get('amountPaid');
+    const owe = this.get('amountOwed');
+    const hasPaid = paid > 0;
+    const doesOwe = owe > 0;
 
-    var status = '';
+    let status = '';
 
     if (hasPaid) {
       status = 'Paid: $' + paid;
@@ -39,6 +39,6 @@ export default DS.Model.extend({
 
     return status;
 
-  }.property('amountOwed', 'amountPaid'),
+  }.property('amountOwed', 'amountPaid')
 
 });

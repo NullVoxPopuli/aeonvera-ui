@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, isPresent } = Ember;
+const {computed, isPresent} = Ember;
 
 export default Ember.Component.extend({
   ajax: Ember.inject.service('authenticated-ajax'),
@@ -28,10 +28,11 @@ export default Ember.Component.extend({
 
   amount: computed('orderTotal', 'cashOrCheckAmount', {
     get() {
-      let orderTotal = this.get('orderTotal');
-      let enteredAmount = this.get('cashOrCheckAmount');
+      const orderTotal = this.get('orderTotal');
+      const enteredAmount = this.get('cashOrCheckAmount');
 
-      let result = isPresent(enteredAmount) ? enteredAmount : orderTotal;
+      const result = isPresent(enteredAmount) ? enteredAmount : orderTotal;
+
       return parseFloat(result);
     },
 
@@ -42,7 +43,7 @@ export default Ember.Component.extend({
 
   confirmText: computed('amount', {
     get() {
-      let amount = this.get('amount');
+      const amount = this.get('amount');
 
       if (amount < 0) {
         return `You have given $${Math.abs(amount)}?`;
@@ -53,7 +54,9 @@ export default Ember.Component.extend({
   }),
 
   modalName: computed('order', {
-    get() { return `mark-paid-${this.get('order.id')}`; }
+    get() {
+      return `mark-paid-${this.get('order.id')}`;
+    }
   }),
 
   actions: {
@@ -67,13 +70,13 @@ export default Ember.Component.extend({
     },
 
     markPaid() {
-      let id = this.get('order.id');
-      let url = '/api/orders/' + id  + '/mark_paid?include=attendance';
-      let data = {
+      const id = this.get('order.id');
+      const url = '/api/orders/' + id + '/mark_paid?include=attendance';
+      const data = {
         payment_method: this.get('paymentMethod'),
-        check_number:   this.get('checkNumber'),
-        amount:         this.get('amount'),
-        notes:          this.get('notes')
+        check_number: this.get('checkNumber'),
+        amount: this.get('amount'),
+        notes: this.get('notes')
       };
 
       this.get('ajax').PUT(url, data).then(data => {
@@ -82,15 +85,16 @@ export default Ember.Component.extend({
         this.get('flashMessages').success('Order was successfully marked as paid.');
         Ember.$('.close-reveal-modal').click();
       }, error => {
-        let json = JSON.parse(error.responseText);
-        let errors = json.errors;
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
+
         this.get('flashMessages').alert(errors);
       });
     },
 
     processStripeToken(params) {
-      let token = params.id;
-      let order = this.get('order');
+      const token = params.id;
+      const order = this.get('order');
 
       order.set('checkoutToken', token);
 

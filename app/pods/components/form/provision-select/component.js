@@ -9,7 +9,9 @@ export default Ember.Component.extend({
   isEditing: false,
 
   host: Ember.computed('request.host', {
-    get() { return this.get('request.host'); }
+    get() {
+      return this.get('request.host');
+    }
   }),
 
   actions: {

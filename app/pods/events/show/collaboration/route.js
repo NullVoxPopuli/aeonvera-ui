@@ -5,8 +5,9 @@ export default Ember.Route.extend({
   hostId: null,
   hostType: null,
   model() {
-    let id = this.modelFor('events.show').get('id');
-    let type = 'Event';
+    const id = this.modelFor('events.show').get('id');
+    const type = 'Event';
+
     this.set('hostId', id);
     this.set('hostType', type);
 
@@ -25,7 +26,7 @@ export default Ember.Route.extend({
 
   actions: {
     invite(email) {
-      let collaboration = this.store.createRecord('collaboration', {
+      const collaboration = this.store.createRecord('collaboration', {
         email: email,
         host: this.modelFor('events.show')
       });

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { computed, isPresent } = Ember;
+const {computed, isPresent} = Ember;
 
 export default Ember.Component.extend({
   // set by caller
@@ -27,9 +27,9 @@ export default Ember.Component.extend({
     },
 
     addSize() {
-      let name = this.get('newSizeName');
+      const name = this.get('newSizeName');
       let price = this.get('newSizePrice');
-      let inventory = this.get('newSizeInventory');
+      const inventory = this.get('newSizeInventory');
 
       if (!isPresent(price)) {
         price = this.get('defaultPrice');

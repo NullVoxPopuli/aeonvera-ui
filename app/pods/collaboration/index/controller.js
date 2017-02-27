@@ -5,5 +5,5 @@ export default Ember.Controller.extend({
     token: 'token',
     hostType: 'host_type',
     hostId: 'host_id'
-  },
+  }
 });

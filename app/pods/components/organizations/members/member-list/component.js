@@ -7,21 +7,21 @@ export default Ember.Component.extend({
   showMembers: 0,
 
   columns: [
-    { property: 'member.name', title: 'Name' },
-    { property: 'member.email', title: 'Email', sort: false },
-    { property: 'current', title: 'Current' },
-    { property: 'startDate', title: 'Member Since' },
-    { property: 'expiresAt', title: 'Membership Expires At' }
+    {property: 'member.name', title: 'Name'},
+    {property: 'member.email', title: 'Email', sort: false},
+    {property: 'current', title: 'Current'},
+    {property: 'startDate', title: 'Member Since'},
+    {property: 'expiresAt', title: 'Membership Expires At'}
   ],
 
-  memberships: Ember.computed('model', 'nameContains', 'showMembers', function () {
-    let model = this.get('model');
-    let nameContains = this.get('nameContains');
-    let showMembers = this.get('showMembers');
+  memberships: Ember.computed('model', 'nameContains', 'showMembers', function() {
+    const model = this.get('model');
+    const nameContains = this.get('nameContains');
+    const showMembers = this.get('showMembers');
 
-    return model.filter(function (membership) {
-      var containsName = true;
-      var matchesMemberFilter = true;
+    return model.filter(function(membership) {
+      let containsName = true;
+      let matchesMemberFilter = true;
 
       if (Ember.isPresent(nameContains)) {
         containsName = membership.get('member.name').match(

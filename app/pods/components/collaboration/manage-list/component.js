@@ -7,7 +7,8 @@ export default Ember.Component.extend({
 
   actions: {
     addCollaborator() {
-      let email = this.get('newCollaboratorEmail');
+      const email = this.get('newCollaboratorEmail');
+
       this.sendAction('sendInviteAction', email);
       this.set('newCollaboratorEmail', '');
     },

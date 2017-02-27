@@ -21,10 +21,10 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
 
   host: DS.belongsTo('host', {
     polymorphic: true,
-    async: true,
+    async: true
   }),
   allowedPackages: DS.hasMany('package', {
-    async: true,
+    async: true
   }),
 
   orderLineItems: DS.hasMany('order-line-item'),
@@ -38,8 +38,8 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
   }.property('discount'),
 
   discount: function() {
-    let kind = this.get('kind');
-    let amount = this.get('amount');
+    const kind = this.get('kind');
+    const amount = this.get('amount');
 
     if (kind === this.get('DOLLARS_OFF')) {
       return '$' + amount;
@@ -49,12 +49,13 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
   }.property('amount', 'kind'),
 
   isDollarsOff: function() {
-    let kind = this.get('kind');
+    const kind = this.get('kind');
+
     return kind === this.get('DOLLARS_OFF');
   }.property('kind'),
 
   restrictedTo: function() {
-    let nameArray = [];
+    const nameArray = [];
 
     // return this.get('packages', {
     //   event_id: 16
@@ -68,8 +69,8 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
   }.property('packages'),
 
   applyToAmount(value, quantity = 1) {
-    let dollarsOff = this.get('isDollarsOff');
-    let amount = this.get('amount');
+    const dollarsOff = this.get('isDollarsOff');
+    const amount = this.get('amount');
     let subTotal = 0;
 
     if (dollarsOff) {
@@ -80,5 +81,5 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
 
     subTotal = subTotal > 0 ? subTotal : 0;
     return subTotal * quantity;
-  },
+  }
 });

@@ -5,7 +5,7 @@ export default Ember.Component.extend(Form, {
   modelName: 'raffle',
   saveSuccessPath: 'events.show.raffles.show',
   cancelPath: 'events.show.raffles.show',
-  parentAssociation: 'event',
+  parentAssociation: 'event'
 
   // parentId: 'event_id',
 });

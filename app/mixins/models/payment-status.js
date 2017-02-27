@@ -5,22 +5,22 @@ export default Ember.Mixin.create({
   amountOwed: DS.attr('number'),
   amountPaid: DS.attr('number'),
 
-  owesMoney: function () {
+  owesMoney: function() {
     return this.get('amountOwed') > 0;
   }.property('amountOwed'),
 
-  hasPaid: function () {
-    let amountPaid = this.get('amountPaid');
+  hasPaid: function() {
+    const amountPaid = this.get('amountPaid');
 
     return (amountPaid !== 0 && Ember.isPresent(amountPaid));
   }.property('amountPaid'),
 
-  paymentStatus: function () {
-    var owed = this.get('amountOwed');
-    var paid = this.get('amountPaid');
-    var doesOwe = owed > 0;
-    var hasPaid = paid > 0;
-    var status = '';
+  paymentStatus: function() {
+    const owed = this.get('amountOwed');
+    const paid = this.get('amountPaid');
+    const doesOwe = owed > 0;
+    const hasPaid = paid > 0;
+    let status = '';
 
     if (doesOwe) {
       status += 'Owe: $' + owed;
@@ -39,7 +39,7 @@ export default Ember.Mixin.create({
 
 
       // do we have an order?
-      let orders = this.get('orders');
+      const orders = this.get('orders');
 
       if (orders.get('length') === 0) {
         return 'Potentially Cancelled';
@@ -48,5 +48,5 @@ export default Ember.Mixin.create({
 
     return status;
 
-  }.property('amountOwed', 'amountPaid'),
+  }.property('amountOwed', 'amountPaid')
 });

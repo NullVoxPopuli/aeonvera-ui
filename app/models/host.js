@@ -6,13 +6,15 @@ import File from 'ember-data-paperclip/objects/file';
 export default DS.Model.extend({
   name: attr('string'),
   domain: attr('string'),
-  logo: attr('file',  { defaultValue: function() { return File.create(); } }),
+  logo: attr('file', {defaultValue: function() {
+    return File.create();
+  }}),
   contactEmail: attr('string'),
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),
-  makeAttendeesPayFees: DS.attr('boolean', { defaultValue: false }),
-  acceptOnlyElectronicPayments: DS.attr('boolean', { defaultValue: true }),
+  makeAttendeesPayFees: DS.attr('boolean', {defaultValue: false}),
+  acceptOnlyElectronicPayments: DS.attr('boolean', {defaultValue: true}),
 
   logoFileName: DS.attr('string'),
   logoFileSize: DS.attr('number'),
@@ -22,7 +24,7 @@ export default DS.Model.extend({
   logoUrlMedium: DS.attr('string'),
 
   stripeIntegration: Ember.computed('integrations.@each', function() {
-    let integrations = this.get('integrations').filterBy('name', 'stripe');
+    const integrations = this.get('integrations').filterBy('name', 'stripe');
     let stripeIntegration = null;
 
     if (integrations.length > 0) {
@@ -37,9 +39,9 @@ export default DS.Model.extend({
       TODO: find a way to make the 'stripe' key not a string somehow
             so typing it over and over doesn't lead to silent errors
     */
-    let stripeIntegration = this.get('stripeIntegration');
+    const stripeIntegration = this.get('stripeIntegration');
 
-    var isPresent = Ember.isPresent(stripeIntegration);
+    const isPresent = Ember.isPresent(stripeIntegration);
 
     if (isPresent) {
       return stripeIntegration.get('publishableKey');
@@ -63,8 +65,9 @@ export default DS.Model.extend({
   }),
 
   logoIsMissing: Ember.computed('logoUrl', function() {
-    let logoUrl = this.get('logoUrl');
-    let logoPresent = Ember.isPresent(logoUrl);
+    const logoUrl = this.get('logoUrl');
+    const logoPresent = Ember.isPresent(logoUrl);
+
     return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
-  }),
+  })
 });

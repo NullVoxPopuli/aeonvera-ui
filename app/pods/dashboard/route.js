@@ -19,6 +19,6 @@ export default Ember.Route.extend(AuthenticatedUi, SetSidebar, {
       this._setMobileLeftMenu('sidebar/dashboard-sidebar');
       return true;
     }
-  },
+  }
 
 });

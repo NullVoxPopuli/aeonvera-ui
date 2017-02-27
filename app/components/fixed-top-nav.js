@@ -7,33 +7,33 @@ export default Ember.Component.extend({
   tagName: 'div',
   classNames: ['fixed'],
 
-  backLinkPath: Ember.computed(function () {
+  backLinkPath: Ember.computed(function() {
     if (this.get('session').isAuthenticated) {
       return 'dashboard';
-    } else {
-      return 'welcome';
     }
+    return 'welcome';
+
   }),
 
-  backLinkText: function () {
+  backLinkText: function() {
     return this.get('i18n').t('appname');
   }.property(),
 
-  hasLeftMobileMenu: function () {
+  hasLeftMobileMenu: function() {
     return !Ember.isEmpty(this.get('left'));
   }.property(),
 
-  hasRightMobileMenu: function () {
+  hasRightMobileMenu: function() {
     return !Ember.isEmpty(this.get('right'));
   }.property(),
 
   actions: {
-    goToRoute: function (path) {
+    goToRoute: function(path) {
       this.transitionTo(path);
     },
 
     linkToDashboard() {
       this.sendAction('toDashboardAction');
     }
-  },
+  }
 });

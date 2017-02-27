@@ -5,5 +5,5 @@ import Ember from 'ember';
   pages
 */
 export default Ember.Component.extend({
-  text: '',
+  text: ''
 });

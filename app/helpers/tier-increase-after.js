@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
-export default Ember.Helper.helper(function (params) {
-  let date = params[0];
-  let regs = params[1];
+export default Ember.Helper.helper(function(params) {
+  const date = params[0];
+  const regs = params[1];
 
-  let hasDate = Ember.isPresent(date);
-  let hasRegLimit = Ember.isPresent(regs);
+  const hasDate = Ember.isPresent(date);
+  const hasRegLimit = Ember.isPresent(regs);
 
   let result = '';
 

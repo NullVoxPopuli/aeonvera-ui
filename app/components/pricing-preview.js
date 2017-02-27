@@ -15,24 +15,24 @@ export default Ember.Component.extend({
     this.send('reCalculate');
   }),
 
-  didInsertElement: function () {
+  didInsertElement: function() {
     this.send('reCalculate');
     this._super();
   },
 
   actions: {
-    reCalculate: function () {
-      let enteredValue = this.get('enteredValue');
-      let absorbFees = this.get('absorbFees');
+    reCalculate: function() {
+      const enteredValue = this.get('enteredValue');
+      const absorbFees = this.get('absorbFees');
 
-      let calculator = this.get('priceCalculator');
-      var value = calculator.calculateForSubTotal(enteredValue, absorbFees);
+      const calculator = this.get('priceCalculator');
+      const value = calculator.calculateForSubTotal(enteredValue, absorbFees);
 
       this.set('serviceFee', value.applicationFee);
       this.set('cardFee', value.cardFee);
       this.set('buyerPays', value.buyerPays);
       this.set('youGet', value.receivedByEvent);
-    },
-  },
+    }
+  }
 
 });

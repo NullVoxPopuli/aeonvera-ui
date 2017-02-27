@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function () {
-    let event = this.modelFor('events.show');
+  model: function() {
+    const event = this.modelFor('events.show');
 
     return Ember.RSVP.hash({
       summary: this.store.findRecord(
@@ -10,12 +10,12 @@ export default Ember.Route.extend({
         event.get('id'), {
           adapterOptions: {
             query: {
-              include: 'event_attendances',
-            },
-          },
+              include: 'event_attendances'
+            }
+          }
         }),
-      event: event,
+      event: event
     });
 
-  },
+  }
 });

@@ -9,19 +9,21 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   authorizer: 'authorizer:token',
   coalesceFindRequests: true,
 
-  pathForType: function (type) {
-    let underscored = Ember.String.underscore(type);
+  pathForType: function(type) {
+    const underscored = Ember.String.underscore(type);
+
     return Ember.String.pluralize(underscored);
   },
 
   urlForFindRecord(id, modelName, snapshot) {
     let url = this._super(...arguments);
-    let query = Ember.get(snapshot, 'adapterOptions.query');
+    const query = Ember.get(snapshot, 'adapterOptions.query');
+
     if (query) {
       url += '?' + Ember.$.param(query);
     }
 
     return url;
-  },
+  }
 
 });

@@ -19,11 +19,11 @@ export default Ember.Component.extend({
   }),
 
   allergyText: Ember.computed('housingRequest', function() {
-    let noPreference = this.get('noPreference');
-    let pets = this.get('allergicToPets');
-    let smoke = this.get('allergicToSmoke');
-    let other = this.get('otherAllergies');
-    let hasOther = Ember.isPresent(other);
+    const noPreference = this.get('noPreference');
+    const pets = this.get('allergicToPets');
+    const smoke = this.get('allergicToSmoke');
+    const other = this.get('otherAllergies');
+    const hasOther = Ember.isPresent(other);
 
     let result = 'You are allergic to ';
 
@@ -52,8 +52,11 @@ export default Ember.Component.extend({
   }),
 
   noPreference: Ember.computed('housingRequest.preferredGenderToHouseWith', function() {
-    let pref = this.get('housingRequest.preferredGenderToHouseWith');
-    if (typeof pref === 'string') return pref.includes('No');
+    const pref = this.get('housingRequest.preferredGenderToHouseWith');
+
+    if (typeof pref === 'string') {
+      return pref.includes('No');
+    }
 
     // why wouldn't this be a string?
     console.error(pref);
@@ -61,11 +64,11 @@ export default Ember.Component.extend({
   }),
 
   requested: Ember.computed('housingRequest', function() {
-    let hr = this.get('housingRequest');
+    const hr = this.get('housingRequest');
     let result = hr.get('requested1');
-    let r2 = hr.get('requested2');
-    let r3 = hr.get('requested3');
-    let r4 = hr.get('requested4');
+    const r2 = hr.get('requested2');
+    const r3 = hr.get('requested3');
+    const r4 = hr.get('requested4');
 
     if (r2) {
       result = result + `, ${r2}`;
@@ -83,11 +86,11 @@ export default Ember.Component.extend({
   }),
 
   unwanted: Ember.computed('housingRequest', function() {
-    let hr = this.get('housingRequest');
+    const hr = this.get('housingRequest');
     let result = hr.get('unwanted1');
-    let r2 = hr.get('unwanted2');
-    let r3 = hr.get('unwanted3');
-    let r4 = hr.get('unwanted4');
+    const r2 = hr.get('unwanted2');
+    const r3 = hr.get('unwanted3');
+    const r4 = hr.get('unwanted4');
 
     if (r2) {
       result = result + `, ${r2}`;

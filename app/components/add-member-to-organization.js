@@ -8,19 +8,22 @@ export default Ember.Component.extend(EditModel, {
   membershipOptions: null,
 
   selectedOption: function() {
-    let model = this.get('model');
+    const model = this.get('model');
+
     return model.get('membershipOption');
   }.property('model.membershipOption'),
 
   memberList: function() {
-    let members = this.store.query('member', { all: true });
+    const members = this.store.query('member', {all: true});
+
     return members;
   }.property(),
 
   actions: {
     selectOption(option) {
-      let model = this.get('model');
+      const model = this.get('model');
+
       model.set('membershipOption', option);
-    },
-  },
+    }
+  }
 });

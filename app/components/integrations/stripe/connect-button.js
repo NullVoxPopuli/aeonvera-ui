@@ -14,13 +14,13 @@ export default Ember.Component.extend({
              - provider: 'stripe-connect',
              - redirectUri: 'whatever this is configured to'
           */
-          let authorizationCode = result.authorizationCode;
+          const authorizationCode = result.authorizationCode;
 
           // create the integration record from the authorizationCode.
           // the server will be responsible for obtaining the auth credentials
           // from stripe -- which will allow this person to hook up events
           // to their stripe account.
-          let integration = this.store.createRecord('integration', {
+          const integration = this.store.createRecord('integration', {
             name: 'stripe',
             authorizationCode: authorizationCode,
             owner: this.get('to')
@@ -28,22 +28,23 @@ export default Ember.Component.extend({
 
           integration.save().then(
             record => {
-              let msg = 'Stripe succesfully connected. You may now receive payments electronically.';
+              const msg = 'Stripe succesfully connected. You may now receive payments electronically.';
+
               this.get('flashMessages').success(msg);
 
               this.set('to.hasStripeIntegration', true);
               this.set('resetButton', true);
             }, error => {
 
-              this.get('flashMessages').alert(error);
-            }
+            this.get('flashMessages').alert(error);
+          }
           );
         }, error => {
 
-          this.get('flashMessages').alert(error);
-          this.set('resetButton', true);
-        }
+        this.get('flashMessages').alert(error);
+        this.set('resetButton', true);
+      }
       );
     }
-  },
+  }
 });

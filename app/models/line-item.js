@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
 
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import {belongsTo, hasMany} from 'ember-data/relationships';
 
 import Buyable from '../mixins/models/buyable';
 import IsLineItem from '../mixins/models/is-line-item';
@@ -11,8 +11,8 @@ import File from 'ember-data-paperclip/objects/file';
 
 export default Purchasable.extend(Buyable, IsLineItem, {
   name: attr('string'),
-  description: attr('string', { defaultValue: '' }),
-  price: attr('number', { defaultValue: 0 }),
+  description: attr('string', {defaultValue: ''}),
+  price: attr('number', {defaultValue: 0}),
   itemType: attr('string'),
   numberPurchased: attr('number'),
   initialStock: attr('number'),
@@ -30,7 +30,9 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   registrationClosesAt: attr('date'),
   becomesAvailableAt: attr('date'),
 
-  picture: attr('file', { defaultValue: function() { return File.create(); } }),
+  picture: attr('file', {defaultValue: function() {
+    return File.create();
+  }}),
   pictureFileName: attr('string'),
   pictureFileSize: attr('string'),
   pictureUpdatedAt: attr('date'),
@@ -39,15 +41,16 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   pictureUrlMedium: attr('string'),
 
   event: belongsTo('event'),
-  host: belongsTo('host', { polymorphic: true }),
+  host: belongsTo('host', {polymorphic: true}),
   membershipDiscount: belongsTo('membership-discount'),
   attendances: hasMany('attendance'),
   orderLineItems: hasMany('order-line-item'),
 
   pictureIsMissing: Ember.computed('pictureUrl', function() {
-    let pictureUrl = this.get('pictureUrl');
-    let picturePresent = Ember.isPresent(pictureUrl);
+    const pictureUrl = this.get('pictureUrl');
+    const picturePresent = Ember.isPresent(pictureUrl);
+
     return picturePresent ? pictureUrl.indexOf('missing') !== -1 : true;
-  }),
+  })
 
 });

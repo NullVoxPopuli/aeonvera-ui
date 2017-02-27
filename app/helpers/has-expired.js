@@ -6,8 +6,8 @@ export function hasDateExpired(date) {
   return date != null && new Date() > date;
 }
 
-export default Ember.Helper.helper(function (params) {
-  let date = params[0];
+export default Ember.Helper.helper(function(params) {
+  const date = params[0];
 
   return hasDateExpired(date);
 });

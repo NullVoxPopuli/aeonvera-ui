@@ -5,5 +5,5 @@ export default Ember.Route.extend(New, {
   modelName: 'lesson',
   parentPathRoot: 'my-communities.manage',
   useParentOfType: 'organization',
-  isPolymorphicHost: true,
+  isPolymorphicHost: true
 });

@@ -18,12 +18,13 @@ export default Purchasable.extend(IsLineItem, {
   event: DS.belongsTo('event'),
   attendances: DS.hasMany('event-attendance'),
 
-  totalRegistrants: function () {
+  totalRegistrants: function() {
     return this.get('numberOfLeads') + this.get('numberOfFollows');
   }.property('numberOfLeads', 'numberOfFollows'),
 
-  hasExpiration: function () {
-    let expiresAt = this.get('expiresAt');
+  hasExpiration: function() {
+    const expiresAt = this.get('expiresAt');
+
     return Ember.isPresent(expiresAt);
-  }.property('expiresAt'),
+  }.property('expiresAt')
 });

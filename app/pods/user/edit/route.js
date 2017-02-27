@@ -5,7 +5,7 @@ export default Ember.Route.extend(AuthenticatedUi, {
   i18n: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
 
-  activate: function () {
+  activate: function() {
     this.set('title', this.get('i18n').t('attendedevents'));
 
     this.controllerFor('application').set('mobileMenuLeft', 'nav/dashboard/left-items');
@@ -14,8 +14,8 @@ export default Ember.Route.extend(AuthenticatedUi, {
   },
 
   actions: {
-    updateCurrentUser: function () {
-      var store = this.get('store');
+    updateCurrentUser: function() {
+      const store = this.get('store');
 
       store.find('user', 0).then(user => {
         user.save().then(_ => {
@@ -25,5 +25,5 @@ export default Ember.Route.extend(AuthenticatedUi, {
         });
       });
     }
-  },
+  }
 });

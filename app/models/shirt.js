@@ -8,16 +8,16 @@ import DS from 'ember-data';
 // - File
 import LineItem from '../models/line-item';
 
-const { isEmpty } = Ember;
+const {isEmpty} = Ember;
 
 export default LineItem.extend({
   sizes: DS.attr(),
 
-  offeredSizes: function () {
-    let sizeData = this.get('sizes');
-    let sizes = [];
+  offeredSizes: function() {
+    const sizeData = this.get('sizes');
+    const sizes = [];
 
-    sizeData.forEach(function (data) {
+    sizeData.forEach(function(data) {
       sizes.push(data.size);
     });
 
@@ -25,16 +25,16 @@ export default LineItem.extend({
   }.property('sizes'),
 
   priceForSize(size) {
-    let sizeData = this._sizeDataForSize(size);
-    let price = this.get('price');
+    const sizeData = this._sizeDataForSize(size);
+    const price = this.get('price');
 
     return sizeData.price || price;
   },
 
   setPriceForSize(size, price) {
-    let sizes = this.get('sizes');
+    const sizes = this.get('sizes');
 
-    sizes.forEach(function (sizeData) {
+    sizes.forEach(function(sizeData) {
       if (sizeData.size === size) {
         sizeData.price = price;
       }
@@ -42,22 +42,25 @@ export default LineItem.extend({
   },
 
   inventoryForSize(size) {
-    let sizeData = this._sizeDataForSize(size);
+    const sizeData = this._sizeDataForSize(size);
+
     return sizeData.inventory || 0;
   },
 
   purchasedForSize(size) {
-    let sizeData = this._sizeDataForSize(size);
+    const sizeData = this._sizeDataForSize(size);
+
     return sizeData.purchased || 0;
   },
 
   remainingForSize(size) {
-    let sizeData = this._sizeDataForSize(size);
+    const sizeData = this._sizeDataForSize(size);
+
     return sizeData.remaining || 0;
   },
 
   setInventoryForSize(size, inventory) {
-    let sizes = this.get('sizes');
+    const sizes = this.get('sizes');
 
     sizes.forEach(sizeData => {
       if (sizeData.size === size) {
@@ -67,7 +70,7 @@ export default LineItem.extend({
   },
 
   addSize(name, price, inventory) {
-    let sizeData = {
+    const sizeData = {
       id: name,
       size: name,
       price: price,
@@ -75,6 +78,7 @@ export default LineItem.extend({
     };
 
     let sizes = this.get('sizes');
+
     if (isEmpty(sizes)) {
       sizes = Ember.A();
     }
@@ -84,15 +88,15 @@ export default LineItem.extend({
   },
 
   removeSize(id) {
-    let sizes = this.get('sizes');
-    let sizeData = sizes.findBy('id', id);
+    const sizes = this.get('sizes');
+    const sizeData = sizes.findBy('id', id);
 
     sizes.removeObject(sizeData);
     this.set('sizes', sizes);
   },
 
   _sizeDataForSize(size) {
-    let sizes = this.get('sizes');
+    const sizes = this.get('sizes');
 
     sizes.forEach(sizeData => {
       if (sizeData.size === size) {

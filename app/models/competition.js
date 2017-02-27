@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import LineItem from '../models/line-item';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 
-const { computed } = Ember;
+const {computed} = Ember;
 
 export default LineItem.extend(LeadsAndFollows, {
   initialPrice: DS.attr('number'),
@@ -19,8 +19,8 @@ export default LineItem.extend(LeadsAndFollows, {
   /**
     TODO: find out if there is a better way to represent this...
   */
-  kindName: function () {
-    var kind = this.get('kind');
+  kindName: function() {
+    const kind = this.get('kind');
 
     if (kind === 0) {
       return 'Solo Jazz';
@@ -36,22 +36,32 @@ export default LineItem.extend(LeadsAndFollows, {
   }.property('kind'),
 
   isSoloJazz: computed('kind', {
-    get() { return this.get('kind') === 0; }
+    get() {
+      return this.get('kind') === 0;
+    }
   }),
 
   isJackAndJill: computed('kind', {
-    get() { return this.get('kind') === 1; }
+    get() {
+      return this.get('kind') === 1;
+    }
   }),
 
   isStrictly: computed('kind', {
-    get() { return this.get('kind') === 2; }
+    get() {
+      return this.get('kind') === 2;
+    }
   }),
 
   isTeam: computed('kind', {
-    get() { return this.get('kind') === 3; }
+    get() {
+      return this.get('kind') === 3;
+    }
   }),
 
   isCrossover: computed('kind', {
-    get() { return this.get('kind') === 4; }
+    get() {
+      return this.get('kind') === 4;
+    }
   })
 });

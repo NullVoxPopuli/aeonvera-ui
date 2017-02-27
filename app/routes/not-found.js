@@ -7,18 +7,18 @@ export default Ember.Route.extend({
   //   });
   // },
 
-  activate: function () {
-    Ember.run.later(function () {
+  activate: function() {
+    Ember.run.later(function() {
       Ember.$('#tetris-game').blockrain({
         autoplay: false,
         autoplayRestart: true,
-        theme: 'modern',
+        theme: 'modern'
 
         // playText: 'How about tetris isntead?'
       });
 
     });
 
-  },
+  }
 
 });

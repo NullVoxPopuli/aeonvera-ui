@@ -12,11 +12,11 @@ export default Ember.Component.extend({
   //   housingCapacity => Housing Capacity
   label: Ember.computed('name', {
     get() {
-      let name = this.get('name');
-      let split = name.split('.');
-      let lastPhrase = split[split.length - 1];
+      const name = this.get('name');
+      const split = name.split('.');
+      const lastPhrase = split[split.length - 1];
 
-      let phrase = Ember.String.dasherize(lastPhrase).replace(/[-]/g, ' ');
+      const phrase = Ember.String.dasherize(lastPhrase).replace(/[-]/g, ' ');
 
       // TODO: capitalize each word
       // TODO: what about articles? English makes this lame.

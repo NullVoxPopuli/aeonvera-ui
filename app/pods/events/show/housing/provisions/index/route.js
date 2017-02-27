@@ -2,11 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function () {
-    let event = this.modelFor('events.show');
-    let housingStats = this.modelFor('events.show.housing');
-    let eventId = event.get('id');
-    let provisions = this.store.query('housing-provision', {
+  model: function() {
+    const event = this.modelFor('events.show');
+    const housingStats = this.modelFor('events.show.housing');
+    const eventId = event.get('id');
+    const provisions = this.store.query('housing-provision', {
       event_id: eventId,
       include: 'attendance'
     });
@@ -15,5 +15,5 @@ export default Ember.Route.extend({
       provisions: provisions,
       eventId: eventId
     };
-  },
+  }
 });

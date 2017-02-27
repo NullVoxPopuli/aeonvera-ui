@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const {computed} = Ember;
 
 export default Ember.Component.extend({
   startTime: null,
@@ -18,18 +18,19 @@ export default Ember.Component.extend({
   DEBIT: 'Debit',
 
   columns: [
-    { property: 'createdAt', title: 'Time' },
-    { property: 'paymentReceivedAt', title: 'Paid At' },
-    { property: 'paymentMethod', title: 'Paid With' },
-    { property: 'currentPaidAmount', title: 'Gross Paid' },
-    { property: 'currentNetAmountReceived', title: 'Net Amount Received' },
-    { property: 'currentTotalFeeAmount', title: 'Fees' }
+    {property: 'createdAt', title: 'Time'},
+    {property: 'paymentReceivedAt', title: 'Paid At'},
+    {property: 'paymentMethod', title: 'Paid With'},
+    {property: 'currentPaidAmount', title: 'Gross Paid'},
+    {property: 'currentNetAmountReceived', title: 'Net Amount Received'},
+    {property: 'currentTotalFeeAmount', title: 'Fees'}
   ],
 
   totalPaidAmount: computed('filteredOrders', {
     get() {
-      let orders = this.get('filteredOrders');
-      return orders.mapBy('currentPaidAmount').reduce(function (a, b) {
+      const orders = this.get('filteredOrders');
+
+      return orders.mapBy('currentPaidAmount').reduce(function(a, b) {
         return a + b;
       }, 0);
     }
@@ -37,8 +38,9 @@ export default Ember.Component.extend({
 
   totalAmountReceived: computed('filteredOrders', {
     get() {
-      let orders = this.get('filteredOrders');
-      return orders.mapBy('currentNetAmountReceived').reduce(function (a, b) {
+      const orders = this.get('filteredOrders');
+
+      return orders.mapBy('currentNetAmountReceived').reduce(function(a, b) {
         return a + b;
       }, 0);
     }
@@ -46,8 +48,9 @@ export default Ember.Component.extend({
 
   totalFeeAmount: computed('filteredOrders', {
     get() {
-      let orders = this.get('filteredOrders');
-      return orders.mapBy('currentTotalFeeAmount').reduce(function (a, b) {
+      const orders = this.get('filteredOrders');
+
+      return orders.mapBy('currentTotalFeeAmount').reduce(function(a, b) {
         return a + b;
       }, 0);
     }
@@ -57,66 +60,70 @@ export default Ember.Component.extend({
     'startTime', 'endTime',
     'paidStartTime', 'paidEndTime',
     'showCash', 'showChecks', 'showStripe', {
-    get() {
-      let model = this.get('model');
+      get() {
+        const model = this.get('model');
 
-      let startTime = this.get('startTime');
-      let endTime = this.get('endTime');
+        const startTime = this.get('startTime');
+        const endTime = this.get('endTime');
 
-      let paidStartTime = this.get('paidStartTime');
-      let paidEndTime = this.get('paidEndTime');
+        const paidStartTime = this.get('paidStartTime');
+        const paidEndTime = this.get('paidEndTime');
 
-      let cash = this.get('CASH');
-      let check = this.get('CHECK');
-      let stripe = this.get('STRIPE');
-      let showCash = this.get('showCash');
-      let showChecks = this.get('showChecks');
-      let showStripe = this.get('showStripe');
-      let filtered = model;
+        const cash = this.get('CASH');
+        const check = this.get('CHECK');
+        const stripe = this.get('STRIPE');
+        const showCash = this.get('showCash');
+        const showChecks = this.get('showChecks');
+        const showStripe = this.get('showStripe');
+        let filtered = model;
 
-      if (startTime != null) {
-        filtered = filtered.filter(function (item) {
-          let time = item.get('createdAt');
-          let isAfterStartTime = moment(time).isAfter(startTime);
-          return isAfterStartTime;
-        });
-      }
+        if (startTime != null) {
+          filtered = filtered.filter(function(item) {
+            const time = item.get('createdAt');
+            const isAfterStartTime = moment(time).isAfter(startTime);
 
-      if (endTime != null) {
-        filtered = filtered.filter(function (item) {
-          let time = item.get('createdAt');
-          let isBeforeEndTime = moment(time).isBefore(endTime);
-          return isBeforeEndTime;
-        });
-      }
+            return isAfterStartTime;
+          });
+        }
 
-      if (paidStartTime != null) {
-        filtered = filtered.filter(function (item) {
-          let time = item.get('createdAt');
-          let isAfterStartTime = moment(time).isAfter(paidStartTime);
-          return isAfterStartTime;
-        });
-      }
+        if (endTime != null) {
+          filtered = filtered.filter(function(item) {
+            const time = item.get('createdAt');
+            const isBeforeEndTime = moment(time).isBefore(endTime);
 
-      if (paidEndTime != null) {
-        filtered = filtered.filter(function (item) {
-          let time = item.get('createdAt');
-          let isBeforeEndTime = moment(time).isBefore(paidEndTime);
-          return isBeforeEndTime;
-        });
-      }
+            return isBeforeEndTime;
+          });
+        }
 
-      filtered = filtered.filter(item => {
-        let paymentMethod = item.get('paymentMethod');
+        if (paidStartTime != null) {
+          filtered = filtered.filter(function(item) {
+            const time = item.get('createdAt');
+            const isAfterStartTime = moment(time).isAfter(paidStartTime);
 
-        return (
+            return isAfterStartTime;
+          });
+        }
+
+        if (paidEndTime != null) {
+          filtered = filtered.filter(function(item) {
+            const time = item.get('createdAt');
+            const isBeforeEndTime = moment(time).isBefore(paidEndTime);
+
+            return isBeforeEndTime;
+          });
+        }
+
+        filtered = filtered.filter(item => {
+          const paymentMethod = item.get('paymentMethod');
+
+          return (
           showCash && paymentMethod === cash ||
           showChecks && paymentMethod === check ||
           showStripe && paymentMethod === stripe
-        );
-      });
+          );
+        });
 
-      return filtered;
-    }
-  })
+        return filtered;
+      }
+    })
 });

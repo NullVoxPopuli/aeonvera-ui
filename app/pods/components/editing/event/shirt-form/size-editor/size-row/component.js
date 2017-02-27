@@ -8,7 +8,8 @@ export default Ember.Component.extend({
 
   actions: {
     toggleEditing() {
-      let isEditing = !this.get('isEditing');
+      const isEditing = !this.get('isEditing');
+
       this.set('isEditing', isEditing);
     },
 

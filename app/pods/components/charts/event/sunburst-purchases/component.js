@@ -23,14 +23,15 @@ export default Ember.Component.extend(ResizeMixin, {
   // }.on('resize'),
 
   _buildData() {
-    let event = this.get('event');
+    const event = this.get('event');
+
     return this.store.findRecord('chart', `${event.id}-registration-breakdown`, {
       adapterOptions: {
         query: {
           event_id: event.get('id'),
           chart_type: 'sunburt-registration-breakdown'
-        },
-      },
+        }
+      }
     });
   },
 
@@ -57,18 +58,18 @@ export default Ember.Component.extend(ResizeMixin, {
     ]);
     // const color = d3.scale.category20c();
 
-    var x = d3.scale.linear().range([0, 2 * Math.PI]);
+    const x = d3.scale.linear().range([0, 2 * Math.PI]);
     // var y = d3.scale.sqrt().range([0, radius]);
-    var y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]);
+    const y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]);
 
-    var svg = d3.select(`#${chartId}`)
+    const svg = d3.select(`#${chartId}`)
       .append('div')
         .classed('d3-svg-container', true)
       .append('svg')
-        //responsive SVG needs these 2 attributes and no width and height attr
+        // responsive SVG needs these 2 attributes and no width and height attr
         .attr('preserveAspectRatio', 'xMinYMin meet')
         .attr('viewBox', `0 0 ${width} ${height}`)
-        //class to make it responsive
+        // class to make it responsive
         .classed('svg-content-responsive', true)
         // .attr('width', width)
         // .attr('height', height)
@@ -78,40 +79,59 @@ export default Ember.Component.extend(ResizeMixin, {
 
     this.set('svg', svg);
 
-    var partition = d3.layout.partition()
-        .sort(function(a, b) { return d3.ascending(a.name, b.name); })
+    const partition = d3.layout.partition()
+        .sort(function(a, b) {
+          return d3.ascending(a.name, b.name);
+        })
         // .size([2 * Math.PI, radius * radius])
-        .value(d => d.size);
+        .value(d => {
+          return d.size;
+        });
     // .value(function(d) { return 1; });
 
-    var arc = d3.svg.arc()
-        .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x))))
-        .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))))
-        .innerRadius(d => Math.max(0, d.y ? y(d.y) : d.y))
-        .outerRadius(d => Math.max(0, y(d.y + d.dy)));
-    var node;
+    const arc = d3.svg.arc()
+        .startAngle(d => {
+          return Math.max(0, Math.min(2 * Math.PI, x(d.x)));
+        })
+        .endAngle(d => {
+          return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx)));
+        })
+        .innerRadius(d => {
+          return Math.max(0, d.y ? y(d.y) : d.y);
+        })
+        .outerRadius(d => {
+          return Math.max(0, y(d.y + d.dy));
+        });
+    let node;
 
     const root = this.get('data');
-    let nodes = partition.nodes(root);
+    const nodes = partition.nodes(root);
+
     node = root;
 
-    let path = svg.selectAll('path').data(nodes);
+    const path = svg.selectAll('path').data(nodes);
+
     path.enter().append('path')
-        .attr('id', (d, i) => `path-${i}`)
+        .attr('id', (d, i) => {
+          return `path-${i}`;
+        })
         .attr('d', arc)
         .style('stroke', '#fff')
         .style('fill-rule', 'evenodd')
-        .style('fill', d => color(d.name))
+        .style('fill', d => {
+          return color(d.name);
+        })
         .on('click', click);
 
     // Computes the label angle of an arc, converting from radians to degrees.
     function getAngle(d) {
       // Offset the angle by 90 deg since the '0' degree axis for arc is Y axis, while
       // for text it is the X axis.
-      var thetaDeg = (180 / Math.PI * (arc.startAngle()(d) + arc.endAngle()(d)) / 2 - 90);
+      const thetaDeg = (180 / Math.PI * (arc.startAngle()(d) + arc.endAngle()(d)) / 2 - 90);
       // If we are rotating the text by more than 90 deg, then "flip" it.
       // This is why "text-anchor", "middle" is important, otherwise, this "flip" would
       // a little harder.
+
       return (thetaDeg > 90) ? thetaDeg - 180 : thetaDeg;
     }
 
@@ -119,13 +139,13 @@ export default Ember.Component.extend(ResizeMixin, {
       if (d.depth > 0) {
         return 'translate(' + arc.centroid(d) + ')' +
                'rotate(' + getAngle(d) + ')';
-      }  else {
-        return '';
       }
+      return '';
+
     }
 
-    var text = svg.selectAll('text').data(nodes);
-    var textEnter = text.enter().append('text')
+    const text = svg.selectAll('text').data(nodes);
+    const textEnter = text.enter().append('text')
         .style('fill-opacity', 1)
         .style('font-size', 10)
         .style('text-anchor', 'middle')
@@ -133,13 +153,18 @@ export default Ember.Component.extend(ResizeMixin, {
         .attr('dy', '.2em')
         .attr('transform', transformText)
         .on('click', click);
+
     textEnter.append('tspan')
         .attr('x', 0)
-        .text(d => d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '');
+        .text(d => {
+          return d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '';
+        });
     textEnter.append('tspan')
         .attr('x', 0)
         .attr('dy', '1em')
-        .text(d => d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '');
+        .text(d => {
+          return d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '';
+        });
     // textEnter.append('tspan')
     //     .attr('x', 0)
     //     .attr('dy', d => d.depth ? (d.name.split(' - ').length > 1 ? '-2em' : '-1em') : '')
@@ -151,18 +176,28 @@ export default Ember.Component.extend(ResizeMixin, {
         .attrTween('d', arcTween(d));
 
       // Somewhat of a hack as we rely on arcTween updating the scales.
-      text.style('visibility', e => isParentOf(d, e) ? null : d3.select(this).style('visibility'))
+      text.style('visibility', e => {
+        return isParentOf(d, e) ? null : d3.select(this).style('visibility');
+      })
         .transition()
         .duration(duration)
-        .attrTween('transform', d => () => transformText(d))
-        .style('fill-opacity', function(e) { return isParentOf(d, e) ? 1 : 1e-6; })
+        .attrTween('transform', d => {
+          return () => {
+            return transformText(d);
+          };
+        })
+        .style('fill-opacity', function(e) {
+          return isParentOf(d, e) ? 1 : 1e-6;
+        })
         .each('end', function(e) {
           d3.select(this).style('visibility', isParentOf(d, e) ? null : 'hidden');
         });
     }
 
     function isParentOf(p, c) {
-      if (p === c) return true;
+      if (p === c) {
+        return true;
+      }
       if (p.children) {
         return p.children.some(function(d) {
           return isParentOf(d, c);
@@ -174,10 +209,11 @@ export default Ember.Component.extend(ResizeMixin, {
 
     // Interpolate the scales!
     function arcTween(d) {
-      var my = maxY(d),
-          xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
-          yd = d3.interpolate(y.domain(), [d.y, my]),
-          yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+      let my = maxY(d),
+        xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+        yd = d3.interpolate(y.domain(), [d.y, my]),
+        yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+
       return function(d) {
         return function(t) {
           x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d);
@@ -186,7 +222,7 @@ export default Ember.Component.extend(ResizeMixin, {
     }
 
     function maxY(d) {
-      return d.children ? Math.max.apply(Math, d.children.map(maxY)) : d.y + d.dy;
+      return d.children ? Math.max(...d.children.map(maxY)) : d.y + d.dy;
     }
 
     // http://www.w3.org/WAI/ER/WD-AERT/#color-contrast

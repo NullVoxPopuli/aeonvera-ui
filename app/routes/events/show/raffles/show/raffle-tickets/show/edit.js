@@ -3,5 +3,5 @@ import ShowEdit from 'aeonvera/mixins/routes/crud/events/show/edit';
 
 export default Ember.Route.extend(ShowEdit, {
   modelName: 'raffle-ticket',
-  parentPathRoot: 'events.show.raffles.show',
+  parentPathRoot: 'events.show.raffles.show'
 });

@@ -2,19 +2,19 @@ import Ember from 'ember';
 import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
-const { isBlank } = Ember;
+const {isBlank} = Ember;
 
 export default Ember.Service.extend(RandomString, {
-  store:         Ember.inject.service('store'),
-  session:       Ember.inject.service('session'),
+  store: Ember.inject.service('store'),
+  session: Ember.inject.service('session'),
   flashMessages: Ember.inject.service('flashMessages'),
 
   userFirstName: '',
-  userLastName:  '',
-  email:         '',
-  order:         null,
-  host:          null,
-  attendance:    null,
+  userLastName: '',
+  email: '',
+  order: null,
+  host: null,
+  attendance: null,
   automaticDiscounts: true,
 
   userName: Ember.computed('userFirstName', 'userLastName', function() {
@@ -23,8 +23,10 @@ export default Ember.Service.extend(RandomString, {
 
   userEmail: Ember.computed('session.currentUser', 'email', function() {
     let email = this.get('email');
+
     if (!Ember.isPresent(email)) {
-      let userEmail = this.get('session.currentUser.email');
+      const userEmail = this.get('session.currentUser.email');
+
       email = userEmail;
     }
 
@@ -40,7 +42,8 @@ export default Ember.Service.extend(RandomString, {
   }),
 
   hasItems: Ember.computed('order', 'order.hasLineItems', function() {
-    let order = this.get('order');
+    const order = this.get('order');
+
     return (Ember.isPresent(order) && order.get('hasLineItems'));
   }),
 
@@ -55,8 +58,8 @@ export default Ember.Service.extend(RandomString, {
     let order = this.get('order');
 
     if (!Ember.isPresent(order)) {
-      let user = this.get('session.currentUser');
-      let orderId = this.get('orderId');
+      const user = this.get('session.currentUser');
+      const orderId = this.get('orderId');
 
       if (Ember.isPresent(orderId)) {
         order = this.get('store').peekRecord('order', orderId);
@@ -74,7 +77,8 @@ export default Ember.Service.extend(RandomString, {
         order.set('automaticDiscounts', this.get('automaticDiscounts'));
       }
 
-      let token = this.get('token');
+      const token = this.get('token');
+
       if (Ember.isBlank(user)) {
         order.set('paymentToken', this.randomString('order', 128));
       } else if (Ember.isPresent(token)) {
@@ -100,7 +104,7 @@ export default Ember.Service.extend(RandomString, {
 
   addOne(item) {
     this.get('currentOrderAsPromise').then(order => {
-      let oli = order.getOrderLineItemMatching(item);
+      const oli = order.getOrderLineItemMatching(item);
 
       if (Ember.isPresent(oli)) {
         order.addLineItem(item, oli.get('quantity') + 1);
@@ -115,9 +119,11 @@ export default Ember.Service.extend(RandomString, {
 
   subtractOne(item) {
     this.get('currentOrderAsPromise').then(order => {
-      let oli = order.getOrderLineItemMatching(item);
+      const oli = order.getOrderLineItemMatching(item);
+
       if (Ember.isPresent(oli)) {
-        let quantity = oli.get('quantity') - 1;
+        const quantity = oli.get('quantity') - 1;
+
         if (quantity === 0) {
           order._increaseQuantityForItem(item, oli, quantity);
         } else {
@@ -133,7 +139,9 @@ export default Ember.Service.extend(RandomString, {
   remove(item) {
     this.get('currentOrderAsPromise').then(order => {
       order.removeOrderLineItem(item);
-      if (!order.get('hasLineItems')) { this.cancel(); }
+      if (!order.get('hasLineItems')) {
+        this.cancel();
+      }
 
       this._adjustCartMaxHeight();
     });
@@ -146,14 +154,19 @@ export default Ember.Service.extend(RandomString, {
   },
 
   cancel() {
-    let order = this.get('order');
-    if (order === null) return;
+    const order = this.get('order');
+
+    if (order === null) {
+      return;
+    }
 
     this.get('currentOrderAsPromise').then(order => {
       if (order.get('isNew')) {
         order.unloadRecord();
       } else {
-        if (!order.get('isDeleted')) order.deleteRecord();
+        if (!order.get('isDeleted')) {
+          order.deleteRecord();
+        }
         order.save();
       }
 
@@ -162,24 +175,24 @@ export default Ember.Service.extend(RandomString, {
   },
 
   _adjustCartMaxHeight() {
-    let cart = jQuery('.fixed-to-top-cart');
-    let windowHeight = jQuery(window).height();
+    const cart = jQuery('.fixed-to-top-cart');
+    const windowHeight = jQuery(window).height();
 
     // cart might not be rendered right now
     if (Ember.isBlank(cart) || cart.length === 0) {
       return;
     }
 
-    let cartTop             = cart.position().top;
-    let cartHeight          = cart.height();
-    let cartBottom          = cartTop + cartHeight;
-    let cartTBody           = cart.find('tbody');
-    let cartTBodyHeight     = cartTBody.height();
-    let cartUiHeight        = cartHeight - cartTBodyHeight;
-    let cartUiHeightWithTop = cartUiHeight + cartTop;
-    let availableHeight     = windowHeight - cartUiHeightWithTop;
+    const cartTop = cart.position().top;
+    const cartHeight = cart.height();
+    const cartBottom = cartTop + cartHeight;
+    const cartTBody = cart.find('tbody');
+    const cartTBodyHeight = cartTBody.height();
+    const cartUiHeight = cartHeight - cartTBodyHeight;
+    const cartUiHeightWithTop = cartUiHeight + cartTop;
+    const availableHeight = windowHeight - cartUiHeightWithTop;
 
-    cartTBody.css({ maxHeight: availableHeight + 'px' });
+    cartTBody.css({maxHeight: availableHeight + 'px'});
   },
 
   // Validate the
@@ -189,14 +202,18 @@ export default Ember.Service.extend(RandomString, {
   validate() {
     return this.get('currentOrderAsPromise').then(order => {
       let isOrderValid = order.validate();
-      order.get('orderLineItems').map(item => {
-        let isItemValid = item.validate();
+
+      order.get('orderLineItems').forEach(item => {
+        const isItemValid = item.validate();
+
         isOrderValid = isOrderValid && isItemValid;
       });
 
-      let attendance = this.get('attendance');
+      const attendance = this.get('attendance');
+
       if (Ember.isPresent(attendance)) {
-        let isAttendanceValid = attendance.validate();
+        const isAttendanceValid = attendance.validate();
+
         isOrderValid = isOrderValid && isAttendanceValid;
       }
 
@@ -212,7 +229,7 @@ export default Ember.Service.extend(RandomString, {
         return null;
       }
 
-      let attendance = this.get('attendance');
+      const attendance = this.get('attendance');
 
       // this will first save the attendance, housing info, field responses
       // and then it will shoot off another request to save the order and items
@@ -242,8 +259,8 @@ export default Ember.Service.extend(RandomString, {
 
       // TODO: how to send to modify URL if not new
       // - maybe set a flag on the item to be read by the server?
-      let promise = new Ember.RSVP.Promise((resolve, reject) => {
-        let token = this.get('order.paymentToken');
+      const promise = new Ember.RSVP.Promise((resolve, reject) => {
+        const token = this.get('order.paymentToken');
 
         this._saveOrderLineItems();
 
@@ -278,14 +295,16 @@ export default Ember.Service.extend(RandomString, {
     //    - housing request
     //    - housing provision
     //    - custom field responses
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
+
     this._saveAttendanceItems();
 
-    let promise = attendance.save().then(attendanceRecord => {
+    const promise = attendance.save().then(attendanceRecord => {
       this.set('attendance', attendanceRecord);
       return this._saveOrder();
     }, error => {
-      let msg = 'Attendance could not be saved.';
+      const msg = 'Attendance could not be saved.';
+
       this.get('flashMessages').alert(msg);
       console.error(error);
     });
@@ -300,12 +319,13 @@ export default Ember.Service.extend(RandomString, {
   // - each custom field response
   _isAttendanceDirty() {
 
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
 
     let isDirty = attendance.get('hasDirtyAttributes');
-    isDirty     = isDirty || attendance.get('housingRequest.hasDirtyAttributes');
-    isDirty     = isDirty || attendance.get('housingProvision.hasDirtyAttributes');
-    isDirty     = isDirty || attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
+
+    isDirty = isDirty || attendance.get('housingRequest.hasDirtyAttributes');
+    isDirty = isDirty || attendance.get('housingProvision.hasDirtyAttributes');
+    isDirty = isDirty || attendance.get('customFieldResponses').isAny('hasDirtyAttributes', true);
 
     return isDirty;
   },
@@ -316,10 +336,11 @@ export default Ember.Service.extend(RandomString, {
   // This should only be done as an overall 'update' to the collection
   // of order+orderLineItems
   _saveOrderLineItems() {
-    let promise = new Ember.RSVP.Promise((resolve, reject) => {
+    const promise = new Ember.RSVP.Promise((resolve, reject) => {
       this.get('currentOrderAsPromise').then(order => {
         if (order.get('id') !== null) {
-          let orderLineItems = order.get('orderLineItems');
+          const orderLineItems = order.get('orderLineItems');
+
           orderLineItems.forEach(item => {
             if (item.get('hasDirtyAttributes')) {
               item.save();
@@ -341,7 +362,8 @@ export default Ember.Service.extend(RandomString, {
   // This should only be d one as an overall update to the
   // attendance + housing + custom field responses
   _saveAttendanceItems() {
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
+
     if (attendance.get('isPersisted')) {
       // TODO: error handling?
       this._saveHousingRequest();
@@ -351,7 +373,7 @@ export default Ember.Service.extend(RandomString, {
   },
 
   _saveHousingRequest() {
-    let housingRequest = this.get('attendance.housingRequest');
+    const housingRequest = this.get('attendance.housingRequest');
 
     if (housingRequest && housingRequest.get('hasDirtyAttributes')) {
       housingRequest.save();
@@ -359,7 +381,7 @@ export default Ember.Service.extend(RandomString, {
   },
 
   _saveHousingProvision() {
-    let housingProvision = this.get('attendance.housingProvision');
+    const housingProvision = this.get('attendance.housingProvision');
 
     if (housingProvision && housingProvision.get('hasDirtyAttributes')) {
       housingProvision.save();
@@ -367,7 +389,7 @@ export default Ember.Service.extend(RandomString, {
   },
 
   _saveCustomFieldResponses() {
-    let customFieldResponses = this.get('attendance.customFieldResponses');
+    const customFieldResponses = this.get('attendance.customFieldResponses');
 
     if (Ember.isPresent(customFieldResponses)) {
       customFieldResponses.forEach(item => {

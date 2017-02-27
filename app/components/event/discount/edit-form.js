@@ -5,5 +5,5 @@ export default Ember.Component.extend(Form, {
   modelName: 'discount',
   saveSuccessPath: 'events.show.discounts.show', // should be show?
   cancelPath: 'events.show.discounts',
-  parentAssociation: 'host',
+  parentAssociation: 'host'
 });

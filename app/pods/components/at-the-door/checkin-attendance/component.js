@@ -11,10 +11,10 @@ export default Ember.Component.extend({
 
   actions: {
     checkin() {
-      let id = this.get('model.id');
-      let name = this.get('model.attendeeName');
-      let url = '/api/event_attendances/' + id + '/checkin';
-      let data = {
+      const id = this.get('model.id');
+      const name = this.get('model.attendeeName');
+      const url = '/api/event_attendances/' + id + '/checkin';
+      const data = {
         checked_in_at: new Date()
       };
 
@@ -22,11 +22,12 @@ export default Ember.Component.extend({
         this.get('store').pushPayload(data);
         this.get('flashMessages').success(`${name} has been checked in.`);
       }, error => {
-        let json = JSON.parse(error.responseText);
-        let errors = json.errors;
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
+
         this.get('flashMessages').alert(errors);
       });
-    },
+    }
 
-  },
+  }
 });

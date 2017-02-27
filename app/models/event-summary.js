@@ -5,15 +5,15 @@ export default DS.Model.extend(LeadsAndFollows, {
   revenue: DS.attr('number'),
   unpaid: DS.attr('number'),
   eventAttendances: DS.hasMany('eventAttendances', {
-    async: false,
+    async: false
   }),
   numberOfShirtsSold: DS.attr('number'),
   event: DS.belongsTo('event', {
-    async: true,
+    async: true
   }),
 
-  recentRegistrations: function () {
+  recentRegistrations: function() {
     return this.get('eventAttendances');
-  }.property('eventAttendances'),
+  }.property('eventAttendances')
 
 });

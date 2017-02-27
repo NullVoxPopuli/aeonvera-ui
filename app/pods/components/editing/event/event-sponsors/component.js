@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { computed, isPresent } = Ember;
+const {computed, isPresent} = Ember;
 
 export default Ember.Component.extend({
   event: null, // set by caller
@@ -12,8 +12,8 @@ export default Ember.Component.extend({
   selectedOrganization: null,
   selectedDiscount: null,
   saveDisabled: computed('selectedOrganization', 'selectedDiscount', function() {
-    let org = this.get('selectedOrganization');
-    let discount = this.get('selectedDiscount');
+    const org = this.get('selectedOrganization');
+    const discount = this.get('selectedDiscount');
 
     return !(isPresent(org) && isPresent(discount));
   }),
@@ -24,11 +24,11 @@ export default Ember.Component.extend({
     },
 
     saveSponsorship() {
-      let event = this.get('event');
-      let org = this.get('selectedOrganization');
-      let discount = this.get('selectedDiscount');
+      const event = this.get('event');
+      const org = this.get('selectedOrganization');
+      const discount = this.get('selectedDiscount');
 
-      let sponsorship = this.get('store').createRecord('sponsorship', {
+      const sponsorship = this.get('store').createRecord('sponsorship', {
         discount: discount,
         sponsor: org,
         sponsored: event

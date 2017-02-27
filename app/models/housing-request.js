@@ -4,18 +4,18 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   genderOptions: ['No Preference', 'Guys', 'Gals'],
 
-  needTransportation:         DS.attr('boolean', { defaultValue: false }),
-  canProvideTransportation:   DS.attr('boolean', { defaultValue: false }),
-  transportationCapacity:     DS.attr('number', { defaultValue: 0 }),
-  allergicToPets:             DS.attr('boolean', { defaultValue: false }),
-  allergicToSmoke:            DS.attr('boolean', { defaultValue: true }),
-  otherAllergies:             DS.attr('string'),
-  preferredGenderToHouseWith: DS.attr('string', { defaultValue: 'No Preference' }),
-  notes:                      DS.attr('string'),
-  name:                       DS.attr('string'),
+  needTransportation: DS.attr('boolean', {defaultValue: false}),
+  canProvideTransportation: DS.attr('boolean', {defaultValue: false}),
+  transportationCapacity: DS.attr('number', {defaultValue: 0}),
+  allergicToPets: DS.attr('boolean', {defaultValue: false}),
+  allergicToSmoke: DS.attr('boolean', {defaultValue: true}),
+  otherAllergies: DS.attr('string'),
+  preferredGenderToHouseWith: DS.attr('string', {defaultValue: 'No Preference'}),
+  notes: DS.attr('string'),
+  name: DS.attr('string'),
 
-  host:             DS.belongsTo('host', { polymorphic: true }),
-  attendance:       DS.belongsTo('attendance', { polymorphic: true }),
+  host: DS.belongsTo('host', {polymorphic: true}),
+  attendance: DS.belongsTo('attendance', {polymorphic: true}),
   housingProvision: DS.belongsTo('housing-provision'),
 
   requested1: DS.attr(),
@@ -36,11 +36,12 @@ export default DS.Model.extend({
 
   // for sorting
   requesterName: Ember.computed('attendance', 'name', function() {
-    let name = this.get('attendance.attendeeName');
+    const name = this.get('attendance.attendeeName');
+
     if (Ember.isPresent(name)) {
       return name;
     }
 
     return this.get('name');
-  }),
+  })
 });

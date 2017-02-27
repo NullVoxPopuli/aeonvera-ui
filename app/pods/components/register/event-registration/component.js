@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { inject, computed, observer } = Ember;
+const {inject, computed, observer} = Ember;
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
@@ -9,10 +9,10 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('order-cart'),
 
   housingResponse: Ember.computed('attendance', function() {
-    let housingRequest = this.get('attendance.housingRequest');
-    let housingProvision = this.get('attendance.housingProvision');
+    const housingRequest = this.get('attendance.housingRequest');
+    const housingProvision = this.get('attendance.housingProvision');
 
-    return !!housingRequest ? 2 : (!!housingProvision ? 1 : 0);
+    return housingRequest ? 2 : (housingProvision ? 1 : 0);
   }),
   isWaivingHousing: Ember.computed.equal('housingResponse', 0),
   isProvidingHousing: Ember.computed.equal('housingResponse', 1),
@@ -25,7 +25,7 @@ export default Ember.Component.extend({
   housingRequest: null,
   housingProvision: null,
   housingObserver: Ember.observer('housingResponse', function() {
-    let housingResponse = this.get('housingResponse');
+    const housingResponse = this.get('housingResponse');
 
     // delete both
     if (housingResponse === 0) {
@@ -46,14 +46,14 @@ export default Ember.Component.extend({
     }
   }),
 
-  findAttendance: function () {
-    let eventId = this.get('event.id');
-    let store = this.get('store');
+  findAttendance: function() {
+    const eventId = this.get('event.id');
+    const store = this.get('store');
 
     // this should include the orders, housing_provision and housing_request
     store.queryRecord('event-attendance', {
-      current_user: true, event_id: eventId }).then(attendance => {
-        let cart = this.get('cart');
+      current_user: true, event_id: eventId}).then(attendance => {
+        const cart = this.get('cart');
 
         // in case there is an existing order,
         // cancel it, and re-populate everything with our
@@ -63,7 +63,7 @@ export default Ember.Component.extend({
         this.set('housingProvision', attendance.get('housingProvision'));
 
         cart.set('attendance', attendance);
-        let unpaidOrder = attendance.get('unpaidOrder');
+        const unpaidOrder = attendance.get('unpaidOrder');
 
         // if the unpaid order isn't present, then don't set it
         // the unpaid order is a promise, which is unfulfilled
@@ -83,17 +83,20 @@ export default Ember.Component.extend({
         }
 
         // crappy logic to get the package radio buttons to show what was selected
-        let packageId = attendance.get('package.id');
-        let attendancePackage = this.get('model.packages').findBy('id', packageId);
+        const packageId = attendance.get('package.id');
+        const attendancePackage = this.get('model.packages').findBy('id', packageId);
+
         this.set('selectedPackage', attendancePackage);
 
         // crappy logic to get the level radio buttons to show what was selected
-        let levelId = attendance.get('level.id');
-        let attendanceLevel = this.get('model.levels').findBy('id', levelId);
+        const levelId = attendance.get('level.id');
+        const attendanceLevel = this.get('model.levels').findBy('id', levelId);
+
         this.set('selectedLevel', attendanceLevel);
       }, error => {
 
-        let attendance = this.get('store').createRecord('event-attendance');
+        const attendance = this.get('store').createRecord('event-attendance');
+
         attendance.set('host', this.get('event'));
 
         this.set('attendance', attendance);
@@ -103,11 +106,12 @@ export default Ember.Component.extend({
 
   // TODO: maybe eventually make requiring to login optional?
   mustLogin: Ember.computed('session.isAuthenticated', function() {
-    let authed = this.get('session.isAuthenticated');
+    const authed = this.get('session.isAuthenticated');
+
     return !authed;
   }),
 
-  title: Ember.computed('model.name', function () {
+  title: Ember.computed('model.name', function() {
     return 'Register for ' + this.get('model.name');
   }).readOnly(),
 
@@ -118,9 +122,9 @@ export default Ember.Component.extend({
   // package from the list of packages on the event
   //
   packageObserver: Ember.observer('selectedPackage', function() {
-    let cart = this.get('cart');
-    let attendance = this.get('attendance');
-    let selectedPackage = this.get('selectedPackage');
+    const cart = this.get('cart');
+    const attendance = this.get('attendance');
+    const selectedPackage = this.get('selectedPackage');
 
     // in order to protect the model from getting dirtied upon load,
     // only add to the cart and change the attendance if the
@@ -162,7 +166,7 @@ export default Ember.Component.extend({
   },
 
   _deleteHousingRequest() {
-    let housingRequest = this.get('attendance.housingRequest');
+    const housingRequest = this.get('attendance.housingRequest');
 
     if (housingRequest && !housingRequest.get('isDeleted')) {
       housingRequest.destroyRecord();
@@ -173,7 +177,7 @@ export default Ember.Component.extend({
   },
 
   _deleteHousingProvision() {
-    let housingProvision = this.get('attendance.housingProvision');
+    const housingProvision = this.get('attendance.housingProvision');
 
     if (housingProvision && !housingProvision.get('isDeleted')) {
       housingProvision.destroyRecord();
@@ -184,7 +188,7 @@ export default Ember.Component.extend({
   },
 
   _setHousingProvision() {
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
     let housingProvision = attendance.get('housingProvision');
 
     if (housingProvision != null) {
@@ -197,7 +201,7 @@ export default Ember.Component.extend({
   },
 
   _setHousingRequest() {
-    let attendance = this.get('attendance');
+    const attendance = this.get('attendance');
     let housingRequest = attendance.get('housingRequest');
 
     if (housingRequest) {

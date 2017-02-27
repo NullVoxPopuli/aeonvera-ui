@@ -8,25 +8,25 @@ export default Ember.Component.extend({
   activeRegistrant: null,
 
   columns: [
-    { property: 'attendeeName', title: 'Name' },
-    { property: 'isCheckedIn', title: '', sort: false },
-    { property: 'packageName', title: 'Package', sort: false },
-    { property: 'levelName', title: 'Track', sort: false },
-    { property: '', title: 'Competitions', sort: false },
-    { property: 'amountOwed', title: '$ Owed', sort: false },
-    { property: 'registeredAt', title: 'Date Registered' },
-    { property: 'checkedInAt', title: 'Checked in at' }
+    {property: 'attendeeName', title: 'Name'},
+    {property: 'isCheckedIn', title: '', sort: false},
+    {property: 'packageName', title: 'Package', sort: false},
+    {property: 'levelName', title: 'Track', sort: false},
+    {property: '', title: 'Competitions', sort: false},
+    {property: 'amountOwed', title: '$ Owed', sort: false},
+    {property: 'registeredAt', title: 'Date Registered'},
+    {property: 'checkedInAt', title: 'Checked in at'}
   ],
 
-  attendances: function () {
-    var model = this.get('model');
-    var query = this.get('queryText');
-    var queryPresent = Ember.isPresent(query);
-    var onlyNonCheckedIn = this.get('showOnlyNonCheckedIn');
-    var onlyOweMoney = this.get('showOnlyThoseWhoOweMoney');
-    var lowerQuery = query.toLowerCase();
+  attendances: function() {
+    const model = this.get('model');
+    const query = this.get('queryText');
+    const queryPresent = Ember.isPresent(query);
+    const onlyNonCheckedIn = this.get('showOnlyNonCheckedIn');
+    const onlyOweMoney = this.get('showOnlyThoseWhoOweMoney');
+    const lowerQuery = query.toLowerCase();
 
-    var filtered = model;
+    let filtered = model;
 
     if (onlyNonCheckedIn) {
       filtered = filtered.filterBy('isCheckedIn', false);
@@ -37,8 +37,9 @@ export default Ember.Component.extend({
     }
 
     if (queryPresent) {
-      filtered = filtered.filter(function (ea) {
-        var name = ea.get('attendeeName').toLowerCase();
+      filtered = filtered.filter(function(ea) {
+        const name = ea.get('attendeeName').toLowerCase();
+
         return name.includes(lowerQuery);
       });
     }
@@ -48,30 +49,32 @@ export default Ember.Component.extend({
     'model', 'queryText',
     'showOnlyNonCheckedIn', 'showOnlyThoseWhoOweMoney'),
 
-  percentCheckedIn: function () {
-    var checkedIn = this.get('numberCheckedIn');
+  percentCheckedIn: function() {
+    const checkedIn = this.get('numberCheckedIn');
     /* var checkedOut = this.get('numberCheckedOut'); */
-    var total = this.get('model').get('length');
-    var percent = checkedIn / total * 100;
+    const total = this.get('model').get('length');
+    const percent = checkedIn / total * 100;
 
     return Math.round(percent, 2);
   }.property('model.@each.isCheckedIn'),
 
-  numberCheckedIn: function () {
-    var model = this.get('model');
+  numberCheckedIn: function() {
+    const model = this.get('model');
+
     return model.filterBy('isCheckedIn').get('length');
   }.property('model.@each.isCheckedIn'),
 
-  numberNotCheckedIn: function () {
-    var model = this.get('model');
+  numberNotCheckedIn: function() {
+    const model = this.get('model');
+
     return model.filterBy('isCheckedIn', false).get('length');
   }.property('model.@each.isCheckedIn'),
 
   actions: {
 
-    setActiveRegistrant: function (attendance) {
+    setActiveRegistrant: function(attendance) {
       this.set('activeRegistrant', attendance);
-    },
-  },
+    }
+  }
 
 });

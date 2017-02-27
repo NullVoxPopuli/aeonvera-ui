@@ -3,5 +3,5 @@ import ShowIndex from 'aeonvera/mixins/routes/crud/events/show/index';
 
 export default Ember.Route.extend(ShowIndex, {
   modelName: 'raffle-ticket',
-  parentPathRoot: 'events.show.raffles.show',
+  parentPathRoot: 'events.show.raffles.show'
 });

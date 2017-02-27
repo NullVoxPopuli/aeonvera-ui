@@ -4,8 +4,8 @@ export default Ember.Mixin.create({
   additionalRows: 0,
   additionalRowsArray: Ember.computed('additionalRows', {
     get() {
-      let newRows = this.get('additionalRows');
-      let result = [];
+      const newRows = this.get('additionalRows');
+      const result = [];
 
       for (let i = 0; i < newRows; i++) {
         result.push(i);

@@ -7,9 +7,10 @@ export default Ember.Component.extend({
 
   availableOptions: Ember.computed('selecetedType', function() {
     let selecetedType = this.get('selecetedType');
-    let id = this.get('eventId');
+    const id = this.get('eventId');
+
     selecetedType = selecetedType || 'Package';
-    return this.get('store').query(selecetedType, { event_id: id });
+    return this.get('store').query(selecetedType, {event_id: id});
   }),
 
   didInsertElement() {
@@ -31,7 +32,8 @@ export default Ember.Component.extend({
     },
 
     save() {
-      let restraint = this.get('restraint');
+      const restraint = this.get('restraint');
+
       restraint.set('restrictionFor', this.get('model'));
       restraint.save().then(record => {
         this.set('isEditing', false);
@@ -41,7 +43,8 @@ export default Ember.Component.extend({
     },
 
     delete() {
-      let restraint = this.get('restraint');
+      const restraint = this.get('restraint');
+
       restraint.deleteRecord();
       restraint.save().then(success => {
       }, error => {

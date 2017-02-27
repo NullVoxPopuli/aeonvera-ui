@@ -13,5 +13,5 @@ export default Ember.Component.extend(Form, {
   // - 1: Entered Name
   whoIsProvidingType: 0,
 
-  isRegistrantProviding: Ember.computed.equal('whoIsProvidingType', 0),
+  isRegistrantProviding: Ember.computed.equal('whoIsProvidingType', 0)
 });

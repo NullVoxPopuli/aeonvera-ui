@@ -2,13 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  model: function () {
-    let hostId = this.modelFor('my-communities.manage').get('id');
-    let hostType = 'Organization';
+  model: function() {
+    const hostId = this.modelFor('my-communities.manage').get('id');
+    const hostType = 'Organization';
 
     return {
       hostId: hostId,
-      hostType: hostType,
+      hostType: hostType
     };
-  },
+  }
 });

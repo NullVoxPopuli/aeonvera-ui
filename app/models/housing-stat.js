@@ -9,9 +9,10 @@ export default DS.Model.extend({
   housingRequests: DS.hasMany('housing-request'),
   housingProvisions: DS.hasMany('housing-provision'),
 
-  neededSpots: function () {
-    let requests = this.get('requests');
-    let provisions = this.get('provisions');
+  neededSpots: function() {
+    const requests = this.get('requests');
+    const provisions = this.get('provisions');
+
     return (requests - provisions);
-  }.property('requests', 'provisions'),
+  }.property('requests', 'provisions')
 });

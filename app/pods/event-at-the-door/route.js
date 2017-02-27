@@ -10,6 +10,7 @@ export default Ember.Route.extend({
   actions: {
     didTransition() {
       const model = this.get('currentModel');
+
       this.set('title', model.get('name'));
 
       this._setDashboardSidebar('sidebar/event-at-the-door-sidebar', model);

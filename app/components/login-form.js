@@ -1,20 +1,21 @@
 import Ember from 'ember';
 const {
-  service,
+  service
 } = Ember.inject;
 
 export default Ember.Component.extend({
   session: service('session'),
   flashMessages: Ember.inject.service(),
 
-  showErrorMessage: function () {
-    let msg = this.get('errorMessage');
+  showErrorMessage: function() {
+    const msg = this.get('errorMessage');
+
     return Ember.isBlank(msg) ? 'error-message-hidden' : '';
   }.property('errorMessage'),
 
   actions: {
-    authenticate: function () {
-      let credentials = this.getProperties('identification', 'password');
+    authenticate: function() {
+      const credentials = this.getProperties('identification', 'password');
 
       this.get('session').authenticate('authenticator:token', credentials)
         .then(json => {
@@ -28,7 +29,7 @@ export default Ember.Component.extend({
         }, error => {
 
           let message = error;
-          let reasonType = typeof (message);
+          const reasonType = typeof (message);
 
           if (reasonType === 'string') {
             // in case rails throws the standard error text at us
@@ -42,8 +43,8 @@ export default Ember.Component.extend({
         });
     },
 
-    hideError: function () {
+    hideError: function() {
       this.set('errorMessage', '');
-    },
-  },
+    }
+  }
 });

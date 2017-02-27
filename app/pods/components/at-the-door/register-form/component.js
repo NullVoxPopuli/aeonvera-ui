@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, inject } = Ember;
+const {computed, inject} = Ember;
 
 export default Ember.Component.extend({
   cart: inject.service('order-cart'),
@@ -20,14 +20,17 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    let cart = this.get('cart');
+    const cart = this.get('cart');
+
     cart.clear();
     cart.set('attendance', this.get('attendance'));
     cart.set('automaticDiscounts', false);
   },
 
   actions: {
-    add(item) { this._add(item); },
+    add(item) {
+      this._add(item);
+    },
 
     absorbFeesClick(value) {
       this.set('absorbFees', value);
@@ -35,10 +38,12 @@ export default Ember.Component.extend({
     },
 
     clearOrder() {
-      let cart = this.get('cart');
+      const cart = this.get('cart');
+
       cart.get('currentOrder').unloadRecord();
       cart.set('order', null);
-      let attendance = this.get('attendance');
+      const attendance = this.get('attendance');
+
       this.sendAction('onComplete');
     },
 
@@ -47,24 +52,27 @@ export default Ember.Component.extend({
     },
 
     setPackage(selectedPackage) {
-      let attendance = this.get('attendance');
+      const attendance = this.get('attendance');
+
       attendance.set('package', selectedPackage);
 
       this._add(selectedPackage);
     },
 
     setLevel(selectedLevel) {
-      let attendance = this.get('attendance');
+      const attendance = this.get('attendance');
+
       attendance.set('level', selectedLevel);
     },
 
     setToEventLocation() {
-      let attendance = this.get('attendance');
-      let event = this.get('event');
+      const attendance = this.get('attendance');
+      const event = this.get('event');
 
       // TODO: add city and state to event
-      let location = event.get('location');
-      let parts = location.split(',');
+      const location = event.get('location');
+      const parts = location.split(',');
+
       attendance.set('city', parts[0]);
       attendance.set('state', parts[1]);
     }

@@ -4,8 +4,8 @@ import Validator from '../mixins/model-validator';
 import LineItemManagement from 'aeonvera/mixins/models/order/line-item-management';
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
-const { isPresent, isBlank, computed, inject } = Ember;
-const { attr, belongsTo, hasMany, Model } = DS;
+const {isPresent, isBlank, computed, inject} = Ember;
+const {attr, belongsTo, hasMany, Model} = DS;
 
 export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
 
@@ -15,39 +15,39 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   STRIPE: 'Stripe',
   DEBIT: 'Debit',
 
-  hostName:          attr('string'),
-  hostUrl:           attr('string'),
-  notes:             attr('string'),
-  createdAt:         attr('date'),
+  hostName: attr('string'),
+  hostUrl: attr('string'),
+  notes: attr('string'),
+  createdAt: attr('date'),
   paymentReceivedAt: attr('date'),
-  paidAmount:        attr('number'),
+  paidAmount: attr('number'),
   netAmountReceived: attr('number'),
-  totalFeeAmount:    attr('number'),
-  paymentMethod:     attr('string'),
-  paymentToken:      attr('string'),
-  checkNumber:       attr('string'),
-  paid:              attr('boolean'),
+  totalFeeAmount: attr('number'),
+  paymentMethod: attr('string'),
+  paymentToken: attr('string'),
+  checkNumber: attr('string'),
+  paid: attr('boolean'),
 
-  currentPaidAmount:        attr('number'),
+  currentPaidAmount: attr('number'),
   currentNetAmountReceived: attr('number'),
-  currentTotalFeeAmount:    attr('number'),
+  currentTotalFeeAmount: attr('number'),
 
   totalInCents: attr('number'),
 
   // TODO: think about renaming these to what
   //       they are on the server: buyer_
   userEmail: attr('string'),
-  userName:  attr('string'),
+  userName: attr('string'),
 
   // buyerEmail: attr('string'),
   // buyerName: attr('string'),
 
-  host:           belongsTo('host', { polymorphic: true }),
+  host: belongsTo('host', {polymorphic: true}),
   orderLineItems: hasMany('orderLineItem'),
-  attendance:     belongsTo('attendance', { async: true }),
-  user:           belongsTo('user'),
-  pricingTier:    belongsTo('pricingTier'),
-  stripeRefunds:  attr(),
+  attendance: belongsTo('attendance', {async: true}),
+  user: belongsTo('user'),
+  pricingTier: belongsTo('pricingTier'),
+  stripeRefunds: attr(),
 
   /*
     stripe specific things
@@ -58,7 +58,9 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   checkoutEmail: attr('string'),
 
   hasRefunds: computed('stripeRefunds', {
-    get(key) { return Ember.isPresent(this.get('stripeRefunds')); }
+    get(key) {
+      return Ember.isPresent(this.get('stripeRefunds'));
+    }
   }),
 
   unpaid: computed.not('paid'),
@@ -81,7 +83,8 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   }),
 
   paidClass: function() {
-    let paid = this.get('paid');
+    const paid = this.get('paid');
+
     return paid ? 'success-color' : 'alert-color';
   }.property('paid'),
 
@@ -104,10 +107,10 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
       */
       this.setProperties({
         paymentMethod: paymentMethod,
-        checkNumber:   checkNumber,
-        paid:          true,
-        paidAmount:    this.get('subTotal'),
-        stripeData:    stripeData,
+        checkNumber: checkNumber,
+        paid: true,
+        paidAmount: this.get('subTotal'),
+        stripeData: stripeData
       });
     }
   },
@@ -117,7 +120,8 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
       custom: {
         message: 'Attendance must be set when registering for an event',
         validation(key, value, model) {
-          let isEvent = model.get('host.isEvent');
+          const isEvent = model.get('host.isEvent');
+
           if (isEvent) {
             // TODO: move to parent component of the cart
             // let attendance = model.get('attendance.id');

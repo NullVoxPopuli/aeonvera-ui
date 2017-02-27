@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 
   actions: {
     createRecord(callback) {
-      let promise = this.store.createRecord('note', {
+      const promise = this.store.createRecord('note', {
         host: this.get('host'),
         target: this.get('target'),
         note: this.get('text')
@@ -19,6 +19,6 @@ export default Ember.Component.extend({
 
       callback(promise);
     }
-  },
+  }
 
 });

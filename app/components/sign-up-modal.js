@@ -11,7 +11,8 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    let user = this.get('store').createRecord('user');
+    const user = this.get('store').createRecord('user');
+
     this.set('model', user);
   },
 
@@ -20,7 +21,8 @@ export default Ember.Component.extend({
   }.property('model'),
 
   emailClass: function() {
-    var errors = this.get('errors');
+    const errors = this.get('errors');
+
     if (errors.get('email') && errors.get('email').length > 0) {
       return 'error';
     }
@@ -33,12 +35,12 @@ export default Ember.Component.extend({
     register(callback) {
       this.get('pathStore').storeCurrentRoute();
 
-      let promise = this.get('model').save().then(user => {
+      const promise = this.get('model').save().then(user => {
         this.sendAction('successAction');
         user.unloadRecord();
       });
 
       callback(promise);
-    },
-  },
+    }
+  }
 });
