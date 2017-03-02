@@ -31,6 +31,15 @@ module.exports = function(environment) {
     devise: {
       serverTokenEndpoint: 'api/users/sign_in'
     },
+    'ember-loading-route': {
+      enabled: true,
+      commonRoutes: [
+        {
+          // routeLevel: 5,
+          templateName: 'loading'
+        }
+      ]
+    },
 
     rollbar: {
       captureUncaught: environment !== 'development',
