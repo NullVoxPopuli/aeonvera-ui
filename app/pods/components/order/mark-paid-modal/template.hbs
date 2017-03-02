@@ -83,6 +83,7 @@
               {{stripe/checkout-button
                 model=order
                 label='Pay'
+                action='processStripeToken'
                 paymentAmountOverride=amount
                 email=order.checkoutEmail}}</li>
           </ul>

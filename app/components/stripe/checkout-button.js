@@ -21,8 +21,8 @@ const { isPresent, isBlank, computed } = Ember;
 */
 export default Ember.Component.extend({
   propTypes: {
-    model: PropTypes.any.isRequired,
-    action: PropTypes.any,
+    model: PropTypes.EmberObject.isRequired,
+    action: PropTypes.isRequired,
     label: PropTypes.string,
     email: PropTypes.string,
     paymentAmountOverride: PropTypes.number
@@ -75,7 +75,7 @@ export default Ember.Component.extend({
      * The token looks like this https://stripe.com/docs/api#tokens
      */
     processStripeToken: function(args) {
-      this.get('targetObject').send('processStripeToken', args);
+      this.sendAction('action', args);
     }
   }
 

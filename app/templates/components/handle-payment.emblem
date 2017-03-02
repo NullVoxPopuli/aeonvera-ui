@@ -12,7 +12,7 @@ ul.tabs data-tab='true'
   if (is-present processStripeToken)
     .content#payment-panel-stripe
       .right
-        = stripe/checkout-button model=order action=processStripeToken
+        = stripe/checkout-button model=order action='processStripeToken'
   .content.active#payment-panel-cash
     p = t 'atdPaymentCollectionAgree' amount=(to-usd amount)
     button.right click='"process" "Cash"' Pay {{to-usd amount}}
