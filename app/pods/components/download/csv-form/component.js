@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
@@ -133,7 +133,7 @@ export default Ember.Component.extend({
     const attributes = [];
 
     attributeData.forEach((meta, attribute) => {
-      attributes.pushObject({name: `${prefix}${attribute}`, included: included});
+      attributes.pushObject({ name: `${prefix}${attribute}`, included: included });
     });
 
     return attributes;

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, inject, isBlank, isPresent} = Ember;
+const { computed, inject, isBlank, isPresent } = Ember;
 
 export default Ember.Mixin.create({
 

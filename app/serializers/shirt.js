@@ -2,7 +2,7 @@ import Ember from 'ember';
 import JSONAPISerializer from 'ember-data/serializers/json-api';
 import ApplicationSerializer from 'aeonvera/serializers/application';
 
-const {isEmpty, isPresent} = Ember;
+const { isEmpty, isPresent } = Ember;
 
 export default ApplicationSerializer.extend({
 

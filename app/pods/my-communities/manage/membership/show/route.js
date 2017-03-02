@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {isBlank} = Ember;
+const { isBlank } = Ember;
 
 export default Ember.Route.extend({
   model(params) {

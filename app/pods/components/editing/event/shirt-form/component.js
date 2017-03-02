@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Form from 'aeonvera/mixins/components/edit-form';
 
-const {isPresent} = Ember;
+const { isPresent } = Ember;
 
 export default Ember.Component.extend(Form, {
   modelName: 'shirt',

@@ -23,7 +23,7 @@ export default Ember.Mixin.create({
   _bindScrolling(opts = null) {
     let onScroll;
 
-    opts = opts || {debounce: 250};
+    opts = opts || { debounce: 250 };
 
     if (opts.debounce) {
       onScroll = _ => {

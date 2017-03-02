@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend({
   // set by caller, and passed to form/file-upload

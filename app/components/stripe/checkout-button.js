@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import { PropTypes } from 'ember-prop-types';
 
-const {isPresent, isBlank} = Ember;
+const { isPresent, isBlank, computed } = Ember;
 
 /*
   The stripe script sends a submit action to it's containing form.
@@ -19,21 +20,29 @@ const {isPresent, isBlank} = Ember;
   given an order, all 3 of the above objects should be available
 */
 export default Ember.Component.extend({
+  propTypes: {
+    model: PropTypes.any.isRequired,
+    action: PropTypes.any,
+    label: PropTypes.string,
+    email: PropTypes.string,
+    paymentAmountOverride: PropTypes.number
+  },
+
   label: 'Pay with card',
 
-  host: Ember.computed('model', function() {
+  host: computed('model', function() {
     return this.get('model.host');
   }),
 
-  image: Ember.computed('host', function() {
+  image: computed('host', function() {
     return this.get('host.loguUrlMedium');
   }),
 
-  key: Ember.computed('host', function() {
+  key: computed('host', function() {
     return this.get('host.stripePublishableKey');
   }),
 
-  emailForReceipt: Ember.computed('model', function() {
+  emailForReceipt: computed('model', function() {
     let email = this.get('email');
 
     if (!Ember.isPresent(email)) {
@@ -44,12 +53,12 @@ export default Ember.Component.extend({
     return email;
   }),
 
-  description: Ember.computed('host', function() {
+  description: computed('host', function() {
     return this.get('host.name');
   }),
 
   paymentAmountOverride: null,
-  amountInCents: Ember.computed('model', 'model.totalInCents', 'model.total', 'paymentAmountOverride', function() {
+  amountInCents: computed('model', 'model.totalInCents', 'model.total', 'paymentAmountOverride', function() {
     // return (this.get('model.totalInCents') || (this.get('model.total') * 100));
     const paymentOverride = this.get('paymentAmountOverride');
 

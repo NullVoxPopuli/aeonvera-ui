@@ -7,11 +7,11 @@ export default Ember.Component.extend({
   showMembers: 0,
 
   columns: [
-    {property: 'member.name', title: 'Name'},
-    {property: 'member.email', title: 'Email', sort: false},
-    {property: 'current', title: 'Current'},
-    {property: 'startDate', title: 'Member Since'},
-    {property: 'expiresAt', title: 'Membership Expires At'}
+    { property: 'member.name', title: 'Name' },
+    { property: 'member.email', title: 'Email', sort: false },
+    { property: 'current', title: 'Current' },
+    { property: 'startDate', title: 'Member Since' },
+    { property: 'expiresAt', title: 'Membership Expires At' }
   ],
 
   memberships: Ember.computed('model', 'nameContains', 'showMembers', function() {

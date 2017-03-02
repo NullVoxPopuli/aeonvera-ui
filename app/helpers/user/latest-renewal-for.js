@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export function userLatestRenewalFor(params, hash) {
-  const {user, organization} = hash;
+  const { user, organization } = hash;
 
   const membershipRenewals = user.get('membershipRenewals');
   const renewalsMatchingOrganization = [];

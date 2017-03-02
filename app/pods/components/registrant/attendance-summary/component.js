@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, isPresent} = Ember;
+const { computed, isPresent } = Ember;
 
 export default Ember.Component.extend({
   customFieldResponseValues: Ember.computed.mapBy('attendance.customFieldResponses', 'value'),

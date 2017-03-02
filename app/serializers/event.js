@@ -4,6 +4,6 @@ import ApplicationSerializer from 'aeonvera/serializers/application';
 
 export default ApplicationSerializer.extend(EmbeddedRecords, {
   attrs: {
-    openingTier: {embedded: 'always'}
+    openingTier: { embedded: 'always' }
   }
 });

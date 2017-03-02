@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Form from 'aeonvera/mixins/components/edit-form';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend(Form, {
   hostId: null,

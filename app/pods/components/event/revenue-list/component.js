@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend({
   startTime: null,
@@ -18,12 +18,12 @@ export default Ember.Component.extend({
   DEBIT: 'Debit',
 
   columns: [
-    {property: 'createdAt', title: 'Time'},
-    {property: 'paymentReceivedAt', title: 'Paid At'},
-    {property: 'paymentMethod', title: 'Paid With'},
-    {property: 'currentPaidAmount', title: 'Gross Paid'},
-    {property: 'currentNetAmountReceived', title: 'Net Amount Received'},
-    {property: 'currentTotalFeeAmount', title: 'Fees'}
+    { property: 'createdAt', title: 'Time' },
+    { property: 'paymentReceivedAt', title: 'Paid At' },
+    { property: 'paymentMethod', title: 'Paid With' },
+    { property: 'currentPaidAmount', title: 'Gross Paid' },
+    { property: 'currentNetAmountReceived', title: 'Net Amount Received' },
+    { property: 'currentTotalFeeAmount', title: 'Fees' }
   ],
 
   totalPaidAmount: computed('filteredOrders', {

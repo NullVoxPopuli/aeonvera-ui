@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),

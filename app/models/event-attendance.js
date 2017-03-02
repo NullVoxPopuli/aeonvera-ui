@@ -26,9 +26,9 @@ export default Attendance.extend({
   }),
 
   validations: {
-    city: {presence: true},
-    state: {presence: true},
-    danceOrientation: {presence: true},
+    city: { presence: true },
+    state: { presence: true },
+    danceOrientation: { presence: true },
     phoneNumber: {
       custom: {
         message: 'Phone Number is required when volunteering.',
@@ -41,7 +41,7 @@ export default Attendance.extend({
         }
       }
     },
-    package: {presence: true},
+    package: { presence: true },
     level: {
       custom: {
         message: 'Level is required for the selected ticket.',

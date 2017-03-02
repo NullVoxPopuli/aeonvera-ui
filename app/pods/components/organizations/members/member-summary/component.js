@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import {task, timeout} from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
-import {userLatestRenewalFor} from 'aeonvera/helpers/user/latest-renewal-for';
-import {userIsMemberOf} from 'aeonvera/helpers/user/is-member-of';
+import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
+import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 const ProxyPromise = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
 
@@ -34,7 +34,7 @@ export default Ember.Component.extend({
     const organization = this.get('organization');
     const memberPromise = this.get('memberPromise');
     const active = yield memberPromise.then(member => {
-      return userIsMemberOf({}, {user: member, organization});
+      return userIsMemberOf({}, { user: member, organization });
     });
 
     this.set('activeMembership', active);
@@ -44,7 +44,7 @@ export default Ember.Component.extend({
     const organization = this.get('organization');
     const memberPromise = this.get('memberPromise');
     const renewal = yield memberPromise.then(member => {
-      return userLatestRenewalFor({}, {user: member, organization});
+      return userLatestRenewalFor({}, { user: member, organization });
     });
 
     this.set('latestRenewal', renewal);

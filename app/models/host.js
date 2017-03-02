@@ -6,15 +6,15 @@ import File from 'ember-data-paperclip/objects/file';
 export default DS.Model.extend({
   name: attr('string'),
   domain: attr('string'),
-  logo: attr('file', {defaultValue: function() {
+  logo: attr('file', { defaultValue: function() {
     return File.create();
-  }}),
+  } }),
   contactEmail: attr('string'),
 
   integrations: DS.hasMany('integration'),
   hasStripeIntegration: DS.attr('boolean'),
-  makeAttendeesPayFees: DS.attr('boolean', {defaultValue: false}),
-  acceptOnlyElectronicPayments: DS.attr('boolean', {defaultValue: true}),
+  makeAttendeesPayFees: DS.attr('boolean', { defaultValue: false }),
+  acceptOnlyElectronicPayments: DS.attr('boolean', { defaultValue: true }),
 
   logoFileName: DS.attr('string'),
   logoFileSize: DS.attr('number'),

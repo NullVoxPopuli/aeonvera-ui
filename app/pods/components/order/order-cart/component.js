@@ -122,7 +122,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
           const token = record.get('paymentToken');
 
           // model hook isn't fired upon transition!
-          this.get('router').transitionTo('register.checkout', id, {queryParams: {token: token}});
+          this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
           this.set('resetCheckoutButton', true);
         }, error => {
           console.log(error);

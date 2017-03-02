@@ -8,7 +8,7 @@ import DS from 'ember-data';
 // - File
 import LineItem from '../models/line-item';
 
-const {isEmpty} = Ember;
+const { isEmpty } = Ember;
 
 export default LineItem.extend({
   sizes: DS.attr(),

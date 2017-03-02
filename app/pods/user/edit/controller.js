@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
 
       store.find('user', 0).then(user => {
         this.get('ajax')
-          .del('users/current-user', {data: {password: this.get('deleteAccountPassword')}})
+          .del('users/current-user', { data: { password: this.get('deleteAccountPassword') } })
           .then(success => {
             // clear from the store
             user.deleteRecord();

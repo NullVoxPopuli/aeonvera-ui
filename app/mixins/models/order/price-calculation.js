@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, inject} = Ember;
+const { computed, inject } = Ember;
 
 // Because calculating the total amount of an order is complicated,
 // the logic for summing line items, and applying discounts

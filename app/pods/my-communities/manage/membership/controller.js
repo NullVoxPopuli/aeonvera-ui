@@ -17,11 +17,11 @@ export default Ember.Controller.extend({
   }),
 
   fieldsForCSV: [
-    {name: 'firstName', included: true},
-    {name: 'lastName', included: true},
-    {name: 'email', included: true},
-    {name: 'isActiveMember', included: true},
-    {name: 'memberSince', included: true},
-    {name: 'membershipExpiresAt', included: true}
+    { name: 'firstName', included: true },
+    { name: 'lastName', included: true },
+    { name: 'email', included: true },
+    { name: 'isActiveMember', included: true },
+    { name: 'memberSince', included: true },
+    { name: 'membershipExpiresAt', included: true }
   ]
 });

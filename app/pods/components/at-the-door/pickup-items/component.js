@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, isPresent, inject} = Ember;
+const { computed, isPresent, inject } = Ember;
 
 export default Ember.Component.extend({
   ajax: inject.service('authenticated-ajax'),
@@ -12,12 +12,12 @@ export default Ember.Component.extend({
   showOnlyNonPickedIn: false,
   queryText: '',
   columns: [
-    {property: 'order.userName', title: 'Name'},
-    {property: 'lineItem.name', title: 'Item Name'},
-    {property: 'quantity', title: 'Quantity'},
-    {property: 'size', title: 'Size'},
-    {property: 'order.paid', title: 'Paid Status'},
-    {property: 'pickedUpAt', title: 'Picked Up At'}
+    { property: 'order.userName', title: 'Name' },
+    { property: 'lineItem.name', title: 'Item Name' },
+    { property: 'quantity', title: 'Quantity' },
+    { property: 'size', title: 'Size' },
+    { property: 'order.paid', title: 'Paid Status' },
+    { property: 'pickedUpAt', title: 'Picked Up At' }
   ],
 
   filteredOrderLineItems: computed(

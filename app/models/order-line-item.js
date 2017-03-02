@@ -56,10 +56,10 @@ export default DS.Model.extend(Validator, {
   }.property('price', 'quantity'),
 
   validations: {
-    lineItem: {presence: true},
-    order: {presence: true},
-    quantity: {presence: true},
-    price: {presence: true},
+    lineItem: { presence: true },
+    order: { presence: true },
+    quantity: { presence: true },
+    price: { presence: true },
 
     partnerName: {
       custom: {

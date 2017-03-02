@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -26,11 +26,11 @@ export default DS.Model.extend({
     return this.get('attendances');
   }.property('attendances'),
 
-  hostId: computed('id', {get() {
+  hostId: computed('id', { get() {
     return this.get('id');
-  }}),
+  } }),
 
-  hostType: computed({get() {
+  hostType: computed({ get() {
     return 'Organization';
-  }})
+  } })
 });

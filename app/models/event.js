@@ -2,9 +2,9 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import Host from '../models/host';
 import RegistrationOpens from '../mixins/models/registration-opens';
-import {hasDateExpired} from 'aeonvera/helpers/has-expired';
+import { hasDateExpired } from 'aeonvera/helpers/has-expired';
 
-const {attr, belongsTo, hasMany} = DS;
+const { attr, belongsTo, hasMany } = DS;
 
 export default Host.extend(RegistrationOpens, {
   shortDescription: attr('string'),

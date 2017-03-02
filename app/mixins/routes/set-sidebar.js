@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const {isPresent} = Ember;
+const { isPresent } = Ember;
 
 export default Ember.Mixin.create({
   _setDashboardSidebar(name, data = null) {

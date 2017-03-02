@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const {attr, belongsTo, hasMany} = DS;
+const { attr, belongsTo, hasMany } = DS;
 
 export default DS.Model.extend({
   label: attr('string'),
@@ -9,7 +9,7 @@ export default DS.Model.extend({
   defaultValue: attr('string'),
   editable: attr('boolean'),
 
-  host: belongsTo('host', {polymorphic: true}),
+  host: belongsTo('host', { polymorphic: true }),
   customFieldResponses: hasMany('custom-field-response')
 
   //

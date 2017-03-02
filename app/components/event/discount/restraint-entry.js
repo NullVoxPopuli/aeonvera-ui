@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     const id = this.get('eventId');
 
     selecetedType = selecetedType || 'Package';
-    return this.get('store').query(selecetedType, {event_id: id});
+    return this.get('store').query(selecetedType, { event_id: id });
   }),
 
   didInsertElement() {

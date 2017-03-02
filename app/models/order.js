@@ -4,8 +4,8 @@ import Validator from '../mixins/model-validator';
 import LineItemManagement from 'aeonvera/mixins/models/order/line-item-management';
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
-const {isPresent, isBlank, computed, inject} = Ember;
-const {attr, belongsTo, hasMany, Model} = DS;
+const { isPresent, isBlank, computed, inject } = Ember;
+const { attr, belongsTo, hasMany, Model } = DS;
 
 export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
 
@@ -42,9 +42,9 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   // buyerEmail: attr('string'),
   // buyerName: attr('string'),
 
-  host: belongsTo('host', {polymorphic: true}),
+  host: belongsTo('host', { polymorphic: true }),
   orderLineItems: hasMany('orderLineItem'),
-  attendance: belongsTo('attendance', {async: true}),
+  attendance: belongsTo('attendance', { async: true }),
   user: belongsTo('user'),
   pricingTier: belongsTo('pricingTier'),
   stripeRefunds: attr(),

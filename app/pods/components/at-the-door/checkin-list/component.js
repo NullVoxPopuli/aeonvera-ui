@@ -8,14 +8,14 @@ export default Ember.Component.extend({
   activeRegistrant: null,
 
   columns: [
-    {property: 'attendeeName', title: 'Name'},
-    {property: 'isCheckedIn', title: '', sort: false},
-    {property: 'packageName', title: 'Package', sort: false},
-    {property: 'levelName', title: 'Track', sort: false},
-    {property: '', title: 'Competitions', sort: false},
-    {property: 'amountOwed', title: '$ Owed', sort: false},
-    {property: 'registeredAt', title: 'Date Registered'},
-    {property: 'checkedInAt', title: 'Checked in at'}
+    { property: 'attendeeName', title: 'Name' },
+    { property: 'isCheckedIn', title: '', sort: false },
+    { property: 'packageName', title: 'Package', sort: false },
+    { property: 'levelName', title: 'Track', sort: false },
+    { property: '', title: 'Competitions', sort: false },
+    { property: 'amountOwed', title: '$ Owed', sort: false },
+    { property: 'registeredAt', title: 'Date Registered' },
+    { property: 'checkedInAt', title: 'Checked in at' }
   ],
 
   attendances: function() {

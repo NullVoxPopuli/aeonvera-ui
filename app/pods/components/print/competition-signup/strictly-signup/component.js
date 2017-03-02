@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import RowsArray from 'aeonvera/mixins/components/print/form';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend(RowsArray, {
   competition: null,

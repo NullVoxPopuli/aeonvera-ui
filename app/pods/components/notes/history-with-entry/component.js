@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import {task} from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
-const {isPresent, isBlank} = Ember;
+const { isPresent, isBlank } = Ember;
 
 export default Ember.Component.extend({
   host: null,

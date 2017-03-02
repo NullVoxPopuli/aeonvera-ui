@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {inject, computed, observer} = Ember;
+const { inject, computed, observer } = Ember;
 
 export default Ember.Component.extend({
   session: Ember.inject.service(),
@@ -52,7 +52,7 @@ export default Ember.Component.extend({
 
     // this should include the orders, housing_provision and housing_request
     store.queryRecord('event-attendance', {
-      current_user: true, event_id: eventId}).then(attendance => {
+      current_user: true, event_id: eventId }).then(attendance => {
         const cart = this.get('cart');
 
         // in case there is an existing order,

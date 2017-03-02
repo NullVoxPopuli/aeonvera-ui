@@ -3,8 +3,8 @@ import ApplicationSerializer from 'aeonvera/serializers/application';
 
 export default ApplicationSerializer.extend(EmbeddedRecords, {
   attrs: {
-    housingRequest: {embedded: 'always'},
-    housingProvision: {embedded: 'always'},
-    customFieldResponses: {embedded: 'always'}
+    housingRequest: { embedded: 'always' },
+    housingProvision: { embedded: 'always' },
+    customFieldResponses: { embedded: 'always' }
   }
 });

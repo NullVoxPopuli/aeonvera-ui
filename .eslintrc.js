@@ -5,47 +5,20 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module'
   },
-  // "plugins": [
-  //     "import"
-  // ],
-  "ignoreFiles": [
-    "test/**/*"
-  ],
-  // "settings": {
-  //   // "import/resolver": "webpack"
-  //   "import/resolve": {
-  //     "extensions": [ ".es6", ".js", ".jsx" ]
-  //   },
-  //   "import/parser": "babel-eslint"
-  // },
   "env": {
 
   },
   "maxWarnings": 1,
   "rules": {
-    // TEMPORARY - these should all be re-enabled
-    "no-magic-numbers": 0,
-    "no-undefined": 0,
-    "no-unused-vars": 0, // laziness :-(
-    "camelcase": 0, // cause of rails ids
-    "complexity": ["warn", 2],
-    "no-shadow": 0,
-    "no-console": 0, // really? shame on me.
-    "no-undef": 0, // esp this one -- renabled
-    "no-warning-comments": 0,
-    "prefer-rest-params": 0,
-    "prefer-reflect": 0,
-    "max-nested-callbacks": ["warn", 0],
-    "array-callback-return": 0, // router.js?
-    "no-eq-null": 0, // use === instead of ==
-    "eqeqeq": 0, // != instead of !==
-
     // have an arrow on both sides of the phat-arrow / hash-rocket
     // http://eslint.org/docs/rules/arrow-spacing
     "arrow-spacing": ["error", { "before": true, "after": true }],
     // No spaces before function parethesis
     // http://eslint.org/docs/rules/space-before-function-paren
     "space-before-function-paren": ["error", "never"],
+    // Enforce spaces around curly braces in deconstruction and imports
+    // http://eslint.org/docs/rules/object-curly-spacing#always
+    'object-curly-spacing': ["error", "always"],
     // In Ember, everything is a dev dep, cause we deploy compiled version
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
     "import/no-extraneous-dependencies": [
@@ -65,9 +38,48 @@ module.exports = {
     "eol-last": ["error", "always"],
     "indent": ["error", 2],
     "no-mixed-spaces-and-tabs": "error",
-    // "no-console": 1,
-    // "complexity": ["warn", 2],
+    "no-console": 1,
+    "no-warning-comments": ["warn"],
+    "complexity": ["error", 2],
     "no-else-return": ["error"],
-    "quotes": [2, 'single']
+    "quotes": [2, 'single'],
+
+
+
+    // TEMPORARY - these should all be re-enabled
+    "no-magic-numbers": 0,
+    "no-undefined": 0,
+    "no-empty-function": 0,
+    "radix": 0,
+    "prefer-const": 0,
+    "no-use-before-define": 0,
+    "newline-per-chained-call": 0,
+    "no-nested-ternary": 0,
+    "max-len": 0,
+    "one-var": 0,
+    "consistent-this": 0,
+    "no-unused-vars": 0, // laziness :-(
+    "no-param-reassign": 0,
+    "no-ternary": 0,
+    "camelcase": 0, // cause of rails ids
+    "complexity": ["warn", 2],
+    "no-shadow": 0,
+    "no-console": 0, // really? shame on me.
+    "no-undef": 0, // esp this one -- renabled
+    "no-warning-comments": 0,
+    "prefer-rest-params": 0,
+    "prefer-reflect": 0,
+    "max-nested-callbacks": ["warn", 0],
+    "array-callback-return": 0, // router.js?
+    "no-eq-null": 0, // use === instead of ==
+    "eqeqeq": 0, // != instead of !==
+    "consistent-return": 0,
+    "no-alert": 0,
+    "valid-jsdoc": 0,
+    "no-multi-str": 0,
+    "no-negated-condition": 0,
+    "no-bitwise": 0,
+    "no-return-assign": 0
+
   }
 };

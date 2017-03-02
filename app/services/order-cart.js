@@ -2,7 +2,7 @@ import Ember from 'ember';
 import config from '../config/environment';
 import RandomString from 'aeonvera/mixins/helpers/string';
 
-const {isBlank} = Ember;
+const { isBlank } = Ember;
 
 export default Ember.Service.extend(RandomString, {
   store: Ember.inject.service('store'),
@@ -192,7 +192,7 @@ export default Ember.Service.extend(RandomString, {
     const cartUiHeightWithTop = cartUiHeight + cartTop;
     const availableHeight = windowHeight - cartUiHeightWithTop;
 
-    cartTBody.css({maxHeight: availableHeight + 'px'});
+    cartTBody.css({ maxHeight: availableHeight + 'px' });
   },
 
   // Validate the

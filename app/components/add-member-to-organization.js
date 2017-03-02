@@ -14,7 +14,7 @@ export default Ember.Component.extend(EditModel, {
   }.property('model.membershipOption'),
 
   memberList: function() {
-    const members = this.store.query('member', {all: true});
+    const members = this.store.query('member', { all: true });
 
     return members;
   }.property(),

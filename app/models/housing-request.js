@@ -4,18 +4,18 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   genderOptions: ['No Preference', 'Guys', 'Gals'],
 
-  needTransportation: DS.attr('boolean', {defaultValue: false}),
-  canProvideTransportation: DS.attr('boolean', {defaultValue: false}),
-  transportationCapacity: DS.attr('number', {defaultValue: 0}),
-  allergicToPets: DS.attr('boolean', {defaultValue: false}),
-  allergicToSmoke: DS.attr('boolean', {defaultValue: true}),
+  needTransportation: DS.attr('boolean', { defaultValue: false }),
+  canProvideTransportation: DS.attr('boolean', { defaultValue: false }),
+  transportationCapacity: DS.attr('number', { defaultValue: 0 }),
+  allergicToPets: DS.attr('boolean', { defaultValue: false }),
+  allergicToSmoke: DS.attr('boolean', { defaultValue: true }),
   otherAllergies: DS.attr('string'),
-  preferredGenderToHouseWith: DS.attr('string', {defaultValue: 'No Preference'}),
+  preferredGenderToHouseWith: DS.attr('string', { defaultValue: 'No Preference' }),
   notes: DS.attr('string'),
   name: DS.attr('string'),
 
-  host: DS.belongsTo('host', {polymorphic: true}),
-  attendance: DS.belongsTo('attendance', {polymorphic: true}),
+  host: DS.belongsTo('host', { polymorphic: true }),
+  attendance: DS.belongsTo('attendance', { polymorphic: true }),
   housingProvision: DS.belongsTo('housing-provision'),
 
   requested1: DS.attr(),

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-const {isBlank} = Ember;
-const {PromiseObject} = DS;
+const { isBlank } = Ember;
+const { PromiseObject } = DS;
 
 export default Ember.Component.extend({
   fieldValue: Ember.computed('model', 'field', function() {
