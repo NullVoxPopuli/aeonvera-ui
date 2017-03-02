@@ -3,10 +3,7 @@ services:
   # for development only
   # assets are compiled and stored on s3 for production
   server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: nullvoxpopuli/aeonvera-ui
+    image: nullvoxpopuli/ember-cli
 
     command: bash -c "ember server"
     ports:
