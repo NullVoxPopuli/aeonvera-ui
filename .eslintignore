@@ -1,1 +1,3 @@
 app/router.js
+testem.js
+ember-cli-build.js

@@ -8,6 +8,7 @@
     "test": "tests"
   },
   "scripts": {
+    "eslint-no-fix": "./node_modules/eslint/bin/eslint.js --color ./app --config .eslintrc.js",
     "eslint": "./node_modules/eslint/bin/eslint.js --color ./app --config .eslintrc.js --fix",
     "start": "ember server",
     "build": "ember build",

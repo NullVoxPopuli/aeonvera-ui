@@ -45,22 +45,27 @@ module.exports = {
     "quotes": [2, 'single'],
 
 
-
     // TEMPORARY - these should all be re-enabled
     "no-magic-numbers": 0,
     "no-undefined": 0,
     "no-empty-function": 0,
+    "no-alert": 0,
     "radix": 0,
     "prefer-const": 0,
-    "no-use-before-define": 0,
-    "newline-per-chained-call": 0,
-    "no-nested-ternary": 0,
-    "max-len": 0,
     "one-var": 0,
-    "consistent-this": 0,
-    "no-unused-vars": 0, // laziness :-(
+    "valid-jsdoc": 0,
+    "newline-per-chained-call": 0,
+    "no-multi-str": 0,
+    "no-negated-condition": 0,
+    "no-use-before-define": 0,
+    "no-bitwise": 0,
+    "no-return-assign": 0,
     "no-param-reassign": 0,
     "no-ternary": 0,
+    "consistent-this": 0,
+    "no-nested-ternary": 0,
+    "consistent-return": 0,
+    "no-unused-vars": 0, // laziness :-(
     "camelcase": 0, // cause of rails ids
     "complexity": ["warn", 2],
     "no-shadow": 0,
@@ -70,16 +75,9 @@ module.exports = {
     "prefer-rest-params": 0,
     "prefer-reflect": 0,
     "max-nested-callbacks": ["warn", 0],
+    "max-len": ["warn", 0],
     "array-callback-return": 0, // router.js?
     "no-eq-null": 0, // use === instead of ==
     "eqeqeq": 0, // != instead of !==
-    "consistent-return": 0,
-    "no-alert": 0,
-    "valid-jsdoc": 0,
-    "no-multi-str": 0,
-    "no-negated-condition": 0,
-    "no-bitwise": 0,
-    "no-return-assign": 0
-
   }
 };
