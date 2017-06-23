@@ -1,0 +1,28 @@
+{{#ember-paper/ellipsis-menu as |content menu|}}
+  {{#content.menu-item}}
+    {{#link-to 'register.event-registration.show.review' registration.id}}
+      <span>View</span>
+    {{/link-to}}
+  {{/content.menu-item}}
+
+  {{#content.menu-item}}
+    {{#link-to 'register.event-registration.show.edit' registration.id}}
+      <span>Edit</span>
+    {{/link-to}}
+  {{/content.menu-item}}
+
+  {{#content.menu-item onClick=(action (mut showModal) true)}}
+    <a onClick={{action (mut menu.isOpen) false}}>
+      Cancel
+    </a>
+  {{/content.menu-item}}
+{{/ember-paper/ellipsis-menu}}
+
+{{#modals/confirm-modal
+  title='Are you sure?'
+  isModalShowing=showModal
+  didConfirm=(action onConfirmCancel)}}
+
+  Registering again may result in an increased price.<br />
+  Are you sure you wish to cancel?<br />
+{{/modals/confirm-modal}}

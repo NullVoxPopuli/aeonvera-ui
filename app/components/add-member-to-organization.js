@@ -1,29 +1,57 @@
 import Ember from 'ember';
-import EditModel from 'aeonvera/mixins/edit-model';
+import computed, { alias } from 'ember-computed-decorators';
+import { PropTypes } from 'ember-prop-types';
 
-export default Ember.Component.extend(EditModel, {
-  modelName: 'membership',
-  saveSuccessPath: 'my-communities.manage.membership',
-  cancelPath: 'my-communities.manage.membership',
-  membershipOptions: null,
+const { isPresent } = Ember;
 
-  selectedOption: function() {
-    const model = this.get('model');
+export default Ember.Component.extend({
+  propTypes: {
+    model: PropTypes.EmberObject.isRequired,
+    memberList: PropTypes.any.isRequired,
+    searchUsers: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    membershipOptions: PropTypes.any.isRequired
+  },
 
-    return model.get('membershipOption');
-  }.property('model.membershipOption'),
+  @alias('model.membershipOption') selectedOption,
+  @alias('model.member') selectedMember,
+  @alias('model.startdate') startDate,
 
-  memberList: function() {
-    const members = this.store.query('member', { all: true });
+  @computed('selectedMember')
+  isMemberSelected(member) {
+    return isPresent(member.content);
+  },
 
-    return members;
-  }.property(),
+  @computed('selectedOption', 'isMemberSelected', 'startDate')
+  specifiedAllValues(option, isMemberSelected, date) {
+    return isMemberSelected && [option, date].every(i => isPresent(i));
+  },
+
 
   actions: {
     selectOption(option) {
       const model = this.get('model');
 
       model.set('membershipOption', option);
+    },
+
+    selectMember(member) {
+      const model = this.get('model');
+
+      model.set('member', member);
+    },
+
+    updateDate(dates, formatted, flatPickr) {
+      const date = dates[0];
+      const model = this.get('model');
+
+      flatPickr.close();
+      model.set('startDate', date);
+      this.set('startDate', date);
+    },
+
+    save() {
+      this.sendAction('onSave');
     }
   }
 });

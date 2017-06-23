@@ -1,0 +1,63 @@
+<div class='layout-row layout-wrap'>
+  <div class='layout-column flex-auto'>
+
+    {{#paper-checkbox
+      value=housingProvision.hasPets
+      onChange=(action (mut housingProvision.hasPets))}}
+      I have pets
+    {{/paper-checkbox}}
+
+    {{#paper-checkbox
+      value=housingProvision.smokes
+      onChange=(action (mut housingProvision.smokes))}}
+      I, or someone I live with, smokes
+    {{/paper-checkbox}}
+
+    {{#paper-checkbox
+      value=housingProvision.canProvideTransportation
+      onChange=(action (mut housingProvision.canProvideTransportation))}}
+      Can Provide Transportation
+    {{/paper-checkbox}}
+
+    {{paper-input
+      label='Transportation Capacity'
+      type='number'
+      value=housingProvision.transportationCapacity
+      onChange=(action (mut housingProvision.transportationCapacity))}}
+
+  </div>
+  <div class='layout-row flex-auto layout-wrap'>
+    {{#paper-select
+      classNames='flex-grow'
+      label='Preferred Gender to Host'
+      options=housingProvision.genderOptions
+      selected=housingProvision.preferredGenderToHost
+      onChange=(action (mut housingProvision.preferredGenderToHost)) as |gender|
+    }}
+      {{gender}}
+    {{/paper-select}}
+
+    {{paper-input
+      label='Housing Capacity'
+      type='number'
+      value=housingProvision.housingCapacity
+      onChange=(action (mut housingProvision.housingCapacity))
+    }}
+
+    {{paper-input
+      label='Number of Showers'
+      type='number'
+      value=housingProvision.numberOfShowers
+      onChange=(action (mut housingProvision.numberOfShowers))
+    }}
+  </div>
+</div>
+
+
+{{paper-input
+  textarea=true
+  block=true
+  label='Notes'
+  passThru=(hash rows=3)
+  value=housingProvision.notes
+  onChange=(action (mut housingProvision.notes))}}

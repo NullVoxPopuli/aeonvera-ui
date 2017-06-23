@@ -1,36 +1,63 @@
-@import "settings";
+@import 'settings';
 
-@import "foundation";
-// @import "bower_components/font-awesome/scss/font-awesome";
+@import 'foundation';
 
-@import "colors";
-@import "styles";
-@import "table";
-@import "footer";
-@import "help";
-@import "navigation";
-@import "sidebar";
-@import "header";
-@import "with-small-footer";
-@import "small";
-@import "modals";
-@import "utility";
-@import "grid";
-@import "tetris";
-@import "center";
-@import "loading";
-@import "errors";
-@import "payment";
-@import "flat-pickr";
-@import "editor";
-@import "cart";
-@import "spinners/all";
-@import "screens/all";
-@import "order";
-@import "print";
-@import "ember-power-select";
+@import 'colors';
+@import 'styles';
+@import 'table';
+@import 'help';
+@import 'navigation';
+@import 'sidebar';
+@import 'header';
+@import 'with-small-footer';
+@import 'small';
+@import 'modals';
+@import 'utility';
+@import 'grid';
+@import 'tetris';
+@import 'center';
+@import 'loading';
+@import 'errors';
+@import 'payment';
+@import 'flat-pickr';
+@import 'editor';
+@import 'cart';
+@import 'spinners/all';
+@import 'screens/all';
+@import 'order';
+@import 'print';
+// @import 'ember-power-select';
+@import 'ember-paper';
 
+@import 'pod-styles.scss';
 
 blockquote {
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+// undoing the foundation fixed nav crap
+body {
+  padding-top: 0px !important;
+}
+
+// sticky-footer styles
+.off-canvas-wrap, .inner-wrap {
+  height: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+
+  .inner-wrap {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    section.main-section, .shell, .inner-shell {
+      flex: 1;
+      // min-height: 100%;
+    }
+
+    .sticky-footer {
+      margin-top: 40px;
+    }
+  }
 }

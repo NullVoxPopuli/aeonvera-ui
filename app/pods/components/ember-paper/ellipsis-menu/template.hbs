@@ -1,0 +1,11 @@
+{{#paper-menu isOpen=isOpen as |menu|}}
+  {{#menu.trigger}}
+    {{#paper-button onClick=null iconButton=true}}
+      {{fa-icon 'ellipsis-v' classNames='md-menu-origin'}}
+    {{/paper-button}}
+  {{/menu.trigger}}
+
+  {{#menu.content width=width as |content|}}
+    {{yield content menu}}
+  {{/menu.content}}
+{{/paper-menu}}

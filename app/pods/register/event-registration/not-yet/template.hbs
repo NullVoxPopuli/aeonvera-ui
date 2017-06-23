@@ -1,0 +1,29 @@
+<div class='event-registration-is-not-yet-open'>
+  <div class='text-center'>
+    <br />
+    <br />
+    {{#unless model.logoIsMissing}}
+      <img src="{{model.logoUrlMedium}}" />
+    {{/unless}}
+
+    <h1>{{model.name}}</h1>
+    <h3><em>{{model.description}}</em></h3>
+    <h4>{{model.location}}</h4>
+
+    <p>
+      Registration opens at <em>{{date-with-format model.registrationOpensAt 'lll'}}</em>
+    </p>
+
+    <h2>
+      {{countdown-timer
+        targetDate=model.registrationOpensAt model=model
+        onCompletion='countdownComplete'}}
+    </h2>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </div>
+</div>

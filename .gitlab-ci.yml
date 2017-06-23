@@ -1,0 +1,44 @@
+stages:
+- ci
+- deploy
+- clean
+
+clean:
+  stage: clean
+  script: docker-compose -f docker-compose.test.ci.yml down --remove-orphans
+
+"Build, Quality, and Deploy":
+  stage: ci
+  script:
+    - ./scripts/ci/build.sh
+    - ./scripts/ci/eslint.sh
+    - ./scripts/ci/test.sh
+  artifacts:
+    paths:
+      - coverage/
+
+# codeclimate:
+#   only:
+#   - develop
+#   stage: quality
+#   allow_failure: true
+#   script: ./scripts/ci/codeclimate.sh
+#   artifacts:
+#     paths:
+#     - codeclimate.html
+
+# https://about.gitlab.com/2016/11/03/publish-code-coverage-report-with-gitlab-pages/
+pages:
+  stage: deploy
+  dependencies:
+    - "Build, Quality, and Deploy"
+    # - codeclimate
+  script:
+    - mv coverage/ public/
+    - mv codeclimate.html public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - develop

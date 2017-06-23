@@ -1,0 +1,47 @@
+= paper-toolbar class='hide-gt-sm'
+  = paper-toolbar-tools class='layout-align-space-between'
+    = community.name
+
+.show-gt-sm.layout-column
+  img.width-of-60.padding-10.center-margin src=community.logoUrlMedium
+  = paper-button raised=true primary=true onClick=(transition-to 'my-communities.manage' community.id)
+    span Manage
+
+= paper-list
+  = paper-divider
+  = paper-item
+    link-to 'my-communities.manage.registrations'
+      span Registrations
+  = paper-item
+    link-to 'register' community.domain
+      span Registration Form
+  = paper-item
+    link-to 'my-communities.manage.embed-registration'
+      span Embed Code
+
+  = paper-divider
+  = paper-item
+    link-to 'my-communities.manage.revenue'
+      span Revenue
+  = paper-item
+    link-to 'my-communities.manage.membership'
+      span Membership
+
+  = paper-divider
+  = paper-item
+    link-to 'my-communities.manage.lessons'
+      span Lessons
+  = paper-item
+    link-to 'my-communities.manage.dances'
+      span Dances
+
+  = paper-divider
+  = paper-item
+    link-to 'my-communities.manage.payment-processors'
+      span Payment Processing
+
+  = paper-item
+    link-to 'my-communities.manage.collaboration'
+      span Collaborators
+
+

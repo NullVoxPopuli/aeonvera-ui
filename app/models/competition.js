@@ -6,6 +6,8 @@ import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 const { computed } = Ember;
 
 export default LineItem.extend(LeadsAndFollows, {
+  event: DS.belongsTo('event'),
+
   initialPrice: DS.attr('number'),
   atTheDoorPrice: DS.attr('number'),
   kind: DS.attr('number'),

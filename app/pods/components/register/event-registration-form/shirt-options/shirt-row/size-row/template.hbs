@@ -1,0 +1,23 @@
+<div class='layout-row layout-align-space-between-center'>
+  <div class='remove margin-right-10'>
+    {{#paper-button
+      iconButton=true
+      class='no-margins'
+      onClick=(action removeShirt orderLineItem)}}
+      {{paper-icon 'clear'}}
+    {{/paper-button}}
+  </div>
+  <div class='size min-width-40 margin-right-10'>{{orderLineItem.size}}</div>
+  <div class='quantity'>
+    x{{paper-input
+      class='no-errors no-margins'
+      type='number'
+      flex=20
+      passThru=(hash min='1')
+      value=orderLineItem.quantity
+      onChange=(action updateShirt orderLineItem)}}
+  </div>
+  <div class='flex'></div>
+  <div class='price'>@ {{to-usd orderLineItem.price}}</div>
+  <div class='flex'></div>
+</div>

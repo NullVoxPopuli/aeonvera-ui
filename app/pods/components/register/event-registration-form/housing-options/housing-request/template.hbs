@@ -1,0 +1,112 @@
+<div class='layout-row layout-wrap'>
+  <div class='layout-column flex-auto'>
+    {{#paper-checkbox
+      value=housingRequest.needTransportation
+      onChange=(action (mut housingRequest.needTransportation)) }}
+      Need Transportation
+    {{/paper-checkbox}}
+
+    {{#paper-checkbox
+      value=housingRequest.canProvideTransportation
+      onChange=(action (mut housingRequest.canProvideTransportation))}}
+      Can Provide Transportation of Others
+    {{/paper-checkbox}}
+
+
+    {{#paper-checkbox
+      value=housingRequest.allergicToPets
+      onChange=(action (mut housingRequest.allergicToPets))}}
+      Allergic To Pets
+    {{/paper-checkbox}}
+
+    {{#paper-checkbox
+      value=housingRequest.allergicToSmoke
+      onChange=(action (mut housingRequest.allergicToSmoke))}}
+      Allergic to Smoke
+    {{/paper-checkbox}}
+
+    {{paper-input
+      label='Other Allergies'
+      value=housingRequest.otherAllergies
+      onChange=(action (mut housingRequest.otherAllergies))
+    }}
+  </div>
+
+  <div class='layout-row flex-auto'>
+
+    {{paper-input
+      classNames='flex-50'
+      label='Transportation Capacity'
+      type='number'
+      value=housingRequest.transportationCapacity
+      onChange=(action (mut housingRequest.transportationCapacity))
+    }}
+
+    {{#paper-select
+      classNames='flex-50'
+      label='Preferred Gender to be Housed With'
+      options=housingRequest.genderOptions
+      onChange=(action (mut housingRequest.preferredGenderToHouseWith))
+      selected=housingRequest.preferredGenderToHouseWith as |gender|
+    }}
+      {{gender}}
+    {{/paper-select}}
+  </div>
+
+
+</div>
+
+<div class='layout-row'>
+  <div class='layout-column flex-auto'>
+    {{paper-input
+      class='no-margins'
+      label='Requested Roommate'
+      value=housingRequest.requested1
+      onChange=(action (mut housingRequest.requested1))}}
+    {{paper-input
+      class='no-margins'
+      label='Requested Roommate'
+      value=housingRequest.requested2
+      onChange=(action (mut housingRequest.requested2))}}
+    {{paper-input
+      class='no-margins'
+      label='Requested Roommate'
+      value=housingRequest.requested3
+      onChange=(action (mut housingRequest.requested3))}}
+    {{paper-input
+      label='Requested Roommate'
+      class='no-margins'
+      value=housingRequest.requested4
+      onChange=(action (mut housingRequest.requested4))}}
+  </div>
+  <div class='layout-column flex-auto'>
+    {{paper-input
+      label='Unwanted Roommate'
+      class='no-margins'
+      value=housingRequest.unwanted1
+      onChange=(action (mut housingRequest.unwanted1))}}
+    {{paper-input
+      label='Unwanted Roommate'
+      class='no-margins'
+      value=housingRequest.unwanted2
+      onChange=(action (mut housingRequest.unwanted2))}}
+    {{paper-input
+      label='Unwanted Roommate'
+      class='no-margins'
+      value=housingRequest.unwanted3
+      onChange=(action (mut housingRequest.unwanted3))}}
+    {{paper-input
+      label='Unwanted Roommate'
+      class='no-margins'
+      value=housingRequest.unwanted4
+      onChange=(action (mut housingRequest.unwanted4))}}
+  </div>
+</div>
+
+{{paper-input
+  textarea=true
+  block=true
+  label='Notes'
+  passThru=(hash rows=3)
+  value=housingRequest.notes
+  onChange=(action (mut housingRequest.notes))}}

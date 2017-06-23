@@ -17,11 +17,6 @@ export default Ember.Route.extend(SetSidebar, {
 
   sessionAuthenticated() {
     this.transitionTo('dashboard');
-  },
-
-  actions: {
-    openLoginModal() {
-      Ember.$('.auth-link a.login').click();
-    }
   }
+
 });

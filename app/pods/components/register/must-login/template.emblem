@@ -16,6 +16,6 @@
   p
     ul.button-group
       li: a.button.small.success click='openLoginModal' = t 'buttons.login'
-      li: a.button.small.success href="#" data-reveal-id='signup-modal' = t 'buttons.signup'
+      li: a.button.small.success click='openSignupModal' = t 'buttons.signup'
 
   p Once you have an account, you may login and come back to this page to register.

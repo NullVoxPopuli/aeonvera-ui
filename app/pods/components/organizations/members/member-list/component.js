@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
+
+const { isPresent } = Ember;
 
 export default Ember.Component.extend({
   nameContains: null,
@@ -14,18 +17,16 @@ export default Ember.Component.extend({
     { property: 'expiresAt', title: 'Membership Expires At' }
   ],
 
-  memberships: Ember.computed('model', 'nameContains', 'showMembers', function() {
-    const model = this.get('model');
-    const nameContains = this.get('nameContains');
-    const showMembers = this.get('showMembers');
-
-    return model.filter(function(membership) {
+  @computed('model', 'nameContains', 'showMembers')
+  memberships(model, nameContains, showMembers) {
+    return model.filter(membership => {
       let containsName = true;
       let matchesMemberFilter = true;
 
-      if (Ember.isPresent(nameContains)) {
-        containsName = membership.get('member.name').match(
-          new RegExp(nameContains, 'i'));
+      if (isPresent(nameContains)) {
+        const name = membership.get('member.name');
+
+        if (isPresent(name)) containsName = name.match(new RegExp(nameContains, 'i'));
       }
 
       if (showMembers !== 0) {
@@ -38,6 +39,6 @@ export default Ember.Component.extend({
 
       return (containsName && matchesMemberFilter);
     });
-  })
+  }
 
 });

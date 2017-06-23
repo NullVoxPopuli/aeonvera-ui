@@ -1,0 +1,62 @@
+<br />
+<div class='layout-column layout-align-center-center'>
+
+  <h3>Your Registration(s) for {{model.event.name}}</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Registered At</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#if (gt model.registrations.length 0)}}
+        {{#each model.registrations as |registration|}}
+        <tr>
+          <td>
+            {{#link-to 'register.event-registration.show.index' registration.id}}
+              View
+            {{/link-to}}
+          </td>
+          <td>
+            {{register/event-registration-form/table-menu
+              registration=registration
+              onConfirmCancel=(action 'cancelRegistration' registration)
+            }}
+          </td>
+          <td>
+            {{!-- {{#link-to 'register.event-registration.show' model.event registration.id}} --}}
+              {{registration.attendeeFirstName}} {{ registration.attendeeLastName}}
+            {{!-- {{/link-to}} --}}
+          </td>
+          <td>
+            {{!-- {{#if registration.owesMoney}}
+              Unpaid
+            {{else}} --}}
+              {{registration.paymentStatus}}
+            {{!-- {{/if}} --}}
+          </td>
+          <td>{{registration.registeredAt}}</td>
+        </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan='5'>
+            You have not yet registered.
+          </td>
+        </tr>
+      {{/if}}
+    </tbody>
+  </table>
+
+  {{#paper-button
+    primary=true
+    onClick=(action 'toNewRegistration')}}
+    New Registration
+  {{/paper-button}}
+
+</div>

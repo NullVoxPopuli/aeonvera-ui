@@ -1,0 +1,9 @@
+{{#paper-radio-group
+  groupValue=(readonly selectedOrientation)
+  onChange=(action didSelectOrientation) as |group|}}
+  <div class='layout-row layout-align-space-between'>
+    {{#group.radio value='Lead'}}Primarily Lead{{/group.radio}}
+    {{#group.radio value='Follow'}}Primarily Follow{{/group.radio}}
+  </div>
+{{/paper-radio-group}}
+{{ember-paper/error-message errors=errors value=selectedOrientation}}

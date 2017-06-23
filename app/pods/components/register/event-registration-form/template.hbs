@@ -1,0 +1,66 @@
+
+
+<div class='layout-column layout-align-center-center'>
+  {{!-- {{page-header text=title}}
+  {{event/logo-thumbnail model=event}} --}}
+
+
+  {{register/event-registration-form/attendance-information
+    hasVolunteers=event.hasVolunteers
+    attendance=attendance
+    onNameChange=(action (mut attendance.attendeeName))
+    logoUrl=event.logoUrlThumb
+  }}
+
+  {{#if (is-present event.packages)}}
+    {{register/event-registration-form/package-select
+      packages=event.packages
+      selectedPackage=attendance.package
+      onPackageSelect=(action (mut attendance.package))
+      errors=attendance.errors
+    }}
+  {{/if}}
+
+  {{#if (is-present event.levels)}}
+    {{#if attendance.package.requiresTrack}}
+      {{register/event-registration-form/level-select
+        levels=event.levels
+        selectedLevel=attendance.level
+        onLevelSelect=(action (mut attendance.level))
+        errors=attendance.errors
+      }}
+    {{/if}}
+  {{/if}}
+</div>
+
+
+<div class='margin-left-20'>
+  {{#order/order-cart
+    host=model
+    token=token
+    order=order
+    onRemoveLineItem=(action removeOrderLineItem)
+    afterCancel=(action onCheckout)
+    onCheckout=(action cancelOrder)}}
+
+
+
+    {{#if event.isHousingEnabled}}
+      {{partial 'register/event/housing'}}
+    {{/if}}
+
+    {{partial 'register/event/custom-fields'}}
+
+    {{#unless event.competitionSalesHaveEnded}}
+      {{partial 'register/event/competitions'}}
+    {{/unless}}
+
+    {{#unless event.shirtSalesHaveEnded}}
+      {{partial 'register/event/shirts'}}
+    {{/unless}}
+
+    {{#if event.hasActiveLineItems}}
+      {{partial 'register/event/a-la-carte'}}
+    {{/if}}
+  {{/order/order-cart}}
+</div>

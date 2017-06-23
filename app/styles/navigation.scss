@@ -31,6 +31,11 @@ section {
   line-height: 40px;
   text-transform: uppercase;
 }
+.top-bar {
+  button {
+    padding-top: 0;
+  }
+}
 
 /* remove the drop down caret */
 .top-bar-section .has-dropdown > a:after{
@@ -52,37 +57,3 @@ section {
     }
   }
 }
-
-@media #{$large-up} {
-
-  .top-bar,
-  // .top-bar li,
-  .top-bar .name h1,
-  .top-bar .title-area li h1,
-  .top-bar section li.page a {
-    height: 60px;
-    line-height: 60px;
-    text-transform: uppercase;
-  }
-  .top-bar section > ul > li > a:not(.button),
-  .top-bar-section > ul > div > li:not(.has-form) > a:not(.button){
-    line-height: 60px;
-    height: 60px;
-  }
-
-  .flash-message.alert-box{
-    top: 60px;
-  }
-
-  .top-bar .top-bar-section .button{
-    margin-top: 6px;
-    margin-bottom: 6px;
-  }
-
-  .top-bar .top-bar-section .auth li.auth-link{
-    padding-left: 6px;
-    padding-right: 6px;
-
-  }
-
-} /* min-width 1025px, large screens */

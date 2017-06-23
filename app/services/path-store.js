@@ -2,8 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   localSettings: Ember.inject.service('local-settings'),
+  blacklistPaths: [
+    'login'
+  ],
 
-  storeCurrentRoute() {
+  storeCurrentRoute(attemptedRoute = null) {
     const path = window.location.pathname;
     const localSettings = this.get('localSettings');
 
@@ -25,8 +28,9 @@ export default Ember.Service.extend({
   redirectIfPathIsPresent() {
     const route = this.getStoredRoute();
     const currentPath = window.location.pathname;
+    const blacklistPaths = this.get('blacklistPaths');
 
-    if (route === currentPath) {
+    if (route === currentPath || blacklistPaths.includes(route)) {
       this.clearStoredRoute();
       return;
     }

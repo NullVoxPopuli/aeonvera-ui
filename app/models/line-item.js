@@ -40,7 +40,7 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   pictureUrlThumb: attr('string'),
   pictureUrlMedium: attr('string'),
 
-  event: belongsTo('event'),
+  event: belongsTo('event', { inverse: 'lineItems' }),
   host: belongsTo('host', { polymorphic: true }),
   membershipDiscount: belongsTo('membership-discount'),
   attendances: hasMany('attendance'),

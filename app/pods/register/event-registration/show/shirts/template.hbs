@@ -1,0 +1,17 @@
+
+<div class='layout-row'>
+  <div class='flex'></div>
+  <div class='flex-gt-xs-66 flex-gt-sm-50 flex-gt-md-33'>
+    <h3>Shirts</h3>
+
+    {{register/event-registration-form/shirt-options
+      order=model.registration.unpaidOrder
+      shirts=model.event.shirts
+      addShirt=(action 'addShirt')
+      removeShirt=(perform removeShirt)
+      updateShirt=(action 'updateShirt')
+    }}
+  </div>
+  <div class='flex'></div>
+</div>
+

@@ -5,7 +5,7 @@ table.width-of-100.order-review-table
     th.text-right Quantity
     th.text-right Sub Total
   tbody
-    each model.orderLineItems as |item|
+    each savedLineItems as |item|
       tr
         td
           = order/item-name-display order=model orderLineItem=item
@@ -56,7 +56,7 @@ table.width-of-100.order-review-table
           td Fees: {{to-usd model.totalFeeAmount}}
 
     else
-      unless model.hasNonZeroBalance
+      if model.hasZeroBalance
         tr: td.order-payment-status data-paid='true' colspan="4"
           | Your balance is zero, so there is nothing to pay. You're registered!
 

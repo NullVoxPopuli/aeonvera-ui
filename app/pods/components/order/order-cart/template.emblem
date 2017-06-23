@@ -22,41 +22,9 @@
             = yield
 
           each currentItems as |item|
-            tr
-              td.min-width-100
-                if quantitySelect
-                  | {{order/item-quantity-select orderLineItem=item order=cart.order}}
-                | {{item.quantity}} x {{order/price-display item=item value=item.total}}
-              td
-                if (is-present item.lineItem.code)
-                  = item.lineItem.code
-                else
-                  = item.lineItem.name
-                br
-                if item.lineItem.isCompetition
-                  if item.lineItem.requiresPartner
-                    = error-field-wrapper errors=item.errors field='partnerName'
-                      = input type='text' value=item.partnerName placeholder='Partner Name'
-
-                  if item.lineItem.requiresOrientation
-                    = error-field-wrapper errors=item.errors field='danceOrientation'
-                      = radio-button value="Lead" groupValue=item.danceOrientation
-                      label Lead
-                      = radio-button value="Follow" groupValue=item.danceOrientation
-                      label Follow
-                      br
-
-                if item.lineItem.isShirt
-                  = error-field-wrapper errors=item.errors field='size'
-                    = x-select value=item.size
-                      option Select Shirt Size
-                      each item.lineItem.sizes as |sizeData|
-                        = x-option value=sizeData.id
-                          = sizeData.size
-                small
-                  a click='"removeItem" item' Remove
+            = order/order-cart/cart-row order=order orderLineItem=item onRemoveLineItem=onRemoveLineItem allowQuantityChange=quantitySelect
         tfoot
-          if cart.order.shouldApplyFee
+          unless order.isFeeAbsorbed
             tr
               th.min-width-100 = to-usd cart.order.subTotal
               th Sub Total
@@ -66,7 +34,7 @@
                 | Fee
                 = tool-tip message='This is the online payment processing fee. To read more about fees, visit the aeonvera pricing page.'
           tr
-            th = to-usd cart.order.total
+            th = to-usd order.total
             th Total
 
       hr

@@ -1,0 +1,24 @@
+<div class='row padding-20'>
+  {{organizations/title-with-logo model=model subtitle='Registration'}}
+  <p class='text-center margin-top-20 margin-bottom-20'>
+    <a class='button small success' onclick={{action 'openLoginModal'}}>{{t 'buttons.login'}}</a>
+    <a class='button small success' data-reveal-id='signup-modal'>{{t 'buttons.signup'}}</a>
+    <hr />
+    Because you aren't logged in, we just need a bit of information...
+
+    <br />
+  </p>
+  <label>First Name</label>
+  {{input type='text' value=(mut firstName) required=true}}
+  <label>Last Name</label>
+  {{input type='text' value=(mut lastName) required=true}}
+  <label>Email</label>
+  {{input type='email' value=(mut email) required=true}}
+
+  <button
+    class='right'
+    disabled={{not formComplete}}
+    onclick={{action 'submitInformation'}}>
+    Continue
+  </button>
+</div>

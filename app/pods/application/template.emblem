@@ -1,0 +1,31 @@
+/ flash-notifications render here
+= notification-container position='top'
+
+/ ember-wormhole puts modals here
+#foundation-modals
+
+/ this wrapper div is for the sticky footer within .inner-wrap
+.off-canvas-wrap
+  = component navigation left=mobileMenuLeft right=mobileMenuRight toDashboardAction='linkToDashboard'
+
+  = outlet 'modal'
+
+  = app-nav onLeftMenuOpen=(action (mut leftBarOpen true)) logoutAction=(action 'logoutAndRedirect') title=navTitle
+    = from-elsewhere name='non-mobile-nav-links'
+
+  = paper-sidenav-container
+    = paper-sidenav open=leftBarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))
+      = from-elsewhere name='left-side-bar'
+
+    .inner-wrap
+      section.main-section.padding-20
+        .shell
+          .inner-shell
+            each flashMessages.queue as |flash|
+              flash-message flash=flash messageStyle='foundation' classNames='flash-message'
+            = notification-container position='top'
+
+            = outlet
+      = sticky-footer classNames='sticky-footer'
+
+

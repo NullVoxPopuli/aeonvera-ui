@@ -1,19 +1,24 @@
 import Ember from 'ember';
 
+const { isPresent, isBlank } = Ember;
+
 export function userLatestRenewalFor(params, hash) {
   const { user, organization } = hash;
+
+  if (isBlank(user)) {
+    return;
+  }
 
   const membershipRenewals = user.get('membershipRenewals');
   const renewalsMatchingOrganization = [];
 
   membershipRenewals.forEach((item, i, e) => {
     const related = item.get('membershipOption.host');
-    const match = (related.get('id') === organization.get('id') &&
+    const match = (related &&
+      related.get('id') === organization.get('id') &&
       related.get('domain') === organization.get('domain'));
 
-    if (match) {
-      renewalsMatchingOrganization.push(item);
-    }
+    if (match) renewalsMatchingOrganization.push(item);
   });
 
   let latestDate = null;

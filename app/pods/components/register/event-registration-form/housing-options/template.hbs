@@ -1,0 +1,31 @@
+{{#paper-card as |card|}}
+  {{register/event-registration-form/card-header card=card titleText='Housing' logoUrl=logoUrl}}
+
+  {{#card.content}}
+    {{#paper-radio-group
+      groupValue=(readonly selectedHousingOption)
+      onChange=(action 'setHousingOption') as |g|}}
+
+      {{#g.radio value=0}}I do not need housing{{/g.radio}}
+      {{#g.radio value=1}}I can provide housing{{/g.radio}}
+      {{#g.radio value=2}}I would like to request housing{{/g.radio}}
+
+    {{/paper-radio-group}}
+
+    <hr />
+
+    {{#if canProvideHousing}}
+      {{register/event-registration-form/housing-options/housing-provision housingProvision=housingProvision}}
+    {{/if}}
+
+    {{#if isRequestingHousing}}
+      {{register/event-registration-form/housing-options/housing-request housingRequest=housingRequest}}
+    {{/if}}
+
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#paper-button onClick=(action onSubmitHousing) primary=true}}Proceed{{/paper-button}}
+  {{/card.actions}}
+
+{{/paper-card}}

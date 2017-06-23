@@ -2,9 +2,8 @@
   h1 Features Everywhere
   h4.subheader
     a href="https://github.com/NullVoxPopuli/aeonvera" target="_blank" Have an Idea? Submit Here.
-  a.button.success
-    link-to 'events.new' classNames='button'
-      = t 'createyourevent'
+  link-to 'events.new' classNames='button success '
+    = t 'createyourevent'
 
 
 = render "welcome/features/registration"

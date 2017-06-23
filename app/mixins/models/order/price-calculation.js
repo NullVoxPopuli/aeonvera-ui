@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import computed, { not, gt } from 'ember-computed-decorators';
 
-const { computed, inject } = Ember;
+const { inject } = Ember;
 
 // Because calculating the total amount of an order is complicated,
 // the logic for summing line items, and applying discounts
@@ -21,64 +22,66 @@ export default Ember.Mixin.create({
   orderCalculator: inject.service(),
 
   allowNegative: false,
-  priceCalculation: computed('subTotal', 'shouldApplyFee', function() {
-    const subTotal = this.get('subTotal');
-    const shouldApplyFee = this.get('shouldApplyFee');
+  @computed('subTotal', 'shouldApplyFee')
+  priceCalculation(subTotal, shouldApplyFee) {
     const absorbTheFee = !shouldApplyFee;
     const allowNegative = this.get('allowNegative');
-    const value = this.get('priceCalculator').calculateForSubTotal(subTotal, absorbTheFee, allowNegative);
+    const priceCalculator = this.get('priceCalculator');
+    const value = priceCalculator.calculateForSubTotal(subTotal, absorbTheFee, allowNegative);
 
     return value;
-  }),
+  },
 
   forceAbsorbFee: false,
-  shouldApplyFee: computed('forceAbsorbFee', 'subTotal', 'host.makeAttendeesPayFees', 'paymentMethod', {
-    get() {
-      const forceAbsorbFee = this.get('forceAbsorbFee');
+  @computed('forceAbsorbFee', 'subTotal', 'isFeeAbsorbed', 'paymentMethod')
+  shouldApplyFee(forceAbsorbFee, subTotal, isFeeAbsorbed, paymentMethod) {
+    if (forceAbsorbFee) { return !forceAbsorbFee; }
 
-      if (forceAbsorbFee) {
-        return !forceAbsorbFee;
-      }
+    const electronicPayment = (
+      paymentMethod === 'stripe' ||
+      this.get('host.acceptOnlyElectronicPayments') || false
+    );
 
-      const electronicPayment = (
-        this.get('paymentMethod') === 'stripe' ||
-        this.get('host.acceptOnlyElectronicPayments') || false
-      );
+    const result = (
+      subTotal > 0 &&
+      !isFeeAbsorbed &&
+      electronicPayment
+    );
 
-      const result = (
-        this.get('subTotal') > 0 &&
-        this.get('host.makeAttendeesPayFees') &&
-        electronicPayment);
+    return result;
+  },
 
-      return result;
-    }
-  }),
-
-  fee: computed('subTotal', function() {
+  @computed('subTotal')
+  fee(subTotal) {
     const calculation = this.get('priceCalculation');
     const stringFee = calculation.totalFee;
 
     return parseFloat(stringFee);
-  }),
+  },
 
   /*
     Calculates raw total of all the order line items
      - before fees or anything
   */
-  subTotal: computed('orderLineItems.@each.total', function() {
+  @computed('orderLineItems.@each.total')
+  subTotal() {
     const lineItems = this.get('orderLineItems');
     const subTotal = this.get('orderCalculator').calculateSubTotal(this);
 
     return subTotal;
-  }),
+  },
 
-  total: computed('subTotal', 'shouldApplyFee', function() {
+  @computed('subTotal', 'shouldApplyFee')
+  total(subTotal, shouldApplyFee) {
     const calculation = this.get('priceCalculation');
 
     return calculation.total;
-  }),
+  },
 
-  hasNonZeroBalance: computed('total', function() {
-    return parseFloat(this.get('total')) > 0;
-  })
+  @computed('total')
+  hasNonZeroBalance(total) {
+    return parseFloat(total) > 0;
+  },
+
+  @not('hasNonZeroBalance') hasZeroBalance
 });

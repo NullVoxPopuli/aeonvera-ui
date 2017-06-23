@@ -28,7 +28,7 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
   }),
 
   orderLineItems: DS.hasMany('order-line-item'),
-  restraints: DS.hasMany('restraint'),
+  restraints: DS.hasMany('restraint', { inverse: 'restrictionFor' }),
   name: DS.attr('string'),
 
   // name: Ember.computed.alias('code'),

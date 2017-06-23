@@ -1,25 +1,25 @@
-li.show-for-medium-up = currentUser.user.name
-li.show-for-small-only.white-color.margin-top-10 = currentUser.user.name
-li
-  link-to 'user.edit'
-    span Edit Profile
-li.divider
-li.show-for-medium-up Manage
-li.show-for-small-only.white-color.margin-top-10 Manage
-li
-  link-to 'dashboard.registered-events'
-    span Registered Events
-li
-  link-to 'dashboard.hosted-events'
-    span Hosted Events
-li
-  link-to 'my-communities'
-    span My Communities
-li
-  link-to 'dashboard.orders'
-    span Order History
-li.divider
-li &nbsp;
-li
-  link-to 'events.new' classNames='button success expand'
-    | Create an Event
+= paper-toolbar class='hide-gt-sm'
+  = paper-toolbar-tools class='layout-align-space-between'
+    = currentUser.user.name
+
+= paper-list
+  = paper-item
+    link-to 'user.edit'
+      span Edit Profile
+
+  = paper-divider
+  = paper-item
+    link-to 'application'
+      span Home
+  = paper-item
+    link-to 'dashboard.registered-events'
+      span Registered Events
+  = paper-item
+    link-to 'dashboard.hosted-events'
+      span Hosted Events
+  = paper-item
+    link-to 'my-communities'
+      span My Communities
+  = paper-item
+    link-to 'dashboard.orders'
+      span Order History

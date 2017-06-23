@@ -1,0 +1,24 @@
+<h4>Membership</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th class='width-of-80px'>
+        Price
+      </th>
+      <th>
+        Purchase?
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each membershipOptions as |option|}}
+      <tr>
+        <td>{{to-usd option.price}}</td>
+        <td><a class='button tiny no-margins' {{action 'add'}}></a></td>
+        <td>{{option.name}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

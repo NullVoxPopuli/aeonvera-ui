@@ -1,0 +1,23 @@
+{{#paper-card as |card|}}
+  {{#card.title}}Level{{/card.title}}
+  {{#card.content}}
+
+    {{#paper-radio-group
+      groupValue=(readonly selectedId)
+      errors=errors
+      onChange=(action 'didChooseLevel') as |g|}}
+
+      {{#each levels as |level|}}
+        {{#g.radio value=level.id}}
+          {{level.name}}
+          {{#if level.hasRequirement}}
+            <br />
+            <em>Requires {{level.requiresName}}</em>
+          {{/if}}
+        {{/g.radio}}
+      {{/each}}
+
+    {{/paper-radio-group}}
+  {{/card.content}}
+
+{{/paper-card}}

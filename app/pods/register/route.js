@@ -2,29 +2,12 @@ import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
 export default Ember.Route.extend(ResetScroll, {
-
-  beforeModel() {
-    const application = this.controllerFor('application');
-
-    application.set('mobileMenuLeft', 'nav/welcome/left-items');
-  },
-
   model: function(params) {
     const subdomain = params.subdomain;
 
-    const promise = this.get('store').findRecord('host', subdomain, {
-      adapterOptions: {
-        query: {
-          subdomain: subdomain
-        }
-      }
+    return this.get('store').findRecord('host', subdomain, {
+      subdomain: subdomain
     });
-
-    return promise;
-  },
-
-  afterModel(model) {
-    this.set('title', model.get('name'));
   },
 
   actions: {

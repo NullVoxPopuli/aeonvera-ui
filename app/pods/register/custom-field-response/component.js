@@ -9,9 +9,7 @@ export default Ember.Component.extend({
     if (attendance != null) {
 
       const field = this.get('field');
-      const existingCustomField = attendance.get('customFieldResponses').find(item => {
-        return field.get('id') === item.get('customField.id');
-      });
+      const existingCustomField = attendance.get('customFieldResponses').find(item => field.get('id') === item.get('customField.id'));
 
       if (Ember.isPresent(existingCustomField)) {
 

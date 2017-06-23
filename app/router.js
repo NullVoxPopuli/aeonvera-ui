@@ -26,7 +26,7 @@ Router.map(function() {
   });
 
   /* public facing */
-  this.route('welcome', {resetNamespace: true}, function() {
+  this.route('welcome', { resetNamespace: true }, function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
@@ -42,9 +42,9 @@ Router.map(function() {
   });
 
   /* must be logged in for */
-  this.route('dashboard', {path: '/'}, function() {
-    this.route('my-communities', {resetNamespace: true}, function() {
-      this.route('manage', {path: '/manage/:organization_id'}, function() {
+  this.route('dashboard', { path: '/' }, function() {
+    this.route('my-communities', { resetNamespace: true }, function() {
+      this.route('manage', { path: '/manage/:organization_id' }, function() {
         this.route('edit');
         this.route('payment-processors');
         this.route('revenue');
@@ -74,7 +74,7 @@ Router.map(function() {
         this.route('membership', function() {
           this.route('manage');
           this.route('add');
-          this.route('show', {path: ':user_id'});
+          this.route('show', { path: ':user_id' });
           this.route('discounts', function() {
             this.route('new');
             this.route('show', {
@@ -100,23 +100,23 @@ Router.map(function() {
     this.route('hosted-events');
     this.route('registered-events');
     this.route('orders', function() {
-      this.route('show', {path: ':order_id'});
+      this.route('show', { path: ':order_id' });
     });
 
-    this.route('event-at-the-door', {resetNamespace: true, path: '/event-at-the-door/:event_id'}, function() {
+    this.route('event-at-the-door', { resetNamespace: true, path: '/event-at-the-door/:event_id' }, function() {
       this.route('checkin');
       this.route('competition-list');
-      this.route('competition-signup-print', {path: 'competition/:competition_id/print'});
+      this.route('competition-signup-print', { path: 'competition/:competition_id/print' });
       this.route('a-la-carte');
-      this.route('a-la-carte-print', {path: 'a-la-carte/print'});
+      this.route('a-la-carte-print', { path: 'a-la-carte/print' });
       this.route('register');
       this.route('shirts');
       this.route('exchange');
     });
 
-    this.route('events', {resetNamespace: true}, function() {
+    this.route('events', { resetNamespace: true }, function() {
       this.route('new');
-      this.route('show', {path: ':event_id'}, function() {
+      this.route('show', { path: ':event_id' }, function() {
         this.route('edit', function() {
           this.route('housing');
           this.route('options');
@@ -128,7 +128,7 @@ Router.map(function() {
         /* attendees, volunteers, etc */
         this.route('registrations', function() {
           this.route('new');
-          this.route('show', {path: ':registration_id'}, function() {
+          this.route('show', { path: ':registration_id' }, function() {
             this.route('edit');
           });
         });
@@ -136,7 +136,7 @@ Router.map(function() {
         this.route('unpaid-registrations');
         this.route('cancelled-registrations');
         this.route('orders', function() {
-          this.route('show', {path: ':order_id'});
+          this.route('show', { path: ':order_id' });
         });
 
         this.route('revenue');
@@ -201,7 +201,7 @@ Router.map(function() {
 
         this.route('competitions', function() {
           this.route('new');
-          this.route('show', {path: ':competition_id'}, function() {
+          this.route('show', { path: ':competition_id' }, function() {
             this.route('edit');
             this.route('print');
           });
@@ -254,10 +254,29 @@ Router.map(function() {
 
   });
 
-  this.route('embed', {path: '/embed/:subdomain'});
-  this.route('register', {resetNamespace: true, path: ':subdomain'}, function() {
-    this.route('checkout', {path: ':orderId'}, function() {
-      this.route('edit');
+  this.route('embed', { path: '/embed/:subdomain' });
+  this.route('register', { resetNamespace: true, path: ':subdomain' }, function() {
+    this.route('event-registration', { path: 'register/:id' }, function() {
+      this.route('not-yet');
+      this.route('must-login');
+      this.route('show', { path: ':registrationId' }, function() {
+        this.route('edit');
+        this.route('housing');
+        this.route('shirts');
+        this.route('review');
+      });
+    });
+    this.route('community-registration', { path: 'community/:id' }, function() {
+      this.route('tell-us-who-you-are');
+      this.route('register', function() {
+        this.route('show', { path: ':orderId' }, function() {
+          this.route('edit');
+          this.route('thankyou');
+        });
+      });
+    });
+
+    this.route('checkout', { path: '/checkout' }, function() {
       this.route('thankyou');
     });
   });
@@ -267,7 +286,7 @@ Router.map(function() {
   this.route('upcoming-events');
   this.route('communities');
 
-  this.route('user', {resetNamespace: true}, function() {
+  this.route('user', { resetNamespace: true }, function() {
     this.route('edit');
   });
 

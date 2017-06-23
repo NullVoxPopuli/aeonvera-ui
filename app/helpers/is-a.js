@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Helper.helper(function(params) {
+export function isA(params) {
   const object = params[0];
   const klass = params[1];
 
@@ -8,4 +8,6 @@ export default Ember.Helper.helper(function(params) {
   const isA = objectModelName === klass;
 
   return isA;
-});
+}
+
+export default Ember.Helper.helper(isA);

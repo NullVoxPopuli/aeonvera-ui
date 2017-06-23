@@ -84,24 +84,14 @@ export default Ember.Component.extend(ResizeMixin, {
           return d3.ascending(a.name, b.name);
         })
         // .size([2 * Math.PI, radius * radius])
-        .value(d => {
-          return d.size;
-        });
+        .value(d => d.size);
     // .value(function(d) { return 1; });
 
     const arc = d3.svg.arc()
-        .startAngle(d => {
-          return Math.max(0, Math.min(2 * Math.PI, x(d.x)));
-        })
-        .endAngle(d => {
-          return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx)));
-        })
-        .innerRadius(d => {
-          return Math.max(0, d.y ? y(d.y) : d.y);
-        })
-        .outerRadius(d => {
-          return Math.max(0, y(d.y + d.dy));
-        });
+        .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x))))
+        .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))))
+        .innerRadius(d => Math.max(0, d.y ? y(d.y) : d.y))
+        .outerRadius(d => Math.max(0, y(d.y + d.dy)));
     let node;
 
     const root = this.get('data');
@@ -112,15 +102,11 @@ export default Ember.Component.extend(ResizeMixin, {
     const path = svg.selectAll('path').data(nodes);
 
     path.enter().append('path')
-        .attr('id', (d, i) => {
-          return `path-${i}`;
-        })
+        .attr('id', (d, i) => `path-${i}`)
         .attr('d', arc)
         .style('stroke', '#fff')
         .style('fill-rule', 'evenodd')
-        .style('fill', d => {
-          return color(d.name);
-        })
+        .style('fill', d => color(d.name))
         .on('click', click);
 
     // Computes the label angle of an arc, converting from radians to degrees.
@@ -156,15 +142,11 @@ export default Ember.Component.extend(ResizeMixin, {
 
     textEnter.append('tspan')
         .attr('x', 0)
-        .text(d => {
-          return d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '';
-        });
+        .text(d => d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '');
     textEnter.append('tspan')
         .attr('x', 0)
         .attr('dy', '1em')
-        .text(d => {
-          return d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '';
-        });
+        .text(d => d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '');
     // textEnter.append('tspan')
     //     .attr('x', 0)
     //     .attr('dy', d => d.depth ? (d.name.split(' - ').length > 1 ? '-2em' : '-1em') : '')
@@ -176,16 +158,10 @@ export default Ember.Component.extend(ResizeMixin, {
         .attrTween('d', arcTween(d));
 
       // Somewhat of a hack as we rely on arcTween updating the scales.
-      text.style('visibility', e => {
-        return isParentOf(d, e) ? null : d3.select(this).style('visibility');
-      })
+      text.style('visibility', e => isParentOf(d, e) ? null : d3.select(this).style('visibility'))
         .transition()
         .duration(duration)
-        .attrTween('transform', d => {
-          return () => {
-            return transformText(d);
-          };
-        })
+        .attrTween('transform', d => () => transformText(d))
         .style('fill-opacity', function(e) {
           return isParentOf(d, e) ? 1 : 1e-6;
         })

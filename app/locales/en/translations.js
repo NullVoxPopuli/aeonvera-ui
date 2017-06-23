@@ -42,7 +42,7 @@ export default {
   tos: 'Terms of Service',
   privacy: 'Privacy',
   submitideas: 'Submit Ideas',
-  copyright: 'Copyright © 2013-2016 Precognition LLC',
+  copyright: 'Copyright © 2013-2017 Precognition LLC',
 
   formoreinfo: 'For more information: ',
 

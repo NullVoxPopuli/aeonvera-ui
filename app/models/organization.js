@@ -16,9 +16,9 @@ export default Host.extend({
   url: attr('string'),
 
   owner: belongsTo('user'),
-  lessons: hasMany('lessons'),
-  membershipOptions: hasMany('membership-option'),
-  membershipDiscounts: hasMany('membership-discount'),
+  lessons: hasMany('lessons', { inverse: 'host' }),
+  membershipOptions: hasMany('membership-option', { inverse: 'host' }),
+  membershipDiscounts: hasMany('membership-discount', { inverse: 'host' }),
   sponsorships: hasMany('sponsorship'),
 
   notifyEmail: attr('string'),

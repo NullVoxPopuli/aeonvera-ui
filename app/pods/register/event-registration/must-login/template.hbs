@@ -1,0 +1,23 @@
+<div class='text-center'>
+  <h1 class='hide-for-small'>{{model.name}}</h1>
+  <h3 class='show-for-small'>{{model.name}}</h3>
+  <h5 class='hide-for-small'>{{model.shortDescription}}</h5>
+  <h6 class='show-for-small'>{{model.shortDescription}}</h6>
+
+  <hr />
+
+  <span>You must have an {{t 'appname'}} account to register with this event.</span>
+
+  <br /><br />
+
+  <p>
+    <ul class='button-group'>
+      <li>
+        {{login-modal buttonClasses='' afterLogin='backToRegistration'}}
+      </li>
+      <li>
+        {{sign-up-modal successAction='backToRegistration'}}
+      </li>
+    </ul>
+  </p>
+</div>

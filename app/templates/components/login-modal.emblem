@@ -1,2 +1,0 @@
-= foundation-modal title='Login' name='login-modal' buttonText=(t 'buttons.login') buttonClasses='button login margin-right-5'
-  = login-form
