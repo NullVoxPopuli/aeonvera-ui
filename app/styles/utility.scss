@@ -17,6 +17,16 @@ $breakpointNames: "small-only", "small-up", "medium-up", "large-up", "xlarge-up"
   }
 }
 
+@each $amount in $intervals {
+  .padding-#{$amount} {
+    padding: #{$amount}px;
+  }
+
+  .margin-#{$amount} {
+    margin: #{$amount}px;
+  }
+}
+
 @each $width in $max-widths {
   .max-width-#{$width} {
     max-width: #{$width};

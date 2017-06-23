@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import computed from 'ember-computed-decorators';
+
 import Validator from '../mixins/model-validator';
 
 // provides:
@@ -20,6 +22,10 @@ export default DS.Model.extend(
   PaymentStatus,
   Checkinable, {
     attendeeName: DS.attr('string'),
+    // TODO: create these on the backend:
+    attendeeFirstName: DS.attr('string'),
+    attendeeLastName: DS.attr('string'),
+
     attendeeEmail: DS.attr('string'),
 
     danceOrientation: DS.attr('string'),
@@ -55,10 +61,9 @@ export default DS.Model.extend(
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 
-    fullName: Ember.computed('firstName', 'lastName', {
-      get(key) {
-        return `${this.get('firstName')} ${this.get('lastName')}`;
-      }
-    })
+    @computed('attendeeFirstName', 'attendeeLastName')
+    fullName(firstName, lastName) {
+      return `${firstName} ${lastName}`;
+    }
 
   });

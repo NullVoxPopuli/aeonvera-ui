@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link rel="stylesheet" href="{{rootURL}}assets/aeonvera.css">
 
+
     {{content-for 'head-footer'}}
   </head>
   <body>
@@ -26,6 +27,8 @@
         activationElement: false
       };
     </script>
-    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <!-- <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> -->
+    <!-- TODO: remove this when foundation is removed (which isn't compac with jquery 3) -->
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>
   </body>
 </html>

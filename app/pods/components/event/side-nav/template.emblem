@@ -1,0 +1,44 @@
+= paper-toolbar class='hide-gt-sm'
+  = paper-toolbar-tools class='layout-align-space-between'
+    = event.name
+    /= paper-button raised=true onClick=(transition-to 'events.show.manage' event.id)
+      span Manage
+
+.show-gt-sm.layout-column
+  img.width-of-60.padding-10.center-margin src=event.logoUrlMedium
+  = paper-button raised=true primary=true onClick=(transition-to 'events.show.manage' event.id)
+    span Manage
+
+= paper-list
+  = paper-divider
+  = paper-item
+    = link-to 'events.show.unpaid-registrations'
+      span Unpaid Registrations
+  = paper-item
+    = link-to 'events.show.cancelled-registrations'
+      span Cancelled Registrations
+  = paper-item
+    = link-to 'events.show.orders'
+      span Orders
+  = paper-item
+    = link-to 'register' event.domain
+      span Registration Form
+  = paper-item
+    = link-to 'events.show.embed-registration'
+      span Embed Code
+
+  = paper-divider
+  = paper-item
+    = link-to 'events.show.volunteers'
+      span Volunteers
+  = paper-item
+    = link-to 'events.show.housing'
+      span Housing
+
+  = paper-divider
+  = paper-item
+    = link-to 'events.show.revenue'
+      span Revenue
+  = paper-item
+    = link-to 'events.show.charts'
+      span Charts

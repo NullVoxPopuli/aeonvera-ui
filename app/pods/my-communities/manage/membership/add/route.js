@@ -8,9 +8,10 @@ export default Ember.Route.extend({
     const organization = this.modelFor(
       'my-communities.manage.membership');
 
+
     return {
-      membership: membership,
-      organization: organization
+      membership,
+      organization
     };
   }
 

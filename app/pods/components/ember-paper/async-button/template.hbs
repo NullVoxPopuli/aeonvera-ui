@@ -1,0 +1,22 @@
+{{#paper-button
+  onClick=(action 'onClick')
+  raised=raised
+  warn=warn
+  primary=primary
+  }}
+  {{#if promise}}
+    {{#if (is-pending promise)}}
+        {{loadingMessage}}
+    {{else if (is-fulfilled promise)}}
+        {{successMessage}}
+    {{else}}
+      {{#if showError}}
+        Error! :-(
+      {{else}}
+        {{label}}
+      {{/if}}
+    {{/if}}
+  {{else}}
+    {{paper-icon icon}} {{label}}
+  {{/if}}
+{{/paper-button}}

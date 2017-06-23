@@ -1,0 +1,8 @@
+.row.center-margin
+  .small-12.columns
+    h2.page-title Upcoming Events
+
+    = upcoming-events-table model=model
+
+    link-to 'dashboard' classNames="button"
+      span Back

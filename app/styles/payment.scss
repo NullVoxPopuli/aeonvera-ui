@@ -16,7 +16,7 @@ table tr td.order-payment-status {
   text-align: center;
   background: $alert-color;
 
-  &[data-paid='true'] {
+  &[data-paid] {
     background: lighten($success-color, 5%);
   }
 }

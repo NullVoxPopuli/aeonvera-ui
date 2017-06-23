@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
   var ENV = {
@@ -22,12 +22,17 @@ module.exports = function(environment) {
       }
     },
 
+    emblemOptions: {
+      // use handlebars by default
+      blueprints: false
+    },
+
     // React-like prop type checking
     'ember-prop-types': {
       // Validate properties coming from a spread property (default is undefined)
       // spreadProperty: 'options',
       // Throw errors instead of logging warnings (default is false)
-      throwErrors: true,
+      throwErrors: false,
       // Validate properties (default is true for all environments except "production")
       validate: true,
       // Validate properties when they are updated (default is false)
@@ -92,10 +97,10 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *",
-      'font-src': "'self' *.amazonaws.com",
+      'font-src': "'self' *.amazonaws.com fonts.gstatic.com",
       'connect-src': "*",
       'img-src': "'self'  *.amazonaws.com data: https://*.stripe.com *",
-      'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
+      'style-src': "'self' 'unsafe-inline' *.aeonvera.com https://fonts.googleapis.com",
       'frame-src': "https://*.stripe.com"
     },
     flashMessageDefaults: {
@@ -115,14 +120,14 @@ module.exports = function(environment) {
   */
 
   if (environment === 'development') {
-    ENV.host = 'http://swing.vhost:3000';
-    ENV.APP.host = 'http://swing.vhost:3000';
+    ENV.host = 'http://swing.vhost:4301';
+    ENV.APP.host = 'http://swing.vhost:4301';
 
     ENV['ember-simple-auth-token']['serverTokenEndpoint'] =
-      'http://swing.vhost:3000/api/users/sign_in';
+      'http://swing.vhost:4301/api/users/sign_in';
 
     ENV.torii.providers['stripe-connect'].apiKey = ENV.stripe.clientId;
-    ENV.torii.providers['stripe-connect'].redirectUri = 'http://swing.vhost:4200';
+    ENV.torii.providers['stripe-connect'].redirectUri = 'http://swing.vhost:4300';
 
     ENV['ember-cli-mirage'] = {
       enabled: false

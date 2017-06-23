@@ -13,7 +13,7 @@ label All
 
 = sortable-table columns=columns data=memberships as |membership|
   td
-    link-to 'my-communities.manage.membership.show' (as-hash id=membership.member.id member=membership.member organization=organization)
+    link-to 'my-communities.manage.membership.show' membership.member.id
       = membership.member.name
   td = membership.member.email
   td = membership.current

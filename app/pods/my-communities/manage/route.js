@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import SetSidebar from 'aeonvera/mixins/routes/set-sidebar';
+import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
-export default Ember.Route.extend(SetSidebar, {
+export default Ember.Route.extend(SetNavbarTitle, {
   model: function(params) {
     const id = params.organization_id;
 
@@ -17,11 +17,10 @@ export default Ember.Route.extend(SetSidebar, {
   actions: {
     didTransition() {
       const model = this.get('currentModel');
+      const name = model.get('name');
 
-      this.set('title', model.get('name'));
-
-      this._setDashboardSidebar('sidebar/community-sidebar', model);
-      this._setMobileLeftMenu('sidebar/community-sidebar', model);
+      this.set('title', name);
+      this._setAppNavTitle(name);
 
       // Don't execute parent didTransitions
       return false;

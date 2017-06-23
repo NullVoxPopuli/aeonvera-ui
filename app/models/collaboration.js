@@ -7,9 +7,6 @@ export default DS.Model.extend({
   title: attr('string'),
   userName: attr('string'),
   createdAt: attr('date'),
-
   host: belongsTo('host'),
-
-  // fake attributes for creating
   email: attr('string')
 });

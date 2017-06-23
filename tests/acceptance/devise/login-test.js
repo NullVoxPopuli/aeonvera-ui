@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import { test } from 'qunit';
+import testSelector from 'ember-test-selectors';
+
 import 'aeonvera/tests/helpers/login';
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
@@ -9,10 +11,12 @@ test('visiting /', function(assert) {
   visit('/');
   andThen(() => assert.equal(currentURL(), '/welcome'));
 
-  click('.auth-link a.button.login');
+  click('.auth-link .login');
   andThen(() => {
-    let text = find(
-      '.reveal-modal[data-name="login-modal"] h2').first().text();
+    const selector = 'md-dialog h2';
+    const element = find(selector);
+    const text = element.first().text();
+
     assert.equal(text, 'Login');
   });
 });
@@ -23,7 +27,7 @@ test('can login', function(assert) {
 
 test('after logging in, the login button should be hidden', function(assert) {
   login();
-  let button = find('.auth-link a.button.login');
+  let button = find('.auth-link .login');
 
   assert.ok(Ember.isEmpty(button));
 });

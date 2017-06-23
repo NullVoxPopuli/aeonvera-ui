@@ -1,9 +1,15 @@
 import Ember from 'ember';
+import computed, { alias } from 'ember-computed-decorators';
+import { PropTypes } from 'ember-prop-types';
+
+import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
 export default Ember.Component.extend({
+  propTypes: {
+    model: PropTypes.EmberObject.isRequired
+  },
   store: Ember.inject.service('store'),
   cart: Ember.inject.service('order-cart'),
-  discountService: Ember.inject.service('order-apply-discount'),
   email: Ember.computed.oneWay('cart.userEmail'),
 
   // Set when in the process of paying / waiting on stripe.
@@ -17,25 +23,32 @@ export default Ember.Component.extend({
   // set by failure to apply discount
   discountApplicationErrors: null,
 
-  statementDescription: Ember.computed('model.host', function() {
-    const hostName = this.get('model.host.name');
-
+  @computed('model.host.name')
+  statementDescription(hostName) {
     if (hostName.length > 15) {
       return hostName.substring(0, 15);
     }
 
     return hostName;
-  }),
+  },
 
-  canAddDiscount: Ember.computed('model', 'model.orderLineItems.@each', function() {
-    const hostAllowsDiscounts = this.get('model.host.allowDiscounts');
-    const hostAllowsMultipleDiscounts = this.get('model.host.allowCombinedDiscounts');
-    const alreadyHasDiscount = this.get('model').hasDiscount();
+  @computed('model.host')
+  hostPath(host) {
+    if (host.get('isEvent')) {
+      return 'register.event-registration.show.edit';
+    }
 
-    return (
-      hostAllowsDiscounts && (!alreadyHasDiscount || hostAllowsMultipleDiscounts)
-    );
-  }),
+    return 'register.community-registration.register.show.edit';
+  },
+
+  @computed('model.host', 'model')
+  editModel(host, model) {
+    if (host.get('isEvent')) {
+      return model.get('attendance');
+    }
+
+    return model;
+  },
 
   willRender() {
     this._super(...arguments);
@@ -60,48 +73,24 @@ export default Ember.Component.extend({
 
     applyDiscount() {
       const discountCode = this.get('discountCode');
-      const discountService = this.get('discountService');
       const store = this.get('store');
       const order = this.get('model');
       const host = order.get('host');
-      const cart = this.get('cart');
 
-      discountService.lookupDiscount(host, discountCode).then(discounts => {
+      const params = {
+        order,
+        hostId: host.get('id'),
+        hostType: host.get('klass'),
+        discountCode: discountCode
+      };
 
-        // only take the first object
-        const allLoadedDiscounts = this.get('store').peekAll('discount');
-        const filteredDiscounts = Ember.A();
+      const discount = store.createRecord('orderLineItem', params);
 
-        allLoadedDiscounts.forEach(discount => {
-          if (discount.get('code') === discountCode) {
-            filteredDiscounts.pushObject(discount);
-          }
-        });
-
-        const discount = filteredDiscounts.get('firstObject');
-
-        if (filteredDiscounts.get('length') > 1) {
-          this.set('discountApplicationErrors', ['code does not exist']);
-        } else if (Ember.isPresent(discount)) {
-          cart.add(discount);
-
-          cart._saveOrderLineItems().then(() => {
-            // Ember.run.later(() => {
-            //   // a run later in a then?
-            //   // this is weird.
-            //   // but it somehome provides enough time for
-            //   // the order to actually return the correct
-            //   // amountInCents :-/
-            //   cart.get('order').reload();
-            // });
-          });
-          this.set('discountCode', '');
-        } else {
-          this.set('discountApplicationErrors', ['discount not found']);
-        }
-      }, error => {
-        this.set('discountApplicationErrors', error);
-      });
+      return discount.save()
+        .then(discount => this.set('discountCode', ''))
+        .catch(error => this.set(
+          'discountApplicationErrors',
+          messageFromError(error, (title, detail) => detail)));
     },
 
     /*
@@ -110,7 +99,8 @@ export default Ember.Component.extend({
       feedback for processing, as this data only enables us to charge the card.
       The server will do the actual charging of the card.
 
-      The only data we need from the stripe checkout object is the 'id'
+      The only data we need fro
+      }m the stripe checkout object is the 'id'
 
       NOTE: The order should already be saved before entering this method.
     */

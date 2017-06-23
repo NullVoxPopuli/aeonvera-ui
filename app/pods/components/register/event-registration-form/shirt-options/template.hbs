@@ -1,0 +1,9 @@
+{{#each shirts as |shirt|}}
+  {{register/event-registration-form/shirt-options/shirt-row
+    shirt=shirt
+    order=order
+    addShirt=addShirt
+    removeShirt=removeShirt
+    updateShirt=updateShirt
+  }}
+{{/each}}

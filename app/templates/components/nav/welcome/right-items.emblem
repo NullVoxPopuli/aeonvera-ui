@@ -10,8 +10,7 @@ li.auth-link
       = fa-icon 'pencil'
       span Edit Profile
   else
-    a.button.margin-right-5 href='#' data-reveal-id='signup-modal'
-      span  = t 'buttons.signup'
+    = sign-up-modal
 
 li.auth-link
   if session.isAuthenticated

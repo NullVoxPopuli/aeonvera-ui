@@ -1,31 +1,27 @@
 import Ember from 'ember';
 import ResizeMixin from 'ember-resize-mixin/main';
-import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
 import SlotsMixin from 'ember-block-slots';
+import computed, { alias } from 'ember-computed-decorators';
+import { PropTypes } from 'ember-prop-types';
+
+import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
+
+const { isPresent } = Ember;
 
 export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
-  cart: Ember.inject.service('order-cart'),
+  propTypes: {
+    order: PropTypes.EmberObject.isRequired,
+    onRemoveLineItem: PropTypes.func.isRequired,
+    onCheckout: PropTypes.func.isRequired
+  },
+
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
+  cart: Ember.inject.service('order-cart'),
   errors: [],
   resetCheckoutButton: false,
   isProceedToCheckoutVisible: false,
   afterCheckout: null,
 
-  /*
-    Handle optional parameters for editing an order
-  */
-  didInsertElement() {
-    this._super(...arguments);
-    const token = this.get('token');
-    const order = this.get('order');
-
-    this.set('cart.host', this.get('host'));
-    this.set('cart.token', token);
-    if (Ember.isPresent(order)) {
-      this.set('cart.order', order);
-      this.set('cart.email', order.get('userEmail'));
-    }
-  },
 
   /*
     Debounced triggers ever 100ms
@@ -79,24 +75,19 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
     return isVisible;
   },
 
-  itemContainerClasses: Ember.computed('buildingAnOrder', function() {
-    const building = this.get('buildingAnOrder');
-
+  @computed('buildingAnOrder')
+  itemContainerClasses(building) {
     return building ? 'large-8 medium-8 columns' :
       'large-8 medium-12 columns';
-  }),
+  },
 
-  buildingAnOrder: Ember.computed('cart.hasItems', function() {
-    return this.get('cart.hasItems');
-  }),
+  @computed('order.orderLineItems')
+  hasItems(items) {
+    return isPresent(items);
+  },
 
-  currentItems: Ember.computed('cart.items', function() {
-    return this.get('cart.items');
-  }),
-
-  order: Ember.computed('cart.order', function() {
-    return this.get('cart.order');
-  }),
+  @alias('hasItems') buildingAnOrder,
+  @alias('order.orderLineItems') currentItems,
 
   actions: {
     afterProceedToCheckout() {
@@ -104,46 +95,10 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
     },
 
     checkout() {
-      this.set('checkingOut', true);
-      const checkoutPromise = this.get('cart').checkout();
-
-      if (checkoutPromise !== undefined) {
-        checkoutPromise.then(record => {
-          if (record === null || record === undefined) {
-            return;
-          }
-
-          if (Ember.isPresent(this.get('afterCheckout'))) {
-            this.sendAction('afterCheckout', record);
-            return;
-          }
-
-          const id = record.get('id');
-          const token = record.get('paymentToken');
-
-          // model hook isn't fired upon transition!
-          this.get('router').transitionTo('register.checkout', id, { queryParams: { token: token } });
-          this.set('resetCheckoutButton', true);
-        }, error => {
-          console.log(error);
-          if (Ember.isPresent(error)) {
-            this.set('resetCheckoutButton', true);
-            this.get('flashMessages').alert(error.message);
-          }
-        }).finally(() => {
-          this.set('checkingOut', false);
-        });
-      }
-
-      return checkoutPromise;
+      this.sendAction('onCheckout');
     },
 
-    removeItem: function(item) {
-      this.get('cart').remove(item);
-    },
-
-    cancel: function() {
-      this.get('cart').cancel();
+    cancel() {
       this.sendAction('afterCancel');
     }
   }

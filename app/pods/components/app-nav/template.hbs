@@ -1,0 +1,77 @@
+{{#paper-toolbar as |nav|}}
+  {{#nav.tools}}
+    {{#paper-button iconButton=true onClick=onLeftMenuOpen class='hide-gt-sm'}}
+      {{paper-icon 'menu'}}
+    {{/paper-button}}
+
+    <h2>
+      {{#if title}}
+        {{title}}
+      {{else}}
+        {{#link-to 'application'}}{{t 'appname'}}{{/link-to}}
+      {{/if}}
+    </h2>
+
+    <span class='hide-xs'>
+      {{yield}}
+    </span>
+
+    <div class='flex'></div>
+
+    <div class='hide-gt-xs'>
+      {{#ember-paper/ellipsis-menu as |content menu|}}
+        {{#content.menu-item onClick=(action (transition-to 'upcoming-events'))}}
+          Upcoming Events
+        {{/content.menu-item}}
+
+        {{#if session.isAuthenticated}}
+          {{#paper-button onClick=(action (transition-to 'dashboard'))}}
+            {{paper-icon 'home'}} Home
+          {{/paper-button}}
+
+          {{#content.menu-item onClick=(action (transition-to 'user.edit'))}}
+            {{paper-icon 'person'}} Edit Profile
+          {{/content.menu-item}}
+
+          {{#content.menu-item onClick=logoutAction}}
+            {{paper-icon 'exit to app'}} Logout
+          {{/content.menu-item}}
+        {{else}}
+          {{#content.menu-item onClick=(action (transition-to 'login'))}}
+            Login
+          {{/content.menu-item}}
+        {{/if}}
+      {{/ember-paper/ellipsis-menu}}
+    </div>
+
+    <div class='hide-xs layout-row'>
+
+      {{#if session.isAuthenticated}}
+        {{#paper-button iconButton=true onClick=(action (transition-to 'dashboard'))}}
+          {{paper-icon 'home'}}
+        {{/paper-button}}
+
+        {{#paper-button onClick=(action (transition-to 'user.edit'))}}
+          {{paper-icon 'person'}} Edit Profile
+        {{/paper-button}}
+
+        {{#paper-button onClick=logoutAction}}
+          {{paper-icon 'exit to app'}} Logout
+        {{/paper-button}}
+
+      {{else}}
+        {{#link-to 'upcoming-events'}}<small>Upcoming Events</small>{{/link-to}}
+
+        {{sign-up-modal}}
+
+        {{#paper-button
+          raised=true
+          onClick=(action (transition-to 'login'))}}
+          Login
+        {{/paper-button}}
+
+      {{/if}}
+    </div>
+
+  {{/nav.tools}}
+{{/paper-toolbar}}

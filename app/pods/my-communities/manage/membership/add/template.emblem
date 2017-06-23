@@ -1,1 +1,0 @@
-= add-member-to-organization model=model.membership membershipOptions=model.organization.membershipOptions

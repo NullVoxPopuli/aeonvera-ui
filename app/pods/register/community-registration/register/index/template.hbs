@@ -1,0 +1,16 @@
+{{register/community-registration-form
+  organization=model.organization
+  token=token
+  order=model.order
+  removeOrderLineItem=(action 'didRemoveOrderLineItem')
+  addLineItem=(action "didAddLineItem")
+  subtractLineItem=(action "didSubtractLineItem")
+  onCheckout=(action 'didCheckout')
+  cancelOrder=(action 'didCancelOrder')
+}}
+
+{{#if loggedIn}}
+  Logged in as: {{currentUserName}}
+{{else}}
+  Currently Registering as: {{firstName}} {{lastName}} ({{email}})
+{{/if}}

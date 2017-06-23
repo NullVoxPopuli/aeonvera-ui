@@ -1,0 +1,71 @@
+{{#ember-paper/simple-dialog
+  buttonText=(t 'buttons.signup')
+  primary=true
+  showModal=showSignupModal
+  buttonClasses=buttonClasses
+  title='Sign Up'}}
+
+  <div class='layout-row'>
+    <div class='flex'></div>
+    <div class='flex-gt-sm-66 layout-column layout-align-center'>
+      <div class='layout-row'>
+        {{paper-input
+          label='First Name'
+          value=model.firstName
+          isTouched=hasMadeAttempt
+          errors=(map-by 'message' model.errors.firstName)
+          onChange=(action (mut model.firstName))}}
+
+        {{paper-input
+          label='Last Name'
+          value=model.lastName
+          isTouched=hasMadeAttempt
+          onChange=(action (mut model.lastName))
+          errors=(map-by 'message' model.errors.lastName)}}
+      </div>
+
+      <div class='layout-row'>
+        {{paper-input
+          label='Email'
+          value=model.email
+          isTouched=hasMadeAttempt
+          onChange=(action (mut model.email))
+          errors=(map-by 'message' model.errors.email)}}
+      </div>
+
+      <div class='layout-row'>
+        {{paper-input
+          type='password'
+          label='Password'
+          value=model.password
+          isTouched=hasMadeAttempt
+          onChange=(action (mut model.password))
+          errors=(map-by 'message' model.errors.password)}}
+
+        {{paper-input
+          type='password'
+          label='Password Confirmation'
+          isTouched=hasMadeAttempt
+          value=model.passwordConfirmation
+          onChange=(action (mut model.passwordConfirmation))
+          errors=(map-by 'message' model.errors.passwordConfirmation)}}
+      </div>
+
+
+      <div class='layout-row layout-align-end'>
+        {{login-help-modal
+          passwordAction=(route-action 'passwordReset')
+          confirmationAction=(route-action 'newConfirmation')}}
+
+        {{ember-paper/async-button
+          raised=true
+          primary=true
+          label='Sign Up'
+          loadingMessage='Submitting...'
+          successMessage='Account Created!'
+          onClick=(action 'register') }}
+      </div>
+    </div>
+    <div class='flex'></div>
+  </div>
+{{/ember-paper/simple-dialog}}

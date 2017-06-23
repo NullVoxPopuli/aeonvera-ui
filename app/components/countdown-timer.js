@@ -1,12 +1,14 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { Component, isBlank } = Ember;
+
+export default Component.extend({
   targetDate: 5,
   output: '',
   timer: null,
   model: null, // optional
 
-  didInsertElement() {
+  didReceiveAttrs() {
     this._super(...arguments);
     this._startCountDown();
   },
@@ -27,6 +29,10 @@ export default Ember.Component.extend({
     const timer = countdown(targetDate, timer => {
       this.set('output', timer);
       this._updateForm();
+
+      if (isBlank(timer.toString())) {
+        this.sendAction('onCompletion');
+      }
     }, words);
 
     this.set('timer', timer);

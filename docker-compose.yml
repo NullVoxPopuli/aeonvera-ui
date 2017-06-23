@@ -3,13 +3,14 @@ services:
   # for development only
   # assets are compiled and stored on s3 for production
   server:
-    image: nullvoxpopuli/ember-cli
-
-    command: bash -c "ember server"
+    # image: nullvoxpopuli/ember-cli
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: bash -c "ember server --port 4300 --live-reload-port 59153"
     ports:
-      - 4200:4200
-      - 49152:49152
-      # - 49152:49153
+      - 4300:4300
+      - 59153:59153
 
     volumes:
       # Mount the app code inside the container's `/usr/src/app` directory:

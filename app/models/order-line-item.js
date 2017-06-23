@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { modelAction } from 'ember-custom-actions';
+
 import Discount from '../models/discount';
 import Validator from '../mixins/model-validator';
 
@@ -28,6 +30,10 @@ export default DS.Model.extend(Validator, {
     the order was created on a non-logged-in account.
   */
   paymentToken: DS.attr('string'),
+  /*
+    Psuedo Attribute for discount code lookup.
+  */
+  discountCode: DS.attr('string'),
 
   pickedUp: Ember.computed('pickedUpAt', {
     get() {

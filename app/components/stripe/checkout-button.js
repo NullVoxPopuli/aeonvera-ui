@@ -22,10 +22,13 @@ const { isPresent, isBlank, computed } = Ember;
 export default Ember.Component.extend({
   propTypes: {
     model: PropTypes.EmberObject.isRequired,
-    action: PropTypes.isRequired,
+    action: PropTypes.any.isRequired,
     label: PropTypes.string,
     email: PropTypes.string,
-    paymentAmountOverride: PropTypes.number
+    paymentAmountOverride: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.null
+    ])
   },
 
   label: 'Pay with card',

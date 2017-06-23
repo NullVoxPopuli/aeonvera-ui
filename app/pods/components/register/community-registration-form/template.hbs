@@ -1,0 +1,40 @@
+{{page-header text=title}}
+
+{{#order/order-cart
+  host=organization
+  token=token
+  order=order
+  onRemoveLineItem=(action removeOrderLineItem)
+  onCheckout=(action onCheckout)
+  afterCancel=(action cancelOrder)}}
+
+  {{#if showMembershipOptions}}
+    {{register/community-registration-form/membership-options
+      membershipOptions=organization.membershipOptions
+      add=(action addLineItem)}}
+  {{/if}}
+
+  <div class='row'>
+    <div class='small-4 columns'><h4>Lessons</h4></div>
+    <div class='small-8 columns'>
+      {{#if isCurrentMember}}
+        <h6 class='margin-top-12 right'>Membership Expires on {{date-with-format membershipExpiresAt 'lll'}}</h6>
+      {{/if}}
+    </div>
+  </div>
+
+  {{register/community-registration-form/lesson-list
+    lessons=organization.lessons
+    addOne=(action addLineItem)
+    subtractOne=(action subtractLineItem)
+  }}
+
+  {{#unless loggedIn}}
+    <h4>Membership</h4>
+    <span>
+      Please login to purchase and take advantage of membership benefits
+    </span>
+  {{/unless}}
+
+  <br /><br /><br /><br />
+{{/order/order-cart}}

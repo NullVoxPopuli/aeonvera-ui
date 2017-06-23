@@ -1,0 +1,12 @@
+{{#ember-paper/simple-dialog
+  buttonText=(t 'buttons.login')
+  primary=true
+  buttonClasses=buttonClasses
+  showModal=showLoginModal
+  title='Login'}}
+
+  <span data-test-login-modal-form>
+    {{login-form afterLogin=(action 'afterLogin')}}
+  </span>
+
+{{/ember-paper/simple-dialog}}

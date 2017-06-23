@@ -19,6 +19,21 @@ module.exports = function(defaults) {
   console.log(fingerprintPrepend);
 
   var app = new EmberApp(defaults, {
+    babel: {
+      optional: ['es7.decorators']
+      //plugins: [
+      //  'transform-decorators-legacy',
+      //  'transform-object-rest-spread'
+      //]
+
+    },
+    // disable JSHint, in favor of eslint
+    'hinting': false,
+    'ember-bootstrap': {
+      bootstrapVersion: 4,
+      importBootstrapFont: false,
+      'importBootstrapCSS': false
+    },
     'ember-cli-foundation-sass': {
       'modernizr': true,
       'fastclick': true,

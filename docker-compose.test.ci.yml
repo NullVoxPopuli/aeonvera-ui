@@ -1,6 +1,10 @@
-test-server:
-  build: .
-  dockerfile: ./Dockerfile
-  command: npm run ci
-  volumes:
-    - .:/web
+version: "2"
+services:
+  test-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash
+    tty: false
+    volumes:
+      - .:/web

@@ -4,6 +4,7 @@ table
   thead: tr
     th
     th Name
+    th Email
     th Invitation Accepted At
   tbody
     each collaborations as |collaboration|
@@ -12,6 +13,7 @@ table
           = form/confirm-button action='removeCollaborator' target=collaboration preConfirmClasses='alert-color'
             = fa-icon 'minus-circle'
         td = collaboration.userName
+        td = collaboration.email
         td = date-with-format collaboration.createdAt 'lll'
 
 if (is-present errors)

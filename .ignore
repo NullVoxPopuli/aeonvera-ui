@@ -1,0 +1,7 @@
+# ignore file for atom's goto-definition
+# default command is ctrl+alt+enter
+/tmp
+/dist
+/node_modules
+/bower_components
+/git

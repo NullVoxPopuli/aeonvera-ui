@@ -1,30 +1,28 @@
 import Ember from 'ember';
+import computed, { mapBy } from 'ember-computed-decorators';
 
-const { computed, isPresent } = Ember;
+const { isPresent } = Ember;
 
 export default Ember.Component.extend({
-  customFieldResponseValues: Ember.computed.mapBy('attendance.customFieldResponses', 'value'),
+  @mapBy('attendance.customFieldResponses', 'value')
+  customFieldResponseValues,
 
-  hasCustomFieldResponses: computed('customFieldResponseValues', function() {
-    const values = this.get('customFieldResponseValues');
+  @computed('customFieldResponseValues')
+  hasCustomFieldResponses(values) {
+    return values.any(item => Ember.isPresent(item));
+  },
 
-    return values.any(item => {
-      return Ember.isPresent(item);
-    });
-  }),
+  @computed('attendance.fullName', 'attendance.attendeeName', 'order.buyerName')
+  name(fullName, attendeeName, buyerName) {
+    return fullName || attendeeName || buyerName;
+  },
 
-  name: computed('attendance.attendeeName', 'order.buyerName', function() {
-    return this.get('attendance.attendeeName') || this.get('order.userName');
-  }),
-
-  youText: computed('name', 'attendance.danceOrientation', function() {
-    const name = this.get('name');
-    const orientation = this.get('attendance.danceOrientation');
-
+  @computed('name', 'attendance.danceOrientation')
+  youText(name, orientation) {
     if (isPresent(orientation)) {
       return `${name} (${orientation})`;
     }
 
     return name;
-  })
+  }
 });

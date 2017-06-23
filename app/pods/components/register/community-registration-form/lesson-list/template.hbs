@@ -1,0 +1,36 @@
+<table>
+  <thead>
+    <tr>
+      <th class='width-of-80px'>Price</th>
+      <th class='medium-up-width-of-160px text-center'>Number of Dancers</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#unless (is-present lessons)}}
+      <tr><td colspan='3'>
+        There are currently no lessons available for registration
+      </td></tr>
+    {{/unless}}
+
+    {{#each lessons as |lesson|}}
+      <tr>
+        <td>{{to-usd lesson.price}}</td>
+        <td>
+          <div class='medium-block-grid-3'>
+            <li class='no-margins no-padding'>
+              <button class='tiny no-margins' {{action (action addOne lesson)}}>{{fa-icon 'plus'}}</button>
+            </li>
+            <li class='no-margins no-padding'>
+              <button class='tiny no-margins' {{action (action subtractOne lesson)}}>{{fa-icon 'minus'}}</button>
+            </li>
+          </div>
+        </td>
+        <td>
+          <h5>{{lesson.name}}</h5>
+          <span class='truncate-text-for-small-only-to-2-lines'>{{{lesson.description}}}</span>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

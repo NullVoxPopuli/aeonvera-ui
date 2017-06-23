@@ -1,0 +1,18 @@
+{{#paper-card as |card|}}
+  {{#card.title}}Ticket{{/card.title}}
+
+  {{#card.content}}
+    {{#paper-radio-group
+      groupValue=(readonly selectedId)
+      onChange=(action 'didChoosePackage') as |g|}}
+
+      {{#each packages as |package|}}
+        {{#g.radio value=package.id}}
+          <span class='price'>{{to-usd package.currentPrice}}</span>
+          {{package.name}}
+        {{/g.radio}}
+      {{/each}}
+
+    {{/paper-radio-group}}
+  {{/card.content}}
+{{/paper-card}}

@@ -1,0 +1,33 @@
+{{#paper-button
+  raised=true
+  primary=primary
+  warn=warn
+  class=buttonClasses
+  onClick=(action (mut showModal true))}}
+  {{buttonText}}
+{{/paper-button}}
+
+{{#if showModal}}
+  {{#paper-dialog
+    class='flex-gt-sm-50'
+    onClose=(action (mut showModal false))
+    clickOutsideToClose=true}}
+
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>{{title}}</h2>
+        <span class='flex'></span>
+
+        {{#paper-button
+          iconButton=true
+          onClick=(action 'closeModal')}}
+          {{paper-icon icon='close'}}
+        {{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+      {{yield}}
+    {{/paper-dialog-content}}
+  {{/paper-dialog}}
+{{/if}}

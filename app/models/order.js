@@ -1,13 +1,22 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { collectionAction } from 'ember-api-actions';
+import computed, { alias, not } from 'ember-computed-decorators';
+
 import Validator from '../mixins/model-validator';
-import LineItemManagement from 'aeonvera/mixins/models/order/line-item-management';
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
-const { isPresent, isBlank, computed, inject } = Ember;
+const { isPresent, isBlank, inject } = Ember;
 const { attr, belongsTo, hasMany, Model } = DS;
 
-export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
+const CENTS_IN_A_DOLLAR = 100;
+
+export default Model.extend(Validator, PriceCalculation, {
+  findByTokenOrCreate: collectionAction({
+    path: 'find_by_token_or_create',
+    type: 'post',
+    urlType: 'findRecord'
+  }),
 
   PAYPAL: 'PayPal',
   CHECK: 'Check',
@@ -27,12 +36,15 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   paymentToken: attr('string'),
   checkNumber: attr('string'),
   paid: attr('boolean'),
+  isFeeAbsorbed: attr('boolean'),
 
   currentPaidAmount: attr('number'),
   currentNetAmountReceived: attr('number'),
   currentTotalFeeAmount: attr('number'),
 
   totalInCents: attr('number'),
+  total: attr('number'),
+  subTotal: attr('number'),
 
   // TODO: think about renaming these to what
   //       they are on the server: buyer_
@@ -57,36 +69,32 @@ export default Model.extend(Validator, LineItemManagement, PriceCalculation, {
   checkoutToken: attr('string'),
   checkoutEmail: attr('string'),
 
-  hasRefunds: computed('stripeRefunds', {
-    get(key) {
-      return Ember.isPresent(this.get('stripeRefunds'));
-    }
-  }),
+  @computed('stripeRefunds')
+  hasRefunds(stripeRefunds) {
+    return Ember.isPresent(stripeRefunds);
+  },
 
-  unpaid: computed.not('paid'),
+  @not('paid') unpaid,
+  @computed('paid')
+  paidText(paid) {
+    return paid ? 'Yes' : 'No';
+  },
 
-  paidText: function() {
-    return this.get('paid') ? 'Yes' : 'No';
-  }.property('paid'),
+  @alias('host') event,
 
-  /* aliases */
-  event: function() {
-    return this.get('host');
-  }.property('host'),
-
-  totalInDollars: function() {
-    return this.get('totalInCents') / 100;
-  }.property('totalInCents'),
+  @computed('totalInCents')
+  totalInDollars(totalInCents) {
+    return totalInCents / CENTS_IN_A_DOLLAR;
+  },
 
   hasLineItems: Ember.computed('orderLineItems.@each', function() {
     return this.get('orderLineItems.length') > 0;
   }),
 
-  paidClass: function() {
-    const paid = this.get('paid');
-
+  @computed('paid')
+  paidClass(paid) {
     return paid ? 'success-color' : 'alert-color';
-  }.property('paid'),
+  },
 
   /*
     stripe data doesn't need to be kept on the model, but is important for

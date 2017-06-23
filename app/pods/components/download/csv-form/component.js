@@ -164,9 +164,7 @@ export default Ember.Component.extend({
         beforeSend(xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
         }
-      }).then(data => {
-        return this._triggerDownload(data);
-      });
+      }).then(data => this._triggerDownload(data));
     }
   }
 });

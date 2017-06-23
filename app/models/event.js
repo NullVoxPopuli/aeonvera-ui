@@ -35,14 +35,14 @@ export default Host.extend(RegistrationOpens, {
 
   askIfLeadingOrFollowing: attr('boolean'),
 
-  openingTier: belongsTo('openingTier'),
+  openingTier: belongsTo('opening-tier'),
   currentTier: belongsTo('pricing-tier'),
   packages: hasMany('package'),
   levels: hasMany('level'),
-  competitions: hasMany('competitions'),
-  lineItems: hasMany('lineItems'),
+  competitions: hasMany('competitions', { inverse: 'event' }),
+  lineItems: hasMany('line-item'),
   shirts: hasMany('shirts'),
-  customFields: hasMany('custom-field'),
+  customFields: hasMany('custom-field', { inverse: 'host' }),
   sponsorships: hasMany('sponsorship'),
   eventAttendances: hasMany('event-attendance'),
   attendances: hasMany('attendance'),
@@ -77,9 +77,7 @@ export default Host.extend(RegistrationOpens, {
   hasActiveLineItems: Ember.computed('lineItems.@each', {
     get() {
       const lineItems = this.get('lineItems');
-      const notExpired = lineItems.filter(item => {
-        return hasDateExpired(item.get('expiresAt'));
-      });
+      const notExpired = lineItems.filter(item => hasDateExpired(item.get('expiresAt')));
 
       return Ember.isPresent(notExpired);
     }

@@ -25,7 +25,7 @@ table {
         text-align: center;
         background: #ffaaaa;
 
-        &[data-paid='true'] {
+        &[data-paid] {
           background: #aaddaa;
         }
       }

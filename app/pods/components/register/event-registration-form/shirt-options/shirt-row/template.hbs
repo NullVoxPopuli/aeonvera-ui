@@ -1,0 +1,55 @@
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}{{shirt.name}}{{/text.headline}}
+    {{/title.text}}
+    {{#unless shirt.pictureIsMissing}}
+      {{title.media size='lg' src=shirt.pictureUrlMedium}}
+    {{/unless}}
+  {{/card.title}}
+
+  {{#card.content}}
+
+    {{#each (await itemsForShirtOption) as |shirtOli|}}
+      {{#unless shirtOli.isDeleted}}
+
+        {{register/event-registration-form/shirt-options/shirt-row/size-row
+          orderLineItem=shirtOli
+          updateShirt=updateShirt
+          removeShirt=removeShirt
+        }}
+      {{/unless}}
+
+    {{/each}}
+
+    <div class='layout-row layout-align-end-end margin-top-10'>
+      <div>Sub Total: {{to-usd subTotal}}</div>
+    </div>
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#if (is-present (await availableSizes))}}
+      {{#paper-select
+        label='Size'
+        selected=selectedSizeData
+        class='layout-align-center-center no-errors'
+        onChange=(action 'updateSize')
+        options=availableSizes as |sizeData|}}
+
+        <div class='layout-row layout-align-space-between'>
+          <div class='size min-width-40 margin-right-10'>{{sizeData.size}}</div>
+          <div class='flex'></div>
+          <div class='price'>{{to-usd sizeData.price}}</div>
+        </div>
+
+      {{/paper-select}}
+
+      {{#paper-button
+        raised=true
+        disabled=(not (is-present selectedSizeData))
+        onClick='addNewShirt'}}
+        Add
+      {{/paper-button}}
+    {{/if}}
+  {{/card.actions}}
+{{/paper-card}}

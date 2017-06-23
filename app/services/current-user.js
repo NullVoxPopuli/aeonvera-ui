@@ -1,47 +1,58 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import RSVP from 'rsvp';
+import computed, { alias } from 'ember-computed-decorators';
 
-const {
-  service
-} = Ember.inject;
+import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
+import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
+
+const { isEmpty, inject: { service } } = Ember;
 
 export default Ember.Service.extend({
   session: service('session'),
   store: service(),
 
-  id: Ember.computed('session.data.authenticated.id', function() {
-    return this.get('session.data.authenticated.id');
-  }),
+  @alias('session.data.authenticated.id') id,
+  @alias('user.name') name,
 
-  name: Ember.computed('user', function() {
-    return this.get('user.name');
-  }),
+  @computed('user')
+  isMemberOf(user) {
+    return organization => RSVP.all([user, organization]).then(array => {
+      const [user, organization] = array;
 
-  user: Ember.computed('session.data.authenticated.token', function() {
-    const token = this.get('session.data.authenticated.token');
+      return userIsMemberOf({}, { user, organization });
+    });
+  },
 
-    if (Ember.isEmpty(token)) {
+  @computed('user')
+  latestRenewalFor(user) {
+    return organization => RSVP.all([user, organization]).then(array => {
+      const [user, organization] = array;
+
+      return userLatestRenewalFor({}, { user, organization });
+    });
+  },
+
+  @computed('session.data.authenticated.{token}')
+  user(token) {
+    if (isEmpty(token)) {
       return null;
     }
 
-    const userPromise = DS.PromiseObject.create({
-      /*
-        the id of 0 here doesn't actually matter,
-        the server always returns the current user.
-        This is just to route to the show action on the controller.
-      */
-      promise: this.get('store').findRecord('user', 'current-user', {
-        adapterOptions: {
-          query: {
-            include: 'membership_renewals.membership_option'
-          }
-        }
-      })
+    const store = this.get('store');
+
+    /*
+      the id of current-user here doesn't actually matter,
+      the server always returns the current user.
+      This is just to route to the show action on the controller.
+    */
+    const userPromise = store.findRecord('user', 'current-user', {
+      include: 'membership_renewals.membership_option'
     });
 
     /* compatibility with old implementation of currentUser */
     this.get('session').set('currentUser', userPromise);
 
     return userPromise;
-  })
+  }
 });

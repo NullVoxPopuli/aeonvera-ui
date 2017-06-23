@@ -1,0 +1,7 @@
+{{!-- apparently there is some weird unload state
+      that happens, and then the sidebar freaks out --}}
+{{#if model}}
+  {{to-elsewhere named='left-side-bar'
+    send=(component 'organizations/side-nav' community=model)}}
+{{/if}}
+{{outlet}}

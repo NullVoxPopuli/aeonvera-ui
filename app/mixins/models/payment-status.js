@@ -42,7 +42,7 @@ export default Ember.Mixin.create({
       const orders = this.get('orders');
 
       if (orders.get('length') === 0) {
-        return 'Potentially Cancelled';
+        return 'in-progress';
       }
     }
 

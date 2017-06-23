@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import computed, { readOnly } from 'ember-computed-decorators';
 
 import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
@@ -16,9 +17,11 @@ export default DS.Model.extend({
 
   membershipRenewals: DS.hasMany('membership-renewal'),
 
-  name: Ember.computed('firstName', 'lastName', function() {
-    return this.get('firstName') + ' ' + this.get('lastName');
-  }).readOnly(),
+  @readOnly
+  @computed('firstName', 'lastName')
+  name(first, last) {
+    return `${first} ${last}`;
+  },
 
   isMemberOf(organization) {
     return userIsMemberOf({}, { user: this, organization });
