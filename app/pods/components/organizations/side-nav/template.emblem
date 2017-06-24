@@ -10,38 +10,41 @@
 = paper-list
   = paper-divider
   = paper-item
-    link-to 'my-communities.manage.registrations'
+    link-to 'my-communities.manage.registrations' community.id
       span Registrations
   = paper-item
     link-to 'register' community.domain
       span Registration Form
   = paper-item
-    link-to 'my-communities.manage.embed-registration'
+    link-to 'my-communities.manage.embed-registration' community.id
       span Embed Code
 
   = paper-divider
   = paper-item
-    link-to 'my-communities.manage.revenue'
+    link-to 'my-communities.manage.revenue' community.id
       span Revenue
   = paper-item
-    link-to 'my-communities.manage.membership'
+    link-to 'my-communities.manage.membership' community.id
       span Membership
 
   = paper-divider
   = paper-item
-    link-to 'my-communities.manage.lessons'
+    link-to 'my-communities.manage.lessons' community.id
       span Lessons
   = paper-item
-    link-to 'my-communities.manage.dances'
+    link-to 'my-communities.manage.dances' community.id
       span Dances
 
   = paper-divider
   = paper-item
-    link-to 'my-communities.manage.payment-processors'
+    link-to 'my-communities.manage.payment-processors' community.id
       span Payment Processing
 
   = paper-item
-    link-to 'my-communities.manage.collaboration'
+    link-to 'my-communities.manage.collaboration' community.id
       span Collaborators
 
-
+  = paper-divider
+  = paper-item
+    link-to 'my-communities.manage.edit' community.id
+      span Edit {{community.name}}

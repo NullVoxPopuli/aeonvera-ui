@@ -12,33 +12,33 @@
 = paper-list
   = paper-divider
   = paper-item
-    = link-to 'events.show.unpaid-registrations'
+    = link-to 'events.show.unpaid-registrations' event.id
       span Unpaid Registrations
   = paper-item
-    = link-to 'events.show.cancelled-registrations'
+    = link-to 'events.show.cancelled-registrations' event.id
       span Cancelled Registrations
   = paper-item
-    = link-to 'events.show.orders'
+    = link-to 'events.show.orders' event.id
       span Orders
   = paper-item
     = link-to 'register' event.domain
       span Registration Form
   = paper-item
-    = link-to 'events.show.embed-registration'
+    = link-to 'events.show.embed-registration' event.id
       span Embed Code
 
   = paper-divider
   = paper-item
-    = link-to 'events.show.volunteers'
+    = link-to 'events.show.volunteers' event.id
       span Volunteers
   = paper-item
-    = link-to 'events.show.housing'
+    = link-to 'events.show.housing' event.id
       span Housing
 
   = paper-divider
   = paper-item
-    = link-to 'events.show.revenue'
+    = link-to 'events.show.revenue' event.id
       span Revenue
   = paper-item
-    = link-to 'events.show.charts'
+    = link-to 'events.show.charts' event.id
       span Charts

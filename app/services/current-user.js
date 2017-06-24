@@ -10,6 +10,7 @@ const { isEmpty, inject: { service } } = Ember;
 
 export default Ember.Service.extend({
   session: service('session'),
+  rollbar: service(),
   store: service(),
 
   @alias('session.data.authenticated.id') id,
@@ -49,6 +50,8 @@ export default Ember.Service.extend({
     const userPromise = store.findRecord('user', 'current-user', {
       include: 'membership_renewals.membership_option'
     });
+
+    userPromise.then(u => this.set('rollbar.currentUser', { email: u.email }));
 
     /* compatibility with old implementation of currentUser */
     this.get('session').set('currentUser', userPromise);

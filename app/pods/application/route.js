@@ -2,13 +2,18 @@ import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 import SetSidebar from 'aeonvera/mixins/routes/set-sidebar';
 
+const { inject: { service } } = Ember;
+
 export default Ember.Route.extend(ResetScroll, SetSidebar, {
-  session: Ember.inject.service('session'),
-  currentUserService: Ember.inject.service('current-user'),
-  pathStore: Ember.inject.service('path-store'),
+  session: service('session'),
+  currentUserService: service('current-user'),
+  pathStore: service('path-store'),
+  i18n: service('i18n'),
 
   // intl: Ember.inject.service(),
   beforeModel: function(transition) {
+    this.set('navTitle', this.get('i18n').t('appname'));
+
     // post-email-confirmation
     this.get('pathStore').redirectIfPathIsPresent();
 

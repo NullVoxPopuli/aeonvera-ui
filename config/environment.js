@@ -2,7 +2,8 @@
 
 module.exports = function(environment) {
   var ENV = {
-    APP: {},
+    APP: {
+    },
     modulePrefix: 'aeonvera',
     podModulePrefix: 'aeonvera/pods',
     i18n: {
@@ -58,9 +59,10 @@ module.exports = function(environment) {
       ]
     },
 
-    rollbar: {
-      captureUncaught: environment !== 'development',
-      accessToken: 'ca10480ec923459abdbe39a95c1181d9'
+    emberRollbarClient: {
+      accessToken:  'ca10480ec923459abdbe39a95c1181d9',
+      enabled: environment !== 'test',
+      verbose: true
     },
 
     torii: {

@@ -7,13 +7,6 @@ else
   # make extra sure that the images are built
   docker-compose -f docker-compose.yml build
 
-  # updating dependencies
-  docker-compose run --rm server npm install && bower install
-
   # start up everything
   docker-compose -f docker-compose.yml up
-
-  # allow for interactive binding.pry 'ing
-  # docker-compose -f docker-compose.dev.yml stop web
-  # docker-compose -f docker-compose.dev.yml run --rm --service-ports web
 fi

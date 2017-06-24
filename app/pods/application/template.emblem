@@ -14,8 +14,9 @@
     = from-elsewhere name='non-mobile-nav-links'
 
   = paper-sidenav-container
-    = paper-sidenav open=leftBarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))
-      = from-elsewhere name='left-side-bar'
+    if session.isAuthenticated
+      = paper-sidenav open=leftBarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))
+        = from-elsewhere name='left-side-bar'
 
     .inner-wrap
       section.main-section.padding-20
