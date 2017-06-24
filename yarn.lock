@@ -1938,7 +1938,7 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
-"console-polyfill@github:rollbar/console-polyfill#eab6ff9d2b7597fc2f259baa18100556bdb94dbe":
+console-polyfill@rollbar/console-polyfill#eab6ff9d2b7597fc2f259baa18100556bdb94dbe:
   version "0.2.3"
   resolved "https://codeload.github.com/rollbar/console-polyfill/tar.gz/eab6ff9d2b7597fc2f259baa18100556bdb94dbe"
 
@@ -3343,12 +3343,6 @@ ember-rollbar-client@^0.3.4:
     broccoli-funnel "1.2.0"
     ember-cli-babel "^6.4.1"
     rollbar "^2.0.4"
-
-ember-rollbar@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/ember-rollbar/-/ember-rollbar-0.0.11.tgz#7d78a401dda95fff8445cde696010a8220e0ddcb"
-  dependencies:
-    ember-cli-babel "^5.1.6"
 
 ember-route-action-helper@^2.0.3:
   version "2.0.3"

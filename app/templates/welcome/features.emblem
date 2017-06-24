@@ -6,10 +6,10 @@
     = t 'createyourevent'
 
 
-= render "welcome/features/registration"
-= render "welcome/features/reporting"
-= render "welcome/features/discounts-and-tiers"
-= render "welcome/features/at-the-door"
-= render "welcome/features/housing"
-= render "welcome/features/inventory"
-= render "welcome/get-started"
+= welcome-home/features/registration
+= welcome-home/features/reporting
+= welcome-home/features/discounts-and-tiers
+= welcome-home/features/at-the-door
+= welcome-home/features/housing
+= welcome-home/features/inventory
+= welcome-home/get-started

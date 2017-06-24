@@ -6,10 +6,10 @@
 
 
 
-= render "welcome/pricing/free-or-not"
+= welcome-home/pricing/free-or-not
 = pricing-preview
-= render "welcome/pricing/pricing-features"
+= welcome-home/pricing/pricing-features
 
-= render "welcome/get-started"
+= welcome-home/get-started
 br
 br

@@ -8,3 +8,5 @@ services:
     tty: false
     volumes:
       - .:/web
+    env_file:
+      - .env

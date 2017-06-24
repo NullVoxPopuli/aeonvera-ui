@@ -15,7 +15,7 @@
 
   br
   br
-  
+
   h3 Back-End / Server
 
   h5: a href="https://www.ruby-lang.org/en/" Ruby
@@ -35,5 +35,5 @@
 
   h3 = t 'appname'
   h4 (this project)
-  h5: a href="https://github.com/NullVoxPopuli/aeonvera-ui" Front-End
-  h5: a href="https://github.com/NullVoxPopuli/aeonvera" Back-End
+  h5: a href="https://gitlab.com/precognition-llc/aeonvera-ui" Front-End
+  h5: a href="https://gitlab.com/precognition-llc/aeonvera" Back-End
