@@ -4,17 +4,14 @@ import startApp from 'aeonvera/tests/helpers/start-app';
 import 'aeonvera/tests/helpers/login';
 import 'aeonvera/tests/helpers/logout';
 
-let application;
+import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
-module('Acceptance | requires-login | dashboard', {
+moduleForAcceptance('Acceptance | requires-login | dashboard', {
   beforeEach() {
-    application = startApp();
-  },
-
-  afterEach() {
-    Ember.run(application, 'destroy');
-    server.shutdown();
-  },
+    server.get('/api/upcoming_events', (schema, request) => {
+      return { data: [] };
+    });
+  }
 });
 
 test('I am redirected upon attempting to visit without being logged in', function(assert) {

@@ -1,23 +1,25 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
+import computed from 'ember-computed-decorators';
 
 export default Ember.Component.extend({
+  ajax: Ember.inject.service(),
   email: null,
   errors: [],
 
-  emailClass: function() {
-    const errors = this.get('errors');
-
+  @computed('errors')
+  emailClass(errors) {
     if (errors.get('email') && errors.get('email').length > 0) {
       return 'error';
     }
 
     return errors.email;
-  }.property('errors'),
+  },
 
   actions: {
-    reset: function() {
-      const _this = this;
+    reset() {
+      const ajax = this.get('ajax');
+
       const url = ENV.host + '/api/users/password';
       const data = {
         user: {
@@ -25,21 +27,13 @@ export default Ember.Component.extend({
         }
       };
 
-      Ember.$.ajax({
-        url: url,
-        type: 'POST',
-        data: data,
-        success: function(data) {
-          _this.sendAction('action');
-        },
+      return ajax.post(url, { data })
+        .then(() => this.sendACtion('action'))
+        .catch(error => {
+          const errors = error.payload.errors;
 
-        error: function(jqxhr, status, text) {
-          const json = Ember.$.parseJSON(jqxhr.responseText);
-          const errors = json.errors;
-
-          _this.set('errors', errors);
-        }
-      });
+          this.set('errors', errors);
+        });
     }
   }
 });

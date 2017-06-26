@@ -1,16 +1,15 @@
 form submit='reset' name='password-reset-form'
-  .row.collapse
-    = error-field-wrapper errors=errors field='reset_password_token' includeFieldName=true fieldName='Password Token'
-      = input type='hidden' value=resetToken
-    = error-field-wrapper errors=errors field='password'
-      label
-        span New Password
-        = input type='password' value=password
+  = error-header errors=errors
 
-    = error-field-wrapper errors=errors field='password_confirmation'
-      label
-        span Confirm New Password
-        = input type='password' value=passwordConfirmation
+  .row.collapse
+    = input type='hidden' value=resetToken
+    label
+      span New Password
+      = input type='password' value=password
+
+    label
+      span Confirm New Password
+      = input type='password' value=passwordConfirmation
 
     br
     button.right type='submit' Change Password
