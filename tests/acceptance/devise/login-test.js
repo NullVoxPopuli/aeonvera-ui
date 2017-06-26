@@ -1,33 +1,58 @@
 import Ember from 'ember';
-import { test } from 'qunit';
+import { test } from 'ember-qunit';
 import testSelector from 'ember-test-selectors';
+import { withChai } from 'ember-cli-chai/qunit';
 
 import 'aeonvera/tests/helpers/login';
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | login');
+moduleForAcceptance('Acceptance | login', {
+  beforeEach() {
+    server.create('user', {
+      email: 'test@test.test',
+      password: 'some-password'
+    });
 
-test('visiting /', function(assert) {
+    server.post('/api/users/sign_in', (schema, request) => {
+      return schema.user.where({ email: request.params.email })[0];
+    });
+
+    server.get('/api/upcoming_events', (schema, request) => {
+      return { data: [] };
+    });
+
+    server.logging = true;
+  }
+});
+
+import {
+  currentSession
+} from 'aeonvera/tests/helpers/ember-simple-auth';
+
+test('visiting /', withChai(function(expect) {
   visit('/');
-  andThen(() => assert.equal(currentURL(), '/welcome'));
-
-  click('.auth-link .login');
   andThen(() => {
-    const selector = 'md-dialog h2';
-    const element = find(selector);
-    const text = element.first().text();
+    expect(currentURL())
+      .to.equal('/welcome');
 
-    assert.equal(text, 'Login');
+    expect(currentSession(this.application).get('isAuthenticated'))
+      .to.equal(false);
   });
-});
 
-test('can login', function(assert) {
+}));
+
+test('can login', withChai(function(expect) {
+
   login();
-});
+  expect(true).to.equal(true);
+}));
 
-test('after logging in, the login button should be hidden', function(assert) {
+test('after logging in, the login button should be hidden', withChai(function(expect) {
   login();
-  let button = find('.auth-link .login');
+  andThen(() => {
+    let buttonText = find('button').text();
 
-  assert.ok(Ember.isEmpty(button));
-});
+    expect(buttonText)
+      .to.not.include('Login')
+  });
+}));

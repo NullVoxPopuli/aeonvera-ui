@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
 export default Ember.Component.extend({
+  ajax: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
 
   password: null,
@@ -11,7 +12,8 @@ export default Ember.Component.extend({
   errors: [],
 
   actions: {
-    reset: function() {
+    reset() {
+      const ajax = this.get('ajax');
       const url = ENV.host + '/api/users/password/';
       const data = {
         user: {
@@ -21,18 +23,13 @@ export default Ember.Component.extend({
         }
       };
 
-      Ember.$.ajax({
-        url: url,
-        type: 'PUT',
-        data: data
-      }).then(data => {
-        this.sendAction('action');
-      }, error => {
-        const json = JSON.parse(error.responseText);
-        const errors = json.errors;
+      return ajax.put(url, { data })
+        .then(() => this.sendAction('action'))
+        .catch(error => {
+          const errors = error.payload.errors;
 
-        this.set('errors', errors);
-      });
+          this.set('errors', errors)
+        });
     }
   }
 

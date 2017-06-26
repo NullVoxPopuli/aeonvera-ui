@@ -1,29 +1,28 @@
 import Ember from 'ember';
-import 'aeonvera/tests/helpers/service-named';
+import { expect } from 'chai';
+
+import {
+  currentSession
+} from 'aeonvera/tests/helpers/ember-simple-auth';
 
 export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
-  server.create('user');
 
-  let session = app.__container__.lookup('service:session');
-  let auth = session.get('isAuthenticated');
-  equal(auth, false);
+  let auth = currentSession(app).get('isAuthenticated');
+  expect(auth)
+    .to.equal(false);
 
-  visit('/');
-  click('.auth-link .login');
+  visit('/login');
 
-  let loginModalSelector = 'data-test-login-modal-form';
 
-  fillIn(loginModalSelector + ' input[type="text"]', 'test@test.test');
-  fillIn(loginModalSelector + ' input[type="password"]', 'some-password');
+  fillIn('input[type="text"]', 'test@test.test');
+  fillIn('input[type="password"]', 'some-password');
 
-  click(loginModalSelector + ' button[type="submit"]');
+  click('button[type="submit"]');
 
   andThen(() => {
-    let service = serviceNamed('session');
-    let auth = service.get('isAuthenticated');
+    let auth = currentSession(app).get('isAuthenticated');
 
-    // console.log(auth);
-    // console.log(service.get('data'));
-    equal(auth, true);
+    expect(auth)
+      .to.equal(true);
   });
 });

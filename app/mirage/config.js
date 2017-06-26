@@ -50,7 +50,6 @@ export default function() {
     this.get('/contacts/:id', 'user');
     this.get('/contacts/:id', ['contact', 'addresses']);
   */
-  this.get('api/upcoming_events', 'upcoming-event');
 
   /*
     POST shorthands
@@ -62,62 +61,48 @@ export default function() {
     return {};
   });
 
-  this.post('/api/users/sign_in', function(message, request) {
-    let params = request.params;
-    let bodyParams = request.requestBody;
-    let email = '';
+//  this.post('/api/users/sign_in', (schema, request) => {
+//    let params = request.params;
+//    let bodyParams = request.requestBody;
+//    let email = '';
+//
+//    let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
+//    let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
+//    if (paramsAreBlank && bodyParamsAreBlank) {
+//      return new Response(401, {});
+//    }
+//
+//    let queryParams = request.requestBody;
+//    params = JSON.parse(queryParams);
+//    email = params.email;
+//
+//    return schema.user.where({ email: email })[0];
+//  });
 
-    let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
-    let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
-    if (paramsAreBlank && bodyParamsAreBlank) {
-      return new Response(401, {});
-    }
-
-    let queryParams = request.requestBody;
-    params = JSON.parse(queryParams);
-    email = params.email;
-    let user = message.db.users.where({ email: email })[0];
-    return {
-      email: user.email,
-      id: user.id,
-      token: user.token
-    };
-  });
-
-  this.post('/api/users/password', function(db, request) {
-    let bodyParams = request.requestBody;
-    let params = parseQueryParams(bodyParams);
-    let token = params['user%5Breset_password_token%5D'];
-
-    if (Ember.isPresent(token)) {
-      return new Mirage.Response(201, {});
-    } else {
-      return new Mirage.Response(
-        422,
-        { errors: { reset_password_token: 'missing reset token' } },
-        { errors: { reset_password_token: 'missing reset token' } }
-      );
-    }
-  });
 
   this.post('/api/users', function(db, request) {
     return {};
   });
 
-  this.get('/api/users/:current_user', (schema, request) => {
-    let id = request.params.current_user;
-    return schema.users.find(id);
+  // assume success
+  this.post('/api/users/sign_in', (schema, request) => {
+    return schema.user.where({ email: request.params.email })[0];
   });
 
-  this.get('api/hosts/:host', (schema, request) => {
+  this.get('/api/users/:current_user', (schema, request) => {
+    let id = request.params.current_user;
+    return this.serialize(schema.user.find(id));
+  });
+
+  this.get('api/hosts/:host', function(schema, request) {
     let hostId = request.params.host;
 
     // stupid hack for testing
     if (hostId.includes('org')) {
-      return schema.organizations.find(hostId);
+      return schema.organization.find(hostId);
     }
 
-    return schema.events.find(hostId);
+    return schema.event.find(hostId);
   });
 
   // this.passthrough('/write-blanket-coverage', ['post']);
