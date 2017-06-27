@@ -1,24 +1,49 @@
 <div class='row padding-20'>
   {{organizations/title-with-logo model=model subtitle='Registration'}}
   <p class='text-center margin-top-20 margin-bottom-20'>
-    <a class='button small success' onclick={{action 'openLoginModal'}}>{{t 'buttons.login'}}</a>
-    <a class='button small success' data-reveal-id='signup-modal'>{{t 'buttons.signup'}}</a>
+    <div class='layout-row layout-align-center-center'>
+      {{login-modal}}
+      {{sign-up-modal}}
+    </div>
     <hr />
     Because you aren't logged in, we just need a bit of information...
 
     <br />
   </p>
-  <label>First Name</label>
-  {{input type='text' value=(mut firstName) required=true}}
-  <label>Last Name</label>
-  {{input type='text' value=(mut lastName) required=true}}
-  <label>Email</label>
-  {{input type='email' value=(mut email) required=true}}
 
-  <button
-    class='right'
-    disabled={{not formComplete}}
-    onclick={{action 'submitInformation'}}>
-    Continue
-  </button>
+  {{#paper-form onSubmit=(action 'submitInformation') as |form|}}
+  <div class='layout-column layout-align-center-stretch'>
+      {{form.input
+        label='First Name'
+        type='text'
+        value=firstName
+        onChange=(action (mut firstName))
+        required=true}}
+
+      {{form.input
+        label='Last Name'
+        type='text'
+        value=lastName
+        onChange=(action (mut lastName))
+        required=true}}
+
+      {{form.input
+        label='Email'
+        type='email'
+        value=email
+        customValidations=emailValidation
+        onChange=(action (mut email))
+        required=true}}
+
+    </div>
+
+    <div class='layout-column layout-align-center-end'>
+      {{#form.submit-button
+        raised=true
+        primary=true}}
+        Continue
+      {{/form.submit-button}}
+    </div>
+  {{/paper-form}}
+
 </div>

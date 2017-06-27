@@ -50,7 +50,7 @@ module.exports = function(environment) {
       serverTokenEndpoint: 'api/users/sign_in'
     },
     'ember-loading-route': {
-      enabled: true,
+      enabled: false,
       commonRoutes: [
         {
           // routeLevel: 5,

@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   attributeBindings: ['dataScrollRef:data-scroll-ref'],
   dataScrollRef: 'package-select',
 
-  @oneWay('selectedPackage.id') selectedId,
+  @oneWay('selectedPackage.id') selectedId: null,
 
   actions: {
     didChoosePackage(id) {

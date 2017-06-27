@@ -19,9 +19,9 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
   lastName: null,
   email: null,
 
-  @alias('model.organization') organization,
-  @alias('organization') host,
-  @alias('model.order') order,
+  @alias('model.organization') organization: null,
+  @alias('organization') host: null,
+  @alias('model.order') order: null,
 
   @computed('firstName', 'lastName')
   fullName(first, last) {
@@ -41,8 +41,14 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
   actions: {
     didCheckout() {
       const order = this.get('order');
+      const token = this.get('token');
 
-      this.transitionToRoute('register.community-registration.register.show', order.get('id'));
+      this.transitionToRoute('register.community-registration.register.show',
+        order.get('id'), {
+        queryParams: {
+          token: token
+        }
+      });
     }
   } // end actions
 });

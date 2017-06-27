@@ -10,8 +10,8 @@ export default Factory.extend({
   lastName: faker.name.firstName,
   email: 'test@test.test',
   password: 'some-password',
-  token: faker.random.uuid,
-  resetPasswordToken: faker.random.uuid,
+  token: faker.internet.ipv6,
+  resetPasswordToken: faker.internet.ipv6,
 
   // age: 20,                              // numbers
   // tall: true,                           // booleans

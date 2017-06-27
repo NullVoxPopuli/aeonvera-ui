@@ -15,4 +15,5 @@ export default Factory.extend({
   // },
 
   // zipCode: faker.address         .zipCode
+  hasZeroBalance() { }
 });

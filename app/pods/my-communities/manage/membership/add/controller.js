@@ -9,8 +9,8 @@ const { isBlank } = Ember;
 export default Ember.Controller.extend({
   flash: Ember.inject.service('flash-notification'),
 
-  @alias('model.membership') membership,
-  @alias('model.organization') organization,
+  @alias('model.membership') membership: null,
+  @alias('model.organization') organization: null,
 
   searchUsers: task(function * (term) {
     if (isBlank(term)) return;
@@ -27,7 +27,7 @@ export default Ember.Controller.extend({
     return result;
   }).restartable(),
 
-  @alias('searchUsers.lastSuccessful.value') potentialMembers,
+  @alias('searchUsers.lastSuccessful.value') potentialMembers: null,
 
   actions: {
     saveMembership() {

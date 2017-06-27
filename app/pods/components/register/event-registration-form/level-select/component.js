@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     errors: PropTypes.any
   },
 
-  @oneWay('selectedLevel.id') selectedId,
+  @oneWay('selectedLevel.id') selectedId: null,
 
   actions: {
     didChooseLevel(id) {

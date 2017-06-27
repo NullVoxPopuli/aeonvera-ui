@@ -8,10 +8,13 @@ const { isBlank, isPresent, inject } = Ember;
 //   - order
 //   - host
 export default Ember.Mixin.create({
+  rollbar: inject.service('rollbar'),
   store: inject.service('store'),
   flash: inject.service('flash-notification'),
 
   _existingOrderLineItemForItem(lineItem) {
+    Ember.Logger.info('_existingOrderLineItemForItem');
+
     const order = this.get('order');
 
     return RSVP.resolve(order)
@@ -31,11 +34,14 @@ export default Ember.Mixin.create({
   },
 
   _updateOrCreateOrderLineItemForItem(oldLineItem, newLineItem) {
+    Ember.Logger.info('_updateOrCreateOrderLineItemForItem');
+
     return this._ensureOrderIsPersisted()
       .then(order => this._existingOrderLineItemForItem(oldLineItem))
       .then(orderLineItem => {
         if (isPresent(orderLineItem)) {
           orderLineItem.set('lineItem', newLineItem);
+          if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
           return orderLineItem.save();
         }
 
@@ -44,15 +50,21 @@ export default Ember.Mixin.create({
   },
 
   _createOrderLineItemForItem(lineItem) {
+    Ember.Logger.info('_createOrderLineItemForItem');
+
     const store = this.get('store');
     const order = this.get('order');
 
-    return store.createRecord('orderLineItem', {
+    const orderLineItem = store.createRecord('orderLineItem', {
       order,
       lineItem,
       host_id: this.get('host.id'),
-      host_type: this.get('host.klass') })
-    .save();
+      host_type: this.get('host.klass') });
+
+    if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
+
+    return orderLineItem.save()
+      .then(oli => order.get('orderLineItems').pushObject(oli));
   },
 
   _cleanErroneousLineItems() {
@@ -67,36 +79,18 @@ export default Ember.Mixin.create({
   _ensureOrderIsPersisted() {
     const order = this.get('order');
 
-    return RSVP.resolve(order)
-      .then(existingOrder => {
-        if (isPresent(existingOrder)) return RSVP.resolve(existingOrder);
-
-        const store = this.get('store');
-
-        const orderParams = {
-          host: this.get('host'),
-          user: this.get('currentUser'),
-          userName: this.get('userName'),
-          userEmail: this.get('userEmail'),
-          attendance: this.get('registration')
-        };
-
-        return store.createRecord('order', orderParams)
-          .save()
-          .then(newOrder => {
-            // TODO: make this consistent / require 'order'
-            this.set('model.order', newOrder);
-            this.set('order', newOrder);
-            return RSVP.resolve(order);
-          });
-      });
+    return RSVP.resolve(order);
   },
 
   _refreshOrder() {
+    Ember.Logger.info('_refreshOrder');
+
     const order = this.get('order');
 
-    let newOrder = this.store.findRecord('order', order.get('id'), {
-      include: 'order_line_items.line_item'
+    let newOrder = this.store.queryRecord('order', {
+      id: order.get('id'),
+      include: 'order_line_items.line_item',
+      token: this.get('token')
     });
 
     this.set('model.order', newOrder);
@@ -105,7 +99,11 @@ export default Ember.Mixin.create({
   },
 
   _subtractOneQuantityForOrderLineItem(orderLineItem) {
+    Ember.Logger.info('_subtractOneQuantityForOrderLineItem');
+
     const nextQuantity = orderLineItem.get('quantity') - 1;
+
+    if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
 
     if (nextQuantity > 0) {
       orderLineItem.set('quantity', nextQuantity);
@@ -113,39 +111,62 @@ export default Ember.Mixin.create({
       return orderLineItem.save().then(order => this._refreshOrder());
     }
 
-    return orderLineItem.destroyRecord().then(() => this._refreshOrder());
+    return this._destroyAndRemove(orderLineItem);
   },
 
   _addOneQuantityForOrderLineItem(orderLineItem) {
+    Ember.Logger.info('_addOneQuantityForOrderLineItem');
+
     orderLineItem.set('quantity', orderLineItem.get('quantity') + 1);
+
     return orderLineItem.save();
+  },
+
+  _destroyAndRemove(orderLineItem) {
+    const order = this.get('order');
+
+    return orderLineItem.destroyRecord()
+      .then(() => order.get('orderLineItems').removeObject(orderLineItem));
   },
 
   actions: {
     didCancelOrder() {
       const order = this.get('order');
+      const token = this.get('token');
 
-      return order.destroyRecord()
+      return order
+        .destroyRecord({ adapterOptions: { payment_token: token } })
+        .then(() => this.transitionToRoute('register'))
         .catch(e => this.get('flash').alert(e));
     },
 
     didRemoveOrderLineItem(orderLineItem) {
-      return orderLineItem.destroyRecord()
+      if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
+
+      const order = this.get('order');
+
+      return this._destroyAndRemove(orderLineItem)
         .catch(e => this.get('flash').alert(e));
     },
 
 
     didAddLineItem(lineItem) {
       const store = this.get('store');
+      const order = this.get('order');
 
-      return this._ensureOrderIsPersisted()
-        .then(order => this._existingOrderLineItemForItem(lineItem)
+      return this._existingOrderLineItemForItem(lineItem)
         .then(orderLineItem => {
-          if (isPresent(orderLineItem)) return this._addOneQuantityForOrderLineItem(orderLineItem);
+          if (isPresent(orderLineItem)) {
+            if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
+
+            return this._addOneQuantityForOrderLineItem(orderLineItem);
+          }
 
           return this._createOrderLineItemForItem(lineItem);
         })
-        .then(order => this._refreshOrder())).catch(e => {
+        .then(() => this._refreshOrder())
+        .catch(e => {
+          this.get('rollbar').error('Problem with Org orderLineItem adding', e);
           this.get('flash').alert(e);
           this._cleanErroneousLineItems();
         });
@@ -162,9 +183,13 @@ export default Ember.Mixin.create({
             const oli = orderLineItems
               .filter(oli => oli.get('lineItem.id') === lineItem.id).get('firstObject');
 
+            if (this.get('token')) oli.set('paymentToken', this.get('token'));
+
             return this._subtractOneQuantityForOrderLineItem(oli);
           });
-      }).catch(e => {
+      })
+        .catch(e => {
+        this.get('rollbar').error('Problem with Org orderLineItem adding', e);
         this.get('flash').alert(e);
         this._cleanErroneousLineItems();
       });

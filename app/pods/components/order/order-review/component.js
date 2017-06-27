@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import computed, { filterBy } from 'ember-computed-decorators';
 
-export default Ember.Component.extend({
-  @filterBy('model.orderLineItems', 'isNew', false) savedLineItems,
+export default class extends Ember.Component {
+  @filterBy('model.orderLineItems', 'isNew', false) savedLineItems;
 
   // 1. Fee Exists
   // 2. SubTotal and Total are different
@@ -15,13 +15,13 @@ export default Ember.Component.extend({
     const result = (paid && fee > 0) || shouldApplyFee;
 
     return result;
-  },
+  }
 
-  actions: {
+  actions = {
     removeItem(item) {
       const order = this.get('model');
 
       order.removeOrderLineItem(item);
     }
   }
-});
+};
