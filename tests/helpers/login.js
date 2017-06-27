@@ -13,7 +13,6 @@ export default Ember.Test.registerAsyncHelper('login', function(app, assert) {
 
   visit('/login');
 
-
   fillIn('input[type="text"]', 'test@test.test');
   fillIn('input[type="password"]', 'some-password');
 

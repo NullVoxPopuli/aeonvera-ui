@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   },
 
   @readOnly
-  @alias('latestRenewal.expiresAt') expireDate,
+  @alias('latestRenewal.expiresAt') expireDate: null,
 
   activeMembershipTask: task(function * () {
     const organization = this.get('organization');

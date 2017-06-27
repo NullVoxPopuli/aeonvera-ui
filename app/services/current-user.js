@@ -8,13 +8,13 @@ import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
 
 const { isEmpty, inject: { service } } = Ember;
 
-export default Ember.Service.extend({
-  session: service('session'),
-  rollbar: service(),
-  store: service(),
+export default class extends Ember.Service {
+  session = service('session');
+  rollbar = service();
+  store = service();
 
-  @alias('session.data.authenticated.id') id,
-  @alias('user.name') name,
+  @alias('session.data.authenticated.id') id;
+  @alias('user.name') name;
 
   @computed('user')
   isMemberOf(user) {
@@ -23,7 +23,7 @@ export default Ember.Service.extend({
 
       return userIsMemberOf({}, { user, organization });
     });
-  },
+  }
 
   @computed('user')
   latestRenewalFor(user) {
@@ -32,7 +32,7 @@ export default Ember.Service.extend({
 
       return userLatestRenewalFor({}, { user, organization });
     });
-  },
+  }
 
   @computed('session.data.authenticated.{token}')
   user(token) {
@@ -58,4 +58,4 @@ export default Ember.Service.extend({
 
     return userPromise;
   }
-});
+};

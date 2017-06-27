@@ -9,8 +9,8 @@ const PROVIDING_HOUSING = 1;
 const REQUESTING_HOUSING = 2;
 
 export default Ember.Controller.extend({
-  @alias('model.event') event,
-  @alias('model.registration') registration,
+  @alias('model.event') event: null,
+  @alias('model.registration') registration: null,
 
   // NOTE: housingProvision is async: false on the registration
   @computed('registration.housingProvision')

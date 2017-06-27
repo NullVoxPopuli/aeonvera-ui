@@ -6,7 +6,8 @@ import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
 export default Ember.Component.extend({
   propTypes: {
-    model: PropTypes.EmberObject.isRequired
+    model: PropTypes.EmberObject.isRequired,
+    token: PropTypes.string
   },
   store: Ember.inject.service('store'),
   cart: Ember.inject.service('order-cart'),
@@ -105,10 +106,10 @@ export default Ember.Component.extend({
       NOTE: The order should already be saved before entering this method.
     */
     processStripeToken(params) {
-      const token = params.id;
+      const checkoutToken = params.id;
       const order = this.get('model');
 
-      order.set('checkoutToken', token);
+      order.set('checkoutToken', checkoutToken);
       this._setOrderTokenIfPresent(order);
       this.set('showPaymentInProgress', true);
 
@@ -119,9 +120,13 @@ export default Ember.Component.extend({
       //
       // if there are errors with the credit card,
       // the user must be notified
-      order.save().then(record => {
-        this.set('showPaymentInProgress', false);
-        this.get('router').transitionTo('register.checkout.thankyou');
+      //
+      // TODO: extract to controller
+      order
+        .save({ adapterOptions: { payment_token: this.get('token') } })
+        .then(record => {
+          this.set('showPaymentInProgress', false);
+          this.get('router').transitionTo('register.checkout.thankyou');
       }, error => {
         // model's error object is used.
         this.get('flashMessages').alert(error);

@@ -13,9 +13,9 @@ export default Ember.Component.extend({
     membershipOptions: PropTypes.any.isRequired
   },
 
-  @alias('model.membershipOption') selectedOption,
-  @alias('model.member') selectedMember,
-  @alias('model.startdate') startDate,
+  @alias('model.membershipOption') selectedOption: null,
+  @alias('model.member') selectedMember: null,
+  @alias('model.startdate') startDate: null,
 
   @computed('selectedMember')
   isMemberSelected(member) {

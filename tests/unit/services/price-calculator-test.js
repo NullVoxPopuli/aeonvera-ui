@@ -1,25 +1,28 @@
 import { moduleFor, test } from 'ember-qunit';
+import { withChai } from 'ember-cli-chai/qunit';
+
 
 moduleFor('service:price-calculator', 'Unit | Service | price calculator', {
+  unit: true
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });
 
 // Replace this with your real tests.
-test('it calculates for 155', function(assert) {
+test('it calculates for 155', withChai(function(expect, assert) {
   let service = this.subject();
   let valueObject = service.calculateForSubTotal(155);
 
-  assert.equal(valueObject.feesPaidByEvent, false);
-  assert.equal(valueObject.subTotal, 155);
-  assert.equal(valueObject.cardFee, 4.97);
-  assert.equal(valueObject.applicationFee, 1.21);
-  assert.equal(valueObject.totalFee, 6.18);
-  assert.equal(valueObject.total, 161.18);
-  assert.equal(valueObject.buyerPays, 161.18);
-  assert.equal(valueObject.receivedByEvent, 155);
+  expect(valueObject.feesPaidByEvent).to.equal(false);
+  expect(valueObject.subTotal).to.equal(155);
+  expect(valueObject.cardFee).to.equal(4.97);
+  expect(valueObject.applicationFee).to.equal(1.21);
+  expect(valueObject.totalFee).to.equal(6.18);
+  expect(valueObject.total).to.equal(161.18);
+  expect(valueObject.buyerPays).to.equal(161.18);
+  expect(valueObject.receivedByEvent).to.equal(155);
 
-});
+}));
 
 test('it calculates for 0', function(assert) {
   let service = this.subject();

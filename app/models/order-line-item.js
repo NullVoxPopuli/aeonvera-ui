@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { modelAction } from 'ember-custom-actions';
 
 import Discount from '../models/discount';
 import Validator from '../mixins/model-validator';

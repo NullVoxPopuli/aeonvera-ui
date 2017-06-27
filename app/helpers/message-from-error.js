@@ -27,7 +27,7 @@ function parseAdapterError(error, msgTemplate) {
     const { detail, source } = e;
     const { pointer } = source || {};
 
-    if (status >= 500) return msgTemplate(e.title, escapeHTML(e.detail));
+    if (status >= 500) return msgTemplate(e.title, Ember.String.htmlSafe(e.detail));
 
     if (status === undefined || (status < 500 && status >= 400) && pointer) {
       const attribute = pointer.split('/').pop();

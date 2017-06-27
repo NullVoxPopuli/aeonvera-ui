@@ -11,21 +11,21 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
   scroller: inject.service('scroller'),
 
 
-  @alias('model.event') event,
-  @alias('model.registration') registration,
-  @alias('event.packages') packages,
-  @alias('event.levels') levels,
+  @alias('model.event') event: null,
+  @alias('model.registration') registration: null,
+  @alias('event.packages') packages: null,
+  @alias('event.levels') levels: null,
 
   // begin used by the RegistrationController mixin
-  @alias('event') host,
-  @oneWay('registration.unpaidOrder') order,
+  @alias('event') host: null,
+  @oneWay('registration.unpaidOrder') order: null,
 
   @computed('registration.{attendeeFirstName,attendeeLastName}')
   userName(first, last) {
     return `${first} ${last}`;
   },
 
-  @alias('registration.attendeeEmail') userEmail,
+  @alias('registration.attendeeEmail') userEmail: null,
   // end used by the RegistrationController mixin
 
   @computed('order.orderLineItems.@each.lineItem')

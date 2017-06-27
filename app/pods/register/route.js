@@ -11,7 +11,7 @@ export default Ember.Route.extend(ResetScroll, {
   },
 
   actions: {
-    error(reason, transition) {
+    eerror(reason, transition) {
       if (reason.errors === undefined) {
         // This is a non-API error
         console.error(reason);

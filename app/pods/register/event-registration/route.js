@@ -18,7 +18,7 @@ export default Ember.Route.extend({
   session: inject.service(),
 
   // TODO: maybe eventually make requiring to login optional?
-  @not('session.isAuthenticated') mustLogin,
+  @not('session.isAuthenticated') mustLogin: null,
 
   model(params) {
     return this.store.findRecord('event', params.id, { include: eventInclude });

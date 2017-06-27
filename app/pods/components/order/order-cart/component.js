@@ -86,8 +86,8 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
     return isPresent(items);
   },
 
-  @alias('hasItems') buildingAnOrder,
-  @alias('order.orderLineItems') currentItems,
+  @alias('hasItems') buildingAnOrder: null,
+  @alias('order.orderLineItems') currentItems: null,
 
   actions: {
     afterProceedToCheckout() {

@@ -20,11 +20,18 @@ module.exports = function(defaults) {
 
   var app = new EmberApp(defaults, {
     babel: {
-      optional: ['es7.decorators']
-      //plugins: [
-      //  'transform-decorators-legacy',
-      //  'transform-object-rest-spread'
-      //]
+
+      //optional: ['es7.decorators'],
+      plugins: [
+        'transform-decorators-legacy',
+       // 'transform-decorators',
+        'transform-object-rest-spread',
+        'transform-class-properties',
+      ]
+
+    },
+    'ember-cli-babel': {
+      includePolyfill: true,
 
     },
     // disable JSHint, in favor of eslint

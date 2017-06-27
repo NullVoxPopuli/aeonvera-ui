@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   */
   sortProps: [],
 
-  @sort('data', 'sortProps') sortedData,
+  @sort('data', 'sortProps') sortedData: null,
 
   didReceiveAttrs() {
     this._super(...arguments);

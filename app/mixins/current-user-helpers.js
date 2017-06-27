@@ -8,15 +8,15 @@ export default Ember.Mixin.create({
   currentUserService: inject.service('current-user'),
 
   @readOnly
-  @alias('currentUserService.user') currentUser,
+  @alias('currentUserService.user') currentUser: null,
 
   @readOnly
-  @alias('currentUserService.name') currentUserName,
+  @alias('currentUserService.name') currentUserName: null,
 
   @readOnly
-  @alias('currentUserService.email') currentUserEmail,
+  @alias('currentUserService.email') currentUserEmail: null,
 
   @readOnly
-  @alias('session.isAuthenticated') loggedIn
+  @alias('session.isAuthenticated') loggedIn: null
 
 });

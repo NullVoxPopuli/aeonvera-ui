@@ -83,5 +83,5 @@ export default Ember.Mixin.create({
     return parseFloat(total) > 0;
   },
 
-  @not('hasNonZeroBalance') hasZeroBalance
+  @not('hasNonZeroBalance') hasZeroBalance: null
 });

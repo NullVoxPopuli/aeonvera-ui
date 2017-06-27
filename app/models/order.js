@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { collectionAction } from 'ember-api-actions';
 import computed, { alias, not } from 'ember-computed-decorators';
 
 import Validator from '../mixins/model-validator';
@@ -12,12 +11,6 @@ const { attr, belongsTo, hasMany, Model } = DS;
 const CENTS_IN_A_DOLLAR = 100;
 
 export default Model.extend(Validator, PriceCalculation, {
-  findByTokenOrCreate: collectionAction({
-    path: 'find_by_token_or_create',
-    type: 'post',
-    urlType: 'findRecord'
-  }),
-
   PAYPAL: 'PayPal',
   CHECK: 'Check',
   CASH: 'Cash',
@@ -74,13 +67,13 @@ export default Model.extend(Validator, PriceCalculation, {
     return Ember.isPresent(stripeRefunds);
   },
 
-  @not('paid') unpaid,
+  @not('paid') unpaid: null,
   @computed('paid')
   paidText(paid) {
     return paid ? 'Yes' : 'No';
   },
 
-  @alias('host') event,
+  @alias('host') event: null,
 
   @computed('totalInCents')
   totalInDollars(totalInCents) {

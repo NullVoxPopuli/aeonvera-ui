@@ -15,6 +15,9 @@ function parseQueryParams(queryString) {
 }
 
 export default function() {
+  // https://github.com/kategengler/ember-cli-code-coverage#create-a-passthrough-when-intercepting-all-ajax-requests-in-tests
+  this.passthrough('/write-coverage');
+
 
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -105,7 +108,6 @@ export default function() {
     return schema.event.find(hostId);
   });
 
-  // this.passthrough('/write-blanket-coverage', ['post']);
   this.passthrough();
   /*
     PUT shorthands
