@@ -1,41 +1,70 @@
+image: node:8.1.2
+
 stages:
-- ci
+- build
+- test
 - deploy
 - clean
 
-clean:
-  stage: clean
-  script: docker-compose -f docker-compose.test.ci.yml down --remove-orphans
+build:
+  stage: build
+  script: yarn install && bower install
+  cache:
+    key: ${CI_BUILD_REF_NAME}
+    paths:
+      - node_modules/
+      - bower_components/
+  artifacts:
+    paths:
+      - node_modules/
+      - bower_components/
 
-"Build, Quality, and Deploy":
-  stage: ci
-  script:
-    - ./scripts/ci/build.sh
-    - ./scripts/ci/eslint.sh
-    - ./scripts/ci/test.sh
+eslint:
+  stage: test
+  dependencies:
+    - build
+  script: npm run eslint-no-fix
+
+test:
+  stage: test
+  dependencies:
+    - build
+  script: npm run ci
   artifacts:
     paths:
       - coverage/
 
-# codeclimate:
-#   only:
-#   - develop
-#   stage: quality
-#   allow_failure: true
-#   script: ./scripts/ci/codeclimate.sh
-#   artifacts:
-#     paths:
-#     - codeclimate.html
+production:
+  stage: deploy
+  dependencies:
+    - test
+    - eslint
+  only:
+    - master
+  script:
+    - export DEPLOY_TARGET=production
+    - export REDISCLOUD_URL=$PRODUCTION_REDIS_URL
+    - export REDISCLOUD_PORT=$PRODUCTION_REDIS_PORT
+    - export REDISCLOUD_PASSWORD=$PRODUCTION_REDIS_PASSWORD
+
+    - export AWS_ACCESS_KEY_ID=$PRODUCTION_AWS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$PRODUCTION_AWS_SECRET_KEY
+    - export STRIPE_CLIENT_ID=$PRODUCTION_STRIPE_CLIENT_ID
+
+    # Be extra sure we have everything
+    - yarn install && bower install
+    - DEPLOY_ENV=$DEPLOY_TARGET ember deploy $DEPLOY_TARGET --activate
 
 # https://about.gitlab.com/2016/11/03/publish-code-coverage-report-with-gitlab-pages/
 pages:
   stage: deploy
   dependencies:
-    - "Build, Quality, and Deploy"
+    - test
+    #- "Build, Quality"
     # - codeclimate
   script:
     - mv coverage/ public/
-    - mv codeclimate.html public/
+    #- mv codeclimate.html public/
   artifacts:
     paths:
       - public
