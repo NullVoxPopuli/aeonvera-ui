@@ -11,7 +11,6 @@ module.exports = {
   env: {
     browser: true
   },
-  "maxWarnings": 1,
   "rules": {
     // allow inline braces
     // http://eslint.org/docs/rules/brace-style#1tbs
