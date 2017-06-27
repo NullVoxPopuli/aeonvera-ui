@@ -15,7 +15,10 @@ cache:
 
 before_script:
   - npm install -g yarn
-  - npm install -g bower
+  - npm install -g bower --allow-root
+  - npm install -g phantomjs-prebuilt
+
+
 
 build:
   stage: build
