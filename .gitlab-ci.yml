@@ -8,10 +8,12 @@ stages:
 
 before_script:
   - npm install -g yarn
+  - npm install -g bower
 
 build:
   stage: build
-  script: yarn install && bower install
+  script:
+    - yarn install && bower install
   cache:
     key: ${CI_BUILD_REF_NAME}
     paths:

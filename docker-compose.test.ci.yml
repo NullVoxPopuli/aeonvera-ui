@@ -5,6 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     command: /bin/bash
+    ports:
+      - 4310:4310
+      - 4311:4311
     tty: false
     volumes:
       - .:/web
