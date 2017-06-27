@@ -6,6 +6,9 @@ stages:
 - deploy
 - clean
 
+before_script:
+  - npm install -g yarn
+
 build:
   stage: build
   script: yarn install && bower install
