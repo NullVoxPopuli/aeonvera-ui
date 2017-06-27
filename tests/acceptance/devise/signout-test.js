@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import { module, test, skip } from 'qunit';
 import { withChai } from 'ember-cli-chai/qunit';
-import 'aeonvera/tests/helpers/login';
 
 import {
-  currentSession
+  currentSession,
+  authenticateSession
 } from 'aeonvera/tests/helpers/ember-simple-auth';
 
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
@@ -24,16 +24,18 @@ test('sign out button should not be visible if already signed out', withChai(fun
   visit('/');
 
   let buttonText = find('button').text();
-  console.log(buttonText);
+
   expect(buttonText)
-    .to.not.include('Logout')
+    .to.not.include('Logout');
 }));
 
 
 skip('signs out when signed in', function(assert) {
-  login();
+  authenticateSession(application, { email: 'test@test.test', token: '123abc' });
+
   andThen(() => {
     let button = find('a .fa-sign-out').first().parent();
+
     button.click();
     /*
       for some reason, the session doesn't invalidate....

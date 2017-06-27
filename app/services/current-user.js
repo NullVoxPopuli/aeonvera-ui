@@ -58,4 +58,4 @@ export default class extends Ember.Service {
 
     return userPromise;
   }
-};
+}

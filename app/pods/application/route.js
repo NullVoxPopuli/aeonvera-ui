@@ -17,6 +17,11 @@ export default Ember.Route.extend(ResetScroll, SetSidebar, {
     // post-email-confirmation
     this.get('pathStore').redirectIfPathIsPresent();
 
+    // general post-login redirect
+    if (transition.targetName !== 'login') {
+      this.set('session.attemptedTransition', transition);
+    }
+
     // Make sure the current user is loaded before anything else.
     if (this.get('session.isAuthenticated')) {
       this.get('currentUserService.user');

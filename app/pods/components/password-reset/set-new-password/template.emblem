@@ -1,5 +1,5 @@
-form submit='reset' name='password-reset-form'
-  = error-header errors=errors
+form submit='reset' data-test-password-reset-new-password=true
+  = error-header errors=errors data-test-form-errors=true
 
   .row.collapse
     = input type='hidden' value=resetToken

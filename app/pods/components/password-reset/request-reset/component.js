@@ -28,7 +28,7 @@ export default Ember.Component.extend({
       };
 
       return ajax.post(url, { data })
-        .then(() => this.sendACtion('action'))
+        .then(() => this.sendAction('action'))
         .catch(error => {
           const errors = error.payload.errors;
 

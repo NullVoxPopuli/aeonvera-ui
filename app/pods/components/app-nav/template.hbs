@@ -37,7 +37,9 @@
             {{paper-icon 'exit to app'}} Logout
           {{/content.menu-item}}
         {{else}}
-          {{#content.menu-item onClick=(action (transition-to 'login'))}}
+          {{#content.menu-item
+            data-test-app-nav-login-button
+            onClick=(action (transition-to 'login'))}}
             Login
           {{/content.menu-item}}
         {{/if}}
@@ -65,6 +67,7 @@
         {{sign-up-modal}}
 
         {{#paper-button
+          data-test-app-nav-login-button
           raised=true
           onClick=(action (transition-to 'login'))}}
           Login

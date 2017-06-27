@@ -64,8 +64,8 @@ export default Ember.Route.extend(currentUserHelpers, RandomString, {
     order
       .catch(error => {
         this.get('flash', error);
-        rollbar.error('register community index error', error);
-        this.transitionTo('register');
+        this.get('rollbar').error('register community index error', error);
+        this.transitionTo('welcome');
       });
 
     return RSVP.hash({

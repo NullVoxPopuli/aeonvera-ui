@@ -1,5 +1,6 @@
-= error-header errors=errors
-form submit='reset' name='password-reset-form'
+form submit='reset' data-test-password-reset-request=true
+  = error-header errors=errors data-test-form-errors=true
+
   .row.collapse
     = error-field-wrapper errors=errors field='email'
       label
