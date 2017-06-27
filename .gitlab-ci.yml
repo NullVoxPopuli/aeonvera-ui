@@ -12,6 +12,7 @@ before_script:
 
 build:
   stage: build
+  image: node:6
   script:
     - yarn install && bower install
   cache:
@@ -26,12 +27,14 @@ build:
 
 eslint:
   stage: test
+  image: node:6
   dependencies:
     - build
   script: npm run eslint-no-fix
 
 test:
   stage: test
+  image: node:6
   dependencies:
     - build
   script: npm run ci
@@ -41,6 +44,7 @@ test:
 
 production:
   stage: deploy
+  image: node:6
   dependencies:
     - test
     - eslint
