@@ -68,10 +68,6 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    finishedOrder() {
-      this.get('router').transitionTo('register.checkout.thankyou');
-    },
-
     applyDiscount() {
       const discountCode = this.get('discountCode');
       const store = this.get('store');

@@ -5,9 +5,12 @@ import computed from 'ember-computed-decorators';
 import RandomString from 'aeonvera/mixins/helpers/string';
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-const { isPresent, isBlank } = Ember;
+const { isPresent, isBlank, inject } = Ember;
 
 export default Ember.Route.extend(currentUserHelpers, RandomString, {
+  rollbar: inject.service('rollbar'),
+  flash: inject.service('flash-notification'),
+
   beforeModel(transition) {
     const loggedIn = this.get('loggedIn');
 
@@ -55,8 +58,15 @@ export default Ember.Route.extend(currentUserHelpers, RandomString, {
         attendance: this.get('registration')
       });
 
-      order.save();
+      order = order.save();
     }
+
+    order
+      .catch(error => {
+        this.get('flash', error);
+        rollbar.error('register community index error', error);
+        this.transitionTo('register');
+      });
 
     return RSVP.hash({
       order,

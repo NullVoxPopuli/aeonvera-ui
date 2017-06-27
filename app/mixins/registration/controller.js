@@ -11,6 +11,7 @@ export default Ember.Mixin.create({
   rollbar: inject.service('rollbar'),
   store: inject.service('store'),
   flash: inject.service('flash-notification'),
+  session: inject.service('session'),
 
   _existingOrderLineItemForItem(lineItem) {
     Ember.Logger.info('_existingOrderLineItemForItem');
@@ -85,12 +86,16 @@ export default Ember.Mixin.create({
   _refreshOrder() {
     Ember.Logger.info('_refreshOrder');
 
+    // don't need to refresh if not authenticated.
+    // nothing automatic would happen anyway
+    if (!this.get('session.isAuthenticated')) return;
+
     const order = this.get('order');
 
     let newOrder = this.store.queryRecord('order', {
       id: order.get('id'),
       include: 'order_line_items.line_item',
-      token: this.get('token')
+      payment_token: this.get('token')
     });
 
     this.set('model.order', newOrder);
@@ -137,7 +142,7 @@ export default Ember.Mixin.create({
       return order
         .destroyRecord({ adapterOptions: { payment_token: token } })
         .then(() => this.transitionToRoute('register'))
-        .catch(e => this.get('flash').alert(e));
+        .catch(Ember.Logger.info);
     },
 
     didRemoveOrderLineItem(orderLineItem) {
@@ -187,8 +192,7 @@ export default Ember.Mixin.create({
 
             return this._subtractOneQuantityForOrderLineItem(oli);
           });
-      })
-        .catch(e => {
+      }).catch(e => {
         this.get('rollbar').error('Problem with Org orderLineItem adding', e);
         this.get('flash').alert(e);
         this._cleanErroneousLineItems();

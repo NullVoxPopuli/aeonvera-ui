@@ -3,7 +3,7 @@
     {{order/item-quantity-select orderLineItem=orderLineItem order=order}}
   {{/if}}
 
-  {{orderLineItem.quantity}} x {{order/price-display item=orderLineItem value=orderLineItem.total}}
+  {{orderLineItem.quantity}} x {{order/price-display item=orderLineItem value=orderLineItem.price}}
 </td>
 <td>
   {{displayName}}

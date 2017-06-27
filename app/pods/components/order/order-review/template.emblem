@@ -13,7 +13,7 @@ table.width-of-100.order-review-table
             if item.lineItem.isDiscount
               small: a click='"removeItem" item' Remove
 
-        td.text-right = order/price-display item=item value=item.total
+        td.text-right = order/price-display item=item value=item.price
         td.text-right = item.quantity
         td.text-right = order/price-display item=item value=item.total
 

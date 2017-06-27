@@ -89,6 +89,7 @@ export default Model.extend(Validator, PriceCalculation, {
     return paid ? 'success-color' : 'alert-color';
   },
 
+
   /*
     stripe data doesn't need to be kept on the model, but is important for
     record keeping and eventual refunds
