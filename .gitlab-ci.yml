@@ -6,6 +6,13 @@ stages:
 - deploy
 - clean
 
+cache:
+  key: ${CI_BUILD_REF_NAME}
+  paths:
+    - node_modules/
+    - bower_components/
+    - .yarn
+
 before_script:
   - npm install -g yarn
   - npm install -g bower
@@ -15,11 +22,6 @@ build:
   image: node:6
   script:
     - yarn install && bower install
-  cache:
-    key: ${CI_BUILD_REF_NAME}
-    paths:
-      - node_modules/
-      - bower_components/
   artifacts:
     paths:
       - node_modules/
@@ -46,8 +48,9 @@ production:
   stage: deploy
   image: node:6
   dependencies:
-    - test
-    - eslint
+    #- test
+    #- eslint
+    - build
   only:
     - master
   script:
