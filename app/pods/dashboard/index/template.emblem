@@ -1,4 +1,4 @@
-h3 Welcome, {{currentUser.user.name}}!
+h3 Welcome, {{currentUser.name}}!
 hr
 br
 h4 Register for an Event
