@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { alias } from 'ember-computed-decorators';
+
 import IsLineItem from '../mixins/models/is-line-item';
 import DeletedAt from '../mixins/models/deleted-at';
 import Purchasable from 'aeonvera/models/purchasable';
@@ -29,7 +31,10 @@ export default Purchasable.extend(IsLineItem, DeletedAt, {
 
   orderLineItems: DS.hasMany('order-line-item'),
   restraints: DS.hasMany('restraint', { inverse: 'restrictionFor' }),
-  name: DS.attr('string'),
+
+
+  @alias('code') name: null,
+  // name: DS.attr('string'),
 
   // name: Ember.computed.alias('code'),
 

@@ -8,6 +8,9 @@ import {
 
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
+import startApp from 'aeonvera/tests/helpers/start-app';
+import destroyApp from 'aeonvera/tests/helpers/destroy-app';
+
 let eventId = 'testevent';
 let userId = 'current-user';
 let eventParams = {
@@ -18,24 +21,41 @@ let eventParams = {
   location: 'ember tests',
   registrationOpensAt: moment().add(1, 'days').toDate()
 };
+
+let application;
+
 moduleForAcceptance('Acceptance | Registration | Event | User is Logged In', {
   beforeEach() {
+    application = startApp();
 
     let event = server.create('event', eventParams);
 
-    authenticateSession(this.application, {
-      email: 'test@test.test'
+    server.post('/api/users/sign_in',
+      (schema, request) => {
+        return schema.users.findBy({ email: request.params.email });
+      }
+    );
+
+    authenticateSession(application, {
+      email: 'test@test.test',
+      token: '123abc'
     });
+  },
+
+  afterEach() {
+    destroyApp(application);
   }
 });
 
 test('can view the registration page', assert => {
   visit(`/${eventId}`);
+
   andThen(() => assert.equal(currentURL(), `/${eventId}`));
 });
 
 test('does not render form', assert => {
   visit(`/${eventId}`);
+
   andThen(() => {
     const pText = find('p').text();
 
@@ -47,6 +67,7 @@ test('does not render form', assert => {
 // server up an event from /api/hosts/:hostId
 skip('shows the countdown', withChai(expect => {
   visit(`/${eventId}`);
+
   andThen(() => {
     console.log('------------', find('*').text());
     let timeTags = find('h2 span').text();
@@ -56,13 +77,15 @@ skip('shows the countdown', withChai(expect => {
 }));
 
 skip('sets registrationIsOpen to true', function(assert) {
-  let store = this.application.get('store');
+  let store = application.get('store');
 
   Ember.run(() => {
     let event = store.createRecord('event', eventParams);
+
     assert.notOk(event.get('registrationIsOpen'));
 
     let yesterday = moment().subtract(1, 'days').toDate();
+
     event.set('registrationOpensAt', yesterday);
 
     assert.ok(event.get('registrationIsOpen'));
@@ -73,17 +96,20 @@ skip('shows the form once the contdown has completed', function(assert) {
   visit(`/${eventId}`);
   andThen(() => {
     let loader = find('.ubuntu-loader');
+
     assert.ok(Ember.isPresent(loader));
 
-    let store = this.application.get('store');
+    let store = application.get('store');
     let event = store.peekRecord('event', eventId);
     let yesterday = moment().subtract(1, 'days').toDate();
+
     event.set('registrationOpensAt', yesterday);
     event.notifyPropertyChange('registrationIsOpen');
 
     andThen(() => {
       setTimeout(() => {
         let h2s = find('h2');
+
         assert.ok(h2s.text().includes('Register for Test Event'));
       }, 2000);
     });

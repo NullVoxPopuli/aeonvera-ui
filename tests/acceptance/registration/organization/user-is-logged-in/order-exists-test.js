@@ -1,34 +1,51 @@
-
 import Ember from 'ember';
 import { module, test } from 'qunit';
+import testSelector from 'ember-test-selectors';
+import { withChai } from 'ember-cli-chai/qunit';
 
 import {
   authenticateSession
 } from 'aeonvera/tests/helpers/ember-simple-auth';
 
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
+import startApp from 'aeonvera/tests/helpers/start-app';
+import destroyApp from 'aeonvera/tests/helpers/destroy-app';
+
+let application;
 
 let orgId = 'testorg';
 
-moduleForAcceptance(`
-  Acceptance |
-  Registration |
-  Organization |
-  User is Logged In |
-  Order Already Exists`, {
-  beforeEach() {
-    let org = server.create('organization', {
-      id: orgId,
-      name: 'Test Org',
-      domain: 'testorg'
-    });
+moduleForAcceptance(
+  `Acceptance |
+   Registration |
+   Organization |
+   User is Logged In |
+   Order Exists`, {
 
-    authenticateSession(this.application, {
-      email: 'test@test.test',
-    });
-  }
+    beforeEach() {
+      application = startApp();
+
+      server.create('user', {
+        email: 'test@test.test',
+        password: 'some-password'
+      });
+
+      let org = server.create('organization', {
+        id: orgId,
+        name: 'Test Org',
+        domain: 'testorg'
+      });
+
+      authenticateSession(application, {
+        email: 'test@test.test',
+        token: 'abc123'
+      });
+    },
+
+    afterEach() {
+      destroyApp(application);
+    }
 });
-
 
 test('reviews the the order', (assert) => {
   assert.ok(true);

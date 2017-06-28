@@ -37,7 +37,7 @@ export default Ember.Mixin.create({
   _updateOrCreateOrderLineItemForItem(oldLineItem, newLineItem) {
     Ember.Logger.info('_updateOrCreateOrderLineItemForItem');
 
-    return this._ensureOrderIsPersisted()
+    return this._promiseWrappedOrder()
       .then(order => this._existingOrderLineItemForItem(oldLineItem))
       .then(orderLineItem => {
         if (isPresent(orderLineItem)) {
@@ -77,7 +77,7 @@ export default Ember.Mixin.create({
     unsaved.forEach(item => item.unloadRecord());
   },
 
-  _ensureOrderIsPersisted() {
+  _promiseWrappedOrder() {
     const order = this.get('order');
 
     return RSVP.resolve(order);
@@ -113,7 +113,7 @@ export default Ember.Mixin.create({
     if (nextQuantity > 0) {
       orderLineItem.set('quantity', nextQuantity);
 
-      return orderLineItem.save().then(order => this._refreshOrder());
+      return orderLineItem.save();//.then(order => this._refreshOrder());
     }
 
     return this._destroyAndRemove(orderLineItem);
@@ -136,19 +136,16 @@ export default Ember.Mixin.create({
 
   actions: {
     didCancelOrder() {
-      const order = this.get('order');
       const token = this.get('token');
 
-      return order
-        .destroyRecord({ adapterOptions: { payment_token: token } })
-        .then(() => this.transitionToRoute('register'))
-        .catch(Ember.Logger.info);
+      return this._promiseWrappedOrder()
+        .then(order => order
+          .destroyRecord({ adapterOptions: { payment_token: token } }))
+        .then(() => this.transitionToRoute('register'));
     },
 
     didRemoveOrderLineItem(orderLineItem) {
       if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
-
-      const order = this.get('order');
 
       return this._destroyAndRemove(orderLineItem)
         .catch(e => this.get('flash').alert(e));
@@ -169,7 +166,6 @@ export default Ember.Mixin.create({
 
           return this._createOrderLineItemForItem(lineItem);
         })
-        .then(() => this._refreshOrder())
         .catch(e => {
           this.get('rollbar').error('Problem with Org orderLineItem adding', e);
           this.get('flash').alert(e);
@@ -178,7 +174,7 @@ export default Ember.Mixin.create({
     },
 
     didSubtractLineItem(lineItem) {
-      return this._ensureOrderIsPersisted().then(order => {
+      return this._promiseWrappedOrder().then(order => {
         // do nothing if there are no order line items
         if (order.get('orderLineItems.length') === 0) return RSVP.resolve();
 
@@ -190,7 +186,7 @@ export default Ember.Mixin.create({
 
             if (this.get('token')) oli.set('paymentToken', this.get('token'));
 
-            return this._subtractOneQuantityForOrderLineItem(oli);
+            if (oli) return this._subtractOneQuantityForOrderLineItem(oli);
           });
       }).catch(e => {
         this.get('rollbar').error('Problem with Org orderLineItem adding', e);

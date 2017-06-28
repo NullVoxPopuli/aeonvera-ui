@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         .catch(error => {
           const errors = error.payload.errors;
 
-          this.set('errors', errors)
+          this.set('errors', errors);
         });
     }
   }

@@ -64,25 +64,6 @@ export default function() {
     return {};
   });
 
-//  this.post('/api/users/sign_in', (schema, request) => {
-//    let params = request.params;
-//    let bodyParams = request.requestBody;
-//    let email = '';
-//
-//    let paramsAreBlank = (!Ember.isPresent(params) || Object.keys(params).length === 0);
-//    let bodyParamsAreBlank = (!Ember.isPresent(bodyParams) || Object.keys(bodyParams).length === 0);
-//    if (paramsAreBlank && bodyParamsAreBlank) {
-//      return new Response(401, {});
-//    }
-//
-//    let queryParams = request.requestBody;
-//    params = JSON.parse(queryParams);
-//    email = params.email;
-//
-//    return schema.user.where({ email: email })[0];
-//  });
-
-
   this.post('/api/users', function(db, request) {
     return {};
   });
@@ -94,7 +75,7 @@ export default function() {
 
   this.get('/api/users/:current_user', (schema, request) => {
     let id = request.params.current_user;
-    return this.serialize(schema.user.find(id));
+    return schema.users.find(id);
   });
 
   this.get('api/hosts/:host', function(schema, request) {
@@ -102,10 +83,10 @@ export default function() {
 
     // stupid hack for testing
     if (hostId.includes('org')) {
-      return schema.organization.find(hostId);
+      return schema.organizations.find(hostId);
     }
 
-    return schema.event.find(hostId);
+    return schema.events.find(hostId);
   });
 
   this.passthrough();

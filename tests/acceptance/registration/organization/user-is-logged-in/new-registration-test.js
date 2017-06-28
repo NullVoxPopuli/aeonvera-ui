@@ -1,12 +1,17 @@
-
 import Ember from 'ember';
 import { module, test, skip } from 'qunit';
+import testSelector from 'ember-test-selectors';
+import { withChai } from 'ember-cli-chai/qunit';
 
 import {
   authenticateSession
 } from 'aeonvera/tests/helpers/ember-simple-auth';
 
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
+import startApp from 'aeonvera/tests/helpers/start-app';
+import destroyApp from 'aeonvera/tests/helpers/destroy-app';
+
+let application;
 
 let orgId = 'testorg';
 
@@ -17,54 +22,92 @@ moduleForAcceptance(
    User is Logged In |
    New Registration`, {
 
-  beforeEach() {
-    let org = server.create('organization', {
-      id: orgId,
-      name: 'Test Org',
-      domain: 'testorg'
-    });
+    beforeEach() {
+      application = startApp();
 
-    authenticateSession(this.application, {
-      email: 'test@test.test',
-    });
-  }
+      const user = server.create('user', {
+        email: 'test@test.test',
+        password: 'some-password'
+      });
+
+      let org = server.create('organization', {
+        id: orgId,
+        name: 'Test Org',
+        domain: 'testorg'
+      });
+
+      server.post('/api/users/**',
+        (schema, request) => {
+          return schema.users.findBy({ email: 'test@test.test' });
+        }
+      );
+
+      server.post('/api/orders', function(schema, request) {
+        const order = schema.orders.create({});
+
+          console.log(order);
+        return this.serialize(order);
+      });
+
+      server.get('/api/hosts/:host',
+        (schema, request) => {
+          return schema.organizations.findBy({ id: orgId });
+        }
+      );
+
+      server.logging = true;
+
+      authenticateSession(application, {
+        email: 'test@test.test',
+        token: 'abc123'
+      });
+    },
+
+    afterEach() {
+      destroyApp(application);
+    }
 });
 
-test('can view the registration page', (assert) => {
+test('can view the registration page', withChai(expect => {
   visit('/testorg');
-  andThen(() => assert.equal(currentURL(), '/testorg'));
-});
+
+  andThen(() => {
+    expect(currentURL()).to.equal('/testorg/community/testorg/register');
+    expect(currentRouteName()).to.equal('register.community-registration.register.index');
+  });
+}));
 
 skip('can view the name of the org', assert => {
   visit('/testorg');
   andThen(() => {
-    let h2s = find('h2');
-    assert.ok(h2s.text().includes('Register for Test Org'));
+    const h2s = find('h2');
+
+    expect(h2s.text()).to.include('Register for Test Org');
   });
 });
 
-test('does not show the name and email fields', (assert) => {
+test('does not show the name and email fields', withChai(expect => {
   visit('/testorg');
   andThen(() => {
-    let labels = find('.row .columns.medium-4 label');
-    assert.notOk(labels.text().includes('Name'));
-    assert.notOk(labels.text().includes('Email'));
+    const labels = find('.row .columns.medium-4 label');
+
+    expect(labels.text()).to.not.include('Name');
+    expect(labels.text()).to.not.include('Email');
   });
-});
+}));
 
-test('shows the membership options', (assert) => {
-  assert.ok(true);
-});
+test('shows the membership options', withChai(expect => {
 
-test('does not show membership options if there are none', (assert) => {
-  assert.ok(true);
-});
+}));
 
-test('creates an order', (assert) => {
-  assert.ok(true);
-});
+test('does not show membership options if there are none', withChai(expect => {
 
-test('cancels an order before submitting', (assert) => {
-  assert.ok(true);
-});
+}));
 
+test('creates an order', withChai(expect => {
+
+}));
+
+test('cancels an order before submitting', withChai(expect => {
+
+}));

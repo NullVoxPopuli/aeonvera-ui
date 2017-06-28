@@ -48,7 +48,7 @@ export default Model.extend(Validator, PriceCalculation, {
   // buyerName: attr('string'),
 
   host: belongsTo('host', { polymorphic: true }),
-  orderLineItems: hasMany('orderLineItem'),
+  orderLineItems: hasMany('orderLineItem', { async: true }),
   attendance: belongsTo('attendance', { async: true }),
   user: belongsTo('user'),
   pricingTier: belongsTo('pricingTier'),

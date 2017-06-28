@@ -6,7 +6,7 @@ import Validator from '../mixins/model-validator';
 
 export default DS.Model.extend(Validator, {
   lineItem: DS.belongsTo('purchasable', {
-    async: true,
+    async: false,
     polymorphic: true
   }),
   order: DS.belongsTo('order'),
@@ -43,6 +43,9 @@ export default DS.Model.extend(Validator, {
   priceNeedsChanging: function() {
     const lineItem = this.get('lineItem');
     const size = this.get('size');
+
+    if (lineItem == null) Ember.Logger.info('Order Line Item does not have lineItem loaded >_<');
+
     const sizeMethod = lineItem.priceForSize;
 
     if (Ember.isPresent(sizeMethod)) {

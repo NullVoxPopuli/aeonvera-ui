@@ -12,7 +12,7 @@ export function userIsMemberOf(params, hash) {
 
   const renewal = userLatestRenewalFor({}, { user, organization });
 
-  return renewal.get('current');
+  return renewal && renewal.get('current');
 }
 
 export default Ember.Helper.helper(userIsMemberOf);
