@@ -26,7 +26,7 @@ export default Ember.Service.extend({
       } else {
         youGetValue = value;
         buyerPaysValue = (
-        (youGetValue + 0.3) / (1 - (0.029 + 0.0075))
+          (youGetValue + 0.3) / (1 - (0.029 + 0.0075))
         );
 
         serviceFeeValue = buyerPaysValue * 0.0075;

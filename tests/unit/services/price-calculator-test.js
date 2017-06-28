@@ -14,13 +14,13 @@ test('it calculates for 155', withChai(function(expect, assert) {
   let valueObject = service.calculateForSubTotal(155);
 
   expect(valueObject.feesPaidByEvent).to.equal(false);
-  expect(valueObject.subTotal).to.equal(155);
-  expect(valueObject.cardFee).to.equal(4.97);
-  expect(valueObject.applicationFee).to.equal(1.21);
-  expect(valueObject.totalFee).to.equal(6.18);
-  expect(valueObject.total).to.equal(161.18);
-  expect(valueObject.buyerPays).to.equal(161.18);
-  expect(valueObject.receivedByEvent).to.equal(155);
+  expect(valueObject.subTotal).to.equal('155.00');
+  expect(valueObject.cardFee).to.equal('4.97');
+  expect(valueObject.applicationFee).to.equal('1.21');
+  expect(valueObject.totalFee).to.equal('6.18');
+  expect(valueObject.total).to.equal('161.18');
+  expect(valueObject.buyerPays).to.equal('161.18');
+  expect(valueObject.receivedByEvent).to.equal('155.00');
 
 }));
 

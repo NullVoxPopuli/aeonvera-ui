@@ -26,6 +26,7 @@ moduleForAcceptance(
       application = startApp();
 
       server.create('user', {
+        id: 'current-user',
         email: 'test@test.test',
         password: 'some-password'
       });

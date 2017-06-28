@@ -19,7 +19,7 @@ export default Ember.Mixin.create({
 
   // handles fee adding / absorbing to the subtotal
   priceCalculator: inject.service(),
-  orderCalculator: inject.service(),
+  // orderCalculator: inject.service(),
 
   allowNegative: false,
   @computed('subTotal', 'shouldApplyFee')
@@ -32,51 +32,51 @@ export default Ember.Mixin.create({
     return value;
   },
 
-  forceAbsorbFee: false,
-  @computed('forceAbsorbFee', 'subTotal', 'isFeeAbsorbed', 'paymentMethod')
-  shouldApplyFee(forceAbsorbFee, subTotal, isFeeAbsorbed, paymentMethod) {
-    if (forceAbsorbFee) { return !forceAbsorbFee; }
+  // forceAbsorbFee: false,
+  // @computed('forceAbsorbFee', 'subTotal', 'isFeeAbsorbed', 'paymentMethod')
+  // shouldApplyFee(forceAbsorbFee, subTotal, isFeeAbsorbed, paymentMethod) {
+  //   if (forceAbsorbFee) { return !forceAbsorbFee; }
+  //
+  //   const electronicPayment = (
+  //     paymentMethod === 'stripe' ||
+  //     this.get('host.acceptOnlyElectronicPayments') || false
+  //   );
+  //
+  //   const result = (
+  //     subTotal > 0 &&
+  //     !isFeeAbsorbed &&
+  //     electronicPayment
+  //   );
+  //
+  //   return result;
+  // },
 
-    const electronicPayment = (
-      paymentMethod === 'stripe' ||
-      this.get('host.acceptOnlyElectronicPayments') || false
-    );
+  // @computed('subTotal')
+  // fee(subTotal) {
+  //   const calculation = this.get('priceCalculation');
+  //   const stringFee = calculation.totalFee;
+  //
+  //   return parseFloat(stringFee);
+  // },
 
-    const result = (
-      subTotal > 0 &&
-      !isFeeAbsorbed &&
-      electronicPayment
-    );
-
-    return result;
-  },
-
-  @computed('subTotal')
-  fee(subTotal) {
-    const calculation = this.get('priceCalculation');
-    const stringFee = calculation.totalFee;
-
-    return parseFloat(stringFee);
-  },
-
-  /*
-    Calculates raw total of all the order line items
-     - before fees or anything
-  */
-  @computed('orderLineItems.@each.total')
-  subTotal() {
-    const lineItems = this.get('orderLineItems');
-    const subTotal = this.get('orderCalculator').calculateSubTotal(this);
-
-    return subTotal;
-  },
-
-  @computed('subTotal', 'shouldApplyFee')
-  total(subTotal, shouldApplyFee) {
-    const calculation = this.get('priceCalculation');
-
-    return calculation.total;
-  },
+  // /*
+  //   Calculates raw total of all the order line items
+  //    - before fees or anything
+  // */
+  // @computed('orderLineItems.@each.total')
+  // subTotal() {
+  //   const lineItems = this.get('orderLineItems');
+  //   const subTotal = this.get('orderCalculator').calculateSubTotal(this);
+  //
+  //   return subTotal;
+  // },
+  //
+  // @computed('subTotal', 'shouldApplyFee')
+  // total(subTotal, shouldApplyFee) {
+  //   const calculation = this.get('priceCalculation');
+  //
+  //   return calculation.total;
+  // },
 
   @computed('total')
   hasNonZeroBalance(total) {

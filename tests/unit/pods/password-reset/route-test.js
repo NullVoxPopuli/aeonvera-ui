@@ -2,7 +2,10 @@ import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:password-reset', 'Unit | Route | password reset', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: [
+    'service:session',
+    'service:flash-messages'
+  ]
 });
 
 test('it exists', function(assert) {

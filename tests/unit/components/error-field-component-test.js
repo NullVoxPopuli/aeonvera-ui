@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import { withChai } from 'ember-cli-chai/qunit';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('error-field-wrapper', 'Unit | Component | error-field-wrapper');
 
-test('it has errors for a field with of an error array', function() {
+test('it has errors for a field with of an error array', withChai(function(expect) {
   let component = this.subject();
   let expected = 'an error!';
 
@@ -13,13 +14,15 @@ test('it has errors for a field with of an error array', function() {
   });
 
   let hasError = component.get('hasError');
-  ok(hasError);
+
+  expect(hasError).to.equal(true);
 
   let errors = component.get('fieldErrors');
-  equal(errors[0].message, expected);
-});
 
-test('it has an error with only a single error', function() {
+  expect(errors[0].message).to.equal(expected);
+}));
+
+test('it has an error with only a single error', withChai(function(expect) {
   let component = this.subject();
   let expected = 'an error!';
 
@@ -29,8 +32,10 @@ test('it has an error with only a single error', function() {
   });
 
   let hasError = component.get('hasError');
-  ok(hasError);
+
+  expect(hasError).to.equal(true);
 
   let errors = component.get('fieldErrors');
-  equal(errors[0].message, expected);
-});
+
+  expect(errors[0].message).to.equal(expected);
+}));

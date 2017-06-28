@@ -7,8 +7,8 @@ export default Ember.Mixin.create({
   },
 
   isTheSameKindAs(otherObject) {
-    const myModelName = this.constructor.toString();
-    const otherModelName = otherObject.constructor.toString();
+    const myModelName = this.get('constructor.modelName');
+    const otherModelName = otherObject.get('constructor.modelName');
 
     return (myModelName === otherModelName);
   }

@@ -12,6 +12,7 @@ test('isTheSameKindAs | is true with same object', function(assert) {
   Ember.run(() => {
     let lesson = this.store.createRecord('lesson');
     let result = lesson.isTheSameKindAs(lesson);
+
     assert.ok(result);
   });
 });
@@ -22,6 +23,7 @@ test('isTheSameKindAs | is false with objects of different type', function(asser
     let discount = this.store.createRecord('membership-discount');
 
     let result = lesson.isTheSameKindAs(discount);
+
     assert.notOk(result);
   });
 });
