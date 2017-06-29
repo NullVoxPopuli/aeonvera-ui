@@ -12,6 +12,7 @@ import startApp from 'aeonvera/tests/helpers/start-app';
 import destroyApp from 'aeonvera/tests/helpers/destroy-app';
 
 let application;
+let organization;
 
 let orgId = 'testorg';
 
@@ -24,14 +25,14 @@ moduleForAcceptance(
 
     beforeEach() {
       application = startApp();
-
+      server.logging = true;
       const user = server.create('user', {
         id: 'current-user',
         email: 'test@test.test',
         password: 'some-password'
       });
 
-      let org = server.create('organization', {
+      organization = server.create('organization', {
         id: orgId,
         name: 'Test Org',
         domain: 'testorg'
@@ -40,9 +41,10 @@ moduleForAcceptance(
       server.post('/api/orders', function(schema, request) {
         const order = schema.orders.create({});
 
-          console.log(order);
         return this.serialize(order);
       });
+
+      server.get('/api/organizations/:id');
 
       server.get('/api/hosts/:host',
         (schema, request) => {
@@ -91,8 +93,20 @@ test('does not show the name and email fields', withChai(expect => {
   });
 }));
 
-test('shows the membership options', withChai(expect => {
-  expect(true).to.equal(true);
+skip('shows the membership options', withChai(expect => {
+  server.create('membership-option', {
+    name: 'Some Membership',
+    organization: organization
+  });
+
+  visit('/testorg/community/testorg/register');
+
+  const selector = 'table td';
+  const elements = find(selector);
+
+  andThen(() => {
+    expect(elements.text()).to.contain('Some Membership');
+  });
 }));
 
 test('does not show membership options if there are none', withChai(expect => {

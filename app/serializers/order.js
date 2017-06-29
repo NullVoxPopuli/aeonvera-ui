@@ -3,9 +3,9 @@ import EmbeddedRecords from 'aeonvera/mixins/serializers/embedded-records';
 import ApplicationSerializer from 'aeonvera/serializers/application';
 
 export default ApplicationSerializer.extend(EmbeddedRecords, {
-  attrs: {
-    orderLineItems: { embedded: 'always' }
-  },
+  // attrs: {
+  //   orderLineItems: { embedded: 'always' }
+  // },
 
    serialize(snapshot, options) {
      let json = this._super(...arguments);

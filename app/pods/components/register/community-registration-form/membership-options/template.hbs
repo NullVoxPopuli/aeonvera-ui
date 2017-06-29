@@ -16,7 +16,9 @@
     {{#each membershipOptions as |option|}}
       <tr>
         <td>{{to-usd option.price}}</td>
-        <td><a class='button tiny no-margins' {{action 'add'}}></a></td>
+        <td>
+          <button class='tiny no-margins' {{action (action add option)}}>{{fa-icon 'plus'}}</button>
+        </td>
         <td>{{option.name}}</td>
       </tr>
     {{/each}}
