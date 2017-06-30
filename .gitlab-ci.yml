@@ -4,6 +4,7 @@ stages:
 ci:
   stage: ci
   script:
+    - touch .env
     - ./scripts/ci/ci.sh
   artifacts:
     paths:
