@@ -1,8 +1,17 @@
 import Ember from 'ember';
+import computed, { alias, sort } from 'ember-computed-decorators';
+import { PropTypes } from 'ember-prop-types';
 
-const { computed, isPresent } = Ember;
+const { isPresent, observer } = Ember;
 
 export default Ember.Component.extend({
+  propTypes: {
+    orders: PropTypes.any,
+    searchOrders: PropTypes.any.isRequired,
+    hostId: PropTypes.any.isRequired,
+    hostType: PropTypes.string.isRequired
+  },
+
   afterDate: null,
   beforeDate: null,
   pastDays: 35,
@@ -12,22 +21,29 @@ export default Ember.Component.extend({
   // 0 - all, 1 - paid, 2 - unpaid
   showPaid: 0,
 
-  sortedOrders: Ember.computed.sort('orders', 'sortProps'),
+  @sort('orders', 'sortProps') sortedOrders: null,
   sortProps: ['paymentReceivedAt:desc'],
 
-  hostId: computed.alias('model.hostId'),
-  hostType: computed.alias('model.hostType'),
+  didInsertElement() {
+    this._super(...arguments);
 
-  orders: computed('model', 'pastDays', 'showPaid', 'selectedLineItem', function() {
-    const host = this.get('model');
-    const pastDays = this.get('pastDays');
+    // trigger the observing search
+    this.get('searchOrders').perform(this.get('orderQuery'), true);
+  },
+
+  search: observer('orderQuery', function() {
+    const query = this.get('orderQuery');
+
+    this.get('searchOrders').perform(this.get('orderQuery'));
+  }),
+
+  @computed('hostId', 'hostType', 'pastDays', 'showPaid', 'selectedLineItem')
+  orderQuery(hostId, hostType, pastDays, showPaid, selectedLineItem) {
     const nameContains = this.get('firstOrLastNameContains');
-    const showPaid = this.get('showPaid');
-    const selectedLineItem = this.get('selectedLineItem');
 
     const query = {
-      host_id_eq: host.hostId,
-      host_type_eq: host.hostType
+      host_id_eq: hostId,
+      host_type_eq: hostType
     };
 
     if (isPresent(pastDays)) {
@@ -57,37 +73,44 @@ export default Ember.Component.extend({
       query.order_line_items_line_item_type_like = selectedLineItem.get('klass');
     }
 
-    const promise = this.store.query('order', {
-      q: query,
-      include: 'order_line_items.line_item'
-    });
+    return query;
+  },
 
-    return promise;
-  }),
-
-  nameSort: function() {
+  @computed('sortProps')
+  nameSort() {
     return this._sortIndicator('userName');
-  }.property('sortProps'),
+  },
 
-  paidSort: function() {
+
+  @computed('sortProps')
+  paidSort() {
     return this._sortIndicator('paid');
-  }.property('sortProps'),
+  },
 
-  paidAmountSort: function() {
+  @computed('sortProps')
+  paidAmountSort() {
     return this._sortIndicator('paidAmount');
-  }.property('sortProps'),
+  },
 
-  netSort: function() {
+  @computed('sortProps')
+  netSort() {
     return this._sortIndicator('netAmountReceived');
-  }.property('sortProps'),
+  },
 
-  feeSort: function() {
+  @computed('sortProps')
+  feeSort() {
     return this._sortIndicator('totalFeeAmount');
-  }.property('sortProps'),
+  },
 
-  receivedAtSort: function() {
+  @computed('sortProps')
+  receivedAtSort() {
     return this._sortIndicator('paymentReceivedAt');
-  }.property('sortProps'),
+  },
+
+  @computed('sortProps')
+  createdAtSort() {
+    return this._sortIndicator('createdAt');
+  },
 
   _sortIndicator: function(field) {
     const currentSort = this.get('sortProps')[0];
@@ -103,7 +126,7 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    toggleSort: function(property) {
+    toggleSort(property) {
       const currentSort = this.get('sortProps')[0];
       const sort = currentSort.split(':');
       const sortProperty = sort[0];

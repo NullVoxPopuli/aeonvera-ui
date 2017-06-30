@@ -1,9 +1,14 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
+import { PropTypes } from 'ember-prop-types';
 
 const { isPresent } = Ember;
 
 export default Ember.Component.extend({
+  propTypes: {
+    memberships: PropTypes.array.isRequired
+  },
+
   nameContains: null,
 
   // 0 - all, 1 - members, 2 - nonmembers
@@ -17,8 +22,8 @@ export default Ember.Component.extend({
     { property: 'expiresAt', title: 'Membership Expires At' }
   ],
 
-  @computed('model', 'nameContains', 'showMembers')
-  memberships(model, nameContains, showMembers) {
+  @computed('memberships', 'nameContains', 'showMembers')
+  filteredMemberships(model, nameContains, showMembers) {
     return model.filter(membership => {
       let containsName = true;
       let matchesMemberFilter = true;

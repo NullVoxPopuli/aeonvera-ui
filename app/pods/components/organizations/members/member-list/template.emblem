@@ -11,7 +11,7 @@ label Non-Members
 = radio-button value=0 groupValue=showMembers
 label All
 
-= sortable-table columns=columns data=memberships as |membership|
+= sortable-table columns=columns data=filteredMemberships as |membership|
   td
     link-to 'my-communities.manage.membership.show' membership.member.id
       = membership.member.name

@@ -1,17 +1,21 @@
 import Ember from 'ember';
-import Index from 'aeonvera/mixins/routes/crud/events/index';
+import RSVP from 'rsvp';
 
-export default Ember.Route.extend(Index, {
-  modelName: 'membership-renewal',
-  parentIdKey: 'organization_id',
-  parentPathRoot: 'my-communities.manage',
-  include: 'member,membership_option',
+export default Ember.Route.extend({
 
-  setupController(controller, model) {
-    this._super(...arguments);
-
+  model() {
     const organization = this.modelFor('my-communities.manage.membership');
+    const organizationId = organization.get('id');
 
-    controller.set('organization', organization);
+    const memberships = this.store.query('membership-renewal', {
+      q: { organization_id: organizationId },
+      organization_id: organizationId,
+      include: 'member,membership_option'
+    });
+
+    return RSVP.hash({
+      organization,
+      memberships
+    });
   }
 });
