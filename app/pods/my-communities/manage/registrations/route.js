@@ -4,10 +4,9 @@ import moment from 'moment';
 
 export default Ember.Route.extend({
 
-  model: function() {
+  model() {
     const hostId = this.modelFor('my-communities.manage').get('id');
     const hostType = 'Organization';
-    // const organization = this.store.findRecord('organization', hostId);
     const initialOrders = this.store.query('order', {
       q: {
         host_id: hostId,
@@ -18,7 +17,6 @@ export default Ember.Route.extend({
     });
 
     return RSVP.hash({
-      // organization,
       hostId: hostId,
       hostType: hostType,
       initialOrders

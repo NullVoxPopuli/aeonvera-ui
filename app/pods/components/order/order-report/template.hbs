@@ -26,10 +26,6 @@
       {{#group.radio class='margin-right-20' value=0}}All{{/group.radio}}
     </div>
   {{/paper-radio-group}}
-{{!--
-  {{#paper-button raised=true primary=true onClick=(action onSearch orderQuery)}}
-    Search
-  {{/paper-button}} --}}
 </div>
 {{!--
   .small-12.columns.medium-4
@@ -59,10 +55,10 @@
         <tr>
           <td>{{order.userName}}</td>
           <td>
-            {{!-- {{#each (await order.orderLineItems) as |orderLineItem|}}
+            {{#each order.orderLineItems as |orderLineItem|}}
               <span>{{orderLineItem.lineItem.name}} (x{{orderLineItem.quantity}} @ {{to-usd orderLineItem.price}})</span>
               <br />
-            {{/each}} --}}
+            {{/each}}
           </td>
           <td>
             {{#if order.paid}}

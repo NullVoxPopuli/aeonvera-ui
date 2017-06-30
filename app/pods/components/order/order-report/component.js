@@ -27,10 +27,12 @@ export default Ember.Component.extend({
   queryObserver: observer('pastDays', 'showPaid', 'selectedLineItem', 'firstOrLastNameContains', function() {
     // use run once, because the observer will syncronously queue up with each changed
     // property. So if multiple properties change at once, we still only want to search once.
-    Ember.run.once(this, () => {
-      this.get('searchOrders').perform(this.get('orderQuery'));
-    });
+    Ember.run.once(this, 'search');
   }),
+
+  search() {
+    this.get('searchOrders').perform(this.get('orderQuery'));
+  },
 
   @computed('hostId', 'hostType', 'pastDays', 'showPaid', 'selectedLineItem', 'firstOrLastNameContains')
   orderQuery(hostId, hostType, pastDays, showPaid, selectedLineItem, nameContains) {
