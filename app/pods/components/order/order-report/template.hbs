@@ -1,0 +1,82 @@
+<div class='layout-row'>
+  {{paper-input
+    type='text'
+    label='First or Last name Contains'
+    value=(readonly firstOrLastNameContains)
+    onChange=(action (mut firstOrLastNameContains))
+  }}
+
+  {{paper-input
+    type='number'
+    label='Days Ago'
+    min=0
+    value=(readonly pastDays)
+    onChange=(action (mut pastDays))
+  }}
+</div>
+
+<div class='layout-row'>
+  {{#paper-radio-group
+    groupValue=(readonly showPaid)
+    onChange=(action (mut showPaid)) as |group|
+  }}
+    <div class='layout-row'>
+      {{#group.radio class='margin-right-20' value=1}}Paid{{/group.radio}}
+      {{#group.radio class='margin-right-20' value=2}}Unpaid{{/group.radio}}
+      {{#group.radio class='margin-right-20' value=0}}All{{/group.radio}}
+    </div>
+  {{/paper-radio-group}}
+{{!--
+  {{#paper-button raised=true primary=true onClick=(action onSearch orderQuery)}}
+    Search
+  {{/paper-button}} --}}
+</div>
+{{!--
+  .small-12.columns.medium-4
+    label Order Contains Item
+    = form/line-item-select value=selectedLineItem hostId=hostId hostType=hostType --}}
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th><a onClick={{action 'toggleSort' 'userName'}}>Name {{nameSort}}</a></th>
+      <th>Purchased</th>
+      <th><a onClick={{action 'toggleSort' 'paidName'}}>Paid? {{paidSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'paidAmount'}}>Paid Amount {{paidAmountSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'netAmountReceived'}}>Net Amount Received {{netSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'totalFeeAmount'}}>Total Fees {{feeSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'paymentReceivedAt'}}>Payment Received At {{receivedAtSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'createdAt'}}>Registered At {{receivedAtSort}}</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if (not searchOrders.isIdle)}}
+      <tr><td colspan=7>Loading...</td></tr>
+    {{else}}
+      {{#each sortedOrders as |order|}}
+        <tr>
+          <td>{{order.userName}}</td>
+          <td>
+            {{!-- {{#each order.orderLineItems as |orderLineItem|}}
+              <span>{{orderLineItem.lineItem.name}} (x{{orderLineItem.quantity}} @ {{to-usd orderLineItem.price}})</span>
+              <br />
+            {{/each}} --}}
+          </td>
+          <td>
+            {{#if order.paid}}
+              Yes
+            {{else}}
+              Owes {{to-usd order.totalInDollars}}
+            {{/if}}
+          </td>
+          <td>{{to-usd order.paidAmount}}</td>
+          <td>{{to-usd order.newAmountReceived}}</td>
+          <td>{{to-usd order.totalFeeAmount}}</td>
+          <td>{{date-with-format order.paymentReceivedAt 'lll'}}</td>
+        </tr>
+      {{/each}}
+    {{/if}}
+  </tbody>
+</table>

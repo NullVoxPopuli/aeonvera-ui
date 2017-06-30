@@ -23,6 +23,7 @@
   = paper-item
     link-to 'my-communities.manage.revenue' community.id
       span Revenue
+
   = paper-item
     link-to 'my-communities.manage.membership' community.id
       span Membership

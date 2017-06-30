@@ -1,2 +1,0 @@
-= page-header text='Order History'
-= order/order-report model=model 
