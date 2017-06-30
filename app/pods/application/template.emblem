@@ -4,6 +4,9 @@
 / ember-wormhole puts modals here
 #foundation-modals
 
+/#paper-wormhole
+/#ember-basic-dropdown-wormhole
+
 / this wrapper div is for the sticky footer within .inner-wrap
 .off-canvas-wrap
   = component navigation left=mobileMenuLeft right=mobileMenuRight toDashboardAction='linkToDashboard'
@@ -28,5 +31,3 @@
 
             = outlet
       = sticky-footer classNames='sticky-footer'
-
-
