@@ -20,31 +20,21 @@ export default Ember.Component.extend({
 
   // 0 - all, 1 - paid, 2 - unpaid
   showPaid: 0,
-
-  @sort('orders', 'sortProps') sortedOrders: null,
   sortProps: ['paymentReceivedAt:desc'],
 
-  didInsertElement() {
-    this._super(...arguments);
+  @sort('orders', 'sortProps') sortedOrders: null,
 
-    // trigger the observing search
-    this.get('searchOrders').perform(this.get('orderQuery'), true);
-  },
-
-  search: observer('orderQuery', function() {
-    const query = this.get('orderQuery');
-
-    this.get('searchOrders').perform(this.get('orderQuery'));
+  queryObserver: observer('pastDays', 'showPaid', 'selectedLineItem', 'firstOrLastNameContains', function() {
+    // use run once, because the observer will syncronously queue up with each changed
+    // property. So if multiple properties change at once, we still only want to search once.
+    Ember.run.once(this, () => {
+      this.get('searchOrders').perform(this.get('orderQuery'));
+    });
   }),
 
-  @computed('hostId', 'hostType', 'pastDays', 'showPaid', 'selectedLineItem')
-  orderQuery(hostId, hostType, pastDays, showPaid, selectedLineItem) {
-    const nameContains = this.get('firstOrLastNameContains');
-
-    const query = {
-      host_id_eq: hostId,
-      host_type_eq: hostType
-    };
+  @computed('hostId', 'hostType', 'pastDays', 'showPaid', 'selectedLineItem', 'firstOrLastNameContains')
+  orderQuery(hostId, hostType, pastDays, showPaid, selectedLineItem, nameContains) {
+    const query = { host_id_eq: hostId, host_type_eq: hostType };
 
     if (isPresent(pastDays)) {
       const m = moment(new Date());
@@ -55,8 +45,6 @@ export default Ember.Component.extend({
 
     if (isPresent(nameContains)) {
       query.user_first_name_or_user_last_name_cont = nameContains;
-
-      // query['attendance_attendee_name_cont'] = nameContains;
     }
 
     if (showPaid !== 0) {
@@ -65,7 +53,6 @@ export default Ember.Component.extend({
       } else {
         query.paid_false = 1;
       }
-
     }
 
     if (isPresent(selectedLineItem)) {

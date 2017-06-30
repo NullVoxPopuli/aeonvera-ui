@@ -48,18 +48,18 @@
       <th><a onClick={{action 'toggleSort' 'netAmountReceived'}}>Net Amount Received {{netSort}}</a></th>
       <th><a onClick={{action 'toggleSort' 'totalFeeAmount'}}>Total Fees {{feeSort}}</a></th>
       <th><a onClick={{action 'toggleSort' 'paymentReceivedAt'}}>Payment Received At {{receivedAtSort}}</a></th>
-      <th><a onClick={{action 'toggleSort' 'createdAt'}}>Registered At {{receivedAtSort}}</a></th>
+      <th><a onClick={{action 'toggleSort' 'createdAt'}}>Registered At {{createdAtSort}}</a></th>
     </tr>
   </thead>
   <tbody>
     {{#if (not searchOrders.isIdle)}}
-      <tr><td colspan=7>Loading...</td></tr>
+      <tr><td colspan=8>Loading...</td></tr>
     {{else}}
       {{#each sortedOrders as |order|}}
         <tr>
           <td>{{order.userName}}</td>
           <td>
-            {{!-- {{#each order.orderLineItems as |orderLineItem|}}
+            {{!-- {{#each (await order.orderLineItems) as |orderLineItem|}}
               <span>{{orderLineItem.lineItem.name}} (x{{orderLineItem.quantity}} @ {{to-usd orderLineItem.price}})</span>
               <br />
             {{/each}} --}}
@@ -75,6 +75,7 @@
           <td>{{to-usd order.newAmountReceived}}</td>
           <td>{{to-usd order.totalFeeAmount}}</td>
           <td>{{date-with-format order.paymentReceivedAt 'lll'}}</td>
+          <td>{{date-with-format order.createdAt 'lll'}}</td>
         </tr>
       {{/each}}
     {{/if}}
