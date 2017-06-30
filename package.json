@@ -92,7 +92,7 @@
     "ember-loading-route": "0.0.3",
     "ember-local-settings": "^1.0.4",
     "ember-model-validator": "^2.0.0",
-    "ember-paper": "^1.0.0-alpha.19",
+    "ember-paper": "^1.0.0-alpha.20",
     "ember-power-select": "^1.8.5",
     "ember-promise-helpers": "^1.0.3",
     "ember-prop-types": "^3.13.0",
