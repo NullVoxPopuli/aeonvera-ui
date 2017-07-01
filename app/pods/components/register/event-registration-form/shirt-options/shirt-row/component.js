@@ -18,12 +18,12 @@ export default Ember.Component.extend({
 
   selectedSizeData: '',
 
-  @alias('order.orderLineItems') orderLineItems,
-  @alias('shirt.sizes') sizes,
+  @alias('order.orderLineItems') orderLineItems: null,
+  @alias('shirt.sizes') sizes: null,
 
-  @filter('orderLineItem', function() {}) shirtOlis,
+  @filter('orderLineItem', function() {}) shirtOlis: null,
 
-  @filterBy('orderLineItems', 'isDeleted', false) nonDeletedItems,
+  @filterBy('orderLineItems', 'isDeleted', false) nonDeletedItems: null,
 
   @computed('nonDeletedItems.@each.{quantity,price}', 'shirt.id')
   subTotal(olis, shirtId) {

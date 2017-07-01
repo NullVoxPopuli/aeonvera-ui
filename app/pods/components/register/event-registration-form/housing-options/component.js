@@ -16,15 +16,15 @@ export default Ember.Component.extend({
     onSubmitHousing: PropTypes.func.isRequired
   },
 
-  @equal('selectedHousingOption', DOES_NOT_NEED_HOUSING) doesNotNeedHousing,
-  @equal('selectedHousingOption', CAN_PROVIDE_HOUSING) canProvideHousing,
-  @equal('selectedHousingOption', REQUESTING_HOUSING) isRequestingHousing,
+  @equal('selectedHousingOption', DOES_NOT_NEED_HOUSING) doesNotNeedHousing: null,
+  @equal('selectedHousingOption', CAN_PROVIDE_HOUSING) canProvideHousing: null,
+  @equal('selectedHousingOption', REQUESTING_HOUSING) isRequestingHousing: null,
 
   actions: {
     setHousingOption(value) {
       // hack to get around the controller not passing us
       // the updated value...
-      this.set('selectedHousingOption', value);
+      // this.set('selectedHousingOption', value);
       this.sendAction('onChangeSelection', value);
     }
   }

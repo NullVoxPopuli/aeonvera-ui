@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
     });
   },
 
-  @computed('registration.housingRequest', 'registration.housingProvision')
+  @computed('housingRequest', 'housingProvision')
   selectedHousingOption(housingRequest, housingProvision) {
     if (housingProvision && !housingProvision.get('isNew')) return PROVIDING_HOUSING;
     else if (housingRequest && !housingRequest.get('isNew')) return REQUESTING_HOUSING;

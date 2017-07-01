@@ -4,7 +4,7 @@ import computed, { mapBy } from 'ember-computed-decorators';
 const { isPresent } = Ember;
 
 export default class extends Ember.Component {
-  @mapBy('attendance.customFieldResponses', 'value') customFieldResponseValues
+  @mapBy('attendance.customFieldResponses', 'value') customFieldResponseValues;
 
   @computed('customFieldResponseValues')
   hasCustomFieldResponses(values) {

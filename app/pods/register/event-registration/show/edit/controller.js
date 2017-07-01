@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
+
 import computed, { alias, oneWay } from 'ember-computed-decorators';
 
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
@@ -35,6 +37,26 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
       .find(li => li.get('klass') === 'Package');
   },
 
+  _ensureOrderExists() {
+    const order = this.get('order');
+
+    return RSVP.resolve(order).then(o => {
+      if (o !== null) return RSVP.resolve(o);
+
+      const order = this.get('store').createRecord('order', {
+        host: this.get('event'),
+        user: this.get('currentUser'),
+        userName: this.get('userName'),
+        userEmail: this.get('userEmail'),
+        attendance: this.get('registration')
+      });
+
+      this.set('order', order);
+
+      return order.save();
+    });
+  },
+
   actions: {
     didFinishInfo() {
       // next up: ticket
@@ -52,6 +74,7 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
       const registration = this.get('registration');
 
       return registration.ensurePersisted()
+        .then(() => this._ensureOrderExists())
         .then(() => this._updateOrCreateOrderLineItemForItem(
           oldPackage,
           selectedPackage

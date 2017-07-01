@@ -12,12 +12,17 @@ export default Ember.Route.extend({
   afterModel(model) {
     const event = model.event;
 
+    const hasShirts = event.get('shirts.length') > 0;
     const shirtSalesEndAt = event.get('shirtSalesEndAt');
     const areShirtSalesOver = moment().isAfter(shirtSalesEndAt);
 
     const unpaidOrder = model.registration.get('unpaidOrder');
 
-    if (areShirtSalesOver || isBlank(unpaidOrder)) {
+    const shouldSkipThisPage = (
+      !hasShirts || areShirtSalesOver || isBlank(unpaidOrder)
+    );
+
+    if (shouldSkipThisPage) {
       this.transitionTo('register.event-registration.show');
     }
   }
