@@ -7,6 +7,7 @@ import { messageFromError } from 'aeonvera/helpers/message-from-error';
 const { inject, isPresent, isBlank } = Ember;
 
 export default Ember.Service.extend({
+  rollbar: inject.service('rollbar'),
   notifications: inject.service('notification-messages'),
   options: { autoClear: true, clearDuration: 3200, htmlContent: true },
 
@@ -21,7 +22,7 @@ export default Ember.Service.extend({
   notify(messages = {}, promise = null) {
     const notifier = this.get('notifications');
     const options = this.get('options');
-    const { begin, success, error } = messages;
+    const { begin, success, error, rollbar } = messages;
 
     if (begin) notifier.info(begin, options);
 
@@ -36,6 +37,8 @@ export default Ember.Service.extend({
       const message = e.message;
 
       if (error) {
+        if (rollbar) this.get('rollbar').error(error);
+
         notifier.clearAll();
         this.error(`<span><strong>${error}</strong><br /> ${message}</span>`);
       }

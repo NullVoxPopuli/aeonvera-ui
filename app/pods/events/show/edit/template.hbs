@@ -1,0 +1,50 @@
+{{page-header text=model.name}}
+
+<div class='layout-row'>
+    {{#paper-button onClick=(transition-to 'events.show.edit.index')}}
+      General
+    {{/paper-button}}
+    {{#paper-button onClick=(transition-to 'events.show.edit.housing')}}
+      Housing
+    {{/paper-button}}
+    {{#paper-button onClick=(transition-to 'events.show.edit.options')}}
+      Options
+    {{/paper-button}}
+    {{#paper-button onClick=(transition-to 'events.show.edit.customization')}}
+      Customization
+    {{/paper-button}}
+    {{#paper-button onClick=(transition-to 'events.show.edit.payment-processors')}}
+      Payment Processors
+    {{/paper-button}}
+    {{#paper-button onClick=(transition-to 'events.show.edit.sponsors')}}
+      Sponsors
+    {{/paper-button}}
+</div>
+
+
+{{outlet}}
+
+<div class='row'>
+  <div class='small-12 columns'>
+    <div class='right'>
+      <div class='layout-row'>
+        {{#paper-button
+          raised=true
+          onClick=(action 'cancel')
+        }}
+          Cancel
+        {{/paper-button}}
+
+        {{#paper-button
+          raised=true
+          primary=true
+          disabled=(not isDirty)
+          onClick=(action 'save')
+        }}
+          Save
+        {{/paper-button}}
+
+      </div>
+    </div>
+  </div>
+</div>

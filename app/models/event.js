@@ -35,8 +35,8 @@ export default Host.extend(RegistrationOpens, {
 
   askIfLeadingOrFollowing: attr('boolean'),
 
-  openingTier: belongsTo('opening-tier'),
-  currentTier: belongsTo('pricing-tier'),
+  openingTier: belongsTo('opening-tier', { async: false }),
+  currentTier: belongsTo('pricing-tier', { async: false }),
   packages: hasMany('package'),
   levels: hasMany('level'),
   competitions: hasMany('competitions', { inverse: 'event' }),

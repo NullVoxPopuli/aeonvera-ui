@@ -33,8 +33,9 @@ form submit='save'
   .row
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='opening-tier.date' model=model
       label
-        span Registration Opens At
-        = form/date-time-input model=model.openingTier field='date'
+        span Registration Opens At {{model.openingTier.date}}
+        = form/date-time value=model.openingTier.date onChange=(action (mut model.openingTier.date))
+        /= form/date-time-input model=model.openingTier field='date'
 
     = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='contactEmail'
       label

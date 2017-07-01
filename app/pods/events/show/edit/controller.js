@@ -1,13 +1,16 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
+import { or } from 'ember-computed-decorators';
 
 export default Ember.Controller.extend({
+  flash: Ember.inject.service('flash-notification'),
+
   saveSuccessPath: 'events.show.manage',
   cancelPath: 'events.show.manage',
   modelName: 'event',
 
-  isDirty: function() {
-    return !this.get('model.hasDirtyAttributes');
-  }.property('model.hasDirtyAttributes'),
+  @or('model.hasDirtyAttributes', 'model.openingTier.hasDirtyAttributes')
+  isDirty: null,
 
   submitTitle: function() {
     if (this.get('isDirty')) {
@@ -20,24 +23,23 @@ export default Ember.Controller.extend({
   actions: {
     save: function() {
       const model = this.get('model');
+      const name = model.get('name');
+      const flash = this.get('flash');
+      const openingTier = this.get('model.openingTier');
 
-      model.save().then(record => {
-        this.get('flashMessages').success(
-          'Saved Successfully'
-        );
-        const path = this.get('saveSuccessPath');
+      const promise = RSVP.all([
+        model.save(),
+        openingTier.save()
+      ]);
 
-        // let params = {};
-        // params[this.get('modelNameId')] = record.get('id');
+      flash.notify({
+        rollbar: true,
+        begin: `Saving ${name}...`,
+        success: `${name} saved!`,
+        error: `Could not save ${name}!`
+      }, promise);
 
-        this.transitionToRoute(path, record.get('id'));
-      }, failure => {
-
-        this.get('flashMessages').alert(
-          'Saving failed. ' + failure
-        );
-      });
-
+      promise.then(() => this.transitionToRoute('events.show.manage'));
     },
 
     cancel: function() {

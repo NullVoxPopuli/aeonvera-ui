@@ -4,11 +4,7 @@ import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 export default Ember.Route.extend(SetNavbarTitle, {
   model: function(params) {
     return this.store.findRecord('event', params.event_id, {
-      adapterOptions: {
-        query: {
-          include: 'opening_tier,integrations,sponsorships'
-        }
-      }
+      include: 'opening_tier,current_tier,integrations,sponsorships'
     });
   },
 

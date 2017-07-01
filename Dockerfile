@@ -1,4 +1,4 @@
-FROM nullvoxpopuli/ember-cli
+FROM nullvoxpopuli/ember-cli:2.13.3
 USER root
 
 ADD bower.json   /web/bower.json

@@ -3,8 +3,8 @@ import { alias } from 'ember-computed-decorators';
 
 const { inject } = Ember;
 
-export default class extends Ember.Controller {
-  session = inject.service('session');
+export default Ember.Controller.extend({
+  session: inject.service('session'),
 
-  @alias('session.currentUser') currentUser;
-}
+  @alias('session.currentUser') currentUser: null
+});
