@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 const { isBlank, computed } = Ember;
+const { attr } = DS;
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -9,6 +10,7 @@ export default DS.Model.extend({
   startsAt: DS.attr('date'),
   endsAt: DS.attr('date'),
   location: DS.attr('string'),
+  domain: attr('string'),
   url: DS.attr('string'),
   logoUrl: DS.attr('string'),
   logoUrlThumb: DS.attr('string'),

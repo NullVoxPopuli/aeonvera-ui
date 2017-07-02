@@ -11,7 +11,12 @@ export default Ember.Controller.extend({
       const attemptedTransition = this.get('session.attemptedTransition');
 
       if (route) return this.transitionToRoute(route);
-      if (attemptedTransition) return attemptedTransition.retry();
+
+      const useAttemptedTransition = (
+        attemptedTransition && !attemptedTransition.targetName.includes('login')
+      );
+
+      if (useAttemptedTransition) return attemptedTransition.retry();
 
       this.transitionToRoute('dashboard');
     }
