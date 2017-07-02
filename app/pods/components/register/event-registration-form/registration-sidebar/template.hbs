@@ -5,7 +5,6 @@
 {{/paper-toolbar}}
 
 {{#paper-list}}
-
   {{#paper-item}}
     {{#link-to 'application'}}Home{{/link-to}}
   {{/paper-item}}
@@ -14,5 +13,15 @@
     {{#link-to 'register'}}Registrations{{/link-to}}
   {{/paper-item}}
 
-{{/paper-list}}
+  {{paper-divider}}
 
+  {{#paper-item}}
+    {{#link-to 'upcoming-events'}}Upcoming Events{{/link-to}}
+  {{/paper-item}}
+
+  {{paper-divider}}
+
+  {{#paper-item}}
+    {{#link-to 'dashboard.orders'}}Order History{{/link-to}}
+  {{/paper-item}}
+{{/paper-list}}

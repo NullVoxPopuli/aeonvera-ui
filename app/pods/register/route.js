@@ -1,13 +1,20 @@
 import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
+import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
-export default Ember.Route.extend(ResetScroll, {
+export default Ember.Route.extend(ResetScroll, SetNavbarTitle, {
   model: function(params) {
     const subdomain = params.subdomain;
 
     return this.get('store').findRecord('host', subdomain, {
       subdomain: subdomain
     });
+  },
+
+  afterModel(model, transition) {
+    const name = model.get('name');
+
+    this._setAppNavTitle(name);
   },
 
   actions: {
