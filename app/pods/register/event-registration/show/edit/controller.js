@@ -78,14 +78,15 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
         .then(() => this._ensureOrderExists())
         .then(() => this._updateOrCreateOrderLineItemForItem(
           oldPackage,
-          selectedPackage
-        ));
+          selectedPackage))
+        .then(() => this.set('selectedPackage', selectedPackage));
     },
 
     didUpdateSelectedLevel(selectedLevel) {
       const registration = this.get('registration');
 
       registration.set('level', selectedLevel);
+      this.set('selectedLevel', selectedLevel);
 
       return registration.save();
     },

@@ -61,10 +61,12 @@ export default Ember.Controller.extend({
       let handleHousing = RSVP.resolve();
 
       if (option === NO_HOUSING) {
-        handleHousing = RSVP.all([
-          housingProvision.destroyRecord(),
-          housingRequest.destroyRecord()
-        ]);
+        let promises = [];
+
+        if (housingProvision.get('isPersisted')) promises.push(housingProvision.destroyRecord());
+        if (housingRequest.get('isPersisted')) promises.push(housingRequest.destroyRecord());
+
+        handleHousing = RSVP.all(promises);
       } else if (option === PROVIDING_HOUSING) {
         handleHousing = this.get('housingProvision').save();
       } else if (option === REQUESTING_HOUSING) {

@@ -1,3 +1,10 @@
-{{#each registration.orders as |order|}}
-  {{order/order-checkout model=order}}
-{{/each}}
+{{#if (is-present registration.orders)}}
+  {{#each registration.orders as |order|}}
+    {{order/order-checkout model=order}}
+  {{/each}}
+{{else}}
+  There are no orders associated with this registration.
+  {{#link-to 'register.event-registration.show.edit'}}
+    Begin Registering
+  {{/link-to}}
+{{/if}}

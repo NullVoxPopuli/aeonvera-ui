@@ -1,6 +1,6 @@
 = paper-toolbar class='hide-gt-sm'
   = paper-toolbar-tools class='layout-align-space-between'
-    = currentUser.name
+    = or title currentUser.name
 
 = paper-list
   = paper-item

@@ -21,7 +21,6 @@ export default Ember.Component.extend({
       RSVP.resolve(this.get('packages')).then(packages => {
         const selection = packages.find(p => p.get('id') === id);
 
-        this.set('selectedPackage', selection);
         this.sendAction('onPackageSelect', selection);
       });
     }

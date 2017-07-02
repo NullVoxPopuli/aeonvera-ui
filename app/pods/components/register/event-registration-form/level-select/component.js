@@ -17,7 +17,6 @@ export default Ember.Component.extend({
       this.get('levels').then(levels => {
         const selection = levels.find(p => p.get('id') === id);
 
-        this.set('selectedLevel', selection);
         this.sendAction('onLevelSelect', selection);
       });
     }

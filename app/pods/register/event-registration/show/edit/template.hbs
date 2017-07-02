@@ -14,13 +14,15 @@
       logoUrl=event.logoUrlThumb
     }}
 
-    {{#if selectedPackage.requiresTrack}}
-      {{register/event-registration-form/level-select
-        selectedLevel=registration.level
-        levels=levels
-        onLevelSelect=(action 'didUpdateSelectedLevel')
-        logoUrl=event.logoUrlThumb
-      }}
+    {{#if (is-present event.levels)}}
+      {{#if selectedPackage.requiresTrack}}
+        {{register/event-registration-form/level-select
+          selectedLevel=registration.level
+          levels=levels
+          onLevelSelect=(action 'didUpdateSelectedLevel')
+          logoUrl=event.logoUrlThumb
+        }}
+      {{/if}}
     {{/if}}
 
 
