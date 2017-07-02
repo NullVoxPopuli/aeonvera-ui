@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
-import { or } from 'ember-computed-decorators';
+import { or } from 'ember-decorators/object/computed';
 
 export default Ember.Controller.extend({
   flash: Ember.inject.service('flash-notification'),

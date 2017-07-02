@@ -3583,9 +3583,9 @@ ember-composable-helpers@^2.0.1:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^6.1.0"
 
-ember-computed-decorators@rwjblue/ember-computed-decorators:
+ember-decorators/object@rwjblue/ember-decorators/object:
   version "0.3.0"
-  resolved "https://codeload.github.com/rwjblue/ember-computed-decorators/tar.gz/eb96780545ca31f088fe5206c4f7eb24cfe81dd2"
+  resolved "https://codeload.github.com/rwjblue/ember-decorators/object/tar.gz/eb96780545ca31f088fe5206c4f7eb24cfe81dd2"
   dependencies:
     ember-cli-babel "^6.0.0"
     ember-macro-helpers "^0.9.0"

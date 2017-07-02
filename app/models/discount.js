@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { alias } from 'ember-computed-decorators';
+import { alias } from 'ember-decorators/object/computed';
 
 import IsLineItem from '../mixins/models/is-line-item';
 import DeletedAt from '../mixins/models/deleted-at';

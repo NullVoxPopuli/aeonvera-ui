@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import RSVP from 'rsvp';
-import computed, { alias } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
+
 
 import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';

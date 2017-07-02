@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import computed, { alias, not } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias, not } from 'ember-decorators/object/computed';
 
 import Validator from '../mixins/model-validator';
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';

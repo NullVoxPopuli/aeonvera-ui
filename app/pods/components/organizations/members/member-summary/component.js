@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
-import computed, { alias, readOnly } from 'ember-computed-decorators';
+import { computed, readOnly } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
+
 
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
 import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';

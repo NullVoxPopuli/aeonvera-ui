@@ -1,10 +1,9 @@
 import Ember from 'ember';
 import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
-import SetSidebar from 'aeonvera/mixins/routes/set-sidebar';
 
 const { inject: { service } } = Ember;
 
-export default Ember.Route.extend(ResetScroll, SetSidebar, {
+export default Ember.Route.extend(ResetScroll, {
   session: service('session'),
   currentUserService: service('current-user'),
   pathStore: service('path-store'),
@@ -57,7 +56,6 @@ export default Ember.Route.extend(ResetScroll, SetSidebar, {
     },
 
     linkToDashboard() {
-      this._setMobileLeftMenu('sidebar/dashboard-sidebar');
       this.transitionTo('dashboard');
     },
 

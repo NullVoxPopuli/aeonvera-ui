@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { sort } from 'ember-computed-decorators';
+import { sort } from 'ember-decorators/object/computed';
 
 export default Ember.Component.extend({
   columns: [],

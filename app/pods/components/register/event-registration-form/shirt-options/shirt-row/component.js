@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import { PropTypes } from 'ember-prop-types';
-import computed, { map, alias, filter, filterBy } from 'ember-computed-decorators';
+
+import { computed } from 'ember-decorators/object';
+import { map, alias, filter, filterBy } from 'ember-decorators/object/computed';
 
 import { isA } from 'aeonvera/helpers/is-a';
 

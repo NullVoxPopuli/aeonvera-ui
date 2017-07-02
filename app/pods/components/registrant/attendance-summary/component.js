@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import computed, { mapBy } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { mapBy } from 'ember-decorators/object/computed';
+
 
 const { isPresent } = Ember;
 

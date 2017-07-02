@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { or } from 'ember-computed-decorators';
+import { or } from 'ember-decorators/object/computed';
 
 import EditModel from 'aeonvera/mixins/edit-model';
 

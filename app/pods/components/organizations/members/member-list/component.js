@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import computed from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
 import { PropTypes } from 'ember-prop-types';
 
 const { isPresent } = Ember;

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { alias, or } from 'ember-computed-decorators';
+import { alias, or } from 'ember-decorators/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_MS = 500;

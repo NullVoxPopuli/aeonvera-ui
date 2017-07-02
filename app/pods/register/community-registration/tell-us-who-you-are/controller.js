@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import computed, { alias, readOnly } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias, readOnly } from 'ember-decorators/object/computed';
+
 
 import { randomString } from 'aeonvera/mixins/helpers/string';
 

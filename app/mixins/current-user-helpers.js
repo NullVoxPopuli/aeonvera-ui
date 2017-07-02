@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import { alias, readOnly } from 'ember-computed-decorators';
+import { readOnly } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
 
 const { inject } = Ember;
 

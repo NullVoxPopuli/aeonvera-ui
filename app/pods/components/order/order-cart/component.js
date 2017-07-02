@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import ResizeMixin from 'ember-resize-mixin/main';
 import SlotsMixin from 'ember-block-slots';
-import computed, { alias } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
 import { PropTypes } from 'ember-prop-types';
 
 import EmberScroll from 'aeonvera/mixins/components/ember-scroll';

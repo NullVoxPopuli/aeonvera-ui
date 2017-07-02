@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
-import computed, { alias, equal, oneWay } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias, equal, oneWay } from 'ember-decorators/object/computed';
 
 const { isPresent } = Ember;
 

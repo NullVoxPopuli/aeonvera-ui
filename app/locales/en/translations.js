@@ -28,6 +28,11 @@ export default {
   communities: 'Communities',
   aboutSummary: 'About',
 
+  greetings: {
+    genericLoginSuccess: 'You have successfully logged in',
+    namedLoginSuccess: 'Welcome, {{name}}! You are logged in!!'
+  },
+
   atdPaymentCollectionAgree: 'You agree that by clicking the pay button below, that you have collected {{amount}} from the customer.',
 
   featuresinfo: 'List of current and upcoming features and possible explanations of each. \

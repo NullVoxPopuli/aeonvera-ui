@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { PropTypes } from 'ember-prop-types';
-import { equal } from 'ember-computed-decorators';
+import { equal } from 'ember-decorators/object/computed';
 
 const DOES_NOT_NEED_HOUSING = 0;
 const CAN_PROVIDE_HOUSING = 1;

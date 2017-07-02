@@ -1,46 +1,63 @@
 import Ember from 'ember';
-import computed from 'ember-computed-decorators';
+import RSVP from 'rsvp';
+
+import { computed, action } from 'ember-decorators/object';
+import { service } from 'ember-decorators/service';
+
 import { PropTypes } from 'ember-prop-types';
 
 const { isPresent } = Ember;
-const { service } = Ember.inject;
 
-export default Ember.Component.extend({
-  propTypes: {
+export default class extends Ember.Component {
+  propTypes = {
     afterLogin: PropTypes.func
-  },
-  session: service('session'),
-  flashMessages: Ember.inject.service(),
+  };
+
+  @service('session') session;
+  @service('current-user') currentUser;
+  @service('flash-notification') flash;
+  @service('i18n') i18n;
+
+  errorMessage = null;
 
   @computed('errorMessage')
   showErrorMessage(msg) {
     return Ember.isBlank(msg) ? 'error-message-hidden' : '';
-  },
+  }
 
-  actions: {
-    authenticate: function() {
-      const credentials = this.getProperties('identification', 'password');
+  @action
+  authenticate() {
+    const credentials = this.getProperties('identification', 'password');
 
-      this.get('session')
-        .authenticate('authenticator:token', credentials)
-        .then(this._handleAuthenticationSuccess.bind(this))
-        .catch(this._handleAuthenticationError.bind(this));
-    },
+    this.get('session')
+      .authenticate('authenticator:token', credentials)
+      .then(this._handleAuthenticationSuccess.bind(this))
+      .catch(this._handleAuthenticationError.bind(this));
+  }
 
-    hideError: function() {
-      this.set('errorMessage', '');
-    }
-  }, // end actions
+  @action
+  hideError() {
+    this.set('errorMessage', '');
+  }
 
 
   _handleAuthenticationSuccess(json) {
-    // yay
-    this.get('flashMessages').success('You have successfully logged in');
+    const i18n = this.get('i18n');
 
-    if (isPresent(this.get('afterLogin'))) {
-      this.sendAction('afterLogin');
-    }
-  },
+    // yay - trigger the currentUser computed property to force a fetch
+    RSVP.resolve(this.get('currentUser.user'))
+      .then(user => {
+        const msg = user ?
+          i18n.t('greetings.namedLoginSuccess', { name: user.get('firstName') }) :
+          i18n.t('greetings.genericLoginSuccess');
+
+        this.get('flash').success(msg);
+
+        if (isPresent(this.get('afterLogin'))) {
+          this.sendAction('afterLogin');
+        }
+      });
+  }
 
   _parseErrorMessage(error) {
     let message = error;
@@ -55,7 +72,7 @@ export default Ember.Component.extend({
     }
 
     return message;
-  },
+  }
 
 
   _handleAuthenticationError(error) {
@@ -63,4 +80,4 @@ export default Ember.Component.extend({
 
     this.set('errorMessage', message);
   }
-});
+}

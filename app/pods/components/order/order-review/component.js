@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import computed, { filterBy } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { filterBy } from 'ember-decorators/object/computed';
+
 
 export default class extends Ember.Component {
   @filterBy('model.orderLineItems', 'isNew', false) savedLineItems;

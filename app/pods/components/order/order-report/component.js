@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import computed, { alias, sort } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias, sort } from 'ember-decorators/object/computed';
 import { PropTypes } from 'ember-prop-types';
 
 const { isPresent, observer } = Ember;

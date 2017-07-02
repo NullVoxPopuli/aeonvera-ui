@@ -54,6 +54,13 @@ export default Ember.Service.extend({
     notifier.info(message, optionsOverride);
   },
 
+  warning(message, optionsOverride = {}) {
+    const notifier = this.get('notifications');
+    const options = { ...this.get('options'), ...optionsOverride };
+
+    notifier.warning(message, optionsOverride);
+  },
+
   success(message, optionsOverride = {}) {
     const notifier = this.get('notifications');
     const options = { ...this.get('options'), ...optionsOverride };

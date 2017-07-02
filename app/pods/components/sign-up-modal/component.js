@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import computed, { alias } from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
+
 
 const successMessage = `
 You will receive an email with instructions about how to confirm your account in a few minutes.`;

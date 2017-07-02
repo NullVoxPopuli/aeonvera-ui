@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { PropTypes } from 'ember-prop-types';
-import computed from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
   propTypes: {

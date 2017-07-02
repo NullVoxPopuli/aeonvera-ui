@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
-import computed from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
 
 export default Ember.Component.extend({
   ajax: Ember.inject.service(),

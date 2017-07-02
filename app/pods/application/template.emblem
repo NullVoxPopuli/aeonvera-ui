@@ -9,8 +9,6 @@
 
 / this wrapper div is for the sticky footer within .inner-wrap
 .off-canvas-wrap
-  = component navigation left=mobileMenuLeft right=mobileMenuRight toDashboardAction='linkToDashboard'
-
   = outlet 'modal'
 
   = app-nav onLeftMenuOpen=(action (mut leftBarOpen true)) logoutAction=(action 'logoutAndRedirect') title=navTitle

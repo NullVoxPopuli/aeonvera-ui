@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
-import computed from 'ember-computed-decorators';
+import { computed } from 'ember-decorators/object';
 
 import RandomString from 'aeonvera/mixins/helpers/string';
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';

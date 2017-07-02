@@ -2,7 +2,9 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 import DS from 'ember-data';
 
-import computed, { alias, readOnly } from 'ember-computed-decorators';
+import { computed, readOnly } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
+
 import { PropTypes } from 'ember-prop-types';
 
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
