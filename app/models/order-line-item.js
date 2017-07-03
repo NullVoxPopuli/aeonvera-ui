@@ -46,7 +46,11 @@ export default DS.Model.extend(Validator, {
     const lineItem = this.get('lineItem');
     const size = this.get('size');
 
-    if (lineItem == null) Ember.Logger.info('Order Line Item does not have lineItem loaded >_<');
+    if (lineItem == null) {
+      Ember.Logger.info('Order Line Item does not have lineItem loaded >_<');
+      // can't proceed -- which is ok.
+      return;
+    }
 
     const sizeMethod = lineItem.priceForSize.bind(lineItem);
 
