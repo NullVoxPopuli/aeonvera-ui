@@ -52,12 +52,14 @@ export default DS.Model.extend(Validator, {
       return;
     }
 
-    const sizeMethod = lineItem.priceForSize.bind(lineItem);
+    if (lineItem.priceForSize) {
+      const sizeMethod = lineItem.priceForSize.bind(lineItem);
 
-    if (Ember.isPresent(sizeMethod)) {
-      const sizePrice = sizeMethod(size);
+      if (Ember.isPresent(sizeMethod)) {
+        const sizePrice = sizeMethod(size);
 
-      this.set('price', sizePrice);
+        this.set('price', sizePrice);
+      }
     }
   }.observes('size'),
 
