@@ -3,13 +3,13 @@ if isEditing
   .row
     .columns.small-8
       .row
-        = error-field-wrapper classes='no-padding columns small-12 medium-5' errors=errors field=''
-          = paper-select selcted=selectedType options=kindOptions onChange=(action (mut selectedType)) label='Kind' as |option|
-            = option
+        / = error-field-wrapper classes='no-padding columns small-12 medium-5' errors=errors field=''
+        = paper-select selected=selectedType options=kindOptions onChange=(action (mut selectedType)) label='Kind' as |option|
+          = option
 
-        = error-field-wrapper classes='no-padding columns small-12 medium-7' errors=restraint.errors field='restrictable'
-          = paper-select selcted=restraint.restrictedTo options=availableOptions onChange=(action (mut restraint.restrictedTo)) label='Item' as |option|
-            = option.name
+        / = error-field-wrapper classes='no-padding columns small-12 medium-7' errors=restraint.errors field='restrictable'
+        = paper-select selected=restraint.restrictedTo options=availableOptions onChange=(action (mut restraint.restrictedTo)) label='Item' as |option|
+          = option.name
 
     .columns.small-4
       a.button.tiny click='cancel' Cancel

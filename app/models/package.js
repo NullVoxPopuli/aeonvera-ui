@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+
+import { computed } from 'ember-decorators/object';
+
 import Purchasable from 'aeonvera/models/purchasable';
 import IsLineItem from '../mixins/models/is-line-item';
 
@@ -18,13 +21,13 @@ export default Purchasable.extend(IsLineItem, {
   event: DS.belongsTo('event'),
   attendances: DS.hasMany('event-attendance'),
 
-  totalRegistrants: function() {
-    return this.get('numberOfLeads') + this.get('numberOfFollows');
-  }.property('numberOfLeads', 'numberOfFollows'),
+  @computed('numberOfLeads', 'numberOfFollows')
+  totalRegistrants(numberOfLeads, numberOfFollows) {
+    return numberOfLeads + numberOfFollows;
+  },
 
-  hasExpiration: function() {
-    const expiresAt = this.get('expiresAt');
-
+  @computed('expiresAt')
+  hasExpiration(expiresAt) {
     return Ember.isPresent(expiresAt);
-  }.property('expiresAt')
+  }
 });
