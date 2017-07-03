@@ -60,7 +60,7 @@ module.exports = function(environment) {
     },
 
     emberRollbarClient: {
-      accessToken:  'ca10480ec923459abdbe39a95c1181d9',
+      accessToken: 'ca10480ec923459abdbe39a95c1181d9',
       enabled: environment !== 'test' && environment !== 'development',
       verbose: true
     },

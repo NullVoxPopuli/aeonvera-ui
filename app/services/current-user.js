@@ -53,7 +53,7 @@ export default class extends Ember.Service {
       include: 'membership_renewals.membership_option'
     });
 
-    userPromise.then(u => this.set('rollbar.currentUser', { email: u.email }));
+    userPromise.then(u => this.set('rollbar.currentUser', { email: u.email, id: u.id }));
 
     /* compatibility with old implementation of currentUser */
     this.get('session').set('currentUser', userPromise);
