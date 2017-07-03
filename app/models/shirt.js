@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
+import { computed } from 'ember-decorators/object';
+
 // LineItem also imports:
 // - Buyable
 // - IsLineItem
@@ -13,8 +15,8 @@ const { isEmpty } = Ember;
 export default LineItem.extend({
   sizes: DS.attr(),
 
-  offeredSizes: function() {
-    const sizeData = this.get('sizes');
+  @computed('sizes')
+  offeredSizes(sizeData) {
     const sizes = [];
 
     sizeData.forEach(function(data) {
@@ -22,7 +24,7 @@ export default LineItem.extend({
     });
 
     return sizes.join(', ');
-  }.property('sizes'),
+  },
 
   priceForSize(size) {
     const sizeData = this._sizeDataForSize(size);
@@ -98,13 +100,7 @@ export default LineItem.extend({
   _sizeDataForSize(size) {
     const sizes = this.get('sizes');
 
-    sizes.forEach(sizeData => {
-      if (sizeData.size === size) {
-        return sizeData;
-      }
-    });
-
-    return null;
+    return sizes.find(sizeData => sizeData.size === size);
   }
 
 });

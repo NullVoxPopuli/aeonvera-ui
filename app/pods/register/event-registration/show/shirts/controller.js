@@ -39,7 +39,10 @@ export default Ember.Controller.extend({
       orderLineItem.set('quantity', quantity);
 
       orderLineItem.save();
+    },
+
+    didFinishSelectingShirts() {
+      this.transitionToRoute('register.event-registration.show.index');
     }
   }
 });
-

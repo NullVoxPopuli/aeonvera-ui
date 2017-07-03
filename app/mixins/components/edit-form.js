@@ -2,6 +2,8 @@ import Ember from 'ember';
 import EditModel from 'aeonvera/mixins/edit-model';
 
 export default Ember.Mixin.create(EditModel, {
+  flash: Ember.inject.service('flash-notification'),
+
   parentModelId: function() {
 
     const passedParent = this.get('parent');
@@ -36,7 +38,7 @@ export default Ember.Mixin.create(EditModel, {
       const model = this.get('model');
 
       model.save().then(record => {
-        this.get('flashMessages').success(
+        this.get('flash').success(
           'Saved Successfully'
         );
         const path = this.get('saveSuccessPath');
@@ -52,7 +54,7 @@ export default Ember.Mixin.create(EditModel, {
         }
       }, failure => {
 
-        this.get('flashMessages').alert(
+        this.get('flash').alert(
           'Saving failed. ' + failure
         );
       });

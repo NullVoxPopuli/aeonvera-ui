@@ -11,7 +11,15 @@
       removeShirt=(perform removeShirt)
       updateShirt=(action 'updateShirt')
     }}
+
+    <div class='layout-row layout-align-end-center'>
+      {{#paper-button
+        onClick=(action 'didFinishSelectingShirts')
+        raised=true
+        primary=true}}
+        Proceed
+      {{/paper-button}}
+    </div>
   </div>
   <div class='flex'></div>
 </div>
-

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
+import { computed } from 'ember-decorators/object';
+
 import Discount from '../models/discount';
 import Validator from '../mixins/model-validator';
 
@@ -46,7 +48,7 @@ export default DS.Model.extend(Validator, {
 
     if (lineItem == null) Ember.Logger.info('Order Line Item does not have lineItem loaded >_<');
 
-    const sizeMethod = lineItem.priceForSize;
+    const sizeMethod = lineItem.priceForSize.bind(lineItem);
 
     if (Ember.isPresent(sizeMethod)) {
       const sizePrice = sizeMethod(size);
