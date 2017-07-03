@@ -24,7 +24,7 @@ br
         .row: .small-12.columns
           p.right = stripe/checkout-button model=model label='Pay' email=email action='processStripeToken'
           p.left
-            link-to hostPath editModel.id (query-params token=token) classNames='button'
+            link-to hostPath editModel.id (query-params token=token) classNames='md-button md-raised md-accent'
               span Edit
     // TODO: give option to resend receipt
 
