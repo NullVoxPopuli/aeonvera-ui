@@ -15,7 +15,7 @@
     = from-elsewhere name='non-mobile-nav-links'
 
   = paper-sidenav-container
-    if session.isAuthenticated
+    if showSidebar
       = paper-sidenav open=leftBarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))
         = from-elsewhere name='left-side-bar'
 
@@ -23,8 +23,6 @@
       section.main-section.padding-20
         .shell
           .inner-shell
-            each flashMessages.queue as |flash|
-              flash-message flash=flash messageStyle='foundation' classNames='flash-message'
             = notification-container position='top'
 
             = outlet

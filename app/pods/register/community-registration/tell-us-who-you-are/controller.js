@@ -35,10 +35,6 @@ export default class extends Ember.Controller {
   }]
 
   actions = {
-    openLoginModal() {
-      Ember.$('.auth-link a.login').click();
-    },
-
     submitInformation() {
       const complete = this.get('formComplete');
 
