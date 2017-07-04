@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 import { not } from 'ember-decorators/object/computed';
+import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
 const { inject } = Ember;
 
@@ -15,7 +16,7 @@ const eventInclude = Ember.String.w(`
   pricing_tiers
 `).join(',');
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SideNav, {
   session: inject.service(),
 
   // TODO: maybe eventually make requiring to login optional?
@@ -26,6 +27,8 @@ export default Ember.Route.extend({
   },
 
   afterModel(model, transition) {
+    this._showSideNav();
+
     if (!model.get('registrationIsOpen')) {
       return this.transitionTo('register.event-registration.not-yet', model);
     }

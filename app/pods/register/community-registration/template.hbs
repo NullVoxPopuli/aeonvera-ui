@@ -1,4 +1,9 @@
-{{to-elsewhere named='left-side-bar'
-  send=(component 'app-nav/dashboard-sidebar' title=model.name)}}
+{{#if isAuthenticated}}
+  {{to-elsewhere named='left-side-bar'
+    send=(component 'app-nav/dashboard-sidebar' title=model.name)}}
+{{else}}
+  {{to-elsewhere named='left-side-bar'
+    send=(component 'app-nav/default-sidebar')}}
+{{/if}}
 
 {{outlet}}

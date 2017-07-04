@@ -13,5 +13,17 @@ export default Ember.Mixin.create({
 
     this.set('title', name);
     this._setAppNavTitle(name);
+  },
+
+  _hideSideNav() {
+    const application = this.controllerFor('application');
+
+    application.set('showSidebar', false);
+  },
+
+  _showSideNav() {
+    const application = this.controllerFor('application');
+
+    application.set('showSidebar', true);
   }
 });
