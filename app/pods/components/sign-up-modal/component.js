@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
+import { computed, action } from 'ember-decorators/object';
+import { service } from 'ember-decorators/service';
 import { alias } from 'ember-decorators/object/computed';
 
 
@@ -7,8 +8,12 @@ const successMessage = `
 You will receive an email with instructions about how to confirm your account in a few minutes.`;
 
 export default class SignUpModal extends Ember.Component {
-  pathStore = Ember.inject.service();
-  store = Ember.inject.service();
+  @service('path-store') pathStore;
+  @service('flash-notification') flash;
+
+  // for some reason this doesn't work as a @service
+  // ... probably because no store interaction should happen in components
+  store = Ember.inject.service('store');
   model = null;
   hasMadeAttempt = false;
   buttonClasses = 'signup';
@@ -32,23 +37,20 @@ export default class SignUpModal extends Ember.Component {
     return errors.email;
   }
 
-  actions =  {
-    register() {
-      this.get('pathStore').storeCurrentRoute();
-      this.set('hasMadeAttempt', true);
+  @action
+  register() {
+    this.get('pathStore').storeCurrentRoute();
+    this.set('hasMadeAttempt', true);
 
-      Ember.Logger.info('before');
+    return this.get('model').save()
+      .then(user => {
+        this.set('showSignupModal', false);
 
-      return this.get('model').save()
-        .then(user => {
-          this.set('showSignupModal', false);
-          Ember.Logger.info('after');
-          if (this.get('successAction')) this.sendAction('successAction');
-          user.unloadRecord();
+        if (this.get('successAction')) this.sendAction('successAction');
 
-          this.get('flashMessages').success(successMessage);
-        })
-        .catch(Ember.Logger.info);
-    }
+        user.unloadRecord();
+
+        this.get('flash').success(successMessage);
+      });
   }
-};
+}
