@@ -7,11 +7,10 @@
   h3 Front-End / User-Interface
 
   h5: a href="http://emberjs.com/" ember
-  h5: a href="http://foundation.zurb.com/" Foundation
+  h5: a href="http://miguelcobain.github.io/ember-paper/" ember-paper (Material Design)
   h5: a href="http://fortawesome.github.io/Font-Awesome/" Font Awesome
-  h5: a href="http://emblemjs.com/" Emblem.js
 
-  h5: a href="https://github.com/NullVoxPopuli/aeonvera-ui/blob/master/bower.json" and more!
+  h5: a href="https://gitlab.com/precognition-llc/aeonvera-ui/blob/master/package.json" and more!
 
   br
   br
@@ -26,7 +25,7 @@
   h5: a href="https://github.com/plataformatec/devise" Devise
   h5: a href="https://github.com/stripe/stripe-ruby" Stripe
 
-  h5: a href="https://github.com/NullVoxPopuli/aeonvera/blob/master/Gemfile" and more!
+  h5: a href="https://gitlab.com/precognition-llc/aeonvera/blob/master/Gemfile" and more!
 
   br
   br

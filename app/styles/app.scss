@@ -41,24 +41,21 @@ body {
 }
 
 // sticky-footer styles
-.off-canvas-wrap, .inner-wrap {
+.inner-wrap {
   height: 100%;
   height: 100vh;
   overflow-x: hidden;
+  background: white;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  .inner-wrap {
-    background: white;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+  section.main-section, .shell, .inner-shell {
+    flex: 1;
+    // min-height: 100%;
+  }
 
-    section.main-section, .shell, .inner-shell {
-      flex: 1;
-      // min-height: 100%;
-    }
-
-    .sticky-footer {
-      margin-top: 40px;
-    }
+  .sticky-footer {
+    margin-top: 40px;
   }
 }

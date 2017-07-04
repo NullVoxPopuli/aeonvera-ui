@@ -1,0 +1,34 @@
+{{notification-container position='top'}}
+
+{{!-- ember-wormhole puts modals here --}}
+<div id='foundation-modals'></div>
+
+{{!-- is this used? --}}
+{{outlet 'modal'}}
+
+{{#app-nav
+  onLeftMenuOpen=(action (mut leftBarOpen true))
+  logoutAction=(action 'logoutAndRedirect')
+  title=navTitle}}
+  {{from-elsewhere name='non-mobile-nav-links'}}
+{{/app-nav}}
+
+{{#paper-sidenav-container}}
+  {{#if showSidebar}}
+    {{#paper-sidenav open=leftBarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))}}
+      {{from-elsewhere name='left-side-bar'}}
+    {{/paper-sidenav}}
+  {{/if}}
+
+
+  <div class='inner-wrap'>
+    <section class='main-section padding-20'>
+      <div class='shell'>
+        <div class='inner-shell'>
+          {{outlet}}
+        </div>
+      </div>
+    </section>
+    {{sticky-footer classNames='sticky-footer'}}
+  </div>
+{{/paper-sidenav-container}}
