@@ -17,6 +17,10 @@
       {{/if}}
     {{/if}}
   {{else}}
-    {{paper-icon icon}} {{label}}
+    {{#if icon}}
+      {{paper-icon icon}} {{label}}
+    {{else}}
+      {{label}}
+    {{/if}}
   {{/if}}
 {{/paper-button}}

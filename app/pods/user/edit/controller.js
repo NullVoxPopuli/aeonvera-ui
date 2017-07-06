@@ -1,16 +1,20 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
+import { alias } from 'ember-decorators/object/computed';
+
 export default Ember.Controller.extend({
   ajax: Ember.inject.service(),
+  currentUserService: Ember.inject.service('current-user'),
+  flash: Ember.inject.service('flash-notification'),
+
+  @alias('currentUserService.user') user: null,
 
   deleteAccountPassword: '',
   deleteErrors: [],
   actions: {
     deactivateAccount: function() {
-      const store = this.get('store');
-
-      store.find('user', 0).then(user => {
+      this.get('user').then(user => {
         this.get('ajax')
           .del('users/current-user', { data: { password: this.get('deleteAccountPassword') } })
           .then(success => {
@@ -26,6 +30,16 @@ export default Ember.Controller.extend({
           });
       });
 
+    },
+
+    updateCurrentUser: function() {
+      this.get('user').then(user => {
+        user.save().then(_ => {
+          this.get('flash').success('Profile updated!');
+        }, error => {
+          this.get('flash').alert('Profile did not update.');
+        });
+      });
     }
   }
 });

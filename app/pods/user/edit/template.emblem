@@ -6,47 +6,47 @@
   .small-12.columns
     h4 Identity
     .row
-      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='firstName'
+      = error-field-wrapper  classes='columns medium-4' errors=user.errors field='firstName'
         label
           span First Name
-          = input value=currentUser.user.firstName
+          = input value=user.firstName
 
-      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='lastName'
+      = error-field-wrapper  classes='columns medium-4' errors=user.errors field='lastName'
         label
           span Last Name
-          = input value=currentUser.user.lastName
+          = input value=user.lastName
 
-      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='email'
+      = error-field-wrapper  classes='columns medium-4' errors=user.errors field='email'
         label
           span Email
-          = input value=currentUser.user.email
+          = input value=user.email
 
     if pendingConfirmation
       span Currently waiting on confirmation for&nbsp;
-      = currentUser.user.unconfirmedEmail
+      = user.unconfirmedEmail
 
     h4 Password
     .row
-      = error-field-wrapper  classes='columns medium-4' errors=currentUser.user.errors field='password'
+      = error-field-wrapper  classes='columns medium-4' errors=user.errors field='password'
         label
           span New Password
           = input value=currentUser.user.password type='password'
 
-      = error-field-wrapper classes='columns medium-4' errors=currentUser.user.errors field='passwordConfirmation'
+      = error-field-wrapper classes='columns medium-4' errors=user.errors field='passwordConfirmation'
         label
           span New Password Confirmation
-          = input value=currentUser.user.passwordConfirmation type='password'
+          = input value=user.passwordConfirmation type='password'
 
-      = error-field-wrapper classes='columns medium-4' errors=currentUser.user.errors field='currentPassword'
+      = error-field-wrapper classes='columns medium-4' errors=user.errors field='currentPassword'
         label
           span Current Password
-          = input value=currentUser.user.currentPassword type='password'
+          = input value=user.currentPassword type='password'
 
     h4 Other Settings
     .row
       .medium-4.columns
         label Time Zone
-        = input value=currentUser.user.timeZone disabled=true
+        = input value=user.timeZone disabled=true
 
     button.primary type='submit' click='updateCurrentUser' Update
 
