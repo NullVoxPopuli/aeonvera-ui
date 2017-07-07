@@ -263,6 +263,7 @@ Router.map(function() {
         this.route('edit');
         this.route('housing');
         this.route('shirts');
+        this.route('competitions');
         this.route('review');
       });
     });

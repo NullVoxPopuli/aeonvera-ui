@@ -5,6 +5,7 @@ const { inject } = Ember;
 
 export default Ember.Controller.extend({
   flash: inject.service('flash-notification'),
+  rollbar: inject.service('rollbar'),
 
   removeShirt: task(function * (orderLineItem) {
     // just in case it's a promise
@@ -14,6 +15,7 @@ export default Ember.Controller.extend({
       yield oli.destroyRecord();
     } catch (e) {
       this.get('flash').alert('Could not remove shirt');
+      this.get('rollbar').warning('deleting shirt orderLineITem', e);
     }
   }),
 
@@ -32,6 +34,7 @@ export default Ember.Controller.extend({
         .catch(e => {
           this.get('flash').alert('Could not add shirt');
           orderLineItem.unloadRecord();
+          this.get('rollbar').warning('creating shirt orderLineItem', e);
         });
     },
 
@@ -42,7 +45,7 @@ export default Ember.Controller.extend({
     },
 
     didFinishSelectingShirts() {
-      this.transitionToRoute('register.event-registration.show.index');
+      this.transitionToRoute('register.event-registration.show.competitions');
     }
   }
 });
