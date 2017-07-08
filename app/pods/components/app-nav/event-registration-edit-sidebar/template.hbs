@@ -7,7 +7,7 @@
 {{#paper-list}}
 
   {{#paper-item}}
-    {{#link-to 'register.event-registration.show'}}Back{{/link-to}}
+    {{#link-to 'register.event-registration'}}All Registrations{{/link-to}}
   {{/paper-item}}
 
   {{paper-divider}}
@@ -20,21 +20,33 @@
     {{/link-to}}
   {{/paper-item}}
 
-  {{#paper-item}}
-    {{#link-to 'register.event-registration.show.edit.housing'}}
-      Housing
-    {{/link-to}}
-  {{/paper-item}}
+  {{#if hasHousing}}
+    {{#paper-item}}
+      {{#link-to 'register.event-registration.show.edit.housing'}}
+        Housing
+      {{/link-to}}
+    {{/paper-item}}
+  {{/if}}
+
+  {{#if hasShirts}}
+    {{#paper-item}}
+      {{#link-to 'register.event-registration.show.edit.shirts'}}
+        Shirts
+      {{/link-to}}
+    {{/paper-item}}
+  {{/if}}
+
+  {{#if hasCompetitions}}
+    {{#paper-item}}
+      {{#link-to 'register.event-registration.show.edit.competitions'}}
+        Competitions
+      {{/link-to}}
+    {{/paper-item}}
+  {{/if}}
 
   {{#paper-item}}
-    {{#link-to 'register.event-registration.show.edit.shirts'}}
-      Shirts
-    {{/link-to}}
-  {{/paper-item}}
-
-  {{#paper-item}}
-    {{#link-to 'register.event-registration.show.edit.competitions'}}
-      Competitions
+    {{#link-to 'register.event-registration.show'}}
+      Review
     {{/link-to}}
   {{/paper-item}}
 
