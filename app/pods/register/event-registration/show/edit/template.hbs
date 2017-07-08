@@ -1,36 +1,20 @@
-{{#paper-form onSubmit=(action 'didSubmitForm') as |form|}}
-  <div class='layout-column layout-align-center-center'>
-    {{register/event-registration-form/attendance-information
-      hasVolunteers=event.hasVolunteers
-      attendance=registration
-      logoUrl=event.logoUrlThumb
-      onFinishInfo=(action 'didFinishInfo')
-    }}
+<div class='layout-row layout-align-space-around-center hide-sm hide-xs'>
+  {{#link-to 'register.event-registration.show.edit.index'}}
+    Info and Registration
+  {{/link-to}}
+  {{#link-to 'register.event-registration.show.edit.housing'}}
+    Housing
+  {{/link-to}}
+  {{#link-to 'register.event-registration.show.edit.shirts'}}
+    Shirts
+  {{/link-to}}
+  {{#link-to 'register.event-registration.show.edit.competitions'}}
+    Competitions
+  {{/link-to}}
+</div>
 
-    {{register/event-registration-form/package-select
-      selectedPackage=selectedPackage
-      packages=packages
-      onPackageSelect=(action 'didUpdateSelectedPackage')
-      logoUrl=event.logoUrlThumb
-    }}
+{{to-elsewhere named='left-side-bar'
+  send=(component 'app-nav/event-registration-edit-sidebar'
+  event=model.event)}}
 
-    {{#if (is-present event.levels)}}
-      {{#if selectedPackage.requiresTrack}}
-        {{register/event-registration-form/level-select
-          selectedLevel=registration.level
-          levels=levels
-          onLevelSelect=(action 'didUpdateSelectedLevel')
-          logoUrl=event.logoUrlThumb
-        }}
-      {{/if}}
-    {{/if}}
-
-
-    <div class="layout-row">
-      {{#form.submit-button raised=true primary=true}}
-        Proceed
-      {{/form.submit-button}}
-    </div>
-  </div>
-
-{{/paper-form}}
+{{outlet}}

@@ -97,7 +97,7 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
 
       registration.save().then(saved => {
         if (event.get('isHousingEnabled')) {
-          return this.transitionToRoute('register.event-registration.show.housing', saved.id);
+          return this.transitionToRoute('register.event-registration.show.edit.housing', saved.id);
         }
 
         this.transitionToRoute('register.event-registration.show.index', saved.id);

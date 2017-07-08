@@ -1,0 +1,41 @@
+{{#paper-toolbar class='hide-gt-sm'}}
+  {{#paper-toolbar-tools}}
+     {{event.name}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+{{#paper-list}}
+
+  {{#paper-item}}
+    {{#link-to 'register.event-registration.show'}}Back{{/link-to}}
+  {{/paper-item}}
+
+  {{paper-divider}}
+
+  {{#paper-item}}<h5>Current Registration</h5>{{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'register.event-registration.show.edit.index'}}
+      Info and Registration
+    {{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'register.event-registration.show.edit.housing'}}
+      Housing
+    {{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'register.event-registration.show.edit.shirts'}}
+      Shirts
+    {{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'register.event-registration.show.edit.competitions'}}
+      Competitions
+    {{/link-to}}
+  {{/paper-item}}
+
+{{/paper-list}}
