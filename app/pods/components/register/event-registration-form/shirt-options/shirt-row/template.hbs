@@ -10,17 +10,21 @@
 
   {{#card.content}}
 
-    {{#each (await itemsForShirtOption) as |shirtOli|}}
-      {{#unless shirtOli.isDeleted}}
+    {{#if (is-present itemsForShirtOption)}}
+      {{#each (await itemsForShirtOption) as |shirtOli|}}
+        {{#unless shirtOli.isDeleted}}
 
-        {{register/event-registration-form/shirt-options/shirt-row/size-row
-          orderLineItem=shirtOli
-          updateShirt=updateShirt
-          removeShirt=removeShirt
-        }}
-      {{/unless}}
+          {{register/event-registration-form/shirt-options/shirt-row/size-row
+            orderLineItem=shirtOli
+            updateShirt=updateShirt
+            removeShirt=removeShirt
+          }}
+        {{/unless}}
 
-    {{/each}}
+      {{/each}}
+    {{else}}
+      Nothing Selected
+    {{/if}}
 
     <div class='layout-row layout-align-end-end margin-top-10'>
       <div>Sub Total: {{to-usd subTotal}}</div>

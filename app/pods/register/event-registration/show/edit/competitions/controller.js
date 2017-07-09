@@ -23,20 +23,19 @@ export default class extends Ember.Controller {
   }
 
   @dropTask
-  addCompetitionTask = function * (competition, order, partnerName, danceOrientation) {
+  addCompetitionTask = function * (competition, params) {
     const store = this.get('store');
 
     const orderLineItem = store.createRecord('orderLineItem', {
-      order,
-      lineItem: competition,
-      partnerName,
-      danceOrientation
+      ...params,
+      lineItem: competition
     });
 
     try {
       return yield orderLineItem.save();
     } catch (e) {
       this.get('flash').alert('Could not add competition');
+      Ember.Logger.error(e);
       orderLineItem.unloadRecord();
       this.get('rollbar').warning('creating competition orderLineItem', e);
     }

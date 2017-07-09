@@ -9,17 +9,40 @@
 
   {{#card.content}}
     {{competition.description}}
+
+    {{#if competition.requiresPartner}}
+      {{paper-input
+        type='text'
+        label='Partner Name'
+        isTouched=true
+        value=(readonly partnerName)
+        onChange=(action (mut partnerName))
+      }}
+    {{/if}}
+
+    {{#if competition.requiresOrientation}}
+      {{register/event-registration-form/orientation-select
+        selectedOrientation=selectedOrientation
+        didSelectOrientation=(action (mut selectedOrientation))
+      }}
+    {{/if}}
   {{/card.content}}
 
   {{#card.actions}}
-    {{#if isAdded}}
-      {{#paper-button}}
-        Remove Competition
+    {{#if needToUpdate}}
+      {{#paper-button onClick=updateCompetition}}
+        Update Competition
       {{/paper-button}}
     {{else}}
-      {{#paper-button}}
-        Add Competition
-      {{/paper-button}}
+      {{#if isAdded}}
+        {{#paper-button onClick=removeCompetition}}
+          Remove Competition
+        {{/paper-button}}
+      {{else}}
+        {{#paper-button onClick=(action 'addNewCompetition')}}
+          Add Competition
+        {{/paper-button}}
+      {{/if}}
     {{/if}}
   {{/card.actions}}
 
