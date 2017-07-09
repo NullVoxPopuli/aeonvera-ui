@@ -2,14 +2,14 @@
   <div class='flex'></div>
   <div class='flex-gt-xs-66 flex-gt-sm-50 flex-gt-md-33'>
     <h3>Competitions</h3>
-{{!--
-    {{register/event-registration-form/shirt-options
+
+    {{register/event-registration-form/competition-options
       order=model.registration.unpaidOrder
-      shirts=model.event.shirts
-      addShirt=(action 'addShirt')
-      removeShirt=(perform removeShirt)
-      updateShirt=(action 'updateShirt')
-    }} --}}
+      competitions=model.event.competitions
+      addCompetition=(perform addCompetitionTask)
+      removeCompetition=(perform removeCompetition)
+      updateCompetition=(perform updateCompetitionTask)
+    }}
 
     <div class='layout-row layout-align-end-center'>
       {{#paper-button

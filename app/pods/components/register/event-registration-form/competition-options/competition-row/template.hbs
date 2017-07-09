@@ -1,0 +1,26 @@
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}
+        {{competition.name}}
+      {{/text.headline}}
+    {{/title.text}}
+  {{/card.title}}
+
+  {{#card.content}}
+    {{competition.description}}
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#if isAdded}}
+      {{#paper-button}}
+        Remove Competition
+      {{/paper-button}}
+    {{else}}
+      {{#paper-button}}
+        Add Competition
+      {{/paper-button}}
+    {{/if}}
+  {{/card.actions}}
+
+{{/paper-card}}

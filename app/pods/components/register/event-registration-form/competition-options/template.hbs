@@ -1,0 +1,9 @@
+{{#each competitions as |competition|}}
+  {{register/event-registration-form/competition-options/competition-row
+    competition=competition
+    order=order
+    addCompetition=addCompetition
+    removeCompetition=removeCompetition
+    updateCompetition=updateCompetition
+  }}
+{{/each}}

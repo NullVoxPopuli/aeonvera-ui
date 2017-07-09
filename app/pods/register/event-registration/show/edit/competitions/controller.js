@@ -2,13 +2,15 @@ import Ember from 'ember';
 import { action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 
-import { task } from 'ember-concurrency';
+import { dropTask } from 'ember-concurrency-decorators';
+
 
 export default class extends Ember.Controller {
   @service('rollbar') rollbar;
   @service('flash-notification') flash;
 
-  removeCompetitionTask = task(function * (orderLineItem) {
+  @dropTask
+  removeCompetitionTask = function * (orderLineItem) {
     // just in case it's a promise
     const oli = yield orderLineItem;
 
@@ -18,9 +20,10 @@ export default class extends Ember.Controller {
       this.get('flash').alert('Could not remove shirt');
       this.get('rollbar').warning('deleting competition orderLineITem', e);
     }
-  }).drop();
+  }
 
-  addCompetitionTask = task(function * (competition, order, partnerName, danceOrientation) {
+  @dropTask
+  addCompetitionTask = function * (competition, order, partnerName, danceOrientation) {
     const store = this.get('store');
 
     const orderLineItem = store.createRecord('orderLineItem', {
@@ -37,7 +40,12 @@ export default class extends Ember.Controller {
       orderLineItem.unloadRecord();
       this.get('rollbar').warning('creating competition orderLineItem', e);
     }
-  }).drop();
+  }
+
+  @dropTask
+  updateCompetitionTask = function * (orderLineItem) {
+
+  }
 
   @action
   didFinishSelectingCompetitions() {
