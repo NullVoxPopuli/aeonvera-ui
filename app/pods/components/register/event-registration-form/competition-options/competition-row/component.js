@@ -12,6 +12,7 @@ export default class extends Ember.Component {
     updateCompetition: PropTypes.any.isRequired
   };
 
+  // define setters on these that DO set on the orderdLineItem
   @oneWay('orderLineItem.danceOrientation') selectedOrientation;
   @oneWay('orderLineItem.partnerName') partnerName;
 
