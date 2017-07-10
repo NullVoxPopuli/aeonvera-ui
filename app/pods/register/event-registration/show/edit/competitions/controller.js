@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { action } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
@@ -8,6 +9,8 @@ import { dropTask } from 'ember-concurrency-decorators';
 export default class extends Ember.Controller {
   @service('rollbar') rollbar;
   @service('flash-notification') flash;
+
+  @alias('model.registration.unpaidOrder') order;
 
   @dropTask
   removeCompetitionTask = function * (orderLineItem) {
@@ -30,6 +33,8 @@ export default class extends Ember.Controller {
       ...params,
       lineItem: competition
     });
+
+    this.get('order.orderLineItems').pushObject(orderLineItem);
 
     try {
       return yield orderLineItem.save();

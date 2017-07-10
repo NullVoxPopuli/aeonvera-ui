@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
-import { alias, notEmpty, and } from 'ember-decorators/object/computed';
+import { alias, notEmpty, and, oneWay } from 'ember-decorators/object/computed';
 
 export default class extends Ember.Component {
   propTypes = {
@@ -12,8 +12,8 @@ export default class extends Ember.Component {
     updateCompetition: PropTypes.any.isRequired
   };
 
-  selectedOrientation = null;
-  partnerName = '';
+  @oneWay('orderLineItem.danceOrientation') selectedOrientation;
+  @oneWay('orderLineItem.partnerName') partnerName;
 
   @alias('order.orderLineItems') orderLineItems;
   @notEmpty('orderLineItem') isAdded;
@@ -21,10 +21,9 @@ export default class extends Ember.Component {
 
   @computed('orderLineItems.@each', 'competition')
   orderLineItem(olis, competition) {
-    return olis && olis.find(o => {
-      o.get('lineItem.id') == competition.id &&
-      o.get('lineItem.constructor.modelName').includes('competition')
-    });
+    return olis &&
+      olis.find(o => o.get('lineItem.id') == competition.id &&
+                     o.get('lineItem.constructor.modelName').includes('competition'));
   }
 
   @action
