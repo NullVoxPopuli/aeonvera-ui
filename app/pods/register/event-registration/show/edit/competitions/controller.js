@@ -17,12 +17,12 @@ export default class extends Ember.Controller {
     // just in case it's a promise
     const oli = yield orderLineItem;
 
-    try {
+    // try {
       return yield oli.destroyRecord();
-    } catch (e) {
-      this.get('flash').alert('Could not remove shirt');
-      this.get('rollbar').warning('deleting competition orderLineITem', e);
-    }
+    // } catch (e) {
+    //   this.get('flash').alert('Could not remove shirt');
+    //   this.get('rollbar').warning('deleting competition orderLineItem', e);
+    // }
   }
 
   @dropTask
@@ -35,15 +35,7 @@ export default class extends Ember.Controller {
     });
 
     this.get('order.orderLineItems').pushObject(orderLineItem);
-
-    try {
-      return yield orderLineItem.save();
-    } catch (e) {
-      this.get('flash').alert('Could not add competition');
-      Ember.Logger.error(e);
-      orderLineItem.unloadRecord();
-      this.get('rollbar').warning('creating competition orderLineItem', e);
-    }
+    return yield orderLineItem.save();
   }
 
   @dropTask

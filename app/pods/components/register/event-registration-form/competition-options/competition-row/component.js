@@ -16,7 +16,7 @@ export default class extends Ember.Component {
   @oneWay('orderLineItem.partnerName') partnerName;
 
   @alias('order.orderLineItems') orderLineItems;
-  @notEmpty('orderLineItem') isAdded;
+  @alias('orderLineItem.isPersisted') isAdded;
   @and('orderLineItem.isPersisted', 'orderLineItem.isDirty') needToUpdate;
 
   @computed('orderLineItems.@each', 'competition')
