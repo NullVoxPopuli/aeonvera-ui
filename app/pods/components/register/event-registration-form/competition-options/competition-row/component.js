@@ -15,15 +15,32 @@ export default class extends Ember.Component {
   @oneWay('orderLineItem.danceOrientation') selectedOrientation;
   @oneWay('orderLineItem.partnerName') partnerName;
 
-  @alias('order.orderLineItems') orderLineItems;
-  @alias('orderLineItem.isPersisted') isAdded;
-  @and('orderLineItem.isPersisted', 'orderLineItem.isDirty') needToUpdate;
+  @oneWay('order.orderLineItems') orderLineItems;
+  @oneWay('orderLineItem.isPersisted') isAdded;
+  @and('isAdded', 'orderLineItem.isDirty') needToUpdate;
 
   @computed('orderLineItems.@each', 'competition')
   orderLineItem(olis, competition) {
     return olis &&
       olis.find(o => o.get('lineItem.id') == competition.id &&
                      o.get('lineItem.constructor.modelName').includes('competition'));
+  }
+
+  @action
+  removeExistingCompetition() {
+    const orderLineItem = this.get('orderLineItem');
+
+    this.sendAction('removeCompetition', orderLineItem);
+  }
+
+  @action
+  updateExistingCompetition() {
+    const orderLineItem = this.get('orderLineItem');
+    const partnerName = this.get('partnerName');
+    const danceOrientation = this.get('selectedOrientation');
+    const params = { partnerName, danceOrientation };
+
+    this.sendAction('updateCompetition', orderLineItem, params);
   }
 
   @action

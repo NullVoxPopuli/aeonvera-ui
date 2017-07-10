@@ -17,12 +17,8 @@ export default class extends Ember.Controller {
     // just in case it's a promise
     const oli = yield orderLineItem;
 
-    // try {
-      return yield oli.destroyRecord();
-    // } catch (e) {
-    //   this.get('flash').alert('Could not remove shirt');
-    //   this.get('rollbar').warning('deleting competition orderLineItem', e);
-    // }
+    yield oli.destroyRecord();
+    this.get('order.orderLineItems').removeObject(orderLineItem);
   }
 
   @dropTask
@@ -34,12 +30,12 @@ export default class extends Ember.Controller {
       lineItem: competition
     });
 
+    const savedOrderLineItem = yield orderLineItem.save();
     this.get('order.orderLineItems').pushObject(orderLineItem);
-    return yield orderLineItem.save();
   }
 
   @dropTask
-  updateCompetitionTask = function * (orderLineItem) {
+  updateCompetitionTask = function * (orderLineItem, params) {
 
   }
 

@@ -43,12 +43,12 @@
 
   {{#card.actions}}
     {{#if needToUpdate}}
-      {{#paper-button onClick=(action updateCompetition)}}
+      {{#paper-button onClick=(action 'updateExistingCompetition')}}
         Update Competition
       {{/paper-button}}
     {{else}}
       {{#if isAdded}}
-        {{#paper-button onClick=(action removeCompetition)}}
+        {{#paper-button onClick=(action 'removeExistingCompetition')}}
           Remove Competition
         {{/paper-button}}
       {{else}}
