@@ -3,6 +3,8 @@ import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
 import { alias, notEmpty, and, oneWay } from 'ember-decorators/object/computed';
 
+const { isPresent } = Ember;
+
 export default class extends Ember.Component {
   propTypes = {
     competition: PropTypes.EmberObject.isRequired,
@@ -12,13 +14,44 @@ export default class extends Ember.Component {
     updateCompetition: PropTypes.any.isRequired
   };
 
-  // define setters on these that DO set on the orderdLineItem
-  @oneWay('orderLineItem.danceOrientation') selectedOrientation;
-  @oneWay('orderLineItem.partnerName') partnerName;
+  @computed('orderLineItem.danceOrientation')
+  selectedOrientation = {
+    get(selectedOrientation) {
+      return selectedOrientation;
+    },
+
+    set(value, selectedOrientation) {
+      const oli = this.get('orderLineItem');
+
+      if (isPresent(oli)) {
+        oli.set('danceOrientation', value);
+      }
+
+      return value;
+    }
+  }
+
+  @computed('orderLineItem.partnerName')
+  partnerName = {
+    get(partnerName) {
+      return partnerName;
+    },
+
+    set(value) {
+      const oli = this.get('orderLineItem');
+
+      if (isPresent(oli)) {
+        oli.set('partnerName', value);
+      }
+
+      return value;
+    }
+  }
+
 
   @oneWay('order.orderLineItems') orderLineItems;
   @oneWay('orderLineItem.isPersisted') isAdded;
-  @and('isAdded', 'orderLineItem.isDirty') needToUpdate;
+  @and('isAdded', 'orderLineItem.hasDirtyAttributes') needToUpdate;
 
   @computed('orderLineItems.@each', 'competition')
   orderLineItem(olis, competition) {

@@ -31,12 +31,15 @@ export default class extends Ember.Controller {
     });
 
     const savedOrderLineItem = yield orderLineItem.save();
+
     this.get('order.orderLineItems').pushObject(orderLineItem);
   }
 
   @dropTask
-  updateCompetitionTask = function * (orderLineItem, params) {
+  updateCompetitionTask = function * (orderLineItem) {
+    const oli = yield orderLineItem;
 
+    yield oli.save();
   }
 
   @action
