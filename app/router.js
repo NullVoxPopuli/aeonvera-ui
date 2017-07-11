@@ -260,9 +260,11 @@ Router.map(function() {
       this.route('not-yet');
       this.route('must-login');
       this.route('show', { path: ':registrationId' }, function() {
-        this.route('edit');
-        this.route('housing');
-        this.route('shirts');
+        this.route('edit', function() {
+          this.route('housing');
+          this.route('shirts');
+          this.route('competitions');
+        });
         this.route('review');
       });
     });

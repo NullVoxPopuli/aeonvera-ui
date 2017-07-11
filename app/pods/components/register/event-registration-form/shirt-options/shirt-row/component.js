@@ -38,8 +38,10 @@ export default Ember.Component.extend({
   @computed('nonDeletedItems.@each', 'sizes', 'shirt')
   availableSizes(olis, sizeDatas, shirt) {
     return olis && sizeDatas.filter(sizeData => {
-      // TODO: check type
-      const shirtOlis = olis.filter(o => o.get('lineItem.id') === shirt.id);
+      const shirtOlis = olis.filter(o => (
+        o.get('lineItem.id') === shirt.id &&
+        o.get('lineItem.constructor.modelName').includes('shirt')
+      ));
       const desiredSizes = shirtOlis.map(o => o.get('size'));
 
       return !desiredSizes.includes(sizeData.size);
