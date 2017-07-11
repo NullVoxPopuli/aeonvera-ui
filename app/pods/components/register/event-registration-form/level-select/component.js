@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   propTypes: {
     selectedLevel: PropTypes.any,
     levels: PropTypes.any,
-    onlevelSelect: PropTypes.func.isRequired,
+    onLevelSelect: PropTypes.func.isRequired,
     errors: PropTypes.any
   },
 
@@ -15,7 +15,7 @@ export default Ember.Component.extend({
   actions: {
     didChooseLevel(id) {
       this.get('levels').then(levels => {
-        const selection = levels.find(p => p.get('id') === id);
+        const selection = levels.find(p => id && p.get('id') && p.get('id') === id);
 
         this.sendAction('onLevelSelect', selection);
       });

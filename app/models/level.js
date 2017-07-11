@@ -5,6 +5,7 @@ import DeletedAt from '../mixins/models/deleted-at';
 
 export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
   name: DS.attr('string'),
+  description: DS.attr('string'),
   requirement: DS.attr('number'),
 
   event: DS.belongsTo('event'),

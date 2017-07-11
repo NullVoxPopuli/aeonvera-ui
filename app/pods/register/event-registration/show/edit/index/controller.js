@@ -7,6 +7,8 @@ import { alias, oneWay } from 'ember-decorators/object/computed';
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 import RegistrationController from 'aeonvera/mixins/registration/controller';
 
+import { UNREGISTERED_ID } from 'aeonvera/models/registration';
+
 const { isPresent, inject } = Ember;
 
 export default Ember.Controller.extend(currentUserHelpers, RegistrationController, {
@@ -30,6 +32,8 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
 
   @alias('registration.attendeeEmail') userEmail: null,
   // end used by the RegistrationController mixin
+
+  @alias('model.registration.level') selectedLevel: null,
 
   @computed('order.orderLineItems.@each.lineItem')
   selectedPackage(orderLineItems) {
@@ -96,6 +100,10 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
       const registration = this.get('registration');
 
       registration.save().then(saved => {
+        const unregistered = this.get('store').peekRecord('registration', UNREGISTERED_ID)
+
+        if (unregistered) unregistered.unloadRecord();
+
         if (event.get('isHousingEnabled')) {
           return this.transitionToRoute('register.event-registration.show.edit.housing', saved.id);
         }

@@ -12,8 +12,7 @@ export default Ember.Component.extend({
     housingProvision: PropTypes.EmberObject,
     housingRequest: PropTypes.EmberObject,
     logoUrl: PropTypes.string,
-    onChangeSelection: PropTypes.func.isRequired,
-    onSubmitHousing: PropTypes.func.isRequired
+    onChangeSelection: PropTypes.func.isRequired
   },
 
   @equal('selectedHousingOption', DOES_NOT_NEED_HOUSING) doesNotNeedHousing: null,

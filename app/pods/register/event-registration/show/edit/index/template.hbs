@@ -1,36 +1,39 @@
 {{#paper-form onSubmit=(action 'didSubmitForm') as |form|}}
-  <div class='layout-column layout-align-center-center'>
-    {{register/event-registration-form/attendance-information
-      hasVolunteers=event.hasVolunteers
-      attendance=registration
-      logoUrl=event.logoUrlThumb
-      onFinishInfo=(action 'didFinishInfo')
-    }}
+  <div class='layout-row'>
+    <div class='flex'></div>
+    <div class='flex-gt-xs-66 flex-gt-sm-50 flex-gt-md-33'>
+      {{register/event-registration-form/attendance-information
+        hasVolunteers=event.hasVolunteers
+        attendance=registration
+        logoUrl=event.logoUrlThumb
+        onFinishInfo=(action 'didFinishInfo')
+      }}
 
-    {{register/event-registration-form/package-select
-      selectedPackage=selectedPackage
-      packages=packages
-      onPackageSelect=(action 'didUpdateSelectedPackage')
-      logoUrl=event.logoUrlThumb
-    }}
+      {{register/event-registration-form/package-select
+        selectedPackage=selectedPackage
+        packages=packages
+        onPackageSelect=(action 'didUpdateSelectedPackage')
+        logoUrl=event.logoUrlThumb
+      }}
 
-    {{#if (is-present event.levels)}}
-      {{#if selectedPackage.requiresTrack}}
-        {{register/event-registration-form/level-select
-          selectedLevel=registration.level
-          levels=levels
-          onLevelSelect=(action 'didUpdateSelectedLevel')
-          logoUrl=event.logoUrlThumb
-        }}
+      {{#if (is-present event.levels)}}
+        {{#if selectedPackage.requiresTrack}}
+          {{register/event-registration-form/level-select
+            selectedLevel=selectedLevel
+            levels=levels
+            onLevelSelect=(action 'didUpdateSelectedLevel')
+            logoUrl=event.logoUrlThumb
+          }}
+        {{/if}}
       {{/if}}
-    {{/if}}
 
 
-    <div class="layout-row">
-      {{#form.submit-button raised=true primary=true}}
-        Proceed
-      {{/form.submit-button}}
+      <div class="layout-row layout-align-end-center">
+        {{#form.submit-button raised=true primary=true}}
+          Proceed
+        {{/form.submit-button}}
+      </div>
     </div>
+    <div class='flex'></div>
   </div>
-
 {{/paper-form}}

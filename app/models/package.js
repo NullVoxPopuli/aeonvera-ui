@@ -17,6 +17,7 @@ export default Purchasable.extend(IsLineItem, {
   numberOfLeads: DS.attr('number'),
   numberOfFollows: DS.attr('number'),
   currentPrice: DS.attr('number'),
+  description: DS.attr('string'),
 
   event: DS.belongsTo('event'),
   attendances: DS.hasMany('event-attendance'),

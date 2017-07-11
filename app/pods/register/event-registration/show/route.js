@@ -7,12 +7,13 @@ import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
 const { isPresent, isBlank } = Ember;
 
-const include = `
+const include = Ember.String.w(`
+level
 orders.order_line_items.line_item
 unpaid_order.order_line_items.line_item
 housing_request
 housing_provision
-`.split('\n').join(',');
+`).join(',');
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   authenticationRoute: 'register.event-registration.must-login',

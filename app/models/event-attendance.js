@@ -4,7 +4,7 @@ import Attendance from '../models/attendance';
 
 export default Attendance.extend({
   packageId: DS.attr('number'),
-  level: DS.belongsTo('level'),
+  level: DS.belongsTo('level', { async: false }),
   package: DS.belongsTo('package'),
 
   hasUsedStudentDiscount: Ember.computed('orders.@each', {

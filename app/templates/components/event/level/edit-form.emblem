@@ -16,7 +16,8 @@ form submit='save'
       = radio-button value=0 groupValue=model.requirement
       label No Restriction
       br
-
+  .row
+    = paper-input textarea=true block=true label="Description" maxlength=250 passThru=(hash rows=5 maxRows=5) value=model.description onChange=(action (mut model.description))
   .row
     .small-12.columns
       .right

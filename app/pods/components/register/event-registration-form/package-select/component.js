@@ -19,7 +19,7 @@ export default Ember.Component.extend({
   actions: {
     didChoosePackage(id) {
       RSVP.resolve(this.get('packages')).then(packages => {
-        const selection = packages.find(p => p.get('id') === id);
+        const selection = packages.find(p => id && p.get('id') && p.get('id') === id);
 
         this.sendAction('onPackageSelect', selection);
       });
