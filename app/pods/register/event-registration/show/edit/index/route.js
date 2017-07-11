@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
+
+const { isBlank } = Ember;
 
 export default Ember.Route.extend({
-  // event, registration
-  model(params) {
+  model() {
     return this.modelFor('register.event-registration.show');
   }
 });

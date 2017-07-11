@@ -9,6 +9,7 @@
 {{#app-nav
   onLeftMenuOpen=(action (mut leftBarOpen true))
   logoutAction=(action 'logoutAndRedirect')
+  showSidebarToggler=showSidebar
   title=navTitle}}
   {{from-elsewhere name='non-mobile-nav-links'}}
 {{/app-nav}}

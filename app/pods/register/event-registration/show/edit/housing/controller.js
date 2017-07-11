@@ -74,7 +74,7 @@ export default Ember.Controller.extend({
       }
 
       return handleHousing.then(() => {
-        this.transitionToRoute('register.event-registration.show.shirts');
+        this.transitionToRoute('register.event-registration.show.edit.shirts');
       });
     }
   }

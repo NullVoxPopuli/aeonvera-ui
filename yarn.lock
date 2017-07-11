@@ -3118,14 +3118,6 @@ ember-cli-file-picker@^0.0.12:
   dependencies:
     ember-cli-babel "^6.1.0"
 
-ember-cli-flash@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-flash/-/ember-cli-flash-1.4.2.tgz#db5c5b481a078cae95b3336ac08a46afd2517fd1"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.3"
-    ember-runtime-enumerable-includes-polyfill "^1.0.1"
-
 ember-cli-foundation-sass@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-foundation-sass/-/ember-cli-foundation-sass-2.0.0.tgz#7fddf6eb4c8ede0e59e57623876dcf0c96810ab7"
@@ -3583,12 +3575,11 @@ ember-composable-helpers@^2.0.1:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^6.1.0"
 
-ember-decorators/object@rwjblue/ember-decorators/object:
-  version "0.3.0"
-  resolved "https://codeload.github.com/rwjblue/ember-decorators/object/tar.gz/eb96780545ca31f088fe5206c4f7eb24cfe81dd2"
+ember-concurrency-decorators@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-0.0.2.tgz#d5c9a80d4098b2b744e2a4e2f7506cbadad7fb15"
   dependencies:
     ember-cli-babel "^6.0.0"
-    ember-macro-helpers "^0.9.0"
 
 ember-concurrency@0.8.1:
   version "0.8.1"
@@ -3698,6 +3689,13 @@ ember-data@2.13.0:
     npm-git-info "^1.0.0"
     semver "^5.1.0"
     silent-error "^1.0.0"
+
+ember-decorators@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-1.0.0.tgz#b9c75f2949b8c0f09dc35fa29a2cb73de088f718"
+  dependencies:
+    ember-cli-babel "^6.0.0"
+    ember-macro-helpers "^0.9.0"
 
 ember-disable-proxy-controllers@^1.0.1:
   version "1.0.1"

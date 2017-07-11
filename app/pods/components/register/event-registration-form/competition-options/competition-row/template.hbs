@@ -1,0 +1,69 @@
+{{#paper-card as |card|}}
+
+  {{#card.header as |header|}}
+    {{#header.text as |text|}}
+      {{#text.title}}
+        <div class='layout-row layout-align-space-between'>
+          {{competition.name}}
+          {{#if isAdded}}
+            {{#if needToUpdate}}
+              <div class='changed-marker'>
+                {{paper-icon "warning"}}
+                Pending
+              </div>
+            {{else}}
+              <div class='added-marker'>
+                {{paper-icon "check-circle"}}
+                Added!
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+
+      {{/text.title}}
+      {{#text.subhead}}{{competition.description}}{{/text.subhead}}
+    {{/header.text}}
+  {{/card.header}}
+
+  {{#card.content class='padding-top-20'}}
+
+    {{#if competition.requiresPartner}}
+      {{paper-input
+        type='text'
+        label='Partner Name'
+        isTouched=true
+        errors=(map-by 'message' orderLineItem.errors.partnerName)
+        value=(readonly partnerName)
+        onChange=(action (mut partnerName))
+      }}
+    {{/if}}
+
+    {{#if competition.requiresOrientation}}
+      {{register/event-registration-form/orientation-select
+        preciseOrientation=true
+        errors=(map-by 'message' orderLineItem.errors.danceOrientation)
+        selectedOrientation=selectedOrientation
+        didSelectOrientation=(action (mut selectedOrientation))
+      }}
+    {{/if}}
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#if needToUpdate}}
+      {{#paper-button onClick=(action 'updateExistingCompetition')}}
+        Update Competition
+      {{/paper-button}}
+    {{else}}
+      {{#if isAdded}}
+        {{#paper-button onClick=(action 'removeExistingCompetition')}}
+          Remove Competition
+        {{/paper-button}}
+      {{else}}
+        {{#paper-button onClick=(action 'addNewCompetition')}}
+          Add Competition
+        {{/paper-button}}
+      {{/if}}
+    {{/if}}
+  {{/card.actions}}
+
+{{/paper-card}}
