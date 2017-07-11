@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
-import { alias, notEmpty, and, oneWay } from 'ember-decorators/object/computed';
+import { alias, notEmpty, not, and, oneWay } from 'ember-decorators/object/computed';
 
 const { isPresent } = Ember;
 
@@ -50,10 +50,10 @@ export default class extends Ember.Component {
 
 
   @oneWay('order.orderLineItems') orderLineItems;
-  @oneWay('orderLineItem.isPersisted') isAdded;
-  @and('isAdded', 'orderLineItem.hasDirtyAttributes') needToUpdate;
+  @and('orderLineItem.id', 'orderLineItem.isPersisted') isAdded;
+  @and('orderLineItem.id', 'isAdded', 'orderLineItem.hasDirtyAttributes') needToUpdate;
 
-  @computed('orderLineItems.@each', 'competition')
+  @computed('order.orderLineItems.@each.{id,lineItem}', 'competition')
   orderLineItem(olis, competition) {
     return olis &&
       olis.find(o => o.get('lineItem.id') == competition.id &&
