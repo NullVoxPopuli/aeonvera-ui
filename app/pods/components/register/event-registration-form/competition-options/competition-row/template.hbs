@@ -6,10 +6,17 @@
         <div class='layout-row layout-align-space-between'>
           {{competition.name}}
           {{#if isAdded}}
-            <div class='added-marker'>
-              {{paper-icon "check-circle"}}
-              Added!
-            </div>
+            {{#if needToUpdate}}
+              <div class='changed-marker'>
+                {{paper-icon "warning"}}
+                Pending
+              </div>
+            {{else}}
+              <div class='added-marker'>
+                {{paper-icon "check-circle"}}
+                Added!
+              </div>
+            {{/if}}
           {{/if}}
         </div>
 

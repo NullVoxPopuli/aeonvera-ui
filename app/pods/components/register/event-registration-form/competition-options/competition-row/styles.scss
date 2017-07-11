@@ -1,3 +1,15 @@
 .added-marker {
-  text-shadow: 0px 0px 1px rgba(0, 255, 0, 0.5);
+  color: #3FB53F;
+
+  md-icon {
+    color: #3FB53F;
+  }
+}
+
+.changed-marker {
+  color: #B5B53F;
+
+  md-icon {
+    color: #B5B53F;
+  }
 }
