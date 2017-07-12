@@ -47,6 +47,13 @@ export default class extends Ember.Controller {
 
   @action
   didFinishSelectingCompetitions() {
-    this.transitionToRoute('register.event-registration.show.index');
+    const registrationId = this.get('model.registration.id');
+    const eventId = this.get('model.event.id');
+    const domain = this.get('model.event.domain');
+
+    // correct option isn't working. HACK TIME
+    window.location = `/${domain}/register/${eventId}/${registrationId}`;
+    // pass all ids to trigger a full model refresh
+    // this.transitionToRoute('register.event-registration.show.index', domain, eventId, registrationId);
   }
 }
