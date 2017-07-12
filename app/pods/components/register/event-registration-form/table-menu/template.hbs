@@ -1,21 +1,23 @@
 {{#ember-paper/ellipsis-menu as |content menu|}}
   {{#content.menu-item}}
-    {{#link-to 'register.event-registration.show.review' registration.id}}
+    {{#link-to 'register.event-registration.show.index' registration.id}}
       <span>View</span>
     {{/link-to}}
   {{/content.menu-item}}
 
-  {{#content.menu-item}}
-    {{!-- {{#link-to 'register.event-registration.show.edit' registration.id}}
-      <span>Edit</span>
-    {{/link-to}} --}}
-  {{/content.menu-item}}
+  {{#unless registration.orders.firstObject.paid}}
+    {{#content.menu-item}}
+      {{#link-to 'register.event-registration.show.edit' registration.id}}
+        <span>Edit</span>
+      {{/link-to}}
+    {{/content.menu-item}}
 
-  {{#content.menu-item onClick=(action (mut showModal) true)}}
-    <a onClick={{action (mut menu.isOpen) false}}>
-      Cancel
-    </a>
-  {{/content.menu-item}}
+    {{#content.menu-item onClick=(action (mut showModal) true)}}
+      <a onClick={{action (mut menu.isOpen) false}}>
+        Cancel
+      </a>
+    {{/content.menu-item}}
+  {{/unless}}
 {{/ember-paper/ellipsis-menu}}
 
 {{#modals/confirm-modal

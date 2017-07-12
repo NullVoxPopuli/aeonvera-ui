@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import { PropTypes } from 'ember-prop-types';
 import { oneWay } from 'ember-decorators/object/computed';
 
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
 
   actions: {
     didChooseLevel(id) {
-      this.get('levels').then(levels => {
+      RSVP.resolve(this.get('levels')).then(levels => {
         const selection = levels.find(p => id && p.get('id') && p.get('id') === id);
 
         this.sendAction('onLevelSelect', selection);

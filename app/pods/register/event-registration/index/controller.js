@@ -1,7 +1,11 @@
 import Ember from 'ember';
+import { sort } from 'ember-decorators/object/computed';
 
 export default Ember.Controller.extend({
   flash: Ember.inject.service('flash-notification'),
+
+  registrationsSort: ['registeredAt:asc'],
+  @sort('model.registrations', 'registrationsSort') registrations: null,
 
   actions: {
     toNewRegistration() {

@@ -14,8 +14,8 @@
       </tr>
     </thead>
     <tbody>
-      {{#if (gt model.registrations.length 0)}}
-        {{#each model.registrations as |registration|}}
+      {{#if (gt registrations.length 0)}}
+        {{#each registrations as |registration|}}
         <tr>
           <td>
             {{#link-to 'register.event-registration.show.index' registration.id}}
