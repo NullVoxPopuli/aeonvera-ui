@@ -1,9 +1,15 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
+import { computed, action } from 'ember-decorators/object';
 import { filterBy } from 'ember-decorators/object/computed';
+
+import { PropTypes } from 'ember-prop-types';
 
 
 export default class extends Ember.Component {
+  static propTypes = {
+    onRemoveOrderLineItem: PropTypes.func
+  };
+
   @filterBy('model.orderLineItems', 'isNew', false) savedLineItems;
 
   // 1. Fee Exists
@@ -19,11 +25,10 @@ export default class extends Ember.Component {
     return result;
   }
 
-  actions = {
-    removeItem(item) {
-      const order = this.get('model');
-
-      order.removeOrderLineItem(item);
-    }
+  @action
+  onRemoveOrderLineItem(item) {
+    item.destroyRecord().then(() => {
+      item.get('order.orderLineItems').removeObject(item);
+    });
   }
-};
+}

@@ -1,13 +1,18 @@
 import Ember from 'ember';
 
+import { computed } from 'ember-decorators/object';
+
 export default Ember.Component.extend({
   errors: [],
   errorsPresent: Ember.computed('errors.@each', function() {
     return Ember.isPresent(this.get('errors'));
   }),
 
-  firstError: Ember.computed('errors.@each', function() {
-    const firstErrorObject = this.get('errors.firstObject');
+  @computed('errors.@each', 'errorsPresent')
+  firstError(errors, hasErrors) {
+    if (!hasErrors) return;
+
+    const firstErrorObject = errors.get('firstObject');
 
     // No error
     if (firstErrorObject === undefined) {
@@ -49,7 +54,7 @@ export default Ember.Component.extend({
     }
 
     return field + ' ' + reason;
-  }),
+  },
 
   actions: {
     hideError() {

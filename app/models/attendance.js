@@ -42,8 +42,8 @@ export default DS.Model.extend(
     pricingTier: DS.belongsTo('pricing-tier'),
     host: DS.belongsTo('host', { polymorphic: true }),
 
-    orders: DS.hasMany('order', { async: true }),
-    unpaidOrder: DS.belongsTo('unpaidOrder', { async: true }),
+    orders: DS.hasMany('order', { async: true, inverse: 'attendance' }),
+    unpaidOrder: DS.belongsTo('unpaidOrder', { async: true, inverse: 'attendance' }),
 
     housingRequest: DS.belongsTo('housing-request', { async: false }),
     housingProvision: DS.belongsTo('housing-provision', { async: false }),

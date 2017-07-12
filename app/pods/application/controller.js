@@ -3,6 +3,7 @@ import Ember from 'ember';
 const { inject: { service } } = Ember;
 
 export default Ember.Controller.extend({
+  flashMessages: service('flash-notification'),
   session: service('session'),
   showSidebar: true,
 

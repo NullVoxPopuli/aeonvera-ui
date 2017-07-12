@@ -11,7 +11,7 @@ table.width-of-100.order-review-table
           = order/item-name-display order=model orderLineItem=item
           unless model.paid
             if item.lineItem.isDiscount
-              small: a click='"removeItem" item' Remove
+              small: a click='"onRemoveOrderLineItem" item' Remove
 
         td.text-right = order/price-display item=item value=item.price
         td.text-right = item.quantity

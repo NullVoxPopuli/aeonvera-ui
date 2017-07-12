@@ -85,10 +85,12 @@ export default Ember.Component.extend({
       const discount = store.createRecord('orderLineItem', params);
 
       return discount.save()
-        .then(discount => this.set('discountCode', ''))
+        .then(discount => {
+          this.set('discountCode', '');
+        })
         .catch(error => this.set(
           'discountApplicationErrors',
-          messageFromError(error, (title, detail) => detail)));
+          messageFromError(error, (title, detail) => detail.toString())));
     },
 
     /*

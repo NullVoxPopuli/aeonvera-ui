@@ -51,6 +51,7 @@ export default Model.extend(Validator, PriceCalculation, {
   host: belongsTo('host', { polymorphic: true }),
   orderLineItems: hasMany('orderLineItem', { async: true }),
   attendance: belongsTo('attendance', { async: true }),
+  registration: belongsTo('registration', { async: true }),
   user: belongsTo('user'),
   pricingTier: belongsTo('pricingTier'),
   stripeRefunds: attr(),

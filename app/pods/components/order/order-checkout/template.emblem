@@ -26,6 +26,9 @@ br
           p.left
             link-to hostPath editModel.id (query-params token=token) classNames='md-button md-raised md-accent'
               span Edit
+              
+            link-to 'register' model.host.domain classNames='md-button md-raised'
+              span Register Again
     // TODO: give option to resend receipt
 
     .clearfix
