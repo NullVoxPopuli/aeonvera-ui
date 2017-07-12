@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   torii: Ember.inject.service(),
+  flash: Ember.inject.service('flash-notification'),
   resetButton: false,
 
   actions: {
@@ -30,18 +31,18 @@ export default Ember.Component.extend({
             record => {
               const msg = 'Stripe succesfully connected. You may now receive payments electronically.';
 
-              this.get('flashMessages').success(msg);
+              this.get('flash').success(msg);
 
               this.set('to.hasStripeIntegration', true);
               this.set('resetButton', true);
             }, error => {
 
-            this.get('flashMessages').alert(error);
+            this.get('flash').alert(error);
           }
           );
         }, error => {
 
-        this.get('flashMessages').alert(error);
+        this.get('flash').alert(error);
         this.set('resetButton', true);
       }
       );
