@@ -11,6 +11,7 @@ export default LineItem.extend(LeadsAndFollows, {
   initialPrice: DS.attr('number'),
   atTheDoorPrice: DS.attr('number'),
   kind: DS.attr('number'),
+  nonregisterable: DS.attr('boolean', { defaultValue: false }),
 
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),

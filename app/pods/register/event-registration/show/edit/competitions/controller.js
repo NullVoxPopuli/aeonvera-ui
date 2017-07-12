@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { action } from 'ember-decorators/object';
-import { alias } from 'ember-decorators/object/computed';
+import { alias, sort } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
@@ -11,6 +11,9 @@ export default class extends Ember.Controller {
   @service('flash-notification') flash;
 
   @alias('model.registration.unpaidOrder') order;
+
+  competitionSort = ['name:asc'];
+  @sort('model.event.competitions', 'competitionSort') competitions;
 
   @dropTask
   removeCompetitionTask = function * (orderLineItem) {

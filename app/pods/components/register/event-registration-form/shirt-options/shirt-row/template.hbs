@@ -3,9 +3,11 @@
     {{#title.text as |text|}}
       {{#text.headline}}{{shirt.name}}{{/text.headline}}
     {{/title.text}}
-    {{#unless shirt.pictureIsMissing}}
+    {{#if shirt.pictureIsMissing}}
+      Design Pending
+    {{else}}
       {{title.media size='lg' src=shirt.pictureUrlMedium}}
-    {{/unless}}
+    {{/if}}
   {{/card.title}}
 
   {{#card.content}}

@@ -1,5 +1,5 @@
 {{#paper-card as |card|}}
-  {{#card.title}}Level{{/card.title}}
+  {{!-- {{#card.title}}Level{{/card.title}} --}}
   {{#card.content}}
 
     {{#paper-radio-group
@@ -9,13 +9,15 @@
 
       {{#each levels as |level|}}
         {{#g.radio value=level.id}}
-          {{level.name}}
-          {{#if level.hasRequirement}}
-            <br />
-            <em>Requires {{level.requiresName}}</em>
-            <br />
-            <em>{{level.description}}</em>
-          {{/if}}
+          <div class='layout-row'>
+            <div class='layout-column'>
+              <strong>{{level.name}}</strong>
+              <em>{{level.description}}</em>
+              {{#if level.hasRequirement}}
+                <em>Requires {{level.requiresName}}</em>
+              {{/if}}
+            </div>
+          </div>
         {{/g.radio}}
       {{/each}}
 

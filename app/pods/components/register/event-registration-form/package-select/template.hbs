@@ -8,10 +8,17 @@
 
       {{#each packages as |package|}}
         {{#g.radio value=package.id}}
-          <span class='price'>{{to-usd package.currentPrice}}</span>
-          {{package.name}}
+        <div class='layout-column'>
+          <div class='layout-row'>
+            <strong>
+              <span class='price'>{{to-usd package.currentPrice}}</span>
+              {{package.name}}
+            </strong>
+            </div>
+
+            <em>{{package.description}}</em>
+          </div>
         {{/g.radio}}
-        <em>{{package.description}}</em>
       {{/each}}
 
     {{/paper-radio-group}}

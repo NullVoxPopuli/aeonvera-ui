@@ -44,6 +44,9 @@ form submit='save'
       = radio-button value=4 groupValue=model.kind
       label Crossover Jack and Jill
       br
+  
+    = paper-checkbox value=model.nonregisterable onChange=(action (mut model.nonregisterable))
+      span Don't allow registration (Display Only)
 
     / These are determined by the 'kind' - do we want these customizable?
     / = input checked=model.requiresOrientation type='checkbox'

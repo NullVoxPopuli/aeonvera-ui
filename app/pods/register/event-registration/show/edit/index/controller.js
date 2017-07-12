@@ -2,7 +2,7 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 
 import { computed } from 'ember-decorators/object';
-import { alias, oneWay } from 'ember-decorators/object/computed';
+import { alias, oneWay, sort } from 'ember-decorators/object/computed';
 
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 import RegistrationController from 'aeonvera/mixins/registration/controller';
@@ -15,11 +15,14 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
   flash: inject.service('flash-notification'),
   scroller: inject.service('scroller'),
 
+  levelSort: ['name:asc'],
+  packageSort: ['name:asc'],
 
   @alias('model.event') event: null,
   @alias('model.registration') registration: null,
-  @alias('event.packages') packages: null,
-  @alias('event.levels') levels: null,
+  @sort('event.packages', 'packageSort') packages: null,
+
+  @sort('event.levels', 'levelSort') levels: null,
 
   // begin used by the RegistrationController mixin
   @alias('event') host: null,

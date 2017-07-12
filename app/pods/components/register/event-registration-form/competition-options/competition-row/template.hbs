@@ -4,7 +4,9 @@
     {{#header.text as |text|}}
       {{#text.title}}
         <div class='layout-row layout-align-space-between'>
-          {{competition.name}}
+          <div>
+            {{to-usd competition.currentPrice}} <em>{{competition.name}}</em>
+          </div>
           {{#if isAdded}}
             {{#if needToUpdate}}
               <div class='changed-marker'>
@@ -21,49 +23,51 @@
         </div>
 
       {{/text.title}}
-      {{#text.subhead}}{{competition.description}}{{/text.subhead}}
+      {{#text.subhead}}{{{competition.description}}}{{/text.subhead}}
     {{/header.text}}
   {{/card.header}}
 
-  {{#card.content class='padding-top-20'}}
+  {{#unless competition.nonregisterable}}
+    {{#card.content class='padding-top-20'}}
 
-    {{#if competition.requiresPartner}}
-      {{paper-input
-        type='text'
-        label='Partner Name'
-        isTouched=true
-        errors=(map-by 'message' orderLineItem.errors.partnerName)
-        value=(readonly partnerName)
-        onChange=(action (mut partnerName))
-      }}
-    {{/if}}
+      {{#if competition.requiresPartner}}
+        {{paper-input
+          type='text'
+          label='Partner Name'
+          isTouched=true
+          errors=(map-by 'message' orderLineItem.errors.partnerName)
+          value=(readonly partnerName)
+          onChange=(action (mut partnerName))
+        }}
+      {{/if}}
 
-    {{#if competition.requiresOrientation}}
-      {{register/event-registration-form/orientation-select
-        preciseOrientation=true
-        errors=(map-by 'message' orderLineItem.errors.danceOrientation)
-        selectedOrientation=selectedOrientation
-        didSelectOrientation=(action (mut selectedOrientation))
-      }}
-    {{/if}}
-  {{/card.content}}
+      {{#if competition.requiresOrientation}}
+        {{register/event-registration-form/orientation-select
+          preciseOrientation=true
+          errors=(map-by 'message' orderLineItem.errors.danceOrientation)
+          selectedOrientation=selectedOrientation
+          didSelectOrientation=(action (mut selectedOrientation))
+        }}
+      {{/if}}
+    {{/card.content}}
 
-  {{#card.actions}}
-    {{#if needToUpdate}}
-      {{#paper-button onClick=(action 'updateExistingCompetition')}}
-        Update Competition
-      {{/paper-button}}
-    {{else}}
-      {{#if isAdded}}
-        {{#paper-button onClick=(action 'removeExistingCompetition')}}
-          Remove Competition
+    {{#card.actions}}
+      {{#if needToUpdate}}
+        {{#paper-button onClick=(action 'updateExistingCompetition')}}
+          Update Competition
         {{/paper-button}}
       {{else}}
-        {{#paper-button onClick=(action 'addNewCompetition')}}
-          Add Competition
-        {{/paper-button}}
+        {{#if isAdded}}
+          {{#paper-button onClick=(action 'removeExistingCompetition')}}
+            Remove Competition
+          {{/paper-button}}
+        {{else}}
+          {{#paper-button onClick=(action 'addNewCompetition')}}
+            Add Competition
+          {{/paper-button}}
+        {{/if}}
       {{/if}}
-    {{/if}}
-  {{/card.actions}}
+    {{/card.actions}}
+  {{/unless}}
 
 {{/paper-card}}
