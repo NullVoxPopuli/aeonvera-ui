@@ -25,6 +25,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     let registration;
 
     if (registrationId === UNREGISTERED_ID) {
+      // try to unload an existing unregistered registration first
+      // there can be stale unregistered registrations when repeatedly
+      const old = this.store.peekRecord('registration', UNREGISTERED_ID);
+
+      if (old) old.unloadRecord();
+
       registration = this.store.createRecord('registration', {
         host: event
       });

@@ -12,10 +12,8 @@
       {{/link-to}}
     {{/content.menu-item}}
 
-    {{#content.menu-item onClick=(action (mut showModal) true)}}
-      <a onClick={{action (mut menu.isOpen) false}}>
-        Cancel
-      </a>
+    {{#content.menu-item onClick=(action 'onCancel')}}
+      Cancel
     {{/content.menu-item}}
   {{/unless}}
 {{/ember-paper/ellipsis-menu}}
