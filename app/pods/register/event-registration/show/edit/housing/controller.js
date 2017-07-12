@@ -63,8 +63,12 @@ export default Ember.Controller.extend({
       if (option === NO_HOUSING) {
         let promises = [];
 
-        if (housingProvision.get('isPersisted')) promises.push(housingProvision.destroyRecord());
-        if (housingRequest.get('isPersisted')) promises.push(housingRequest.destroyRecord());
+        const requesting = housingRequest.get('isPersisted');
+        const providing = housingProvision.get('isPersisted');
+
+        // housing provision / request are async: false - so we can't unload them
+        if (providing) promises.push(housingProvision.destroyRecord());
+        if (requesting) promises.push(housingRequest.destroyRecord());
 
         handleHousing = RSVP.all(promises);
       } else if (option === PROVIDING_HOUSING) {
