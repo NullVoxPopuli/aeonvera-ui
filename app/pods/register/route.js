@@ -3,6 +3,9 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
 export default Ember.Route.extend(ResetScroll, SetNavbarTitle, {
+  headData: Ember.inject.service(),
+  i18n: Ember.inject.service(),
+
   model: function(params) {
     const subdomain = params.subdomain;
 
@@ -13,8 +16,11 @@ export default Ember.Route.extend(ResetScroll, SetNavbarTitle, {
 
   afterModel(model, transition) {
     const name = model.get('name');
+    const i18n = this.get('i18n');
+    const head = this.get('headData');
 
     this._setAppNavTitle(name);
+    head.set('title', `${name} - ${i18n.t('appname')}`);
   },
 
   actions: {

@@ -2,6 +2,10 @@ import Ember from 'ember';
 import Application from '../../app';
 import config from '../../config/environment';
 
+import './authenticate-session';
+import './current-session';
+import './logout';
+
 export default function startApp(attrs) {
   let attributes = Ember.merge({}, config.APP);
   attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;

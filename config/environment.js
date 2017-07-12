@@ -11,7 +11,11 @@ module.exports = function(environment) {
     },
     environment: environment,
     rootURL: '/',
-    locationType: 'auto',
+    // locationType: 'auto',
+    // https://github.com/dollarshaveclub/ember-router-scroll
+    locationType: 'router-scroll',
+    historySupportMiddleware: true,
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -99,11 +103,12 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *",
-      'font-src': "'self' *.amazonaws.com fonts.gstatic.com",
+      'font-src': "'self' *.amazonaws.com fonts.gstatic.com client.crisp.chat",
       'connect-src': "*",
       'img-src': "'self'  *.amazonaws.com data: https://*.stripe.com *",
-      'style-src': "'self' 'unsafe-inline' *.aeonvera.com https://fonts.googleapis.com",
-      'frame-src': "https://*.stripe.com"
+      'style-src': "'self' 'unsafe-inline' *.aeonvera.com https://fonts.googleapis.com client.crisp.chat",
+      'frame-src': "https://*.stripe.com",
+      'media-src': "'self' *.amazonaws.com client.crisp.chat"
     },
     flashMessageDefaults: {
       timeout: 10000

@@ -7,22 +7,11 @@ import { withChai } from 'ember-cli-chai/qunit';
 
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
-import startApp from 'aeonvera/tests/helpers/start-app';
-import destroyApp from 'aeonvera/tests/helpers/destroy-app';
-
-let application;
-
 moduleForAcceptance('Acceptance | Email Confirmation', {
   beforeEach() {
-    application = startApp();
-
     server.get('/api/confirmation', (schema, request) => ({ }));
 
     server.logging = true;
-  },
-
-  afterEach() {
-    destroyApp(application);
   }
 });
 

@@ -3133,6 +3133,13 @@ ember-cli-get-dependency-depth@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-dependency-depth/-/ember-cli-get-dependency-depth-1.0.0.tgz#e0afecf82a2d52f00f28ab468295281aec368d11"
 
+ember-cli-head@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-head/-/ember-cli-head-0.3.1.tgz#a407df4880f235280371c437bb5b0b5cbdaea646"
+  dependencies:
+    ember-cli-babel "^6.1.0"
+    ember-cli-htmlbars "^2.0.1"
+
 ember-cli-htmlbars-inline-precompile@^0.3.1:
   version "0.3.11"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-0.3.11.tgz#55f6858acf5576d9773678a674566b9ad9c79cbe"
@@ -3772,7 +3779,7 @@ ember-getowner-polyfill@1.1.1:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.2.0"
 
-ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2:
+ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2, ember-getowner-polyfill@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.2.3.tgz#ea70f4a48b1c05b91056371d1878bbafe018222e"
   dependencies:
@@ -3980,6 +3987,13 @@ ember-router-generator@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-router-generator/-/ember-router-generator-1.2.3.tgz#8ed2ca86ff323363120fc14278191e9e8f1315ee"
   dependencies:
     recast "^0.11.3"
+
+ember-router-scroll@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-router-scroll/-/ember-router-scroll-0.2.0.tgz#aec5bb06cf7c1e6a0e5a43c8d53886c1ce18de54"
+  dependencies:
+    ember-cli-babel "^5.2.4"
+    ember-getowner-polyfill "^1.2.3"
 
 ember-runtime-enumerable-includes-polyfill@^1.0.1, ember-runtime-enumerable-includes-polyfill@^1.0.4:
   version "1.0.4"

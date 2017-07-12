@@ -4,7 +4,8 @@ moduleFor('route:password-reset', 'Unit | Route | password reset', {
   // Specify the other units that are required for this test.
   needs: [
     'service:session',
-    'service:flash-messages'
+    'service:flash-messages',
+    'service:router-scroll'
   ]
 });
 

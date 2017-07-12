@@ -1,24 +1,11 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import { withChai } from 'ember-cli-chai/qunit';
-import startApp from 'aeonvera/tests/helpers/start-app';
-import destroyApp from 'aeonvera/tests/helpers/destroy-app';
-
 import testSelector from 'ember-test-selectors';
 
-let application;
+import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
-module('Acceptance | password-reset', {
-  beforeEach() {
-    application = startApp();
-    Ember.testing = false;
-  },
-
-  afterEach() {
-    destroyApp(application);
-    server.shutdown();
-  },
-});
+moduleForAcceptance('Acceptance | password-reset', {});
 
 test('submitting the password for redirects to page saying you will get an email', function(assert) {
   const formSelector = testSelector('password-reset-request');

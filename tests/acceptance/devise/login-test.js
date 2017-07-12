@@ -3,22 +3,10 @@ import { test } from 'ember-qunit';
 import testSelector from 'ember-test-selectors';
 import { withChai } from 'ember-cli-chai/qunit';
 
-import {
-  currentSession,
-  authenticateSession
-} from 'aeonvera/tests/helpers/ember-simple-auth';
-
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
-
-import startApp from 'aeonvera/tests/helpers/start-app';
-import destroyApp from 'aeonvera/tests/helpers/destroy-app';
-
-let application;
 
 moduleForAcceptance('Acceptance | login', {
   beforeEach() {
-    application = startApp();
-
     server.create('user', {
       email: 'test@test.test',
       password: 'some-password'
@@ -35,10 +23,6 @@ moduleForAcceptance('Acceptance | login', {
     );
 
     server.logging = true;
-  },
-
-  afterEach() {
-    destroyApp(application);
   }
 });
 
@@ -49,24 +33,24 @@ test('visiting /', withChai(expect => {
     expect(currentURL())
       .to.equal('/welcome');
 
-    expect(currentSession(application).get('isAuthenticated'))
+    expect(currentSession().get('isAuthenticated'))
       .to.equal(false);
   });
 
 }));
 
 test('ensure that ember-simple-auth authenticates', withChai(expect => {
-  authenticateSession(application, { email: 'test@test.test', token: '123abc' });
+  authenticateSession({ email: 'test@test.test', token: '123abc' });
 
   andThen(() => {
-    const session = currentSession(application);
+    const session = currentSession();
 
     expect(session.get('data.authenticated.token')).to.equal('123abc');
   });
 }));
 
 test('after logging in, the login button should be hidden', withChai(expect => {
-  authenticateSession(application, { email: 'test@test.test', token: '123abc' });
+  authenticateSession({ email: 'test@test.test', token: '123abc' });
 
   andThen(() => {
     let buttonText = find('button').text();
@@ -77,7 +61,7 @@ test('after logging in, the login button should be hidden', withChai(expect => {
 }));
 
 test('can login via route', withChai(expect => {
-  let auth = currentSession(application).get('isAuthenticated');
+  let auth = currentSession().get('isAuthenticated');
 
   expect(auth)
     .to.equal(false);
@@ -90,7 +74,7 @@ test('can login via route', withChai(expect => {
   click('button[type="submit"]');
 
   andThen(() => {
-    let auth = currentSession(application).get('isAuthenticated');
+    let auth = currentSession().get('isAuthenticated');
 
     expect(auth)
       .to.equal(true);

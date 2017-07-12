@@ -2,14 +2,7 @@ import Ember from 'ember';
 import { module, test, skip } from 'qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 
-import {
-  authenticateSession
-} from 'aeonvera/tests/helpers/ember-simple-auth';
-
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
-
-import startApp from 'aeonvera/tests/helpers/start-app';
-import destroyApp from 'aeonvera/tests/helpers/destroy-app';
 
 let eventId = 'testevent';
 let userId = 'current-user';
@@ -22,11 +15,8 @@ let eventParams = {
   registrationOpensAt: moment().add(1, 'days').toDate()
 };
 
-let application;
-
 moduleForAcceptance('Acceptance | Registration | Event | User is Logged In', {
   beforeEach() {
-    application = startApp();
     server.logging = true;
     let event = server.create('event', eventParams);
 
@@ -38,14 +28,10 @@ moduleForAcceptance('Acceptance | Registration | Event | User is Logged In', {
       }
     );
 
-    authenticateSession(application, {
+    authenticateSession({
       email: 'test@test.test',
       token: '123abc'
     });
-  },
-
-  afterEach() {
-    destroyApp(application);
   }
 });
 

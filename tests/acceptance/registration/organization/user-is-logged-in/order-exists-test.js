@@ -3,15 +3,7 @@ import { module, test } from 'qunit';
 import testSelector from 'ember-test-selectors';
 import { withChai } from 'ember-cli-chai/qunit';
 
-import {
-  authenticateSession
-} from 'aeonvera/tests/helpers/ember-simple-auth';
-
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
-import startApp from 'aeonvera/tests/helpers/start-app';
-import destroyApp from 'aeonvera/tests/helpers/destroy-app';
-
-let application;
 
 let orgId = 'testorg';
 
@@ -23,8 +15,6 @@ moduleForAcceptance(
    Order Exists`, {
 
     beforeEach() {
-      application = startApp();
-
       server.create('user', {
         id: 'current-user',
         email: 'test@test.test',
@@ -37,14 +27,10 @@ moduleForAcceptance(
         domain: 'testorg'
       });
 
-      authenticateSession(application, {
+      authenticateSession({
         email: 'test@test.test',
         token: 'abc123'
       });
-    },
-
-    afterEach() {
-      destroyApp(application);
     }
 });
 

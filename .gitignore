@@ -14,6 +14,9 @@
 /node_modules
 /bower_components
 
+# npm tetsing bug
+/root
+
 # vim
 *.swp
 *.swo

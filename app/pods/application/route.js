@@ -5,13 +5,17 @@ const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(ResetScroll, {
   session: service('session'),
+  headData: service(),
   currentUserService: service('current-user'),
   pathStore: service('path-store'),
   i18n: service('i18n'),
 
   // intl: Ember.inject.service(),
   beforeModel: function(transition) {
-    this.set('navTitle', this.get('i18n').t('appname'));
+    const i18n = this.get('i18n');
+
+    this.set('navTitle', i18n.t('appname'));
+    this.get('headData').set('title', i18n.t('appname'));
 
     // post-email-confirmation
     this.get('pathStore').redirectIfPathIsPresent();

@@ -2,14 +2,7 @@ import Ember from 'ember';
 import { module, test, skip } from 'qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 
-import {
-  currentSession,
-  authenticateSession
-} from 'aeonvera/tests/helpers/ember-simple-auth';
-
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
-
-let application;
 
 moduleForAcceptance('Acceptance | sign out', {
   beforeEach() {
@@ -31,7 +24,7 @@ test('sign out button should not be visible if already signed out', withChai(fun
 
 
 skip('signs out when signed in', function(assert) {
-  authenticateSession(application, { email: 'test@test.test', token: '123abc' });
+  authenticateSession({ email: 'test@test.test', token: '123abc' });
 
   andThen(() => {
     let button = find('a .fa-sign-out').first().parent();
@@ -44,9 +37,8 @@ skip('signs out when signed in', function(assert) {
 
     andThen(() => {
 
-      expect(currentSession(this.application).get('isAuthenticated'))
+      expect(currentSession().get('isAuthenticated'))
         .to.equal(false);
     });
   });
 });
-

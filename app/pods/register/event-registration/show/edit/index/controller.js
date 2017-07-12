@@ -38,7 +38,7 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
 
   @alias('model.registration.level') selectedLevel: null,
 
-  @computed('order.orderLineItems.@each.lineItem')
+  @computed('order.orderLineItems.@each.lineItem', 'registration')
   selectedPackage(orderLineItems) {
     return orderLineItems && orderLineItems
       .map(oli => oli.get('lineItem'))
