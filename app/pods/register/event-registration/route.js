@@ -18,6 +18,9 @@ const eventInclude = Ember.String.w(`
 
 export default Ember.Route.extend(SideNav, {
   session: inject.service(),
+  headData: inject.service(),
+  i18n: inject.service(),
+
 
   // TODO: maybe eventually make requiring to login optional?
   @not('session.isAuthenticated') mustLogin: null,
@@ -27,8 +30,6 @@ export default Ember.Route.extend(SideNav, {
   },
 
   afterModel(model, transition) {
-    this._showSideNav();
-
     if (!model.get('registrationIsOpen')) {
       return this.transitionTo('register.event-registration.not-yet', model);
     }
@@ -36,5 +37,15 @@ export default Ember.Route.extend(SideNav, {
     if (this.get('mustLogin')) {
       return this.transitionTo('register.event-registration.must-login', model);
     }
+
+    this._showSideNav();
+
+    const name = model.get('name');
+    const i18n = this.get('i18n');
+    const head = this.get('headData');
+
+    this._setAppNavTitle(name);
+    head.set('title', `${name} - ${i18n.t('appname')}`)
   }
+
 });

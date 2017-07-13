@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SideNav, {
   i18n: Ember.inject.service(),
 
   activate: function() {
@@ -11,5 +12,9 @@ export default Ember.Route.extend({
 
   model: function() {
     return this.store.findAll('upcoming-event');
+  },
+
+  afterModel() {
+    this._hideSideNav();
   }
 });

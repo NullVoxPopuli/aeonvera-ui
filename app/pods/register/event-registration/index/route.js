@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
@@ -12,7 +13,7 @@ housing_request
 housing_provision
 `.split('\n').join(',');
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(SideNav, {
   model() {
     const event = this.modelFor('register.event-registration');
 
@@ -29,6 +30,8 @@ export default Ember.Route.extend({
 
   afterModel(model, transition) {
     const hasNotRegistered = isEmpty(model.registrations);
+
+    this._showSideNav();
 
     if (hasNotRegistered) {
       this.transitionTo('register.event-registration.show.edit', UNREGISTERED_ID);

@@ -1,0 +1,18 @@
+<div class='layout-column layout-align-center-center text-center'>
+  <h2>Uh no!</h2>
+  <h4>An error has occurred</h4>
+
+  <hr />
+  {{#if model.errors}}
+    {{#each model.errors as |error|}}
+      <h1>{{error.code}}</h1>
+      <h4>{{error.title}}</h4>
+    {{/each}}
+  {{/if}}
+
+
+  <br />
+  This is probably not your fault.
+  <br /><br />
+  If you have any questions, feel free to contact support.
+</div>

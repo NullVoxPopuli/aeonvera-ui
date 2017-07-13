@@ -6,6 +6,9 @@ export default Ember.Controller.extend({
 
   actions: {
     didAuthenticate() {
+      // just in case, switching users
+      this.get('store').unloadAll();
+
       const pathStore = this.get('pathStore');
       const route = pathStore.getStoredRoute();
       const attemptedTransition = this.get('session.attemptedTransition');

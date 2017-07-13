@@ -32,6 +32,9 @@ export default Ember.Route.extend(ResetScroll, {
   },
 
   actions: {
+    resetState() {
+      this.refresh();
+    },
 
     passwordReset() {
       Ember.$('.close-reveal-modal').click();

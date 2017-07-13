@@ -6,7 +6,7 @@ export default Ember.Route.extend({
   session: inject.service(),
 
   beforeModel() {
-    if (this.get('loggedIn')) {
+    if (this.get('session.isAuthenticated')) {
       return this.transitionTo('register.event-registration');
     }
   },
@@ -14,10 +14,6 @@ export default Ember.Route.extend({
   model() {
     return this.modelFor('register.event-registration');
   },
-
-  loggedIn: computed('session.isAuthenticated', function() {
-    return Boolean(this.get('session.isAuthenticated'));
-  }),
 
   actions: {
     backToRegistration() {
