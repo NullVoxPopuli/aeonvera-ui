@@ -4,6 +4,8 @@ import RSVP from 'rsvp';
 import { computed } from 'ember-decorators/object';
 import { alias, oneWay, sort } from 'ember-decorators/object/computed';
 
+import { dropTask } from 'ember-concurrency-decorators';
+
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 import RegistrationController from 'aeonvera/mixins/registration/controller';
 
@@ -65,6 +67,27 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
     });
   },
 
+  @dropTask
+  submitFormTask: function * () {
+    const flash = this.get('flash');
+    const registration = this.get('registration');
+    const event = this.get('event');
+    const selectedPackage = this.get('selectedPackage');
+    const selectedLevel = this.get('selectedLevel');
+    const requiresTrack = this.get('selectedPackage.requiresTrack');
+
+    const saved = yield registration.save();
+
+    if (!selectedPackage) { return flash.error('Please select a ticket'); }
+    if (requiresTrack && !selectedLevel) { return flash.error('Please select a track'); }
+
+    if (event.get('isHousingEnabled')) {
+      return this.transitionToRoute('register.event-registration.show.edit.housing', saved.id);
+    }
+
+    this.transitionToRoute('register.event-registration.show.index', saved.id);
+  },
+
   actions: {
     didFinishInfo() {
       // next up: ticket
@@ -99,20 +122,7 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
     },
 
     didSubmitForm() {
-      const event = this.get('event');
-      const registration = this.get('registration');
-
-      registration.save().then(saved => {
-        const unregistered = this.get('store').peekRecord('registration', UNREGISTERED_ID)
-
-        if (unregistered) unregistered.unloadRecord();
-
-        if (event.get('isHousingEnabled')) {
-          return this.transitionToRoute('register.event-registration.show.edit.housing', saved.id);
-        }
-
-        this.transitionToRoute('register.event-registration.show.index', saved.id);
-      });
+      return this.get('submitFormTask').perform();
     }
   } // end actions
 });

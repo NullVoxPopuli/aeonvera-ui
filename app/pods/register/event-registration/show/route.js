@@ -39,5 +39,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
 
     return RSVP.hash({ event, registration });
+  },
+
+  actions: {
+    triggerRefreshForOrderReview() {
+      this.refresh();
+      this.transitionTo('register.event-registration.show.index');
+    }
   }
 });
