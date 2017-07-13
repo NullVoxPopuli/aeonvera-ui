@@ -30,7 +30,7 @@
       = error-field-wrapper  classes='columns medium-4' errors=user.errors field='password'
         label
           span New Password
-          = input value=currentUser.user.password type='password'
+          = input value=user.password type='password'
 
       = error-field-wrapper classes='columns medium-4' errors=user.errors field='passwordConfirmation'
         label

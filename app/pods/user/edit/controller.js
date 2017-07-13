@@ -5,10 +5,9 @@ import { alias } from 'ember-decorators/object/computed';
 
 export default Ember.Controller.extend({
   ajax: Ember.inject.service(),
-  currentUserService: Ember.inject.service('current-user'),
   flash: Ember.inject.service('flash-notification'),
 
-  @alias('currentUserService.user') user: null,
+  @alias('model.user') user: null,
 
   deleteAccountPassword: '',
   deleteErrors: [],
@@ -33,12 +32,12 @@ export default Ember.Controller.extend({
     },
 
     updateCurrentUser: function() {
-      this.get('user').then(user => {
-        user.save().then(_ => {
-          this.get('flash').success('Profile updated!');
-        }, error => {
-          this.get('flash').alert('Profile did not update.');
-        });
+      const user = this.get('user');
+
+      user.save().then(_ => {
+        this.get('flash').success('Profile updated!');
+      }, error => {
+        this.get('flash').alert('Profile did not update.');
       });
     }
   }
