@@ -10,11 +10,11 @@ export default Ember.Route.extend(SideNav, {
     this._super();
   },
 
-  model: function() {
+  model() {
     return this.store.findAll('upcoming-event');
   },
 
-  afterModel() {
+  afterModel(model) {
     this._hideSideNav();
   }
 });

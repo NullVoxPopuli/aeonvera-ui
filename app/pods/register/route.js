@@ -3,11 +3,10 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 
 export default Ember.Route.extend(ResetScroll, {
   model: function(params) {
+    console.log(params)
     const subdomain = params.subdomain;
 
-    return this.get('store').findRecord('host', subdomain, {
-      subdomain: subdomain
-    });
+    return this.get('store').findRecord('host', subdomain);
   },
 
   actions: {

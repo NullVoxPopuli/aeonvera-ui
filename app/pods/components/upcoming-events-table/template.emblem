@@ -9,8 +9,7 @@ table
     each model as |event|
       tr
         td.text-center
-          /a href="{{event.url}}"
-          = link-to 'register' event.domain
+          = link-to 'register' event.domain data-test-upcoming-event-id=event.id
             unless event.logoIsMissing
               img src=event.logoUrlThumb
               br
