@@ -18,7 +18,6 @@ const eventInclude = Ember.String.w(`
 
 export default Ember.Route.extend(SideNav, {
   session: inject.service(),
-  headData: inject.service(),
   i18n: inject.service(),
 
 
@@ -42,10 +41,9 @@ export default Ember.Route.extend(SideNav, {
 
     const name = model.get('name');
     const i18n = this.get('i18n');
-    const head = this.get('headData');
 
     this._setAppNavTitle(name);
-    head.set('title', `${name} - ${i18n.t('appname')}`)
+    this.set('title', `${name} - ${i18n.t('appname')}`);
   }
 
 });
