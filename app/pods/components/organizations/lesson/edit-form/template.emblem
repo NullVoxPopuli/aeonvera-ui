@@ -14,7 +14,7 @@ form submit='save'
     = error-field-wrapper classes='columns small-12' errors=model.errors field='description'
       label
         span Description
-        = full-editor content=model.description
+        = form/full-editor content=model.description
 
   .row
     = error-field-wrapper classes='columns small-12 medium-6' errors=model.errors field='price'

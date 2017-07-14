@@ -12,7 +12,10 @@ import {
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | Registration | Event | User is not logged in', {
-  beforeEach() { mockSetup({ logLevel: 1, mockjaxLogLevel: 4 }); },
+  beforeEach() {
+    mockSetup({ logLevel: 1, mockjaxLogLevel: 4 });
+
+  },
   afterEach() { mockTeardown(); }
 });
 

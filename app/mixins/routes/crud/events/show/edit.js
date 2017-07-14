@@ -12,20 +12,20 @@ export default Ember.Mixin.create({
   },
 
   actions: {
-
-    willTransition: function(transition) {
-
-      const dirty = this.get('model.hasDirtyAttributes');
-      const model = this.get('controller.content');
-
-      if (dirty && !confirm('Would you like to save your changes?')) {
-        model.rollback();
-        return true;
-      }
-      model.save();
-      return true;
-
-
-    }
+    //
+    // willTransition: function(transition) {
+    //
+    //   const dirty = this.get('model.hasDirtyAttributes');
+    //   const model = this.get('controller.content');
+    //
+    //   if (dirty && !confirm('Would you like to save your changes?')) {
+    //     model.rollback();
+    //     return true;
+    //   }
+    //   // model.save();
+    //   return true;
+    //
+    //
+    // }
   }
 });

@@ -3237,6 +3237,12 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
+ember-cli-medium-editor@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-medium-editor/-/ember-cli-medium-editor-1.2.4.tgz#ce0c01afd18c62363ca2697b22bd4eb72c012c98"
+  dependencies:
+    ember-cli-babel "^5.1.5"
+
 ember-cli-mirage@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/ember-cli-mirage/-/ember-cli-mirage-0.3.3.tgz#42b8779d857859341cbb219050ea2fec4d72ea88"
@@ -5029,7 +5035,7 @@ glob-parent@^2.0.0:
     inherits "1"
     minimatch "~0.2.11"
 
-glob@7.1.1, glob@^7.0.0, glob@^7.0.3, glob@^7.0.4, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
+glob@7.1.1, glob@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -5050,7 +5056,7 @@ glob@^5.0.10, glob@^5.0.15, glob@^5.0.5, glob@~5.0.0:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.1.2:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.4, glob@^7.0.5, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:

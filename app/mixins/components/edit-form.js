@@ -45,7 +45,7 @@ export default Ember.Mixin.create(EditModel, {
         const parentId = this.get('parentModelId');
         const recordId = record.get('id');
 
-        const numberOfShows = path.match(/show/g).length;
+        const numberOfShows = path.match(/show|manage/g).length;
 
         if (numberOfShows === 2) {
           this.get('router').transitionTo(path, parentId, recordId);
