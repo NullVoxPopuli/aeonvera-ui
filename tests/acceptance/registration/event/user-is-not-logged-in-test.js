@@ -4,7 +4,7 @@ import { withChai } from 'ember-cli-chai/qunit';
 import testSelector from 'ember-test-selectors';
 
 import {
-  make, makeList,
+  make, makeList, build,
   mockFindAll, mockFindRecord,
   mockSetup, mockTeardown
 } from 'ember-data-factory-guy';
@@ -12,21 +12,22 @@ import {
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | Registration | Event | User is not logged in', {
-  beforeEach() {
-    mockSetup({ logLevel: 1, mockjaxLogLevel: 4 });
-
-  },
+  beforeEach() { mockSetup({ logLevel: 1, mockjaxLogLevel: 4 }); },
   afterEach() { mockTeardown(); }
 });
 
-skip('can navigate from upcoming events', withChai(expect => {
+test('can navigate from upcoming events', withChai(expect => {
   const upcomingEvents = makeList('upcoming-event', 2);
-  const event = make('event');
-  const host = make('host', { id: event.domain });
+  const openingTier = make('pricing-tier', { date: new Date(2016, 7) });
+  const event = make('event', { openingTier });
 
   mockFindAll('upcoming-event').returns({ models: upcomingEvents });
   mockFindRecord('event').returns({ model: event });
-  mockFindRecord('host').returns({ model: host });
+
+  const url = `/api/hosts/${event.get('domain')}`;
+  const payload = { data: { type: 'events', id: 1, attributes: { id: 1, name: event.get('name') } } };
+
+  Ember.$.mockjax({ url, responseText: payload, type: 'GET' });
 
   visit('/upcoming-events');
 

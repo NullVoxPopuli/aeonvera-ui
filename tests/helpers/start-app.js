@@ -5,6 +5,7 @@ import config from '../../config/environment';
 import './authenticate-session';
 import './current-session';
 import './logout';
+import './data-store';
 
 export default function startApp(attrs) {
   let attributes = Ember.merge({}, config.APP);
