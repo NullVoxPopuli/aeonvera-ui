@@ -1,0 +1,22 @@
+<td>
+  {{order/item-name-display order=order orderLineItem=item}}
+  {{#if (and (not order.paid) lineItem.isDiscount)}}
+      <small>
+        {{#paper-button
+          onClick=(action 'onRemoveOrderLineItem')
+        }}
+          Remove
+        {{/paper-button}}
+      </small>
+  {{/if}}
+</td>
+
+<td class='text-right'>
+  {{order/price-display item=item value=item.price}}
+</td>
+<td class='text-right'>
+  {{item.quantity}}
+</td>
+<td class='text-right'>
+  {{order/price-display item=item value=item.total}}
+</td>

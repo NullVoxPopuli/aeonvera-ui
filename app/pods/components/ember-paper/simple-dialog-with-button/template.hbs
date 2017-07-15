@@ -1,0 +1,20 @@
+{{#paper-button
+  raised=raised
+  primary=primary
+  warn=warn
+  class=buttonClasses
+  onClick=(action (mut showModal true))}}
+  {{buttonText}}
+{{/paper-button}}
+
+{{#if showModal}}
+  {{#ember-paper/simple-dialog
+    title=title
+    onClose=(action (mut showModal false))
+    didClickClose=(action 'closeModal')
+  }}
+
+    {{yield}}
+
+  {{/ember-paper/simple-dialog}}
+{{/if}}

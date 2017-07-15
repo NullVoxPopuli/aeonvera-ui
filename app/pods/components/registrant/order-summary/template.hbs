@@ -1,0 +1,58 @@
+{{order/order-review model=model}}
+<small class='right'>Prices as of {{date-with-format model.createdAt 'LLL'}}</small>
+<br />
+
+{{#paper-menu isOpen=muneIsOpen as |menu|}}
+  {{#menu.trigger}}
+    {{#paper-button raised=true primary=true}}
+      Actions
+    {{/paper-button}}
+  {{/menu.trigger}}
+
+  {{#menu.content as |content|}}
+    {{#content.menu-item onClick=(action 'resendReceipt')}}
+      Resend Receipt
+    {{/content.menu-item}}
+
+    {{#unless model.paid}}
+      {{#content.menu-item}}
+        {{order/mark-paid-modal order=model}}
+      {{/content.menu-item}}
+    {{/unless}}
+
+    {{#if canBeDeleted}}
+      {{form/confirm-button
+        action='delete'
+        showCancel=true
+        cancelClasses='tiny no-margins'
+        confirmText='Really, Delete'
+      }}
+      Delete
+    {{/if}}
+
+    {{#if (and isStripe isPaid)}}
+      {{#if hasPaidMoney}}
+        {{#content.menu-item onClick=(action (mut showRefundModal) true)}}
+          Refund
+        {{/content.menu-item}}
+      {{/if}}
+
+      {{#content.menu-item onClick=(action 'refreshStripe')}}
+        {{tool-tip
+          message='if you have refunded via stripe directly, this will update aeonvera with that information.'
+        }}
+        Refresh Stripe Payment Data
+      {{/content.menu-item}}
+    {{/if}}
+
+
+  {{/menu.content}}
+{{/paper-menu}}
+
+{{#if showRefundModal}}
+  {{order/refund-modal
+    order=model
+    onClose=(action (mut showRefundModal) false)
+    didClickClose=(action (mut showRefundModal) false)
+  }}
+{{/if}}

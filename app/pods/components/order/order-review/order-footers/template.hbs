@@ -1,0 +1,59 @@
+{{#if displayFee}}
+  <tr>
+    <th></th>
+    <th></th>
+    <th class='text-right'>Sub Total</th>
+    <th class='text-right'>{{to-usd order.subTotal}}</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th class='text-right'>
+      Fee
+      {{tool-tip
+        message='This is the online payment processing fee. To read more about fees, visit the aeonvera pricing page.'
+      }}
+    </th>
+    <th class='text-right'>{{to-usd order.fee}}</th>
+  </tr>
+{{/if}}
+
+<tr>
+  <th></th>
+  <th></th>
+  <th class='text-right'>Total</th>
+  <th class='text-right'>{{to-usd order.total}}</th>
+</tr>
+{{#if order.paid}}
+  {{#if order.hasNonZeroBalance}}
+    <tr>
+      <td class='order-payment-status' data-paid={{order.paid}} colspan='4'>
+        Paid {{to-usd order.paidAmount}} on {{date-with-format order.paymentReceivedAt 'lll'}} via {{order.paymentMethod}} {{order.checkNumber}}
+      </td>
+    </tr>
+  {{else}}
+    <tr>
+      <td class='order-payment-status' data-paid={{order.paid}} colspan='4'>
+        Nothing needs to be paid, because there is a balance of Zero.
+      </td>
+    </tr>
+  {{/if}}
+
+  {{#if showNetReceived}}
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Net Received: {{to-usd model.netAmountReceived}}</td>
+      <td>Fees: {{to-usd model.totalFeeAmount}}</td>
+    </tr>
+  {{/if}}
+
+{{else}}
+  {{#if order.hasZeroBalance}}
+    <tr>
+      <td class='order-payment-status' data-paid='true' colspan='4'>
+        Nothing needs to be paid, because there is a balance of Zero.
+      </td>
+    </tr>
+  {{/if}}
+{{/if}}

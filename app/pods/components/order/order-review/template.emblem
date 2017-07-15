@@ -6,76 +6,26 @@ table.width-of-100.order-review-table
     th.text-right Sub Total
   tbody
     each savedLineItems as |item|
-      tr
-        td
-          = order/item-name-display order=model orderLineItem=item
-          unless model.paid
-            if item.lineItem.isDiscount
-              small: a click='"onRemoveOrderLineItem" item' Remove
+      = order/order-review/item-row order=model item=item
 
-        td.text-right = order/price-display item=item value=item.price
-        td.text-right = item.quantity
-        td.text-right = order/price-display item=item value=item.total
-
-  tfoot
-    if displayFee
-      tr
-        th
-        th
-        th.text-right Sub Total
-        th.text-right = to-usd model.subTotal
-      tr
-        th
-        th
-        th.text-right
-          | Fee
-          = tool-tip message='This is the online payment processing fee. To read more about fees, visit the aeonvera pricing page.'
-        th.text-right = to-usd model.fee
-    tr
-      th
-      th
-      th.text-right Total
-      if model.paid
-        th.text-right = to-usd model.total
-        / th.text-right = to-usd model.totalInDollars
-      else
-        th.text-right = to-usd model.total
-    if model.paid
-      if model.hasNonZeroBalance
-        tr
-          td.order-payment-status data-paid=model.paid colspan="4"
-            | Paid {{to-usd model.paidAmount}} on {{date-with-format model.paymentReceivedAt 'lll'}} via {{model.paymentMethod}} {{model.checkNumber}}
-      else
-        tr: td.order-payment-status data-paid=model.paid colspan="4"
-          | Nothing needs to be paid, because there is a balance of Zero.
-      if showNetReceived
-        tr
-          td
-          td
-          td Net Received: {{to-usd model.netAmountReceived}}
-          td Fees: {{to-usd model.totalFeeAmount}}
-
-    else
-      if model.hasZeroBalance
-        tr: td.order-payment-status data-paid='true' colspan="4"
-          | Your balance is zero, so there is nothing to pay. You're registered!
+  = order/order-review/order-footers displayFee=displayFee order=model showNetReceived=showNetReceived
 
 if (is-present model.stripeRefunds)
-  = foundation/foundation-reflow
-    ul.no-margins.accordion.refunds data-accordion='refunds'
-      li.accordion-navigation
-        a href='#order{{model.id}}-refunds' Refunds
-        div.content id='order{{model.id}}-refunds'
-          each model.stripeRefunds as |refund|
-            .left = to-usd (cents-to-dollars refund.amount)
-            .right = date-with-format refund.created 'lll'
-            .clearfix
-          hr
-          .row
-            .small-4.columns Sub Total
-            .small-4.columns Fee
-            .small-4.columns Total
-          .row
-            .small-4.columns = to-usd model.currentNetAmountReceived
-            .small-4.columns = to-usd model.currentTotalFeeAmount
-            .small-4.columns = to-usd model.currentPaidAmount
+  / = foundation/foundation-reflow
+  ul.no-margins.accordion.refunds data-accordion='refunds'
+    li.accordion-navigation
+      a href='#order{{model.id}}-refunds' Refunds
+      div.content id='order{{model.id}}-refunds'
+        each model.stripeRefunds as |refund|
+          .left = to-usd (cents-to-dollars refund.amount)
+          .right = date-with-format refund.created 'lll'
+          .clearfix
+        hr
+        .row
+          .small-4.columns Sub Total
+          .small-4.columns Fee
+          .small-4.columns Total
+        .row
+          .small-4.columns = to-usd model.currentNetAmountReceived
+          .small-4.columns = to-usd model.currentTotalFeeAmount
+          .small-4.columns = to-usd model.currentPaidAmount

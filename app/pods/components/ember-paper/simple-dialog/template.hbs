@@ -1,33 +1,22 @@
-{{#paper-button
-  raised=true
-  primary=primary
-  warn=warn
-  class=buttonClasses
-  onClick=(action (mut showModal true))}}
-  {{buttonText}}
-{{/paper-button}}
+{{#paper-dialog
+  class='flex-gt-sm-50'
+  onClose=(action onClose)
+  clickOutsideToClose=true}}
 
-{{#if showModal}}
-  {{#paper-dialog
-    class='flex-gt-sm-50'
-    onClose=(action (mut showModal false))
-    clickOutsideToClose=true}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{title}}</h2>
+      <span class='flex'></span>
 
-    {{#paper-toolbar}}
-      {{#paper-toolbar-tools}}
-        <h2>{{title}}</h2>
-        <span class='flex'></span>
+      {{#paper-button
+        iconButton=true
+        onClick=(action didClickClose)}}
+        {{paper-icon icon='close'}}
+      {{/paper-button}}
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
 
-        {{#paper-button
-          iconButton=true
-          onClick=(action 'closeModal')}}
-          {{paper-icon icon='close'}}
-        {{/paper-button}}
-      {{/paper-toolbar-tools}}
-    {{/paper-toolbar}}
-
-    {{#paper-dialog-content}}
-      {{yield}}
-    {{/paper-dialog-content}}
-  {{/paper-dialog}}
-{{/if}}
+  {{#paper-dialog-content}}
+    {{yield}}
+  {{/paper-dialog-content}}
+{{/paper-dialog}}

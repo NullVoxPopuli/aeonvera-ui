@@ -1,4 +1,4 @@
-= ember-paper/simple-dialog buttonText='Help' title='Login Help'
+= ember-paper/simple-dialog-with-button buttonText='Help' title='Login Help'
     / a href='/users/password/new' Forgot your email?
     / br
     a click='passwordReset'

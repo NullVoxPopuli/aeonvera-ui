@@ -1,16 +1,31 @@
-{{#foundation-modal
+{{#ember-paper/simple-dialog
   title='Refund Payment'
-  name=modalName
-  buttonText='Refund'}}
+  onClose=onClose
+  didClickClose=didClickClose
+}}
 
-  {{radio-button value='full' groupValue=refundType}}
-  <label>Full Refund</label>
+  {{paper-radio
+    label='Full Refund'
+    value='full'
+    groupValue=refundType
+    onChange=(action (mut refundType))
+  }}
   <br>
-  {{radio-button value='partial' groupValue=refundType}}
-  <label>Partial Refund</label>
+  {{paper-radio
+    label='Partial Refund'
+    value='partial'
+    groupValue=refundType
+    onChange=(action (mut refundType))
+  }}
 
   {{#if isRefundPartial}}
-    {{form/dollar-field value=partialRefundValue}}
+    {{paper-input
+      label='Dollar Amount'
+      value=partialRefundValue
+      type='number'
+      min='0'
+      onChange=(action (mut partialRefundValue))
+    }}
   {{/if}}
 
   <br>
@@ -19,11 +34,14 @@
     It may take a couple of minutes for a receipt to be sent to your customer.
   </small></em>
   <hr>
-  <ul class='button-group right'>
-    <li>
-      <button {{action 'refundPayment'}}
-        class='small'
-        disabled={{isRefundButtonDisabled}}>Refund</button>
-    </li>
-  </ul>
-{{/foundation-modal}}
+
+  <div class='layout-row layout-align-end-end'>
+    {{#paper-button
+      primary=true
+      raised=true
+      disabled=isRefundButtonDisabled
+      onClick=(action 'refundPayment')}}
+      Refund
+    {{/paper-button}}
+  </div>
+{{/ember-paper/simple-dialog}}
