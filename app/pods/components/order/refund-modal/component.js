@@ -46,7 +46,7 @@ export default class extends Ember.Component {
     const url = ENV.host + '/api/orders/' + id + '/refund_payment';
     const authToken = this.get('session.data.authenticated.token');
 
-    Ember.$.ajax({
+    const ajaxOptions = {
       url: url,
       type: 'PUT',
       data: {
@@ -56,15 +56,19 @@ export default class extends Ember.Component {
       beforeSend(xhr) {
         xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);
       }
-    }).then(data => {
-      this.get('store').pushPayload(data);
-      this.get('flash').success('Refund Succeeded');
-      Ember.$('.close-reveal-modal').click();
-    }, error => {
-      const json = JSON.parse(error.responseText);
-      const errors = json.errors;
+    };
 
-      this.get('flash').alert(errors);
-    });
+    Ember.$.ajax(ajaxOptions)
+      .then(data => {
+        this.get('store').pushPayload(data);
+        this.get('flash').success('Refund Succeeded');
+        this.sendAction('onClose');
+      })
+      .catch(error => {
+        const json = JSON.parse(error.responseText);
+        const errors = json.errors;
+
+        this.get('flash').alert(errors);
+      });
   }
 }
