@@ -1,18 +1,39 @@
 import Ember from 'ember';
+import { PropTypes } from 'ember-prop-types';
 
-export default Ember.Component.extend({
-  // required to be passed in
-  host: null,
+import { alias } from 'ember-decorators/object/computed';
+import { service } from 'ember-decorators/service';
 
-  actions: {
-    searchRegistrants: function(query, deferred) {
-      const host = this.get('host');
+import { timeout } from 'ember-concurrency';
+import { restartableTask } from 'ember-concurrency-decorators';
 
-      return this.store.query('event-attendance', {
-        // TODO: currently only works for events.
-        event_id: host.get('id'),
-        q: { attendee_full_name_cont: query.term }
-      }).then(deferred.resolve, deferred.reject);
-    }
+const DEBOUNCE_MS = 500;
+
+const { isBlank } = Ember;
+
+export default class extends Ember.Component {
+  static propTypes = {
+    event: PropTypes.EmberObject.isRequired,
+    value: PropTypes.any,
+    onChange: PropTypes.func.isRequired
+  };
+
+  // @service('store') store;
+  @alias('searchRegistrants.lastSuccessful.value') registrants;
+
+  @restartableTask
+  searchRegistrants = function * (term) {
+    if (isBlank(term)) return;
+    yield timeout(DEBOUNCE_MS);
+
+    const result = this.get('store')
+      .query('events/registration', {
+        ['event_id']: this.get('event.id'),
+        q: {
+          ['attendee_full_name_cont']: term
+        }
+      });
+
+    return result;
   }
-});
+}

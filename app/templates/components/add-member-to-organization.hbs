@@ -1,48 +1,48 @@
 <div class='layout-row'>
   <div class='flex-lg-50 flex-md-66 flex-gt-xs-100 layout-column center-margin'>
-  {{#error-field-wrapper
-    errors=errors
-    field='startDate'}}
-    <label>
-      <span>Start Date</span>
-      {{ember-flatpickr
-        dateFormat='F j, Y at h:i K'
-        timeFormat='h:i K'
-        value=model.startDate
-        altInput=true
-        enableTime=true
-        onChange=(action 'updateDate')}}
-    </label>
-  {{/error-field-wrapper}}
+    {{#error-field-wrapper
+      errors=errors
+      field='startDate'}}
+      <label>
+        <span>Start Date</span>
+        {{ember-flatpickr
+          dateFormat='F j, Y at h:i K'
+          timeFormat='h:i K'
+          value=model.startDate
+          altInput=true
+          enableTime=true
+          onChange=(action 'updateDate')}}
+      </label>
+    {{/error-field-wrapper}}
 
 
-  {{#paper-select
-    selected=selectedOption
-    options=membershipOptions
-    onChange=(action 'selectOption')
-    label='Membership Option' as |option|}}
-    {{option.name}}
-  {{/paper-select}}
+    {{#paper-select
+      selected=selectedOption
+      options=membershipOptions
+      onChange=(action 'selectOption')
+      label='Membership Option' as |option|}}
+      {{option.name}}
+    {{/paper-select}}
 
 
-  {{#paper-autocomplete
-    placeholder='Search for person to make a member'
-    required=true
-    allowClear=true
-    options=memberList
-    selected=selectedMember
-    search=(perform searchUsers)
-    searchField='name'
-    labelPath='name'
-    loadingMessage='Searching...'
-    noMatchesMessage='No confirmed user found.'
-    onSelectionChange=(action 'selectMember') as |item term|}}
+    {{#paper-autocomplete
+      placeholder='Search for person to make a member'
+      required=true
+      allowClear=true
+      options=memberList
+      selected=selectedMember
+      search=(perform searchUsers)
+      searchField='name'
+      labelPath='name'
+      loadingMessage='Searching...'
+      noMatchesMessage='No confirmed user found.'
+      onSelectionChange=(action 'selectMember') as |item term|}}
 
-    {{paper-autocomplete-highlight
-      label=(join ' - ' (array item.name item.email))
-      searchText=term.searchText
-      flags="i"
-    }}
+      {{paper-autocomplete-highlight
+        label=(join ' - ' (array item.name item.email))
+        searchText=term.searchText
+        flags="i"
+      }}
 
     {{/paper-autocomplete}}
 

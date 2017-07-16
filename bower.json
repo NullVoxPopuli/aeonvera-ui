@@ -10,8 +10,7 @@
     "moment-timezone": ">= 0.1.0",
     "moment": "~2.10.6",
     "font-awesome": "~4.5.0",
-    "d3": "^3.5.0",
-    "c3": "^0.4.11",
+    "d3": "~3.5.0",
     "antiscroll": "git://github.com/Addepar/antiscroll#e0d1538cf4f3fd61c5bedd6168df86d651f125da",
     "jquery-mousewheel": "~3.1.4",
     "jquery-ui": "~1.11.3",
@@ -22,6 +21,10 @@
     "js-cookie": "~2.0.4",
     "spin.js": "^2.3.2",
     "Faker": "~3.0.0",
-    "medium-editor": "5.14.4"
+    "medium-editor": "5.14.4",
+    "c3": "~0.4.10"
+  },
+  "resolutions": {
+    "d3": "~3.5.0"
   }
 }

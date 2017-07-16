@@ -16,7 +16,7 @@ moduleForAcceptance('Acceptance | Registration | Event | User is not logged in',
   afterEach() { mockTeardown(); }
 });
 
-test('can navigate from upcoming events', withChai(expect => {
+test('can navigate from upcoming events', withChai(async expect => {
   const upcomingEvents = makeList('upcoming-event', 2);
   const openingTier = make('pricing-tier', { date: new Date(2016, 7) });
   const event = make('event', { openingTier });
@@ -29,18 +29,16 @@ test('can navigate from upcoming events', withChai(expect => {
 
   Ember.$.mockjax({ url, responseText: payload, type: 'GET' });
 
-  visit('/upcoming-events');
+  await visit('/upcoming-events');
 
-  andThen(() => {
-    const upcomingEvent = upcomingEvents.get(0);
-    const linkSelector = testSelector('upcoming-event-id', upcomingEvent.id);
-    const link = find(linkSelector);
-    const text = link.text();
+  const upcomingEvent = upcomingEvents.get(0);
+  const linkSelector = testSelector('upcoming-event-id', upcomingEvent.id);
+  const link = find(linkSelector);
+  const text = link.text();
 
-    expect(text).to.include(upcomingEvent.get('name'));
+  expect(text).to.include(upcomingEvent.get('name'));
 
-    click(linkSelector);
+  await click(linkSelector);
 
-    andThen(() => expect(currentRouteName()).to.equal('register.event-registration.must-login'));
-  });
+  expect(currentRouteName()).to.equal('register.event-registration.must-login')
 }));

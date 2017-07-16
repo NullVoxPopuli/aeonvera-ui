@@ -1,11 +1,19 @@
-{{select-2
-  placeholder="Select a registrant"
-  value=value
-  optionLabelPath='attendeeName'
-  typeaheadSearchingText="Searching registrants"
-  typeaheadNoMatchesText="No registrants with name: '%@'"
-  typeaheadErrorText="Loading failed: %@"
-  minimumInputLength=3
-  delay=500
+{{#paper-autocomplete
+  placeholder='Search for a Registrant'
   allowClear=true
-  query="searchRegistrants"}}
+  options=registrants
+  selected=value
+  search=(perform searchRegistrants)
+  searchField='attendeeName'
+  labelPath='attendeeName'
+  loadingMessage='Searching...'
+  noMatchesMessage='No registration found.'
+  onSelectionChange=onChange as |item term|}}
+
+  {{paper-autocomplete-highlight
+    label=(join ' - ' (array item.attendeeName item.attendeeEmail))
+    searchText=term.searchText
+    flags="i"
+  }}
+
+  {{/paper-autocomplete}}

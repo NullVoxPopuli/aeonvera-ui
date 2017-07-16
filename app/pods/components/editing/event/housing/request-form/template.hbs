@@ -1,0 +1,55 @@
+{{#paper-form onSubmit=(action 'save') as |form|}}
+  <div class='layout-column margin-bottom-20 flex-50'>
+    <div class='layout-row layout-align-space-between'>
+      {{paper-radio
+        label='A Registrant'
+        value=0
+        groupValue=whoIsRequestingType
+        onChange=(action (mut whoIsRequestingType))
+      }}
+      {{paper-radio
+        label='Enter Name'
+        value=1
+        groupValue=whoIsRequestingType
+        onChange=(action (mut whoIsRequestingType))
+      }}
+    </div>
+
+    {{#if isRegistrantRequesting}}
+      {{form/registrant-select
+        value=(readonly model.attendance)
+        event=model.host
+        onChange=(action (mut model.attendance))
+      }}
+    {{else}}
+      {{paper-input
+        type='text'
+        label='Enter Name'
+        value=model.Name
+        onChange=(action (mut model.name))
+      }}
+    {{/if}}
+  </div>
+
+  {{register/event-registration-form/housing-options/housing-request
+    housingRequest=model
+  }}
+
+  <div class='layout-row'>
+    {{#paper-button
+      raised=true
+      onClick=(action 'cancel')
+    }}
+      Cancel
+    {{/paper-button}}
+    {{#form.submit-button
+      raised=true
+      primary=true
+      disabled=isDirty
+    }}
+      Save
+    {{/form.submit-button}}
+
+  </div>
+
+{{/paper-form}}
