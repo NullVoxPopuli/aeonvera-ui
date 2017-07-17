@@ -1,10 +1,13 @@
 import Ember from 'ember';
+import { computed } from 'ember-decorators/object';
+import { notEmpty } from 'ember-decorators/object/computed';
 
-export default Ember.Component.extend({
+export default class extends Ember.Component {
 
-  hasLevel: function() {
-    const level = this.get('model.levelName');
+  @notEmpty('model.levelName') hasLevela
 
-    return Ember.isPresent(level);
-  }.property('model.levelName')
-});
+  @computed('model.{attendeeFirstName,attendeeLastName}')
+  attendeeName(firstName, lastName) {
+    return `${firstName} ${lastName}`;
+  }
+}

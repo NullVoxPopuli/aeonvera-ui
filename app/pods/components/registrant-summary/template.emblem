@@ -1,5 +1,5 @@
 .left
-  = page-header text=model.attendeeName
+  = page-header text=attendeeName
 .right
   = payment-status-badge hasPaid=model.hasPaid owes=model.amountOwed paid=model.amountPaid
 .clearfix

@@ -5,7 +5,8 @@
       span Manage
 
 .show-gt-sm.layout-column
-  img.width-of-60.padding-10.center-margin src=event.logoUrlMedium
+  = link-to 'events.show' event.id classNames='width-of-60 padding-10 center-margin'
+    img src=event.logoUrlMedium
   = paper-button raised=true primary=true onClick=(transition-to 'events.show.manage' event.id)
     span Manage
 
