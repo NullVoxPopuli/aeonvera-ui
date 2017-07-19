@@ -3,14 +3,16 @@ import { PropTypes } from 'ember-prop-types';
 
 import ENV from 'aeonvera/config/environment';
 
-import { computed, action } from 'ember-decorators/object';
+import { computed } from 'ember-decorators/object';
 import { equal, not } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
+
+import { dropTask } from 'ember-concurrency-decorators';
 
 const FULL_REFUND = 'full';
 const PARTIAL_REFUND = 'partial';
 
-export default class extends Ember.Component {
+export default class RefundModal extends Ember.Component {
   static propTypes = {
     order: PropTypes.EmberObject.isRequired
   };
@@ -29,21 +31,21 @@ export default class extends Ember.Component {
   @equal('refundType', null) isRefundTypeUnselected;
   @not('isRefundTypeUnselected') isRefundTypeSelected;
 
-  @computed('isRefundTypeSelected', 'partialRefundValue', 'refundType')
-  isRefundButtonEnabled(isRefundTypeSelected, partialRefundValue, refundType) {
+  @computed('isRefundTypeSelected', 'partialRefundValue', 'refundType', 'refundPaymentTask.isIdle')
+  isRefundButtonEnabled(isRefundTypeSelected, partialRefundValue, refundType, refundIdle) {
     return (
       isRefundTypeSelected && (
         refundType === 'full' || partialRefundValue > 0
-      )
+      ) && refundIdle
     );
   }
 
   @not('isRefundButtonEnabled') isRefundButtonDisabled;
 
-  @action
-  refundPayment() {
+  @dropTask
+  refundPaymentTask = function * () {
     const id = this.get('order.id');
-    const url = ENV.host + '/api/orders/' + id + '/refund_payment';
+    const url = `${ENV.host}/api/orders/${id}/refund_payment`;
     const authToken = this.get('session.data.authenticated.token');
 
     const ajaxOptions = {
@@ -58,17 +60,17 @@ export default class extends Ember.Component {
       }
     };
 
-    Ember.$.ajax(ajaxOptions)
-      .then(data => {
-        this.get('store').pushPayload(data);
-        this.get('flash').success('Refund Succeeded');
-        this.sendAction('onClose');
-      })
-      .catch(error => {
-        const json = JSON.parse(error.responseText);
-        const errors = json.errors;
+    try {
+      const data = yield Ember.$.ajax(ajaxOptions);
 
-        this.get('flash').alert(errors);
-      });
+      this.get('store').pushPayload(data);
+      this.get('flash').success('Refund Succeeded');
+
+      this.sendAction('onClose');
+    } catch (error) {
+      const json = JSON.parse(error.responseText);
+
+      this.get('flash').alert(json);
+    }
   }
 }

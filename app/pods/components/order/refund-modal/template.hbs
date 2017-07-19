@@ -40,8 +40,12 @@
       primary=true
       raised=true
       disabled=isRefundButtonDisabled
-      onClick=(action 'refundPayment')}}
-      Refund
+      onClick=(perform refundPaymentTask)}}
+      {{#if refundPaymentTask.isIdle}}
+        Refund
+      {{else}}
+        Loading...
+      {{/if}}
     {{/paper-button}}
   </div>
 {{/ember-paper/simple-dialog}}

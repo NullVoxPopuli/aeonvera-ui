@@ -2,6 +2,8 @@ import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
 export default Ember.Controller.extend({
+  flash: Ember.inject.service('flash-notification'),
+
   columns: [
     { property: 'requesterName', title: 'Name' },
     { property: 'housingProvision.providingName', title: 'Hosted By' },
@@ -35,9 +37,9 @@ export default Ember.Controller.extend({
   actions: {
     delete(request) {
       request.destroyRecord().then(success => {
-        this.get('flashMessages').success('Request was deleted');
+        this.get('flash').success('Request was deleted');
       }, error => {
-        this.get('flashMessages').error(error);
+        this.get('flash').error(error);
       });
     }
   }

@@ -10,11 +10,15 @@ export function messageFromError(error, msgTemplate) {
 
   if (typeof error === 'string') return error;
 
-  if (error instanceof Error) {
+  const isError = error instanceof Error;
+  const isObject = error instanceof Object;
+
+  if (isError || isObject) {
     if (isBlank(error.errors)) return error.message;
 
-    // JSONAPI.org errors
+    // JSONAPI.org + Adapter errors
     if (error.isAdapterError) return parseAdapterError(error, msgTemplate);
+    if (isObject) return parseAdapterError(error, msgTemplate);
   }
 
   // else, return the error - adjust this method as needed.
