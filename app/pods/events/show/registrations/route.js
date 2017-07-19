@@ -5,9 +5,8 @@ export default Ember.Route.extend({
   model: function() {
     const event = this.modelFor('events.show');
 
-    return this.store.query('event-attendance', {
-      event_id: event.get('id'),
-      include: 'custom_field_responses,housing_request,housing_provision'
+    return this.store.query('events/registration', {
+      event_id: event.get('id')
     });
   }
 });

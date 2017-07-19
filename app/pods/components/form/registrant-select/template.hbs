@@ -11,7 +11,7 @@
   onSelectionChange=onChange as |item term|}}
 
   {{paper-autocomplete-highlight
-    label=(join ' - ' (array item.attendeeName item.attendeeEmail))
+    label=(join ' - ' (array item.attendeeName item.attendeeEmail (date-with-format item.registeredAt 'LLL')))
     searchText=term.searchText
     flags="i"
   }}

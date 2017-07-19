@@ -6,7 +6,7 @@
 = sortable-table columns=columns data=registrations as |registration|
   td
     link-to 'events.show.registrations.show' registration.id
-      | {{registration.attendeeFirstName}} {{registration.attendeeLastName}}
+      = registration.name
   td = registration.danceOrientation
   td = registration.packageName
   td = registration.levelName
