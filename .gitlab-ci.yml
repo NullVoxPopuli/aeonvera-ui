@@ -22,6 +22,7 @@ build:
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - export PATH=$HOME/.yarn/bin:$PATH
     - yarn global add phantomjs-prebuilt
+    - yarn global add bower
     - phantomjs --version
     - yarn install && bower install
   # artifacts:
