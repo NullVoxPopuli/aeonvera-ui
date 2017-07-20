@@ -5,8 +5,15 @@ import { module, test } from 'qunit';
 module('Unit | Helper | message from error');
 
 // Replace this with your real tests.
-test('it works', function(assert) {
-  let result = messageFromError([42]);
-  assert.ok(result);
-});
+test('maps JSONAPI errors', function(assert) {
+  let result = messageFromError({ errors: [
+    {
+      status: '422',
+      source: { pointer: '/data/attributes/first-name' },
+      title: 'Invalid Attribute',
+      detail: 'First name must contain at least three characters.'
+    }
+  ] });
 
+  assert.ok('422 First name must contain at least three characters.');
+});
