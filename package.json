@@ -15,7 +15,8 @@
     "test": "ember test",
     "phantom": "ember test --server --test-page='tests/index.html?&nolint&hidepassed&nocontainer' --launch PhantomJS",
     "mintest": "ember test --server --test-page='tests/index.html?nolint&hidepassed&nocontainer'",
-    "ci": "ember test --test-page='tests/index.html?coverage&nolint'"
+    "ci-test": "ember test --test-page='tests/index.html?coverage&nolint'",
+    "ci": "ember exam --split=2 --parallel --random"
   },
   "repository": "",
   "engines": {
@@ -84,6 +85,7 @@
     "ember-decorators": "1.0.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-elsewhere": "^1.0.1",
+    "ember-exam": "^0.7.0",
     "ember-export-application-global": "^2.0.0",
     "ember-flatpickr": "^1.2.0",
     "ember-font-awesome": "^3.0.3",
