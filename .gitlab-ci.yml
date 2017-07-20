@@ -22,7 +22,6 @@ build:
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - export PATH=$HOME/.yarn/bin:$PATH
     - yarn global add bower
-    - yarn global add ember-cli
     - yarn install && bower install
 
 # eslint:
@@ -69,6 +68,8 @@ production:
     - export AWS_ACCESS_KEY_ID=$PRODUCTION_AWS_KEY_ID
     - export AWS_SECRET_ACCESS_KEY=$PRODUCTION_AWS_SECRET_KEY
     - export STRIPE_CLIENT_ID=$PRODUCTION_STRIPE_CLIENT_ID
+    - yarn global add ember-cli
+    - ember --version
 
     - DEPLOY_ENV=$DEPLOY_TARGET ember deploy $DEPLOY_TARGET --activate
 

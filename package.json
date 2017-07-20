@@ -13,8 +13,7 @@
     "start": "ember server",
     "build": "ember build",
     "test": "ember test",
-    "phantom": "ember test --server --test-page='tests/index.html?&nolint&hidepassed&nocontainer' --launch PhantomJS",
-    "mintest": "ember test --server --test-page='tests/index.html?nolint&hidepassed&nocontainer'",
+    "test:server": "ember exam --split=2 --parallel --server  --launch PhantomJS --random",
     "ci-test": "ember test --test-page='tests/index.html?coverage&nolint'",
     "ci": "ember exam --split=2 --parallel --random"
   },
