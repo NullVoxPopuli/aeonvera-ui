@@ -23,19 +23,15 @@ build:
     - export PATH=$HOME/.yarn/bin:$PATH
     - yarn global add bower
     - yarn install && bower install
-  # artifacts:
-  #   paths:
-  #     - node_modules/
-  #     - bower_components/
 
-eslint:
-  stage: test
-  image: node:6
-  tags:
-    - docker
-  dependencies:
-    - build
-  script: npm run eslint-no-fix
+# eslint:
+#   stage: test
+#   image: node:6
+#   tags:
+#     - docker
+#   dependencies:
+#     - build
+#   script: npm run eslint-no-fix
 
 test:
   stage: test
