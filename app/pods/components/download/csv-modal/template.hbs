@@ -1,8 +1,9 @@
-{{#foundation-modal
+{{#ember-paper/simple-dialog-with-button
   title='Download'
-  name='download-csv-modal'
   buttonText='Download'
-  buttonClasses=(or buttonClasses 'button small right margin-top-10')}}
+  buttonClasses=(or buttonClasses 'right')
+}}
+
 
   {{download/csv-form
     model=model
@@ -13,4 +14,4 @@
     fields=fields
   }}
 
-{{/foundation-modal}}
+{{/ember-paper/simple-dialog-with-button}}
