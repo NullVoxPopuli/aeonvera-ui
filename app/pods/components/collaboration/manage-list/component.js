@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  flash: Ember.inject.service('flash-notification'),
   collaborations: [], // set by renderer
   errors: [], // set by renderer
   newCollaboratorEmail: '', // set by input field
@@ -15,7 +16,7 @@ export default Ember.Component.extend({
 
     removeCollaborator(collaboration) {
       collaboration.destroyRecord().then(success => {}, error => {
-        this.get('flashMessages').alert(error);
+        this.get('flash').alert(error);
       });
     }
   }

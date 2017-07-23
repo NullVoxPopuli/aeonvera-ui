@@ -2,8 +2,10 @@ import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
 export default Ember.Route.extend({
+  flash: Ember.inject.service('flash-notification'),
   hostId: null,
   hostType: null,
+
   model() {
     const id = this.modelFor('events.show').get('id');
     const type = 'Event';
@@ -32,10 +34,10 @@ export default Ember.Route.extend({
       });
 
       collaboration.save().then(success => {
-        this.get('flashMessages').success('invite sent');
+        this.get('flash').success('invite sent');
       }, error => {
         this.set('errors', error);
-        this.get('flashMessages').alert(error);
+        this.get('flash').alert(error);
       });
     }
   }
