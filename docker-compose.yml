@@ -11,6 +11,7 @@ services:
     ports:
       - 4300:4300
       - 59153:59153
+      - 7357:7357
 
     volumes:
       # Mount the app code inside the container's `/usr/src/app` directory:
