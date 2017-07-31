@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
+import { computed } from 'ember-decorators/object';
+
 export default Ember.Controller.extend({
   columns: [
     { property: 'attendeeName', title: 'Name' },
@@ -21,9 +23,8 @@ export default Ember.Controller.extend({
     }
   }),
 
-  path: Ember.computed('model.eventId', {
-    get(key) {
-      return `${ENV.host}/api/registrations.csv?`;
-    }
-  })
+  @computed('model.eventId')
+  path(eventId) {
+    return `${ENV.host}/api/events/registrations.csv?event_id=${eventId}&`;
+  }
 });
