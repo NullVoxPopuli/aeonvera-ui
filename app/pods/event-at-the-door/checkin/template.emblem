@@ -3,4 +3,4 @@
 .row.max-width-75rem
   .small-12.columns
     h3 Checkin Attendees
-    = at-the-door/checkin-list model=model.attendances
+    = at-the-door/checkin-list model=model.registrations

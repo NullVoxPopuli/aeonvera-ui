@@ -16,5 +16,5 @@ hr
 span {{percentCheckedIn}}% |&nbsp;
 span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 
-= sortable-table columns=columns data=attendances as |attendance|
-  = at-the-door/checkin-attendance model=attendance
+= sortable-table columns=columns data=registrations as |registration|
+  = at-the-door/checkin-registration model=registration

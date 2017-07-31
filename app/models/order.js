@@ -50,7 +50,6 @@ export default Model.extend(Validator, PriceCalculation, {
 
   host: belongsTo('host', { polymorphic: true }),
   orderLineItems: hasMany('orderLineItem', { async: true }),
-  attendance: belongsTo('attendance', { async: true }),
   registration: belongsTo('registration', { async: true }),
   user: belongsTo('user'),
   pricingTier: belongsTo('pricingTier'),
@@ -120,7 +119,7 @@ export default Model.extend(Validator, PriceCalculation, {
   },
 
   validations: {
-    attendance: {
+    registration: {
       custom: {
         message: 'Attendance must be set when registering for an event',
         validation(key, value, model) {
@@ -128,7 +127,7 @@ export default Model.extend(Validator, PriceCalculation, {
 
           if (isEvent) {
             // TODO: move to parent component of the cart
-            // let attendance = model.get('attendance.id');
+            // let registration = model.get('registration.id');
             return Ember.isPresent(value);
           }
 

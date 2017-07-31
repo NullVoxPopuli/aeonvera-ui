@@ -14,7 +14,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   isOpeningTier: DS.attr('boolean'),
 
   event: DS.belongsTo('event'),
-  attendances: DS.hasMany('attendance'),
+  registrations: DS.hasMany('registration'),
 
   // because a nil value is handled as < 0
   // and we don't want that

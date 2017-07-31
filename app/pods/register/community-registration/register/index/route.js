@@ -55,7 +55,7 @@ export default Ember.Route.extend(currentUserHelpers, RandomString, {
         user: this.get('currentUser'),
         userName: this.get('currentUser.name'),
         userEmail: this.get('currentUser.email'),
-        attendance: this.get('registration')
+        registration: this.get('registration')
       });
 
       order = order.save();

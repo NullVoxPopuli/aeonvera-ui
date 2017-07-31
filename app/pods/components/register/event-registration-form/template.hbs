@@ -5,29 +5,29 @@
   {{event/logo-thumbnail model=event}} --}}
 
 
-  {{register/event-registration-form/attendance-information
+  {{register/event-registration-form/registration-information
     hasVolunteers=event.hasVolunteers
-    attendance=attendance
-    onNameChange=(action (mut attendance.attendeeName))
+    registration=registration
+    onNameChange=(action (mut registration.attendeeName))
     logoUrl=event.logoUrlThumb
   }}
 
   {{#if (is-present event.packages)}}
     {{register/event-registration-form/package-select
       packages=event.packages
-      selectedPackage=attendance.package
-      onPackageSelect=(action (mut attendance.package))
-      errors=attendance.errors
+      selectedPackage=registration.package
+      onPackageSelect=(action (mut registration.package))
+      errors=registration.errors
     }}
   {{/if}}
 
   {{#if (is-present event.levels)}}
-    {{#if attendance.package.requiresTrack}}
+    {{#if registration.package.requiresTrack}}
       {{register/event-registration-form/level-select
         levels=event.levels
-        selectedLevel=attendance.level
-        onLevelSelect=(action (mut attendance.level))
-        errors=attendance.errors
+        selectedLevel=registration.level
+        onLevelSelect=(action (mut registration.level))
+        errors=registration.errors
       }}
     {{/if}}
   {{/if}}

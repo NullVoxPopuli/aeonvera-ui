@@ -5,6 +5,6 @@ export default Ember.Route.extend({
   model: function() {
     const event = this.modelFor('events.show');
 
-    return this.store.query('event-attendance', { event_id: event.get('id'), cancelled: true });
+    return this.store.query('registration', { event_id: event.get('id'), cancelled: true });
   }
 });

@@ -26,7 +26,7 @@ table
       each model.ticketPurchasers as |purchaser|
         tr
           td = purchaser.numberOfTicketsPurchased
-          td = attendance-link model=purchaser
+          td = registration-link model=purchaser
 
     else
       tr: td colspan='2' No one has purchased any tickets

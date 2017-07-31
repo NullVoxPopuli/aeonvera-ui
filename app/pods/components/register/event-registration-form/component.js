@@ -8,9 +8,9 @@ export default Ember.Component.extend({
   event: Ember.computed.alias('model'),
   cart: Ember.inject.service('order-cart'),
 
-  housingResponse: Ember.computed('attendance', function() {
-    const housingRequest = this.get('attendance.housingRequest');
-    const housingProvision = this.get('attendance.housingProvision');
+  housingResponse: Ember.computed('registration', function() {
+    const housingRequest = this.get('registration.housingRequest');
+    const housingProvision = this.get('registration.housingProvision');
 
     return housingRequest ? 2 : (housingProvision ? 1 : 0);
   }),
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 
   selectedPackage: null,
   selectedLevel: null,
-  attendance: null,
+  registration: null,
 
   housingRequest: null,
   housingProvision: null,
@@ -51,57 +51,57 @@ export default Ember.Component.extend({
     const store = this.get('store');
 
     // this should include the orders, housing_provision and housing_request
-    store.queryRecord('event-attendance', {
-      current_user: true, event_id: eventId }).then(attendance => {
-        const cart = this.get('cart');
+    store.queryRecord('registration', {
+      current_user: true, event_id: eventId }).then(registration => {
+      const cart = this.get('cart');
 
-        // in case there is an existing order,
-        // cancel it, and re-populate everything with our
-        // own cart
-        this.set('attendance', attendance);
-        this.set('housingRequest', attendance.get('housingRequest'));
-        this.set('housingProvision', attendance.get('housingProvision'));
+      // in case there is an existing order,
+      // cancel it, and re-populate everything with our
+      // own cart
+      this.set('registration', registration);
+      this.set('housingRequest', registration.get('housingRequest'));
+      this.set('housingProvision', registration.get('housingProvision'));
 
-        cart.set('attendance', attendance);
-        const unpaidOrder = attendance.get('unpaidOrder');
+      cart.set('registration', registration);
+      const unpaidOrder = registration.get('unpaidOrder');
 
-        // if the unpaid order isn't present, then don't set it
-        // the unpaid order is a promise, which is unfulfilled
-        // if it doesn't exist. But checking if the id is empty
-        // seems more self-explanatory than checking isFulfilled
-        if (Ember.isPresent(unpaidOrder.get('id'))) {
-          cart.set('order', unpaidOrder);
-        } else {
-          cart.cancel();
+      // if the unpaid order isn't present, then don't set it
+      // the unpaid order is a promise, which is unfulfilled
+      // if it doesn't exist. But checking if the id is empty
+      // seems more self-explanatory than checking isFulfilled
+      if (Ember.isPresent(unpaidOrder.get('id'))) {
+        cart.set('order', unpaidOrder);
+      } else {
+        cart.cancel();
 
-          // create a new order -- how did they create an attendance with no order?
-          // - possibly validation issues on the order during save, and
-          //   then a refresh may have happened before the order validation
-          //   issues were resolved
-          cart.set('host', this.get('model'));
-          cart.get('currentOrder'); // builds an order.
-        }
+        // create a new order -- how did they create an registration with no order?
+        // - possibly validation issues on the order during save, and
+        //   then a refresh may have happened before the order validation
+        //   issues were resolved
+        cart.set('host', this.get('model'));
+        cart.get('currentOrder'); // builds an order.
+      }
 
-        // crappy logic to get the package radio buttons to show what was selected
-        const packageId = attendance.get('package.id');
-        const attendancePackage = this.get('model.packages').findBy('id', packageId);
+      // crappy logic to get the package radio buttons to show what was selected
+      const packageId = registration.get('package.id');
+      const registrationPackage = this.get('model.packages').findBy('id', packageId);
 
-        this.set('selectedPackage', attendancePackage);
+      this.set('selectedPackage', registrationPackage);
 
-        // crappy logic to get the level radio buttons to show what was selected
-        const levelId = attendance.get('level.id');
-        const attendanceLevel = this.get('model.levels').findBy('id', levelId);
+      // crappy logic to get the level radio buttons to show what was selected
+      const levelId = registration.get('level.id');
+      const registrationLevel = this.get('model.levels').findBy('id', levelId);
 
-        this.set('selectedLevel', attendanceLevel);
-      }, error => {
+      this.set('selectedLevel', registrationLevel);
+    }, error => {
 
-        const attendance = this.get('store').createRecord('event-attendance');
+      const registration = this.get('store').createRecord('registration');
 
-        attendance.set('host', this.get('event'));
+      registration.set('host', this.get('event'));
 
-        this.set('attendance', attendance);
-        this.get('cart').set('attendance', attendance);
-      });
+      this.set('registration', registration);
+      this.get('cart').set('registration', registration);
+    });
   }.on('didInsertElement'),
 
   title: Ember.computed('model.name', function() {
@@ -111,29 +111,29 @@ export default Ember.Component.extend({
   // TODO: remove other packages, or provide an option on the event
   //       to force only registering for one
   //
-  // This is for syncing the attendance.package with the selected
+  // This is for syncing the registration.package with the selected
   // package from the list of packages on the event
   //
   packageObserver: Ember.observer('selectedPackage', function() {
     const cart = this.get('cart');
-    const attendance = this.get('attendance');
+    const registration = this.get('registration');
     const selectedPackage = this.get('selectedPackage');
 
     // in order to protect the model from getting dirtied upon load,
-    // only add to the cart and change the attendance if the
+    // only add to the cart and change the registration if the
     // selected package is different
-    if (attendance.get('package.id') !== selectedPackage.get('id')) {
+    if (registration.get('package.id') !== selectedPackage.get('id')) {
       cart.set('host', this.get('model'));
       cart.add(selectedPackage);
-      attendance.set('package', selectedPackage);
+      registration.set('package', selectedPackage);
     }
   }),
 
-  // This is for syncing the attendance.level with the selected
+  // This is for syncing the registration.level with the selected
   // level from the list of packages on the event
   //
   levelObserver: Ember.observer('selectedLevel', function() {
-    this.get('attendance').set('level', this.get('selectedLevel'));
+    this.get('registration').set('level', this.get('selectedLevel'));
   }),
 
   order: Ember.computed(function() {
@@ -159,51 +159,51 @@ export default Ember.Component.extend({
   },
 
   _deleteHousingRequest() {
-    const housingRequest = this.get('attendance.housingRequest');
+    const housingRequest = this.get('registration.housingRequest');
 
     if (housingRequest && !housingRequest.get('isDeleted')) {
       housingRequest.destroyRecord();
       housingRequest.save();
-      this.set('attendance.housingRequest', null);
+      this.set('registration.housingRequest', null);
       this.set('housingRequest', null);
     }
   },
 
   _deleteHousingProvision() {
-    const housingProvision = this.get('attendance.housingProvision');
+    const housingProvision = this.get('registration.housingProvision');
 
     if (housingProvision && !housingProvision.get('isDeleted')) {
       housingProvision.destroyRecord();
       housingProvision.save();
-      this.set('attendance.housingProvision', null);
+      this.set('registration.housingProvision', null);
       this.set('housingProvision', null);
     }
   },
 
   _setHousingProvision() {
-    const attendance = this.get('attendance');
-    let housingProvision = attendance.get('housingProvision');
+    const registration = this.get('registration');
+    let housingProvision = registration.get('housingProvision');
 
     if (housingProvision != null) {
       return housingProvision;
     }
 
     housingProvision = this.store.createRecord('housing-provision');
-    attendance.set('housingProvision', housingProvision);
+    registration.set('housingProvision', housingProvision);
     return housingProvision;
   },
 
   _setHousingRequest() {
-    const attendance = this.get('attendance');
-    let housingRequest = attendance.get('housingRequest');
+    const registration = this.get('registration');
+    let housingRequest = registration.get('housingRequest');
 
     if (housingRequest) {
       return housingRequest;
     }
 
     housingRequest = this.store.createRecord('housing-request');
-    housingRequest.set('attendance', attendance);
-    attendance.set('housingRequest', housingRequest);
+    housingRequest.set('registration', registration);
+    registration.set('housingRequest', housingRequest);
     return housingRequest;
   }
 

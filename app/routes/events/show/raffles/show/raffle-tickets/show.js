@@ -13,7 +13,7 @@ export default Ember.Route.extend({
       adapterOptions: {
         query: {
           raffle_id: raffle.get('id'),
-          include: 'attendances'
+          include: 'registrations'
         }
       }
     });

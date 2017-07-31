@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     const host = this.get('event');
     const competitions = this.get('store').query('competition', {
       event_id: host.get('id'),
-      include: 'order_line_items.order.attendance'
+      include: 'order_line_items.order.registration'
     });
 
     return {

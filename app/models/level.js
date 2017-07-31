@@ -10,7 +10,7 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
 
   event: DS.belongsTo('event'),
 
-  attendances: DS.hasMany('event-attendance', {
+  registrations: DS.hasMany('registration', {
     async: true
   }),
 

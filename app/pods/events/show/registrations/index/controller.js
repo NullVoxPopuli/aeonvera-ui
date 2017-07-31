@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 
   path: Ember.computed('model.eventId', {
     get(key) {
-      return `${ENV.host}/api/event_attendances.csv?`;
+      return `${ENV.host}/api/registrations.csv?`;
     }
   })
 });

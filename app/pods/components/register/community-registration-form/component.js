@@ -41,9 +41,7 @@ export default Ember.Component.extend({
   @computed('isCurrentMember', 'session.isAuthenticated')
   showMembershipOptions(isCurrentMember, isAuthenticated) {
     return DS.PromiseObject.create({
-      promise: isCurrentMember.then(value => {
-        return (isAuthenticated && !value);
-      })
+      promise: isCurrentMember.then(value => (isAuthenticated && !value))
     });
   },
 

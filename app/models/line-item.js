@@ -43,7 +43,7 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   event: belongsTo('event', { inverse: 'lineItems' }),
   host: belongsTo('host', { polymorphic: true }),
   membershipDiscount: belongsTo('membership-discount'),
-  attendances: hasMany('attendance'),
+  registrations: hasMany('registration'),
   orderLineItems: hasMany('order-line-item'),
 
   pictureIsMissing: Ember.computed('pictureUrl', function() {

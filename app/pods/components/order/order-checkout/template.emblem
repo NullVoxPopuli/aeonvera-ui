@@ -32,8 +32,8 @@ br
     // TODO: give option to resend receipt
 
     .clearfix
-    if (is-present model.attendance)
-      = registrant/attendance-summary attendance=model.attendance order=model
+    if (is-present model.registration)
+      = registrant/registration-summary registration=model.registration order=model
 
 
 br

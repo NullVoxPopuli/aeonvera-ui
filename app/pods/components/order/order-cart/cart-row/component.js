@@ -23,4 +23,4 @@ export default class OrderCartRow extends Ember.Component {
   @computed('lineItem.code', 'lineItem.name')
   displayName(code, name) { return code || name; }
 
-};
+}

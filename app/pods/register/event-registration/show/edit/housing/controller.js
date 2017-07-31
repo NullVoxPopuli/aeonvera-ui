@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 
     return this.store.createRecord('housing-provision', {
       host: event,
-      attendance: registration
+      registration: registration
     });
   },
 
@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
 
     return this.store.createRecord('housing-request', {
       host: event,
-      attendance: registration
+      registration: registration
     });
   },
 

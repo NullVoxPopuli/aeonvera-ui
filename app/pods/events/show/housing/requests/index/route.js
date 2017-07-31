@@ -8,12 +8,12 @@ export default Ember.Route.extend({
     const housingStats = this.modelFor('events.show.housing');
     const requests = this.store.query('housing-request', {
       event_id: eventId,
-      include: 'attendance'
+      include: 'registration'
     });
 
     const provisions = this.store.query('housing-provision', {
       event_id: eventId,
-      include: 'attendance'
+      include: 'registration'
     });
 
     return {

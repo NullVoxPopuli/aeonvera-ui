@@ -1,7 +1,7 @@
 table.no-colors.no-borders.center-margin
   tbody
-    = registrant/attendance/housing-request housingRequest=model.housingRequest
-    = registrant/attendance/housing-provision housingProvision=model.housingProvision
+    = registrant/registration/housing-request housingRequest=model.housingRequest
+    = registrant/registration/housing-provision housingProvision=model.housingProvision
     if (is-present model.customFieldResponses)
       tr: td.divider colspan="2"
 

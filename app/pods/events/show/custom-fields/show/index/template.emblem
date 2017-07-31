@@ -11,7 +11,7 @@ link-to 'events.show.custom-fields.show.edit' classNames='button'
 
 h4 Answers
 = sortable-table columns=columns data=model.customFieldResponses as |response|
-  td = attendance-link model=response.writer
+  td = registration-link model=response.writer
   td = present-custom-field-response-value model=response
   td = response.writer.danceOrientation
   td = response.writer.packageName

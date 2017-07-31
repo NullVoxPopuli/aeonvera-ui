@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   model: function(params) {
     const event = this.modelFor('events.show');
 
-    return this.store.findRecord('event-attendance', params.registration_id, {
+    return this.store.findRecord('events/registration', params.registration_id, {
       adapterOptions: {
         query: {
           event_id: event.get('id'),

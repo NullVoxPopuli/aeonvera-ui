@@ -20,7 +20,7 @@ export default Purchasable.extend(IsLineItem, {
   description: DS.attr('string'),
 
   event: DS.belongsTo('event'),
-  attendances: DS.hasMany('event-attendance'),
+  registrations: DS.hasMany('registration'),
 
   @computed('numberOfLeads', 'numberOfFollows')
   totalRegistrants(numberOfLeads, numberOfFollows) {

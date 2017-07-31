@@ -17,9 +17,9 @@
 
     {{#if isRegistrantRequesting}}
       {{form/registrant-select
-        value=(readonly model.attendance)
+        value=(readonly model.registration)
         event=model.host
-        onChange=(action (mut model.attendance))
+        onChange=(action (mut model.registration))
       }}
     {{else}}
       {{paper-input

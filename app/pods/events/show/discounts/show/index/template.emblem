@@ -2,7 +2,7 @@
 
 h4 Registrations with this Discount
 = sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
-  td = attendance-link id=orderLineItem.order.attendance.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+  td = registration-link id=orderLineItem.order.registration.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
   td
     if orderLineItem.order.paid
       = date-with-format orderLineItem.order.paymentReceivedAt 'LLL'

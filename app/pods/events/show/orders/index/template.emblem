@@ -11,6 +11,6 @@
   td = to-bool order.paid
   td = date-with-format order.createdAt 'LLL'
   td
-    if (is-present order.attendance.id)
-      link-to 'events.show.registrations.show' order.attendance.id
-        = to-bool (is-present order.attendance.id)
+    if (is-present order.registration.id)
+      link-to 'events.show.registrations.show' order.registration.id
+        = to-bool (is-present order.registration.id)

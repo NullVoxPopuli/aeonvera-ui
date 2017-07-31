@@ -16,7 +16,7 @@ export default LineItem.extend(LeadsAndFollows, {
   requiresOrientation: DS.attr('boolean'),
   requiresPartner: DS.attr('boolean'),
 
-  attendances: DS.hasMany('attendance'),
+  registrations: DS.hasMany('registration'),
   orderLineItems: DS.hasMany('order-line-item'),
 
   /**
