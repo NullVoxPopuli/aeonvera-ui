@@ -1,0 +1,82 @@
+{{#paper-card as |card|}}
+  {{register/event-registration-form/card-header
+    card=card
+    titleText='Basic Information'
+    logoUrl=logoUrl
+  }}
+  {{#card.content}}
+    {{paper-input
+      type='text'
+      label='First Name'
+      isTouched=true
+      errors=(map-by 'message' errors.attendeeFirstName)
+      value=(readonly registration.attendeeFirstName)
+      onChange=(action (mut registration.attendeeFirstName))
+    }}
+    {{paper-input
+      type='text'
+      label='Last Name'
+      isTouched=true
+      errors=(map-by 'message' errors.attendeeLastName)
+      value=(readonly registration.attendeeLastName)
+      onChange=(action (mut registration.attendeeLastName))
+    }}
+
+
+    <br />
+    {{paper-input
+      type='text'
+      label='City'
+      isTouched=true
+      errors=(map-by 'message' errors.city)
+      value=(readonly registration.city)
+      onChange=(action (mut registration.city))
+    }}
+
+    {{paper-input
+      type='text'
+      label='State'
+      isTouched=true
+      errors=(map-by 'message' errors.state)
+      value=(readonly registration.state)
+      onChange=(action (mut registration.state))
+    }}
+
+    <br />
+
+    {{register/event-registration-form/orientation-select
+      errors=(map-by 'message' errors.danceOrientation)
+      selectedOrientation=registration.danceOrientation
+      didSelectOrientation=(action (mut registration.danceOrientation))
+    }}
+
+    <br />
+
+    {{#if hasVolunteers}}
+      {{#paper-checkbox
+        value=registration.interestedInVolunteering
+        onChange=(action (mut registration.interestedInVolunteering))}}
+        Interested In Volunteering
+      {{/paper-checkbox}}
+
+      <br  />
+      {{#if registration.interestedInVolunteering}}
+        {{paper-input
+          type='text'
+          placeholder="Phone Number"
+          errors=(map-by 'message' errors.phoneNumber)
+          value=registration.phoneNumber
+          onChange=(action (mut registration.phoneNumber))
+          icon='phone'
+        }}
+      {{/if}}
+    {{/if}}
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#paper-button onClick=(action onFinishInfo)}}
+      Next
+    {{/paper-button}}
+  {{/card.actions}}
+
+{{/paper-card}}

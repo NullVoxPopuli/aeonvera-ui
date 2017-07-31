@@ -1,0 +1,31 @@
+
+h3.text-center Registration Information
+table.no-colors.no-borders.center-margin
+  tbody
+    tr
+      th You:
+      td = youText
+    tr
+      th Registered At
+      td = date-with-format attendarce.registeredAt 'LLL'
+
+    if registration.interestedInVolunteering
+      tr
+        th Are interesting in volunteering
+        td you may be contacted via phone or email
+
+    = registrant/registration/housing-request housingRequest=registration.housingRequest
+    = registrant/registration/housing-provision housingProvision=registration.housingProvision
+
+
+    if (is-present registration.customFieldResponses)
+      if hasCustomFieldResponses
+        tr: td.divider colspan="2"
+        tr: th colspan="2" And have answered:
+
+        each registration.customFieldResponses as |cfr|
+          unless (is-equal cfr.value null)
+            if (is-present cfr.id)
+              tr
+                td: em = cfr.customField.label
+                td = present-custom-field-response-value model=cfr

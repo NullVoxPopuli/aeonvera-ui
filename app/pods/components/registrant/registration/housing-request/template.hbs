@@ -1,0 +1,35 @@
+{{#if housingRequest.isPersisted}}
+  <tr><th>And are requesting housing</th></tr>
+  <tr><td colspan=2>
+    {{#if needTransportation}}
+      <span>You need transportation.</span>
+    {{/if}}
+    {{#if canProvideTransportation}}
+      <br />
+      <span>
+         You can provide transportation for {{housingRequest.transportationCapacity}} {{transportPlural}}.
+      </span>
+    {{/if}}
+    {{#unless noPreference}}
+      <br />
+      <span>
+        You prefer to house with: {{housingRequest.preferredGenderToHouseWith}}
+      </span>
+    {{/unless}}
+
+    {{allergyText}}
+
+    {{#if (is-present requested)}}
+      <br />
+      <span>You'd like to be housed with {{requested}}</span>
+      {{#if (is-present unwanted)}}
+        <span>,&nbsp;while avoiding {{unwanted}}</span>
+      {{/if}}
+    {{else}}
+      {{#if (is-present unwanted)}}
+        <br />
+        <span>You'd like to not be housed with {{unwanted}}</span>
+      {{/if}}
+    {{/if}}
+  </td></tr>
+{{/if}}
