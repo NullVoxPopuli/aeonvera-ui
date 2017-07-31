@@ -2,6 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 
+const { isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
 
 import Validator from '../mixins/model-validator';
