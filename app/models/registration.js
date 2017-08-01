@@ -5,6 +5,8 @@ import { computed } from 'ember-decorators/object';
 const { isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
 
+export const UNREGISTERED_ID = 'unregistered';
+
 import Validator from '../mixins/model-validator';
 
 // provides:

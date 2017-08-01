@@ -52,8 +52,8 @@ export default class extends Ember.Controller {
     const domain = this.get('model.event.domain');
 
     // correct option isn't working. HACK TIME
-    // window.location = `/${domain}/register/${eventId}/${registrationId}`;
+    window.location = `/${domain}/register/${eventId}/${registrationId}`;
     // pass all ids to trigger a full model refresh
-    this.send('triggerRefreshForOrderReview');
+    // this.send('triggerRefreshForOrderReview');
   }
 }

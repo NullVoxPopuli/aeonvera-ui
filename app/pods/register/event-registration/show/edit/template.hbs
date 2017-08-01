@@ -1,19 +1,25 @@
 {{#if showTopNav}}
   <div class='layout-row layout-align-space-around-center hide-sm hide-xs'>
-    {{#link-to 'register.event-registration.show.edit.index'}}
+    {{#link-to 'register.event-registration.show.edit.index' model}}
       Info and Registration
     {{/link-to}}
 
     {{#if hasHousing}}
-      {{#link-to 'register.event-registration.show.edit.housing'}}Housing{{/link-to}}
+      {{#link-to 'register.event-registration.show.edit.housing' model disabled=model.registration.isNew}}
+        Housing
+      {{/link-to}}
     {{/if}}
 
     {{#if hasShirts}}
-      {{#link-to 'register.event-registration.show.edit.shirts'}}Shirts{{/link-to}}
+      {{#link-to 'register.event-registration.show.edit.shirts' model disabled=model.registration.isNew}}
+        Shirts
+      {{/link-to}}
     {{/if}}
 
     {{#if hasCompetitions}}
-      {{#link-to 'register.event-registration.show.edit.competitions'}}Competitions{{/link-to}}
+      {{#link-to 'register.event-registration.show.edit.competitions' model disabled=model.registration.isNew}}
+        Competitions
+      {{/link-to}}
     {{/if}}
   </div>
 {{/if}}
@@ -21,6 +27,7 @@
 {{to-elsewhere named='left-side-bar'
   send=(component 'app-nav/event-registration-edit-sidebar'
         event=model.event
+        model=model
         hasHousing=hasHousing
         hasShirts=hasShirts
         hasCompetitions=hasCompetitions
