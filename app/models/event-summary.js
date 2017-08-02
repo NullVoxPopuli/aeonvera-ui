@@ -4,7 +4,7 @@ import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 export default DS.Model.extend(LeadsAndFollows, {
   revenue: DS.attr('number'),
   unpaid: DS.attr('number'),
-  eventAttendances: DS.hasMany('eventAttendances', {
+  registrations: DS.hasMany('registrations', {
     async: false
   }),
   numberOfShirtsSold: DS.attr('number'),
@@ -13,7 +13,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   }),
 
   recentRegistrations: function() {
-    return this.get('eventAttendances');
-  }.property('eventAttendances')
+    return this.get('registrations');
+  }.property('registrations')
 
 });

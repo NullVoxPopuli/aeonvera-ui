@@ -44,7 +44,6 @@ export default Host.extend(RegistrationOpens, {
   shirts: hasMany('shirts'),
   customFields: hasMany('custom-field', { inverse: 'host' }),
   sponsorships: hasMany('sponsorship'),
-  eventAttendances: hasMany('registration'),
   registrations: hasMany('registration'),
 
   registrationOpensAt: function() {
