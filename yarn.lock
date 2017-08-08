@@ -3791,11 +3791,11 @@ ember-rollbar-client@^0.3.4:
     ember-cli-babel "^6.4.1"
     rollbar "^2.0.4"
 
-ember-route-action-helper@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ember-route-action-helper/-/ember-route-action-helper-2.0.3.tgz#b5f85feb90ff9af36565bb152c5ba259bbb5f65b"
+ember-route-action-helper@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/ember-route-action-helper/-/ember-route-action-helper-2.0.5.tgz#eb155f915bc63ec7503ea350a9143cefce1c9696"
   dependencies:
-    ember-cli-babel "^5.1.7"
+    ember-cli-babel "^6.3.0"
     ember-getowner-polyfill "^1.1.1"
 
 ember-router-generator@^1.0.0:
