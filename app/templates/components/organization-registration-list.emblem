@@ -3,19 +3,20 @@ table.responsive
     tr
       th Name
       / th Purchases
-      th Owe $
+      th Paid
+      th Amount
       / th Paid $
       th Purchased At
 
   tbody
-    if registrationsPresent
-      each model as |registration|
-        tr
-          td
-            link-to 'events.show.registrations.show' registration.id
-              span = registration.attendeeName
-          / td = registration.levelName
-          td = to-usd registration.amountOwed
-          / td = registration.amountPaid
-          td
-            = date-with-format registration.registeredAt 'lll'
+    each model as |order|
+      tr
+        td
+          / link-to 'events.show.registrations.show' registration.id
+          span = order.userName
+        / td = registration.levelName
+        td = to-usd order.paid
+        td = to-usd order.total
+        / td = registration.amountPaid
+        td
+          = date-with-format order.createdAt 'lll'

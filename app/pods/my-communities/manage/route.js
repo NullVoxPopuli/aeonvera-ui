@@ -8,7 +8,7 @@ export default Ember.Route.extend(SetNavbarTitle, {
     return this.store.findRecord('organization-summary', id, {
       adapterOptions: {
         query: {
-          include: 'registrations'
+          include: 'orders'
         }
       }
     });

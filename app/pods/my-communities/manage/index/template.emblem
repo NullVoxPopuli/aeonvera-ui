@@ -20,5 +20,4 @@
         h4 = model.newMembershipsPastMonth
   .medium-7.columns.small-8.large-9
     h3 Recent Registrations
-    = organization-registration-list model=model.recentRegistrations
-    
+    = organization-registration-list model=model.orders
