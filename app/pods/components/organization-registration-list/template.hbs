@@ -1,0 +1,29 @@
+{{!-- TODO: responsive is from foundation -- remove --}}
+<table class='responsive'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Paid</th>
+      <th>Amount</th>
+      <th>Purchased At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders as |order|}}
+      <tr>
+        <td>
+          {{order.userName}}
+        </td>
+        <td>
+          {{order.paid}}
+        </td>
+        <td>
+          {{to-usd order.total}}
+        </td>
+        <td>
+          {{date-with-format order.createdAt 'lll'}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
