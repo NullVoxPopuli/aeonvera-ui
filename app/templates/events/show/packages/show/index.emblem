@@ -1,8 +1,8 @@
 = model/edit-header title=model.name editPath='events.show.packages.show.edit'
 
 h4 Registrations with this Package
-= sortable-table columns=columns data=model.attendances as |registration|
-  td = attendance-link model=registration
+= sortable-table columns=columns data=model.registrations as |registration|
+  td = registration-link model=registration
   td = registration.danceOrientation
   td = registration.packageName
   td = date-with-format registration.registeredAt 'LLL'

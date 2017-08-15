@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   // Turns attribute/relationship notation to human-readable title
   //
   // e.g.:
-  //   attendance.attendeeName => Attendee Name
+  //   registration.attendeeName => Attendee Name
   //   housingCapacity => Housing Capacity
   label: Ember.computed('name', {
     get() {

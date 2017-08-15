@@ -10,16 +10,16 @@
       label='First Name'
       isTouched=true
       errors=(map-by 'message' errors.attendeeFirstName)
-      value=(readonly attendance.attendeeFirstName)
-      onChange=(action (mut attendance.attendeeFirstName))
+      value=(readonly registration.attendeeFirstName)
+      onChange=(action (mut registration.attendeeFirstName))
     }}
     {{paper-input
       type='text'
       label='Last Name'
       isTouched=true
       errors=(map-by 'message' errors.attendeeLastName)
-      value=(readonly attendance.attendeeLastName)
-      onChange=(action (mut attendance.attendeeLastName))
+      value=(readonly registration.attendeeLastName)
+      onChange=(action (mut registration.attendeeLastName))
     }}
 
 
@@ -29,8 +29,8 @@
       label='City'
       isTouched=true
       errors=(map-by 'message' errors.city)
-      value=(readonly attendance.city)
-      onChange=(action (mut attendance.city))
+      value=(readonly registration.city)
+      onChange=(action (mut registration.city))
     }}
 
     {{paper-input
@@ -38,35 +38,35 @@
       label='State'
       isTouched=true
       errors=(map-by 'message' errors.state)
-      value=(readonly attendance.state)
-      onChange=(action (mut attendance.state))
+      value=(readonly registration.state)
+      onChange=(action (mut registration.state))
     }}
 
     <br />
 
     {{register/event-registration-form/orientation-select
       errors=(map-by 'message' errors.danceOrientation)
-      selectedOrientation=attendance.danceOrientation
-      didSelectOrientation=(action (mut attendance.danceOrientation))
+      selectedOrientation=registration.danceOrientation
+      didSelectOrientation=(action (mut registration.danceOrientation))
     }}
 
     <br />
 
     {{#if hasVolunteers}}
       {{#paper-checkbox
-        value=attendance.interestedInVolunteering
-        onChange=(action (mut attendance.interestedInVolunteering))}}
+        value=registration.interestedInVolunteering
+        onChange=(action (mut registration.interestedInVolunteering))}}
         Interested In Volunteering
       {{/paper-checkbox}}
 
       <br  />
-      {{#if attendance.interestedInVolunteering}}
+      {{#if registration.interestedInVolunteering}}
         {{paper-input
           type='text'
           placeholder="Phone Number"
           errors=(map-by 'message' errors.phoneNumber)
-          value=attendance.phoneNumber
-          onChange=(action (mut attendance.phoneNumber))
+          value=registration.phoneNumber
+          onChange=(action (mut registration.phoneNumber))
           icon='phone'
         }}
       {{/if}}

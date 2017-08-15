@@ -117,7 +117,7 @@ export default Ember.Component.extend({
           const paymentMethod = item.get('paymentMethod');
 
           return (
-          showCash && paymentMethod === cash ||
+            showCash && paymentMethod === cash ||
           showChecks && paymentMethod === check ||
           showStripe && paymentMethod === stripe
           );

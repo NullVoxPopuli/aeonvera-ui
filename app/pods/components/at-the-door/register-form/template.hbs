@@ -1,6 +1,6 @@
 {{#order/order-cart host=event afterCancel='clearOrder' afterCheckout='openPaymentModal' quantitySelect=true}}
 
-  {{#block-slot 'attendanceSetter'}}
+  {{#block-slot 'registrationSetter'}}
     <tr><td colspan='2'>
       <input type='checkbox' checked={{absorbFees}} onclick={{action 'absorbFeesClick' value='target.checked'}}>
       <label>Absorb Service Fee</label>
@@ -18,22 +18,22 @@
       afterPayment='clearOrder'
     }}
 
-    {{#error-field-wrapper errors=attendance.errors field='first name' includeFieldName=true fieldName='First name'}}
-      {{#error-field-wrapper errors=attendance.errors field='last name' includeFieldName=true fieldName='Last name'}}
+    {{#error-field-wrapper errors=registration.errors field='first name' includeFieldName=true fieldName='First name'}}
+      {{#error-field-wrapper errors=registration.errors field='last name' includeFieldName=true fieldName='Last name'}}
       <label>
         <span>What is this person's name?</span>
-        {{input type='text' value=attendance.attendeeName placeholder='First Last'}}
+        {{input type='text' value=registration.attendeeName placeholder='First Last'}}
       </label>
       {{/error-field-wrapper}}
     {{/error-field-wrapper}}
 
     <label>What is this person's email address? (Optional, receipt goes here)</label>
-    {{input type='email' value=attendance.attendeeEmail}}
+    {{input type='email' value=registration.attendeeEmail}}
 
     {{form/city-state
-      city=attendance.city
-      state=attendance.state
-      errors=attendance.errors
+      city=registration.city
+      state=registration.state
+      errors=registration.errors
     }}
     <a {{action 'setToEventLocation'}}>Set to Event Location</a>
     <hr />
@@ -43,7 +43,7 @@
         {{at-the-door/register-form/package-select
           packages=event.packages
           onSelect='setPackage'
-          errors=attendance.errors
+          errors=registration.errors
         }}
 
 
@@ -54,8 +54,8 @@
         {{at-the-door/register-form/level-select
           levels=event.levels
           onSelect='setLevel'
-          show=attendance.package.requiresTrack
-          errors=attendance.errors
+          show=registration.package.requiresTrack
+          errors=registration.errors
         }}
       </div>
     </div>

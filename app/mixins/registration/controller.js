@@ -113,7 +113,7 @@ export default Ember.Mixin.create({
     if (nextQuantity > 0) {
       orderLineItem.set('quantity', nextQuantity);
 
-      return orderLineItem.save();//.then(order => this._refreshOrder());
+      return orderLineItem.save();// .then(order => this._refreshOrder());
     }
 
     return this._destroyAndRemove(orderLineItem);

@@ -13,9 +13,11 @@ export default Ember.Component.extend({
     checkin() {
       const id = this.get('model.id');
       const name = this.get('model.attendeeName');
-      const url = '/api/event_attendances/' + id + '/checkin';
+      const eventId = this.get('model.host.id');
+      const url = '/api/events/registrations/' + id + '/checkin';
       const data = {
-        checked_in_at: new Date()
+        checked_in_at: new Date(),
+        event_id: eventId
       };
 
       this.get('ajax').PUT(url, data).then(data => {

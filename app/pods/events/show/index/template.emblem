@@ -30,6 +30,6 @@ hr
 
   .medium-9.columns
     label Most Recent Registrations
-    = attendance-list model=model.summary.recentRegistrations
+    = registration-list model=model.summary.recentRegistrations
 
 / .row: .small-12.columns = charts/event/sunburst-purchases event=model.event

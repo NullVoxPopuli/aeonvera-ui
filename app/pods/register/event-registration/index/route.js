@@ -17,7 +17,7 @@ export default Ember.Route.extend(SideNav, {
   model() {
     const event = this.modelFor('register.event-registration');
 
-    const registrations = this.store.query('registration', {
+    const registrations = this.store.query('users/registration', {
       include: include,
       q: {
         host_id_eq: event.get('id'),

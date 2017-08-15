@@ -15,7 +15,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
 
   host: DS.belongsTo('host', { polymorphic: true }),
-  attendance: DS.belongsTo('attendance', { polymorphic: true }),
+  registration: DS.belongsTo('registration', { polymorphic: true }),
   housingProvision: DS.belongsTo('housing-provision'),
 
   requested1: DS.attr(),
@@ -35,8 +35,8 @@ export default DS.Model.extend({
   unwantedRoommates: DS.attr(),
 
   // for sorting
-  requesterName: Ember.computed('attendance', 'name', function() {
-    const name = this.get('attendance.attendeeName');
+  requesterName: Ember.computed('registration', 'name', function() {
+    const name = this.get('registration.attendeeName');
 
     if (Ember.isPresent(name)) {
       return name;

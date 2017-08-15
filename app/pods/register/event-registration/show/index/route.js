@@ -13,7 +13,7 @@ export default Ember.Route.extend({
     const id = transition.params[PARENT_ROUTE].registrationId;
 
     if (id === UNREGISTERED_ID) {
-      const registration = this.store.peekRecord('registration', UNREGISTERED_ID);
+      const registration = this.store.peekRecord('users/registration', UNREGISTERED_ID);
 
       if (isEmpty(registration)) {
         this.transitionTo('register.event-registration.index');

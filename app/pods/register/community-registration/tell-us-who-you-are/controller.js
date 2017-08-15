@@ -9,7 +9,7 @@ const { isBlank, isPresent, inject: { service } } = Ember;
 
 export default class extends Ember.Controller {
   flash = service('flash-notification');
-  //store = service('store');
+  // store = service('store');
   rollbar = service('rollbar');
 
   // these 3 fields are for if someone is not signed in
@@ -30,6 +30,7 @@ export default class extends Ember.Controller {
     message: 'Please provide email in a valid format',
     validate(inputValue) {
       let emailPattern = /^[a-zA-Z0-9._\-\+]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/;
+
       return emailPattern.test(inputValue);
     }
   }]
@@ -56,6 +57,7 @@ export default class extends Ember.Controller {
       };
 
       const order = store.createRecord('order', orderParams);
+
       order.save().then(() => {
         this.transitionToRoute('register.community-registration.register', {
           queryParams: {

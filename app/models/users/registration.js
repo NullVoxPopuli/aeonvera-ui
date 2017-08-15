@@ -1,10 +1,6 @@
-import DS from 'ember-data';
+import Registration from 'aeonvera/models/registration';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  registeredAt: DS.attr('date'),
-  amountOwed: DS.attr('number'),
-  amountPaid: DS.attr('number'),
+export default Registration.extend({
   eventBeginsAt: DS.attr('date'),
   isAttending: DS.attr('boolean'),
   url: DS.attr('string'),
@@ -40,5 +36,4 @@ export default DS.Model.extend({
     return status;
 
   }.property('amountOwed', 'amountPaid')
-
 });

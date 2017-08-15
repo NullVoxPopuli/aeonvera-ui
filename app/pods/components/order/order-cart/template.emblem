@@ -18,7 +18,7 @@
 
       table.width-of-100.no-border
         tbody
-          = yield-slot 'attendanceSetter'
+          = yield-slot 'registrationSetter'
             = yield
 
           each currentItems as |item|

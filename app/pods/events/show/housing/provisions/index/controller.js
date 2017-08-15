@@ -6,11 +6,11 @@ export default Ember.Controller.extend({
     { property: 'providingName', title: 'Name' },
     { property: 'housingCapacity', title: 'Capacity' },
     { property: 'numberOfShowers', title: 'Showers' },
-    { property: 'attendance.hasPaid', title: 'Paid' },
+    { property: 'registration.hasPaid', title: 'Paid' },
     { property: '', title: 'Allergens' },
     { property: '', title: 'Can Transport', sort: false },
     { property: '', title: 'Notes', sort: false },
-    { property: 'attendance.registeredAt', title: 'Registered At' },
+    { property: 'registration.registeredAt', title: 'Registered At' },
     { property: '', title: '', sort: false } // the delete button column
   ],
 

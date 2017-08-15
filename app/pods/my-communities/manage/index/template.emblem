@@ -6,19 +6,18 @@
     .row
       .small-12.columns.text-center
         label Net Received
-        h3 = to-usd model.netReceivedPastMonth
+        h3 = to-usd model.organization.netReceivedPastMonth
     .row
       .small-6.columns.text-center
         label Revenue
-        h4 = to-usd model.revenuePastMonth
+        h4 = to-usd model.organization.revenuePastMonth
       .small-6.columns.text-center
         label Unpaid
-        h4 = to-usd model.unpaidPastMonth
+        h4 = to-usd model.organization.unpaidPastMonth
     .row
       .small-6.columns.text-center
         label New Memberships
-        h4 = model.newMembershipsPastMonth
+        h4 = model.organization.newMembershipsPastMonth
   .medium-7.columns.small-8.large-9
     h3 Recent Registrations
-    = organization-registration-list model=model.recentRegistrations
-    
+    = organization-registration-list orders=model.orders

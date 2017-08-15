@@ -44,8 +44,7 @@ export default Host.extend(RegistrationOpens, {
   shirts: hasMany('shirts'),
   customFields: hasMany('custom-field', { inverse: 'host' }),
   sponsorships: hasMany('sponsorship'),
-  eventAttendances: hasMany('event-attendance'),
-  attendances: hasMany('attendance'),
+  registrations: hasMany('registration'),
 
   registrationOpensAt: function() {
     return this.get('openingTier.increaseAfterDate');

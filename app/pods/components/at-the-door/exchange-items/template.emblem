@@ -1,6 +1,6 @@
 = order/order-cart host=event afterCancel='clearOrder' afterCheckout='openPaymentModal'
 
-  = block-slot 'attendanceSetter'
+  = block-slot 'registrationSetter'
     tr: td colspan='2'
       input type='checkbox' checked=absorbFees change='absorbFeesClick'
       label Absorb Service Fee

@@ -11,7 +11,7 @@ form submit='save'
           label Enter Name
         .columns.large-6
           if isRegistrantProviding
-            = form/registrant-select value=model.attendance host=model.host
+            = form/registrant-select value=model.registration host=model.host
           else
             = input type='text' value=model.name
       hr

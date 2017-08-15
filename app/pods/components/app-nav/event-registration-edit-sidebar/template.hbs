@@ -15,14 +15,14 @@
   {{#paper-item}}<h5>Current Registration</h5>{{/paper-item}}
 
   {{#paper-item}}
-    {{#link-to 'register.event-registration.show.edit.index'}}
+    {{#link-to 'register.event-registration.show.edit.index' model}}
       Info and Registration
     {{/link-to}}
   {{/paper-item}}
 
   {{#if hasHousing}}
     {{#paper-item}}
-      {{#link-to 'register.event-registration.show.edit.housing'}}
+      {{#link-to 'register.event-registration.show.edit.housing' model disabled=model.registration.isNew }}
         Housing
       {{/link-to}}
     {{/paper-item}}
@@ -30,7 +30,7 @@
 
   {{#if hasShirts}}
     {{#paper-item}}
-      {{#link-to 'register.event-registration.show.edit.shirts'}}
+      {{#link-to 'register.event-registration.show.edit.shirts' model disabled=model.registration.isNew}}
         Shirts
       {{/link-to}}
     {{/paper-item}}
@@ -38,14 +38,14 @@
 
   {{#if hasCompetitions}}
     {{#paper-item}}
-      {{#link-to 'register.event-registration.show.edit.competitions'}}
+      {{#link-to 'register.event-registration.show.edit.competitions' model disabled=model.registration.isNew}}
         Competitions
       {{/link-to}}
     {{/paper-item}}
   {{/if}}
 
   {{#paper-item}}
-    {{#link-to 'register.event-registration.show'}}
+    {{#link-to 'register.event-registration.show' model disabled=model.registration.isNew}}
       Review
     {{/link-to}}
   {{/paper-item}}

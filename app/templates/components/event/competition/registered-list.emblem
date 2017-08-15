@@ -1,7 +1,7 @@
 = sortable-table columns=columns model=model data=model.orderLineItems as |orderLineItem|
   td
     if (is-present orderLineItem.order.userName)
-      link-to 'events.show.registrations.show' orderLineItem.order.attendance.id
+      link-to 'events.show.registrations.show' orderLineItem.order.registration.id
         = orderLineItem.order.userName
     else
       span Name not recorded

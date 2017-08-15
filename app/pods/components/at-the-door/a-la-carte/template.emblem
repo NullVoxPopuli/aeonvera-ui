@@ -1,12 +1,12 @@
-= order/order-cart host=model afterCheckout='openPaymentModal' attendanceNotRequired=true quantitySelect=true
+= order/order-cart host=model afterCheckout='openPaymentModal' registrationNotRequired=true quantitySelect=true
 
-  = block-slot 'attendanceSetter'
+  = block-slot 'registrationSetter'
     tr: td colspan='2'
       if cart.order
         label Registrant (optional)
-        = form/registrant-select value=cart.order.attendance host=event
+        = form/registrant-select value=cart.order.registration host=event
 
-    unless cart.order.attendance
+    unless cart.order.registration
       tr: td colspan='2'
         label Buyer Name
         = input type='text' value=cart.order.userName

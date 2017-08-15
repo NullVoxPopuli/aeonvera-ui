@@ -1,3 +1,3 @@
-import Attendance from '../models/attendance';
+import Registration from 'aeonvera/models/registration';
 
-export default Attendance.extend({});
+export default Registration.extend({});

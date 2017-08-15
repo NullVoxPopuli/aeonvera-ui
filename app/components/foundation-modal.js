@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   title: '',
 
-    // name: '',
+  // name: '',
   buttonClasses: '',
   buttonText: '',
 

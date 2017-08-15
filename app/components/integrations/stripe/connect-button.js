@@ -37,14 +37,14 @@ export default Ember.Component.extend({
               this.set('resetButton', true);
             }, error => {
 
-            this.get('flash').alert(error);
-          }
+              this.get('flash').alert(error);
+            }
           );
         }, error => {
 
-        this.get('flash').alert(error);
-        this.set('resetButton', true);
-      }
+          this.get('flash').alert(error);
+          this.set('resetButton', true);
+        }
       );
     }
   }

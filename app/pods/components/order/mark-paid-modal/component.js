@@ -71,7 +71,7 @@ export default Ember.Component.extend({
 
     markPaid() {
       const id = this.get('order.id');
-      const url = '/api/orders/' + id + '/mark_paid?include=attendance';
+      const url = '/api/orders/' + id + '/mark_paid?include=registration';
       const data = {
         payment_method: this.get('paymentMethod'),
         check_number: this.get('checkNumber'),

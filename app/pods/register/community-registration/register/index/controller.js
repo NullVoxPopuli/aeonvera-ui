@@ -47,10 +47,10 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
 
       this.transitionToRoute('register.community-registration.register.show',
         order.get('id'), {
-        queryParams: {
-          token: token
-        }
-      });
+          queryParams: {
+            token: token
+          }
+        });
     }
   } // end actions
 });

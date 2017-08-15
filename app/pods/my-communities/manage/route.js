@@ -5,13 +5,11 @@ export default Ember.Route.extend(SetNavbarTitle, {
   model: function(params) {
     const id = params.organization_id;
 
-    return this.store.findRecord('organization-summary', id, {
-      adapterOptions: {
-        query: {
-          include: 'attendances'
-        }
-      }
+    const organization = this.store.findRecord('organization', id, {
+      include: 'recent_orders'
     });
+
+    return organization;
   },
 
   actions: {
