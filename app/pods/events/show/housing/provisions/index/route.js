@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     const eventId = event.get('id');
     const provisions = this.store.query('housing-provision', {
       event_id: eventId,
-      include: 'attendance'
+      include: 'registration'
     });
 
     return {

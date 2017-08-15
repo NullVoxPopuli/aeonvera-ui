@@ -3,7 +3,7 @@
   {{#if (and (not order.paid) lineItem.isDiscount)}}
       <small>
         {{#paper-button
-          onClick=(action 'onRemoveOrderLineItem')
+          onClick=(action 'onRemoveOrderLineItem' item)
         }}
           Remove
         {{/paper-button}}

@@ -9,10 +9,10 @@ export default Ember.Route.extend({
     const hostType = 'Organization';
     const initialOrders = this.store.query('order', {
       q: {
-        host_id: hostId,
-        host_type: hostType,
         created_at_gteq: moment(new Date()).subtract(35, 'days').format()
       },
+      host_id: hostId,
+      host_type: hostType,
       include: 'order_line_items.line_item'
     });
 

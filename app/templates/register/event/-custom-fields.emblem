@@ -3,5 +3,5 @@ if (is-present event.customFields)
     .small-12.medium-8.columns
       hr
       each event.customFields as |field|
-        = register/custom-field-response field=field attendance=attendance
+        = register/custom-field-response field=field registration=registration
       hr

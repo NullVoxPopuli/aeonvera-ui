@@ -1,5 +1,5 @@
 td
-  = attendance-link model=model
+  = registration-link model=model
 
   if model.hasUsedStudentDiscount
     em: small: strong Used Student Discount

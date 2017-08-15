@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     { property: 'checkedInAt', title: 'Checked in at' }
   ],
 
-  attendances: function() {
+  registrations: function() {
     const model = this.get('model');
     const query = this.get('queryText');
     const queryPresent = Ember.isPresent(query);
@@ -72,8 +72,8 @@ export default Ember.Component.extend({
 
   actions: {
 
-    setActiveRegistrant: function(attendance) {
-      this.set('activeRegistrant', attendance);
+    setActiveRegistrant: function(registration) {
+      this.set('activeRegistrant', registration);
     }
   }
 

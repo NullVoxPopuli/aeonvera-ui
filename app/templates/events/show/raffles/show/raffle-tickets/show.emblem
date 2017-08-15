@@ -8,7 +8,7 @@ table
   thead: tr
     th Name
     th Registration Date
-  each model.attendances as |attendance|
+  each model.registrations as |registration|
     tr
-      td = attendance-link model=attendance
-      td = date-with-format attendance.registeredAt 'LLL'
+      td = registration-link model=registration
+      td = date-with-format registration.registeredAt 'LLL'

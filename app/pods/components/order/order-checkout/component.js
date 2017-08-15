@@ -46,7 +46,7 @@ export default Ember.Component.extend({
   @computed('model.host', 'model')
   editModel(host, model) {
     if (host.get('isEvent')) {
-      return model.get('attendance');
+      return model.get('registration');
     }
 
     return model;
@@ -126,11 +126,11 @@ export default Ember.Component.extend({
         .then(record => {
           this.set('showPaymentInProgress', false);
           this.get('router').transitionTo('register.checkout.thankyou');
-      }, error => {
+        }, error => {
         // model's error object is used.
-        this.get('flashMessages').alert(error);
-        this.set('showPaymentInProgress', false);
-      });
+          this.get('flashMessages').alert(error);
+          this.set('showPaymentInProgress', false);
+        });
     }
 
   }

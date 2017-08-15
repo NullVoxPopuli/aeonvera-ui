@@ -58,7 +58,7 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
         user: this.get('currentUser'),
         userName: this.get('userName'),
         userEmail: this.get('userEmail'),
-        attendance: this.get('registration')
+        registration: this.get('registration')
       });
 
       this.set('order', order);

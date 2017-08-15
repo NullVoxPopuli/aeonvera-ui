@@ -2,9 +2,9 @@
   <div class='layout-row'>
     <div class='flex'></div>
     <div class='flex-gt-xs-85 flex-gt-sm-66 flex-gt-md-50'>
-      {{register/event-registration-form/attendance-information
+      {{register/event-registration-form/registration-information
         hasVolunteers=event.hasVolunteers
-        attendance=registration
+        registration=registration
         logoUrl=event.logoUrlThumb
         onFinishInfo=(action 'didFinishInfo')
       }}

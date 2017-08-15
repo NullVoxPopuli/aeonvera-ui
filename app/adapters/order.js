@@ -5,7 +5,7 @@ export default ApplicationAdapter.extend({
   // WARNING: this is a private api that is being overridden
   //          be careful with upgrades
   urlForDeleteRecord(id, modelName, snapshot) {
-    let url =  this._buildURL(modelName, id);
+    let url = this._buildURL(modelName, id);
 
     if (snapshot.adapterOptions.payment_token) {
       url += `?payment_token=${snapshot.adapterOptions.payment_token}`;
@@ -15,7 +15,7 @@ export default ApplicationAdapter.extend({
   },
 
   urlForUpdateRecord(id, modelName, snapshot) {
-    let url =  this._buildURL(modelName, id);
+    let url = this._buildURL(modelName, id);
     const paymentToken = snapshot.adapterOptions.payment_token;
 
     if (paymentToken) {

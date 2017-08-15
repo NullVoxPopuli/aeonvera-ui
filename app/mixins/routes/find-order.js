@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 const includeString = `
 stripe_refunds,
-attendance,
-attendance.custom_field_responses,attendance.housing_request,
-attendance.housing_provision,host,
+registration,
+registration.custom_field_responses,registration.housing_request,
+registration.housing_provision,host,
 order_line_items.line_item.restraints,host.integrations`;
 
 export default Ember.Mixin.create({

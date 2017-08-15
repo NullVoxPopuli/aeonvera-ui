@@ -1,7 +1,7 @@
 .row
   .columns.small-6 = page-header text='Registrations'
   .columns.small-6
-    = download/csv-modal model=registrations kind='event-attendance' params=paramsForDownload path=path relationships=''
+    = download/csv-modal model=registrations kind='registration' params=paramsForDownload path=path relationships=''
 
 = sortable-table columns=columns data=registrations as |registration|
   td

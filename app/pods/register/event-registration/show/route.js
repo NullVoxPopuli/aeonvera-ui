@@ -27,15 +27,15 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     if (registrationId === UNREGISTERED_ID) {
       // try to unload an existing unregistered registration first
       // there can be stale unregistered registrations when repeatedly
-      const old = this.store.peekRecord('registration', UNREGISTERED_ID);
+      const old = this.store.peekRecord('users/registration', UNREGISTERED_ID);
 
       if (old) old.unloadRecord();
 
-      registration = this.store.createRecord('registration', {
+      registration = this.store.createRecord('users/registration', {
         host: event
       });
     } else {
-      registration = this.store.findRecord('registration', registrationId, { include });
+      registration = this.store.findRecord('users/registration', registrationId, { include });
     }
 
     return RSVP.hash({ event, registration });

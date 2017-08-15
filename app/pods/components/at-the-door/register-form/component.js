@@ -9,10 +9,10 @@ export default Ember.Component.extend({
 
   event: computed.alias('model'),
 
-  // for building user/attendance for the order
-  attendance: computed({
+  // for building user/registration for the order
+  registration: computed({
     get() {
-      return this.get('store').createRecord('event-attendance', {
+      return this.get('store').createRecord('registration', {
         host: this.get('event')
       });
     }
@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     const cart = this.get('cart');
 
     cart.clear();
-    cart.set('attendance', this.get('attendance'));
+    cart.set('registration', this.get('registration'));
     cart.set('automaticDiscounts', false);
   },
 
@@ -42,7 +42,7 @@ export default Ember.Component.extend({
 
       cart.get('currentOrder').unloadRecord();
       cart.set('order', null);
-      const attendance = this.get('attendance');
+      const registration = this.get('registration');
 
       this.sendAction('onComplete');
     },
@@ -52,29 +52,29 @@ export default Ember.Component.extend({
     },
 
     setPackage(selectedPackage) {
-      const attendance = this.get('attendance');
+      const registration = this.get('registration');
 
-      attendance.set('package', selectedPackage);
+      registration.set('package', selectedPackage);
 
       this._add(selectedPackage);
     },
 
     setLevel(selectedLevel) {
-      const attendance = this.get('attendance');
+      const registration = this.get('registration');
 
-      attendance.set('level', selectedLevel);
+      registration.set('level', selectedLevel);
     },
 
     setToEventLocation() {
-      const attendance = this.get('attendance');
+      const registration = this.get('registration');
       const event = this.get('event');
 
       // TODO: add city and state to event
       const location = event.get('location');
       const parts = location.split(',');
 
-      attendance.set('city', parts[0]);
-      attendance.set('state', parts[1]);
+      registration.set('city', parts[0]);
+      registration.set('state', parts[1]);
     }
   },
 

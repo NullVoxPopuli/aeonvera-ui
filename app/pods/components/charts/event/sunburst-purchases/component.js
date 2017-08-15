@@ -64,34 +64,34 @@ export default Ember.Component.extend(ResizeMixin, {
 
     const svg = d3.select(`#${chartId}`)
       .append('div')
-        .classed('d3-svg-container', true)
+      .classed('d3-svg-container', true)
       .append('svg')
-        // responsive SVG needs these 2 attributes and no width and height attr
-        .attr('preserveAspectRatio', 'xMinYMin meet')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        // class to make it responsive
-        .classed('svg-content-responsive', true)
-        // .attr('width', width)
-        // .attr('height', height)
+      // responsive SVG needs these 2 attributes and no width and height attr
+      .attr('preserveAspectRatio', 'xMinYMin meet')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      // class to make it responsive
+      .classed('svg-content-responsive', true)
+      // .attr('width', width)
+      // .attr('height', height)
       .append('g')
-        .attr('id', 'container')
-        .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+      .attr('id', 'container')
+      .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
     this.set('svg', svg);
 
     const partition = d3.layout.partition()
-        .sort(function(a, b) {
-          return d3.ascending(a.name, b.name);
-        })
-        // .size([2 * Math.PI, radius * radius])
-        .value(d => d.size);
+      .sort(function(a, b) {
+        return d3.ascending(a.name, b.name);
+      })
+      // .size([2 * Math.PI, radius * radius])
+      .value(d => d.size);
     // .value(function(d) { return 1; });
 
     const arc = d3.svg.arc()
-        .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x))))
-        .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))))
-        .innerRadius(d => Math.max(0, d.y ? y(d.y) : d.y))
-        .outerRadius(d => Math.max(0, y(d.y + d.dy)));
+      .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x))))
+      .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))))
+      .innerRadius(d => Math.max(0, d.y ? y(d.y) : d.y))
+      .outerRadius(d => Math.max(0, y(d.y + d.dy)));
     let node;
 
     const root = this.get('data');
@@ -102,12 +102,12 @@ export default Ember.Component.extend(ResizeMixin, {
     const path = svg.selectAll('path').data(nodes);
 
     path.enter().append('path')
-        .attr('id', (d, i) => `path-${i}`)
-        .attr('d', arc)
-        .style('stroke', '#fff')
-        .style('fill-rule', 'evenodd')
-        .style('fill', d => color(d.name))
-        .on('click', click);
+      .attr('id', (d, i) => `path-${i}`)
+      .attr('d', arc)
+      .style('stroke', '#fff')
+      .style('fill-rule', 'evenodd')
+      .style('fill', d => color(d.name))
+      .on('click', click);
 
     // Computes the label angle of an arc, converting from radians to degrees.
     function getAngle(d) {
@@ -132,21 +132,21 @@ export default Ember.Component.extend(ResizeMixin, {
 
     const text = svg.selectAll('text').data(nodes);
     const textEnter = text.enter().append('text')
-        .style('fill-opacity', 1)
-        .style('font-size', 10)
-        .style('text-anchor', 'middle')
-        .style('fill', '#000')
-        .attr('dy', '.2em')
-        .attr('transform', transformText)
-        .on('click', click);
+      .style('fill-opacity', 1)
+      .style('font-size', 10)
+      .style('text-anchor', 'middle')
+      .style('fill', '#000')
+      .attr('dy', '.2em')
+      .attr('transform', transformText)
+      .on('click', click);
 
     textEnter.append('tspan')
-        .attr('x', 0)
-        .text(d => d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '');
+      .attr('x', 0)
+      .text(d => d.depth ? d.size + '  |   ' + d.name.split(' - ')[0] : '');
     textEnter.append('tspan')
-        .attr('x', 0)
-        .attr('dy', '1em')
-        .text(d => d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '');
+      .attr('x', 0)
+      .attr('dy', '1em')
+      .text(d => d.depth ? '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0' + (d.name.split(' - ')[1] || '') : '');
     // textEnter.append('tspan')
     //     .attr('x', 0)
     //     .attr('dy', d => d.depth ? (d.name.split(' - ').length > 1 ? '-2em' : '-1em') : '')

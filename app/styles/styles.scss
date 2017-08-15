@@ -35,6 +35,11 @@
     background-color: $body-background;
     padding-top: 0px;
 
+    a.disabled {
+      opacity: 0.3;
+      cursor:  default;
+    }
+
     .shell{
       background-color: $content-background;
 

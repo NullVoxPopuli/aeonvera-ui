@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         event.get('id'), {
           adapterOptions: {
             query: {
-              include: 'event_attendances'
+              include: 'registrations'
             }
           }
         }),

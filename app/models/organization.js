@@ -20,10 +20,17 @@ export default Host.extend({
   membershipOptions: hasMany('membership-option', { inverse: 'host' }),
   membershipDiscounts: hasMany('membership-discount', { inverse: 'host' }),
   sponsorships: hasMany('sponsorship'),
+  orders: hasMany('order', { inverse: 'host' }),
+  recentOrders: hasMany('order', { inverse: 'host' }),
 
   notifyEmail: attr('string'),
   emailAllPurchases: attr('boolean'),
   emailMembershipPurchases: attr('boolean'),
+
+  revenuePastMonth: attr('number'),
+  unpaidPastMonth: attr('number'),
+  newMembershipsPastMonth: attr('number'),
+  netReceivedPastMonth: attr('number'),
 
   location: function() {
     return this.get('city') + ', ' + this.get('state');

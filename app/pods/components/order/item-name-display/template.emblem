@@ -5,6 +5,6 @@ else
 
 if orderLineItem.lineItem.isPackage
   if orderLineItem.lineItem.requiresTrack
-    | @ {{order.attendance.levelName}}
+    | @ {{order.registration.levelName}}
 if orderLineItem.lineItem.isShirt
   | &nbsp;- {{orderLineItem.size}}

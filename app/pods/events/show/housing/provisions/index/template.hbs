@@ -10,7 +10,7 @@
     {{download/csv-modal
       model=provisions
       kind='housing-provision'
-      relationships='attendance'
+      relationships='registration'
       params=paramsForDownload
       path=path
     }}
@@ -20,15 +20,15 @@
 
 {{#sortable-table columns=columns data=provisions as |provision| }}
   <td>
-    {{#if (is-present provision.attendance.attendeeName)}}
-      {{attendance-link model=provision.attendance}}
+    {{#if (is-present provision.registration.attendeeName)}}
+      {{registration-link model=provision.registration}}
     {{else}}
       {{provision.name}}
     {{/if}}
   </td>
   <td>{{provision.housingCapacity}}</td>
   <td>{{provision.numberOfShowers}}</td>
-  <td>{{provision.attendance.hasPaid}}</td>
+  <td>{{provision.registration.hasPaid}}</td>
   <td>
     {{#if provision.hasPets}}
       Pets
@@ -45,7 +45,7 @@
     {{/if}}
   </td>
   <td>{{provision.notes}}</td>
-  <td>{{date-with-format provision.attendance.registeredAt 'LLL'}}</td>
+  <td>{{date-with-format provision.registration.registeredAt 'LLL'}}</td>
   <td>
     {{#form/confirm-button action='delete' target=provision preConfirmClasses='alert-color'}}
       Delete

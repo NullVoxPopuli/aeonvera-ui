@@ -7,15 +7,15 @@ export default ApplicationSerializer.extend(EmbeddedRecords, {
   //   orderLineItems: { embedded: 'always' }
   // },
 
-   serialize(snapshot, options) {
-     let json = this._super(...arguments);
+  serialize(snapshot, options) {
+    let json = this._super(...arguments);
 
-     const paymentToken = json.data.attributes['payment-token'];
+    const paymentToken = json.data.attributes['payment-token'];
 
-     if (paymentToken) {
-       json.payment_token = paymentToken
-     }
+    if (paymentToken) {
+      json.payment_token = paymentToken;
+    }
 
-     return json;
-   }
+    return json;
+  }
 });

@@ -16,11 +16,11 @@ export default DS.Model.extend({
   name: DS.attr('string'),
 
   host: DS.belongsTo('host', { polymorphic: true }),
-  attendance: DS.belongsTo('attendance', { polymorphic: true }),
+  registration: DS.belongsTo('registration', { polymorphic: true }),
 
   // for sorting
-  providingName: Ember.computed('attendance', 'name', function() {
-    const name = this.get('attendance.attendeeName');
+  providingName: Ember.computed('registration', 'name', function() {
+    const name = this.get('registration.attendeeName');
 
     if (Ember.isPresent(name)) {
       return name;

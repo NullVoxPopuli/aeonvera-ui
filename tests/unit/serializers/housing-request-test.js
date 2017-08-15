@@ -7,7 +7,7 @@ moduleForModel('housing-request', 'Unit | Serializer | housing request', {
   needs: [
     'model:event',
     'model:host',
-    'model:attendance',
+    'model:registration',
     'model:housing-provision',
     'serializer:housing-request',
   ],

@@ -3,7 +3,7 @@ import { alias } from 'ember-decorators/object/computed';
 
 
 export default Ember.Component.extend({
-  @alias('attendance.errors') errors: null,
+  @alias('registration.errors') errors: null,
 
   states: [
     'AL',
