@@ -1,12 +1,21 @@
 import Ember from 'ember';
 
 import { computed } from 'ember-decorators/object';
+import { oneWay } from 'ember-decorators/object/computed';
 
 export default Ember.Component.extend({
   errors: [],
-  errorsPresent: Ember.computed('errors.@each', function() {
+
+  @computed('errors.@each')
+  errorsPresent(errors) {
     return Ember.isPresent(this.get('errors'));
-  }),
+  },
+
+  didUpdateAttrs() {
+    this.set('hidden', false);
+  },
+
+  @oneWay('errorsPresent') hidden: null,
 
   @computed('errors.@each', 'errorsPresent')
   firstError(errors, hasErrors) {
@@ -58,7 +67,7 @@ export default Ember.Component.extend({
 
   actions: {
     hideError() {
-      this.set('errorsPresent', false);
+      this.set('hidden', true);
     }
   }
 

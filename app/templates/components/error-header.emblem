@@ -1,4 +1,4 @@
-if errorsPresent
+if (and errorsPresent (not hidden))
   .alert-box.alert
     a.close click='hideError' &times;
     span.message = firstError
