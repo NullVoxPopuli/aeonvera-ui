@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Helper.helper(function(params) {
-  let value = params[0];
-
+export function toUsd(value) {
   if (value === undefined) {
     return value;
   }
@@ -15,4 +13,10 @@ export default Ember.Helper.helper(function(params) {
   const sign = '$';
 
   return `${sign} ${amount}`;
+}
+
+export default Ember.Helper.helper(function(params) {
+  let value = params[0];
+
+  return toUsd(value);
 });
