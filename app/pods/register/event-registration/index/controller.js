@@ -7,12 +7,8 @@ import { service } from 'ember-decorators/service';
 export default class extends Ember.Controller {
   @service('flash-notification') flash;
 
-  @sort('model.registrations', function(a, b) {
-    const ra = a.get('registeredAt');
-    const rb = b.get('registeredAt');
-
-    return (ra > rb && 1) || (ra < rb && -1) || 0;
-  }) registrations;
+  sortBy = ['registeredAt'];
+  @sort('model.registrations', 'sortBy') registrations;
 
   @action
   toNewRegistration() {

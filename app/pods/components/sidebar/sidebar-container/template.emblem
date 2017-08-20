@@ -1,4 +1,0 @@
-.sidebar
-  nav
-    ul.side-nav
-      = yield
