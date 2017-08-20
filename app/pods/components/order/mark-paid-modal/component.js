@@ -55,11 +55,6 @@ export default class extends Ember.Component {
     }
   };
 
-  @computed('order')
-  modalName(order) {
-    return `mark-paid-${this.get('order.id')}`;
-  }
-
   @action
   setToOrderTotal() {
     this.set('cashOrCheckAmount', null);
