@@ -1,0 +1,50 @@
+<td>
+  {{registration-link model=model}}
+
+  {{#if model.hasUsedStudentDiscount}}
+    <em><small><strong>Used Student Discount</strong></small></em><br />
+  {{/if}}
+
+  <small>{{date-with-format model.registeredAt 'lll'}}</small>
+</td>
+
+<td>
+  {{#paper-button
+    onClick='checkin'
+    raised=true
+    primary=true}}
+    Check in
+  {{/paper-button}}
+</td>
+
+<td>
+  {{#each model.orders as |order|}}
+    <div class='layout-row'>
+      <div class='flex-75'>
+        <small>{{date-with-format order.createdAt 'lll'}}</small>
+        <ul>
+          {{#each order.orderLineItems as |oli|}}
+          <li>
+            {{order/item-name-display orderLineItem=oli order=order}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class='flex-25 layout-column layout-align-center-end'>
+        {{#if order.paid}}
+          Paid
+        {{else}}
+          Owes {{to-usd model.amountOwed}}
+          <br />
+          {{order/mark-paid-modal order=order showOrder=true}}
+        {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</td>
+
+<td>
+  {{#if model.isCheckedIn}}
+    {{date-with-format model.checkedInAt 'lll'}}
+  {{/if}}
+</td>

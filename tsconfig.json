@@ -6,6 +6,9 @@
     "noEmitOnError": false,
     "noEmit": true,
     "sourceMap": true,
+    "allowNonTsExtensions": true,
+
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "module": "es6",
     "paths": {

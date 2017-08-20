@@ -85,7 +85,7 @@
     "ember-data-factory-guy": "^2.13.3",
     "ember-data-filter": "1.13.0",
     "ember-data-paperclip": "^0.2.0",
-    "ember-decorators": "1.0.0",
+    "ember-decorators": "1.2.2",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-elsewhere": "^1.0.1",
     "ember-exam": "^0.7.0",
