@@ -1,0 +1,14 @@
+{{yield}}
+{{paper-input
+  label=labelText
+  icon='attach money'
+  value=fieldValue
+  type='number'
+  min=0
+  step='any'
+  required=true
+  disabled=disabled
+  errors=(may-by 'message' fieldErrors)
+  placeholder=placeholder
+  onChange=(action (mut fieldValue))
+}}

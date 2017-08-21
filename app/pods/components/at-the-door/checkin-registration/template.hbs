@@ -9,15 +9,6 @@
 </td>
 
 <td>
-  {{#paper-button
-    onClick='checkin'
-    raised=true
-    primary=true}}
-    Check in
-  {{/paper-button}}
-</td>
-
-<td>
   {{#each model.orders as |order|}}
     <div class='layout-row'>
       <div class='flex-75'>
@@ -46,5 +37,12 @@
 <td>
   {{#if model.isCheckedIn}}
     {{date-with-format model.checkedInAt 'lll'}}
+  {{else}}
+    {{#paper-button
+      onClick='checkin'
+      raised=true
+      primary=true}}
+      Check in
+    {{/paper-button}}
   {{/if}}
 </td>

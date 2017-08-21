@@ -11,7 +11,6 @@ export default class extends Ember.Component {
 
   columns = [
     { property: 'attendeeName', title: 'Name' },
-    { property: 'isCheckedIn', title: '', sort: false },
     { property: '', title: 'Purchases', sort: false },
     { property: 'checkedInAt', title: 'Checked in at' }
   ];

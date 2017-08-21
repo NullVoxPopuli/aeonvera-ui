@@ -1,44 +1,45 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+import { computed } from 'ember-decorators/object';
 
+export default class extends Ember.Component {
   // set by caller
-  labelText: '',
-  model: null,
-  field: '',
-  errors: [],
-  classes: '',
-  disabled: false,
-  placeholder: '',
+  labelText = '';
+  model = null;
+  field = '';
+  errors = [];
+  classes = '';
+  disabled = false;
+  placeholder = '';
 
   // if value is passed in, we can ignore model and field
   // when passed, it must be initialized to something other
   // than undefined
-  value: undefined,
+  value = undefined;
 
-  fieldValue: Ember.computed('model', 'field', 'value', {
-    get(key) {
-      if (this.get('value') !== undefined) {
-        return this.get('value');
-      }
+  @computed('errors.@each', 'field')
+  fieldErrors(errors, field) {
+    return errors.get(field);
+  }
 
-      const fieldName = this.get('field');
-      const value = this.get('model.' + fieldName);
-
-      return value;
-    },
-
-    set(key, value) {
-      if (this.get('value') !== undefined) {
-        this.set('value', value);
+  @computed('model', 'field', 'value')
+  fieldValue = {
+    get(model, field, value) {
+      if (value !== undefined) {
         return value;
       }
 
-      const model = this.get('model');
-      const field = this.get('field');
+      return this.get('model.' + field);
+    },
 
-      model.set(field, value);
-      return value;
+    set(newValue, model, field, value) {
+      if (newValue !== undefined) {
+        this.set('value', newValue);
+        return newValue;
+      }
+
+      model.set(field, newValue);
+      return newValue;
     }
-  })
-});
+  }
+}
