@@ -1,15 +1,31 @@
 {{#if hasYetToConfirm }}
-  <a {{action 'preClickAction'}} class='{{preConfirmClasses}}'>
+  {{#paper-button
+    class='{{preConfirmClasses}}'
+    raised=true
+    warn=confirmDestructive
+    primary=confirmPrimary
+    onClick='preClickAction'}}
     {{yield}}
-  </a>
+  {{/paper-button}}
 {{else}}
 
-  {{#form/spinner-button onclick=(action 'triggerAction') classNames=confirmClasses}}
-    {{confirmText}}
-  {{/form/spinner-button}}
+  {{ember-paper/async-button
+    onClick=(action 'triggerAction')
+    raised=true
+    warn=confirmDestructive
+    primary=confirmPrimary
+    class=confirmClasses
+    label=confirmText
+  }}
 
   {{#if showCancel}}
-    <button class='alert {{cancelClasses}}' {{action 'cancel'}}>Cancel</button>
+    {{#paper-button
+      raised=true
+      class='{{cancelClasses}}'
+      onClick='cancel'
+    }}
+      Cancel
+    {{/paper-button}}
   {{/if}}
 
 {{/if}}
