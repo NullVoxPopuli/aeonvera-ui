@@ -21,13 +21,14 @@
     {{/unless}}
 
     {{#if canBeDeleted}}
-      {{form/confirm-button
+      {{#form/confirm-button
         action='delete'
         showCancel=true
         cancelClasses='tiny no-margins'
         confirmText='Really, Delete'
       }}
-      Delete
+        Delete
+      {{/form/confirm-button}}
     {{/if}}
 
     {{#if (and isStripe isPaid)}}

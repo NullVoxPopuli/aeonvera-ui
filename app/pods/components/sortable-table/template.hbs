@@ -1,27 +1,24 @@
-<table>
-  <thead>
-    <tr>
-      {{#each evaluatedColumns as |column|}}
-        {{#if column.showOn}}
-          <th>
-            {{#if (is-equal column.sort false)}}
-              {{column.title}}
-            {{else}}
-              <a onClick={{action 'toggleSort' column.property}}>
-                {{column.title}} {{column.sortIndicator}}
-              </a>
-            {{/if}}
-          </th>
-        {{/if}}
-      {{/each}}
-    </tr>
-  </thead>
-  <tbody>
-    {{#each sortedData as |item|}}
-      <tr>
-        {{yield item}}
-      </tr>
+<thead>
+  <tr>
+    {{#each evaluatedColumns as |column|}}
+      {{#if column.showOn}}
+        <th>
+          {{#if (is-equal column.sort false)}}
+            {{column.title}}
+          {{else}}
+            <a onClick={{action 'toggleSort' column.property}}>
+              {{column.title}} {{column.sortIndicator}}
+            </a>
+          {{/if}}
+        </th>
+      {{/if}}
     {{/each}}
-  </tbody>
-</table>
-
+  </tr>
+</thead>
+<tbody>
+  {{#each sortedData as |item|}}
+    <tr>
+      {{yield item}}
+    </tr>
+  {{/each}}
+</tbody>

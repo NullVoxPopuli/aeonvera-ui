@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 import { computed } from 'ember-decorators/object';
 
+const { isPresent } = Ember;
+
 export default class extends Ember.Component {
   // set by caller
   labelText = '';
@@ -19,7 +21,9 @@ export default class extends Ember.Component {
 
   @computed('errors.@each', 'field')
   fieldErrors(errors, field) {
-    return errors.get(field);
+    if (isPresent(errors)) return errors.get(field);
+
+    return [];
   }
 
   @computed('model', 'field', 'value')

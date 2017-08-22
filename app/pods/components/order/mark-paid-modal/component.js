@@ -57,7 +57,7 @@ export default class extends Ember.Component {
 
   @action
   setToOrderTotal() {
-    this.set('cashOrCheckAmount', null);
+    this.set('cashOrCheckAmount', this.get('orderTotal'));
   }
 
   @action

@@ -8,7 +8,7 @@
   step='any'
   required=true
   disabled=disabled
-  errors=(may-by 'message' fieldErrors)
+  errors=(map-by 'message' fieldErrors)
   placeholder=placeholder
   onChange=(action (mut fieldValue))
 }}
