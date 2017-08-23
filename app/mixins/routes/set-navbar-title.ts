@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  _setAppNavTitle(title) {
+  _setAppNavTitle(title: string) {
     const application = this.controllerFor('application');
 
     application.set('navTitle', title);

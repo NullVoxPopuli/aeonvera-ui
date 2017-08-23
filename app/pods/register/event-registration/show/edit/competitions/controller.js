@@ -5,27 +5,26 @@ import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
+export default Ember.Controller.extend({
+  @service('rollbar') rollbar: null,
+  @service('flash-notification') flash: null,
 
-export default class extends Ember.Controller {
-  @service('rollbar') rollbar;
-  @service('flash-notification') flash;
+  @alias('model.registration.unpaidOrder') order: null,
 
-  @alias('model.registration.unpaidOrder') order;
-
-  competitionSort = ['name:asc'];
-  @sort('model.event.competitions', 'competitionSort') competitions;
+  competitionSort: ['name:asc'],
+  @sort('model.event.competitions', 'competitionSort') competitions: null,
 
   @dropTask
-  removeCompetitionTask = function * (orderLineItem) {
+  removeCompetitionTask: function * (orderLineItem) {
     // just in case it's a promise
     const oli = yield orderLineItem;
 
     yield oli.destroyRecord();
     this.get('order.orderLineItems').removeObject(orderLineItem);
-  }
+  },
 
   @dropTask
-  addCompetitionTask = function * (competition, params) {
+  addCompetitionTask: function * (competition, params) {
     const store = this.get('store');
 
     const orderLineItem = store.createRecord('orderLineItem', {
@@ -36,14 +35,14 @@ export default class extends Ember.Controller {
     const savedOrderLineItem = yield orderLineItem.save();
 
     this.get('order.orderLineItems').pushObject(orderLineItem);
-  }
+  },
 
   @dropTask
-  updateCompetitionTask = function * (orderLineItem) {
+  updateCompetitionTask: function * (orderLineItem) {
     const oli = yield orderLineItem;
 
     yield oli.save();
-  }
+  },
 
   @action
   didFinishSelectingCompetitions() {
@@ -56,4 +55,4 @@ export default class extends Ember.Controller {
     // pass all ids to trigger a full model refresh
     // this.send('triggerRefreshForOrderReview');
   }
-}
+});

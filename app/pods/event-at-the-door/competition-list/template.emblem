@@ -1,12 +1,6 @@
-.row.full-width
-  .large-3.medium-4.columns.padding-left-0
-    = sidebar/sidebar-container
-      = sidebar/event-at-the-door-sidebar model=model
-
-  .large-9.medium-8.columns
-    h2 All Competitions for {{event.name}}
-    each model.competitions as |competition|
-      h3 = competition.name
-      link-to 'event-at-the-door.competition-signup-print' competition.id
-        | Print Sign-Up Sheet
-      = component 'event/competition/registered-list' competition=competition
+h2 All Competitions for {{event.name}}
+each model.competitions as |competition|
+  h3 = competition.name
+  link-to 'event-at-the-door.competition-signup-print' competition.id
+    | Print Sign-Up Sheet
+  = component 'event/competition/registered-list' competition=competition

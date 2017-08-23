@@ -1,0 +1,42 @@
+{{#paper-toolbar class='hide-gt-sm'}}
+  {{#paper-toolbar-tools}}
+    {{event.name}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+<div class='show-gt-sm layout-column'>
+  {{#link-to 'events.show' event.id classNames='width-of-60 padding-10 center-margin'}}
+    <img src={{event.logoUrlMedium}} />
+  {{/link-to}}
+
+  {{#paper-button raised=true primary=true onClick=(transition-to 'events.show' event.id)}}
+    Event Details / Manage
+  {{/paper-button}}
+</div>
+
+{{#paper-list}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.checkin' event.id}}Check In{{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.register' event.id}}Register{{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.competition-list' event.id}}Competition List{{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.a-la-carte' event.id}}A La Carte{{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.shirts' event.id}}Shirts{{/link-to}}
+  {{/paper-item}}
+
+  {{#paper-item}}
+    {{#link-to 'event-at-the-door.exchange' event.id}}Shirt Exchange{{/link-to}}
+  {{/paper-item}}
+{{/paper-list}}

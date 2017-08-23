@@ -1,27 +1,30 @@
 import Ember from 'ember';
+
+import { action } from 'ember-decorators/object';
 import { sort } from 'ember-decorators/object/computed';
+import { service } from 'ember-decorators/service';
 
 export default Ember.Controller.extend({
-  flash: Ember.inject.service('flash-notification'),
+  @service('flash-notification') flash: null,
 
-  registrationsSort: ['registeredAt:asc'],
-  @sort('model.registrations', 'registrationsSort') registrations: null,
+  sortBy: ['registeredAt'],
+  @sort('model.registrations', 'sortBy') registrations: null,
 
-  actions: {
-    toNewRegistration() {
-      this.transitionToRoute('register.event-registration.show.edit', 'unregistered');
-    },
+  @action
+  toNewRegistration() {
+    this.transitionToRoute('register.event-registration.show.edit', 'unregistered');
+  },
 
-    cancelRegistration(registration) {
-      registration.get('orders').then(orders => {
-        const hasPaidOrders = orders.map(o => o.get('paid')).some(o => o === true);
+  @action
+  cancelRegistration(registration) {
+    registration.get('orders').then(orders => {
+      const hasPaidOrders = orders.map(o => o.get('paid')).some(o => o === true);
 
-        if (!hasPaidOrders) {
-          registration.destroyRecord();
-        } else {
-          this.get('flash').error('You cannot cancel when you have already paid.');
-        }
-      });
-    }
-  } // end actions
+      if (!hasPaidOrders) {
+        registration.destroyRecord();
+      } else {
+        this.get('flash').error('You cannot cancel when you have already paid.');
+      }
+    });
+  }
 });

@@ -1,0 +1,38 @@
+<div class='layout-row layout-align-center-start'>
+  <div class='flex-100 flex-gt-sm-66'>
+    <h2>{{model.name}}</h2>
+    <hr />
+    <p>
+      This is the command center for behind-the-desk operations during an event.
+      From here you can check people in, register new people, see who's competing,
+      add competitions to a registrant, as well as make a la carte sales.
+    </p>
+    <hr />
+
+    <div class='layout-row layout-align-space-between-center layout-wrap'>
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.checkin' model.id)}}
+        Check In
+      {{/paper-button}}
+
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.register' model.id)}}
+        Register
+      {{/paper-button}}
+
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.competition-list' model.id)}}
+        Competition List
+      {{/paper-button}}
+
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.a-la-carte' model.id)}}
+        A La Carte
+      {{/paper-button}}
+
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.shirts' model.id)}}
+        Shirts
+      {{/paper-button}}
+
+      {{#paper-button class='flex-30' primary=true onClick=(transition-to 'event-at-the-door.exchange' model.id)}}
+        Shirt Exchange
+      {{/paper-button}}
+    </div>
+  </div>
+</div>

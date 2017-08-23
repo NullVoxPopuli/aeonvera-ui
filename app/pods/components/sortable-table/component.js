@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { sort } from 'ember-decorators/object/computed';
 
 export default Ember.Component.extend({
+  tagName: 'table',
   columns: [],
   evaluatedColumns: [],
   data: [],
