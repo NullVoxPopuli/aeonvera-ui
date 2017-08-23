@@ -1,7 +1,13 @@
 import Ember from 'ember';
-import New from 'aeonvera/mixins/routes/crud/events/new';
+import RSVP from 'rsvp';
 
-export default Ember.Route.extend(New, {
-  modelName: 'housing-provision',
-  isPolymorphicHost: true
+export default Ember.Route.extend({
+  model() {
+    const event = this.modelFor('events.show');
+    const housingProvision = this.store.createRecord('housing-provision', {
+      host: event
+    });
+
+    return RSVP.hash({ event, housingProvision });
+  }
 });
