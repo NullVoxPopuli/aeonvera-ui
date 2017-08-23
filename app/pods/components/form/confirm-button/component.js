@@ -8,6 +8,8 @@ export default Ember.Component.extend({
   confirmText: 'Confirm',
   showCancel: false,
   hasYetToConfirm: true,
+  confirmDestructive: false,
+  confirmPrimary: false,
 
   actions: {
     preClickAction() {

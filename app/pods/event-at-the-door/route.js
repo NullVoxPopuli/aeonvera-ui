@@ -1,23 +1,27 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-  model: function(params) {
-    return this.store.findRecord('event', params.event_id, {
+import { action } from 'ember-decorators/object';
+import { service } from 'ember-decorators/service';
+
+export default class extends Ember.Route {
+  @service('navbar-title') navbarTitle;
+
+  model(params) {
+    return this.get('store').findRecord('event', params.event_id, {
       include: 'shirts,integrations,competitions,line_items,discounts'
     });
-  },
+  }
 
-  actions: {
+  actions = {
     didTransition() {
-      const model = this.get('currentModel');
+      const name = this.get('currentModel.name');
+      const navbarTitle = this.get('navbarTitle');
 
-      this.set('title', model.get('name'));
-
-      this._setDashboardSidebar('sidebar/event-at-the-door-sidebar', model);
-      this._setMobileLeftMenu('sidebar/event-at-the-door-sidebar');
+      navbarTitle.showSideNav();
+      navbarTitle.setAppNavTitle(name);
 
       // Don't execute parent didTransitions
       return false;
     }
   }
-});
+}

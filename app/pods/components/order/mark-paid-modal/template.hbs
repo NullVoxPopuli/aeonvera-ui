@@ -1,6 +1,6 @@
-{{#foundation-modal
+{{#ember-paper/simple-dialog-with-button
   title='Mark Paid'
-  name=modalName
+  accent=accent
   buttonText='Mark Paid'}}
 
   {{#if showOrder}}
@@ -51,15 +51,13 @@
             {{#form/confirm-button
               action='markPaid'
               confirmText=confirmText
+              confirmPrimary=true
               showCancel=true
               cancelClasses='small'
               confirmClasses='small'
             }}
-              <button class='small'>Mark Paid</button>
+              Mark Paid
             {{/form/confirm-button}}
-            {{!-- <button {{action 'markPaid'}}
-            class='small'
-            disabled={{isPaying}}>Mark Paid</button> --}}
           </li>
         </ul>
         {{/if}}
@@ -93,7 +91,4 @@
     </div>
   </div>
 
-
-
-
-{{/foundation-modal}}
+{{/ember-paper/simple-dialog-with-button}}

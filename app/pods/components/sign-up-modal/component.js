@@ -3,13 +3,10 @@ import { computed, action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 import { alias } from 'ember-decorators/object/computed';
 
-
-const successMessage = `
-You will receive an email with instructions about how to confirm your account in a few minutes.`;
-
 export default class SignUpModal extends Ember.Component {
   @service('path-store') pathStore;
   @service('flash-notification') flash;
+  @service('login') login;
 
   // for some reason this doesn't work as a @service
   // ... probably because no store interaction should happen in components
@@ -38,19 +35,31 @@ export default class SignUpModal extends Ember.Component {
   }
 
   @action
-  register() {
+  async register() {
+    const model = this.get('model');
+
     this.get('pathStore').storeCurrentRoute();
     this.set('hasMadeAttempt', true);
 
-    return this.get('model').save()
-      .then(user => {
-        this.set('showSignupModal', false);
+    try {
+      await model.save();
 
-        if (this.get('successAction')) this.sendAction('successAction');
+      this.set('showSignupModal', false);
 
-        user.unloadRecord();
-
-        this.get('flash').success(successMessage);
+      await this.get('login').authenticate({
+        identification: model.get('email'),
+        password: model.get('password')
       });
+
+      if (this.get('successAction')) this.sendAction('successAction');
+    } catch (e) {
+      this._handleSignupError(e);
+    }
+
+
+  }
+
+  _handleSignupError(error) {
+    this.set('errors', this.get('model.errors'));
   }
 }
