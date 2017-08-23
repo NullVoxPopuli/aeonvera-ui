@@ -11,36 +11,12 @@ form submit='save'
           label Enter Name
         .columns.large-6
           if isRegistrantProviding
-            = form/registrant-select value=model.registration host=model.host
+            = form/registrant-select event=model.host value=model.registration onChange=(action (mut model.registration))
           else
             = input type='text' value=model.name
       hr
-  .row
-    .columns.small-6
-      label Housing Capacity
-      = input type='number' min=0 value=model.housingCapacity
-    .columns.small-6
-      label Number of Showers
-      = input type='number' min=0 value=model.numberOfShowers
-  .row
-    .columns.small-6
-      = input type='checkbox' checked=model.canProvideTransportation
-      label Can Provide Transportation
-      br
-      label Transportation Capacity
-      = input type='number' min='0' value=model.transportationCapacity placeholder=0
-    .columns.small-6
-      = input type='checkbox' checked=model.hasPets
-      label does this person have pets?
-      br
-      = input type='checkbox' checked=model.smokes
-      label does this person smoke?
-      br
-      label Preferred Gender to House
-      = x-select value=model.preferredGenderToHost
-        each model.genderOptions as |option|
-          = x-option value=option
-            = option
+
+  = register/event-registration-form/housing-options/housing-provision housingProvision=model
 
   .row
     .small-12.columns

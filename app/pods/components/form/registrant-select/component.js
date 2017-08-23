@@ -26,6 +26,7 @@ export default class extends Ember.Component {
     if (isBlank(term)) return;
     yield timeout(DEBOUNCE_MS);
 
+    console.log(this.get('event'));
     const result = this.get('store')
       .query('events/registration', {
         ['event_id']: this.get('event.id'),
