@@ -4,16 +4,16 @@ import { action } from 'ember-decorators/object';
 import { sort } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
-export default class extends Ember.Controller {
-  @service('flash-notification') flash;
+export default Ember.Controller.extend({
+  @service('flash-notification') flash: null,
 
-  sortBy = ['registeredAt'];
-  @sort('model.registrations', 'sortBy') registrations;
+  sortBy: ['registeredAt'],
+  @sort('model.registrations', 'sortBy') registrations: null,
 
   @action
   toNewRegistration() {
     this.transitionToRoute('register.event-registration.show.edit', 'unregistered');
-  }
+  },
 
   @action
   cancelRegistration(registration) {
@@ -27,4 +27,4 @@ export default class extends Ember.Controller {
       }
     });
   }
-}
+});

@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
     },
 
     didFinishSelectingShirts() {
-      this.transitionToRoute('register.event-registration.show.edit.competitions');
+      this.transitionToRoute('register.event-registration.show.edit.competitions', this.get('model'));
     }
   }
 });
