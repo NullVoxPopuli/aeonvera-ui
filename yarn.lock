@@ -3367,9 +3367,9 @@ ember-cli-test-loader@^2.0.0, ember-cli-test-loader@^2.1.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
-ember-cli-typescript@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-1.0.2.tgz#1c56b93c98e33f297d5b0b358df034abde683f67"
+ember-cli-typescript@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-1.0.3.tgz#4b247b4ea56e421626825943eb5bc27263e96f46"
   dependencies:
     broccoli-debug "^0.6.3"
     broccoli-funnel "^1.0.6"
@@ -3380,6 +3380,7 @@ ember-cli-typescript@^1.0.2:
     broccoli-typescript-compiler "^2.0.0"
     debug "^2.2.0"
     ember-cli-babel "^6.3.0"
+    silent-error "^1.1.0"
 
 ember-cli-uglify@^1.2.0:
   version "1.2.0"
