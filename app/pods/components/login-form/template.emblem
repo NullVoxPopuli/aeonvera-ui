@@ -1,4 +1,4 @@
-div class='{{showErrorMessage}} alert-box alert'
+div class='{{errorContainerClass}} alert-box alert'
   a.close click='hideError' href='#' &times;
   span.message = errorMessage
   br

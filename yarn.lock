@@ -3656,9 +3656,9 @@ ember-data@2.13.0:
     semver "^5.1.0"
     silent-error "^1.0.0"
 
-ember-decorators@1.2.2:
+"ember-decorators@git://github.com/ember-decorators/ember-decorators.git":
   version "1.2.2"
-  resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-1.2.2.tgz#ba95769b6da0c9f86ddf74ea3fe733d260845f00"
+  resolved "git://github.com/ember-decorators/ember-decorators.git#2eab4f21774501dec17c047eb79ec6c9e36bde8a"
   dependencies:
     babel-plugin-transform-class-properties "^6.24.1"
     babel-plugin-transform-decorators-legacy "^1.3.4"

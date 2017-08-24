@@ -15,7 +15,7 @@ table.responsive
         tr
           td
             link-to 'events.show.registrations.show' registration.id
-              span = registration.attendeeName
+              span = registration.name
           td = registration.packageName
           td = registration.levelName
           td = registration.danceOrientation

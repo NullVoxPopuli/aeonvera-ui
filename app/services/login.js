@@ -55,5 +55,6 @@ export default class extends Ember.Service {
     const message = this._parseErrorMessage(error);
 
     this.set('errorMessage', message);
+    return Promise.reject(message);
   }
 }
