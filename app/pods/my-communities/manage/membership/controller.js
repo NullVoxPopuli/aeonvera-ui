@@ -1,20 +1,23 @@
 import Ember from 'ember';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Controller.extend({
-  paramsForDownload: Ember.computed('organizationId', {
-    get() {
-      return {
-        organization_id: this.get('organizationId')
-      };
-    }
-  }),
+import { computed } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
 
-  path: Ember.computed('organizationId', {
-    get() {
-      return `${ENV.host}/api/members.csv?`;
-    }
-  }),
+export default Ember.Controller.extend({
+  @alias('model.id') organizationId: null,
+
+  @computed('organizationId')
+  paramsForDownload(organizationId) {
+    return {
+      organization_id: organizationId
+    };
+  },
+
+  @computed('organizationId')
+  path(organizationId) {
+    return `${ENV.host}/api/members.csv?`;
+  },
 
   fieldsForCSV: [
     { name: 'firstName', included: true },
