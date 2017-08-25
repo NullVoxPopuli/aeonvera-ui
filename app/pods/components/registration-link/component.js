@@ -1,19 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  id: Ember.computed(function() {
-    return this.get('model.id');
-  }),
+import { alias } from 'ember-decorators/object/computed';
 
-  eventId: Ember.computed(function() {
-    return this.get('model.eventId');
-  }),
-
-  name: Ember.computed(function() {
-    const model = this.get('model');
-    const aName = model.get('attendeeName');
-    const name = model.get('name');
-
-    return aName || name;
-  })
-});
+export default class extends Ember.Component {
+  @alias('model.id') id;
+  @alias('model.eventId') eventId;
+  @alias('model.name') name;
+}
