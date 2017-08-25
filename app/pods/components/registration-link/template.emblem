@@ -1,2 +1,0 @@
-link-to 'events.show.registrations.show' eventId id
-  span = name
