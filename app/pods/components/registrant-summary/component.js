@@ -1,13 +1,21 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
-import { notEmpty } from 'ember-decorators/object/computed';
+
+import { service } from 'ember-decorators/service';
+import { notEmpty, alias } from 'ember-decorators/object/computed';
+import { dropTask } from 'ember-concurrency-decorators';
 
 export default class extends Ember.Component {
+  @service('flash-notification') flash;
+  @notEmpty('model.levelName') hasLevel;
+  @alias('model') registration;
 
-  @notEmpty('model.levelName') hasLevela
+  @dropTask
+  deleteRegistration = function * () {
+    const registration = this.get('registration');
 
-  @computed('model.{attendeeFirstName,attendeeLastName}')
-  attendeeName(firstName, lastName) {
-    return `${firstName} ${lastName}`;
+    yield registration.destroyRecord();
+    this.get('router').transitionTo('events.show.registrations');
+    this.get('flash').success('Registration has been deleted');
+
   }
 }

@@ -36,7 +36,6 @@ export default DS.Model.extend(
     danceOrientation: attr('string'),
     registeredAt: attr('date'),
 
-    packageName: attr('string'),
     levelName: attr('string'),
 
     interestedInVolunteering: attr('string'),
@@ -54,10 +53,7 @@ export default DS.Model.extend(
     housingProvision: belongsTo('housing-provision', { async: false }),
     customFieldResponses: hasMany('custom-field-response', { async: true }),
 
-    packageId: attr('number'),
     level: belongsTo('level', { async: false }),
-    package: belongsTo('package'),
-
 
     // address stuff
     phoneNumber: attr('string'),
@@ -83,7 +79,6 @@ export default DS.Model.extend(
       }
 
       return attendeeName;
-
     },
 
     hasUsedStudentDiscount: Ember.computed('orders.@each', {
