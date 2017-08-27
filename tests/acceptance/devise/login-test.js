@@ -60,55 +60,47 @@ test('after logging in, the login button should be hidden', withChai(expect => {
   });
 }));
 
-test('can login via route', withChai(expect => {
+test('can login via route', withChai(async expect => {
   let auth = currentSession().get('isAuthenticated');
 
   expect(auth)
     .to.equal(false);
 
-  visit('/login');
+  await visit('/login');
 
-  fillIn('input[type="text"]', 'test@test.test');
+  fillIn('input[type="email"]', 'test@test.test');
   fillIn('input[type="password"]', 'some-password');
 
-  click('button[type="submit"]');
+  await click('button[type="submit"]');
 
-  andThen(() => {
-    let auth = currentSession().get('isAuthenticated');
+  auth = currentSession().get('isAuthenticated');
 
-    expect(auth)
-      .to.equal(true);
-  });
+  expect(auth)
+    .to.equal(true);
 }));
 
-test('after logging in, the user is redirected to the dashboard', withChai(expect => {
+test('after logging in, the user is redirected to the dashboard', withChai(async expect => {
   visit('/login');
 
-  fillIn('input[type="text"]', 'test@test.test');
+  fillIn('input[type="email"]', 'test@test.test');
   fillIn('input[type="password"]', 'some-password');
 
-  click('button[type="submit"]');
+  await click('button[type="submit"]');
 
-  andThen(() => {
-    expect(currentURL()).to.equal('/');
-    expect(currentRouteName()).to.equal('dashboard.index');
-  });
+  expect(currentURL()).to.equal('/');
+  expect(currentRouteName()).to.equal('dashboard.index');
 }));
 
-test('after logging in, the user is redirected back to the previous screen', withChai(expect => {
+test('after logging in, the user is redirected back to the previous screen', withChai(async expect => {
   visit('/welcome/features');
 
-  click(testSelector('app-nav-login-button'));
+  await click(testSelector('app-nav-login-button'));
 
-  andThen(() => {
-    fillIn('input[type="text"]', 'test@test.test');
-    fillIn('input[type="password"]', 'some-password');
+  fillIn('input[type="email"]', 'test@test.test');
+  fillIn('input[type="password"]', 'some-password');
 
-    click('button[type="submit"]');
+  await click('button[type="submit"]');
 
-    andThen(() => {
-      expect(currentURL()).to.equal('/welcome/features');
-    });
-  });
+  expect(currentURL()).to.equal('/welcome/features');
 
 }));

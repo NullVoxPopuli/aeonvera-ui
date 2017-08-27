@@ -12,25 +12,20 @@ moduleForAcceptance('Acceptance | requires-login | dashboard', {
   }
 });
 
-test('I am redirected upon attempting to visit without being logged in', function(assert) {
-  visit('/');
-  andThen(() => {
-    assert.equal(currentRouteName(), 'welcome.index');
-  });
+test('I am redirected upon attempting to visit without being logged in', async function(assert) {
+  await visit('/');
+
+  assert.equal(currentRouteName(), 'welcome.index');
 });
 
-test('Upon logging out, I am redirected', function(assert) {
+test('Upon logging out, I am redirected', async function(assert) {
   authenticateSession({ email: 'test@test.test', token: '123abc' });
 
-  visit('/');
+  await visit('/');
 
-  andThen(() => assert.equal(currentRouteName(), 'dashboard.index'));
+  assert.equal(currentRouteName(), 'dashboard.index');
 
-  andThen(() => {
-    logout();
-  });
+  await logout();
 
-  andThen(() => {
-    assert.equal(currentRouteName(), 'welcome.index');
-  });
+  assert.equal(currentRouteName(), 'welcome.index');
 });
