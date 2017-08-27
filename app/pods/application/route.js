@@ -4,6 +4,7 @@ import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
 const { inject: { service } } = Ember;
 
 export default Ember.Route.extend(ResetScroll, {
+  rollbar: service('rollbar'),
   session: service('session'),
   headData: service(),
   currentUserService: service('current-user'),
@@ -32,6 +33,21 @@ export default Ember.Route.extend(ResetScroll, {
   },
 
   actions: {
+    ereror(reason, transition) {
+      const errors = reason.errors
+      if (errors && errors[0]) {
+        const errorObject = new Ember.Object(errors[0]);
+
+
+        if (errorObject.code === 404) {
+          console.warn('404 occurred', reason, transition);
+          return;
+        }
+      }
+
+      this.get('rollbar').error(reason);
+    },
+
     resetState() {
       this.refresh();
     },
