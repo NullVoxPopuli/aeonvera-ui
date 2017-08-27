@@ -1,0 +1,45 @@
+<div class='layout-row layout-align-space-between-center'>
+  {{page-header text=registration.name}}
+  {{payment-status-badge hasPaid=model.hasPaid owes=model.amountOwed paid=model.amountPaid}}
+</div>
+<div class='layout-row layout-align-space-between-center'>
+  <div>
+    {{registration.danceOrientation}} <br />
+    {{#if hasLevel}}
+      {{registration.levelName}}
+    {{/if}}
+  </div>
+  <div>
+     Registered: {{date-with-format model.registeredAt 'LLL'}}
+     <br />
+     Checked In:
+     {{#if registration.isCheckedIn}}
+      {{date-with-format registration.checkedInAt 'LLL'}}
+    {{else}}
+      No
+    {{/if}}
+  </div>
+</div>
+
+{{registrant-summary/detail-view model=registration}}
+
+<hr />
+
+{{#if model.orders}}
+  {{registrant/orders-summary model=registration.orders}}
+{{else}}
+  {{#if (await registration.orders)}}
+    {{#if deleteRegistration.isIdle}}
+      {{#form/confirm-button
+        action=(perform deleteRegistration)
+        confirmText='Are you sure?'
+        confirmDestructive=true
+        showCancel=true
+      }}
+        Delete
+      {{/form/confirm-button}}
+    {{else}}
+      Deleting...
+    {{/if}}
+  {{/if}}
+{{/if}}

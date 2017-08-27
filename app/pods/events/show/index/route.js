@@ -10,7 +10,7 @@ export default Ember.Route.extend({
         event.get('id'), {
           adapterOptions: {
             query: {
-              include: 'registrations'
+              include: 'registrations.orders.order_line_items.line_item.restraints'
             }
           }
         }),

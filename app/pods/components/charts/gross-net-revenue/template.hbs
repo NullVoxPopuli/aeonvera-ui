@@ -3,7 +3,7 @@
 
   {{c3-chart data=data size=size pie=chartConfig}}
 
-  {{#paper-checkbox value=showUnpaid onChange=(action (mut showUnpaid))}}
-    Show Unpaid ({{to-usd unpaid}})
+  {{#paper-checkbox value=showFees onChange=(action (mut showFees))}}
+    Show Fees ({{to-usd fees}})
   {{/paper-checkbox}}
 </div>

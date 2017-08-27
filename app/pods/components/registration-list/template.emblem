@@ -2,26 +2,18 @@ table.responsive
   thead
     tr
       th Name
-      th Package
       th Level
       th Orientation
       th Owe $
-      / th Paid $
       th Time Registered
 
   tbody
     if registrationsPresent
       each model as |registration|
         tr
-          td
-            link-to 'events.show.registrations.show' registration.id
-              span = registration.name
-          td = registration.packageName
+          td = registration-link model=registration
           td = registration.levelName
           td = registration.danceOrientation
-          /td.payment-status
-          /  = registration.paymentStatus
           td = to-usd registration.amountOwed
-          / td = registration.amountPaid
           td
             = date-with-format registration.registeredAt 'lll'

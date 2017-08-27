@@ -1,0 +1,24 @@
+{{#each model as |order|}}
+  {{#paper-expansion-panel expanded=(is-equal order lastObject) as |panel|}}
+    {{#panel.collapsed class='layout-align-space-between-center'}}
+      {{registrant/orders-summary/expansion-header order=order}}
+      <div class="md-panel-summary"></div>
+
+      {{paper-icon 'keyboard_arrow_down'}}
+    {{/panel.collapsed}}
+
+    {{#panel.expanded as |expanded|}}
+      {{#expanded.header class='layout-row layout-align-space-between-center'}}
+        {{registrant/orders-summary/expansion-header order=order}}
+        <div class="md-panel-summary"></div>
+
+        {{paper-icon 'keyboard_arrow_up'}}
+      {{/expanded.header}}
+
+      {{#expanded.content}}
+        {{registrant/order-summary model=order}}
+      {{/expanded.content}}
+    {{/panel.expanded}}
+
+  {{/paper-expansion-panel}}
+{{/each}}

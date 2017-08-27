@@ -13,16 +13,16 @@ export default class extends Ember.Component {
     total: PropTypes.number.isRequired
   }
 
-  showUnpaid = false;
+  showFees = false;
 
-  @computed('net', 'fees', 'unpaid', 'showUnpaid')
-  data(net, fees, unpaid, showUnpaid) {
+  @computed('net', 'fees', 'unpaid', 'showFees')
+  data(net, fees, unpaid, showFees) {
     const data = [
       ['Net', net],
-      ['Fees', fees]
+      ['Unpaid', unpaid]
     ];
 
-    if (showUnpaid) data.push(['Unpaid', unpaid]);
+    if (showFees) data.push(['Fees', fees]);
 
     return {
       columns: data,
