@@ -21,7 +21,7 @@
     = link-to 'events.show.registrations' event.id
       span Registrations
   = paper-item
-    = link-to 'events.show.unpaid-registrations' event.id
+    = link-to 'events.show.registrations.unpaid' event.id
       span Unpaid Registrations
   = paper-item
     = link-to 'events.show.orders' event.id

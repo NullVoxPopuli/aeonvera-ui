@@ -3600,6 +3600,12 @@ ember-css-transitions@0.1.10:
   dependencies:
     ember-cli-babel "^5.1.6"
 
+ember-custom-actions@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ember-custom-actions/-/ember-custom-actions-1.6.0.tgz#884568b029357ae08cfea02212b8f7b2314eb656"
+  dependencies:
+    ember-cli-babel "^6.0.0"
+
 ember-d3@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ember-d3/-/ember-d3-0.2.0.tgz#cf2c9ae7e024edda9d009dd19de63283bbc35051"

@@ -3,6 +3,9 @@
   .columns.small-6
     = download/csv-modal model=registrations kind='registration' params=paramsForDownload path=path relationships=''
 
+= link-to 'events.show.registrations.deleted'
+  | View Deleted Registrations
+
 = sortable-table columns=columns data=registrations as |registration|
   td = registration-link model=registration
   td = registration.danceOrientation

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
+import { resourceAction, modelAction } from 'ember-custom-actions';
 
 const { isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
@@ -22,10 +23,19 @@ import PaymentStatus from '../mixins/models/payment-status';
 // - isCheckedIn
 import Checkinable from '../mixins/models/checkinable';
 
+// provides:
+// - deletedAt
+// - isDeleted
+import DeletedAt from 'aeonvera/mixins/models/deleted-at';
+
 export default DS.Model.extend(
   Validator,
   PaymentStatus,
+  DeletedAt,
   Checkinable, {
+    undestroy: modelAction('undestroy', { type: 'PUT', pushToStore: true }),
+    getDeleted: resourceAction('deleted', { type: 'GET', pushToStore: true, promiseType: 'array' }),
+
     attendeeName: attr('string'),
     // TODO: create these on the backend:
     attendeeFirstName: attr('string'),

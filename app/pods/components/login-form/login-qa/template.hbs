@@ -1,0 +1,43 @@
+{{#paper-expansion-panel as |panel|}}
+  {{#panel.collapsed}}
+    <div class="md-panel-summary">Why do I need to make an account?</div>
+    {{paper-icon "keyboard_arrow_down"}}
+  {{/panel.collapsed}}
+
+  {{#panel.expanded as |expanded|}}
+    {{#expanded.header}}
+      <div class="md-panel-summary">Why do I need to make an account?</div>
+      {{paper-icon "keyboard_arrow_up"}}
+    {{/expanded.header}}
+
+    {{#expanded.content}}
+      It helps the event organizers know who you are,
+      and enables them to get in contact with you.
+      It also saves you from repeating information on
+      other events on this site and enables you to
+      track your registration and payment history.
+    {{/expanded.content}}
+  {{/panel.expanded}}
+{{/paper-expansion-panel}}
+
+{{#paper-expansion-panel as |panel|}}
+  {{#panel.collapsed}}
+    <div class="md-panel-summary">Are my credentials secure?</div>
+    {{paper-icon "keyboard_arrow_down"}}
+  {{/panel.collapsed}}
+
+  {{#panel.expanded as |expanded|}}
+    {{#expanded.header}}
+      <div class="md-panel-summary">Are my credentials secure?</div>
+      {{paper-icon "keyboard_arrow_up"}}
+    {{/expanded.header}}
+
+    {{#expanded.content}}
+      Yes. All communication is sent over a secure connection
+      to the server, and at no point does aeonvera actually
+      know what your password is.
+      The database stores passwords as hashes,
+      so there is no way to unencrypt your password.
+    {{/expanded.content}}
+  {{/panel.expanded}}
+{{/paper-expansion-panel}}

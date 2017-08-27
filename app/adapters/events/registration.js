@@ -1,7 +1,6 @@
 import ApplicationAdapter from 'aeonvera/adapters/application';
 
 export default ApplicationAdapter.extend({
-
   // WARNING: this is a private api that is being overridden
   //          be careful with upgrades
   urlForDeleteRecord(id, modelName, snapshot) {

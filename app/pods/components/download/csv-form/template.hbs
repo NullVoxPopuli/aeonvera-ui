@@ -1,0 +1,23 @@
+<div class='layout-row layout-align-space-between'>
+  <h3>Select Columns</h3>
+
+  {{#paper-button
+    raised=true
+    onClick=(action 'download')
+  }}
+    Download CSV
+  {{/paper-button}}
+</div>
+<br />
+
+<div class='layout-row layout-wrap'>
+  {{#each modelAttributes as |attribute|}}
+    <div class='flex-33'>
+      {{#paper-checkbox
+        value=attribute.included
+        onChange=(action (mut attribute.included))}}
+        {{download/csv-form/attribute-name name=attribute.name}}
+      {{/paper-checkbox}}
+    </div>
+  {{/each}}
+</div>

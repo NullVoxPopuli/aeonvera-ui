@@ -1,4 +1,6 @@
-= page-header text='Unpaid Registrations'
+.layout-row.layout-align-space-between
+  = page-header text='Unpaid Registrations'
+  = download/csv-modal model=registrations kind='registration' params=paramsForDownload path=path relationships=''
 
 table
   thead: tr
@@ -11,7 +13,7 @@ table
     th Registered At
   tbody
     if (is-present model)
-      each model as |registration|
+      each registrations as |registration|
         tr
           td = registration-link model=registration
           td = registration.danceOrientation

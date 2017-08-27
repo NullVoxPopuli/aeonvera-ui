@@ -7,7 +7,6 @@ export default ApplicationSerializer.extend({
 
     const paymentToken = json.data.attributes['payment-token'];
 
-    console.log(json.data);
     if (paymentToken) {
       json.payment_token = paymentToken;
     }

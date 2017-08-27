@@ -1,0 +1,32 @@
+<div class='{{errorContainerClass}} alert-box alert'>
+  <a class='close' onClick={{action 'hideError'}} href='#'>&times;</a>
+  <span class='message'>{{errorMessage}}</span>
+  <br />
+</div>
+
+{{#paper-form onSubmit=(action 'authenticate') as |form|}}
+  <div class='layout-column'>
+    {{form.input
+      label='Email'
+      type='email'
+      value=identification
+      onChange=(action (mut identification))
+    }}
+
+    {{form.input
+      label='Password'
+      type='password'
+      value=password
+      onChange=(action (mut password))
+    }}
+
+    <div class='layout-row layout-align-space-between-end'>
+      <a onClick={{route-action 'passwordReset'}}>Forgot your password?</a>
+
+      {{#form.submit-button raised=true primary=true}}Login{{/form.submit-button}}
+    </div>
+  </div>
+{{/paper-form}}
+
+<br  />
+{{login-form/login-qa}}

@@ -6,7 +6,9 @@ export default Ember.Route.extend({
     const event = this.modelFor('events.show');
     const eventId = event.get('id');
 
-    const registrations = this.modelFor('events.show.registrations');
+    const registrations = this.store.query('events/registration', {
+      event_id: event.get('id')
+    });
 
     return {
       registrations: registrations,

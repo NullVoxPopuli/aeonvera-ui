@@ -1,0 +1,12 @@
+<div class='layout-row'>
+  {{page-header text='Deleted Registrations'}}
+  {{!-- {{download/csv-modal model=registrations kind='registration' params=paramsForDownload path=path relationships=''}} --}}
+</div>
+
+{{#sortable-table columns=columns data=registrations as |registration|}}
+  <td>{{registration-link model=registration}}</td>
+  <td>{{registration.danceOrientation}}</td>
+  <td>{{registration.levelName}}</td>
+  <td>{{registration.paymentStatus}}</td>
+  <td>{{date-with-format registration.registeredAt 'LLL'}}</td>
+{{/sortable-table}}
