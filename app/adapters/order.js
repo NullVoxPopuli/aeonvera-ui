@@ -7,8 +7,10 @@ export default ApplicationAdapter.extend({
   urlForDeleteRecord(id, modelName, snapshot) {
     let url = this._buildURL(modelName, id);
 
-    if (snapshot.adapterOptions.payment_token) {
-      url += `?payment_token=${snapshot.adapterOptions.payment_token}`;
+    const adapterOptions = snapshot.adapterOptions;
+
+    if (adapterOptions && adapterOptions.payment_token) {
+      url += `?payment_token=${adapterOptions.payment_token}`;
     }
 
     return url;
@@ -16,7 +18,8 @@ export default ApplicationAdapter.extend({
 
   urlForUpdateRecord(id, modelName, snapshot) {
     let url = this._buildURL(modelName, id);
-    const paymentToken = snapshot.adapterOptions.payment_token;
+    const adapterOptions = snapshot.adapterOptions;
+    const paymentToken = adapterOptions && adapterOptions.payment_token;
 
     if (paymentToken) {
       url += `?payment_token=${paymentToken}`;

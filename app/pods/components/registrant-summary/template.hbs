@@ -25,21 +25,17 @@
 
 <hr />
 
-{{#if model.orders}}
-  {{registrant/orders-summary model=registration.orders}}
+{{registrant/orders-summary model=registration.orders}}
+
+{{#if deleteRegistration.isIdle}}
+  {{#form/confirm-button
+    action=(perform deleteRegistration)
+    confirmText='Are you sure?'
+    confirmDestructive=true
+    showCancel=true
+  }}
+    Delete Registration
+  {{/form/confirm-button}}
 {{else}}
-  {{#if (await registration.orders)}}
-    {{#if deleteRegistration.isIdle}}
-      {{#form/confirm-button
-        action=(perform deleteRegistration)
-        confirmText='Are you sure?'
-        confirmDestructive=true
-        showCancel=true
-      }}
-        Delete
-      {{/form/confirm-button}}
-    {{else}}
-      Deleting...
-    {{/if}}
-  {{/if}}
+  Deleting...
 {{/if}}
