@@ -18,7 +18,7 @@ span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 
 .layout-column.layout-align-center-stretch
   = loading-content promise=registrations
-    = paper-data-table sortProp='checkedInAt' sortDir='desc' as |table|
+    = paper-data-table sortProp='name' sortDir='asc' as |table|
       = table.head as |head|
         = head.column sortProp='name'
           | Name

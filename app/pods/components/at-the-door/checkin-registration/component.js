@@ -20,7 +20,7 @@ export default Ember.Component.extend({
         event_id: eventId
       };
 
-      this.get('ajax').PUT(url, data).then(data => {
+      return this.get('ajax').PUT(url, data).then(data => {
         this.get('store').pushPayload(data);
         this.get('flashMessages').success(`${name} has been checked in.`);
       }, error => {

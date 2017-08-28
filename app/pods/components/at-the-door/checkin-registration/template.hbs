@@ -9,7 +9,7 @@
 </td>
 
 <td>
-  {{#each orders as |order|}}
+  {{#each model.orders as |order|}}
     <div class='layout-row'>
       <div class='flex'>
         <small>{{date-with-format order.createdAt 'lll'}}</small>
@@ -37,11 +37,11 @@
   {{#if model.isCheckedIn}}
     {{date-with-format model.checkedInAt 'lll'}}
   {{else}}
-    {{#paper-button
-      onClick='checkin'
+    {{ember-paper/async-button
+      onClick=(action 'checkin')
       raised=true
+      loadingMessage='Checking in...'
+      label='Check in'
       primary=true}}
-      Check in
-    {{/paper-button}}
   {{/if}}
 </td>
