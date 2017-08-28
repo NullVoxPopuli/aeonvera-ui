@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   model: null,
 
   // managed by this component
-  tagName: '',
+  tagName: 'tr',
 
   actions: {
     checkin() {

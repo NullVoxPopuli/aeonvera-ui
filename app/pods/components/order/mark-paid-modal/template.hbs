@@ -13,6 +13,7 @@
       <input type='checkbox' onchange={{action 'absorbFeesClick'}} />
       <label>Absorb Service Fee</label>
 
+      {{order.totalInDollars}} -- {{order.total}}
       <label>Amount
         <a class='right' {{action 'setToOrderTotal'}}>Set to order total</a>
       </label>

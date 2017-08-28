@@ -17,5 +17,15 @@ span {{percentCheckedIn}}% |&nbsp;
 span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 
 .layout-column.layout-align-center-stretch
-  = sortable-table class='width-of-100' columns=columns data=registrations as |registration|
-    = at-the-door/checkin-registration model=registration
+  = loading-content promise=registrations
+    = paper-data-table sortProp='checkedInAt' sortDir='desc' as |table|
+      = table.head as |head|
+        = head.column sortProp='name'
+          | Name
+        = head.column
+          | Purchases
+        = head.column sortProp='checkedInAt'
+          | Checked in at
+      = table.body as |body|
+        = each (sort-by table.sortDesc registrations) as |registration|
+          = at-the-door/checkin-registration model=registration

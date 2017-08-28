@@ -1,0 +1,5 @@
+{{#if (await promise)}}
+  {{yield}}
+{{else}}
+  <div class='ubuntu-loader' style="color: black;"></div>
+{{/if}}

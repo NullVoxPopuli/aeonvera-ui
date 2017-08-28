@@ -9,12 +9,6 @@ export default class extends Ember.Component {
 
   activeRegistrant = null;
 
-  columns = [
-    { property: 'attendeeName', title: 'Name' },
-    { property: '', title: 'Purchases', sort: false },
-    { property: 'checkedInAt', title: 'Checked in at' }
-  ];
-
   @computed('model', 'queryText', 'showOnlyNonCheckedIn', 'showOnlyThoseWhoOweMoney')
   registrations(model, query, onlyNonCheckedIn, onlyOweMoney) {
     const queryPresent = Ember.isPresent(query);
@@ -68,6 +62,9 @@ export default class extends Ember.Component {
   actions = {
     setActiveRegistrant(registration) {
       this.set('activeRegistrant', registration);
-    }
+    },
+    loadNext() {
+     this.get('pagedRegistrations').loadNextPage();
+   }
   }
 }

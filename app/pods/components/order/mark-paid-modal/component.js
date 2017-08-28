@@ -29,7 +29,7 @@ export default class extends Ember.Component {
   notes = '';
   absorbFees = false;
 
-  @alias('order.total') orderTotal;
+  @alias('order.totalInDollars') orderTotal;
 
   @computed('orderTotal', 'cashOrCheckAmount')
   amount = {
