@@ -15,10 +15,6 @@ footer
         ul.inline-list
           / li.hide-for-small.small: span Questions?
           li: span Questions?
-          li
-            a.js-gitter-toggle-chat-button
-              = fa-icon 'comment'
-            .hide-for-small Chat
 
           li
             = links/mail-support-icon-link
