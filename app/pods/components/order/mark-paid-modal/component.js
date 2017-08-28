@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 import { alias } from 'ember-decorators/object/computed';
@@ -7,10 +7,13 @@ import { alias } from 'ember-decorators/object/computed';
 const { isPresent } = Ember;
 
 export default class extends Ember.Component {
+  static propTypes = {
+    order: PropTypes.EmberObject.isRequired,
+    showOrder: PropTypes.bool
+  };
+
   @service('authenticated-ajax') ajax;
 
-  // passed in
-  order = null;
   showOrder = false;
 
   // set in template via radio buttons
