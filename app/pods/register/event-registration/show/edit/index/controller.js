@@ -20,6 +20,13 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
   levelSort: ['name:asc'],
   packageSort: ['name:asc'],
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    this.set('selectedLevel', null);
+    this.set('selectedPackage', null);
+  },
+
   @alias('model.event') event: null,
   @alias('model.registration') registration: null,
   @sort('event.packages', 'packageSort') packages: null,

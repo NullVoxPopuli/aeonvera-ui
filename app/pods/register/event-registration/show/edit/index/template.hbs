@@ -10,7 +10,7 @@
       }}
 
       {{register/event-registration-form/package-select
-        selectedPackage=selectedPackage
+        selectedId=(readonly selectedPackage.id)
         packages=packages
         onPackageSelect=(action 'didUpdateSelectedPackage')
         logoUrl=event.logoUrlThumb

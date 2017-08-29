@@ -13,16 +13,14 @@ export default Ember.Component.extend({
 
   attributeBindings: ['dataScrollRef:data-scroll-ref'],
   dataScrollRef: 'package-select',
-
-  @oneWay('selectedPackage.id') selectedId: null,
+  selectedId: null,
 
   actions: {
-    didChoosePackage(id) {
-      RSVP.resolve(this.get('packages')).then(packages => {
-        const selection = packages.find(p => id && p.get('id') && p.get('id') === id);
+    async didChoosePackage(id) {
+      const packages = await RSVP.resolve(this.get('packages'));
+      const selection = packages.find(p => id && p.get('id') && p.get('id') === id);
 
-        this.sendAction('onPackageSelect', selection);
-      });
+      this.sendAction('onPackageSelect', selection);
     }
   }
 });
