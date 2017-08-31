@@ -11,7 +11,7 @@ table
     th Offered Sizes
     / image
     th
-  tbody
+  tbody data-test-shirts-list=true
     if (is-present model)
       each model as |shirt|
         tr

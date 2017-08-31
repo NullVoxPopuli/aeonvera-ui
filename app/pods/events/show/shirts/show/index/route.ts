@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+export default class extends Ember.Route {
   model() {
     return this.modelFor('events.show.shirts.show');
   }
-});
+}

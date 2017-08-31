@@ -1,0 +1,7 @@
+= model/edit-header title=model.name editPath='events.show.packages.show.edit'
+
+h4 Registrations with this Package
+= sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
+  td = registration-link model=(hash id=orderLineItem.order.registration.id name=orderLineItem.order.userName host=(hash id=orderLineItem.order.host.id) )
+  td = orderLineItem.order.registration.danceOrientation
+  td = date-with-format registration.registeredAt 'LLL'

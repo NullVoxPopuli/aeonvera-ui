@@ -1,3 +1,13 @@
 import FactoryGuy from 'ember-data-factory-guy';
 
-FactoryGuy.define('shirt', {});
+FactoryGuy.define('shirt', {
+  default: {
+    sizes: []
+  },
+
+  traits: {
+    withPurchases: {
+      orderLineItems: FactoryGuy.hasMany('order-line-item', 10)
+    }
+  }
+});

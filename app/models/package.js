@@ -21,6 +21,7 @@ export default Purchasable.extend(IsLineItem, {
 
   event: DS.belongsTo('event'),
   registrations: DS.hasMany('registration'),
+  orderLineItems: DS.hasMany('order-line-item', { async: false }),
 
   @computed('numberOfLeads', 'numberOfFollows')
   totalRegistrants(numberOfLeads, numberOfFollows) {
