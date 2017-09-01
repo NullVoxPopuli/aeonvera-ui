@@ -10,27 +10,40 @@
 
   <div class='row'>
     <div class='columns medium-6'>
-      <input type='checkbox' onchange={{action 'absorbFeesClick'}} />
-      <label>Absorb Service Fee</label>
+      {{#paper-checkbox value=order.isFeeAbsorbed onChange=(action (mut order.isFeeAbsorbed))}}
+        Absorb Service Fee
+      {{/paper-checkbox}}
 
-      <label>Amount
-        <a class='right' {{action 'setToOrderTotal'}}>Set to order total</a>
-      </label>
-      {{form/dollar-field
-        value=cashOrCheckAmount
-        placeholder=amount
+      {{paper-input
+        type='number'
+        label='Order Total'
+        value=(or cashOrCheckAmount orderTotal)
+        onChange=(action (mut cashOrCheckAmount))
       }}
 
       {{#if (is-equal paymentMethod paymentMethods.CHECK)}}
-        <label>Check Number</label>
-        {{input type='text' value=checkNumber}}
+        {{paper-input
+          type='text'
+          label='Check Number'
+          value=(readonly checkNumber)
+          onChange=(action (mut checkNumber))
+        }}
       {{/if}}
 
-      <label>Email for Receipt</label>
-      {{input type='email' value=order.checkoutEmail}}
+      {{paper-input
+        type='email'
+        label='Email for Receipt'
+        value=(readonly order.checkoutEmail)
+        onChange=(action (mut order.checkoutEmail))
+      }}
 
-      <label>Notes</label>
-      {{input value=notes}}
+      {{paper-input
+        textarea=true
+        label='Notes'
+        value=(readonly notes)
+        onChange=(action (mut notes))
+        passThru=(hash rows=3 maxRows=5)
+      }}
     </div>
 
     <div class='columns medium-6'>

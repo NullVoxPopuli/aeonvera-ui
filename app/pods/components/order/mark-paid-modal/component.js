@@ -13,6 +13,7 @@ export default class extends Ember.Component {
   };
 
   @service('authenticated-ajax') ajax;
+  @service('flash-notification') flash;
 
   showOrder = false;
 
@@ -34,15 +35,15 @@ export default class extends Ember.Component {
 
   @alias('order.totalInDollars') orderTotal;
 
-  @computed('orderTotal', 'cashOrCheckAmount')
+  @computed('orderTotal', 'cashOrCheckAmount', 'order.isFeeAbsorbed')
   amount = {
     get(orderTotal, enteredAmount) {
       const result = isPresent(enteredAmount) ? enteredAmount : orderTotal;
-
+      console.log(orderTotal, enteredAmount, result);
       return parseFloat(result);
     },
 
-    set(key, value) {
+    set(value) {
       this.set('cashOrCheckAmount', value);
     }
   };
@@ -59,17 +60,6 @@ export default class extends Ember.Component {
   };
 
   @action
-  setToOrderTotal() {
-    this.set('cashOrCheckAmount', this.get('orderTotal'));
-  }
-
-  @action
-  absorbFeesClick() {
-    this.set('absorbFees', !this.get('absorbFees'));
-    this.get('order').set('forceAbsorbFee', this.get('absorbFees'));
-  }
-
-  @action
   markPaid() {
     const id = this.get('order.id');
     const url = '/api/orders/' + id + '/mark_paid?include=registration';
@@ -83,13 +73,13 @@ export default class extends Ember.Component {
     this.get('ajax').PUT(url, data).then(data => {
       this.get('store').pushPayload(data);
       this.sendAction('afterPayment');
-      this.get('flashMessages').success('Order was successfully marked as paid.');
+      this.get('flash').success('Order was successfully marked as paid.');
       Ember.$('.close-reveal-modal').click();
     }, error => {
       const json = JSON.parse(error.responseText);
       const errors = json.errors;
 
-      this.get('flashMessages').alert(errors);
+      this.get('flash').alert(errors);
     });
   }
 
@@ -110,11 +100,11 @@ export default class extends Ember.Component {
     order.asPromiseObject().then(order => {
       order.save().then(record => {
         this.sendAction('afterPayment');
-        this.get('flashMessages').success('Order was successfully marked as paid.');
+        this.get('flash').success('Order was successfully marked as paid.');
         Ember.$('.close-reveal-modal').click();
       }, error => {
         // model's error object is used.
-        this.get('flashMessages').alert(error);
+        this.get('flash').alert(error);
         this.set('showPaymentInProgress', false);
       });
     });
