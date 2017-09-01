@@ -32,9 +32,19 @@ export default Ember.Controller.extend({
       lineItem: competition
     });
 
-    const savedOrderLineItem = yield orderLineItem.save();
+    try {
+      const savedOrderLineItem = yield orderLineItem.save();
 
-    this.get('order.orderLineItems').pushObject(orderLineItem);
+      this.get('order.orderLineItems').pushObject(orderLineItem);
+    } catch (e) {
+      const code = e.errors && e.errors[0] && e.errors[0].code;
+
+      // find a better way to do this...
+      if (!code || code < 500) return;
+
+      this.get('flash').error('An error occurred, please contact support.');
+      this.get('rollbar').error(e);
+    }
   },
 
   @dropTask
