@@ -7,7 +7,9 @@
     Resend Receipt
   {{/paper-button}}
 
-  {{order/mark-paid-modal accent=true order=model}}
+  {{#unless isPaid}}
+    {{order/mark-paid-modal accent=true order=model}}
+  {{/unless}}
 
   {{#if canBeDeleted}}
     {{#form/confirm-button

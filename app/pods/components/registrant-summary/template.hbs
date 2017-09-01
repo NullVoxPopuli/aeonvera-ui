@@ -27,15 +27,17 @@
 
 {{registrant/orders-summary model=registration.orders}}
 
-{{#if deleteRegistration.isIdle}}
-  {{#form/confirm-button
-    action=(perform deleteRegistration)
-    confirmText='Are you sure?'
-    confirmDestructive=true
-    showCancel=true
-  }}
-    Delete Registration
-  {{/form/confirm-button}}
-{{else}}
-  Deleting...
+{{#if (not hasOrders)}}
+  {{#if deleteRegistration.isIdle}}
+    {{#form/confirm-button
+      action=(perform deleteRegistration)
+      confirmText='Are you sure?'
+      confirmDestructive=true
+      showCancel=true
+    }}
+      Delete Registration
+    {{/form/confirm-button}}
+  {{else}}
+    Deleting...
+  {{/if}}
 {{/if}}
