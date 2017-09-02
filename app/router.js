@@ -151,10 +151,14 @@ Router.map(function() {
         this.route('housing', function() {
           this.route('requests', function() {
             this.route('new');
+            this.route('show', { path: ':housingRequestId' }, function() {
+              this.route('edit');
+            });
           });
 
           this.route('provisions', function() {
             this.route('new');
+            this.route('edit', { path: 'housingProvisionId' });
           });
         });
 

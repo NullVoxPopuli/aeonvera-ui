@@ -26,11 +26,19 @@
     {{else}}
       {{request.name}}
     {{/if}}
+    <br />
+
+    {{#link-to 'events.show.housing.requests.show.edit' eventId request.id}}
+      Edit
+    {{/link-to}}
   </td>
+
   <td>
     {{form/provision-select request=request provisions=provisions}}
   </td>
+
   <td>{{request.registration.hasPaid}}</td>
+
   <td>
     {{#if request.allergicToPets}}
       Pets
@@ -62,7 +70,11 @@
   <td>{{request.notes}}</td>
   <td>{{date-with-format request.registration.registeredAt 'LLL'}}</td>
   <td>
-    {{#form/confirm-button action='delete' target=request preConfirmClasses='alert-color'}}
+    {{#form/confirm-button
+      action='delete'
+      target=request
+      confirmDestructive=true
+      preConfirmClasses='alert-color'}}
       Delete
     {{/form/confirm-button}}
   </td>
