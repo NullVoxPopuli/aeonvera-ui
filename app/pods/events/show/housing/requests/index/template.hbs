@@ -21,7 +21,7 @@
 
 {{#sortable-table columns=columns data=requests as |request| }}
   <td>
-    {{#if (is-present request.registration.attendeeName)}}
+    {{#if (is-present request.registration.name)}}
       {{registration-link model=request.registration}}
     {{else}}
       {{request.name}}
