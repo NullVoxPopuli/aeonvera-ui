@@ -9,7 +9,8 @@ moduleForModel('host', 'Unit | Model | host', {
     'model:host',
     'model:event',
     'model:organization',
-    'model:integration'
+    'model:integration',
+    'model:opening-tier'
   ],
   beforeEach: function() {
     manualSetup(this.container);

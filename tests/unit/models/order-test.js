@@ -11,6 +11,7 @@ moduleForModel('order', 'Unit | Model | order', {
     'model:event',
     'model:lesson',
     'model:discount',
+    'model:opening-tier',
     'model:package',
     'model:restraint',
     'model:order-line-item',
