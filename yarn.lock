@@ -9204,11 +9204,11 @@ toposort@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.3.tgz#f02cd8a74bd8be2fc0e98611c3bacb95a171869c"
 
-torii@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/torii/-/torii-0.9.5.tgz#1445a4448204780c12e713d1d2bb706187a6d1a6"
+torii@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/torii/-/torii-0.9.6.tgz#311e79c5e80979e337754dfda7fd80e35a6347e0"
   dependencies:
-    ember-cli-babel "^6.0.0"
+    ember-cli-babel "^6.3.0"
 
 tough-cookie@~2.2.0:
   version "2.2.2"

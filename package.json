@@ -135,7 +135,7 @@
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
     "paper-data-table": "^0.1.4",
-    "torii": "^0.9.5",
+    "torii": "^0.9.6",
     "typescript": "^2.4.2"
   },
   "dependencies": {
