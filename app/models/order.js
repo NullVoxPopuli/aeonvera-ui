@@ -3,7 +3,6 @@ import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 import { alias, not } from 'ember-decorators/object/computed';
 
-import Validator from '../mixins/model-validator';
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
 const { isPresent, isBlank, inject } = Ember;
@@ -11,7 +10,7 @@ const { attr, belongsTo, hasMany, Model } = DS;
 
 const CENTS_IN_A_DOLLAR = 100;
 
-export default Model.extend(Validator, PriceCalculation, {
+export default Model.extend(PriceCalculation, {
   PAYPAL: 'PayPal',
   CHECK: 'Check',
   CASH: 'Cash',
@@ -116,25 +115,5 @@ export default Model.extend(Validator, PriceCalculation, {
         stripeData: stripeData
       });
     }
-  },
-
-  validations: {
-    registration: {
-      custom: {
-        message: 'Attendance must be set when registering for an event',
-        validation(key, value, model) {
-          const isEvent = model.get('host.isEvent');
-
-          if (isEvent) {
-            // TODO: move to parent component of the cart
-            // let registration = model.get('registration.id');
-            return Ember.isPresent(value);
-          }
-
-          return true;
-        }
-      }
-    }
   }
-
 });

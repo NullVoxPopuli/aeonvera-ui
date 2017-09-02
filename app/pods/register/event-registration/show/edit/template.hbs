@@ -5,19 +5,25 @@
     {{/link-to}}
 
     {{#if hasHousing}}
-      {{#link-to 'register.event-registration.show.edit.housing' model disabled=model.registration.isNew}}
+      {{#link-to 'register.event-registration.show.edit.housing' model
+        disabled=model.registration.isNew
+        data-test-registration-top-nav='housing'}}
         Housing
       {{/link-to}}
     {{/if}}
 
     {{#if hasShirts}}
-      {{#link-to 'register.event-registration.show.edit.shirts' model disabled=model.registration.isNew}}
+      {{#link-to 'register.event-registration.show.edit.shirts' model
+        disabled=model.registration.isNew
+        data-test-registration-top-nav='shirts'}}
         Shirts
       {{/link-to}}
     {{/if}}
     {{log model}}
     {{#if hasCompetitions}}
-      {{#link-to 'register.event-registration.show.edit.competitions' model disabled=model.registration.isNew}}
+      {{#link-to 'register.event-registration.show.edit.competitions' model
+        disabled=model.registration.isNew
+        data-test-registration-top-nav='competitions'}}
         Competitions
       {{/link-to}}
     {{/if}}
