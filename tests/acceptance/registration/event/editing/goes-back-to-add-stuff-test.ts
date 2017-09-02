@@ -24,9 +24,10 @@ async function preExistingRegistration(expect) {
   authenticateSession();
 
   // event stuff
-  const packages =  makeList('package', 2);
+  const packages = makeList('package', 2);
+  const competition = make('competition');
   const openingTier = make('pricing-tier', { date: new Date(2016, 7) });
-  const event = make('event', { isEvent: true, openingTier, packages });
+  const event = make('event', { isEvent: true, openingTier, packages, competitions: [competition] });
 
   // registration stuff
   const orderLineItem = make('order-line-item', { price: 50, quantity: 1, lineItem: packages.get(0) })
@@ -50,6 +51,8 @@ async function preExistingRegistration(expect) {
   expect(currentRouteName()).to.equal('register.event-registration.show.index');
 }
 
+// skipped because for some reason the test is set up wrong,
+// and loading the community registration route
 skip('can go back to add a competition', withChai(async expect => {
   await preExistingRegistration(expect);
 
@@ -63,4 +66,6 @@ skip('can go back to add a competition', withChai(async expect => {
 
   await click(topNavCompetitions);
   expect(currentRouteName()).to.equal('register.event-registration.show.edit.competitions');
+
+
 }));
