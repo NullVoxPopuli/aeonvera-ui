@@ -3740,6 +3740,13 @@ ember-get-config@0.2.1:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^5.1.6"
 
+ember-get-config@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.2.tgz#54d96fae87bcd75a3dd710113ed1db3afbe4fe9d"
+  dependencies:
+    broccoli-file-creator "^1.1.1"
+    ember-cli-babel "^5.1.6"
+
 ember-getowner-polyfill@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.0.1.tgz#f60a31d25d642461dac4b4746184afaf7f5084ae"
@@ -3903,12 +3910,20 @@ ember-promise-helpers@^1.0.3:
   dependencies:
     ember-cli-babel "^5.1.5"
 
-"ember-prop-types@>=2.0.0 <4.0.0", ember-prop-types@^3.13.0:
+"ember-prop-types@>=2.0.0 <4.0.0":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-3.13.0.tgz#bae82bdf78ad297a5c6de27f4b20553dc311500e"
   dependencies:
     ember-cli-babel "^5.1.8"
     ember-get-config "0.2.1"
+    npm-install-security-check "^1.0.0"
+
+ember-prop-types@^3.14.1:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-3.14.1.tgz#4baf1aa9bec662e205cd1f5e424314da62cee921"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-get-config "^0.2.2"
     npm-install-security-check "^1.0.0"
 
 ember-qunit@^2.1.3:
