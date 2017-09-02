@@ -28,16 +28,14 @@
     {{/if}}
     <br />
 
-    {{#link-to 'events.show.housing.requests.show.edit' eventId request.id}}
-      Edit
-    {{/link-to}}
+    {{request.registration.paymentStatus}}
+    <br />
+    <em>{{request.notes}}</em>
   </td>
 
   <td>
     {{form/provision-select request=request provisions=provisions}}
   </td>
-
-  <td>{{request.registration.hasPaid}}</td>
 
   <td>
     {{#if request.allergicToPets}}
@@ -67,9 +65,13 @@
       No, {{request.transportationCapacity}}
     {{/if}}
   </td>
-  <td>{{request.notes}}</td>
   <td>{{date-with-format request.registration.registeredAt 'LLL'}}</td>
   <td>
+    {{#paper-button
+      raised=true
+      onClick=(transition-to 'events.show.housing.requests.show.edit' eventId request.id)}}
+      Edit
+    {{/paper-button}}
     {{#form/confirm-button
       action='delete'
       target=request
