@@ -12,6 +12,7 @@ export default Ember.Component.extend({
   },
   store: Ember.inject.service('store'),
   cart: Ember.inject.service('order-cart'),
+  flashMessages: Ember.inject.service('flash-notification'),
   email: Ember.computed.oneWay('cart.userEmail'),
 
   // Set when in the process of paying / waiting on stripe.
