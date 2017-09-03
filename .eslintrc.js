@@ -49,6 +49,11 @@ module.exports = {
     "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 3}],
     // http://eslint.org/docs/rules/newline-before-return
     "newline-before-return": 0,
+    // https://eslint.org/docs/2.13.1/rules/no-magic-numbers#ignorearrayindexes
+    "no-magic-numbers": ["error", { "ignoreArrayIndexes": true, "ignore": [0, 1] }],
+    // I still want to know what variables are, so documentation doesn't need to be referenced
+    // https://eslint.org/docs/rules/no-unused-vars#argsignorepattern
+    'no-unused-vars': ["error", { "argsIgnorePattern": "^_" }],
     "eol-last": ["error", "always"],
     "indent": ["error", 2],
     "no-mixed-spaces-and-tabs": "error",
@@ -72,29 +77,12 @@ module.exports = {
      "no-undef": 0,
 
     // TEMPORARY - these should all be re-enabled
-    "no-magic-numbers": 0,
-    "no-undefined": 0,
-    "no-empty-function": 0,
     "no-alert": 0,
-    "radix": 0,
-    "prefer-const": 0,
     "one-var": 0,
     "valid-jsdoc": 0,
-    "newline-per-chained-call": 0,
-    "no-multi-str": 0,
-    "no-negated-condition": 0,
-    "no-use-before-define": 0,
-    "no-bitwise": 0,
-    "no-return-assign": 0,
-    "no-param-reassign": 0,
     "no-ternary": 0,
-    "no-confusing-arrow": 0,
-    "consistent-this": 0,
-    "no-nested-ternary": 0,
-    "consistent-return": 0,
-    "no-unused-vars": 0, // laziness :-(
     "camelcase": 0, // cause of rails ids
-    "complexity": ["warn", 2],
+    "complexity": ["warn", 4],
     "no-shadow": 0,
     "no-console": 0, // really? shame on me.
     "no-undef": 0, // esp this one -- renabled
@@ -102,7 +90,5 @@ module.exports = {
     "prefer-rest-params": 0,
     "prefer-reflect": 0,
     "array-callback-return": 0, // router.js?
-    "no-eq-null": 0, // use === instead of ==
-    "eqeqeq": 0, // != instead of !==
   }
 };
