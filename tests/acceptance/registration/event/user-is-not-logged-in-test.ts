@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import { test, skip } from 'ember-qunit';
 import { withChai } from 'ember-cli-chai/qunit';
-import testSelector from 'ember-test-selectors';
 
 import {
   make, makeList, build,
@@ -32,7 +31,7 @@ test('can navigate from upcoming events', withChai(async expect => {
   await visit('/upcoming-events');
 
   const upcomingEvent = upcomingEvents.get(0);
-  const linkSelector = testSelector('upcoming-event-id', upcomingEvent.id);
+  const linkSelector = `[data-test-upcoming-event-id="${upcomingEvent.id}"]`;
   const link = find(linkSelector);
   const text = link.text();
 
@@ -40,5 +39,5 @@ test('can navigate from upcoming events', withChai(async expect => {
 
   await click(linkSelector);
 
-  expect(currentRouteName()).to.equal('register.event-registration.must-login')
+  expect(currentRouteName()).to.equal('register.event-registration.must-login');
 }));

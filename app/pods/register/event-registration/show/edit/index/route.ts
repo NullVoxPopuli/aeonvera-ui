@@ -5,18 +5,23 @@ import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
 const { isBlank } = Ember;
 
-export default class extends Ember.Route {
+export default Ember.Route.extend({
   model() {
     return this.modelFor('register.event-registration.show');
-  }
+  },
 
-  resetController(controller, isExiting, transition) {
-    if (isExiting) {
+  setupController(controller: Ember.Controller, model: any) {
+    const registration = model.registration;
+    const shouldClear = registration.get('isNew') && controller.get('registration');
+
+    if (shouldClear) {
       controller.set('selectedPackage', null);
       controller.set('selectedLevel', null);
       controller.set('order', null);
       controller.set('registration', null);
       controller.set('model', null);
     }
+
+    this._super(controller, model);
   }
-}
+});

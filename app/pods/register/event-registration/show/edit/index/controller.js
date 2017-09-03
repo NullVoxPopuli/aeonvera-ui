@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 
-import { computed } from 'ember-decorators/object';
+import { computed, readOnly } from 'ember-decorators/object';
 import { alias, oneWay, sort } from 'ember-decorators/object/computed';
 
 import { dropTask } from 'ember-concurrency-decorators';

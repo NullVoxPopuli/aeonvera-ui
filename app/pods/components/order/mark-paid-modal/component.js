@@ -35,12 +35,14 @@ export default class extends Ember.Component {
 
   @alias('order.totalInDollars') orderTotal;
 
-  @computed('orderTotal', 'cashOrCheckAmount', 'order.isFeeAbsorbed')
+  @computed('cashOrCheckAmount', 'order.subTotal', 'order.total', 'order.isFeeAbsorbed')
   amount = {
-    get(orderTotal, enteredAmount) {
-      const result = isPresent(enteredAmount) ? enteredAmount : orderTotal;
-      console.log(orderTotal, enteredAmount, result);
-      return parseFloat(result);
+    get(enteredAmount, subTotal, total, feeAbsorbed) {
+      if (isPresent(enteredAmount)) return parseFloat(enteredAmount);
+
+      if (feeAbsorbed) return parseFloat(subTotal);
+
+      return parseFloat(total);
     },
 
     set(value) {
@@ -60,7 +62,7 @@ export default class extends Ember.Component {
   };
 
   @action
-  markPaid() {
+  async markPaid() {
     const id = this.get('order.id');
     const url = '/api/orders/' + id + '/mark_paid?include=registration';
     const data = {
@@ -70,21 +72,22 @@ export default class extends Ember.Component {
       notes: this.get('notes')
     };
 
-    this.get('ajax').PUT(url, data).then(data => {
-      this.get('store').pushPayload(data);
-      this.sendAction('afterPayment');
-      this.get('flash').success('Order was successfully marked as paid.');
-      Ember.$('.close-reveal-modal').click();
-    }, error => {
-      const json = JSON.parse(error.responseText);
+    try {
+      const responseData = await this.get('ajax').PUT(url, data);
+    } catch (e) {
+      const json = JSON.parse(e.responseText);
       const errors = json.errors;
 
       this.get('flash').alert(errors);
-    });
+    }
+
+    this.get('store').pushPayload(responseData);
+    this.sendAction('afterPayment');
+    this.get('flash').success('Order was successfully marked as paid.');
   }
 
   @action
-  processStripeToken(params) {
+  async processStripeToken(params) {
     const token = params.id;
     const order = this.get('order');
 
@@ -97,16 +100,15 @@ export default class extends Ember.Component {
     //
     // if there are errors with the credit card,
     // the user must be notified
-    order.asPromiseObject().then(order => {
-      order.save().then(record => {
-        this.sendAction('afterPayment');
-        this.get('flash').success('Order was successfully marked as paid.');
-        Ember.$('.close-reveal-modal').click();
-      }, error => {
-        // model's error object is used.
-        this.get('flash').alert(error);
-        this.set('showPaymentInProgress', false);
-      });
-    });
+    try {
+      const resolvedOrder = await order.asPromiseObject();
+      const record = await resolvedOrder.save();
+    } catch (e) {
+      this.get('flash').alert(e);
+      this.set('showPaymentInProgress', false);
+    }
+
+    this.sendAction('afterPayment');
+    this.get('flash').success('Order was successfully marked as paid.');
   }
 }

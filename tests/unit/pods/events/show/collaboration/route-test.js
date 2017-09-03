@@ -5,7 +5,8 @@ moduleFor('route:events/show/collaboration', 'Unit | Route | events/show/collabo
   // needs: ['controller:foo']
   needs: [
     'service:router-scroll',
-    'service:flash-notification'
+    'service:flash-notification',
+    'service:scheduler'
   ]
 });
 

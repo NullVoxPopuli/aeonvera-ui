@@ -6,6 +6,9 @@ import { hasDateExpired } from 'aeonvera/helpers/has-expired';
 
 const { attr, belongsTo, hasMany } = DS;
 
+import { computed } from 'ember-decorators/object';
+import { alias } from 'ember-decorators/object/computed';
+
 export default Host.extend(RegistrationOpens, {
   shortDescription: attr('string'),
   location: attr('string'),
@@ -46,40 +49,29 @@ export default Host.extend(RegistrationOpens, {
   sponsorships: hasMany('sponsorship'),
   registrations: hasMany('registration'),
 
-  registrationOpensAt: function() {
-    return this.get('openingTier.increaseAfterDate');
-  }.property('openingTier.increaseAfterDate'),
+  @alias('openingTier.increaseAfterDate') registrationOpensAt: null,
 
-  registrationIsOpen: Ember.computed('registrationOpensAt', function() {
-    const openDate = this.get('registrationOpensAt');
+  @computed('registrationOpensAt')
+  registrationIsOpen(openDate) {
     const now = new Date();
 
     return now > openDate;
-  }),
+  },
 
-  shirtSalesHaveEnded: Ember.computed('shirtSalesEndAt', {
-    get() {
-      const expiresAt = this.get('shirtSalesEndAt');
+  @computed('shirtSalesEndAt')
+  shirtSalesHaveEnded(expiresAt) {
+    return hasDateExpired(expiresAt);
+  },
 
-      return hasDateExpired(expiresAt);
-    }
-  }),
+  @computed('onlineCompetitionSalesEndAt')
+  competitionSalesHaveEnded(endedAt) {
+    return hasDateExpired(endedAt);
+  },
 
-  competitionSalesHaveEnded: Ember.computed('onlineCompetitionSalesEndAt', {
-    get() {
-      const endedAt = this.get('onlineCompetitionSalesEndAt');
+  @computed('lineItems.@each')
+  hasActiveLineItems(lineItems) {
+    const notExpired = lineItems.filter(item => hasDateExpired(item.get('expiresAt')));
 
-      return hasDateExpired(endedAt);
-    }
-  }),
-
-  hasActiveLineItems: Ember.computed('lineItems.@each', {
-    get() {
-      const lineItems = this.get('lineItems');
-      const notExpired = lineItems.filter(item => hasDateExpired(item.get('expiresAt')));
-
-      return Ember.isPresent(notExpired);
-    }
-  })
-
+    return Ember.isPresent(notExpired);
+  }
 });
