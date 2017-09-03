@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import d3 from 'd3';
+// import d3 from 'd3';
 import ResizeMixin from 'ember-resize-mixin/main';
 
 export default Ember.Component.extend(ResizeMixin, {
@@ -40,7 +40,7 @@ export default Ember.Component.extend(ResizeMixin, {
     const chartId = 'chart-event-sunburst';
 
     const width = Ember.$(`#${chartId}`).parent().parent().width();
-    const height = 700;
+    const height = 400;
     const duration = 1000;
     const radius = Math.min(width, height) / 2;
     const padding = 0;
