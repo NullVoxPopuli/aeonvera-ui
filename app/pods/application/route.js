@@ -6,6 +6,7 @@ const { inject: { service } } = Ember;
 export default Ember.Route.extend(ResetScroll, {
   rollbar: service('rollbar'),
   session: service('session'),
+  crisp: service('crisp'),
   headData: service(),
   currentUserService: service('current-user'),
   pathStore: service('path-store'),

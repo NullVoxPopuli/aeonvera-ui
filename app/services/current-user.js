@@ -12,6 +12,7 @@ const { isEmpty, inject: { service } } = Ember;
 
 export default class extends Ember.Service {
   session = service('session');
+  crisp = service('crisp');
   rollbar = service();
   store = service();
 
@@ -57,6 +58,7 @@ export default class extends Ember.Service {
 
     /* compatibility with old implementation of currentUser */
     this.get('session').set('currentUser', userPromise);
+    this.get('crisp').setUserInfo(userPromise);
 
     return userPromise;
   }
