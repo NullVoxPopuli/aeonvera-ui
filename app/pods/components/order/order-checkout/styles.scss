@@ -1,0 +1,30 @@
+$start-color: color($color-indigo, 'A400');
+$end-color: color($color-deep-purple, 'A400');
+
+@-webkit-keyframes color_change {
+  0%, 100% { background-color: $start-color; }
+  50% { background-color: $end-color; }
+}
+@-moz-keyframes color_change {
+  0%, 100% { background-color: $start-color; }
+  50% { background-color: $end-color; }
+}
+@-ms-keyframes color_change {
+  0%, 100% { background-color: $start-color; }
+  50% { background-color: $end-color; }
+}
+@-o-keyframes color_change {
+  0%, 100% { background-color: $start-color; }
+  50% { background-color: $end-color; }
+}
+@keyframes color_change {
+  0%, 100% { background-color: $start-color; }
+  50% { background-color: $end-color; }
+}
+
+[data-pay-button] {
+  button.md-button.md-primary.md-raised {
+    animation: color_change 3s infinite ease-in-out;
+
+  }
+}

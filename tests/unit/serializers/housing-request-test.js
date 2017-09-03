@@ -9,7 +9,8 @@ moduleForModel('housing-request', 'Unit | Serializer | housing request', {
     'model:host',
     'model:registration',
     'model:housing-provision',
-    'serializer:housing-request',
+    'model:opening-tier',
+    'serializer:housing-request'
   ],
   beforeEach: function() {
     manualSetup(this.container);

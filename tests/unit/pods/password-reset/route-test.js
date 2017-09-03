@@ -5,7 +5,8 @@ moduleFor('route:password-reset', 'Unit | Route | password reset', {
   needs: [
     'service:session',
     'service:flash-messages',
-    'service:router-scroll'
+    'service:router-scroll',
+    'service:scheduler'
   ]
 });
 

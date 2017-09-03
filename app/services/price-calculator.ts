@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
-  cardFeePercentage: 0.029,
-  appFeePercentage: 0.0075,
-  constantCardFee: 0.3,
+export default class extends Ember.Service {
+  cardFeePercentage: number = 0.029;
+  appFeePercentage: number = 0.0075;
+  constantCardFee: number = 0.3;
 
-  calculateForSubTotal(subTotal, absorbFees = false, allowNegative = false) {
+  calculateForSubTotal(subTotal: any, absorbFees: boolean = false, allowNegative: boolean = false) {
     let value = parseFloat(subTotal);
 
     if (isNaN(value)) {
@@ -48,4 +48,4 @@ export default Ember.Service.extend({
       buyerPays: buyerPaysValue.toFixed(2)
     };
   }
-});
+}
