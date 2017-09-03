@@ -4,7 +4,6 @@ import { service } from 'ember-decorators/service';
 import { alias } from 'ember-decorators/object/computed';
 
 export default class SignUpModal extends Ember.Component {
-  @service('path-store') pathStore;
   @service('flash-notification') flash;
   @service('login') login;
 
@@ -38,7 +37,6 @@ export default class SignUpModal extends Ember.Component {
   async register() {
     const model = this.get('model');
 
-    this.get('pathStore').storeCurrentRoute();
     this.set('hasMadeAttempt', true);
 
     try {

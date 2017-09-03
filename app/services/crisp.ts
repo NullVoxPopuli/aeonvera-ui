@@ -9,7 +9,7 @@ const WELCOME_MESSAGE = 'Hello! How may I help? :)';
 
 export default class extends Ember.Service {
   async setUserInfo(userPromise) {
-    if (!$crisp) return;
+    if (typeof $crisp === 'undefined' || !$crisp) return;
 
     const user = await userPromise;
 

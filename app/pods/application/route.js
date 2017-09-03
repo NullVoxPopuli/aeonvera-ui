@@ -9,7 +9,6 @@ export default Ember.Route.extend(ResetScroll, {
   crisp: service('crisp'),
   headData: service(),
   currentUserService: service('current-user'),
-  pathStore: service('path-store'),
   i18n: service('i18n'),
 
   // intl: Ember.inject.service(),
@@ -18,9 +17,6 @@ export default Ember.Route.extend(ResetScroll, {
 
     this.set('navTitle', i18n.t('appname'));
     this.get('headData').set('title', i18n.t('appname'));
-
-    // post-email-confirmation
-    this.get('pathStore').redirectIfPathIsPresent();
 
     // general post-login redirect
     if (transition.targetName !== 'login') {

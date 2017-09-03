@@ -100,7 +100,6 @@
     "ember-invoke-action": "^1.4.0",
     "ember-load-initializers": "^1.0.0",
     "ember-loading-route": "0.0.3",
-    "ember-local-settings": "^1.0.4",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-model-validator": "^2.0.0",
     "ember-paper": "^1.0.0-alpha.20",
