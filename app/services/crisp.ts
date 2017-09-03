@@ -5,6 +5,8 @@ declare global {
   export const $crisp: any
 }
 
+const WELCOME_MESSAGE = 'Hello! How may I help? :)';
+
 export default class extends Ember.Service {
   async setUserInfo(userPromise) {
     if (!$crisp) return;
@@ -23,11 +25,17 @@ export default class extends Ember.Service {
       const name = user.get('name');
       const unread = $crisp.get('chat:unread:count');
 
+      const chatText = $('.crisp-client [data-from="operator"]').text();
+
+      // NOTE: not sure where the string 'How can I help you?' is coming form
+      //       because it's not what I'm setting. :-\
+      const chatAlreadySent = chatText.includes('How can I help you?');
+
       // temp disabled, because in order to truely not be annoying, we
       // need to make sure we haven't already sent this message.
-      // if (unread > 0) {
-      //   $crisp.push(['do', 'message:show', ['text', 'Hello! How can I help? :)']]);
-      // }
+      if (!chatAlreadySent) {
+        $crisp.push(['do', 'message:show', ['text', WELCOME_MESSAGE]]);
+      }
 
       // disabled, because we don't want the auto-message emailing people willy-nilly
       // $crisp.push(['set', 'user:email', [email]]);
@@ -37,10 +45,16 @@ export default class extends Ember.Service {
         'session:data',
         [[
           ['email', email],
-          ['name', name],
-          ['environment', ENV.environment]
+          ['name', name]
         ]]
       ]);
+
+      $crisp.push([
+        'set', 'session:segments',
+        [[
+          ENV.environment
+        ]]
+      ])
     }
   }
 }
