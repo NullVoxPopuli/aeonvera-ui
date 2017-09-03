@@ -1,13 +1,15 @@
 br
 .row
   .small-12.medium-10.columns.medium-offset-1
-    .row
-      .columns.small-2.medium-2
+    .layout-row
+      .flex-20
         link-to 'register' model.host.domain
           = event/logo-thumbnail model=model.host align='left'
-      .columns.small-10.medium-10.text-center
+      .flex-80.text-center
         h3 Review Registration for {{model.host.name}}
 
+    .layout-row.layout-align-end-end.hide-gt-xs data-pay-button=true
+      = stripe/checkout-button model=model label='Pay' email=email action='processStripeToken'
     br
     = error-header errors=model.errors
 

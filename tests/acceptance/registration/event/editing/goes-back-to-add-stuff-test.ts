@@ -44,6 +44,7 @@ async function preExistingRegistration(expect) {
 
   // custom url mock
   Ember.$.mockjax({ url, responseText: payload, type: 'GET' });
+  Ember.$.mockjax({ url: 'https://checkout.stripe.com/api/outer/manhattan?key=a', responseText: {}, type: 'GET' });
 
   // test start
   await visit(`/${event.get('domain')}/register/${event.get('id')}/${registration.get('id')}`);
@@ -53,6 +54,7 @@ async function preExistingRegistration(expect) {
 
 // skipped because for some reason the test is set up wrong,
 // and loading the community registration route
+// and also I don't know what StripeCheckout's deal is.
 skip('can go back to add a competition', withChai(async expect => {
   await preExistingRegistration(expect);
 
