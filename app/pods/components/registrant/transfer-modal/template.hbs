@@ -1,0 +1,90 @@
+{{#ember-paper/simple-dialog-with-button
+  title='Transfer Registration'
+  accent=accent
+  buttonDisabled=buttonDisabled
+  buttonText=(or buttonText 'Transfer') as |modal|}}
+
+  {{#paper-radio-group
+    groupValue=(readonly transferTo)
+    onChange=(action (mut transferTo)) as |g| }}
+
+    <div class='layout-row layout-align-space-between-center'>
+      {{#g.radio value=transferDestinations.person}}to a person{{/g.radio}}
+      {{#g.radio value=transferDestinations.year}}to a year{{/g.radio}}
+    </div>
+
+  {{/paper-radio-group}}
+
+  {{#paper-form class='layout-column' onSubmit=(action 'submit') as |form|}}
+
+    {{#if toPerson}}
+      <div class='layout-row'>
+        {{form.input
+          class='flex-33'
+          type='text'
+          disabled=toYear
+          required=toPerson
+          label='First Name'
+          value=(readonly firstName)
+          onChange=(action (mut firstName))
+        }}
+        {{form.input
+          class='flex-33'
+          type='text'
+          disabled=toYear
+          required=toPerson
+          label='Last Name'
+          value=(readonly lastName)
+          onChange=(action (mut lastName))
+        }}
+        {{form.input
+          class='flex-33'
+          type='email'
+          disabled=toYear
+          required=toPerson
+          label='Email'
+          value=(readonly email)
+          onChange=(action (mut email))
+        }}
+      </div>
+    {{/if}}
+
+    {{#if toYear}}
+      {{form.input
+        type='number'
+        label='Year'
+        disabled=toPerson
+        required=toYear
+        value=(readonly year)
+        onChange=(action (mut year))
+      }}
+    {{/if}}
+
+    {{form.input
+      textarea=true
+      class='flex-100 margin-bottom-0 no-errors'
+      label='Reason'
+      value=(readonly reason)
+      onChange=(action (mut reason))
+      passThru=(hash rows=2 maxRows=5)
+    }}
+
+    <div class='layout-row layout-align-end-end'>
+      {{form.submit-button
+        raised=true
+        disabled=form.isInvalid
+        primary=true
+        label='Submit'
+        onClick=(pipe (action 'submit') (action modal.didClickClose))
+      }}
+    </div>
+
+
+    <p>
+      Note that by transferring to another person, the other person will be notified via
+      the provided email and asked to confirm that they want the transfer. As for as the
+      event's record keeping goes, this is not required.
+      It is more of a courtesy to the new attendee so they can track what events they've been to.
+    </p>
+  {{/paper-form}}
+{{/ember-paper/simple-dialog-with-button}}

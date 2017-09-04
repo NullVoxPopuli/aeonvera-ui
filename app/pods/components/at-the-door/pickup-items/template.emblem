@@ -22,7 +22,7 @@ span Picked Up: {{numberPickedUp}} | Not Picked Up: {{numberNotPickedUp}}
       | Owes {{to-usd orderLineItem.order.totalInDollars}}
   td
     if (is-empty orderLineItem.pickedUpAt)
-      = form/confirm-button action='setPickedUp' target=orderLineItem confirmText='Confirm Picked Up' showCancel=true cancelClasses='tiny'
-        button.tiny Mark as Picked Up
+      = form/confirm-button action='setPickedUp' confirmPrimary=true target=orderLineItem confirmText='Confirm Picked Up' showCancel=true cancelClasses='tiny'
+        | Mark as Picked Up
     else
       = date-with-format orderLineItem.pickedUpAt 'LLL' true

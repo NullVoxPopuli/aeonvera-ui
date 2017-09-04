@@ -8,7 +8,7 @@ export default Ember.Route.extend({
       q: {
         line_item_type_eq: 'LineItem::Shirt'
       },
-      include: 'order'
+      include: 'order,line_item'
     });
 
     return {

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  flash: Ember.inject.service('flash-notification'),
   ajax: Ember.inject.service('authenticated-ajax'),
 
   // passed in
@@ -22,12 +23,12 @@ export default Ember.Component.extend({
 
       return this.get('ajax').PUT(url, data).then(data => {
         this.get('store').pushPayload(data);
-        this.get('flashMessages').success(`${name} has been checked in.`);
+        this.get('flash').success(`${name} has been checked in.`);
       }, error => {
         const json = JSON.parse(error.responseText);
         const errors = json.errors;
 
-        this.get('flashMessages').alert(errors);
+        this.get('flash').alert(errors);
       });
     }
 

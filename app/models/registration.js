@@ -73,6 +73,13 @@ export default DS.Model.extend(
     state: attr('string'),
     zip: attr('string'),
 
+    // tranfer-info for 'historical' reasons
+    transferredFromFristName: attr('string'),
+    transferredFromLastName: attr('string'),
+    transferredtoEmail: attr('string'),
+    transferReason: attr('string'),
+    transferredAt: attr('date'),
+
     hasUnpaidOrder: function() {
       return Ember.isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),

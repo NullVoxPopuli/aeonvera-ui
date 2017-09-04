@@ -13,10 +13,10 @@
   {{#ember-paper/simple-dialog
     title=title
     onClose=(action (mut showModal false))
-    didClickClose=(action 'closeModal')
+    didClickClose=(action 'closeModal') as |modal|
   }}
 
-    {{yield}}
+    {{yield modal}}
 
   {{/ember-paper/simple-dialog}}
 {{/if}}
