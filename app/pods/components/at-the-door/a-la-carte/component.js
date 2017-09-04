@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       this.get('cart.currentOrder').set('forceAbsorbFee', value);
     },
 
-    openPaymentModal(order) {
+    openPaymentModal(_order) {
       Ember.$('.hidden-mark-paid-container a').click();
     },
 

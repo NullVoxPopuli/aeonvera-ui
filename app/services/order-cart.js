@@ -14,7 +14,7 @@ export default Ember.Service.extend({
 
     const cartTop = cart.position().top;
     const cartHeight = cart.height();
-    const cartBottom = cartTop + cartHeight;
+    // const cartBottom = cartTop + cartHeight;
     const cartTBody = cart.find('tbody');
     const cartTBodyHeight = cartTBody.height();
     const cartUiHeight = cartHeight - cartTBodyHeight;

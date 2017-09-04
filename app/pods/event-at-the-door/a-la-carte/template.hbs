@@ -1,0 +1,38 @@
+{{!-- = at-the-door/a-la-carte model=model --}}
+<div class='layout-row  layout-xs-column layout-sm-column'>
+  <div class='flex-gt-lg-75 flex-gt-sm-66 flex-xs-100'>
+    {{#paper-tabs borderBottom=true selected=currentTabIndex as |tabs|}}
+      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.index')}}
+        All
+      {{/tabs.tab}}
+
+      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.shirts')}}
+        Shirts
+      {{/tabs.tab}}
+
+      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.competitions')}}
+        Competitions
+      {{/tabs.tab}}
+
+      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.tickets')}}
+        Tickets
+      {{/tabs.tab}}
+
+      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.other')}}
+        Other
+      {{/tabs.tab}}
+
+    {{/paper-tabs}}
+
+    {{outlet}}
+  </div>
+
+  <div class='layout-column flex-gt-lg-25 flex-gt-sm-33 flex-xs-100'>
+    {{at-the-door/pos/order-summary
+      order=order
+      event=event
+      onRemoveLineItem=(action 'didRemoveOrderLineItem')
+      onCancelOrder=(action 'onCancelOrder')
+    }}
+  </div>
+</div>

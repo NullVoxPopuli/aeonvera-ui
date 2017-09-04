@@ -1,0 +1,39 @@
+
+<div class='layout-row layout-wrap'>
+  {{#if (is-present items)}}
+    {{#each items as |item|}}
+      {{#paper-card
+        class='flex-33 flex-gt-md-25 flex-gt-lg-20'
+        as |card|}}
+
+        {{#card.title as |title|}}
+          {{#title.text as |text|}}
+            {{#text.headline}}
+              {{item.name}}
+            {{/text.headline}}
+            {{#text.subhead}}
+              {{to-usd item.currentPrice}}
+            {{/text.subhead}}
+
+          {{/title.text}}
+        {{/card.title}}
+
+        {{#card.actions}}
+          {{#paper-button
+            raised=true
+            onClick=(action add item)
+          }}
+            Add
+          {{/paper-button}}
+        {{/card.actions}}
+
+      {{/paper-card}}
+    {{/each}}
+  {{else}}
+    {{#unless doNotCareAboutNoItems}}
+      <div class='layout-row flex-100 layout-align-center-center margin-top-50'>
+        <span>There is nothing here. :-)</span>
+      </div>
+    {{/unless}}
+  {{/if}}
+</div>

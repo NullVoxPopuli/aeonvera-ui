@@ -8,7 +8,7 @@ export default class extends Ember.Route {
 
   model(params) {
     return this.get('store').findRecord('event', params.event_id, {
-      include: 'shirts,integrations,competitions,line_items,discounts'
+      include: 'shirts,integrations,competitions,line_items,discounts,packages'
     });
   }
 

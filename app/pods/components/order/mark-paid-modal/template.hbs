@@ -1,7 +1,8 @@
 {{#ember-paper/simple-dialog-with-button
   title='Mark Paid'
   accent=accent
-  buttonText='Mark Paid'}}
+  buttonDisabled=buttonDisabled
+  buttonText=(or buttonText 'Mark Paid')}}
 
   {{#if showOrder}}
     {{order/order-review model=order}}

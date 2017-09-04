@@ -9,7 +9,8 @@ const { isPresent } = Ember;
 export default class extends Ember.Component {
   static propTypes = {
     order: PropTypes.EmberObject.isRequired,
-    showOrder: PropTypes.bool
+    showOrder: PropTypes.bool,
+    afterPayment: PropTypes.func
   };
 
   @service('authenticated-ajax') ajax;

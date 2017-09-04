@@ -1,0 +1,85 @@
+{{#paper-card as |card|}}
+  {{#paper-toolbar as |toolbar|}}
+    {{#card.title as |title|}}
+      <div class='layout-column flex-100'>
+        {{#toolbar.tools class='layout-row layout-align-space-between-center'}}
+          {{order/mark-paid-modal
+            accent=true
+            order=order
+            buttonText='Pay'
+            buttonDisabled=(is-empty order)
+            afterPayment=(action 'showComplete')
+          }}
+          {{!-- {{paper-icon 'attach money'}} --}}
+
+          {{#paper-button
+            raised=true
+            disabled=(is-empty order)
+            onClick=(action onCancelOrder)
+          }}
+            {{paper-icon 'close'}}
+            Discard
+          {{/paper-button}}
+        {{/toolbar.tools}}
+
+        {{#title.text class='layout-align-center-center' as |text|}}
+          {{#text.headline}}
+            {{#if (is-present order.total)}}
+              <small><em>Total</em></small> {{to-usd orderTotal}}
+            {{/if}}
+          {{/text.headline}}
+        {{/title.text}}
+
+      </div>
+    {{/card.title}}
+  {{/paper-toolbar}}
+
+  {{#card.content}}
+
+    {{#if (await order)}}
+      <label><em>Optional</em></label>
+      {{form/registrant-select
+        event=event
+        value=order.registration
+        onChange=(action 'updateRegistration')
+      }}
+      <br />
+
+      {{#each order.orderLineItems as |item|}}
+        {{order/order-cart/cart-row
+          order=order
+          orderLineItem=item
+          onRemoveLineItem=(action onRemoveLineItem)
+          allowQuantityChangei=true
+        }}
+      {{/each}}
+    {{else}}
+      Please add some items to begin.
+    {{/if}}
+
+
+  {{/card.content}}
+  {{#card.actions}}
+    {{#if (await order)}}
+      <div class='layout-column flex-100'>
+        <div class='layout-row layout-wrap'>
+          {{#unless order.isFeeAbsorbed}}
+            <label class='flex-50'>Sub Total</label>
+            <span class='flex-50'>{{to-usd order.subTotal}}</span>
+            <label class='flex-50'>Fee</label>
+            <span class='flex-50'>{{to-usd order.fee}}</span>
+          {{/unless}}
+
+          <label class='flex-50'>Total</label>
+          <span class='flex-50'>{{to-usd orderTotal}}</span>
+        </div>
+
+        {{#paper-checkbox
+          value=order.isFeeAbsorbed
+          onChange=(action (mut order.isFeeAbsorbed))}}
+          Absorb Service Fee
+        {{/paper-checkbox}}
+      </div>
+    {{/if}}
+  {{/card.actions}}
+{{/paper-card}}

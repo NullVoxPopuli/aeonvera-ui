@@ -103,7 +103,12 @@ Router.map(function() {
       this.route('checkin');
       this.route('competition-list');
       this.route('competition-signup-print', { path: 'competition/:competition_id/print' });
-      this.route('a-la-carte');
+      this.route('a-la-carte', function() {
+        this.route('shirts');
+        this.route('competitions');
+        this.route('tickets');
+        this.route('other');
+      });
       this.route('a-la-carte-print', { path: 'a-la-carte/print' });
       this.route('register');
       this.route('shirts');
