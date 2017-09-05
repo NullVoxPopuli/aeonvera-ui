@@ -17,6 +17,8 @@ export default class extends Ember.Service {
       'on', 'session:loaded',
       this.setupCrisp(user)
     ]);
+
+    this.setupFullStory(user);
   }
 
   setupCrisp(user) {
@@ -56,5 +58,20 @@ export default class extends Ember.Service {
         ]]
       ])
     }
+  }
+
+  setupFullStory(user) {
+    const FS = window.FS;
+    if (typeof FS === 'undefined' || !FS) return;
+
+    // This is an example script - don't forget to change it!
+    // http://help.fullstory.com/develop-js/setuservars.
+    const email = user.get('email');
+
+    FS.identify(email, {
+      displayName: user.get('name'),
+      email: email,
+      environment: ENV.environment,
+    });
   }
 }
