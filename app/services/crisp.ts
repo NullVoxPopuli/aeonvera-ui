@@ -71,7 +71,8 @@ export default class extends Ember.Service {
 
     FS.identify(email, {
       displayName: user.get('name'),
-      email: email
+      email: email,
+      environment: ENV.environment
     });
   }
 }
