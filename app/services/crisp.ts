@@ -61,6 +61,7 @@ export default class extends Ember.Service {
   }
 
   setupFullStory(user) {
+    if (ENV.environment === 'development' || ENV.environment === 'test') return;
     const FS = window.FS;
     if (typeof FS === 'undefined' || !FS) return;
 
@@ -70,8 +71,7 @@ export default class extends Ember.Service {
 
     FS.identify(email, {
       displayName: user.get('name'),
-      email: email,
-      environment: ENV.environment,
+      email: email
     });
   }
 }
