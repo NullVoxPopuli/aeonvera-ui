@@ -16,6 +16,7 @@
   if model.requiresPartner
     td = orderLineItem.partnerName
 
+  td = to-bool orderLineItem.order.registration.isCheckedIn
   td
     / TODO: if unpaid, color this cell red
     if (is-present orderLineItem.order.paymentReceivedAt)

@@ -6,6 +6,7 @@ export default Ember.Component.extend({
     { property: 'order.userName', title: 'Name' },
     { property: 'danceOrientation', title: 'Orientation', showOn: 'model.requiresOrientation' },
     { property: 'partnerName', title: 'Partner', showOn: 'model.requiresPartner' },
+    { property: 'order.registration.isCheckedIn', title: 'Checked In?' },
     { property: 'order.paymentReceivedAt', title: 'Paid At' }
   ]
 });

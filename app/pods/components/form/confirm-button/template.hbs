@@ -9,15 +9,6 @@
   {{/paper-button}}
 {{else}}
 
-  {{ember-paper/async-button
-    onClick=(action 'triggerAction')
-    raised=true
-    warn=confirmDestructive
-    primary=confirmPrimary
-    class=confirmClasses
-    label=confirmText
-  }}
-
   {{#if showCancel}}
     {{#paper-button
       raised=true
@@ -27,5 +18,15 @@
       Cancel
     {{/paper-button}}
   {{/if}}
+
+
+  {{ember-paper/async-button
+    onClick=(action 'triggerAction')
+    raised=true
+    warn=confirmDestructive
+    primary=confirmPrimary
+    class=confirmClasses
+    label=confirmText
+  }}
 
 {{/if}}
