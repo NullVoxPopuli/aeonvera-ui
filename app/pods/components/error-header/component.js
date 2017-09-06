@@ -44,7 +44,7 @@ export default Ember.Component.extend({
 
     if (source !== undefined) {
       // JSON API Errors
-      field = source.pointer.replace('/data/attributes/', '');
+      field = source.pointer.replace(/\/?data\/attributes\//, '');
       field = field.replace('-', ' ');
     }
 
