@@ -50,19 +50,27 @@ export default Ember.Mixin.create({
       });
   },
 
-  _createOrderLineItemForItem(lineItem) {
-    Ember.Logger.info('_createOrderLineItemForItem');
-
+  newOrderLineItemFrom(lineItem) {
     const store = this.get('store');
     const order = this.get('order');
 
     const orderLineItem = store.createRecord('orderLineItem', {
+      quantity: 1,
       order,
       lineItem,
       host_id: this.get('host.id'),
       host_type: this.get('host.klass') });
 
     if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
+
+    return orderLineItem;
+  },
+
+  _createOrderLineItemForItem(lineItem) {
+    Ember.Logger.info('_createOrderLineItemForItem');
+
+    const order = this.get('order');
+    const orderLineItem = this.newOrderLineItemFrom(lineItem);
 
     return orderLineItem.save()
       .then(oli => order.get('orderLineItems').pushObject(oli));

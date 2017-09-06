@@ -23,7 +23,7 @@ export default Ember.Mixin.create({
   // orderCalculator: inject.service(),
 
   allowNegative: false,
-  @computed('subTotal', 'shouldApplyFee')
+  @computed('unconfirmedSubTotal', 'shouldApplyFee')
   priceCalculation(subTotal, shouldApplyFee) {
     const absorbTheFee = !shouldApplyFee;
     const allowNegative = this.get('allowNegative');

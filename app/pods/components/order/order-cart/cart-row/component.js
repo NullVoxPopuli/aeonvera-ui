@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { computed } from 'ember-decorators/object';
+import { computed, action } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
 import { PropTypes } from 'ember-prop-types';
@@ -12,7 +12,7 @@ export default class OrderCartRow extends Ember.Component {
     allowQuantityChange: PropTypes.boolean
   }
 
-  tagName = 'tr';
+  selectedSizeData = null;
 
   @alias('orderLineItem.lineItem') lineItem;
   @alias('lineItem.isCompetition') isCompetition;
@@ -23,4 +23,12 @@ export default class OrderCartRow extends Ember.Component {
   @computed('lineItem.code', 'lineItem.name')
   displayName(code, name) { return code || name; }
 
+  @action
+  setSize(sizeData) {
+    const orderLineItem = this.get('orderLineItem');
+
+    orderLineItem.set('size', sizeData.id);
+
+    this.set('selectedSizeData', sizeData);
+  }
 }

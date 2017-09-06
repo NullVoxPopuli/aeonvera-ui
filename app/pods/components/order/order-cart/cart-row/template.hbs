@@ -1,46 +1,50 @@
-<td class='min-width-100'>
-  {{#if allowQuantityChange}}
-    {{order/item-quantity-select orderLineItem=orderLineItem order=order}}
-  {{/if}}
-
-  {{orderLineItem.quantity}} x {{order/price-display item=orderLineItem value=orderLineItem.price}}
-</td>
-<td>
-  {{displayName}}
-  <br />
-
-  {{#if isCompetition}}
-    {{#if requiresPartner}}
-      {{#error-field-wrapper errors=orderLineItem.errors field='partnerName'}}
-        {{input type='text' value=orderLineItem.partnerName placeholder="Partner Name"}}
-      {{/error-field-wrapper}}
+<div class='layout-row'>
+  <div class='layout-column flex-20'>
+    {{#if allowQuantityChange}}
+      {{order/item-quantity-select orderLineItem=orderLineItem order=order}}
     {{/if}}
 
-    {{#if requiresOrientation}}
-      {{#error-field-wrapper errors=orderLineItem.errors field='danceOrientation'}}
-        {{radio-button value='Lead' groupValue=orderLineItem.danceOrientation}}
-        <label>Lead</label>
-        {{radio-button value='Follow' groupValue=orderLineItems.danceOrientation}}
-        <label>Follow</label>
-        <br />
-      {{/error-field-wrapper}}
+    {{orderLineItem.quantity}} x {{order/price-display item=orderLineItem value=orderLineItem.price}}
+
+    <small>
+      <a {{action onRemoveLineItem orderLineItem}}>
+        Remove
+      </a>
+    </small>
+  </div>
+  <div class='layout-column flex-80'>
+    {{displayName}}
+    <br />
+
+    {{#if isCompetition}}
+      {{#if requiresPartner}}
+        {{#error-field-wrapper errors=orderLineItem.errors field='partnerName'}}
+          {{input type='text' value=orderLineItem.partnerName placeholder="Partner Name"}}
+        {{/error-field-wrapper}}
+      {{/if}}
+
+      {{#if requiresOrientation}}
+        {{#error-field-wrapper errors=orderLineItem.errors field='danceOrientation'}}
+          {{radio-button value='Lead' groupValue=orderLineItem.danceOrientation}}
+          <label>Lead</label>
+          {{radio-button value='Follow' groupValue=orderLineItems.danceOrientation}}
+          <label>Follow</label>
+          <br />
+        {{/error-field-wrapper}}
+      {{/if}}
     {{/if}}
-  {{/if}}
 
-  {{#if isShirt}}
-    {{#error-field-wrapper errors=orderLineItem.errors field='size'}}
-      {{#x-select value=orderLineItem.size}}
-        <option>Select Shirt Size</option>
-        {{#each lineItem.sizes as |sizeData|}}
-          {{#x-option value=sizeData.id}}{{sizeData.size}}{{/x-option}}
-        {{/each}}
-      {{/x-select}}
-    {{/error-field-wrapper}}
-  {{/if}}
-
-  <small>
-    <a {{action onRemoveLineItem orderLineItem}}>
-      Remove
-    </a>
-  </small>
-</td>
+    {{#if isShirt}}
+      {{#paper-select
+        classNames='flex-grow'
+        label='Size'
+        options=lineItem.sizes
+        selected=selectedSizeData
+        errors=(map-by 'message' orderLineItem.errors.size)
+        onChange=(action 'setSize') as |sizeData|
+      }}
+        {{to-usd sizeData.price}} {{sizeData.size}}
+      {{/paper-select}}
+    {{/if}}
+  </div>
+</div>

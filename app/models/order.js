@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
-import { alias, not } from 'ember-decorators/object/computed';
+import { alias, gt, mapBy, not } from 'ember-decorators/object/computed';
 
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
@@ -89,6 +89,25 @@ export default Model.extend(PriceCalculation, {
     return paid ? 'success-color' : 'alert-color';
   },
 
+
+  @mapBy('orderLineItems', 'isNew') newOrderLineItems: null,
+  @gt('newOrderLineItems.length', 0) hasUnSavedItems: null,
+
+  // In order for discounts to happen, ever orderLineItem
+  // must be persisted. Discounts are computed by the backend.
+  @computed('subTotal', 'orderLineItems.@each.{quantity,price}', 'hasUnSavedItems')
+  unconfirmedSubTotal(subTotal, orderLineItems, hasUnSavedItems) {
+    if (hasUnSavedItems) {
+      return orderLineItems.reduce((sum, oli) => {
+        return sum + (
+          (oli.get('price') || 0) *
+          (oli.get('quantity')) || 0
+        );
+      }, 0);
+    }
+
+    return subTotal;
+  },
 
   /*
     stripe data doesn't need to be kept on the model, but is important for

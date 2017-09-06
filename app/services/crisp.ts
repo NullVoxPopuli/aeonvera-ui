@@ -62,7 +62,9 @@ export default class extends Ember.Service {
 
   setupFullStory(user) {
     if (ENV.environment === 'development' || ENV.environment === 'test') return;
+
     const FS = window.FS;
+
     if (typeof FS === 'undefined' || !FS) return;
 
     // This is an example script - don't forget to change it!

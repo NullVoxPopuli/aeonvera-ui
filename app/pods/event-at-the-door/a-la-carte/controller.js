@@ -7,7 +7,7 @@ import { action, computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
 import Registration from 'aeonvera/mixins/registration/controller';
-
+import { isA } from 'aeonvera/helpers/is-a';
 // es6 mixin class decorator magic?
 // const mixin = emberMixin => target => target.extend(emberMixin);
 
@@ -40,6 +40,10 @@ export default Ember.Controller.extend(Registration, {
   async add(lineItem) {
     await this.ensureOrderIsPersisted();
 
+    if (this.requiresInput(lineItem)) {
+      return this.newOrderLineItemFrom(lineItem);
+    }
+
     return this.send('didAddLineItem', lineItem);
   },
 
@@ -67,6 +71,13 @@ export default Ember.Controller.extend(Registration, {
   startOver() {
     this.set('registration', null);
     this.set('order', null);
+  },
+
+  requiresInput(lineItem) {
+    const isCompetition = isA([lineItem, 'competition']);
+    const isShirt = isA([lineItem, 'shirt']);
+
+    return isCompetition || isShirt;
   },
 
   async ensureOrderIsPersisted() {
