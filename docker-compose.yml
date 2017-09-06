@@ -18,6 +18,7 @@ services:
       # - .:/usr/src/app
       #- .:/web
       - ./app:/web/app
+      - ./coverage:/web/coverage
       - ./config:/web/config
       - ./mirage:/web/mirage
       - ./public:/web/public

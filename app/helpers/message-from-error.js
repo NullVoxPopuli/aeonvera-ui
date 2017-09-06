@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { isPresent, isBlank } = Ember;
+const { isBlank, String: { htmlSafe } } = Ember;
 
 const defaultTemplate = (title, detail) => `${title} ${detail}`;
 
@@ -31,7 +31,7 @@ function parseAdapterError(error, msgTemplate) {
     const { detail, source } = e;
     const { pointer } = source || {};
 
-    if (status >= 500) return msgTemplate(e.title, Ember.String.htmlSafe(e.detail));
+    if (status >= 500) return msgTemplate(e.title, htmlSafe(e.detail));
 
     if (status === undefined || (status < 500 && status >= 400) && pointer) {
       const attribute = pointer.split('/').pop();
