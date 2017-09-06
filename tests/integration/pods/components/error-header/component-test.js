@@ -50,10 +50,53 @@ test('if there are an array of strings, the first is displayed', withChai(functi
   expect(this.$().text()).to.include(error);
 }));
 
-skip('for a json:api error, the first message for the first field is displayed', withChai(expect => {
+test('for a json:api error, the first message for the first field is displayed', withChai(function(expect) {
+  const errors = [
+    {
+      message: 'some error about invalid input or something',
+      source: {
+        pointer: 'data/attributes/field-name'
+      }
+    },
+    {
+      message: 'this one will not be displayed',
+      source: {
+        pointer: 'data/attributes/field-name'
+      }
+    }
+  ];
 
+  this.render(hbs`{{error-header errors=errors}}`);
+  this.set('errors', errors);
+
+  expect(this.$().text()).to.include(errors[0].message);
+  expect(this.$().text()).to.not.include(errors[1].message);
 }));
 
+test('for a json:api error, it does not matter if the source pointer starts with a /', withChai(function(expect) {
+  const errors = [
+    {
+      message: 'some error about invalid input or something',
+      source: {
+        pointer: '/data/attributes/field-name'
+      }
+    },
+    {
+      message: 'this one will not be displayed',
+      source: {
+        pointer: 'data/attributes/field-name'
+      }
+    }
+  ];
+
+  this.render(hbs`{{error-header errors=errors}}`);
+  this.set('errors', errors);
+
+  expect(this.$().text()).to.include('field name');
+  expect(this.$().text()).to.not.include('/field name');
+}));
+
+// TODO: convert these tests to message-from-error, and refactor this component
 skip('for a json:api error, if the field is base, only the reason is displayed', withChai(expect => {
 
 }));
