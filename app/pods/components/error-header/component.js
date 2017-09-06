@@ -3,12 +3,16 @@ import Ember from 'ember';
 import { computed } from 'ember-decorators/object';
 import { oneWay } from 'ember-decorators/object/computed';
 
+export const NOT_AUTHORIZED = 'Not authorized. Please login as an authorized user.';
+
 export default Ember.Component.extend({
   errors: [],
 
+  // cannot use notEmpty with .@each,
+  // because .@each expects array of objects.
   @computed('errors.@each')
   errorsPresent(errors) {
-    return Ember.isPresent(this.get('errors'));
+    return Ember.isPresent(errors);
   },
 
   didUpdateAttrs() {
@@ -36,7 +40,7 @@ export default Ember.Component.extend({
     const code = firstErrorObject.code;
 
     if (code === 401) {
-      return 'Not authorized. Please login as an authorized user.';
+      return NOT_AUTHORIZED;
     }
 
     const source = firstErrorObject.source;
