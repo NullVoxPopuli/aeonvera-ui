@@ -1800,7 +1800,7 @@ broccoli-sri-hash@^2.1.0:
     sri-toolbox "^0.2.0"
     symlink-or-copy "^1.0.1"
 
-broccoli-stew@^1.2.0, broccoli-stew@^1.3.2, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2:
+broccoli-stew@^1.2.0, broccoli-stew@^1.3.2, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2, broccoli-stew@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.5.0.tgz#d7af8c18511dce510e49d308a62e5977f461883c"
   dependencies:
@@ -3055,7 +3055,7 @@ ember-cli-babel@6.1.0:
     clone "^2.0.0"
     ember-cli-version-checker "^1.2.0"
 
-ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
+ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
   version "6.8.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
   dependencies:
@@ -3435,18 +3435,7 @@ ember-cli-moment-shim@^3.4.0:
     moment "^2.18.1"
     moment-timezone "~0.5.11"
 
-ember-cli-node-assets@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.0.tgz#5ac52af972f3140adc7f25374d14a067a88937cf"
-  dependencies:
-    broccoli-funnel "^1.0.1"
-    broccoli-merge-trees "^1.1.1"
-    broccoli-source "^1.1.0"
-    debug "^2.2.0"
-    lodash "^4.5.1"
-    resolve "^1.1.7"
-
-ember-cli-node-assets@0.2.2:
+ember-cli-node-assets@0.2.2, ember-cli-node-assets@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
   dependencies:
@@ -3917,6 +3906,13 @@ ember-data@2.13.0:
     ember-compatibility-helpers "^0.1.0"
     ember-macro-helpers "^0.16.0"
 
+ember-diff-attrs@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ember-diff-attrs/-/ember-diff-attrs-0.1.2.tgz#47bbe6141786fa554ac543b4622a9928e7168cf6"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-weakmap "2.0.0"
+
 ember-disable-proxy-controllers@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-disable-proxy-controllers/-/ember-disable-proxy-controllers-1.0.1.tgz#1254eeec0ba025c24eb9e8da611afa7b38754281"
@@ -3965,13 +3961,15 @@ ember-factory-for-polyfill@^1.1.0:
     node-fetch "^2.0.0-alpha.3"
     whatwg-fetch "^2.0.3"
 
-ember-flatpickr@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ember-flatpickr/-/ember-flatpickr-1.2.0.tgz#bbc023aaa8e811348bc461848cb1ba76857f9a63"
+ember-flatpickr@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ember-flatpickr/-/ember-flatpickr-2.0.3.tgz#6a5eb502f445ec2646fb7530ea0ce3890fdd1d0f"
   dependencies:
-    ember-cli-babel "^6.0.0-beta.9"
-    ember-cli-node-assets "0.2.0"
-    flatpickr "^2.5.8"
+    ember-cli-babel "^6.6.0"
+    ember-cli-node-assets "^0.2.2"
+    ember-diff-attrs "^0.1.2"
+    fastboot-transform "^0.1.2"
+    flatpickr "^3.0.7"
 
 ember-font-awesome@^3.0.3:
   version "3.0.5"
@@ -4377,7 +4375,7 @@ ember-try@^0.2.14:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-weakmap@^2.0.0:
+ember-weakmap@2.0.0, ember-weakmap@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-weakmap/-/ember-weakmap-2.0.0.tgz#71c6819a8bfd0b077ae17ca1d9053fc5db06e4ac"
   dependencies:
@@ -4868,6 +4866,12 @@ fast-sourcemap-concat@^1.0.1:
     source-map "^0.4.2"
     source-map-url "^0.3.0"
 
+fastboot-transform@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.2.tgz#f910d666ab93e75604492ea655270d1804bc8de7"
+  dependencies:
+    broccoli-stew "^1.5.0"
+
 fastparse@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -5002,9 +5006,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatpickr@^2.5.8:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-2.6.3.tgz#457357532deb135f3da64b425bf4435737961564"
+flatpickr@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-3.0.7.tgz#2aa980c0bd83884c0299ee9fba3b7809bea16a29"
 
 flatten@^1.0.2:
   version "1.0.2"
