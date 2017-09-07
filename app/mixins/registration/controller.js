@@ -55,6 +55,7 @@ export default Ember.Mixin.create({
     const order = this.get('order');
 
     const orderLineItem = store.createRecord('orderLineItem', {
+      price: lineItem.get('currentPrice') || lineItem.get('price'),
       quantity: 1,
       order,
       lineItem,

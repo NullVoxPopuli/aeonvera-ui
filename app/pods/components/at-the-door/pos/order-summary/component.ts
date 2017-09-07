@@ -13,7 +13,7 @@ export default class extends Component {
 
   orderComplete: bool = false;
 
-  @computed('order.subTotal', 'order.total', 'order.isFeeAbsorbed')
+  @computed('order.unconfirmedSubTotal', 'order.calculatedTotal', 'order.isFeeAbsorbed')
   orderTotal(subTotal, total, feeAbsorbed) {
     if (feeAbsorbed) return parseFloat(subTotal);
 

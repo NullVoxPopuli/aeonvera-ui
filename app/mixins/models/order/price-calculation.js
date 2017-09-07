@@ -34,7 +34,7 @@ export default Ember.Mixin.create({
   },
 
   forceAbsorbFee: false,
-  @computed('forceAbsorbFee', 'subTotal', 'isFeeAbsorbed', 'paymentMethod')
+  @computed('forceAbsorbFee', 'unconfirmedSubTotal', 'isFeeAbsorbed', 'paymentMethod')
   shouldApplyFee(forceAbsorbFee, subTotal, isFeeAbsorbed, paymentMethod) {
     if (isFeeAbsorbed) return false;
 
@@ -54,8 +54,8 @@ export default Ember.Mixin.create({
     return result;
   },
 
-  @computed('subTotal')
-  fee(subTotal) {
+  @computed('unconfirmedSubTotal')
+  fee(_subTotal) {
     const calculation = this.get('priceCalculation');
     const stringFee = calculation.totalFee;
 
@@ -74,12 +74,12 @@ export default Ember.Mixin.create({
   //   return subTotal;
   // },
 
-  // @computed('subTotal', 'shouldApplyFee')
-  // total(subTotal, shouldApplyFee) {
-  //   const calculation = this.get('priceCalculation');
-  //
-  //   return calculation.total;
-  // },
+  @computed('unconfirmedSubTotal', 'shouldApplyFee')
+  calculatedTotal(_subTotal, _shouldApplyFee) {
+    const calculation = this.get('priceCalculation');
+
+    return calculation.total;
+  },
 
   @computed('total')
   hasNonZeroBalance(total) {

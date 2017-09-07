@@ -85,7 +85,6 @@ export default Ember.Controller.extend(Registration, {
     const o = await RSVP.resolve(order);
 
     if (o !== null) {
-      console.log(o.get('hasDirtyAttributes'), !o.get('isNew'));
       if (o.get('hasDirtyAttributes') && !o.get('isNew')) return o.save();
 
       return RSVP.resolve(o);

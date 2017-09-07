@@ -71,6 +71,14 @@ module.exports = {
     "max-len": ["warn", 100],
 
     /////////////////////////
+    // ember-plugin
+    /////////////////////////
+    "order-in-components": 0,
+    "order-in-models": 0,
+    "use-ember-get-and-set": 0,
+    "named-functions-in-promises": 0,
+
+    /////////////////////////
      // TEMPORARILY DISABLED:
      /////////////////////////
      // babel-eslint doesn't work with short-hand decorators
