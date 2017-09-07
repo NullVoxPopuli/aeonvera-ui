@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import RouterScroll from 'ember-router-scroll';
 
 const { inject: { service } } = Ember;
 
-export default Ember.Route.extend(RouterScroll, {
+export default Ember.Route.extend({
   rollbar: service('rollbar'),
   session: service('session'),
   crisp: service('crisp'),

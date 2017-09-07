@@ -2,8 +2,6 @@
 
 module.exports = function(environment) {
   var ENV = {
-    APP: {
-    },
     modulePrefix: 'aeonvera',
     podModulePrefix: 'aeonvera/pods',
     i18n: {
@@ -77,12 +75,6 @@ module.exports = function(environment) {
       }
     },
 
-    localSettings: {
-      serializer: 'json',
-      adapter: 'local-storage',
-      prefix: 'aeonvera/'
-    },
-
     'ember-simple-auth': {
       routeIfAlreadyAuthenticated: 'dashboard',
       // session: 'session:application',
@@ -98,20 +90,29 @@ module.exports = function(environment) {
       tokenPropertyName: 'token',
       authorizationPrefix: 'Bearer ',
       authorizationHeaderName: 'Authorization',
-      headers: {},
+      headers: {}
     },
     contentSecurityPolicy: {
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *",
-      'font-src': "'self' *.amazonaws.com fonts.gstatic.com client.crisp.chat",
-      'connect-src': "*",
-      'img-src': "'self'  *.amazonaws.com data: https://*.stripe.com *",
-      'style-src': "'self' 'unsafe-inline' *.aeonvera.com https://fonts.googleapis.com client.crisp.chat",
-      'frame-src': "https://*.stripe.com",
-      'media-src': "'self' *.amazonaws.com client.crisp.chat"
+      'default-src': '\'none\'',
+      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *',
+      'font-src': '\'self\' *.amazonaws.com fonts.gstatic.com client.crisp.chat',
+      'connect-src': '*',
+      'img-src': '\'self\'  *.amazonaws.com data: https://*.stripe.com *',
+      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera.com https://fonts.googleapis.com client.crisp.chat',
+      'frame-src': 'https://*.stripe.com',
+      'media-src': '\'self\' *.amazonaws.com client.crisp.chat'
     },
     flashMessageDefaults: {
       timeout: 10000
+    },
+    resizeServiceDefaults: {
+      debounceTimeout    : 200,
+      heightSensitive    : true,
+      widthSensitive     : true,
+      injectionFactories : ['component']
+    },
+    routerScroll: {
+      scrollElement: '#scrollAnchor'
     },
     APP: {
       // Here you can pass flags/options to your application instance
@@ -169,13 +170,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
 
     ENV['contentSecurityPolicy'] = {
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
-      'font-src': "'self' *.amazonaws.com",
-      'connect-src': "'self' *.aeonvera-staging.work",
-      'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
-      'style-src': "'self' 'unsafe-inline' *.aeonvera-staging.work",
-      'frame-src': "https://*.stripe.com"
+      'default-src': '\'none\'',
+      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' https://*.stripe.com sidecar.gitter.im',
+      'font-src': '\'self\' *.amazonaws.com',
+      'connect-src': '\'self\' *.aeonvera-staging.work',
+      'img-src': '\'self\' \'*amazonaws.com\' data: https://*.stripe.com',
+      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera-staging.work',
+      'frame-src': 'https://*.stripe.com'
     };
 
   }
@@ -192,8 +193,6 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.host = '/';
     ENV.host = '';
-
-    ENV.localSettings.adapter = 'local-memory';
   }
 
   if (environment === 'production') {
@@ -213,12 +212,12 @@ module.exports = function(environment) {
 
     // Make sure Ember allows us to connect to teh server
     ENV['contentSecurityPolicy'] = {
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://*.stripe.com sidecar.gitter.im",
-      'connect-src': "'self' *.aeonvera.com",
-      'img-src': "'self' '*amazonaws.com' data: https://*.stripe.com",
-      'style-src': "'self' 'unsafe-inline' *.aeonvera.com",
-      'frame-src': "https://*.stripe.com"
+      'default-src': '\'none\'',
+      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' https://*.stripe.com sidecar.gitter.im',
+      'connect-src': '\'self\' *.aeonvera.com',
+      'img-src': '\'self\' \'*amazonaws.com\' data: https://*.stripe.com',
+      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera.com',
+      'frame-src': 'https://*.stripe.com'
     };
   }
 

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+
 import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
 export default Ember.Route.extend(SideNav, {

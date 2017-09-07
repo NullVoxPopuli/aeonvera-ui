@@ -26,7 +26,7 @@ test('the email address must be specified', withChai(expect => {
   const errorsSelector = testSelector('form-errors');
 
   server.post('/api/users/password',
-    {"errors":[{"source":{"pointer":"/data/attributes/email"},"detail":"can't be blank"}]},
+    { 'errors':[{ 'source':{ 'pointer':'/data/attributes/email' },'detail':'can\'t be blank' }] },
     422);
 
   visit('/password-reset');
@@ -38,7 +38,7 @@ test('the email address must be specified', withChai(expect => {
 
     let text = find(formSelector).text();
 
-    expect(text).to.include("email can't be blank");
+    expect(text).to.include('email can\'t be blank');
   });
 }));
 
@@ -47,14 +47,14 @@ test('setting new password fails without a token', withChai(expect => {
   const errorsSelector = testSelector('form-errors');
 
   server.put('/api/users/password',
-    {"errors":[
+    { 'errors':[
       {
-        "source":{
-          "pointer":"/data/attributes/reset-password-token"
+        'source':{
+          'pointer':'/data/attributes/reset-password-token'
         },
-        "detail":"can't be blank"
+        'detail':'can\'t be blank'
       }
-    ]},
+    ] },
     422);
 
 
@@ -72,7 +72,7 @@ test('setting new password fails without a token', withChai(expect => {
     const errors = `${formSelector} ${errorsSelector}`;
     const text = find(errors).text();
 
-    expect(text).to.include("token can't be blank");
+    expect(text).to.include('token can\'t be blank');
   });
 }));
 
@@ -81,14 +81,14 @@ test('setting new password fails without a password', withChai(expect => {
   const errorsSelector = testSelector('form-errors');
 
   server.put('/api/users/password',
-    {"errors":[
+    { 'errors':[
       {
-        "source":{
-          "pointer":"/data/attributes/password"
+        'source':{
+          'pointer':'/data/attributes/password'
         },
-        "detail":"can't be blank"
+        'detail':'can\'t be blank'
       }
-    ]},
+    ] },
     422);
 
   visit('/password-reset/edit');
@@ -113,14 +113,14 @@ test('setting new password fails without a password', withChai(expect => {
   const errorsSelector = testSelector('form-errors');
 
   server.put('/api/users/password',
-    {"errors":[
+    { 'errors':[
       {
-        "source":{
-          "pointer":"/data/attributes/password-confirmation"
+        'source':{
+          'pointer':'/data/attributes/password-confirmation'
         },
-        "detail":"can't be blank"
+        'detail':'can\'t be blank'
       }
-    ]},
+    ] },
     422);
 
   visit('/password-reset/edit');

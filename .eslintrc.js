@@ -2,7 +2,10 @@
 // eslint:recommended
 module.exports = {
   root: true,
-  "extends": "ember",
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended'
+  ],
   parser: "babel-eslint",
   parserOptions: {
     ecmaVersion: 2017,
@@ -49,8 +52,6 @@ module.exports = {
     "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 3}],
     // http://eslint.org/docs/rules/newline-before-return
     "newline-before-return": 0,
-    // https://eslint.org/docs/2.13.1/rules/no-magic-numbers#ignorearrayindexes
-    "no-magic-numbers": ["error", { "ignoreArrayIndexes": true, "ignore": [0, 1] }],
     // I still want to know what variables are, so documentation doesn't need to be referenced
     // https://eslint.org/docs/rules/no-unused-vars#argsignorepattern
     'no-unused-vars': ["error", { "argsIgnorePattern": "^_" }],
@@ -59,7 +60,7 @@ module.exports = {
     "no-mixed-spaces-and-tabs": "error",
     "no-console": 1,
     "no-warning-comments": ["warn"],
-    "complexity": ["error", 2],
+    "complexity": ["warn", 7],
     "no-else-return": ["error"],
     "quotes": [2, 'single'],
 
@@ -82,7 +83,6 @@ module.exports = {
     "valid-jsdoc": 0,
     "no-ternary": 0,
     "camelcase": 0, // cause of rails ids
-    "complexity": ["warn", 4],
     "no-shadow": 0,
     "no-console": 0, // really? shame on me.
     "no-undef": 0, // esp this one -- renabled

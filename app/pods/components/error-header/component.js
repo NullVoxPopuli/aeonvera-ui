@@ -1,78 +1,50 @@
 import Ember from 'ember';
 
-import { computed } from 'ember-decorators/object';
+import { computed, action } from 'ember-decorators/object';
 import { oneWay } from 'ember-decorators/object/computed';
+
+import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
 export const NOT_AUTHORIZED = 'Not authorized. Please login as an authorized user.';
 
+const { get, set, isPresent } = Ember;
+
 export default Ember.Component.extend({
-  errors: [],
+  @oneWay('errorsPresent') hidden: null,
+
+  didUpdateAttrs() {
+    set(this, 'hidden', false);
+  },
 
   // cannot use notEmpty with .@each,
   // because .@each expects array of objects.
   @computed('errors.@each')
   errorsPresent(errors) {
-    return Ember.isPresent(errors);
+    return isPresent(errors);
   },
 
-  didUpdateAttrs() {
-    this.set('hidden', false);
-  },
-
-  @oneWay('errorsPresent') hidden: null,
 
   @computed('errors.@each', 'errorsPresent')
   firstError(errors, hasErrors) {
-    if (!hasErrors) return;
+    if (!hasErrors) return '';
 
-    const firstErrorObject = errors.get('firstObject');
+    const firstErrorObject = get(errors, 'firstObject');
+    const noError = firstErrorObject === undefined || typeof(firstErrorObject) == 'string';
 
-    // No error
-    if (firstErrorObject === undefined) {
-      return;
-    }
+    if (noError) return firstErrorObject;
 
-    if (typeof (firstErrorObject) === 'string') {
-      return firstErrorObject;
-    }
-
-    // Generic Unauthorized Error
-    const code = firstErrorObject.code;
-
-    if (code === 401) {
+    if (firstErrorObject.code === 401) {
       return NOT_AUTHORIZED;
     }
 
-    const source = firstErrorObject.source;
-    let field = firstErrorObject.attribute;
+    const message = messageFromError({ errors });
 
-    if (source !== undefined) {
-      // JSON API Errors
-      field = source.pointer.replace(/\/?data\/attributes\//, '');
-      field = field.replace('-', ' ');
-    }
-
-    if (Array.isArray(firstErrorObject.message)) {
-      // ember-model-validator
-      return firstErrorObject.message[0];
-    }
-
-    // ember-data model error || JSON API error
-    const reason = firstErrorObject.message || firstErrorObject.detail;
-
-    // Errors on the root model
-    // https://www.youtube.com/watch?v=IfeyUGZt8nk
-    if (field === 'base') {
-      return reason;
-    }
-
-    return field + ' ' + reason;
+    // force an array, return first element
+    return (Array.from(message))[0];
   },
 
-  actions: {
-    hideError() {
-      this.set('hidden', true);
-    }
+  @action
+  hideError() {
+    set(this, 'hidden', true);
   }
-
 });

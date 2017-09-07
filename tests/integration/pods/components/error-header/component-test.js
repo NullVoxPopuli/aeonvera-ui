@@ -96,23 +96,34 @@ test('for a json:api error, it does not matter if the source pointer starts with
   expect(this.$().text()).to.not.include('/field name');
 }));
 
-// TODO: convert these tests to message-from-error, and refactor this component
-skip('for a json:api error, if the field is base, only the reason is displayed', withChai(expect => {
+test('the error can be hidden', withChai(function(expect) {
+  const error = 'I am an error. AMA';
 
+  this.render(hbs`{{error-header errors=errors}}`);
+  this.set('errors', [error]);
+
+  expect(this.$().text()).to.include(error);
+
+  const selector = '[data-test-error-close]'
+  this.$(selector).click();
+
+  expect(this.$().text()).to.not.include(error);
 }));
 
-skip('for a json:api error, the message is displayed', withChai(expect => {
+test('if the error is hidden, upon receiving new attributes, the error should re-display', withChai(function(expect) {
+  const error = 'I am an error. AMA';
 
-}));
+  this.render(hbs`{{error-header errors=errors}}`);
+  this.set('errors', [error]);
 
-skip('for a json:api error, the detail is displayed', withChai(expect => {
+  expect(this.$().text()).to.include(error);
 
-}));
+  const selector = '[data-test-error-close]'
+  this.$(selector).click();
 
-skip('the error can be hidden', withChai(expect => {
+  expect(this.$().text()).to.not.include(error);
 
-}));
+  this.set('errors', ['new error!']);
 
-skip('if the error is hidden, upon receiving new attributes, the error should re-display', withChai(expect => {
-
+  expect(this.$().text()).to.include('new error!');
 }));

@@ -3337,6 +3337,16 @@ ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.10
     json-stable-stringify "^1.0.0"
     strip-bom "^2.0.0"
 
+ember-cli-htmlbars@^1.0.5:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.4.tgz#461289724b34af372a6a0c4b6635819156963353"
+  dependencies:
+    broccoli-persistent-filter "^1.0.3"
+    ember-cli-version-checker "^1.0.2"
+    hash-for-dep "^1.0.2"
+    json-stable-stringify "^1.0.0"
+    strip-bom "^2.0.0"
+
 ember-cli-htmlbars@^2.0.1, ember-cli-htmlbars@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-2.0.3.tgz#e116e1500dba12f29c94b05b9ec90f52cb8bb042"
@@ -4000,7 +4010,7 @@ ember-getowner-polyfill@1.1.1:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.2.0"
 
-ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2, ember-getowner-polyfill@^1.2.3:
+ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.2.3.tgz#ea70f4a48b1c05b91056371d1878bbafe018222e"
   dependencies:
@@ -4179,9 +4189,12 @@ ember-reactive-helpers@^0.5.0:
     ember-composable-helpers "2.0.1"
     ember-concurrency "0.8.1"
 
-ember-resize-mixin@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-resize-mixin/-/ember-resize-mixin-0.1.1.tgz#5375d51a7f64780db1613b3e100b136043098b25"
+ember-resize@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/ember-resize/-/ember-resize-0.0.17.tgz#42bd7894cd7ed68bdc88fddb40efca18147f6bd5"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-htmlbars "^1.0.5"
 
 ember-resolver@^4.5.0:
   version "4.5.0"
@@ -4227,13 +4240,13 @@ ember-router-generator@^1.0.0:
   dependencies:
     recast "^0.11.3"
 
-ember-router-scroll@^0.3.0:
+"ember-router-scroll@git://github.com/dollarshaveclub/ember-router-scroll.git#b35c81115c0b6b950e42459eec9bf816bc7196b3":
   version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-router-scroll/-/ember-router-scroll-0.3.0.tgz#5f9b426c8ecd65619459d8cf377bdef0d46c70f4"
+  resolved "git://github.com/dollarshaveclub/ember-router-scroll.git#b35c81115c0b6b950e42459eec9bf816bc7196b3"
   dependencies:
     ember-app-scheduler "0.0.5"
     ember-cli-babel "^6.6.0"
-    ember-getowner-polyfill "^1.2.3"
+    ember-getowner-polyfill "^2.0.1"
 
 ember-runtime-enumerable-includes-polyfill@^1.0.1:
   version "1.0.4"
@@ -4557,18 +4570,13 @@ escodegen@1.8.x, escodegen@1.x.x, escodegen@^1.8.0:
   optionalDependencies:
     source-map "~0.2.0"
 
-eslint-config-ember@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-ember/-/eslint-config-ember-0.3.0.tgz#c65fb0da0f47261ca3a5a7e603a9363e5e9afd82"
+eslint-plugin-ember@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-4.5.0.tgz#6634034a5267083db2f32678e6b699f119c5eb94"
   dependencies:
-    eslint-config-nightmare-mode "^2.3.0"
-    object-assign "^4.0.1"
-
-eslint-config-nightmare-mode@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-nightmare-mode/-/eslint-config-nightmare-mode-2.3.0.tgz#d725f18653c457568db8d90d9b70cf13bd0862ab"
-  dependencies:
-    object-assign "^2.0.0"
+    ember-rfc176-data "^0.2.7"
+    require-folder-tree "^1.4.5"
+    snake-case "^2.1.0"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -4577,9 +4585,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.6.0.tgz#98ced4a706a87abbe63207895d0023a38e250bbe"
+eslint@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.6.1.tgz#ddc7fc7fd70bf93205b0b3449bb16a1e9e7d4950"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -6726,6 +6734,10 @@ lodash.without@~3.2.1:
     lodash._basedifference "^3.0.0"
     lodash.restparam "^3.0.0"
 
+lodash@3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.8.0.tgz#376eb98bdcd9382a9365c33c4cb8250de1325b91"
+
 lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3, lodash@~3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
@@ -6762,6 +6774,10 @@ loud-rejection@^1.0.0, loud-rejection@^1.2.0:
   dependencies:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
+
+lower-case@^1.1.1:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
 
 lru-cache@2, lru-cache@~2.6.5:
   version "2.6.5"
@@ -7092,6 +7108,12 @@ negotiator@0.6.1:
 netmask@~1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
+
+no-case@^2.2.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.1.tgz#7aeba1c73a52184265554b7dc03baf720df80081"
+  dependencies:
+    lower-case "^1.1.1"
 
 node-dir@^0.1.16:
   version "0.1.17"
@@ -8617,6 +8639,12 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
 
+require-folder-tree@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/require-folder-tree/-/require-folder-tree-1.4.5.tgz#dfe553cbab98cc88e1c56a3f2f358f06ef85bcb0"
+  dependencies:
+    lodash "3.8.0"
+
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -8992,6 +9020,12 @@ slide@^1.1.3, slide@^1.1.5, slide@~1.1.3, slide@~1.1.6:
 smart-buffer@^1.0.13:
   version "1.1.15"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-1.1.15.tgz#7f114b5b65fab3e2a35aa775bb12f0d1c649bf16"
+
+snake-case@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/snake-case/-/snake-case-2.1.0.tgz#41bdb1b73f30ec66a04d4e2cad1b76387d4d6d9f"
+  dependencies:
+    no-case "^2.2.0"
 
 sntp@1.x.x:
   version "1.0.9"

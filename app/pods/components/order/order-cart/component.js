@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ResizeMixin from 'ember-resize-mixin/main';
 import SlotsMixin from 'ember-block-slots';
 import { computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
@@ -7,9 +6,9 @@ import { PropTypes } from 'ember-prop-types';
 
 import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
 
-const { isPresent } = Ember;
+const { isPresent, get } = Ember;
 
-export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
+export default Ember.Component.extend(EmberScroll, SlotsMixin, {
   propTypes: {
     order: PropTypes.EmberObject.isRequired,
     onRemoveLineItem: PropTypes.func.isRequired,
@@ -18,6 +17,7 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
 
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
   cart: Ember.inject.service('order-cart'),
+  resize: Ember.inject.service('resize'),
   errors: [],
   resetCheckoutButton: false,
   isProceedToCheckoutVisible: false,
@@ -34,10 +34,14 @@ export default Ember.Component.extend(ResizeMixin, EmberScroll, SlotsMixin, {
     the width and height parameters given are the document width and height.
     for this resize, we need to get the height from the window.
   */
-  debouncedDidResize: function() {
-    this.get('cart')._adjustCartMaxHeight();
-    this._updateProceedToCheckoutVisibility();
-  }.on('resize'),
+  init() {
+    this._super(...arguments);
+
+    get(this, 'resize').on('debouncedDidResize', () => {
+      get(this, 'cart')._adjustCartMaxHeight();
+      this._updateProceedToCheckoutVisibility();
+    });
+  },
 
   didScroll() {
     this._updateProceedToCheckoutVisibility();

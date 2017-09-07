@@ -1,8 +1,6 @@
 import Ember from 'ember';
-// import d3 from 'd3';
-import ResizeMixin from 'ember-resize-mixin/main';
 
-export default Ember.Component.extend(ResizeMixin, {
+export default Ember.Component.extend({
   // passed in
   event: null,
 
@@ -16,11 +14,6 @@ export default Ember.Component.extend(ResizeMixin, {
       this._drawGraph();
     });
   },
-
-  // debouncedDidResize: function() {
-  //   // this._drawGraph();
-  //
-  // }.on('resize'),
 
   _buildData() {
     const event = this.get('event');

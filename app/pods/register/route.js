@@ -1,7 +1,6 @@
 import Ember from 'ember';
-import RouterScroll from 'ember-router-scroll';
 
-export default Ember.Route.extend(RouterScroll, {
+export default Ember.Route.extend({
   model: function(params) {
     const subdomain = params.subdomain;
 

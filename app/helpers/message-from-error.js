@@ -2,7 +2,11 @@ import Ember from 'ember';
 
 const { isBlank, String: { htmlSafe } } = Ember;
 
-const defaultTemplate = (title, detail) => `${title} ${detail}`;
+const defaultTemplate = (title, detail) => (
+  title && detail && `${title} ${detail}` || title || detail
+);
+
+const IGNORED_ATTRIBUTE = 'base';
 
 // TODO: take _messageFromError from flash-notification
 export function messageFromError(error, msgTemplate) {
@@ -19,6 +23,8 @@ export function messageFromError(error, msgTemplate) {
     // JSONAPI.org + Adapter errors
     if (error.isAdapterError) return parseAdapterError(error, msgTemplate);
     if (isObject) return parseAdapterError(error, msgTemplate);
+
+    // no default?
   }
 
   // else, return the error - adjust this method as needed.
@@ -26,22 +32,49 @@ export function messageFromError(error, msgTemplate) {
 }
 
 function parseAdapterError(error, msgTemplate) {
-  return error.errors.map(e => {
-    const status = e.code;
-    const { detail, source } = e;
-    const { pointer } = source || {};
+  return error.errors.map(e => parseErrorFromAdapterError(e, msgTemplate));
+}
 
-    if (status >= 500) return msgTemplate(e.title, htmlSafe(e.detail));
+function parseErrorFromAdapterError(error, msgTemplate) {
+  const { title, detail, source, message } = error;
+  const { pointer } = source || {};
 
-    if (status === undefined || (status < 500 && status >= 400) && pointer) {
-      const attribute = pointer.split('/').pop();
+  if (!isKnownError(error)) return msgTemplate(title, detail);
+  if (isServerError(error)) return msgTemplate(title, htmlSafe(detail));
 
-      return msgTemplate(error.message, `${attribute} ${detail}`);
-    }
+  const attribute = pointer.split('/').pop().replace('-', ' ');
+  const attributeDetail = detail || message;
 
-    // default?
-    return msgTemplate(e.title, e.detail);
-  });
+  // do we care about the message?
+  // usually this'll say something like "AdapterError"
+  if (error.message) {
+    return msgTemplate(error.message, `${attribute} ${attributeDetail}`);
+  }
+
+  if (attribute === IGNORED_ATTRIBUTE) return msgTemplate(attributeDetail);
+
+  return msgTemplate(attribute, attributeDetail);
+}
+
+// API needs to get it's act together,
+// and return consistenc errors...
+// coughtdevisecought
+function isKnownError(error) {
+  const { status, code, source } = error;
+  const { pointer } = source || {};
+  const errorStatus = status || code;
+
+  return (
+    isServerError(error) ||
+    (errorStatus === undefined || (errorStatus >= 400 && pointer))
+  );
+}
+
+function isServerError(error) {
+  const { status, code } = error;
+  const errorStatus = status || code;
+
+  return errorStatus >= 500;
 }
 
 export default Ember.Helper.helper(messageFromError);

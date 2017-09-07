@@ -12,12 +12,12 @@ test('maps JSONAPI errors', withChai(expect => {
     status: '422',
     source: { pointer: '/data/attributes/first-name' },
     title: 'Invalid Attribute',
-    detail: 'First name must contain at least three characters.'
+    detail: 'must contain at least three characters.'
   };
 
   const result = messageFromError({ errors: [error] });
 
-  expect(result).to.equal([error.detail]);
+  expect(result).to.eql([`first name ${error.detail}`]);
 }));
 
 test('returns the param if the error passed is just a string', withChai(expect => {
@@ -54,7 +54,7 @@ test('when error is an AdapterError, it is parsed', withChai(expect => {
   const result = messageFromError(error);
 
   expect(result.length).to.equal(1);
-  expect(result[0]).to.include('first-name must contain at least three characters.');
+  expect(result[0]).to.include('first name must contain at least three characters.');
 }));
 
 test('when error is an object with an errors hash, it is treated as an adapter error', withChai(expect => {
@@ -68,7 +68,22 @@ test('when error is an object with an errors hash, it is treated as an adapter e
   const result = messageFromError(error);
 
   expect(result.length).to.equal(1);
-  expect(result[0]).to.include('first-name must contain at least three characters.');
+  expect(result[0]).to.include('first name must contain at least three characters.');
+}));
+
+test('two errors are presented', withChai(expect => {
+  const errorObject = {
+    status: '422',
+    source: { pointer: '/data/attributes/first-name' },
+    title: 'Invalid Attribute',
+    detail: 'must contain at least three characters.'
+  };
+  const error = { errors: [errorObject, errorObject] };
+  const result = messageFromError(error);
+
+  expect(result.length).to.equal(2);
+  expect(result[0]).to.include('first name must contain at least three characters.');
+  expect(result[1]).to.include('first name must contain at least three characters.');
 }));
 
 test('when an error has a status code of 500, the title and htmlSafe detail are returned', withChai(expect => {
@@ -95,4 +110,18 @@ test('when an error has a status code below 400, use the default template', with
 
   expect(result.length).to.equal(1);
   expect(result[0]).to.equal(`${errorObject.title} ${errorObject.detail}`);
+}));
+
+test('when an error points to the base (model), rather than attributes, display only the message', withChai(expect => {
+  const errorObject = {
+    status: '422',
+    source: { pointer: '/data/attributes/base' },
+    title: 'Invalid whatever',
+    detail: 'Discount cannot be applied. No matching line item.'
+  };
+  const error = { errors: [errorObject] };
+  const result = messageFromError(error);
+
+  expect(result.length).to.equal(1);
+  expect(result[0]).to.equal('Discount cannot be applied. No matching line item.');
 }));
