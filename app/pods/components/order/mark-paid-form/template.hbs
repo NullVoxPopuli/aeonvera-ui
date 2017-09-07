@@ -1,0 +1,86 @@
+{{#if showOrder}}
+  {{order/order-review model=order}}
+  <hr />
+{{/if}}
+
+<div class='layout-row'>
+  <div class='layout-column flex-50'>
+    {{paper-input
+      type='number'
+      class='margin-bottom-0 no-errors'
+      label='Order Total'
+      value=amount
+      onChange=(action (mut cashOrCheckAmount))
+    }}
+
+    {{#paper-checkbox
+      value=order.isFeeAbsorbed
+      disabled=(is-present cashOrCheckAmount)
+      onChange=(action (mut order.isFeeAbsorbed))}}
+      Absorb Service Fee
+    {{/paper-checkbox}}
+
+
+    {{paper-input
+      type='email'
+      label='Email for Receipt'
+      value=(readonly order.checkoutEmail)
+      onChange=(action (mut order.checkoutEmail))
+    }}
+
+    {{paper-input
+      textarea=true
+      class='margin-top-0'
+      label='Notes'
+      value=(readonly notes)
+      onChange=(action (mut notes))
+      passThru=(hash rows=3 maxRows=5)
+    }}
+  </div>
+
+  <div class='layout-column flex-50'>
+    {{#paper-radio-group
+      groupValue=(readonly paymentMethod)
+      onChange=(action (mut paymentMethod)) as |g| }}
+
+      {{#g.radio value=paymentMethods.CASH}}Cash{{/g.radio}}
+      {{#g.radio value=paymentMethods.CHECK}}Check{{/g.radio}}
+
+      {{#if (is-equal paymentMethod paymentMethods.CHECK)}}
+        {{paper-input
+          type='text'
+          class='no-errors margin-top-0'
+          label='Check Number'
+          value=(readonly checkNumber)
+          onChange=(action (mut checkNumber))
+        }}
+      {{/if}}
+
+      {{#g.radio value=paymentMethods.STRIPE}}Debit/Credit Card{{/g.radio}}
+    {{/paper-radio-group}}
+
+    <hr />
+
+    {{#if (or (is-equal paymentMethod paymentMethods.CASH) (is-equal paymentMethod paymentMethods.CHECK))}}
+      {{#form/confirm-button
+        action='markPaid'
+        confirmText=confirmText
+        confirmPrimary=true
+        showCancel=true
+        cancelClasses='small'
+        confirmClasses='small'
+      }}
+        Mark Paid
+      {{/form/confirm-button}}
+    {{/if}}
+
+    {{#if (is-equal paymentMethod paymentMethods.STRIPE)}}
+      {{stripe/checkout-button
+        model=order
+        label='Pay'
+        action='processStripeToken'
+        paymentAmountOverride=amount
+        email=(readonly order.checkoutEmail)}}
+    {{/if}}
+  </div>
+</div>

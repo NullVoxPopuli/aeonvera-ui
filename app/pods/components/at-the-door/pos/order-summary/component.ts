@@ -1,3 +1,4 @@
+import RSVP from 'rsvp';
 import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
@@ -37,5 +38,13 @@ export default class extends Component {
   @action
   clearOrder() {
 
+  }
+
+  @action
+  async saveDirtyOrderLineItems() {
+    const order = await this.get('order');
+    const dirties = await order.get('dirtyOrderLineItems');
+
+    return RSVP.all(dirties.map(oli => oli.save()));
   }
 }

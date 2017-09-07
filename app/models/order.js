@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
-import { alias, gt, mapBy, not } from 'ember-decorators/object/computed';
+import { alias, gt, mapBy, not, filterBy } from 'ember-decorators/object/computed';
 
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
@@ -89,9 +89,8 @@ export default Model.extend(PriceCalculation, {
     return paid ? 'success-color' : 'alert-color';
   },
 
-
-  @mapBy('orderLineItems', 'isNew') newOrderLineItems: null,
-  @gt('newOrderLineItems.length', 0) hasUnSavedItems: null,
+  @filterBy('orderLineItems', 'hasDirtyAttributes', true) dirtyOrderLineItems: null,
+  @gt('dirtyOrderLineItems.length', 0) hasUnSavedItems: null,
 
   // In order for discounts to happen, ever orderLineItem
   // must be persisted. Discounts are computed by the backend.

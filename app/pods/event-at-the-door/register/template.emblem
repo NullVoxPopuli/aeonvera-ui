@@ -1,2 +1,2 @@
 .margin-left-20
-  = at-the-door/register-form model=model onComplete='completed'
+  / = at-the-door/register-form model=model onComplete='completed'

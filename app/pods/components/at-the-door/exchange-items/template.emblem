@@ -7,7 +7,7 @@
 
   = block-slot 'listItems'
 
-    =order/hidden-mark-paid-modal show=cart.order order=cart.order afterPayment='clearOrder'
+    / =order/hidden-mark-paid-modal show=cart.order order=cart.order afterPayment='clearOrder'
 
     .row
       .columns.small-6

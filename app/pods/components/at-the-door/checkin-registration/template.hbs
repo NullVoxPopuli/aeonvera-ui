@@ -26,7 +26,7 @@
           Paid
         {{else}}
           <span>Owes {{to-usd order.totalInDollars}}</span>
-          {{order/mark-paid-modal accent=true order=order showOrder=true}}
+          {{order/mark-paid-modal-with-button accent=true order=order showOrder=true}}
         {{/if}}
       </div>
     </div>

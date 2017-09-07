@@ -1,0 +1,13 @@
+{{#ember-paper/simple-dialog-with-button
+  title='Mark Paid'
+  accent=accent
+  buttonDisabled=buttonDisabled
+  buttonText=(or buttonText 'Mark Paid')}}
+
+  {{order/mark-paid-form
+    showOrder=showOrder
+    order=order
+    afterPayment=afterPayment
+  }}
+
+{{/ember-paper/simple-dialog-with-button}}
