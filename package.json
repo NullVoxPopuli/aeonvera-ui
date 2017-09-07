@@ -113,7 +113,7 @@
     "ember-resolver": "^4.5.0",
     "ember-responsive": "^2.0.4",
     "ember-rollbar-client": "^0.4.0",
-    "ember-route-action-helper": "^2.0.3",
+    "ember-route-action-helper": "^2.0.6",
     "ember-router-scroll": "git://github.com/dollarshaveclub/ember-router-scroll.git#b35c81115c0b6b950e42459eec9bf816bc7196b3",
     "ember-scroll-to": "0.6.4",
     "ember-select-2": "1.3.0",
