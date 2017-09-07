@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import ResetScroll from 'aeonvera/mixins/routes/reset-scroll';
+import RouterScroll from 'ember-router-scroll';
 
-export default Ember.Route.extend(ResetScroll, {
+export default Ember.Route.extend(RouterScroll, {
   model: function(params) {
     const subdomain = params.subdomain;
 
