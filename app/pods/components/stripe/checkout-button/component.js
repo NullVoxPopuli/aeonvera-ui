@@ -43,9 +43,7 @@ export default Ember.Component.extend({
     if (isBlank(email)) email = this.get('model.userEmail');
     if (isBlank(email)) email = SUPPORT_EMAIL
 
-    // this.set('model.checkoutEmail', email);
     this.set('emailForReceipt', email);
-
   },
 
   host: computed('model', function() {

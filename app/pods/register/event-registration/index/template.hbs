@@ -1,60 +1,67 @@
 <br />
 <div class='layout-column layout-align-center-center'>
+  <div class='layout-row layout-align-space-between-center'>
+    <img
+      class='width-of-160px padding-20'
+      src={{model.event.logoUrlMedium}} />
 
-  <h3>Your Registration(s) for {{model.event.name}}</h3>
+    <span>
+      <h3>
+        {{model.event.name}}<br />
+      </h3>
+      {{#unless hasNotRegistered}}
+        <h4>{{subHeaderText}}</h4>
+      {{/unless}}
+    </span>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Registered At</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#if (gt registrations.length 0)}}
+  {{#if hasNotRegistered}}
+    <em>You do not yet have any registrations, would you like to make one?</em>
+    <br />
+  {{else}}
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Time Registered</th>
+        </tr>
+      </thead>
+      <tbody>
         {{#each registrations as |registration|}}
-        <tr>
-          <td>
-            {{#link-to 'register.event-registration.show.index' registration.id}}
-              View
-            {{/link-to}}
-          </td>
-          <td>
-            {{register/event-registration-form/table-menu
-              registration=registration
-              onConfirmCancel=(action 'cancelRegistration' registration)
-            }}
-          </td>
-          <td>
-            {{!-- {{#link-to 'register.event-registration.show' model.event registration.id}} --}}
+          <tr>
+            <td>
+              {{#link-to 'register.event-registration.show.index' registration.id}}
+                View
+              {{/link-to}}
+            </td>
+            <td>
+              {{register/event-registration-form/table-menu
+                registration=registration
+                onConfirmCancel=(action 'cancelRegistration' registration)
+              }}
+            </td>
+            <td>
               {{registration.attendeeFirstName}} {{ registration.attendeeLastName}}
-            {{!-- {{/link-to}} --}}
-          </td>
-          <td>
-            {{!-- {{#if registration.owesMoney}}
-              Unpaid
-            {{else}} --}}
+            </td>
+            <td>
+              {{#unless registration.hasPaid}}
+                Incomplete! <br />
+              {{/unless}}
               {{registration.paymentStatus}}
-            {{!-- {{/if}} --}}
-          </td>
-          <td>{{registration.registeredAt}}</td>
-        </tr>
+            </td>
+            <td>{{date-with-format registration.registeredAt 'LLL'}}</td>
+          </tr>
         {{/each}}
-      {{else}}
-        <tr>
-          <td colspan='5'>
-            You have not yet registered.
-          </td>
-        </tr>
-      {{/if}}
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  {{/if}}
 
   {{#paper-button
     primary=true
+    raised=true
     onClick=(action 'toNewRegistration')}}
     New Registration
   {{/paper-button}}

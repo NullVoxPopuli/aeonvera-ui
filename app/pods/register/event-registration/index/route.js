@@ -33,8 +33,9 @@ export default Ember.Route.extend(SideNav, {
 
     this._showSideNav();
 
-    if (hasNotRegistered) {
-      this.transitionTo('register.event-registration.show.edit', UNREGISTERED_ID);
-    }
+    // disabled for now while testing usability of not auto-redirecting
+    // if (hasNotRegistered) {
+    //   this.transitionTo('register.event-registration.show.edit', UNREGISTERED_ID);
+    // }
   }
 });

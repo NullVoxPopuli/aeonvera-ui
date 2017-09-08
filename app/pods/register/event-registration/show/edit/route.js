@@ -1,9 +1,9 @@
 import Ember from 'ember';
-Ember.run.backburner.DEBUG = true;
+import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
   // event, registration
-  model(params) {
+  model() {
     return this.modelFor('register.event-registration.show');
   }
 });

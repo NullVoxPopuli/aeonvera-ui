@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
-import { action } from 'ember-decorators/object';
-import { sort } from 'ember-decorators/object/computed';
+import { action, computed } from 'ember-decorators/object';
+import { sort, equal, gt } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
 export default Ember.Controller.extend({
@@ -9,6 +9,16 @@ export default Ember.Controller.extend({
 
   sortBy: ['registeredAt'],
   @sort('model.registrations', 'sortBy') registrations: null,
+
+  @equal('registrations.length', 0) hasNotRegistered: null,
+  @gt('registrations.length', 1) moreThanOneRegistration: null,
+
+  @computed('moreThanOneRegistration')
+  subHeaderText(moreThanOne) {
+    if (moreThanOne) return 'Your Registrations';
+
+    return 'Your Registration';
+  },
 
   @action
   toNewRegistration() {
