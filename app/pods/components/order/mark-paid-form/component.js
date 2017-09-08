@@ -6,7 +6,7 @@ import { alias } from 'ember-decorators/object/computed';
 
 import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
-const { isPresent } = Ember;
+const { isPresent, isBlank } = Ember;
 
 export default class extends Ember.Component {
   static propTypes = {
@@ -35,6 +35,16 @@ export default class extends Ember.Component {
   checkNumber = '';
   notes = '';
   absorbFees = false;
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    const userEmail = this.get('order.userEmail');
+    const checkoutEmail = this.get('order.checkoutEmail')
+    if (isBlank(userEmail) && isBlank(checkoutEmail)) {
+      this.set('order.checkoutEmail', 'support@aeonvera.com');
+    }
+  }
 
   @alias('order.totalInDollars') orderTotal;
 
@@ -96,6 +106,7 @@ export default class extends Ember.Component {
 
   @action
   async processStripeToken(params) {
+    this.set('showPaymentInProgress', true);
     const token = params.id;
     const order = this.get('order');
 
@@ -113,6 +124,7 @@ export default class extends Ember.Component {
       await resolvedOrder.save();
 
       this.sendAction('afterPayment');
+      this.set('showPaymentInProgress', false);
       this.get('flash').success('Order was successfully marked as paid.');
     } catch (e) {
       this.get('flash').alert(e);

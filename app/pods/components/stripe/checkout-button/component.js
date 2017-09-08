@@ -3,6 +3,8 @@ import { PropTypes } from 'ember-prop-types';
 
 const { isPresent, isBlank, computed } = Ember;
 
+const SUPPORT_EMAIL = 'support@aeonvera.com';
+
 /*
   The stripe script sends a submit action to it's containing form.
   So, we must have a form.
@@ -33,6 +35,19 @@ export default Ember.Component.extend({
 
   label: 'Pay with card',
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    let email = this.get('email');
+
+    if (isBlank(email)) email = this.get('model.userEmail');
+    if (isBlank(email)) email = SUPPORT_EMAIL
+
+    // this.set('model.checkoutEmail', email);
+    this.set('emailForReceipt', email);
+
+  },
+
   host: computed('model', function() {
     return this.get('model.host');
   }),
@@ -43,17 +58,6 @@ export default Ember.Component.extend({
 
   key: computed('host', function() {
     return this.get('host.stripePublishableKey');
-  }),
-
-  emailForReceipt: computed('model', function() {
-    let email = this.get('email');
-
-    if (!Ember.isPresent(email)) {
-      email = this.get('model.userEmail');
-    }
-
-    this.set('model.checkoutEmail', email);
-    return email;
   }),
 
   description: computed('host', function() {
