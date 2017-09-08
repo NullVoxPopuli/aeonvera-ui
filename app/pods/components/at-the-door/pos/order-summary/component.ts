@@ -32,7 +32,11 @@ export default class extends Component {
 
   @action
   showComplete() {
-    this.set('orderComplete', true);
+    // reset stuff
+    this.set('showPaymentModal', false);
+    this.set('order', null);
+
+    this.get('router').transitionTo('event-at-the-door.payment-success');
   }
 
   @action
@@ -41,10 +45,16 @@ export default class extends Component {
   }
 
   @action
-  async saveDirtyOrderLineItems() {
+  async openPayModal() {
     const order = await this.get('order');
     const dirties = await order.get('dirtyOrderLineItems');
 
-    return RSVP.all(dirties.map(oli => oli.save()));
+    try {
+      await RSVP.all(dirties.map(oli => oli.save()));
+
+      this.set('showPaymentModal', true);
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

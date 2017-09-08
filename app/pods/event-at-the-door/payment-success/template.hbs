@@ -1,0 +1,18 @@
+<br />
+<div class='layout-column layout-align-center-center'>
+  {{#link-to 'register' model.domain}}
+    {{event/logo-thumbnail model=model imageClass='center-margin'}}
+  {{/link-to}}
+  <br /><br />
+
+  <h4>Payment Successful</h4>
+
+  <br /><br /><br />
+
+  {{#paper-button
+    raised=true
+    primary=true
+    onClick=(action (transition-to 'event-at-the-door.a-la-carte'))}}
+    New Sale?
+  {{/paper-button}}
+</div>

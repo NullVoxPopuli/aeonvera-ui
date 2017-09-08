@@ -18,19 +18,25 @@
 
     {{#if isCompetition}}
       {{#if requiresPartner}}
-        {{#error-field-wrapper errors=orderLineItem.errors field='partnerName'}}
-          {{input type='text' value=orderLineItem.partnerName placeholder="Partner Name"}}
-        {{/error-field-wrapper}}
+        {{paper-input
+          type='text'
+          label='Partner Name'
+          class='margin-botom-0'
+          isTouched=true
+          errors=(map-by 'message' orderLineItem.errors.partnerName)
+          value=(readonly orderLineItem.partnerName)
+          onChange=(action (mut orderLineItem.partnerName))
+        }}
       {{/if}}
 
       {{#if requiresOrientation}}
-        {{#error-field-wrapper errors=orderLineItem.errors field='danceOrientation'}}
-          {{radio-button value='Lead' groupValue=orderLineItem.danceOrientation}}
-          <label>Lead</label>
-          {{radio-button value='Follow' groupValue=orderLineItems.danceOrientation}}
-          <label>Follow</label>
-          <br />
-        {{/error-field-wrapper}}
+        {{register/event-registration-form/orientation-select
+          class='margin-bottom-0'
+          preciseOrientation=true
+          errors=(map-by 'message' orderLineItem.errors.danceOrientation)
+          selectedOrientation=(readonly orderLineItem.danceOrientation)
+          didSelectOrientation=(action (mut orderLineItem.danceOrientation))
+        }}
       {{/if}}
     {{/if}}
 

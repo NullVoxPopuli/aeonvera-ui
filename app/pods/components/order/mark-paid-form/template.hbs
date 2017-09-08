@@ -84,3 +84,14 @@
     {{/if}}
   </div>
 </div>
+
+{{#if showPaymentInProgress}}
+  <div class='payment-in-progress-container'>
+    <div class='layout-column layout-align-center-center margin-top-100'>
+      <h3><em>Securely Submitting Payment...</em></h3>
+
+      {{spinner/rect-spinner}}
+    </div>
+  </div>
+
+{{/if}}

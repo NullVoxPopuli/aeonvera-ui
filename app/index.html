@@ -7,29 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script>
-      window['_fs_debug'] = false;
-      window['_fs_host'] = 'fullstory.com';
-      window['_fs_org'] = '6Y5ZD';
-      window['_fs_namespace'] = 'FS';
-      (function(m,n,e,t,l,o,g,y){
-          if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
-          g=m[e]=function(a,b){g.q?g.q.push([a,b]):g._api(a,b);};g.q=[];
-          o=n.createElement(t);o.async=1;o.src='https://'+_fs_host+'/s/fs.js';
-          y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
-          g.identify=function(i,v){g(l,{uid:i});if(v)g(l,v)};g.setUserVars=function(v){g(l,v)};
-          g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
-          g.clearUserCookie=function(c,d,i){if(!c || document.cookie.match('fs_uid=[`;`]*`[`;`]*`[`;`]*`')){
-          d=n.domain;while(1){n.cookie='fs_uid=;domain='+d+
-          ';path=/;expires='+new Date(0).toUTCString();i=d.indexOf('.');if(i<0)break;d=d.slice(i+1)}}};
-      })(window,document,window['_fs_namespace'],'script','user');
-    </script>
-
     {{content-for 'head'}}
 
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link rel="stylesheet" href="{{rootURL}}assets/aeonvera.css">
-
 
     {{content-for 'head-footer'}}
   </head>
@@ -41,17 +22,5 @@
     <script src="{{rootURL}}assets/aeonvera.js"></script>
     <!-- TODO: remove this when foundation is removed (which isn't compac with jquery 3) -->
     <script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>
-
-
-    <script type="text/javascript">
-      window.$crisp=[];
-      window.CRISP_WEBSITE_ID="92ecd53e-9e70-40dd-844f-0ee23e66bff1";
-      (function(){
-        d=document;s=d.createElement("script");
-        s.src="https://client.crisp.chat/l.js";
-        s.async=1;
-        d.getElementsByTagName("head")[0].appendChild(s);
-      })();
-    </script>
   </body>
 </html>

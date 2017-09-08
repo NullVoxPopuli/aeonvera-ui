@@ -79,5 +79,10 @@ module.exports = function(defaults) {
   app.import('vendor/blockrain/blockrain.css');
   app.import('vendor/blockrain/blockrain.jquery.js');
 
+  if (isProductionLike) {
+    app.import('vendor/support/crisp.js');
+    app.import('vendor/support/fullstory.js');
+  }
+
   return app.toTree();
 };

@@ -4,6 +4,8 @@ import { computed, action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 import { alias } from 'ember-decorators/object/computed';
 
+import { messageFromError } from 'aeonvera/helpers/message-from-error';
+
 const { isPresent } = Ember;
 
 export default class extends Ember.Component {
@@ -64,6 +66,8 @@ export default class extends Ember.Component {
 
   @action
   async markPaid() {
+    this.set('showPaymentInProgress', true);
+    const flash = this.get('flash');
     const id = this.get('order.id');
     const url = '/api/orders/' + id + '/mark_paid?include=registration';
     const data = {
@@ -75,16 +79,19 @@ export default class extends Ember.Component {
 
     try {
       const responseData = await this.get('ajax').PUT(url, data);
+
+      this.get('store').pushPayload(responseData);
+      this.sendAction('afterPayment');
+      this.set('showPaymentInProgress', false);
+      flash.success('Order was successfully marked as paid.');
     } catch (e) {
       const json = JSON.parse(e.responseText);
-      const errors = json.errors;
+      const errors = messageFromError(json);
 
-      this.get('flash').alert(errors);
+      flash.alert(errors[0]);
+      this.set('showPaymentInProgress', false);
     }
 
-    this.get('store').pushPayload(responseData);
-    this.sendAction('afterPayment');
-    this.get('flash').success('Order was successfully marked as paid.');
   }
 
   @action
@@ -103,13 +110,13 @@ export default class extends Ember.Component {
     // the user must be notified
     try {
       const resolvedOrder = await order.asPromiseObject();
-      const record = await resolvedOrder.save();
+      await resolvedOrder.save();
+
+      this.sendAction('afterPayment');
+      this.get('flash').success('Order was successfully marked as paid.');
     } catch (e) {
       this.get('flash').alert(e);
       this.set('showPaymentInProgress', false);
     }
-
-    this.sendAction('afterPayment');
-    this.get('flash').success('Order was successfully marked as paid.');
   }
 }

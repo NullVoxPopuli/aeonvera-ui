@@ -12,10 +12,11 @@
           something more generic should be invented / applied to
           simple-dialog-with-button
            --}}
+           {{!-- onClick=(pipe (action saveDirtyOrderLineItems) (action (mut showPaymentModal true))) --}}
           {{#paper-button
             accent=true
             raised=true
-            onClick=(pipe (action saveDirtyOrderLineItems) (action (mut showPaymentModal true)))
+            onClick=(action 'openPayModal')
             disabled=(is-empty order)}}
             {{paper-icon 'attach money'}} Pay
           {{/paper-button}}
@@ -23,7 +24,8 @@
           {{#if showPaymentModal}}
             {{#ember-paper/simple-dialog
               title='Mark Paid'
-              onClose=(action (mut showPaymentModal false))}}
+              onClose=(action (mut showPaymentModal false))
+              didClickClose=(action (mut showPaymentmodal false))}}
               {{order/mark-paid-form
                 order=order
                 afterPayment=(action 'showComplete')}}
@@ -55,11 +57,21 @@
   {{#card.content}}
 
     {{#if (await order)}}
-      <label><em>Optional</em></label>
+      <label><em>Optional - Attaches order to registration</em></label>
       {{form/registrant-select
         event=event
         value=order.registration
         onChange=(action 'updateRegistration')
+      }}
+
+      {{paper-input
+        type='text'
+        label='Buyer Name'
+        class='margin-botom-0'
+        isTouched=true
+        errors=(map-by 'message' orderLineItem.errors.buyerName)
+        value=(readonly orderLineItem.buyerName)
+        onChange=(action (mut orderLineItem.buyerName))
       }}
       <br />
 

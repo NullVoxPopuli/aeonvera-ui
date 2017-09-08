@@ -109,6 +109,7 @@ Router.map(function() {
         this.route('tickets');
         this.route('other');
       });
+      this.route('payment-success');
       this.route('a-la-carte-print', { path: 'a-la-carte/print' });
       this.route('register');
       this.route('shirts');

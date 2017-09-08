@@ -19,32 +19,24 @@ export default Ember.Service.extend({
   //   });
   //
   // TODO: should there be a warning alternative if failure isn't present?
-  notify(messages = {}, promise = null) {
+  async notify(messages = {}, promise = null) {
     const notifier = this.get('notifications');
     const options = this.get('options');
     const { begin, success, error, rollbar } = messages;
 
     if (begin) notifier.info(begin, options);
 
-    return promise.then(result => {
+    try {
+      const result = await promise;
       if (success) {
         notifier.clearAll();
         notifier.success(success, options);
       }
 
       return RSVP.resolve(result);
-    }).catch(e => {
-      const message = e.message;
-
-      if (error) {
-        if (rollbar) this.get('rollbar').error(error);
-
-        notifier.clearAll();
-        this.error(`<span><strong>${error}</strong><br /> ${message}</span>`);
-      }
-
-      return RSVP.reject(e);
-    });
+    } catch (e) {
+      return this._notifyHandleError(error, rollbar, e);
+    }
   },
 
   info(message, optionsOverride = {}) {
@@ -86,5 +78,19 @@ export default Ember.Service.extend({
     const msgTemplate = (title, details) => `<span><strong>${title}</strong><br />${details}</span>`;
 
     return messageFromError(error, msgTemplate);
+  },
+
+  _notifyHandleError(error, rollbar, e) {
+    const notifier = this.get('notifications');
+    const message = e.message;
+
+    if (error) {
+      if (rollbar) this.get('rollbar').error(e);
+
+      notifier.clearAll();
+      this.error(`<span><strong>${error}</strong><br /> ${message}</span>`);
+    }
+
+    return RSVP.reject(e);
   }
 });
