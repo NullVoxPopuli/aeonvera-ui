@@ -1,9 +1,6 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend({
-  // renderTemplate: function () {
-  //   this.render('events/index', {
-  //     into: 'application',
-  //   });
-  // },
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  authenticationRoute: 'login'
 });
