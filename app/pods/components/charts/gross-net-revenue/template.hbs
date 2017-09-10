@@ -1,9 +1,11 @@
 <div class='layout-column layout-align-center-center'>
   <span>Net Received: {{to-usd net}}</span>
 
-  {{c3-chart data=data size=size pie=chartConfig}}
+  {{c3-chart data=data size=size pie=chartConfig legend=legend}}
 
-  {{#paper-checkbox value=showFees onChange=(action (mut showFees))}}
-    Show Fees ({{to-usd fees}})
-  {{/paper-checkbox}}
+  {{#unless small}}
+    {{#paper-checkbox value=showFees onChange=(action (mut showFees))}}
+      Show Fees ({{to-usd fees}})
+    {{/paper-checkbox}}
+  {{/unless}}
 </div>

@@ -30,6 +30,13 @@ export default class extends Ember.Component {
     return { height, width };
   }
 
+  @computed('small')
+  legend(isSmall) {
+    return {
+      hide: isSmall
+    };
+  }
+
   chartConfig = {
     label: {
       format(value) {

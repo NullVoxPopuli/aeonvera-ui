@@ -35,6 +35,13 @@ export default class extends Ember.Component {
     };
   }
 
+  @computed('small')
+  legend(isSmall) {
+    return {
+      hide: isSmall
+    };
+  }
+
   @computed('height', 'width')
   size(height, width) {
     return { height, width };

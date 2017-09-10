@@ -3,7 +3,13 @@ import { test } from 'ember-qunit';
 import testSelector from 'ember-test-selectors';
 import { withChai } from 'ember-cli-chai/qunit';
 
+import {
+  mockFindAll, mockQuery
+} from 'ember-data-factory-guy';
+
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
+
+
 
 moduleForAcceptance('Acceptance | login', {
   beforeEach() {
@@ -18,9 +24,8 @@ moduleForAcceptance('Acceptance | login', {
       }
     );
 
-    server.get('/api/upcoming_events',
-      (schema, request) => ({ data: [] })
-    );
+    mockQuery('event-summary').returns({ models: [] });
+    mockFindAll('upcoming-event').returns({ models: [] });
 
     server.logging = true;
   }

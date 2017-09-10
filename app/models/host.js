@@ -6,6 +6,7 @@ import File from 'ember-data-paperclip/objects/file';
 export default DS.Model.extend({
   name: attr('string'),
   domain: attr('string'),
+  website: attr('string'),
   logo: attr('file', { defaultValue: function() {
     return File.create();
   } }),

@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 
+import {
+  mockFindAll, mockQuery
+} from 'ember-data-factory-guy';
+
 import moduleForAcceptance from 'aeonvera/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | requires-login | dashboard', {
@@ -8,7 +12,9 @@ moduleForAcceptance('Acceptance | requires-login | dashboard', {
     server.logging = true;
 
     server.create('user', { id: 'current-user' });
-    server.get('/api/upcoming_events', (schema, request) => ({ data: [] }));
+
+    mockQuery('event-summary').returns({ models: [] });
+    mockFindAll('upcoming-event').returns({ models: [] });
   }
 });
 

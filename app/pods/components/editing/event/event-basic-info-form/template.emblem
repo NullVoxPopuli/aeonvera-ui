@@ -42,6 +42,13 @@ form submit='save'
         span Contact Email (included in registration and order receipts)
         = input value=model.contactEmail placeholder='bruce@wayne.com' type='text'
 
+  .row
+    = error-field-wrapper classes='columns small-12 medium-6' errors=errors field='website'
+      label
+        span Website
+        = input value=model.website placeholder='https://website.tld' type='text'
+
+
   unless model.isPersisted
     br
     .row

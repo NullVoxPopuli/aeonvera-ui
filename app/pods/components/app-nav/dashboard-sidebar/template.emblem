@@ -9,7 +9,7 @@
 
   = paper-divider
   = paper-item
-    link-to 'application'
+    link-to 'dashboard'
       span Home
   = paper-item
     link-to 'dashboard.registered-events'

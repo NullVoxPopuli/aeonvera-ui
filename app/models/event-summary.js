@@ -4,6 +4,7 @@ import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 const { attr } = DS;
 
 export default DS.Model.extend(LeadsAndFollows, {
+  name: DS.attr('string'),
   revenue: DS.attr('number'),
   revenueGross: attr('number'),
   revenueFees: attr('number'),
