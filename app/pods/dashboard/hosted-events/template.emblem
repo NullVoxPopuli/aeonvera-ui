@@ -3,6 +3,8 @@ h3
   .right
     = input type='checkbox' checked=showMyEvents
     label Show Only My Events
+    = link-to 'events.new' class='md-button md-raised md-primary'
+      | Host an Event
 
 if model
   table.responsive
@@ -48,3 +50,6 @@ if model
 
 else
   p You have not yet hosted an event. Hosting an event is free! Click the 'Host an Event' button below to get get started.
+
+= link-to 'events.new' class='md-button md-raised md-primary'
+  | Host an Event

@@ -8,10 +8,7 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
   flashMessages: Ember.inject.service('flashMessages'),
 
   activate: function() {
-    const application = this.controllerFor('application');
-
-    application.set('mobileMenuLeft', 'nav/dashboard/left-items');
-    application.set('mobileMenuRight', 'nav/dashboard/right-items');
+    this._super(...arguments);
 
     this.get('session').on('invalidationSucceeded', () => {
       const msg = 'You have logged out successfully.';
@@ -19,7 +16,6 @@ export default Ember.Mixin.create(AuthenticatedRouteMixin, {
       this.get('flashMessages').success(msg);
       this.transitionTo('welcome');
     });
-    this._super(...arguments);
   },
 
   /**
