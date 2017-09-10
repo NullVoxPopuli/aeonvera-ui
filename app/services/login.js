@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import { task } from 'ember-concurrency';
 
 import { service } from 'ember-decorators/service';
 
@@ -14,11 +15,18 @@ export default class extends Ember.Service {
   errorMessage = null;
 
   authenticate(credentials) {
-    return this.get('session')
-      .authenticate('authenticator:token', credentials)
-      .then(this._handleAuthenticationSuccess.bind(this))
-      .catch(this._handleAuthenticationError.bind(this));
+    return this.get('auth').perform(credentials);
   }
+
+  auth = task(function * (credentials) {
+    const session = this.get('session');
+    try {
+      const result = yield session.authenticate('authenticator:token', credentials);
+      this._handleAuthenticationSuccess(result);
+    } catch (e) {
+      this._handleAuthenticationError(e);
+    }
+  });
 
 
   _handleAuthenticationSuccess(json) {

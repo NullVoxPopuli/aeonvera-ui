@@ -22,7 +22,7 @@ Router.map(function() {
   });
 
   /* public facing */
-  this.route('welcome', { resetNamespace: true }, function() {
+  this.route('welcome', { path: '/', resetNamespace: true }, function() {
     this.route('features');
     this.route('pricing');
     this.route('faq');
@@ -38,7 +38,7 @@ Router.map(function() {
   });
 
   /* must be logged in for */
-  this.route('dashboard', { path: '/' }, function() {
+  this.route('dashboard', { path: '/dashboard', resetNamespace: true }, function() {
     this.route('my-communities', { resetNamespace: true }, function() {
       this.route('manage', { path: '/manage/:organization_id' }, function() {
         this.route('edit');

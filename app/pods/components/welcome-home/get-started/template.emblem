@@ -1,3 +1,4 @@
 .text-center
-  h3 Lets Begin
-  a.button.success = t 'createyourevent'
+  h3 Let's Begin
+  = link-to 'events.new' class='md-button md-raised md-primary'
+    = t 'createyourevent'

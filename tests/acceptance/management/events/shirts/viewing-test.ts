@@ -24,7 +24,7 @@ test('a list of shirts', withChai(async expect => {
   mockQuery('shirt').returns({ models: shirts });
   mockFindRecord('event').returns({ model: event });
 
-  await visit(`/events/${event.id}/shirts`);
+  await visit(`/dashboard/events/${event.id}/shirts`);
 
   expect(currentRouteName()).to.equal('events.show.shirts.index');
 
@@ -44,7 +44,7 @@ test('a single shirt with purchases', withChai(async expect => {
   mockFindRecord('shirt').returns({ model: shirt });
   mockFindRecord('event').returns({ model: event });
 
-  await visit(`/events/${event.id}/shirts/${shirt.id}`);
+  await visit(`/dashboard/events/${event.id}/shirts/${shirt.id}`);
 
   expect(currentRouteName()).to.equal('events.show.shirts.show.index');
 

@@ -30,8 +30,8 @@ moduleForAcceptance('Acceptance | login', {
 test('visiting /', withChai(expect => {
   visit('/');
   andThen(() => {
-    expect(currentURL())
-      .to.equal('/welcome');
+    expect(currentURL()).to.equal('/');
+    expect(currentRouteName()).to.equal('welcome.index');
 
     expect(currentSession().get('isAuthenticated'))
       .to.equal(false);
@@ -87,7 +87,7 @@ test('after logging in, the user is redirected to the dashboard', withChai(async
 
   await click('button[type="submit"]');
 
-  expect(currentURL()).to.equal('/');
+  expect(currentURL()).to.equal('/dashboard');
   expect(currentRouteName()).to.equal('dashboard.index');
 }));
 

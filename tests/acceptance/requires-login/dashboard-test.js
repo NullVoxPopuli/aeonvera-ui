@@ -21,7 +21,7 @@ test('I am redirected upon attempting to visit without being logged in', async f
 test('Upon logging out, I am redirected', async function(assert) {
   authenticateSession({ email: 'test@test.test', token: '123abc' });
 
-  await visit('/');
+  await visit('/dashboard');
 
   assert.equal(currentRouteName(), 'dashboard.index');
 
