@@ -14,9 +14,10 @@ export default Ember.Route.extend({
     const event = model.event;
 
     if (!event.get('isHousingEnabled')) {
-      this.get('flash').info('Housing is either closed or disabled for this event');
+      // this.get('flash').info('Housing is either closed or disabled for this event');
 
-      this.transitionTo('register.event-registration.show');
+      // this.transitionTo('register.event-registration.show');
+      this.transitionTo('register.event-registration.show.edit.shirts');
     }
   }
 });

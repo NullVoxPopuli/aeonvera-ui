@@ -88,11 +88,11 @@ export default Ember.Controller.extend(currentUserHelpers, RegistrationControlle
     if (!selectedPackage) { return flash.error('Please select a ticket'); }
     if (requiresTrack && !selectedLevel) { return flash.error('Please select a track'); }
 
-    if (event.get('isHousingEnabled')) {
+    // if (event.get('isHousingEnabled')) {
       return this.transitionToRoute('register.event-registration.show.edit.housing', saved.id);
-    }
+    // }
 
-    this.transitionToRoute('register.event-registration.show.index', saved.id);
+    // this.transitionToRoute('register.event-registration.show.index', saved.id);
   },
 
   actions: {

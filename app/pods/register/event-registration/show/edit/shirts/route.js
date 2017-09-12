@@ -23,7 +23,8 @@ export default Ember.Route.extend({
     );
 
     if (shouldSkipThisPage) {
-      this.transitionTo('register.event-registration.show');
+      // this.transitionTo('register.event-registration.show');
+      this.transitionTo('register.event-registration.show.edit.competitions');
     }
   }
 });
