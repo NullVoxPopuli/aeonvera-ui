@@ -8,6 +8,20 @@
     {{#if hasLevel}}
       {{registration.levelName}}
     {{/if}}
+    {{#if (is-present registration.transferredAt)}}
+     <h4>Transferred</h4>
+     {{#if (is-present registration.transferredFromFristName)}}
+       from {{registration.transferredFromName}}
+     {{/if}}
+
+     {{#if (is-present registration.transferredToYear)}}
+       to {{registration.transferredToYear}}
+     {{/if}}
+
+     {{registration.transferReason}}
+     <br />
+     {{date-with-format registration.transferredAt 'LLL'}}
+    {{/if}}
   </div>
   <div>
      Registered: {{date-with-format model.registeredAt 'LLL'}}

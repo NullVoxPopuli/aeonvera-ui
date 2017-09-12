@@ -77,8 +77,14 @@ export default DS.Model.extend(
     transferredFromFristName: attr('string'),
     transferredFromLastName: attr('string'),
     transferredtoEmail: attr('string'),
+    transferredToYear: attr('string'),
     transferReason: attr('string'),
     transferredAt: attr('date'),
+
+    @computed('transferredFromFristName', 'transferredFromLastName')
+    transferredFromName(first, last) {
+      return `${first} ${last}`;
+    },
 
     hasUnpaidOrder: function() {
       return Ember.isPresent(this.get('unpaidOrder'));
