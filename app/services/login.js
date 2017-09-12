@@ -51,7 +51,7 @@ export default class extends Ember.Service {
       // in case rails throws the standard error text at us
       message = message.split('\n')[0];
     } else if (reasonType === 'object') {
-      // normal auth errors
+      // normal (devise) auth errors
       message = error.error;
     }
 
@@ -63,6 +63,6 @@ export default class extends Ember.Service {
     const message = this._parseErrorMessage(error);
 
     this.set('errorMessage', message);
-    return Promise.reject(message);
+    throw message;
   }
 }

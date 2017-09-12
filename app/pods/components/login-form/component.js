@@ -43,7 +43,6 @@ export default class extends Ember.Component {
   }
 
   _handleError(e) {
-    console.log(e);
     this.set('errorContainerClass', '');
     this.set('errorMessage', e);
   }
