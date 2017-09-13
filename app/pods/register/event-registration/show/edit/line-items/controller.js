@@ -42,7 +42,6 @@ export default Ember.Controller.extend({
       const code = e.errors && e.errors[0] && e.errors[0].code;
 
       // find a better way to do this...
-      console.log(e)
       if (!code || code < 500) return;
 
       this.get('flash').error('An error occurred, please contact support.');
