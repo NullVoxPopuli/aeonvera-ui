@@ -111,5 +111,5 @@ export default Ember.Controller.extend(CurrentUserHelpers, RegistrationControlle
 
       return order.save();
     });
-  },
+  }
 });
