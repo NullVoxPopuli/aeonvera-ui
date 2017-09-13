@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
+  flash: Ember.inject.service('flash-notification'),
+
   modelNameId: function() {
     return this.get('modelName') + '_id';
   }.property('modelName'),
@@ -51,7 +53,7 @@ export default Ember.Mixin.create({
       const model = this.get('model');
 
       model.save().then(record => {
-        this.get('flashMessages').success(
+        this.get('flash').success(
           'Saved Successfully'
         );
         const path = this.get('saveSuccessPath');
@@ -59,7 +61,7 @@ export default Ember.Mixin.create({
         this.get('router').transitionTo(path, record);
       }, failure => {
 
-        this.get('flashMessages').alert(
+        this.get('flash').alert(
           'Saving failed. ' + failure
         );
       });

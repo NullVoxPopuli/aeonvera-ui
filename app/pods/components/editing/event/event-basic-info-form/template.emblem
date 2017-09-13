@@ -22,12 +22,12 @@ form submit='save'
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='startsAt'
       label
         span Event Starts At
-        = form/date-time-input model=model field='startsAt'
+        = form/date-time value=model.startsAt onChange=(action (mut model.startsAt))
 
     = error-field-wrapper  classes='columns small-12 medium-6' errors=model.errors field='endsAt'
       label
         span Event Ends At
-        = form/date-time-input model=model field='endsAt'
+        = form/date-time value=model.endsAt onChange=(action (mut model.endsAt))
 
   br
   .row
@@ -83,4 +83,4 @@ unless model.isPersisted
       .right
         ul.button-group
           li: button.secondary click='cancel' Cancel
-          li: button disabled=isDirty  title=submitTitle click='save' Save
+          li: button title=submitTitle click='save' Save
