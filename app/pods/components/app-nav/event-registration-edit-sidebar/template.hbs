@@ -20,6 +20,25 @@
     {{/link-to}}
   {{/paper-item}}
 
+  {{#if hasTickets}}
+    {{#paper-item}}
+      {{#link-to 'register.event-registration.show.edit.ticket' event.domain event.id model.registration.id
+        disabled=model.registration.isNew }}
+        Ticket
+      {{/link-to}}
+    {{/paper-item}}
+  {{/if}}
+
+  {{#if hasLineItems}}
+    {{#paper-item}}
+      {{#link-to 'register.event-registration.show.edit.line-items' event.domain event.id model.registration.id
+        disabled=model.registration.isNew }}
+        À la Carte
+      {{/link-to}}
+    {{/paper-item}}
+  {{/if}}
+
+
   {{#if hasHousing}}
     {{#paper-item}}
       {{#link-to 'register.event-registration.show.edit.housing' event.domain event.id model.registration.id

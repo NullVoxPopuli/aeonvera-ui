@@ -267,6 +267,8 @@ Router.map(function() {
       this.route('must-login');
       this.route('show', { path: ':registrationId' }, function() {
         this.route('edit', function() {
+          this.route('ticket');
+          this.route('line-items');
           this.route('housing');
           this.route('shirts');
           this.route('competitions');

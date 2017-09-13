@@ -13,8 +13,8 @@ export default Ember.Route.extend({
   afterModel(model) {
     const event = model.event;
 
-    if (!event.get('isHousingEnabled')) {
-      this.transitionTo('register.event-registration.show.edit.shirts');
+    if (!event.get('hasTickets')) {
+      this.transitionTo('register.event-registration.show.edit.line-items');
     }
   }
 });
