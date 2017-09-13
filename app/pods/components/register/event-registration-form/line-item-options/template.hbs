@@ -1,0 +1,11 @@
+<div class='layout-row layout-wrap'>
+  {{#each lineItems as |lineItem|}}
+    {{register/event-registration-form/line-item-options/line-item-row
+      class='flex-50'
+      lineItem=lineItem
+      order=order
+      addItem=addItem
+      removeItem=removeItem
+    }}
+  {{/each}}
+</div>

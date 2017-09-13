@@ -1,39 +1,26 @@
-{{#paper-form onSubmit=(action 'didSubmitForm') as |form|}}
-  <div class='layout-row'>
-    <div class='flex'></div>
-    <div class='flex-gt-xs-85 flex-gt-sm-66 flex-gt-md-50'>
-      {{register/event-registration-form/registration-information
-        hasVolunteers=event.hasVolunteers
-        registration=registration
-        logoUrl=event.logoUrlThumb
-        onFinishInfo=(action 'didFinishInfo')
+<div class='layout-row'>
+  <div class='flex'></div>
+  <div class='flex-gt-xs-85 flex-gt-sm-66 flex-gt-md-50'>
+    {{register/event-registration-form/registration-information
+      hasVolunteers=event.hasVolunteers
+      registration=registration
+      logoUrl=event.logoUrlThumb
+    }}
+
+    <div class="layout-row layout-align-end-center">
+      {{#paper-button
+        raised=true
+        primary=true
+        disabled=(not submitFormTask.isIdle)
+        onClick=(perform submitFormTask)
       }}
-
-      {{register/event-registration-form/package-select
-        selectedId=(readonly selectedPackage.id)
-        packages=packages
-        onPackageSelect=(action 'didUpdateSelectedPackage')
-        logoUrl=event.logoUrlThumb
-      }}
-
-      {{#if (is-present event.levels)}}
-        {{#if selectedPackage.requiresTrack}}
-          {{register/event-registration-form/level-select
-            selectedLevel=selectedLevel
-            levels=levels
-            onLevelSelect=(action 'didUpdateSelectedLevel')
-            logoUrl=event.logoUrlThumb
-          }}
-        {{/if}}
-      {{/if}}
-
-
-      <div class="layout-row layout-align-end-center">
-        {{#form.submit-button raised=true primary=true}}
+        {{#if submitFormTask.isIdle}}
           Proceed
-        {{/form.submit-button}}
-      </div>
+        {{else}}
+          Submitting Info...
+        {{/if}}
+      {{/paper-button}}
     </div>
-    <div class='flex'></div>
   </div>
-{{/paper-form}}
+  <div class='flex'></div>
+</div>

@@ -1,0 +1,29 @@
+<div class='layout-row'>
+  <div class='flex'></div>
+  <div class='flex-gt-xs-85 flex-gt-sm-66 flex-gt-md-50'>
+    {{register/event-registration-form/line-item-options
+      order=order
+      lineItems=lineItems
+      addItem=(perform addItem)
+      removeItem=(perform removeItem)
+    }}
+
+    <div class="layout-row layout-align-end-center">
+      {{#paper-button
+        onClick=(action 'next')
+        raised=true
+      }}
+        Skip
+      {{/paper-button}}
+
+      {{#paper-button
+        raised=true
+        primary=true
+        onClick=(action 'next')
+      }}
+        Proceed
+      {{/paper-button}}
+    </div>
+  </div>
+  <div class='flex'></div>
+</div>

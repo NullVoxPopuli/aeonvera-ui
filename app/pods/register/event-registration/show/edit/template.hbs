@@ -4,6 +4,23 @@
       Info and Registration
     {{/link-to}}
 
+
+    {{#if hasTickets}}
+      {{#link-to 'register.event-registration.show.edit.ticket' model
+        disabled=model.registration.isNew
+        data-test-registration-top-nav='tickets'}}
+        Ticket
+      {{/link-to}}
+    {{/if}}
+
+    {{#if hasLineItems}}
+      {{#link-to 'register.event-registration.show.edit.line-items' model
+        disabled=model.registration.isNew
+        data-test-registration-top-nav='line-items'}}
+        À la Carte
+      {{/link-to}}
+    {{/if}}
+
     {{#if hasHousing}}
       {{#link-to 'register.event-registration.show.edit.housing' model
         disabled=model.registration.isNew
@@ -19,7 +36,7 @@
         Shirts
       {{/link-to}}
     {{/if}}
-    {{log model}}
+
     {{#if hasCompetitions}}
       {{#link-to 'register.event-registration.show.edit.competitions' model
         disabled=model.registration.isNew
@@ -37,6 +54,8 @@
         hasHousing=hasHousing
         hasShirts=hasShirts
         hasCompetitions=hasCompetitions
+        hasTickets=hasTickets
+        hasLineItems=hasLineItems
        )}}
 
 {{outlet}}
