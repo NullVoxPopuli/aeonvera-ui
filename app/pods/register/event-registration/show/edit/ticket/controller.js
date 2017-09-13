@@ -1,20 +1,26 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import { computed, action } from 'ember-decorators/object';
-import { alias, sort } from 'ember-decorators/object/computed';
+import { alias, sort, oneWay } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
 import RegistrationController from 'aeonvera/mixins/registration/controller';
+import CurrentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-export default Ember.Controller.extend(RegistrationController, {
+
+export default Ember.Controller.extend(CurrentUserHelpers, RegistrationController, {
 
   levelSort: ['name:asc'],
   packageSort: ['name:asc'],
   @sort('event.packages', 'packageSort') packages: null,
   @sort('event.levels', 'levelSort') levels: null,
 
+  @alias('model.event') event: null,
   @alias('model.registration') registration: null,
+  @alias('model.registration.level') selectedLevel: null,
+
   @oneWay('registration.unpaidOrder') order: null,
 
 
@@ -25,7 +31,6 @@ export default Ember.Controller.extend(RegistrationController, {
     this.set('selectedPackage', null);
   },
 
-  @alias('model.registration.level') selectedLevel: null,
 
   @computed('order.orderLineItems.@each.lineItem', 'registration')
   selectedPackage(orderLineItems) {
@@ -44,7 +49,7 @@ export default Ember.Controller.extend(RegistrationController, {
   },
 
   @dropTask
-  didFinish: function * () {
+  submitFormTask: function * () {
     const flash = this.get('flash');
     const registration = this.get('registration');
     const event = this.get('event');
@@ -82,10 +87,11 @@ export default Ember.Controller.extend(RegistrationController, {
   },
 
   @action
-  didSubmitForm() {
-    return this.get('submitFormTask').perform();
-  },
+  skip() {
+    const id = this.get('registration.id');
 
+    this.transitionToRoute('register.event-registration.show.edit.line-items', id);
+  },
 
   _ensureOrderExists() {
     const order = this.get('order');
@@ -96,8 +102,8 @@ export default Ember.Controller.extend(RegistrationController, {
       const order = this.get('store').createRecord('order', {
         host: this.get('event'),
         user: this.get('currentUser'),
-        userName: this.get('userName'),
-        userEmail: this.get('userEmail'),
+        userName: this.get('registration.name'),
+        userEmail: this.get('registration.attendeeEmail'),
         registration: this.get('registration')
       });
 

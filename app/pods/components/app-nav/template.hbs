@@ -27,9 +27,9 @@
         {{/content.menu-item}}
 
         {{#if session.isAuthenticated}}
-          {{#paper-button onClick=(action (transition-to 'dashboard'))}}
-            {{paper-icon 'home'}} Home
-          {{/paper-button}}
+          {{#content.menu-item onClick=(action (transition-to 'dashboard'))}}
+            {{paper-icon 'home'}}
+          {{/content.menu-item}}
 
           {{#content.menu-item onClick=(action (transition-to 'user.edit'))}}
             {{paper-icon 'person'}} Edit Profile
@@ -51,8 +51,8 @@
     <div class='hide-xs layout-row'>
 
       {{#if session.isAuthenticated}}
-        {{#paper-button iconButton=true onClick=(action (transition-to 'dashboard'))}}
-          {{paper-icon 'home'}}
+        {{#paper-button onClick=(action (transition-to 'dashboard'))}}
+          {{paper-icon 'home'}} Home
         {{/paper-button}}
 
         {{#paper-button onClick=(action (transition-to 'user.edit'))}}

@@ -17,17 +17,12 @@ export default class extends Ember.Controller {
   @alias('model.event') event;
   @alias('model.registration') registration;
 
-
   @dropTask
   submitFormTask = function * () {
     const flash = this.get('flash');
     const registration = this.get('registration');
 
     const saved = yield registration.save();
-
-
-    if (!selectedPackage) { return flash.error('Please select a ticket'); }
-    if (requiresTrack && !selectedLevel) { return flash.error('Please select a track'); }
 
     return this.transitionToRoute('register.event-registration.show.edit.ticket', saved.id);
   }

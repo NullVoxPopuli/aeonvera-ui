@@ -13,7 +13,7 @@ export default Ember.Route.extend({
   afterModel(model) {
     const event = model.event;
 
-    if (!event.get('hasLineItems')) {
+    if (!event.get('hasActiveLineItems')) {
       this.transitionTo('register.event-registration.show.edit.shirts');
     }
   }
