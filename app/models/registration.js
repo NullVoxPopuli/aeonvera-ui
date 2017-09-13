@@ -74,14 +74,14 @@ export default DS.Model.extend(
     zip: attr('string'),
 
     // tranfer-info for 'historical' reasons
-    transferredFromFristName: attr('string'),
+    transferredFromFirstName: attr('string'),
     transferredFromLastName: attr('string'),
-    transferredtoEmail: attr('string'),
+    transferredToEmail: attr('string'),
     transferredToYear: attr('string'),
     transferReason: attr('string'),
     transferredAt: attr('date'),
 
-    @computed('transferredFromFristName', 'transferredFromLastName')
+    @computed('transferredFromFirstName', 'transferredFromLastName')
     transferredFromName(first, last) {
       return `${first} ${last}`;
     },
