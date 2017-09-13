@@ -1,0 +1,38 @@
+{{#paper-card as |card|}}
+
+  {{#card.header as |header|}}
+    {{#header.text as |text|}}
+      {{#text.title}}
+        <div class='layout-row layout-align-space-between'>
+          <div>
+            {{to-usd lineItem.currentPrice}} <em>{{lineItem.name}}</em>
+          </div>
+          {{#if isAdded}}
+            <div class='added-marker'>
+              {{paper-icon "check-circle"}}
+              Added!
+            </div>
+          {{/if}}
+        </div>
+
+      {{/text.title}}
+      {{#text.subhead}}{{{lineItem.description}}}{{/text.subhead}}
+    {{/header.text}}
+  {{/card.header}}
+
+  {{#card.content class='padding-top-20'}}
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#if isAdded}}
+      {{#paper-button onClick=(action 'removeExistingItem')}}
+        Remove Item
+      {{/paper-button}}
+    {{else}}
+      {{#paper-button onClick=(action 'addNewItem')}}
+        Add Item
+      {{/paper-button}}
+    {{/if}}
+  {{/card.actions}}
+
+{{/paper-card}}

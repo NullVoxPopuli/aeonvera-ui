@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 import { computed } from 'ember-decorators/object';
-import { alias } from 'ember-decorators/object/computed';
+import { alias, gt } from 'ember-decorators/object/computed';
 
 export default class extends Ember.Controller {
   @alias('model.event') event;
@@ -18,12 +18,9 @@ export default class extends Ember.Controller {
     return showShirts;
   }
 
-  @computed('event')
-  hasCompetitions(event) {
-    const hasCompetitions = event.get('competitions.length') > 0;
-
-    return hasCompetitions;
-  }
+  @gt('event.competitions.length', 0) hasCompetitions;
+  @gt('event.packages.length', 0) hasTickets;
+  @alias('event.hasActiveLineItems') hasLineItems;
 
   @computed('hasHousing', 'hasShirts', 'hasCompetitions')
   showTopNav(hasHousing, hasShirts, hasCompetitions) {

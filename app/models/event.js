@@ -5,9 +5,10 @@ import RegistrationOpens from '../mixins/models/registration-opens';
 import { hasDateExpired } from 'aeonvera/helpers/has-expired';
 
 const { attr, belongsTo, hasMany } = DS;
+const { isBlank } = Ember;
 
 import { computed } from 'ember-decorators/object';
-import { alias } from 'ember-decorators/object/computed';
+import { alias, gt } from 'ember-decorators/object/computed';
 
 export default Host.extend(RegistrationOpens, {
   shortDescription: attr('string'),
@@ -70,8 +71,14 @@ export default Host.extend(RegistrationOpens, {
 
   @computed('lineItems.@each')
   hasActiveLineItems(lineItems) {
-    const notExpired = lineItems.filter(item => hasDateExpired(item.get('expiresAt')));
+    const notExpired = lineItems.filter(item => {
+      const expiration = item.get('expiresAt');
+
+      return isBlank(expiration) || hasDateExpired(expiration);
+    });
 
     return Ember.isPresent(notExpired);
-  }
+  },
+
+  @gt('packages.length', 0) hasTickets: null
 });

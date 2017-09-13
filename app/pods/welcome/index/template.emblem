@@ -1,6 +1,7 @@
-.layout-row.layout-align-space-between
-  = login-modal afterLogin=(action (transition-to 'dashboard'))
-  = sign-up-modal
+= unless loggedIn
+  .layout-row.layout-align-space-between
+    = login-modal afterLogin=(action (transition-to 'dashboard'))
+    = sign-up-modal
 
 .imageoverlay.text-center.panel.bg-header.header
     h1.text-center = t 'appname'
