@@ -8,6 +8,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   revenue: DS.attr('number'),
   revenueGross: attr('number'),
   revenueFees: attr('number'),
+  website: attr('string'),
 
   unpaid: DS.attr('number'),
   registrations: DS.hasMany('registrations', {

@@ -11,6 +11,7 @@ export default DS.Model.extend({
   endsAt: DS.attr('date'),
   location: DS.attr('string'),
   domain: attr('string'),
+  website: attr('string'),
   url: DS.attr('string'),
   logoUrl: DS.attr('string'),
   logoUrlThumb: DS.attr('string'),

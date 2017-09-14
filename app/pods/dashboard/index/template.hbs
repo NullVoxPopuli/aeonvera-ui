@@ -111,9 +111,9 @@
           {{/card.content}}
 
           {{#card.actions}}
-            {{#paper-button}}
-              Website
-            {{/paper-button}}
+            {{#if (is-present event.website)}}
+              <a class='md-default-theme md-button' target='_blank' href={{event.website}}>Website</a>
+            {{/if}}
 
             {{#paper-button
               raised=true
