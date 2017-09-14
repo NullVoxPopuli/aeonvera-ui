@@ -10,6 +10,7 @@ export default DS.Model.extend({
   startsAt: DS.attr('date'),
   endsAt: DS.attr('date'),
   location: DS.attr('string'),
+  shortDescription: attr('string'),
   domain: attr('string'),
   website: attr('string'),
   url: DS.attr('string'),

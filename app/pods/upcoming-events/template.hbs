@@ -2,10 +2,13 @@
   <div class='small-12 columns'>
     <h2 class='page-title'>Upcoming Events</h2>
 
-    {{upcoming-events-table model=model}}
-
-    {{#link-to 'dashboard' classNames='button'}}
-      Back
-    {{/link-to}}
+    <div class='layout-row layout-wrap'>
+      {{#each model as |event|}}
+        {{upcoming-event
+          event=event
+          class='flex-xs-100 flex-gt-sm-50'
+          data-test-upcoming-event-id=event.id}}
+      {{/each}}
+    </div>
   </div>
 </div>

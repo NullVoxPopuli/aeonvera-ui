@@ -31,7 +31,7 @@ test('can navigate from upcoming events', withChai(async expect => {
   await visit('/upcoming-events');
 
   const upcomingEvent = upcomingEvents.get(0);
-  const linkSelector = `[data-test-upcoming-event-id="${upcomingEvent.id}"]`;
+  const linkSelector = `[data-test-upcoming-event-id="${upcomingEvent.id}"] a`;
   const link = find(linkSelector);
   const text = link.text();
 

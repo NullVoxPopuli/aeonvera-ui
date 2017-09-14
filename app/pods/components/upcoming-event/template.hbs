@@ -1,0 +1,46 @@
+{{#paper-card class='flex-100' as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}
+        {{#link-to 'register' event.domain}}
+          {{event.name}}
+        {{/link-to}}
+      {{/text.headline}}
+      {{#text.subhead}}{{event.location}}{{/text.subhead}}
+
+          <span>
+            {{date-with-format event.startsAt 'll'}} to
+            {{date-with-format event.endsAt 'll'}}
+          </span>
+    {{/title.text}}
+
+    {{#unless event.logoIsMissing}}
+      {{#title.media size="md"}}
+        <img src={{event.logoUrlThumb}} />
+      {{/title.media}}
+    {{/unless}}
+  {{/card.title}}
+
+  {{#card.content class='flex-100'}}
+    {{#if (is-present event.shortDescription)}}
+      <em>{{event.shortDescription}}</em>
+      {{paper-divider}}
+    {{/if}}
+
+
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#if (is-present event.website)}}
+      <a class='md-default-theme md-button' target='_blank' href={{event.website}}>Website</a>
+    {{/if}}
+
+    {{#paper-button
+      raised=true
+      primary=true
+      onClick=(transition-to 'register' event.domain)
+    }}
+      Register
+    {{/paper-button}}
+  {{/card.actions}}
+{{/paper-card}}

@@ -1,0 +1,63 @@
+{{#paper-card class='flex-100' as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}
+        {{#link-to 'events.show' event.id}}
+          {{event.name}}
+        {{/link-to}}
+      {{/text.headline}}
+      {{#text.subhead}}{{date-range event.startsAt event.endsAt}}{{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+
+  {{#card.content class='layout-row layout-align-space-between-center'}}
+    {{#if (gt event.totalRegistrants 0)}}
+      {{charts/leads-follows-pie
+        class='flex-50'
+        leads=event.numberOfLeads
+        follows=event.numberOfFollows
+        total=event.totalRegistrants
+        height=150
+        small=true
+      }}
+    {{else}}
+      <span>No one has registered yet.</span>
+    {{/if}}
+
+    {{#if (gt event.revenue 0)}}
+      {{charts/gross-net-revenue
+        class='flex-50'
+        unpaid=event.unpaid
+        net=event.revenue
+        fees=event.revenueFees
+        total=event.revenueGross
+        height=150
+        small=true
+      }}
+    {{else}}
+      <span>No revenue yet.</span>
+    {{/if}}
+  {{/card.content}}
+
+  {{#card.actions}}
+    {{#paper-button
+      raised=true
+      primary=true
+      onClick=(transition-to 'events.show' event.id)}}
+      Summary
+    {{/paper-button}}
+
+    {{#paper-button
+      raised=true
+      onClick=(transition-to 'events.show.manage' event.id)}}
+      Manage
+    {{/paper-button}}
+
+    {{#paper-button
+      raised=true
+      accent=true
+      onClick=(transition-to 'event-at-the-door' event.id)}}
+      At The Door
+    {{/paper-button}}
+  {{/card.actions}}
+{{/paper-card}}
