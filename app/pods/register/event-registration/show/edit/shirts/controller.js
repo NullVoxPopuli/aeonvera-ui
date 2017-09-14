@@ -1,13 +1,21 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
+import { alias, sort, oneWay } from 'ember-decorators/object/computed';
+import { dropTask } from 'ember-concurrency-decorators';
+
+import OLIPersistence from 'aeonvera/mixins/registration/order-line-item-persistence';
 
 const { inject } = Ember;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(OLIPersistence, {
   flash: inject.service('flash-notification'),
   rollbar: inject.service('rollbar'),
 
-  removeShirt: task(function * (orderLineItem) {
+  @alias('model.registration.unpaidOrder') order: null,
+  @alias('model.registration') registration: null,
+  @alias('model.event') event: null,
+
+  @dropTask
+  removeShirt: function * (orderLineItem) {
     // just in case it's a promise
     const oli = yield orderLineItem;
 
@@ -15,29 +23,19 @@ export default Ember.Controller.extend({
       yield oli.destroyRecord();
     } catch (e) {
       this.get('flash').alert('Could not remove shirt');
-      this.get('rollbar').warning('deleting shirt orderLineITem', e);
+      this.get('rollbar').warning('deleting shirt orderLineItem', e);
     }
-  }),
+  },
+
+  @dropTask
+  addShirt: function * (size, shirt) {
+    yield this.get('addOrderLineItem').perform(shirt, {
+      size,
+      quantity: 1
+    });
+  },
 
   actions: {
-    addShirt(size, shirt, order) {
-      const store = this.get('store');
-
-      const orderLineItem = store.createRecord('orderLineItem', {
-        order: order,
-        lineItem: shirt,
-        size: size,
-        quantity: 1
-      });
-
-      orderLineItem.save()
-        .catch(e => {
-          this.get('flash').alert('Could not add shirt');
-          orderLineItem.unloadRecord();
-          this.get('rollbar').warning('creating shirt orderLineItem', e);
-        });
-    },
-
     updateShirt(orderLineItem, quantity) {
       orderLineItem.set('quantity', quantity);
 

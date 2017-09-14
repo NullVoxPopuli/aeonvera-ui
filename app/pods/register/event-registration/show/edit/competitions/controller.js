@@ -1,15 +1,19 @@
 import Ember from 'ember';
 import { action } from 'ember-decorators/object';
-import { alias, sort } from 'ember-decorators/object/computed';
+import { alias, sort, oneWay } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
-export default Ember.Controller.extend({
+import OLIPersistence from 'aeonvera/mixins/registration/order-line-item-persistence';
+
+export default Ember.Controller.extend(OLIPersistence, {
   @service('rollbar') rollbar: null,
   @service('flash-notification') flash: null,
 
   @alias('model.registration.unpaidOrder') order: null,
+  @alias('model.registration') registration: null,
+  @alias('model.event') event: null,
 
   competitionSort: ['name:asc'],
   @sort('model.event.competitions', 'competitionSort') competitions: null,
@@ -25,26 +29,7 @@ export default Ember.Controller.extend({
 
   @dropTask
   addCompetitionTask: function * (competition, params) {
-    const store = this.get('store');
-
-    const orderLineItem = store.createRecord('orderLineItem', {
-      ...params,
-      lineItem: competition
-    });
-
-    try {
-      const savedOrderLineItem = yield orderLineItem.save();
-
-      this.get('order.orderLineItems').pushObject(orderLineItem);
-    } catch (e) {
-      const code = e.errors && e.errors[0] && e.errors[0].code;
-
-      // find a better way to do this...
-      if (!code || code < 500) return;
-
-      this.get('flash').error('An error occurred, please contact support.');
-      this.get('rollbar').error(e);
-    }
+    yield this.get('addOrderLineItem').perform(competition, params);
   },
 
   @dropTask
@@ -61,8 +46,8 @@ export default Ember.Controller.extend({
     const domain = this.get('model.event.domain');
 
     // correct option isn't working. HACK TIME
-    window.location = `/${domain}/register/${eventId}/${registrationId}`;
+    // window.location = `/${domain}/register/${eventId}/${registrationId}`;
     // pass all ids to trigger a full model refresh
-    // this.send('triggerRefreshForOrderReview');
+    this.send('triggerRefreshForOrderReview');
   }
 });

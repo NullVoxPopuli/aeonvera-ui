@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 
+import { action } from 'ember-decorators/object';
+
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
@@ -35,10 +37,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return RSVP.hash({ event, registration });
   },
 
-  actions: {
-    triggerRefreshForOrderReview() {
-      this.refresh();
-      this.transitionTo('register.event-registration.show.index');
-    }
+  @action
+  triggerRefreshForOrderReview() {
+    this.refresh();
+    this.transitionTo('register.event-registration.show.index');
   }
 });

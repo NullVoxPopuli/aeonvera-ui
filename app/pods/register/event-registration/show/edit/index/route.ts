@@ -15,11 +15,12 @@ export default Ember.Route.extend({
     const shouldClear = registration.get('isNew') && controller.get('registration');
 
     if (shouldClear) {
-      controller.set('selectedPackage', null);
-      controller.set('selectedLevel', null);
       controller.set('order', null);
-      controller.set('registration', null);
-      controller.set('model', null);
+
+      if (controller.get('registration')) {
+        controller.set('registration', null);
+        controller.set('model', null);
+      }
     }
 
     this._super(controller, model);

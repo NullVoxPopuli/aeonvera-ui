@@ -25,6 +25,7 @@ export default Ember.Mixin.create({
           const fromExisting = item.get('lineItem');
 
           return (
+            lineItem &&
             fromExisting.get('id') === lineItem.get('id') &&
             fromExisting.get('klass') === lineItem.get('klass')
           );

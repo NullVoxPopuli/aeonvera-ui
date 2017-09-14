@@ -5,9 +5,9 @@
     <h3>Shirts</h3>
 
     {{register/event-registration-form/shirt-options
-      order=model.registration.unpaidOrder
+      order=order
       shirts=model.event.shirts
-      addShirt=(action 'addShirt')
+      addShirt=(perform addShirt)
       removeShirt=(perform removeShirt)
       updateShirt=(action 'updateShirt')
     }}

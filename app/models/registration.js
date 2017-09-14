@@ -57,7 +57,7 @@ export default DS.Model.extend(
     host: belongsTo('host', { polymorphic: true }),
 
     orders: hasMany('order', { async: true, inverse: 'registration' }),
-    unpaidOrder: belongsTo('unpaidOrder', { async: true, inverse: 'registration' }),
+    unpaidOrder: belongsTo('unpaidOrder', { async: false, inverse: 'registration' }),
 
     housingRequest: belongsTo('housing-request', { async: false }),
     housingProvision: belongsTo('housing-provision', { async: false }),

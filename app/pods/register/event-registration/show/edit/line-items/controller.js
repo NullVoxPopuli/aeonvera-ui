@@ -8,11 +8,12 @@ import { service } from 'ember-decorators/service';
 import { dropTask } from 'ember-concurrency-decorators';
 
 import CurrentUserHelpers from 'aeonvera/mixins/current-user-helpers';
+import OLIPersistence from 'aeonvera/mixins/registration/order-line-item-persistence';
 
-export default Ember.Controller.extend(CurrentUserHelpers, {
+export default Ember.Controller.extend(OLIPersistence, CurrentUserHelpers, {
   @alias('model.registration') registration: null,
   @alias('model.event') event: null,
-  @oneWay('model.registration.unpaidOrder') order: null,
+  @alias('model.registration.unpaidOrder') order: null,
 
   sorts: ['name:asc'],
   @sort('model.event.lineItems', 'sorts') lineItems: null,
@@ -27,28 +28,7 @@ export default Ember.Controller.extend(CurrentUserHelpers, {
 
   @dropTask
   addItem: function * (lineItem, params) {
-    const store = this.get('store');
-
-    try {
-      const order = yield this._ensureOrderExists();
-      const orderLineItem = store.createRecord('orderLineItem', {
-        ...params,
-        lineItem,
-        order
-      });
-
-      const savedOrderLineItem = yield orderLineItem.save();
-
-      this.get('order.orderLineItems').pushObject(orderLineItem);
-    } catch (e) {
-      const code = e.errors && e.errors[0] && e.errors[0].code;
-
-      // find a better way to do this...
-      if (!code || code < 500) return;
-
-      this.get('flash').error('An error occurred, please contact support.');
-      this.get('rollbar').error(e);
-    }
+    yield this.get('addOrderLineItem').perform(lineItem, params);
   },
 
   @action
@@ -56,26 +36,5 @@ export default Ember.Controller.extend(CurrentUserHelpers, {
     const id = this.get('registration.id');
 
     this.transitionToRoute('register.event-registration.show.edit.housing', id);
-  },
-
-
-  _ensureOrderExists() {
-    const order = this.get('order');
-
-    return RSVP.resolve(order).then(o => {
-      if (o !== null) return RSVP.resolve(o);
-
-      const order = this.get('store').createRecord('order', {
-        host: this.get('event'),
-        user: this.get('currentUser'),
-        userName: this.get('registration.name'),
-        userEmail: this.get('registration.attendeeEmail'),
-        registration: this.get('registration')
-      });
-
-      this.set('order', order);
-
-      return order.save();
-    });
   }
 });

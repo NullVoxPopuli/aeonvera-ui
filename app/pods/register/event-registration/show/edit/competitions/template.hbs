@@ -4,7 +4,7 @@
     <h3>Competitions</h3>
 
     {{register/event-registration-form/competition-options
-      order=model.registration.unpaidOrder
+      order=order
       competitions=competitions
       addCompetition=(perform addCompetitionTask)
       removeCompetition=(perform removeCompetitionTask)

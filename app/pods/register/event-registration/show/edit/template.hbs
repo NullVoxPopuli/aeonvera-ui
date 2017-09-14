@@ -14,7 +14,7 @@
     {{/if}}
 
     {{#if hasLineItems}}
-      {{#link-to 'register.event-registration.show.edit.line-items' model
+      {{#link-to 'register.event-registration.show.edit.line-items' model.event.domain model.event.id model.registration.id
         disabled=model.registration.isNew
         data-test-registration-top-nav='line-items'}}
         À la Carte

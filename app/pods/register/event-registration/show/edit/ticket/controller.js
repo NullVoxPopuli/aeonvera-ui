@@ -8,9 +8,9 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import RegistrationController from 'aeonvera/mixins/registration/controller';
 import CurrentUserHelpers from 'aeonvera/mixins/current-user-helpers';
+import EnsureOrderExists from 'aeonvera/mixins/registration/ensure-order-exists';
 
-
-export default Ember.Controller.extend(CurrentUserHelpers, RegistrationController, {
+export default Ember.Controller.extend(EnsureOrderExists, CurrentUserHelpers, RegistrationController, {
 
   levelSort: ['name:asc'],
   packageSort: ['name:asc'],
@@ -20,15 +20,15 @@ export default Ember.Controller.extend(CurrentUserHelpers, RegistrationControlle
   @alias('model.event') event: null,
   @alias('model.registration') registration: null,
   @alias('model.registration.level') selectedLevel: null,
-
-  @oneWay('registration.unpaidOrder') order: null,
+  @alias('registration.unpaidOrder') order: null,
 
 
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.set('selectedLevel', null);
+    // this.set('selectedLevel', null);
     this.set('selectedPackage', null);
+    this.get('selectedPackage');
   },
 
 
@@ -69,7 +69,7 @@ export default Ember.Controller.extend(CurrentUserHelpers, RegistrationControlle
     const registration = this.get('registration');
 
     return registration.ensurePersisted()
-      .then(() => this._ensureOrderExists())
+      .then(() => this.ensureOrderExists('unpaid-order'))
       .then(() => this._updateOrCreateOrderLineItemForItem(
         oldPackage,
         selectedPackage))
@@ -91,25 +91,5 @@ export default Ember.Controller.extend(CurrentUserHelpers, RegistrationControlle
     const id = this.get('registration.id');
 
     this.transitionToRoute('register.event-registration.show.edit.line-items', id);
-  },
-
-  _ensureOrderExists() {
-    const order = this.get('order');
-
-    return RSVP.resolve(order).then(o => {
-      if (o !== null) return RSVP.resolve(o);
-
-      const order = this.get('store').createRecord('order', {
-        host: this.get('event'),
-        user: this.get('currentUser'),
-        userName: this.get('registration.name'),
-        userEmail: this.get('registration.attendeeEmail'),
-        registration: this.get('registration')
-      });
-
-      this.set('order', order);
-
-      return order.save();
-    });
   }
 });
