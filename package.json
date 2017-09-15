@@ -90,7 +90,7 @@
     "ember-decorators": "git://github.com/ember-decorators/ember-decorators.git",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-elsewhere": "^1.0.2",
-    "ember-exam": "^0.7.0",
+    "ember-exam": "^0.7.1",
     "ember-export-application-global": "^2.0.0",
     "ember-flatpickr": "^1.2.0",
     "ember-font-awesome": "^3.0.3",
