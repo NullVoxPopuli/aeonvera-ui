@@ -16,18 +16,9 @@ footer
           / li.hide-for-small.small: span Questions?
           li: span Questions?
 
-          li
-            = links/mail-support-icon-link
-            .hide-for-small Email
-
+          li = links/mail-support-icon-link
           li = links/facebook-icon-link
 
   .row.copy
     .small-12.columns
       .right = t 'copyright'
-
-  br
-  br
-  .row
-    .small-12.columns
-      = donate-to-aeonvera
