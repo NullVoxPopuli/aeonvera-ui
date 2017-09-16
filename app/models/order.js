@@ -43,7 +43,8 @@ export default Model.extend(PriceCalculation, {
   //       they are on the server: buyer_
   userEmail: attr('string'),
   userName: attr('string'),
-
+  @alias('userEmail') buyerEmail: null,
+  @alias('userName') buyerName: null,
   // buyerEmail: attr('string'),
   // buyerName: attr('string'),
 

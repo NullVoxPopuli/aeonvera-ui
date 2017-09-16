@@ -16,7 +16,7 @@
           {{#paper-button
             accent=true
             raised=true
-            onClick=(action 'openPayModal')
+            onClick=(pipe-action (action 'saveDirtyOrderLineItems') (action 'saveOrder') (action 'openPayModal'))
             disabled=(is-empty order)}}
             {{paper-icon 'attach money'}} Pay
           {{/paper-button}}
@@ -70,9 +70,10 @@
         class='margin-botom-0'
         isTouched=true
         errors=(map-by 'message' orderLineItem.errors.buyerName)
-        value=(readonly orderLineItem.buyerName)
-        onChange=(action (mut orderLineItem.buyerName))
+        value=(readonly order.buyerName)
+        onChange=(action (mut order.buyerName))
       }}
+
       <br />
 
       {{#each order.orderLineItems as |item|}}

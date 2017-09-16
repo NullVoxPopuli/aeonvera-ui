@@ -38,7 +38,10 @@ export default Ember.Controller.extend(Registration, {
 
   @action
   async add(lineItem) {
-    await this.ensureOrderIsPersisted();
+    try { await this.ensureOrderIsPersisted(); }
+    catch (e) {
+      return this.get('flash').error(e);
+    }
 
     if (this.requiresInput(lineItem)) {
       return this.newOrderLineItemFrom(lineItem);
