@@ -12,7 +12,6 @@
           something more generic should be invented / applied to
           simple-dialog-with-button
            --}}
-           {{!-- onClick=(pipe (action saveDirtyOrderLineItems) (action (mut showPaymentModal true))) --}}
           {{#paper-button
             accent=true
             raised=true
@@ -80,10 +79,11 @@
         {{order/order-cart/cart-row
           order=order
           orderLineItem=item
-          allowQuantityChange=false
+          allowQuantityChange=true
           onRemoveLineItem=(action onRemoveLineItem)
           allowQuantityChangei=true
         }}
+        {{paper-divider}}
       {{/each}}
     {{else}}
       Please add some items to begin.

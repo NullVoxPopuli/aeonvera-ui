@@ -26,7 +26,15 @@
     {{outlet}}
   </div>
 
-  <div class='layout-column flex-gt-lg-25 flex-gt-sm-33 flex-xs-100'>
+  {{#if (is-present order)}}
+    {{to-off-viewport-button
+      class='hide-gt-sm'
+      targetSelector='#pos-order-summary-review'
+      label='Proceed'
+    }}
+  {{/if}}
+
+  <div id='pos-order-summary-review' class='layout-column flex-gt-lg-25 flex-gt-sm-33 flex-xs-100'>
     {{at-the-door/pos/order-summary
       order=order
       event=event

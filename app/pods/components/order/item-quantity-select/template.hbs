@@ -1,7 +1,9 @@
-<button class='tiny no-margins' {{action 'increase'}}>
-  {{fa-icon 'plus'}}
-</button>
+{{#paper-button raised=true icon=true mini=true onClick=(action 'increase')}}
+  {{paper-icon 'add'}}
+{{/paper-button}}
 
-<button class='tiny no-margins' {{action 'decrease'}}>
-  {{fa-icon 'minus'}}
-</button>
+{{yield}}
+
+{{#paper-button raised=true icon=true mini=true onClick=(action 'decrease')}}
+  {{paper-icon 'remove'}}
+{{/paper-button}}

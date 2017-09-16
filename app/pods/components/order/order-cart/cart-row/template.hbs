@@ -1,56 +1,64 @@
-<div class='layout-row'>
-  <div class='layout-column flex-20'>
+<div class='layout-column flex-100'>
+  <div class='layout-row layout-align-space-between-center'>
+    <div class='layout-column'>
+      {{displayName}}
+      <div class='layout-row'>
+        {{order/price-display item=orderLineItem value=orderLineItem.price}}
+        <a
+          class='margin-left-10'
+          {{action onRemoveLineItem orderLineItem}}>
+          <small>Remove</small>
+        </a>
+      </div>
+    </div>
+
     {{#if allowQuantityChange}}
-      {{order/item-quantity-select orderLineItem=orderLineItem order=order}}
+      {{#order/item-quantity-select
+        class='layout-row layout-align-center-center'
+        orderLineItem=orderLineItem
+        order=order}}
+        <div>
+          x {{orderLineItem.quantity}}
+        </div>
+      {{/order/item-quantity-select}}
     {{/if}}
-
-    {{orderLineItem.quantity}} x {{order/price-display item=orderLineItem value=orderLineItem.price}}
-
-    <small>
-      <a {{action onRemoveLineItem orderLineItem}}>
-        Remove
-      </a>
-    </small>
   </div>
-  <div class='layout-column flex-80'>
-    {{displayName}}
-    <br />
+  <br />
 
-    {{#if isCompetition}}
-      {{#if requiresPartner}}
-        {{paper-input
-          type='text'
-          label='Partner Name'
-          class='margin-botom-0'
-          isTouched=true
-          errors=(map-by 'message' orderLineItem.errors.partnerName)
-          value=(readonly orderLineItem.partnerName)
-          onChange=(action (mut orderLineItem.partnerName))
-        }}
-      {{/if}}
-
-      {{#if requiresOrientation}}
-        {{register/event-registration-form/orientation-select
-          class='margin-bottom-0'
-          preciseOrientation=true
-          errors=(map-by 'message' orderLineItem.errors.danceOrientation)
-          selectedOrientation=(readonly orderLineItem.danceOrientation)
-          didSelectOrientation=(action (mut orderLineItem.danceOrientation))
-        }}
-      {{/if}}
-    {{/if}}
-
-    {{#if isShirt}}
-      {{#paper-select
-        classNames='flex-grow'
-        label='Size'
-        options=lineItem.sizes
-        selected=selectedSizeData
-        errors=(map-by 'message' orderLineItem.errors.size)
-        onChange=(action 'setSize') as |sizeData|
+  {{#if isCompetition}}
+    {{#if requiresPartner}}
+      {{paper-input
+        type='text'
+        label='Partner Name'
+        class='margin-botom-0'
+        isTouched=true
+        errors=(map-by 'message' orderLineItem.errors.partnerName)
+        value=(readonly orderLineItem.partnerName)
+        onChange=(action (mut orderLineItem.partnerName))
       }}
-        {{to-usd sizeData.price}} {{sizeData.size}}
-      {{/paper-select}}
     {{/if}}
-  </div>
+
+    {{#if requiresOrientation}}
+      {{register/event-registration-form/orientation-select
+        class='margin-bottom-0'
+        preciseOrientation=true
+        errors=(map-by 'message' orderLineItem.errors.danceOrientation)
+        selectedOrientation=(readonly orderLineItem.danceOrientation)
+        didSelectOrientation=(action (mut orderLineItem.danceOrientation))
+      }}
+    {{/if}}
+  {{/if}}
+
+  {{#if isShirt}}
+    {{#paper-select
+      classNames='flex-grow'
+      label='Size'
+      options=lineItem.sizes
+      selected=selectedSizeData
+      errors=(map-by 'message' orderLineItem.errors.size)
+      onChange=(action 'setSize') as |sizeData|
+    }}
+      {{to-usd sizeData.price}} {{sizeData.size}}
+    {{/paper-select}}
+  {{/if}}
 </div>

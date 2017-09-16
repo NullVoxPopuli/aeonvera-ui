@@ -1,0 +1,34 @@
+{{#sortable-table columns=columns model=model data=model.orderLineItems as |orderLineItem| }}
+  <td>
+    {{#if (is-present (await orderLineItem.order.registration))}}
+      {{#registration-link model=orderLineItem.order.registration}}
+        {{orderLineItem.order.userName}}
+      {{/registration-link}}
+    {{else if (is-present orderLineItem.order.userName)}}
+      {{!-- link-to 'events.show.registrations.show' orderLineItem.order.registration.id --}}
+      {{orderLineItem.order.userName}}
+    {{else}}
+      Name not recorded
+    {{/if}}
+  </td>
+
+  {{#if model.requiresOrientation}}
+    <td>{{orderLineItem.danceOrientation}}</td>
+  {{/if}}
+
+  {{#if model.requiresPartner}}
+    <td>{{orderLineItem.partnerName}}</td>
+  {{/if}}
+
+  <td>{{to-bool orderLineItem.order.registration.isCheckedIn}}</td>
+
+  <td>
+    {{!-- TODO: if unpaid, color this cell red --}}
+    {{#if (is-present orderLineItem.order.paymentReceivedAt)}}
+      Paid on {{date-with-format orderLineItem.order.paymentReceivedAt 'lll'}}
+    {{else}}
+      Unpaid since {{date-with-format orderLineItem.order.createdAt 'lll'}}
+    {{/if}}
+
+  </td>
+{{/sortable-table}}
