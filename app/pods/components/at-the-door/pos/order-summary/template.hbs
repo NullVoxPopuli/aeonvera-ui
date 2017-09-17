@@ -31,6 +31,10 @@
             {{/ember-paper/simple-dialog}}
           {{/if}}
 
+          <div>
+            {{or order.registration.name order.buyerName}}
+          </div>
+
           {{#paper-button
             raised=true
             disabled=(is-empty order)
@@ -56,22 +60,41 @@
   {{#card.content}}
 
     {{#if (await order)}}
-      <label><em>Optional - Attaches order to registration</em></label>
-      {{form/registrant-select
-        event=event
-        value=order.registration
-        onChange=(action 'updateRegistration')
-      }}
+      <div class='layout-row layout-align-start'>
+        {{paper-radio
+          label='Attach to Registrant'
+          value=0
+          groupValue=nameType
+          onChange=(action (mut nameType))
+        }}
+        {{paper-radio
+          class='margin-left-20'
+          label='Enter Name'
+          value=1
+          groupValue=nameType
+          onChange=(action (mut nameType))
+        }}
+      </div>
 
-      {{paper-input
-        type='text'
-        label='Buyer Name'
-        class='margin-botom-0'
-        isTouched=true
-        errors=(map-by 'message' orderLineItem.errors.buyerName)
-        value=(readonly order.buyerName)
-        onChange=(action (mut order.buyerName))
-      }}
+      {{#if (is-equal nameType 0)}}
+        {{form/registrant-select
+          event=event
+          value=order.registration
+          onChange=(action 'updateRegistration')
+        }}
+      {{else}}
+        {{paper-input
+          type='text'
+          label='Buyer Name'
+          class='margin-botom-0'
+          isTouched=true
+          errors=(map-by 'message' orderLineItem.errors.buyerName)
+          value=(readonly order.buyerName)
+          onChange=(action (mut order.buyerName))
+        }}
+      {{/if}}
+
+
 
       <br />
 

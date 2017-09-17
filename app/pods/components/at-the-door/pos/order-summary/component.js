@@ -25,9 +25,16 @@ export default class extends Component {
 
   @action
   async updateRegistration(registration) {
+    if (registration === null) {
+      // TODO: what happens if order doesn't exist?
+      return this.set('order.registration', null);
+    }
+
     const order = await this.get('order');
 
     order.set('registration', registration);
+    order.set('buyerName', '');
+    order.set('buyerEmail', '');
 
     return order.save();
   }
