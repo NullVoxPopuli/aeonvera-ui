@@ -15,9 +15,11 @@
         <small>{{date-with-format order.createdAt 'lll'}}</small>
         <ul>
           {{#each order.orderLineItems as |oli|}}
-          <li>
-            {{order/item-name-display orderLineItem=oli order=order}}
-          </li>
+            {{#unless (is-a oli.lineItem 'discount')}}
+              <li>
+                {{order/item-name-display orderLineItem=oli order=order}}
+              </li>
+            {{/unless}}
           {{/each}}
         </ul>
       </div>
