@@ -7,6 +7,7 @@ import { action, computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
 import Registration from 'aeonvera/mixins/registration/controller';
+import EnsureOrderExists from 'aeonvera/mixins/registration/ensure-order-exists';
 import { isA } from 'aeonvera/helpers/is-a';
 // es6 mixin class decorator magic?
 // const mixin = emberMixin => target => target.extend(emberMixin);
@@ -21,7 +22,7 @@ const TABS = [
 
 
 // @mixin(Registration)
-export default Ember.Controller.extend(Registration, {
+export default Ember.Controller.extend(EnsureOrderExists, Registration, {
   @controller('application') application: null,
   @service('flash-notification') flash: null,
 
@@ -38,7 +39,7 @@ export default Ember.Controller.extend(Registration, {
 
   @action
   async add(lineItem) {
-    try { await this.ensureOrderIsPersisted(); }
+    try { await this.ensureOrderExists(); }
     catch (e) {
       return this.get('flash').error(e);
     }
@@ -52,7 +53,7 @@ export default Ember.Controller.extend(Registration, {
 
   @action
   async remove(orderLineItem) {
-    await this.ensureOrderIsPersisted();
+    await this.ensureOrderExists();
 
     return this.send('didRemoveOrderLineItem', orderLineItem);
   },
@@ -70,39 +71,10 @@ export default Ember.Controller.extend(Registration, {
     }
   },
 
-  @action
-  startOver() {
-    this.set('registration', null);
-    this.set('order', null);
-  },
-
   requiresInput(lineItem) {
     const isCompetition = isA([lineItem, 'competition']);
     const isShirt = isA([lineItem, 'shirt']);
 
     return isCompetition || isShirt;
-  },
-
-  async ensureOrderIsPersisted() {
-    const order = this.get('order');
-    const o = await RSVP.resolve(order);
-
-    if (o !== null) {
-      if (o.get('hasDirtyAttributes') && !o.get('isNew')) return o.save();
-
-      return RSVP.resolve(o);
-    }
-
-    const newOrder = this.get('store').createRecord('order', {
-      host: this.get('event'),
-      user: this.get('currentUser'),
-      userName: this.get('userName'),
-      userEmail: this.get('userEmail'),
-      registration: this.get('registration')
-    });
-
-    this.set('order', newOrder);
-
-    return newOrder.save();
   }
 });

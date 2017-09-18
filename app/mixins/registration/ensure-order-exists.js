@@ -11,7 +11,11 @@ export default Mixin.create({
     const registration = this.get('registration');
 
     return RSVP.resolve(order).then(o => {
-      if (o !== null) return RSVP.resolve(o);
+      if (o !== null) {
+        if (o.get('hasDirtyAttributes') && !o.get('isNew')) return o.save();
+
+        return RSVP.resolve(o);
+      }
 
       // assert('Registration must be present', registration);
       // assert('Event must be present', event);
@@ -19,8 +23,8 @@ export default Mixin.create({
       const order = this.get('store').createRecord(orderType, {
         host: event,
         user: this.get('currentUser'),
-        userName: registration.get('name'),
-        userEmail: registration.get('attendeeEmail'),
+        userName: registration && registration.get('name'),
+        userEmail: registration && registration.get('attendeeEmail'),
         registration: registration
       });
 
