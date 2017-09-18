@@ -4,23 +4,33 @@
   warn=warn
   primary=primary
   }}
-  {{#if promise}}
-    {{#if (is-pending promise)}}
-        {{loadingMessage}}
-    {{else if (is-fulfilled promise)}}
-        {{successMessage}}
+
+  {{#if task}}
+    {{#if task.isRunning}}
+      {{loadingMessage}}
     {{else}}
-      {{#if showError}}
-        Error! :-(
+      {{label}}
+    {{/if}}
+
+  {{else}}
+    {{#if promise}}
+      {{#if (is-pending promise)}}
+          {{loadingMessage}}
+      {{else if (is-fulfilled promise)}}
+          {{successMessage}}
+      {{else}}
+        {{#if showError}}
+          Error! :-(
+        {{else}}
+          {{label}}
+        {{/if}}
+      {{/if}}
+    {{else}}
+      {{#if icon}}
+        {{paper-icon icon}} {{label}}
       {{else}}
         {{label}}
       {{/if}}
-    {{/if}}
-  {{else}}
-    {{#if icon}}
-      {{paper-icon icon}} {{label}}
-    {{else}}
-      {{label}}
     {{/if}}
   {{/if}}
 {{/paper-button}}

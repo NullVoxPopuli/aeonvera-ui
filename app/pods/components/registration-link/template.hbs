@@ -1,6 +1,11 @@
 {{#link-to 'events.show.registrations.show' eventId registrationId}}
   {{name}}
 
+  {{#unless model.isAttending}}
+    Not Attending
+  {{/unless}}
+
+
   {{#if (is-present model.transferredAt)}}
     <br />
     <small>

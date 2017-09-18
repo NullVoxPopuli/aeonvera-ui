@@ -19,4 +19,16 @@ export default class extends Ember.Component {
     this.get('flash').success('Registration has been deleted');
 
   }
+
+  @dropTask
+  markRegistrationAsNotAttending = function * () {
+    const registration = this.get('registration');
+    const name = registration.get('name');
+
+    registration.set('isAttending', false);
+    yield registration.save();
+
+    this.get('router').transitionTo('events.show.registrations');
+    this.get('flash').success(`${name} is marked as no longer attending`);
+  }
 }

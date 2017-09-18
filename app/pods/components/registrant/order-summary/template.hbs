@@ -2,41 +2,47 @@
 <small class='right'>Prices as of {{date-with-format model.createdAt 'LLL'}}</small>
 <br />
 
-<div class='layout-row'>
-  {{#paper-button raised=true onClick=(action 'resendReceipt')}}
-    Resend Receipt
-  {{/paper-button}}
-
-  {{#unless isPaid}}
+<div class='layout-row layout-align-start-center'>
+  {{#if isPaid}}
+    {{#paper-button raised=true onClick=(action 'resendReceipt')}}
+      Resend Receipt
+    {{/paper-button}}
+  {{else}}
     {{order/mark-paid-modal-with-button accent=true order=model}}
-  {{/unless}}
-
-  {{#if canBeDeleted}}
-    {{#form/confirm-button
-      action='delete'
-      showCancel=true
-      confirmDestructive=true
-      cancelClasses='tiny no-margins'
-      confirmText='Really, Delete'
-    }}
-      Delete
-    {{/form/confirm-button}}
   {{/if}}
 
-  {{#if (and isStripe isPaid)}}
-    {{#if hasPaidMoney}}
-      {{#paper-button onClick=(action (mut showRefundModal) true)}}
-        Refund
-      {{/paper-button}}
+  {{#ember-paper/ellipsis-menu as |content menu|}}
+    {{#if canBeDeleted}}
+      {{#form/confirm-button
+        action='delete'
+        showCancel=true
+        confirmDestructive=true
+        cancelClasses='tiny no-margins'
+        confirmText='Really, Delete'
+      }}
+        Delete
+      {{/form/confirm-button}}
     {{/if}}
 
-    {{#paper-button onClick=(action 'refreshStripe')}}
-      {{tool-tip
-        message='if you have refunded via stripe directly, this will update aeonvera with that information.'
-      }}
-      Refresh Stripe Payment Data
-    {{/paper-button}}
-  {{/if}}
+    {{#if (and isStripe isPaid)}}
+      {{#if hasPaidMoney}}
+        {{#paper-button onClick=(
+            pipe-action
+              (action (mut menu.isOpen) false)
+              (action (mut showRefundModal) true)
+        )}}
+          Refund
+        {{/paper-button}}
+      {{/if}}
+
+      {{#paper-button onClick=(action 'refreshStripe')}}
+        {{tool-tip
+          message='if you have refunded via stripe directly, this will update aeonvera with that information.'
+        }}
+        Refresh Stripe Payment Data
+      {{/paper-button}}
+    {{/if}}
+  {{/ember-paper/ellipsis-menu}}
 </div>
 
 

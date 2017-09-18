@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
 import ENV from 'aeonvera/config/environment';
@@ -7,7 +7,7 @@ import { computed, action } from 'ember-decorators/object';
 import { equal, alias, gt, not, or } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     model: PropTypes.EmberObject.isRequired
   };

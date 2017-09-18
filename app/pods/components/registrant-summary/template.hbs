@@ -1,61 +1,88 @@
-<div class='layout-row layout-align-space-between-center'>
-  {{page-header text=registration.name}}
-  {{payment-status-badge hasPaid=model.hasPaid owes=model.amountOwed paid=model.amountPaid}}
-</div>
-<div class='layout-row layout-align-space-between-center'>
-  <div>
-    {{registration.danceOrientation}} <br />
-    {{#if hasLevel}}
-      {{registration.levelName}}
-    {{/if}}
-    {{#if (is-present registration.transferredAt)}}
-     <h4>Transferred</h4>
-     {{#if (is-present registration.transferredFromFirstName)}}
-       from {{registration.transferredFromName}}
-     {{/if}}
-
-     {{#if (is-present registration.transferredToYear)}}
-       to {{registration.transferredToYear}}
-     {{/if}}
-
-     {{registration.transferReason}}
-     <br />
-     {{date-with-format registration.transferredAt 'LLL'}}
-    {{/if}}
+{{#loading-content promise=registration}}
+  <div class='layout-row layout-align-space-between-center'>
+    <div>
+      {{page-header text=registration.name}}
+      {{#unless registration.isAttending}}
+        <small>Not Attending</small>
+      {{/unless}}
+    </div>
+    {{payment-status-badge hasPaid=model.hasPaid owes=model.amountOwed paid=model.amountPaid}}
   </div>
-  <div>
-     Registered: {{date-with-format model.registeredAt 'LLL'}}
-     <br />
-     Checked In:
-     {{#if registration.isCheckedIn}}
-      {{date-with-format registration.checkedInAt 'LLL'}}
-    {{else}}
-      No
-    {{/if}}
+  <div class='layout-row layout-align-space-between-center'>
+    <div>
+      {{registration.danceOrientation}} <br />
+      {{#if hasLevel}}
+        {{registration.levelName}}
+      {{/if}}
+      {{#if (is-present registration.transferredAt)}}
+       <h4>Transferred</h4>
+       {{#if (is-present registration.transferredFromFirstName)}}
+         from {{registration.transferredFromName}}
+       {{/if}}
+
+       {{#if (is-present registration.transferredToYear)}}
+         to {{registration.transferredToYear}}
+       {{/if}}
+
+       {{registration.transferReason}}
+       <br />
+       {{date-with-format registration.transferredAt 'LLL'}}
+      {{/if}}
+    </div>
+    <div>
+       Registered: {{date-with-format model.registeredAt 'LLL'}}
+       <br />
+       Checked In:
+       {{#if registration.isCheckedIn}}
+        {{date-with-format registration.checkedInAt 'LLL'}}
+      {{else}}
+        No
+      {{/if}}
+    </div>
   </div>
-</div>
 
-{{registrant-summary/detail-view model=registration}}
+  {{registrant-summary/detail-view model=registration}}
 
-<hr />
+  <hr />
 
-{{registrant/orders-summary model=registration.orders}}
+  {{#loading-content promise=(promise-all registration registration.orders)}}
+    {{registrant/orders-summary model=registration.orders}}
 
-{{#if (not hasOrders)}}
-  {{#if deleteRegistration.isIdle}}
-    {{#form/confirm-button
-      action=(perform deleteRegistration)
-      confirmText='Are you sure?'
-      confirmDestructive=true
-      showCancel=true
-    }}
-      Delete Registration
-    {{/form/confirm-button}}
-  {{else}}
-    Deleting...
-  {{/if}}
-{{/if}}
+    <div class='layout-row'>
+      {{#if (not hasOrders)}}
+        {{#if deleteRegistration.isIdle}}
+          {{#form/confirm-button
+            action=(perform deleteRegistration)
+            confirmText='Are you sure?'
+            confirmDestructive=true
+            showCancel=true
+          }}
+            Delete Registration
+          {{/form/confirm-button}}
+        {{else}}
+          Deleting...
+        {{/if}}
+      {{/if}}
 
-{{registrant/transfer-modal
-  registration=registration
-}}
+      {{#if registration.isAttending}}
+        {{#if markRegistrationAsNotAttending.isIdle}}
+          {{#form/confirm-button
+            action=(perform markRegistrationAsNotAttending)
+            confirmText='Is this person no longer attending?'
+            showCancel=true
+          }}
+            Not Attending
+          {{/form/confirm-button}}
+        {{else}}
+          Marking as 'Not Attending'...
+        {{/if}}
+      {{/if}}
+
+      {{registrant/transfer-modal
+        registration=registration
+      }}
+
+    </div>
+  {{/loading-content}}
+
+{{/loading-content}}

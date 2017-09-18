@@ -6,10 +6,11 @@
 = link-to 'events.show.registrations.deleted'
   | View Deleted Registrations
 
-= sortable-table columns=columns data=registrations as |registration|
-  td = registration-link model=registration
-  td = registration.danceOrientation
-  td = registration.levelName
-  / TODO: if unpaid, color this cell red
-  td = registration.paymentStatus
-  td = date-with-format registration.registeredAt 'LLL'
+= loading-content promise=registrations
+  = sortable-table columns=columns data=registrations as |registration|
+    td = registration-link model=registration
+    td = registration.danceOrientation
+    td = registration.levelName
+    / TODO: if unpaid, color this cell red
+    td = registration.paymentStatus
+    td = date-with-format registration.registeredAt 'LLL'

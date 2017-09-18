@@ -4,7 +4,6 @@ import Registration from 'aeonvera/models/registration';
 
 export default Registration.extend({
   eventBeginsAt: DS.attr('date'),
-  isAttending: DS.attr('boolean'),
   url: DS.attr('string'),
 
   registrationStatus: function() {

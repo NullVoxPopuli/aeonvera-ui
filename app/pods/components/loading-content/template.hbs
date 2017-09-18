@@ -1,5 +1,14 @@
-{{#if (await promise)}}
-  {{yield}}
+{{!-- {{log '-----------'}} --}}
+{{#if (is-pending promise)}}
+  {{!-- {{log 'is-pending: ' (is-pending promise) 'is-rejected: ' (is-rejected promise) 'is-fulfilled: ' (is-fulfilled promise)}} --}}
+  {{!-- {{log 'all is pending:' (is-pending (promise-all promise)) 'all is rejected:' (is-rejected (promise-all promise)) 'all is fulfilled' (is-fulfilled (promise-all promise))}} --}}
+
+  <div class='layout-row layout-align-center-center'>
+    <div class='sp sp-3balls'></div>
+  </div>
 {{else}}
-  <div class='ubuntu-loader' style="color: black;"></div>
+  {{!-- {{log 'is-pending: ' (is-pending promise) 'is-rejected: ' (is-rejected promise) 'is-fulfilled: ' (is-fulfilled promise)}} --}}
+  {{!-- {{log 'all is pending:' (is-pending (promise-all promise)) 'all is rejected:' (is-rejected (promise-all promise)) 'all is fulfilled' (is-fulfilled (promise-all promise))}} --}}
+
+  {{yield}}
 {{/if}}

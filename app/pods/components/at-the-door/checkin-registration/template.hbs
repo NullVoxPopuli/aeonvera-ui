@@ -38,9 +38,18 @@
 <td>
   {{#if model.isCheckedIn}}
     {{date-with-format model.checkedInAt 'lll'}}
+
+    {{ember-paper/async-button
+      onClick=(action 'uncheckin')
+      task=putToRegistration
+      raised=true
+      loadingMessage='Unchecking in...'
+      label='Uncheck in'}}
+
   {{else}}
     {{ember-paper/async-button
       onClick=(action 'checkin')
+      task=putToRegistration
       raised=true
       loadingMessage='Checking in...'
       label='Check in'

@@ -13,14 +13,13 @@ export default ApplicationAdapter.extend({
     return url;
   },
 
-  // urlForUpdateRecord(id, modelName, snapshot) {
-  //   let url = this._buildURL(modelName, id);
-  //   const paymentToken = snapshot.adapterOptions.payment_token;
-  //
-  //   if (paymentToken) {
-  //     url += `?payment_token=${paymentToken}`;
-  //   }
-  //
-  //   return url;
-  // }
+  urlForUpdateRecord(id, modelName, snapshot) {
+    let url = this._buildURL(modelName, id);
+    const record = this.get('store').peekRecord(modelName, id);
+
+    const eventId = record.get('host.id');
+    url += `?event_id=${eventId}`;
+
+    return url;
+  }
 });

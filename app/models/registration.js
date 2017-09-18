@@ -36,6 +36,7 @@ export default DS.Model.extend(
     undestroy: modelAction('undestroy', { type: 'PUT', pushToStore: true }),
     getDeleted: resourceAction('deleted', { type: 'GET', pushToStore: true, promiseType: 'array' }),
 
+    isAttending: attr('boolean'),
     attendeeName: attr('string'),
     // TODO: create these on the backend:
     attendeeFirstName: attr('string'),
