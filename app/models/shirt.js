@@ -30,7 +30,7 @@ export default LineItem.extend({
     const sizeData = this._sizeDataForSize(size);
     const price = this.get('price');
 
-    return sizeData.price || price;
+    return (sizeData && sizeData.price) || price;
   },
 
   setPriceForSize(size, price) {

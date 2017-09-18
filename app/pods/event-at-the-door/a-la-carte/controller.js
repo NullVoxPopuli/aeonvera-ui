@@ -45,10 +45,10 @@ export default Ember.Controller.extend(EnsureOrderExists, Registration, {
     }
 
     if (this.requiresInput(lineItem)) {
-      return this.newOrderLineItemFrom(lineItem);
+      return this.newOrderLineItemFrom(lineItem, { pickedUpAt: new Date });
     }
 
-    return this.send('didAddLineItem', lineItem);
+    return this.send('didAddLineItem', lineItem, { pickedUpAt: new Date });
   },
 
   @action

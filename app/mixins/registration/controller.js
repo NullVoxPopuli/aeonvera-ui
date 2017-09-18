@@ -51,7 +51,7 @@ export default Ember.Mixin.create({
       });
   },
 
-  newOrderLineItemFrom(lineItem) {
+  newOrderLineItemFrom(lineItem, params = {}) {
     const store = this.get('store');
     const order = this.get('order');
 
@@ -61,18 +61,20 @@ export default Ember.Mixin.create({
       order,
       lineItem,
       host_id: this.get('host.id'),
-      host_type: this.get('host.klass') });
+      host_type: this.get('host.klass'),
+      ...params
+    });
 
     if (this.get('token')) orderLineItem.set('paymentToken', this.get('token'));
 
     return orderLineItem;
   },
 
-  _createOrderLineItemForItem(lineItem) {
+  _createOrderLineItemForItem(lineItem, params = {}) {
     Ember.Logger.info('_createOrderLineItemForItem');
 
     const order = this.get('order');
-    const orderLineItem = this.newOrderLineItemFrom(lineItem);
+    const orderLineItem = this.newOrderLineItemFrom(lineItem, params);
 
     return orderLineItem.save()
       .then(oli => order.get('orderLineItems').pushObject(oli));
@@ -162,7 +164,7 @@ export default Ember.Mixin.create({
     },
 
 
-    didAddLineItem(lineItem) {
+    didAddLineItem(lineItem, params = {}) {
       const store = this.get('store');
       const order = this.get('order');
 
@@ -174,10 +176,10 @@ export default Ember.Mixin.create({
             return this._addOneQuantityForOrderLineItem(orderLineItem);
           }
 
-          return this._createOrderLineItemForItem(lineItem);
+          return this._createOrderLineItemForItem(lineItem, params);
         })
         .catch(e => {
-          this.get('rollbar').error('Problem with Org orderLineItem adding', e);
+          this.get('rollbar').error('Problem with orderLineItem adding', e);
           this.get('flash').alert(e);
           this._cleanErroneousLineItems();
         });
