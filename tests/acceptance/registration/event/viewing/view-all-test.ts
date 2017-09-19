@@ -102,10 +102,12 @@ test('items that total to 0 are complete', withChai(async expect => {
   const lineItem = make('package');
   const discount = make('discount');
   const event = make('event', { isEvent: true, packages: [lineItem] });
-  const order = make('order', { paid: true, paidAmount: 50, total: 0, orderLineItems: [] });
+  const order = make('order', { paid: false, paidAmount: 0, total: 0, orderLineItems: [] });
   make('order-line-item', { order, lineItem, quantity: 1, price: 50 });
   make('order-line-item', { order, lineItem: discount, quantity: 1, price: -50 });
-  const registrations = makeList('users/registration', 1, { amountPaid: 0, orders: [order], unpaidOrder: order });
+  const registrations = makeList('users/registration', 1, {
+    amountPaid: 0, amountOwed: 0, orders: [order], unpaidOrder: order
+  });
 
   const rootRegistrationUrl = `${event.get('domain')}/register/${event.get('id')}`;
   mockRequests({ event, registrations, order });
@@ -113,7 +115,7 @@ test('items that total to 0 are complete', withChai(async expect => {
   await visit(rootRegistrationUrl);
   expect(currentRouteName()).to.eq('register.event-registration.index');
 
-  const text = find('td').text()
+  const text = find('td').text();
 
   expect(text).to.not.include('Incomplete')
 }));
@@ -147,7 +149,7 @@ test('items that are paid for are complete', withChai(async expect => {
   const event = make('event', { isEvent: true, packages: [lineItem] });
   const order = make('order', { paid: true, paidAmount: 50, total: 50, orderLineItems: [] });
   make('order-line-item', { order, lineItem, quantity: 1, price: 50 });
-  const registrations = makeList('users/registration', 1, { amountPaid: 50, orders: [order], unpaidOrder: order });
+  const registrations = makeList('users/registration', 1, { amountOwed: 0, amountPaid: 50, orders: [order], unpaidOrder: order });
 
   const rootRegistrationUrl = `${event.get('domain')}/register/${event.get('id')}`;
   mockRequests({ event, registrations, order });
@@ -156,6 +158,11 @@ test('items that are paid for are complete', withChai(async expect => {
   expect(currentRouteName()).to.eq('register.event-registration.index');
 
   const text = find('td').text()
-
+  const r = registrations.get(0)
+  // console.log(text,
+  //   r.get('hasPaid'),
+  //   r.get('owesMoney'),
+  //   r.get('orders.length'),
+  //   r.get('unpaidOrder.orderLineItems.length'));
   expect(text).to.not.include('Incomplete')
 }));
