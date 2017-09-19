@@ -82,6 +82,14 @@ export default DS.Model.extend(
     transferReason: attr('string'),
     transferredAt: attr('date'),
 
+    @computed('hasPaid', 'owesMoney', 'orders.length', 'unpaidOrder')
+    incomplete(hasPaid, owesMoney, numOrders, unpaidOrder) {
+      return (!hasPaid && owesMoney) ||
+        numOrders === 0 ||
+        unpaidOrder.get('orderLineItems.length') === 0 ||
+        (unpaidOrder.get('total') > 0 && !hasPaid);
+    },
+
     @computed('transferredFromFirstName', 'transferredFromLastName')
     transferredFromName(first, last) {
       return `${first} ${last}`;
