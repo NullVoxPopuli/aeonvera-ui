@@ -18,7 +18,7 @@ span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
 
 .layout-column.layout-align-center-stretch
   = loading-content promise=registrations
-    = paper-data-table sortProp='name' sortDir='asc' as |table|
+    = paper-data-table sortProp=sortProp sortDir=sortDir onChangeSort=(action 'changeSort') as |table|
       = table.head as |head|
         = head.column sortProp='name'
           | Name
@@ -27,5 +27,6 @@ span Checked In: {{numberCheckedIn}} | Not Checked In: {{numberNotCheckedIn}}
         = head.column sortProp='checkedInAt'
           | Checked in at
       = table.body as |body|
-        = each (sort-by table.sortDesc registrations) as |registration|
+        = each paginatedRegistrations as |registration|
           = at-the-door/checkin-registration model=registration
+    = paper-data-table-pagination limit=limit limitOptions=limitOptions page=page pages=pages onChangePage=(action (mut page)) onChangeLimit=(action (mut limit)) onIncrementPage=(action 'incrementPage') onDecrementPage=(action 'decrementPage')
