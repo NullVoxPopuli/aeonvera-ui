@@ -47,9 +47,12 @@
               {{registration.attendeeFirstName}} {{ registration.attendeeLastName}}
             </td>
             <td>
-              {{#unless registration.hasPaid}}
+              {{#if registration.incomplete}}
                 Incomplete! <br />
-              {{/unless}}
+              {{else}}
+                Complete
+              {{/if}}
+
               {{registration.paymentStatus}}
             </td>
             <td>{{date-with-format registration.registeredAt 'LLL'}}</td>
