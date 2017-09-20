@@ -115,9 +115,13 @@
   version "3.2.11"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.11.tgz#9119f91bb103b16ae8c4375b019a9b341b409f50"
 
-"@types/rsvp@*", "@types/rsvp@^3.3.2":
+"@types/rsvp@*":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@types/rsvp/-/rsvp-3.3.2.tgz#320020a9a5a6a71e99d852fa88df43bd9f878278"
+
+"@types/rsvp@^3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@types/rsvp/-/rsvp-3.3.3.tgz#61a910a4e015121bd75f643c27a0bbaa28b633d4"
 
 abbrev@1:
   version "1.1.0"
