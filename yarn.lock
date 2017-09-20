@@ -1806,7 +1806,7 @@ broccoli-sri-hash@^2.1.0:
     sri-toolbox "^0.2.0"
     symlink-or-copy "^1.0.1"
 
-broccoli-stew@^1.2.0, broccoli-stew@^1.3.2, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2:
+broccoli-stew@^1.2.0, broccoli-stew@^1.3.2, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2, broccoli-stew@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.5.0.tgz#d7af8c18511dce510e49d308a62e5977f461883c"
   dependencies:
@@ -3008,7 +3008,7 @@ ember-async-button@^1.0.2:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
 
-ember-basic-dropdown@^0.32.5, ember-basic-dropdown@^0.32.8:
+ember-basic-dropdown@^0.32.5:
   version "0.32.8"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.32.8.tgz#d460a78ae6eb8128d4bb0128520e6e9efdac2cd3"
   dependencies:
@@ -3016,6 +3016,15 @@ ember-basic-dropdown@^0.32.5, ember-basic-dropdown@^0.32.8:
     ember-cli-htmlbars "^1.1.1"
     ember-native-dom-helpers "^0.5.0"
     ember-wormhole "^0.5.1"
+
+ember-basic-dropdown@^0.33.1:
+  version "0.33.5"
+  resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.33.5.tgz#39986d4cc6732edf43fb51eabb70790e99e8ae2c"
+  dependencies:
+    ember-cli-babel "^6.8.1"
+    ember-cli-htmlbars "^2.0.3"
+    ember-native-dom-helpers "^0.5.3"
+    ember-wormhole "^0.5.2"
 
 ember-block-slots@^1.1.10:
   version "1.1.10"
@@ -4109,6 +4118,13 @@ ember-native-dom-helpers@^0.5.0:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^6.1.0"
 
+ember-native-dom-helpers@^0.5.3:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.5.4.tgz#0bc1506a643fb7adc0abf1d09c44a7914459296b"
+  dependencies:
+    broccoli-funnel "^1.1.0"
+    ember-cli-babel "^6.6.0"
+
 ember-paper-expansion-panel@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/ember-paper-expansion-panel/-/ember-paper-expansion-panel-0.0.1.tgz#c8cf800be60bddecb3f11a856a6fa1daa5c04f12"
@@ -4116,22 +4132,23 @@ ember-paper-expansion-panel@^0.0.1:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.1.1"
 
-ember-paper@^1.0.0-alpha.20:
-  version "1.0.0-alpha.20"
-  resolved "https://registry.yarnpkg.com/ember-paper/-/ember-paper-1.0.0-alpha.20.tgz#11f7a272b9f5e0a512e7879a2b1ba077d295648c"
+ember-paper@^1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/ember-paper/-/ember-paper-1.0.0-beta.3.tgz#dbfee3081167b14d45aa144ebce3d788d2650a42"
   dependencies:
     angular-material-source "github:angular/material#v1.1.4"
     broccoli-autoprefixer "^5.0.0"
-    broccoli-filter "^1.2.3"
+    broccoli-filter "^1.2.4"
     broccoli-funnel "^1.2.0"
     broccoli-merge-trees "^2.0.0"
-    ember-basic-dropdown "^0.32.8"
+    ember-basic-dropdown "^0.33.1"
     ember-cli-babel "^6.3.0"
     ember-cli-htmlbars "^2.0.1"
     ember-composability-tools "0.0.8"
     ember-css-transitions "0.1.10"
     ember-power-select "^1.8.5"
-    ember-wormhole "0.5.1"
+    ember-wormhole "0.5.2"
+    fastboot-transform "^0.1.2"
     hammerjs "^2.0.8"
     matchmedia-polyfill "^0.3.0"
     propagating-hammerjs "^1.4.6"
@@ -4386,7 +4403,7 @@ ember-wormhole@0.5.1:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
 
-ember-wormhole@^0.5.1, ember-wormhole@^0.5.2:
+ember-wormhole@0.5.2, ember-wormhole@^0.5.1, ember-wormhole@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/ember-wormhole/-/ember-wormhole-0.5.2.tgz#cc0ceb7db4f8b8da0fd852edc81d75cb1dcd92f1"
   dependencies:
@@ -4863,6 +4880,12 @@ fast-sourcemap-concat@^1.0.1:
     rsvp "^3.0.14"
     source-map "^0.4.2"
     source-map-url "^0.3.0"
+
+fastboot-transform@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.2.tgz#f910d666ab93e75604492ea655270d1804bc8de7"
+  dependencies:
+    broccoli-stew "^1.5.0"
 
 fastparse@^1.1.1:
   version "1.1.1"
