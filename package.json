@@ -25,7 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/ember": "^2.7.43",
-    "@types/ember-testing-helpers": "^0.0.1",
+    "@types/ember-testing-helpers": "^0.0.2",
     "@types/jquery-mockjax": "^2.0.31",
     "@types/rsvp": "^3.3.2",
     "babel-eslint": "^7.1.1",
