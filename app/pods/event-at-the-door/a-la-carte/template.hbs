@@ -1,23 +1,23 @@
 <div class='layout-row  layout-xs-column layout-sm-column'>
   <div class='flex-gt-lg-75 flex-gt-sm-66 flex-xs-100'>
     {{#paper-tabs borderBottom=true selected=currentTabIndex as |tabs|}}
-      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.index')}}
+      {{#tabs.tab data-test-pos-tab='all' onClick=(transition-to 'event-at-the-door.a-la-carte.index')}}
         All
       {{/tabs.tab}}
 
-      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.shirts')}}
+      {{#tabs.tab data-test-pos-tab='shirts' onClick=(transition-to 'event-at-the-door.a-la-carte.shirts')}}
         Shirts
       {{/tabs.tab}}
 
-      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.competitions')}}
+      {{#tabs.tab data-test-pos-tab='competitions' onClick=(transition-to 'event-at-the-door.a-la-carte.competitions')}}
         Competitions
       {{/tabs.tab}}
 
-      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.tickets')}}
+      {{#tabs.tab data-test-pos-tab='tickets' onClick=(transition-to 'event-at-the-door.a-la-carte.tickets')}}
         Tickets
       {{/tabs.tab}}
 
-      {{#tabs.tab onClick=(transition-to 'event-at-the-door.a-la-carte.other')}}
+      {{#tabs.tab data-test-pos-tab='other' onClick=(transition-to 'event-at-the-door.a-la-carte.other')}}
         Other
       {{/tabs.tab}}
 

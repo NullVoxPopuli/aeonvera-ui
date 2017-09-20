@@ -85,9 +85,10 @@ export default DS.Model.extend(
     @computed('hasPaid', 'owesMoney', 'orders.length', 'unpaidOrder')
     incomplete(hasPaid, owesMoney, numOrders, unpaidOrder) {
       return (!hasPaid && owesMoney) ||
-        numOrders === 0 ||
-        unpaidOrder.get('orderLineItems.length') === 0 ||
-        (unpaidOrder.get('total') > 0 && !hasPaid);
+        numOrders === 0 || (
+          unpaidOrder && (unpaidOrder.get('orderLineItems.length') === 0 ||
+          (unpaidOrder.get('total') > 0 && !hasPaid))
+        );
     },
 
     @computed('transferredFromFirstName', 'transferredFromLastName')

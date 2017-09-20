@@ -105,6 +105,12 @@
   version "4.0.35"
   resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.35.tgz#409eb97a3ad6970daba4d586cb6afe3f5e082c01"
 
+"@types/jquery-mockjax@^2.0.31":
+  version "2.0.31"
+  resolved "https://registry.yarnpkg.com/@types/jquery-mockjax/-/jquery-mockjax-2.0.31.tgz#2707c08b29cd8602a3e8b45c6e98054933860442"
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/jquery@*":
   version "3.2.11"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.2.11.tgz#9119f91bb103b16ae8c4375b019a9b341b409f50"
@@ -4372,12 +4378,6 @@ ember-weakmap@^2.0.0:
   resolved "https://registry.yarnpkg.com/ember-weakmap/-/ember-weakmap-2.0.0.tgz#71c6819a8bfd0b077ae17ca1d9053fc5db06e4ac"
   dependencies:
     ember-cli-babel "^5.1.6"
-
-ember-windoc@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ember-windoc/-/ember-windoc-0.2.0.tgz#b97e69cf65a2e27f2ee941616bfe475ac6857416"
-  dependencies:
-    ember-cli-babel "^6.0.0"
 
 ember-wormhole@0.5.1:
   version "0.5.1"
