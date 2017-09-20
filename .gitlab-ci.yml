@@ -38,8 +38,8 @@ test:
   # dependencies:
   #   - build
   script:
-    - yarn install && bower install
-    - npm run ci
+    - time ( yarn install && bower install )
+    - time npm run ci
   artifacts:
     paths:
       - coverage/
@@ -66,7 +66,7 @@ production:
     - export STRIPE_CLIENT_ID=$PRODUCTION_STRIPE_CLIENT_ID
     - ember --version
 
-    - DEPLOY_ENV=$DEPLOY_TARGET ember deploy $DEPLOY_TARGET --activate
+    - time DEPLOY_ENV=$DEPLOY_TARGET ember deploy $DEPLOY_TARGET --activate
 
 # https://about.gitlab.com/2016/11/03/publish-code-coverage-report-with-gitlab-pages/
 # pages:
