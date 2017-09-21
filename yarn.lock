@@ -86,9 +86,9 @@
   dependencies:
     "@glimmer/util" "^0.22.3"
 
-"@types/ember-testing-helpers@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@types/ember-testing-helpers/-/ember-testing-helpers-0.0.1.tgz#0b91b0eb488b94ebc97a89bae6c35cfbf3fd65c3"
+"@types/ember-testing-helpers@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ember-testing-helpers/-/ember-testing-helpers-0.0.2.tgz#4e407d2676ce5585b208fe2b58663d2c7e391af1"
   dependencies:
     "@types/jquery" "*"
     "@types/rsvp" "*"
