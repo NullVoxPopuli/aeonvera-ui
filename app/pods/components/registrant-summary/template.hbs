@@ -10,7 +10,11 @@
   </div>
   <div class='layout-row layout-align-space-between-center'>
     <div>
-      {{registration.danceOrientation}} <br />
+      {{register/event-registration-form/orientation-select
+        class='layout-row'
+        selectedOrientation=(readonly registration.danceOrientation)
+        didSelectOrientation=(perform updateOrientation)
+      }}
 
       {{#if hasLevel}}
         {{registrant-summary/level-select registration=registration levels=registration.host.levels}}

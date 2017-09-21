@@ -31,4 +31,24 @@ export default class extends Ember.Component {
     this.get('router').transitionTo('events.show.registrations');
     this.get('flash').success(`${name} is marked as no longer attending`);
   }
+
+  @dropTask
+  updateOrientation = function * (orientation) {
+    const flash = this.get('flash');
+    const registration = this.get('registration');
+    const name = registration.get('name');
+    const oldOrientation = registration.get('danceOrientation');
+
+    if (oldOrientation === orientation) return;
+
+    registration.set('danceOrientation', orientation);
+
+    try {
+      yield registration.save();
+
+      flash.success(`Updated: ${name} is now dancing (primarily) as a ${orientation}`);
+    } catch (e) {
+      flash.error(e);
+    }
+  }
 }

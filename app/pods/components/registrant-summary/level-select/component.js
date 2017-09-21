@@ -17,14 +17,17 @@ export default class extends Component {
     const flash = this.get('flash');
     const registration = this.get('registration');
     const originalLevel = registration.get('level');
-
-    registration.set('level', newLevel);
+    const name = registration.get('name');
 
     if (originalLevel === newLevel) return;
 
+    registration.set('level', newLevel);
+    const levelName = newLevel.get('name');
+
     try {
       yield registration.save();
-      flash.success('Updated')
+
+      flash.success(`Updated: ${name} is now doing: ${levelName}`);
     } catch (e) {
       flash.error(e);
     }
@@ -32,7 +35,6 @@ export default class extends Component {
 
   @action
   update(selection) {
-    console.log(selection);
     this.get('updateLevel').perform(selection);
   }
 }

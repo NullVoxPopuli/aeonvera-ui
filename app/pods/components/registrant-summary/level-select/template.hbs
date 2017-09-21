@@ -2,7 +2,7 @@
   label="Level"
   options=levels
   selected=registration.level
-  onChange=(action 'update')
+  onChange=(perform updateLevel)
   as |level|}}
   {{level.name}}
 {{/paper-select}}
