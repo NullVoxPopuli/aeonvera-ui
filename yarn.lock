@@ -4105,11 +4105,11 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-model-validator@^2.0.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/ember-model-validator/-/ember-model-validator-2.11.0.tgz#075731ef9bbcf468497610061649af3f421919c7"
+ember-model-validator@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/ember-model-validator/-/ember-model-validator-2.12.0.tgz#fb1b84e0591877c083fc7f692ba8ac549a40d5d7"
   dependencies:
-    ember-cli-babel "^5.1.7"
+    ember-cli-babel "6.1.0"
 
 ember-native-dom-helpers@^0.5.0, ember-native-dom-helpers@^0.5.3:
   version "0.5.4"
