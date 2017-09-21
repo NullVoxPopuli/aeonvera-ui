@@ -93,9 +93,9 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember@^2.7.43":
-  version "2.7.44"
-  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.7.44.tgz#eaebfcc9c8100a4e060840c95046c8c68218edcd"
+"@types/ember@^2.7.45":
+  version "2.7.45"
+  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-2.7.45.tgz#6e952d1d7e0500e32d4902c43ca1be207ae0e1e4"
   dependencies:
     "@types/handlebars" "*"
     "@types/jquery" "*"
