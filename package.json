@@ -40,7 +40,7 @@
     "ember-block-slots": "^1.1.10",
     "ember-c3": "^0.3.1",
     "ember-c3-shim": "^0.0.7",
-    "ember-cli": "^2.12.3",
+    "ember-cli": "^2.15.1",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.8.2",
     "ember-cli-chai": "^0.4.2",
