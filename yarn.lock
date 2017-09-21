@@ -3047,12 +3047,11 @@ ember-c3@^0.3.1:
   dependencies:
     ember-cli-babel "^5.1.5"
 
-ember-cli-app-version@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-app-version/-/ember-cli-app-version-3.0.0.tgz#d67a33aeec7bd03187fbe72c5663dadec4c3368a"
+ember-cli-app-version@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-app-version/-/ember-cli-app-version-3.1.0.tgz#074b0330581a7b8ab094ff07fefb34e0d0254bfd"
   dependencies:
-    ember-cli-babel "^6.0.0-beta.7"
-    ember-cli-htmlbars "^1.0.0"
+    ember-cli-babel "^6.8.0"
     git-repo-version "0.4.1"
 
 ember-cli-babel@6.1.0:
@@ -3070,7 +3069,7 @@ ember-cli-babel@6.1.0:
     clone "^2.0.0"
     ember-cli-version-checker "^1.2.0"
 
-ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
+ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
   version "6.8.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
   dependencies:
