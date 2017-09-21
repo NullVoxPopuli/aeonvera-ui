@@ -2,6 +2,6 @@
 
 h4 Registrations with this Package
 = sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
-  td = registration-link model=(hash id=orderLineItem.order.registration.id name=orderLineItem.order.userName host=(hash id=orderLineItem.order.host.id) )
+  td = registration-link model=orderLineItem.order.registration backupName=orderLineItem.order.userName
   td = orderLineItem.order.registration.danceOrientation
-  td = date-with-format registration.registeredAt 'LLL'
+  td = date-with-format orderLineItem.order.createdAt 'LLL'

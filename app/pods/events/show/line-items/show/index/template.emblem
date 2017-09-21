@@ -5,7 +5,7 @@ h4 Registrations that purchased {{model.name}}
 = sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
   td
     if (is-present orderLineItem.order.registration.id)
-      = registration-link id=orderLineItem.order.registration.id eventId=orderLineItem.order.host.id name=orderLineItem.order.userName
+      = registration-link model=orderLineItem.order.registration
     else
       link-to 'events.show.orders.show' orderLineItem.order
         = orderLineItem.order.userName

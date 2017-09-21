@@ -2,7 +2,7 @@
 
 h4 Registrations with this Shirt
 = sortable-table columns=columns data=model.orderLineItems as |orderLineItem|
-  td = registration-link model=orderLineItem.order.registration
+  td = registration-link model=orderLineItem.order.registration backupName=orderLineItem.order.userName
   td = orderLineItem.size
   td = orderLineItem.quantity
   td

@@ -1,23 +1,31 @@
-{{#link-to 'events.show.registrations.show' eventId registrationId}}
-  {{name}}
+{{#if name}}
+  {{#if registrationId}}
+    {{#link-to 'events.show.registrations.show' eventId registrationId}}
+      {{name}}
 
-  {{#unless model.isAttending}}
-    Not Attending
-  {{/unless}}
+      {{#unless model.isAttending}}
+        Not Attending
+      {{/unless}}
 
 
-  {{#if (is-present model.transferredAt)}}
-    <br />
-    <small>
-      transferred
-      {{#if (is-present model.transferredFromFristName)}}
-        from {{model.transferredFromName}}
+      {{#if (is-present model.transferredAt)}}
+        <br />
+        <small>
+          transferred
+          {{#if (is-present model.transferredFromFristName)}}
+            from {{model.transferredFromName}}
+          {{/if}}
+
+          {{#if (is-present model.transferredToYear)}}
+            to {{model.transferredToYear}}
+          {{/if}}
+        </small>
       {{/if}}
 
-      {{#if (is-present model.transferredToYear)}}
-        to {{model.transferredToYear}}
-      {{/if}}
-    </small>
+    {{/link-to}}
+  {{else}}
+    {{name}}
   {{/if}}
-
-{{/link-to}}
+{{else}}
+  Name not collected
+{{/if}}
