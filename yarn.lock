@@ -4411,12 +4411,12 @@ ember-wysihtml@0.1.3:
     ember-cli-htmlbars "^1.0.1"
     ember-cli-htmlbars-inline-precompile "^0.3.1"
 
-emberx-select@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/emberx-select/-/emberx-select-3.0.1.tgz#8daca28f7ab8352e60a30cc617afa45b3c30f388"
+emberx-select@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/emberx-select/-/emberx-select-3.1.0.tgz#5e00335f20fea76ea88fbfaa3c62491d761d6f8e"
   dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.1.1"
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
     ember-cli-version-checker "^1.2.0"
 
 emblem@^0.9.0:
