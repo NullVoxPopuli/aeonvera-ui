@@ -11,9 +11,11 @@
   <div class='layout-row layout-align-space-between-center'>
     <div>
       {{registration.danceOrientation}} <br />
+
       {{#if hasLevel}}
-        {{registration.levelName}}
+        {{registrant-summary/level-select registration=registration levels=registration.host.levels}}
       {{/if}}
+
       {{#if (is-present registration.transferredAt)}}
        <h4>Transferred</h4>
        {{#if (is-present registration.transferredFromFirstName)}}

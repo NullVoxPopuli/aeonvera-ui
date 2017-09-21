@@ -1,0 +1,8 @@
+{{#paper-select
+  label="Level"
+  options=levels
+  selected=registration.level
+  onChange=(action 'update')
+  as |level|}}
+  {{level.name}}
+{{/paper-select}}
