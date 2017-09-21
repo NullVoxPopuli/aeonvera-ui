@@ -64,7 +64,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.2",
     "ember-cli-inject-live-reload": "^1.7.0",
     "ember-cli-medium-editor": "^1.2.4",
-    "ember-cli-mirage": "^0.3.3",
+    "ember-cli-mirage": "^0.3.4",
     "ember-cli-moment-shim": "^3.4.0",
     "ember-cli-notifications": "^4.2.0",
     "ember-cli-pagination": "^3.0.2",
