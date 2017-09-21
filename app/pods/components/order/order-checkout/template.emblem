@@ -8,8 +8,10 @@ br
       .flex-80.text-center
         h3 Review Registration for {{model.host.name}}
 
-    .layout-row.layout-align-end-end.hide-gt-xs data-pay-button=true
-      = stripe/checkout-button model=model label='Pay' email=email action='processStripeToken'
+    if (and (not model.paid) model.hasNonZeroBalance)
+      .layout-row.layout-align-end-end.hide-gt-xs data-pay-button=true
+        = stripe/checkout-button model=model label='Pay' email=email action='processStripeToken'
+
     br
     = error-header errors=model.errors
 
