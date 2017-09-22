@@ -1,16 +1,40 @@
-import Ember from 'ember';
-import RowsArray from 'aeonvera/mixins/components/print/form';
+import Component from '@ember/component';
 
-const { computed } = Ember;
+import { computed } from 'ember-decorators/object';
+import { alias, filterBy } from 'ember-decorators/object/computed';
 
-export default Ember.Component.extend(RowsArray, {
-  competition: null,
-  additionalRows: 0,
+export default class extends Ember.Component {
+  // competition = null;
+  additionalRows = 0;
 
-  orderLineItems: computed.alias('competition.orderLineItems'),
-  leads: computed.filterBy('orderLineItems', 'danceOrientation', 'Lead'),
-  follows: computed.filterBy('orderLineItems', 'danceOrientation', 'Follow'),
+  @alias('competition.orderLineItems') orderLineItems;
+  @filterBy('orderLineItems', 'danceOrientation', 'Lead') leads;
+  @filterBy('orderLineItems', 'danceOrientation', 'Follow') follows;
 
-  numberOfLeads: computed.alias('leads.length'),
-  numberOfFollows: computed.alias('follows.length')
-});
+  @alias('leads.length') numberOfLeads;
+  @alias('follows.length') numberOfFollows;
+
+  @computed('numberOfFollows', 'numberOfLeads')
+  extraLeads(follows, leads) {
+    const diff = leads - follows;
+
+    return diff > 0 ? diff : 0;
+  }
+
+  @computed('numberOfFollows', 'numberOfLeads')
+  extraFollows(follows, leads) {
+    const diff = follows - leads;
+
+    return diff > 0 ? diff : 0;
+  }
+
+  @computed('additionalRows', 'extraFollows')
+  extraLeadRows(additional, follows) {
+    return parseInt(additional) + parseInt(follows);
+  }
+
+  @computed('additionalRows', 'extraLeads')
+  extraFollowRows(additional, leads) {
+    return parseInt(additional) + parseInt(leads);
+  }
+}

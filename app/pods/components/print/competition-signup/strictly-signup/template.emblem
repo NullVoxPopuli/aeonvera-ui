@@ -4,6 +4,7 @@ table
     th width='5%' #
     th width='5%' Bib#
     th width='5%' Paid
+    th width='5%' Checked In
     th Names
   tbody
     each orderLineItems as |oli index|
@@ -11,6 +12,7 @@ table
         td {{plus index 1}}
         td
         td = to-bool oli.order.paid
+        td = to-bool oli.order.registartion.isCheckedIn
         td {{oli.order.userName}} & {{oli.partnerName}}
 
     each additionalRowsArray as |index|
@@ -18,4 +20,5 @@ table
         td {{plus 1 (plus index orderLineItems.length)}}
         td
         td &nbsp;
+        td
         td

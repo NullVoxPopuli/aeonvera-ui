@@ -6,6 +6,7 @@
         th width='5%' #
         th width='5%' Bib#
         th width='5%' Paid
+        th width='5%' Checked In
         th Name
       tbody
         each leads as |oli index|
@@ -13,13 +14,15 @@
             td {{plus index 1}}
             td
             td = to-bool oli.order.paid
+            td = to-bool oli.order.registartion.isCheckedIn
             td = oli.order.userName
 
-        each additionalRowsArray as |index|
+        each (range 0 extraLeadRows) as |index|
           tr
             td {{plus 1 (plus index numberOfLeads)}}
             td
             td &nbsp;
+            td
             td
 
   .columns.small-6
@@ -29,6 +32,7 @@
         th width='5%' #
         th width='5%' Bib#
         th width='5%' Paid
+        th width='5%' Checked In
         th Name
       tbody
         each follows as |oli index|
@@ -36,11 +40,13 @@
             td {{plus index 1}}
             td
             td = to-bool oli.order.paid
+            td = to-bool oli.order.registartion.isCheckedIn
             td = oli.order.userName
 
-        each additionalRowsArray as |_ index|
+        each (range 0 extraFollowRows) as |index|
           tr
             td {{plus 1 (plus index numberOfFollows)}}
             td
             td &nbsp;
+            td
             td
