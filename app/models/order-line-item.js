@@ -15,6 +15,7 @@ export default DS.Model.extend(Validator, {
   quantity: DS.attr('number'),
   price: DS.attr('number'),
   pickedUpAt: DS.attr('date'),
+  scratch: DS.attr('boolean'),
 
   /*
     these properties are for additional objects that need to be created on the

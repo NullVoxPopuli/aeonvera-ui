@@ -10,12 +10,22 @@
         th Name
       tbody
         each leads as |oli index|
-          tr
-            td {{plus index 1}}
-            td
-            td = to-bool oli.order.paid
-            td = to-bool oli.order.registartion.isCheckedIn
-            td = oli.order.userName
+          if oli.scratch
+            tr.scratch
+              td {{plus index 1}}
+              td
+              td = to-bool oli.order.paid
+              td = to-bool oli.order.registartion.isCheckedIn
+              td
+                = oli.order.userName
+                | (scratched)
+          else
+            tr
+              td {{plus index 1}}
+              td
+              td = to-bool oli.order.paid
+              td = to-bool oli.order.registartion.isCheckedIn
+              td = oli.order.userName
 
         each (range 0 extraLeadRows) as |index|
           tr
@@ -36,12 +46,22 @@
         th Name
       tbody
         each follows as |oli index|
-          tr
-            td {{plus index 1}}
-            td
-            td = to-bool oli.order.paid
-            td = to-bool oli.order.registartion.isCheckedIn
-            td = oli.order.userName
+          if oli.scratch
+            tr.scratch
+              td {{plus index 1}}
+              td
+              td = to-bool oli.order.paid
+              td = to-bool oli.order.registartion.isCheckedIn
+              td
+                = oli.order.userName
+                | (scratched)
+          else
+            tr
+              td {{plus index 1}}
+              td
+              td = to-bool oli.order.paid
+              td = to-bool oli.order.registartion.isCheckedIn
+              td = oli.order.userName
 
         each (range 0 extraFollowRows) as |index|
           tr

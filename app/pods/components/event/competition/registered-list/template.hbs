@@ -1,15 +1,34 @@
 {{#sortable-table columns=columns model=model data=model.orderLineItems as |orderLineItem| }}
-  <td>
-    {{#if (is-present (await orderLineItem.order.registration))}}
-      {{#registration-link model=orderLineItem.order.registration}}
+  <td class={{if orderLineItem.scratch 'scratch'}}>
+    <div class='layout-row layout-align-start-center'>
+      {{#if orderLineItem.scratch}}
+        {{#paper-button
+          raised=true
+          onClick=(perform unscratch orderLineItem)
+        }}
+          Unscratch
+        {{/paper-button}}
+      {{else}}
+        {{#paper-button
+          raised=true
+          onClick=(perform scratch orderLineItem)
+        }}
+          Scratch
+        {{/paper-button}}
+      {{/if}}
+
+
+      {{#if (is-present (await orderLineItem.order.registration))}}
+        {{#registration-link model=orderLineItem.order.registration}}
+          {{orderLineItem.order.userName}}
+        {{/registration-link}}
+      {{else if (is-present orderLineItem.order.userName)}}
+        {{!-- link-to 'events.show.registrations.show' orderLineItem.order.registration.id --}}
         {{orderLineItem.order.userName}}
-      {{/registration-link}}
-    {{else if (is-present orderLineItem.order.userName)}}
-      {{!-- link-to 'events.show.registrations.show' orderLineItem.order.registration.id --}}
-      {{orderLineItem.order.userName}}
-    {{else}}
-      Name not recorded
-    {{/if}}
+      {{else}}
+        ! Name not recorded !
+      {{/if}}
+    </div>
   </td>
 
   {{#if model.requiresOrientation}}
