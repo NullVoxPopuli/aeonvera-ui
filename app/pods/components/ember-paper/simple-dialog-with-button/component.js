@@ -13,15 +13,20 @@ export default class extends Component {
   }
 
   @action
-  onClick() {
+  async onClick() {
     const onClick = this.get('onClick');
 
     if (onClick) {
-      let result = this.sendAction('onClick');
+      try {
+        const result = await onClick();
+        console.log('onClick: ', result);
+        if (!result) return;
 
-      if (result === undefined) return;
+        this.set('showModal', true);
+      } catch(e) { console.error(e); }
+    } else {
+      this.set('showModal', true);
     }
 
-    this.set('showModal', true);
   }
 }
