@@ -1,12 +1,27 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { PropTypes } from 'ember-prop-types';
 
-export default Ember.Component.extend({
-  tagName: '',
-  raised: true,
+import { action } from 'ember-decorators/object';
 
-  actions: {
-    closeModal() {
-      this.set('showModal', false);
-    }
+export default class extends Component {
+  // tagName = '';
+  raised = true;
+
+  @action
+  closeModal() {
+    this.set('showModal', false);
   }
-});
+
+  @action
+  onClick() {
+    const onClick = this.get('onClick');
+
+    if (onClick) {
+      let result = this.sendAction('onClick');
+
+      if (result === undefined) return;
+    }
+
+    this.set('showModal', true);
+  }
+}

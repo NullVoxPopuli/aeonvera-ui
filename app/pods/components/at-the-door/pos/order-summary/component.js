@@ -80,12 +80,11 @@ export default class extends Component {
     }
   }
 
-  // this is action is intended to be piped to after
-  // re-saving the order (for getting validations)
   @action
-  openPayModal(saveOrderResult) {
-    if (saveOrderResult === undefined) return;
-
-    this.set('showPaymentModal', true);
+  async onPayButtonClick() {
+    return (
+      await this.send('saveDirtyOrderLineItems') &&
+      await this.send('saveOrder')
+    )
   }
 }
