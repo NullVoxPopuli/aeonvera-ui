@@ -84,7 +84,7 @@
     "ember-concurrency-decorators": "^0.0.2",
     "ember-custom-actions": "^1.6.0",
     "ember-d3": "^0.3.4",
-    "ember-data": "2.13.0",
+    "ember-data": "2.16.0",
     "ember-data-factory-guy": "^2.13.7",
     "ember-data-filter": "1.13.0",
     "ember-data-paperclip": "^0.2.0",
