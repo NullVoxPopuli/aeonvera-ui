@@ -3564,11 +3564,11 @@ ember-cli-shims@^1.1.0:
     ember-cli-version-checker "^1.2.0"
     silent-error "^1.0.1"
 
-ember-cli-spinjs@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-spinjs/-/ember-cli-spinjs-1.1.6.tgz#a091c633b571ec8eef404b1bfd85f1d0c499bc86"
+ember-cli-spinjs@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/ember-cli-spinjs/-/ember-cli-spinjs-1.1.10.tgz#66a9b9b46fd2d13c7313d0bc120d2858f9440faa"
   dependencies:
-    ember-cli-babel "^6.1.0"
+    ember-cli-babel "^6.3.0"
     ember-cli-node-assets "0.2.2"
     spin.js "^2.3.2"
 
