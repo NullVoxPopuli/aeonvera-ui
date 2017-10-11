@@ -132,7 +132,7 @@
     "grunt-s3": "^0.2.0-alpha.3",
     "handlebars": "^4.0.10",
     "loader.js": "^4.6.0",
-    "moment": "^2.18.1",
+    "moment": "^2.19.0",
     "moment-timezone": "^0.5.13",
     "paper-data-table": "^0.1.4",
     "torii": "^0.9.6",
