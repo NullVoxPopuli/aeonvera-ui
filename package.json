@@ -136,7 +136,7 @@
     "moment-timezone": "^0.5.13",
     "paper-data-table": "^0.1.4",
     "torii": "^0.9.6",
-    "typescript": "^2.5.2"
+    "typescript": "^2.6.1"
   },
   "dependencies": {
     "yarn": "^0.27.5"
