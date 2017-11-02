@@ -3928,9 +3928,9 @@ ember-disable-proxy-controllers@^1.0.1:
   dependencies:
     ember-cli-babel "^5.0.0"
 
-ember-elsewhere@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ember-elsewhere/-/ember-elsewhere-1.0.2.tgz#85c060d73b99dad3bc069e52a5cfa7a50fbcebde"
+ember-elsewhere@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-elsewhere/-/ember-elsewhere-1.0.3.tgz#6477c31c1574d27a818d92590fddedfd5761a325"
   dependencies:
     ember-cli-babel "^6.3.0"
     ember-cli-htmlbars "^2.0.1"
