@@ -4165,9 +4165,17 @@ ember-promise-helpers@^1.0.3:
   dependencies:
     ember-cli-babel "^5.1.5"
 
-"ember-prop-types@>=2.0.0 <4.0.0", ember-prop-types@^3.14.1:
+"ember-prop-types@>=2.0.0 <4.0.0":
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-3.14.1.tgz#4baf1aa9bec662e205cd1f5e424314da62cee921"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-get-config "^0.2.2"
+    npm-install-security-check "^1.0.0"
+
+ember-prop-types@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-5.0.2.tgz#b2aa7d8f0edba7173d57d2f934251ce72015d688"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-get-config "^0.2.2"
