@@ -4179,12 +4179,12 @@ ember-qunit@^2.2.0:
   dependencies:
     ember-test-helpers "^0.6.3"
 
-ember-radio-button@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ember-radio-button/-/ember-radio-button-1.1.1.tgz#e5ae8361ff032a4f1be91a810295e196eb2acf97"
+ember-radio-button@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-radio-button/-/ember-radio-button-1.2.0.tgz#42b33f2d029f903e6991b406551ae50580ac86c2"
   dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.0.10"
+    ember-cli-babel "^6.0.0"
+    ember-cli-htmlbars "^1.1.1"
 
 ember-reactive-helpers@^0.5.0:
   version "0.5.0"
