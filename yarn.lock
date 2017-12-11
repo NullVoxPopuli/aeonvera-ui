@@ -2796,6 +2796,12 @@ debug@2.6.7:
   dependencies:
     ms "2.0.0"
 
+debug@2.6.9:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
+  dependencies:
+    ms "2.0.0"
+
 debug@~0.7.0, debug@~0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
@@ -3070,7 +3076,35 @@ ember-cli-babel@6.1.0:
     clone "^2.0.0"
     ember-cli-version-checker "^1.2.0"
 
-ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
+ember-cli-babel@6.10.0, ember-cli-babel@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.10.0.tgz#81424acd1d97fb13658168121eeb2007d6edee84"
+  dependencies:
+    amd-name-resolver "0.0.7"
+    babel-plugin-debug-macros "^0.1.11"
+    babel-plugin-ember-modules-api-polyfill "^2.0.1"
+    babel-plugin-transform-es2015-modules-amd "^6.24.0"
+    babel-polyfill "^6.16.0"
+    babel-preset-env "^1.5.1"
+    broccoli-babel-transpiler "^6.1.2"
+    broccoli-debug "^0.6.2"
+    broccoli-funnel "^1.0.0"
+    broccoli-source "^1.1.0"
+    clone "^2.0.0"
+    ember-cli-version-checker "^2.1.0"
+    semver "^5.4.1"
+
+ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.3, ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7, ember-cli-babel@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
+  dependencies:
+    broccoli-babel-transpiler "^5.6.2"
+    broccoli-funnel "^1.0.0"
+    clone "^2.0.0"
+    ember-cli-version-checker "^1.0.2"
+    resolve "^1.1.2"
+
+ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.5, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.0.0-beta.9, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
   version "6.8.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
   dependencies:
@@ -3086,16 +3120,6 @@ ember-cli-babel@6.8.2, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, em
     broccoli-source "^1.1.0"
     clone "^2.0.0"
     ember-cli-version-checker "^2.0.0"
-
-ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.3, ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7, ember-cli-babel@^5.2.4:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
-  dependencies:
-    broccoli-babel-transpiler "^5.6.2"
-    broccoli-funnel "^1.0.0"
-    clone "^2.0.0"
-    ember-cli-version-checker "^1.0.2"
-    resolve "^1.1.2"
 
 ember-cli-broccoli-sane-watcher@^2.0.4:
   version "2.0.4"
@@ -3649,6 +3673,13 @@ ember-cli-version-checker@^2.0.0:
     resolve "^1.3.3"
     semver "^5.3.0"
 
+ember-cli-version-checker@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-2.1.0.tgz#fc79a56032f3717cf844ada7cbdec1a06fedb604"
+  dependencies:
+    resolve "^1.3.3"
+    semver "^5.3.0"
+
 ember-cli@^2.12.3:
   version "2.13.2"
   resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-2.13.2.tgz#a561f08e69b184fa3175f706cced299c0d1684e5"
@@ -4076,6 +4107,17 @@ ember-loading-route@0.0.3:
   dependencies:
     ember-cli-babel "^5.1.6"
 
+ember-lodash@4.17.6:
+  version "4.17.6"
+  resolved "https://registry.yarnpkg.com/ember-lodash/-/ember-lodash-4.17.6.tgz#983b7a58da8ef7fcad50e82c77aa301195028445"
+  dependencies:
+    broccoli-debug "^0.6.1"
+    broccoli-funnel "^1.1.0"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-string-replace "^0.1.1"
+    ember-cli-babel "^6.10.0"
+    lodash-es "^4.17.4"
+
 ember-lodash@^4.17.3:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/ember-lodash/-/ember-lodash-4.17.4.tgz#62a76e322e140281c31406b6dd5a11cf318c452d"
@@ -4225,13 +4267,15 @@ ember-rfc176-data@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.2.7.tgz#bd355bc9b473e08096b518784170a23388bc973b"
 
-ember-rollbar-client@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-rollbar-client/-/ember-rollbar-client-0.4.0.tgz#9d68a2b0941ab338ab2ee72bcfab886e368c1ec7"
+ember-rollbar-client@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/ember-rollbar-client/-/ember-rollbar-client-0.5.1.tgz#94dd964c556dfade10a4e929ebe8e331906e3c7e"
   dependencies:
     broccoli-funnel "2.0.1"
-    ember-cli-babel "6.8.2"
-    rollbar "~2.2.7"
+    ember-cli-babel "6.10.0"
+    ember-lodash "4.17.6"
+    git-repo-version "1.0.0"
+    rollbar "~2.3.1"
 
 ember-route-action-helper@^2.0.3:
   version "2.0.3"
@@ -5273,6 +5317,12 @@ git-repo-version@0.4.1:
   resolved "https://registry.yarnpkg.com/git-repo-version/-/git-repo-version-0.4.1.tgz#75fab9a0a4ec8470755b0eea7fdaa6f9d41453bf"
   dependencies:
     git-repo-info "~1.2.0"
+
+git-repo-version@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/git-repo-version/-/git-repo-version-1.0.0.tgz#3572d5ebecd9e03fd88cce2764e8b47a468fe4c9"
+  dependencies:
+    git-repo-info "^1.4.1"
 
 git-tools@^0.1.4:
   version "0.1.4"
@@ -8757,13 +8807,13 @@ rimraf@~2.5.0:
   dependencies:
     glob "^7.0.5"
 
-rollbar@~2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/rollbar/-/rollbar-2.2.7.tgz#516d1f3dd1d5c4679a219e153acb630e8fbe4fa8"
+rollbar@~2.3.1:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/rollbar/-/rollbar-2.3.2.tgz#2c148be59e55ecdfe1beee5d7f3c3d0203e5dc76"
   dependencies:
     async "~1.2.1"
     console-polyfill "0.3.0"
-    debug "2.6.8"
+    debug "2.6.9"
     error-stack-parser "1.3.3"
     extend "3.0.0"
     json-stringify-safe "~5.0.0"
