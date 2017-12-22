@@ -94,7 +94,7 @@
     "ember-exam": "^0.7.0",
     "ember-export-application-global": "^2.0.0",
     "ember-flatpickr": "^1.2.0",
-    "ember-font-awesome": "^3.0.3",
+    "ember-font-awesome": "^3.1.1",
     "ember-i18n": "^5.0.2",
     "ember-inflector": "^2.0.0",
     "ember-inline-component": "0.1.3",
