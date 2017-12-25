@@ -4002,6 +4002,13 @@ ember-get-config@^0.2.2:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^5.1.6"
 
+ember-get-config@^0.2.3:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
+  dependencies:
+    broccoli-file-creator "^1.1.1"
+    ember-cli-babel "^6.3.0"
+
 ember-getowner-polyfill@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.0.1.tgz#f60a31d25d642461dac4b4746184afaf7f5084ae"
@@ -4125,9 +4132,9 @@ ember-paper-expansion-panel@^0.0.1:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.1.1"
 
-ember-paper@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/ember-paper/-/ember-paper-1.0.0-beta.3.tgz#dbfee3081167b14d45aa144ebce3d788d2650a42"
+ember-paper@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/ember-paper/-/ember-paper-1.0.0-beta.4.tgz#ecdba9c3939b036a7de8d5bfe18ed85d4896772b"
   dependencies:
     angular-material-source "github:angular/material#v1.1.4"
     broccoli-autoprefixer "^5.0.0"
@@ -4139,6 +4146,7 @@ ember-paper@^1.0.0-beta.3:
     ember-cli-htmlbars "^2.0.1"
     ember-composability-tools "0.0.8"
     ember-css-transitions "0.1.10"
+    ember-get-config "^0.2.3"
     ember-power-select "^1.8.5"
     ember-wormhole "0.5.2"
     fastboot-transform "^0.1.2"
