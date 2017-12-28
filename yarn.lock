@@ -3995,7 +3995,7 @@ ember-get-config@0.2.1:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^5.1.6"
 
-ember-get-config@^0.2.2:
+ember-get-config@0.2.2, ember-get-config@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.2.tgz#54d96fae87bcd75a3dd710113ed1db3afbe4fe9d"
   dependencies:
@@ -4165,13 +4165,21 @@ ember-promise-helpers@^1.0.3:
   dependencies:
     ember-cli-babel "^5.1.5"
 
-"ember-prop-types@>=2.0.0 <4.0.0", ember-prop-types@^3.14.1:
+"ember-prop-types@>=2.0.0 <4.0.0":
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-3.14.1.tgz#4baf1aa9bec662e205cd1f5e424314da62cee921"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-get-config "^0.2.2"
     npm-install-security-check "^1.0.0"
+
+ember-prop-types@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/ember-prop-types/-/ember-prop-types-5.0.3.tgz#39b85fe721b74ee07e123ef2211d72501ea901ff"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-get-config "0.2.2"
+    ember-string-ishtmlsafe-polyfill "^1.1.0"
 
 ember-qunit@^2.2.0:
   version "2.2.0"
@@ -4327,6 +4335,13 @@ ember-source@~2.13.0:
     rsvp "^3.4.0"
     simple-dom "^0.3.0"
     simple-html-tokenizer "^0.3.0"
+
+ember-string-ishtmlsafe-polyfill@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-string-ishtmlsafe-polyfill/-/ember-string-ishtmlsafe-polyfill-1.1.0.tgz#ecde33419ff912b91dd8acf0640eb74b9758408e"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-version-checker "^1.2.0"
 
 ember-template-compiler@^1.9.0-alpha:
   version "1.9.0-alpha"
