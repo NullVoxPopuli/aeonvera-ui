@@ -3282,6 +3282,12 @@ ember-cli-emblem@^0.9.0:
     lodash.assign "^4.2.0"
     lodash.defaults "^4.2.0"
 
+ember-cli-es6-transform@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-es6-transform/-/ember-cli-es6-transform-0.0.3.tgz#99238305c72f533cc1cd3c85b15c6d7a842b8fdf"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-cli-file-picker@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-file-picker/-/ember-cli-file-picker-0.0.12.tgz#24cf889c8a7f753f4ebe0e40bf9512e799704fa5"
@@ -3451,17 +3457,6 @@ ember-cli-node-assets@0.2.0:
     lodash "^4.5.1"
     resolve "^1.1.7"
 
-ember-cli-node-assets@0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.2.2.tgz#d2d55626e7cc6619f882d7fe55751f9266022708"
-  dependencies:
-    broccoli-funnel "^1.0.1"
-    broccoli-merge-trees "^1.1.1"
-    broccoli-source "^1.1.0"
-    debug "^2.2.0"
-    lodash "^4.5.1"
-    resolve "^1.1.7"
-
 ember-cli-node-assets@^0.1.4:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.1.6.tgz#6488a2949048c801ad6d9e33753c7bce32fc1146"
@@ -3564,13 +3559,13 @@ ember-cli-shims@^1.1.0:
     ember-cli-version-checker "^1.2.0"
     silent-error "^1.0.1"
 
-ember-cli-spinjs@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-spinjs/-/ember-cli-spinjs-1.1.6.tgz#a091c633b571ec8eef404b1bfd85f1d0c499bc86"
+ember-cli-spinjs@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-spinjs/-/ember-cli-spinjs-1.4.0.tgz#b1ae9bf772fd83126ee743c8eb527496be572748"
   dependencies:
-    ember-cli-babel "^6.1.0"
-    ember-cli-node-assets "0.2.2"
-    spin.js "^2.3.2"
+    ember-cli-babel "^6.6.0"
+    ember-cli-es6-transform "^0.0.3"
+    spin.js "^3.0.0"
 
 ember-cli-sri@^2.1.0:
   version "2.1.1"
@@ -9189,9 +9184,9 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
-spin.js@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/spin.js/-/spin.js-2.3.2.tgz#6caa56d520673450fd5cfbc6971e6d0772c37a1a"
+spin.js@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/spin.js/-/spin.js-3.1.0.tgz#c2d2a4ba83dd6a81e01e0a61b125292b34807128"
 
 sprintf-js@^1.0.3, sprintf-js@~1.0.2:
   version "1.0.3"
