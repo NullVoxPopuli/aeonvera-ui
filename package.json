@@ -54,7 +54,7 @@
     "ember-cli-deploy-redis": "^1.0.2",
     "ember-cli-deploy-revision-data": "^1.0.0",
     "ember-cli-deploy-rollbar": "^1.4.0",
-    "ember-cli-deploy-s3": "^1.0.0",
+    "ember-cli-deploy-s3": "^1.2.0",
     "ember-cli-document-title": "0.3.3",
     "ember-cli-emblem": "^0.9.0",
     "ember-cli-file-picker": "^0.0.12",
