@@ -1,5 +1,6 @@
-/* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+'use strict';
+
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var env = EmberApp.env();
 var isProductionLike = ['production', 'staging'].indexOf(env) > -1;
 
@@ -18,7 +19,7 @@ module.exports = function(defaults) {
 
   console.log(fingerprintPrepend);
 
-  var app = new EmberApp(defaults, {
+  let app = new EmberApp(defaults, {
     babel: {
 
       //optional: ['es7.decorators'],
@@ -74,10 +75,6 @@ module.exports = function(defaults) {
 
   // countdowns!
   app.import('vendor/countdown.js');
-
-  // tetris!
-  app.import('vendor/blockrain/blockrain.css');
-  app.import('vendor/blockrain/blockrain.jquery.js');
 
   if (isProductionLike) {
     app.import('vendor/support/crisp.js');

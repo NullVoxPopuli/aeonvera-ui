@@ -16,26 +16,26 @@ services:
     volumes:
       # Mount the app code inside the container's `/usr/src/app` directory:
       # - .:/usr/src/app
-      #- .:/web
-      - ./app:/web/app
-      - ./coverage:/web/coverage
-      - ./config:/web/config
-      - ./mirage:/web/mirage
-      - ./public:/web/public
-      - ./scripts:/web/scripts
-      - ./tests:/web/tests
-      - ./vendor:/web/vendor
+      #- .:/myapp
+      - ./app:/myapp/app
+      - ./coverage:/myapp/coverage
+      - ./config:/myapp/config
+      - ./mirage:/myapp/mirage
+      - ./public:/myapp/public
+      - ./scripts:/myapp/scripts
+      - ./tests:/myapp/tests
+      - ./vendor:/myapp/vendor
 
-      - ./.bowerrc:/web/.bowerrc
-      - ./.ember-cli:/web/.ember-cli
-      - ./.eslintignore:/web/.eslintignore
-      - ./.eslintrc.js:/web/.eslintrc.js
-      - ./bower.json:/web/bower.json
-      - ./ember-cli-build.js:/web/ember-cli-build.js
-      - ./package.json:/web/package.json
-      - ./testem.js:/web/testem.js
-      - ./yarn.lock:/web/yarn.lock
-      - ./tsconfig.json:/web/tsconfig.json
+      - ./.bowerrc:/myapp/.bowerrc
+      - ./.ember-cli:/myapp/.ember-cli
+      - ./.eslintignore:/myapp/.eslintignore
+      - ./.eslintrc.js:/myapp/.eslintrc.js
+      - ./bower.json:/myapp/bower.json
+      - ./ember-cli-build.js:/myapp/ember-cli-build.js
+      - ./package.json:/myapp/package.json
+      - ./testem.js:/myapp/testem.js
+      - ./yarn.lock:/myapp/yarn.lock
+      - ./tsconfig.json:/myapp/tsconfig.json
 
     # Keep the stdin open, so we can attach to our app container's process
     # and do things such as debugging, etc:

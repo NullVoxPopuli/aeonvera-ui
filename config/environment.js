@@ -1,13 +1,13 @@
-/* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'aeonvera',
     podModulePrefix: 'aeonvera/pods',
     i18n: {
       defaultLocale: 'en'
     },
-    environment: environment,
+    environment,
     rootURL: '/',
     // locationType: 'auto',
     // https://github.com/dollarshaveclub/ember-router-scroll
@@ -20,9 +20,17 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       },
       EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse
+        // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
+    },
+
+    moment: {
+      // Options:
+      // 'all' - all years, all timezones
+      // '2010-2020' - 2010-2020, all timezones
+      // 'none' - no data, just timezone API
+      includeTimezone: 'all'
     },
 
     emblemOptions: {
@@ -147,8 +155,8 @@ module.exports = function(environment) {
     // information about redirects and aborted transitions
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
@@ -183,7 +191,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -193,6 +200,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.host = '/';
     ENV.host = '';
+    ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {
