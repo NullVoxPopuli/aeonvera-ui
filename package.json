@@ -127,7 +127,7 @@
     "handlebars": "^4.0.10",
     "loader.js": "^4.6.0",
     "paper-data-table": "^0.1.4",
-    "torii": "^0.9.6",
+    "torii": "^0.10.1",
     "typescript": "^2.5.2"
   },
   "dependencies": {
