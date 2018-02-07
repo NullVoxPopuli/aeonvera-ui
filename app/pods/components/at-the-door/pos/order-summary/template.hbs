@@ -3,33 +3,14 @@
     {{#card.title as |title|}}
       <div class='layout-column flex-100'>
         {{#toolbar.tools class='layout-row layout-align-space-between-center'}}
-          {{!--
-          Because we want an action to guard when this modal opens,
-          It's been extracted from simple-dialog-with-button.
-          This also allows us to use a button icon.
-
-          If this pattern is used again,
-          something more generic should be invented / applied to
-          simple-dialog-with-button
-           --}}
-          {{#paper-button
+          {{order/mark-paid-modal-with-button
+            order=order
             accent=true
-            raised=true
-            onClick=(pipe-action (action 'saveDirtyOrderLineItems') (action 'saveOrder') (action 'openPayModal'))
-            disabled=(is-empty order)}}
-            {{paper-icon 'attach money'}} Pay
-          {{/paper-button}}
-
-          {{#if showPaymentModal}}
-            {{#ember-paper/simple-dialog
-              title='Mark Paid'
-              onClose=(action (mut showPaymentModal false))
-              didClickClose=(action (mut showPaymentmodal false))}}
-              {{order/mark-paid-form
-                order=order
-                afterPayment=(action 'showComplete')}}
-            {{/ember-paper/simple-dialog}}
-          {{/if}}
+            buttonText='Pay'
+            buttonDisabled=(is-empty order)
+            afterPayment=(action 'showComplete')
+            onClick=(action 'onPayButtonClick')
+          }}
 
           <div>
             {{or order.registration.name order.buyerName}}

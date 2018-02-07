@@ -2,11 +2,13 @@
   title='Mark Paid'
   accent=accent
   buttonDisabled=buttonDisabled
+  onClick=onClick
   buttonText=(or buttonText 'Mark Paid')}}
 
   {{order/mark-paid-form
-    showOrder=showOrder
     order=order
+    showOrder=showOrder
+    afterPayment=afterPayment
   }}
 
 {{/ember-paper/simple-dialog-with-button}}

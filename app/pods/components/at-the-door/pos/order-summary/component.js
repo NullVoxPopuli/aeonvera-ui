@@ -53,12 +53,15 @@ export default class extends Component {
 
   }
 
-  // this action is intended to be piped to after
-  // saving dirty order line items
   @action
-  async saveOrder(saveDirtyResult) {
-    if (saveDirtyResult === undefined) return;
+  async onPayButtonClick() {
+    return (
+      await this.saveDirtyOrderLineItems() &&
+      await this.saveOrder()
+    );
+  }
 
+  async saveOrder() {
     const order = await this.get('order');
 
     try {
@@ -68,7 +71,6 @@ export default class extends Component {
     }
   }
 
-  @action
   async saveDirtyOrderLineItems() {
     const order = await this.get('order');
     const dirties = await order.get('dirtyOrderLineItems');
@@ -78,14 +80,5 @@ export default class extends Component {
     } catch (e) {
       this.get('flash').error(e);
     }
-  }
-
-  // this is action is intended to be piped to after
-  // re-saving the order (for getting validations)
-  @action
-  openPayModal(saveOrderResult) {
-    if (saveOrderResult === undefined) return;
-
-    this.set('showPaymentModal', true);
   }
 }
