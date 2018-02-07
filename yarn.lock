@@ -3127,9 +3127,9 @@ ember-cli-deploy-rollbar@^1.4.0:
     minimatch "^2.0.4"
     rsvp "^3.0.17"
 
-ember-cli-deploy-s3@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-deploy-s3/-/ember-cli-deploy-s3-1.1.0.tgz#626126c21c7b2ef0347978c01c1338e6a16b02ab"
+ember-cli-deploy-s3@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-deploy-s3/-/ember-cli-deploy-s3-1.2.0.tgz#7e9e9621da4157fdcf09a2d56c42c61ef6b1f2e4"
   dependencies:
     aws-sdk "^2.6.12"
     chalk "^1.0.0"
