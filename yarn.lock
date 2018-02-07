@@ -2908,14 +2908,14 @@ ember-basic-dropdown@^0.33.1:
     ember-native-dom-helpers "^0.5.3"
     ember-wormhole "^0.5.2"
 
-ember-block-slots@^1.1.10:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/ember-block-slots/-/ember-block-slots-1.1.10.tgz#bba57b83be3d2ce3fec4d1ca5cc6ad47b41b0763"
+ember-block-slots@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/ember-block-slots/-/ember-block-slots-1.1.11.tgz#71ddebfde834a661f94a50bc2d7309b297213fef"
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
     ember-prop-types ">=2.0.0 <4.0.0"
-    ember-runtime-enumerable-includes-polyfill "^1.0.1"
+    ember-runtime-enumerable-includes-polyfill "^2.0.0"
 
 ember-cli-app-version@^3.0.0:
   version "3.0.0"
@@ -4145,13 +4145,6 @@ ember-router-generator@^1.0.0, ember-router-generator@^1.2.3:
     ember-app-scheduler "0.0.5"
     ember-cli-babel "^6.6.0"
     ember-getowner-polyfill "^2.0.1"
-
-ember-runtime-enumerable-includes-polyfill@^1.0.1:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/ember-runtime-enumerable-includes-polyfill/-/ember-runtime-enumerable-includes-polyfill-1.0.4.tgz#16a7612e347a2edf07da8b2f2f09dbfee70deba0"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-version-checker "^1.1.6"
 
 ember-runtime-enumerable-includes-polyfill@^2.0.0:
   version "2.0.0"
