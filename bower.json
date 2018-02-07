@@ -1,13 +1,11 @@
 {
   "name": "aeonvera",
   "dependencies": {
-    "modernizr": "~2.8.3",
     "foundation": "~5.5.0",
     "animate.css": "3.5.1",
     "numeral": "~1.5.3",
     "select2": "3.5.2",
     "font-awesome": "~4.5.0",
-    "d3": "~3.5.0",
     "antiscroll": "git://github.com/Addepar/antiscroll#e0d1538cf4f3fd61c5bedd6168df86d651f125da",
     "jquery-mousewheel": "~3.1.4",
     "jquery-ui": "~1.11.3",
@@ -17,10 +15,6 @@
     "jquery-mockjax": "2.0.1",
     "js-cookie": "~2.0.4",
     "Faker": "~3.0.0",
-    "medium-editor": "5.14.4",
-    "c3": "~0.4.10"
-  },
-  "resolutions": {
-    "d3": "~3.5.0"
+    "medium-editor": "5.14.4"
   }
 }
