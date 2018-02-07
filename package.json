@@ -81,7 +81,7 @@
     "ember-data": "~2.18.0",
     "ember-data-factory-guy": "^2.13.7",
     "ember-data-filter": "1.13.0",
-    "ember-data-paperclip": "^0.2.0",
+    "ember-data-paperclip": "^0.3.0",
     "ember-decorators": "git://github.com/ember-decorators/ember-decorators.git",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-elsewhere": "^1.0.2",
