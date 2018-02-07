@@ -124,7 +124,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "grunt": "^1.0.1",
     "grunt-s3": "^0.2.0-alpha.3",
-    "handlebars": "^4.0.10",
+    "handlebars": "^4.0.11",
     "loader.js": "^4.6.0",
     "paper-data-table": "^0.1.4",
     "torii": "^0.9.6",
