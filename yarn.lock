@@ -3459,11 +3459,11 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
-ember-cli-stripe@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-stripe/-/ember-cli-stripe-1.0.1.tgz#efe8ebbd1bf4d4338c76e726a79f9c1756ded113"
+ember-cli-stripe@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-stripe/-/ember-cli-stripe-1.0.3.tgz#650605087eed912fa386eedefd2c246ed151fae0"
   dependencies:
-    ember-cli-babel "^5.1.7"
+    ember-cli-babel "^6.0.0"
     ember-cli-htmlbars "^1.1.1"
     ember-invoke-action "1.4.0"
 
