@@ -2871,9 +2871,9 @@ ember-ajax@^3.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-api-actions@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/ember-api-actions/-/ember-api-actions-0.1.7.tgz#542abb10a885264e5382618a2804ce00cd96f80f"
+ember-api-actions@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/ember-api-actions/-/ember-api-actions-0.1.8.tgz#651031b9d61a320c221dd75b20f7e8f783e6393d"
   dependencies:
     ember-cli-babel "^6.0.0"
 

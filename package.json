@@ -33,7 +33,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
-    "ember-api-actions": "^0.1.7",
+    "ember-api-actions": "^0.1.8",
     "ember-async-button": "^1.0.2",
     "ember-block-slots": "^1.1.10",
     "ember-cli": "~2.18.2",
