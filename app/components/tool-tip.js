@@ -16,9 +16,4 @@ export default Ember.Component.extend(Random, {
   'data-width': function() {
     return (this.get('width') || 200);
   }.property('width'),
-
-  initFoundation: function() {
-    this.$(document).foundation('reflow');
-  }.on('didInsertElement')
-
 });

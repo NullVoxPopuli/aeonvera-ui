@@ -25,6 +25,10 @@ module.exports = function(environment) {
       }
     },
 
+    'ember-d3': {
+      bundle: true
+    },
+
     moment: {
       // Options:
       // 'all' - all years, all timezones

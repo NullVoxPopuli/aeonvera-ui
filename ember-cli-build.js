@@ -21,32 +21,17 @@ module.exports = function(defaults) {
 
   let app = new EmberApp(defaults, {
     babel: {
-
-      //optional: ['es7.decorators'],
       plugins: [
         'transform-decorators-legacy',
-       // 'transform-decorators',
         'transform-object-rest-spread',
         'transform-class-properties',
       ]
-
     },
     'ember-cli-babel': {
       includePolyfill: true,
-
     },
     // disable JSHint, in favor of eslint
     'hinting': false,
-    'ember-bootstrap': {
-      bootstrapVersion: 4,
-      importBootstrapFont: false,
-      'importBootstrapCSS': false
-    },
-    'ember-cli-foundation-sass': {
-      'modernizr': true,
-      'fastclick': true,
-      'foundationJs': 'all'
-    },
     /* ember-cli.com/ember-cli-deploy/docs/v0.6.x/fingerprinting */
     fingerprint: {
       enabled: isProductionLike,
@@ -71,9 +56,8 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  app.import('bower_components/momentjs/moment.js');
 
-  // countdowns!
+  // countdowns! (In human-readable format)
   app.import('vendor/countdown.js');
 
   if (isProductionLike) {
