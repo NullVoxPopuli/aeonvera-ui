@@ -1,4 +1,9 @@
 
+
+$primary: 'blue-grey';
+$secondary: 'deep-purple';
+$accent: 'teal';
+
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
 @import 'paper-data-table';
@@ -25,10 +30,6 @@
 @import 'screens/all';
 @import 'order';
 @import 'print';
-
-$primary: 'blue-grey';
-$secondary: 'deep-purple';
-$accent: 'teal';
 
 
 @import 'pod-styles.scss';

@@ -1,0 +1,67 @@
+{{#unless loggedIn}}
+  <div class='layout row layout-align-space-between show-for-small'>
+    {{login-modal afterLogin=(action (transition-to 'dashboard'))}}
+    {{sign-up-modal}}
+
+  </div>
+{{/unless}}
+
+<div class='header'>
+
+  <h1 class='text-center'>{{t 'appname'}}</h1>
+  <h6 class='subheader.text-center'>{{t 'subheader'}}</h6>
+</div>
+
+
+    <h3>{{t 'lookingforevent'}}</h3>
+    <hr />
+    {{#link-to 'upcoming-events' classNames='button'}}
+      {{t 'buttons.eventcalendar'}}
+    {{/link-to}}
+
+
+    <h3>{{t 'hostinganevent'}}</h3>
+    <hr />
+    {{#link-to 'events.new' classNames='button success'}}
+      {{t 'buttons.createyourevent'}}
+    {{/link-to}}
+
+
+    <h3>{{t 'lookingforscene'}}</h3>
+    <hr />
+    {{#link-to 'communities' classNames='button'}}
+      {{t 'buttons.scenesbycity'}}
+    {{/link-to}}
+
+
+{{#unless session.isAuthenticated}}
+      {{login-modal afterLogin=(action (transition-to 'dashboard'))}}
+      {{sign-up-modal}}
+{{/unless}}
+
+
+  <h3 class='text-center'>{{t 'whatisheader'}}</h3>
+  {{t 'whatis'}}
+
+    <h3>
+      {{#link-to 'welcome.features'}}
+        {{t 'features'}}
+      {{/link-to}}
+    {{t 'featuresinfo'}}
+    </h3>
+
+    <h3>
+      {{#link-to 'welcome.pricing'}}
+        {{ t 'pricing' }}
+      {{/link-to}}
+    {{t 'pricinginfo'}}
+    </h3>
+
+    <h3>
+      {{#link-to 'welcome.faq'}}
+       {{t 'faq'}}
+      {{/link-to}}
+      </h3>
+    {{t 'faqinfo'}}
+
+br
