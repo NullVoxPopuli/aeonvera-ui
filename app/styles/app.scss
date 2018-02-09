@@ -1,8 +1,12 @@
+
+@import 'ember-paper';
+@import 'ember-paper-expansion-panel';
+@import 'paper-data-table';
+
 @import 'colors';
 @import 'styles';
 @import 'table';
 @import 'help';
-@import 'navigation';
 @import 'sidebar';
 @import 'header';
 @import 'with-small-footer';
@@ -26,9 +30,6 @@ $primary: 'blue-grey';
 $secondary: 'deep-purple';
 $accent: 'teal';
 
-@import 'ember-paper';
-@import 'ember-paper-expansion-panel';
-@import 'paper-data-table';
 
 @import 'pod-styles.scss';
 

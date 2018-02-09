@@ -4,20 +4,20 @@
   margin-top : 0.4rem;
 
   &.paid {
-    color: $success-color;
+    color: color($color-green, '100');
   }
 
   &.unpaid {
-    color: $alert-color;
+    color: color($color-red, '100');
   }
 }
 
 table tr td.order-payment-status {
   text-align: center;
-  background: $alert-color;
+  background: color($color-red, '100');
 
   &[data-paid] {
-    background: lighten($success-color, 5%);
+    background: lighten(color($color-green, '100'), 5%);
   }
 }
 

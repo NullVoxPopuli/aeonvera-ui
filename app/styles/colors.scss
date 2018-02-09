@@ -8,11 +8,11 @@ $footer-link-color-small: #aaa;
 $dark-background-text-color: white;
 
 .success-color {
-  color: $success-color;
+  color: color($color-green, '100');
 }
 
 .alert-color {
-  color: $alert-color;
+  color: color($color-red, '100');
 }
 
 .white-color {

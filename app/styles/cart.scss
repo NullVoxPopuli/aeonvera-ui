@@ -19,7 +19,7 @@
   margin-bottom: 0;
 }
 
-@media #{$medium-up} {
+@media #{(min-width: $layout-breakpoint-sm)} {
   .fixed-to-top-cart{
     position: fixed;
     top: 45px;
@@ -66,14 +66,14 @@
   }
 }
 
-@media #{$medium-up} {
+@media #{(min-width: $layout-breakpoint-sm)} {
   .fixed-to-top-cart{
     top: 64px;
   }
 }
 
  /* min-width 1025px, large screens */
-@media #{$large-up} {
+@media #{(min-width: $layout-breakpoint-md)} {
   .fixed-cart-window-to-small{
     top: 64px;
   }
