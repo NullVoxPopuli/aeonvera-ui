@@ -16,7 +16,7 @@
       "aeonvera/*": [
         "app/*"
       ],
-      "*": ["types/*", "**/.d.ts"]
+      "*": ["types/*", "*/.d.ts"]
     }
   },
   "exclude": [
