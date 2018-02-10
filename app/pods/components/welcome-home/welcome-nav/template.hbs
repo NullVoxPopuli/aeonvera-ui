@@ -1,4 +1,4 @@
-{{#paper-toolbar as |nav|}}
+{{#paper-toolbar class='welcome-toolbar sticky-gt-xs' as |nav|}}
   {{#nav.tools}}
     {{#if showSidebarToggler}}
       {{#paper-button iconButton=true onClick=onLeftMenuOpen class='hide-gt-sm'}}
@@ -17,6 +17,12 @@
         {{paper-icon 'exit to app'}} Logout
       {{/paper-button}}
     {{else}}
+      {{#paper-button
+        data-test-app-nav-login-button
+        onClick=(action (transition-to 'login'))}}
+        Login
+      {{/paper-button}}
+
       {{#ember-paper/simple-dialog-with-button
         buttonText=(t 'buttons.signup')
         raised=false
@@ -24,13 +30,6 @@
 
         {{signup-form}}
       {{/ember-paper/simple-dialog-with-button}}
-
-
-      {{#paper-button
-        data-test-app-nav-login-button
-        onClick=(action (transition-to 'login'))}}
-        Login
-      {{/paper-button}}
 
     {{/if}}
 

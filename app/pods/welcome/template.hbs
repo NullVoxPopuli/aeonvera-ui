@@ -1,5 +1,8 @@
 <div class='welcome-screen'>
-  {{welcome-home/welcome-nav}}
+  {{to-elsewhere
+    named='top-navigation'
+    send=(component 'welcome-home/welcome-nav')
+  }}
 
   <div class='welcome-background'></div>
   <div class='layout-column welcome-content'>

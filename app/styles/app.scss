@@ -1,10 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-
-$primary: 'blue-grey';
-$secondary: 'deep-purple';
+// $foreground: "foreground-light";
+// $background: "background-dark";
+// $dark: true;
+$link: 'light-blue';
+$primary: 'deep-purple';
+$secondary: 'amber';
 $accent: 'cyan';
+
 
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
@@ -52,6 +56,24 @@ html, body {
   // }
   .application-container {
 
+  }
+
+  @mixin sticky {
+    position: sticky;
+    // when stuck, 0px from the top
+    top: 0px;
+
+    z-index: 1000;
+  }
+
+  .sticky {
+    @include sticky;
+  }
+
+  @media (min-width: $layout-breakpoint-xs) {
+    .sticky-gt-xs {
+      @include sticky;
+    }
   }
 }
 

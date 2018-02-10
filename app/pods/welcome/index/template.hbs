@@ -7,55 +7,58 @@
 {{/unless}} --}}
 
 <div class='layout-column layout-align-space-around-stretch'>
-  <div class='main-title layout-row layout-align-center-center'>
-    <h1 class='welcome-title'>{{t 'subheader'}}</h1>
-  </div>
+  <div class='layout-column layout-align-center-start'>
 
-  <div class='layout-column layout-align-space-around'>
+    <div class='main-title layout-row layout-align-center-center'>
+      <h1 class='welcome-title'>{{t 'subheader'}}</h1>
+    </div>
 
     <div class='calls-to-action layout-row layout-align-space-around'>
       {{#paper-button
-        raised=true accent=true
+        raised=true
         onClick=(action (transition-to 'upcoming-events'))}}
         {{t 'buttons.eventcalendar'}}
       {{/paper-button}}
 
       {{#paper-button
-        raised=true accent=true
+        raised=true primary=true
         onClick=(action (transition-to 'events.new'))}}
         {{t 'buttons.createyourevent'}}
       {{/paper-button}}
+    </div>
+  </div>
 
-      {{#paper-button
-        raised=true accent=true
-        onClick=(action (transition-to 'communities'))}}
-        List of Dance Scenes
-      {{/paper-button}}
+  <div class='layout-column layout-align-space-around'>
+
+
+    <div class='welcome-blurb'>
+      <h2>
+        Everything needed to run your event.
+      </h2>
+
+
+
+      <hr />
+      {{#link-to 'welcome.features'}}
+        Click here for the full list of features
+      {{/link-to}}
     </div>
 
-    <div class='layout-row'>
+    <div class='welcome-blurb'>
+      <h2>
+        Cheaper than every other online event registration system.
+      </h2>
 
-      <h3>
-        {{#link-to 'welcome.features'}}
-        {{t 'features'}}
-        {{/link-to}}
-        {{t 'featuresinfo'}}
-      </h3>
+      80% of the fees go to the payment processor.
+      20% go towards the development of this site.
 
-      <h3>
-        {{#link-to 'welcome.pricing'}}
-        {{ t 'pricing' }}
-        {{/link-to}}
-        {{t 'pricinginfo'}}
-      </h3>
+      <hr />
+      Visit
+      {{#link-to 'welcome.pricing'}}
+        the pricing page
+      {{/link-to}}
 
-      <h3>
-        {{#link-to 'welcome.faq'}}
-        {{t 'faq'}}
-        {{/link-to}}
-      </h3>
-      {{t 'faqinfo'}}
-
+      for details on how it all breaks down.
     </div>
   </div>
 </div>

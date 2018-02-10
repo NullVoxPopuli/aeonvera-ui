@@ -16,17 +16,11 @@
 
     {{#if promise}}
 
-    {{#unless (is-pending promise)}}
-   {{#if (is-rejected promise)}}
-     rejected! :(((
-   {{/if}}
- {{/unless}}
-    {{log (get (promise-rejected-reason promise) 'message')}}
       {{#if (is-pending promise)}}
           {{loadingMessage}}
       {{else}}
 
-        {{#if (is-rejected promise)}}
+        {{#if (or (is-empty (await promise)) (is-rejected promise))}}
           {{#if showError}}
             Error! :-(
           {{else}}
