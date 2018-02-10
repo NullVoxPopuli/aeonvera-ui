@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
 
 export function isEqual(params) {
   const one = params[0];
@@ -7,7 +7,7 @@ export function isEqual(params) {
   return one === two;
 }
 
-export default Ember.Helper.extend({
+export default Helper.extend({
   compute(params) {
     return isEqual(params);
   }

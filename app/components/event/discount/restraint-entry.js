@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 import { computed, action } from 'ember-decorators/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   isEditing: false,
   kindOptions: ['Package', 'Competition'],
   selectedType: 'Package',

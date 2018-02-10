@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import { action } from 'ember-decorators/object';
 import { alias, sort, oneWay } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
@@ -7,7 +7,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import OLIPersistence from 'aeonvera/mixins/registration/order-line-item-persistence';
 
-export default Ember.Controller.extend(OLIPersistence, {
+export default Controller.extend(OLIPersistence, {
   @service('rollbar') rollbar: null,
   @service('flash-notification') flash: null,
 

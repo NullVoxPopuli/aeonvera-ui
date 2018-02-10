@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import ENV from 'aeonvera/config/environment';
 
 import { computed } from 'ember-decorators/object';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   columns: [
     { property: 'attendeeName', title: 'Name' },
     { property: 'danceOrientation', title: '' },
@@ -12,9 +13,9 @@ export default Ember.Controller.extend({
     { property: 'registeredAt', title: 'Registered At' }
   ],
 
-  eventId: Ember.computed.alias('model.eventId'),
-  registrations: Ember.computed.alias('model.registrations'),
-  paramsForDownload: Ember.computed('model.eventId', {
+  eventId: alias('model.eventId'),
+  registrations: alias('model.registrations'),
+  paramsForDownload: computed('model.eventId', {
     get(key) {
       return {
         event_id: this.get('model.eventId')

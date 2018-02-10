@@ -1,14 +1,15 @@
+import Service, { inject as service } from '@ember/service';
+import { isBlank, isPresent } from '@ember/utils';
 import Ember from 'ember';
 import RSVP from 'rsvp';
 
 import { escapeHTML } from 'aeonvera/helpers/string/escape-html';
 import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
-const { inject, isPresent, isBlank } = Ember;
 
-export default Ember.Service.extend({
-  rollbar: inject.service('rollbar'),
-  notifications: inject.service('notification-messages'),
+export default Service.extend({
+  rollbar: service('rollbar'),
+  notifications: service('notification-messages'),
   options: { autoClear: true, clearDuration: 3200, htmlContent: true },
 
   // example:

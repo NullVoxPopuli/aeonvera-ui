@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  cart: Ember.inject.service('order-cart'),
+export default Component.extend({
+  cart: service('order-cart'),
 
-  response: Ember.computed('registration', function() {
+  response: computed('registration', function() {
     const registration = this.get('registration');
 
     if (registration != null) {
@@ -13,7 +16,7 @@ export default Ember.Component.extend({
         .get('customFieldResponses')
         .find(item => field.get('id') === item.get('customField.id'));
 
-      if (Ember.isPresent(existingCustomField)) {
+      if (isPresent(existingCustomField)) {
 
         // if datetime...
         const kind = field.get('kind');

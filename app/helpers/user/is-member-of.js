@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { isBlank, isPresent } from '@ember/utils';
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
-
-const { isPresent, isBlank } = Ember;
 
 export function userIsMemberOf(params, hash) {
   const { user, organization } = hash;
@@ -15,4 +14,4 @@ export function userIsMemberOf(params, hash) {
   return renewal && renewal.get('current');
 }
 
-export default Ember.Helper.helper(userIsMemberOf);
+export default helper(userIsMemberOf);

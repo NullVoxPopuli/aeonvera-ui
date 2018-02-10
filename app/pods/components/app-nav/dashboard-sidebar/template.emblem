@@ -4,22 +4,22 @@
 
 = paper-list
   = paper-item
-    link-to 'user.edit'
+    = link-to 'user.edit'
       span Edit Profile
 
   = paper-divider
   = paper-item
-    link-to 'dashboard'
+    = link-to 'dashboard'
       span Home
   = paper-item
-    link-to 'dashboard.registered-events'
+    = link-to 'dashboard.registered-events'
       span Registered Events
   = paper-item
-    link-to 'dashboard.hosted-events'
+    = link-to 'dashboard.hosted-events'
       span Hosted Events
   = paper-item
-    link-to 'my-communities'
+    = link-to 'my-communities'
       span My Communities
   = paper-item
-    link-to 'dashboard.orders'
+    = link-to 'dashboard.orders'
       span Order History

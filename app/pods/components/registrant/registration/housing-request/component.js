@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'tbody',
 
-  needTransportation: Ember.computed.alias('housingRequest.needTransportation'),
-  canProvideTransportation: Ember.computed.alias('housingRequest.canProvideTransportation'),
-  allergicToPets: Ember.computed.alias('housingRequest.allergicToPets'),
-  allergicToSmoke: Ember.computed.alias('housingRequest.allergicToSmoke'),
-  otherAllergies: Ember.computed.alias('housingRequest.otherAllergies'),
+  needTransportation: alias('housingRequest.needTransportation'),
+  canProvideTransportation: alias('housingRequest.canProvideTransportation'),
+  allergicToPets: alias('housingRequest.allergicToPets'),
+  allergicToSmoke: alias('housingRequest.allergicToSmoke'),
+  otherAllergies: alias('housingRequest.otherAllergies'),
 
   // TODO: this whole set of things could probably be replaced by i18n
-  transportPlural: Ember.computed('housingRequest.transportationCapacity', function() {
+  transportPlural: computed('housingRequest.transportationCapacity', function() {
     if (this.get('housingRequest.transportationCapacity') > 1) {
       return 'people';
     }
@@ -18,12 +21,12 @@ export default Ember.Component.extend({
     return 'person';
   }),
 
-  allergyText: Ember.computed('housingRequest', function() {
+  allergyText: computed('housingRequest', function() {
     const noPreference = this.get('noPreference');
     const pets = this.get('allergicToPets');
     const smoke = this.get('allergicToSmoke');
     const other = this.get('otherAllergies');
-    const hasOther = Ember.isPresent(other);
+    const hasOther = isPresent(other);
 
     let result = 'You are allergic to ';
 
@@ -51,7 +54,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  noPreference: Ember.computed('housingRequest.preferredGenderToHouseWith', function() {
+  noPreference: computed('housingRequest.preferredGenderToHouseWith', function() {
     const pref = this.get('housingRequest.preferredGenderToHouseWith');
 
     if (typeof pref === 'string') {
@@ -63,7 +66,7 @@ export default Ember.Component.extend({
     return true;
   }),
 
-  requested: Ember.computed('housingRequest', function() {
+  requested: computed('housingRequest', function() {
     const hr = this.get('housingRequest');
     let result = hr.get('requested1');
     const r2 = hr.get('requested2');
@@ -85,7 +88,7 @@ export default Ember.Component.extend({
     return result;
   }),
 
-  unwanted: Ember.computed('housingRequest', function() {
+  unwanted: computed('housingRequest', function() {
     const hr = this.get('housingRequest');
     let result = hr.get('unwanted1');
     const r2 = hr.get('unwanted2');

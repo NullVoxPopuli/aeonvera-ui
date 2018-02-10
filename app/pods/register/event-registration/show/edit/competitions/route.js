@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { isBlank } from '@ember/utils';
 import moment from 'moment';
 
-const { isBlank } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
   // event, registration
   model(params) {
     return this.modelFor('register.event-registration.show');

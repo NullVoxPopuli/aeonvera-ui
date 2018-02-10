@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 export function randomString(prefix = '', length = 64) {
   let random = Math.random().toString(36).replace(/[^a-z]+/g, '');
@@ -8,6 +8,6 @@ export function randomString(prefix = '', length = 64) {
   return prefix + random;
 }
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   randomString
 });

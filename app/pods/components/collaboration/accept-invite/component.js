@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
-  session: Ember.inject.service(),
+export default Component.extend({
+  session: service(),
 
   errors: [],
   didInsertElement() {
@@ -18,7 +20,7 @@ export default Ember.Component.extend({
 
     const authToken = this.get('session.data.authenticated.token');
 
-    Ember.$.ajax(url, {
+    $.ajax(url, {
       method: 'PUT',
       beforeSend(xhr) {
         xhr.setRequestHeader('Authorization', 'Bearer ' + authToken);

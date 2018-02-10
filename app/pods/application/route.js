@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-const { inject: { service } } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
   rollbar: service('rollbar'),
   session: service('session'),
   crisp: service('crisp'),
@@ -32,7 +33,7 @@ export default Ember.Route.extend({
     ereror(reason, transition) {
       const errors = reason.errors
       if (errors && errors[0]) {
-        const errorObject = new Ember.Object(errors[0]);
+        const errorObject = new EmberObject(errors[0]);
 
 
         if (errorObject.code === 404) {
@@ -49,12 +50,12 @@ export default Ember.Route.extend({
     },
 
     passwordReset() {
-      Ember.$('.close-reveal-modal').click();
+      $('.close-reveal-modal').click();
       this.transitionTo('password-reset');
     },
 
     newConfirmation() {
-      Ember.$('.close-reveal-modal').click();
+      $('.close-reveal-modal').click();
       this.transitionTo('confirmation.new');
     },
 

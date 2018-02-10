@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   isA: function(name) {
     return this.get('constructor.modelName') === name;
   },

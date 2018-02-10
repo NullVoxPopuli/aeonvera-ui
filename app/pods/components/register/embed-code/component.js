@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
-  code: Ember.computed('model', function() {
+export default Component.extend({
+  code: computed('model', function() {
     const domain = this.get('model.domain');
     const host = ENV.host;
 

@@ -1,16 +1,15 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
 import { computed } from 'ember-decorators/object';
 import { mapBy } from 'ember-decorators/object/computed';
 
 
-const { isPresent } = Ember;
-
-export default class extends Ember.Component {
+export default class extends Component {
   @mapBy('registration.customFieldResponses', 'value') customFieldResponseValues;
 
   @computed('customFieldResponseValues')
   hasCustomFieldResponses(values) {
-    return values.any(item => Ember.isPresent(item));
+    return values.any(item => isPresent(item));
   }
 
   @computed('registration.fullName', 'registration.attendeeName', 'order.buyerName')

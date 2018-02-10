@@ -14,7 +14,7 @@ table
       each model as |field|
         tr
           td 
-            link-to 'events.show.custom-fields.show' field.id
+            = link-to 'events.show.custom-fields.show' field.id
               = field.label
           td = field.kind
           td = field.editable

@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   preConfirmClasses: '', // set by caller
   cancelClasses: '',
   confirmClasses: 'no-margins tiny',

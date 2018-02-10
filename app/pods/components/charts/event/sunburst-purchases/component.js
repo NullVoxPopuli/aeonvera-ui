@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   // passed in
   event: null,
 
@@ -32,7 +33,7 @@ export default Ember.Component.extend({
     const explanationId = 'chart-event-sunburst-explanation';
     const chartId = 'chart-event-sunburst';
 
-    const width = Ember.$(`#${chartId}`).parent().parent().width();
+    const width = $(`#${chartId}`).parent().parent().width();
     const height = 400;
     const duration = 1000;
     const radius = Math.min(width, height) / 2;

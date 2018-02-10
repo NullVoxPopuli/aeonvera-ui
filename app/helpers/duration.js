@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function duration(params, hash) {
   // js is in milliseconds
@@ -8,4 +8,4 @@ export function duration(params, hash) {
   return moment.duration(seconds, unit).humanize();
 }
 
-export default Ember.Helper.helper(duration);
+export default helper(duration);

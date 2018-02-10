@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  subdomain: Ember.inject.service('subdomain'),
+export default Route.extend({
+  subdomain: service('subdomain'),
 
   model: function() {
     return this.get('subdomain.model');
@@ -11,7 +13,7 @@ export default Ember.Route.extend({
     const model = this.get('model');
     const sub = this.get('subdomain');
 
-    if (Ember.isEmpty(model)) {
+    if (isEmpty(model)) {
       // TODO: probably want to remove the subdomain before redirecting
       location.href = sub.get('withoutSubdomain');
     }

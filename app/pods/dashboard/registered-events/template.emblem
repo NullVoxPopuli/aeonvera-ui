@@ -23,5 +23,5 @@ table.responsive
         span You have not yet attended any events. Please view the upcoming events list to see if there is anything of interest.
 
 .text-center
-  link-to 'upcoming-events' classNames="button"
+  = link-to 'upcoming-events' classNames="button"
     span View Upcoming Events

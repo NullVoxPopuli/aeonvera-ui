@@ -3,10 +3,10 @@ footer
     .medium-6.columns
       ul.inline-list
         li
-          link-to 'welcome.tos' | {{ t 'tos' }}
+          = link-to 'welcome.tos' | {{ t 'tos' }}
 
         li
-          link-to 'welcome.privacy' | {{ t 'privacy' }}
+          = link-to 'welcome.privacy' | {{ t 'privacy' }}
 
         li = links/submit-idea-link
 

@@ -1,5 +1,5 @@
-import Ember from 'ember';
-export default Ember.Component.extend({
+import Component from '@ember/component';
+export default Component.extend({
   afterLogin: '',
   showLoginModal: false,
   buttonClasses: 'login',

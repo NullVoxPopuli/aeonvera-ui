@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
-
-const alias = Ember.computed.alias;
 
 export default DS.Model.extend(LeadsAndFollows, {
   increaseByDollars: DS.attr('number'),
@@ -22,7 +21,7 @@ export default DS.Model.extend(LeadsAndFollows, {
   registrantsAlias: function() {
     const num = this.get('increaseAfterTotalRegistrants');
 
-    if (!Ember.isPresent(num)) {
+    if (!isPresent(num)) {
       return Infinity;
     }
 

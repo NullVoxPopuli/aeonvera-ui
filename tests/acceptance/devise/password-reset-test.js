@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 import testSelector from 'ember-test-selectors';
@@ -145,7 +145,7 @@ test('setting new password succeeds', function(assert) {
 
   server.put('/api/users/password', {}, 201);
 
-  Ember.run(function() {
+  run(function() {
     visit('/password-reset/edit/?reset_password_token=123456a');
 
     andThen(function() {
@@ -154,7 +154,7 @@ test('setting new password succeeds', function(assert) {
       fillIn(`${formSelector} input[type="password"]:first`, '12345678');
     });
 
-    Ember.run(function() {
+    run(function() {
       click(`${formSelector} button[type="submit"]`);
     });
 

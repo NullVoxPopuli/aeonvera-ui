@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Service, { inject as service } from '@ember/service';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Service.extend({
-  session: Ember.inject.service(),
+export default Service.extend({
+  session: service(),
 
   GET(path) {
     return this._perform('GET', path, {});
@@ -20,7 +21,7 @@ export default Ember.Service.extend({
     const url = ENV.host + path;
     const authToken = this.get('session.data.authenticated.token');
 
-    return Ember.$.ajax({
+    return $.ajax({
       url: url,
       type: method,
       data: data,

@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import { get } from '@ember/object';
+import { underscore } from '@ember/string';
 import Ember from 'ember';
 import DS from 'ember-data';
 import ENV from '../config/environment';
@@ -10,17 +13,17 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   coalesceFindRequests: true,
 
   pathForType: function(type) {
-    const underscored = Ember.String.underscore(type);
+    const underscored = underscore(type);
 
     return Ember.String.pluralize(underscored);
   },
 
   urlForFindRecord(id, modelName, snapshot) {
     let url = this._super(...arguments);
-    const query = Ember.get(snapshot, 'adapterOptions.query');
+    const query = get(snapshot, 'adapterOptions.query');
 
     if (query) {
-      url += '?' + Ember.$.param(query);
+      url += '?' + $.param(query);
     }
 
     return url;

@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
 
 import { computed } from 'ember-decorators/object';
 
-const { isPresent } = Ember;
-
-export default class extends Ember.Component {
+export default class extends Component {
   // set by caller
   labelText = '';
   model = null;

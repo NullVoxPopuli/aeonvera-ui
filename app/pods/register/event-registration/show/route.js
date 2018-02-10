@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { w } from '@ember/string';
+import { isBlank, isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 
 import { action } from 'ember-decorators/object';
@@ -7,9 +9,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
-const { isPresent, isBlank } = Ember;
-
-const include = Ember.String.w(`
+const include = w(`
 level
 orders.order_line_items.line_item
 unpaid_order.order_line_items.line_item
@@ -17,7 +17,7 @@ housing_request
 housing_provision
 `).join(',');
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend(AuthenticatedRouteMixin, {
   authenticationRoute: 'register.event-registration.must-login',
 
   model(params) {

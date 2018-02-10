@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { isPresent, isBlank } from '@ember/utils';
+import { get } from '@ember/object';
 import SlotsMixin from 'ember-block-slots';
 import { computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
@@ -6,9 +9,7 @@ import { PropTypes } from 'ember-prop-types';
 
 import EmberScroll from 'aeonvera/mixins/components/ember-scroll';
 
-const { isPresent, get } = Ember;
-
-export default Ember.Component.extend(EmberScroll, SlotsMixin, {
+export default Component.extend(EmberScroll, SlotsMixin, {
   propTypes: {
     order: PropTypes.EmberObject.isRequired,
     onRemoveLineItem: PropTypes.func.isRequired,
@@ -16,8 +17,8 @@ export default Ember.Component.extend(EmberScroll, SlotsMixin, {
   },
 
   orderContainerClasses: 'large-4 medium-4 columns fixed-to-top-cart fixed-cart-window-to-small',
-  cart: Ember.inject.service('order-cart'),
-  resize: Ember.inject.service('resize'),
+  cart: service('order-cart'),
+  resize: service('resize'),
   errors: [],
   resetCheckoutButton: false,
   isProceedToCheckoutVisible: false,
@@ -64,7 +65,7 @@ export default Ember.Component.extend(EmberScroll, SlotsMixin, {
   _isElementInViewport(el) {
     // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
     // get internal element  from jQuery object
-    if (Ember.isBlank(el) || el.length === 0) {
+    if (isBlank(el) || el.length === 0) {
       return false;
     }
     el = el[0];

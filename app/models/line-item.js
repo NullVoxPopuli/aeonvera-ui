@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
 
@@ -46,9 +47,9 @@ export default Purchasable.extend(Buyable, IsLineItem, {
   registrations: hasMany('registration'),
   orderLineItems: hasMany('order-line-item'),
 
-  pictureIsMissing: Ember.computed('pictureUrl', function() {
+  pictureIsMissing: computed('pictureUrl', function() {
     const pictureUrl = this.get('pictureUrl');
-    const picturePresent = Ember.isPresent(pictureUrl);
+    const picturePresent = isPresent(pictureUrl);
 
     return picturePresent ? pictureUrl.indexOf('missing') !== -1 : true;
   })

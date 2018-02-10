@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
 import DS from 'ember-data';
 
 import { computed } from 'ember-decorators/object';
@@ -30,6 +30,6 @@ export default Purchasable.extend(IsLineItem, {
 
   @computed('expiresAt')
   hasExpiration(expiresAt) {
-    return Ember.isPresent(expiresAt);
+    return isPresent(expiresAt);
   }
 });

@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
+import { isPresent, isBlank } from '@ember/utils';
 import RSVP from 'rsvp';
 import { computed } from 'ember-decorators/object';
 import { alias, readOnly } from 'ember-decorators/object/computed';
@@ -7,11 +9,9 @@ import { alias, readOnly } from 'ember-decorators/object/computed';
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 import RegistrationController from 'aeonvera/mixins/registration/controller';
 
-const { isBlank, isPresent, inject } = Ember;
-
-export default Ember.Controller.extend(currentUserHelpers, RegistrationController, {
-  store: inject.service('store'),
-  flash: inject.service('flash-notification'),
+export default Controller.extend(currentUserHelpers, RegistrationController, {
+  store: service('store'),
+  flash: service('flash-notification'),
 
   // for if someone is not signed in, they will be emailed a link
   // with a token that will give them access to the order

@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  session: Ember.inject.service('session'),
-  flashMessages: Ember.inject.service('flashMessages'),
+export default Route.extend({
+  session: service('session'),
+  flashMessages: service('flashMessages'),
 
   activate: function() {
-    Ember.$('a.close-reveal-modal').trigger('click');
+    $('a.close-reveal-modal').trigger('click');
   },
 
   beforeModel: function(transition) {

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  field: Ember.computed('model', function() {
+export default Component.extend({
+  field: computed('model', function() {
     return this.get('model.customField');
   })
 });

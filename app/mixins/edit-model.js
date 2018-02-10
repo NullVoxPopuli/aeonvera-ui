@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
-  flash: Ember.inject.service('flash-notification'),
+export default Mixin.create({
+  flash: service('flash-notification'),
 
   modelNameId: function() {
     return this.get('modelName') + '_id';
@@ -23,7 +25,7 @@ export default Ember.Mixin.create({
 
     const passedParent = this.get('parent');
 
-    if (!Ember.isPresent(passedParent)) {
+    if (!isPresent(passedParent)) {
       console.log('parent not passed in, moving on...');
     } else {
       return passedParent.get('id');
@@ -31,17 +33,17 @@ export default Ember.Mixin.create({
 
     const association = this.get('parentAssociation');
 
-    if (!Ember.isPresent(association)) {
+    if (!isPresent(association)) {
       console.log('association not found');
     }
 
     const parent = this.get('model').get(association);
 
-    if (!Ember.isPresent(parent)) {
+    if (!isPresent(parent)) {
       console.log('parent not found');
     }
 
-    if (Ember.isPresent(parent)) {
+    if (isPresent(parent)) {
       return parent.get('id');
     }
 

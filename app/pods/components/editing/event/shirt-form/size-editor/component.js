@@ -1,7 +1,8 @@
-import Ember from 'ember';
-const { computed, isPresent } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
-export default Ember.Component.extend({
+export default Component.extend({
   // set by caller
   model: null,
 

@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import SetNavBarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
-const { inject } = Ember;
-
-export default Ember.Route.extend(SetNavBarTitle, {
-  i18n: inject.service(),
+export default Route.extend(SetNavBarTitle, {
+  i18n: service(),
 
   model() {
     const upcoming = this.store.findAll('upcoming-event');

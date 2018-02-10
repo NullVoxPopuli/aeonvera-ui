@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import RSVP from 'rsvp';
 import { PropTypes } from 'ember-prop-types';
 import { oneWay } from 'ember-decorators/object/computed';
 
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     selectedPackage: PropTypes.any,
     packages: PropTypes.any,

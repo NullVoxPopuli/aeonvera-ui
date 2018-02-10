@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -18,7 +18,7 @@ test('it renders with no error', function(assert) {
     {{/error-field-wrapper}}
   `);
 
-  let result = Ember.isPresent(this.$().find('.no-error'));
+  let result = isPresent(this.$().find('.no-error'));
   assert.ok(result);
 });
 
@@ -39,7 +39,7 @@ test('it renders with an error', function(assert) {
   `);
 
   let error = this.$().find('.error');
-  let result = Ember.isPresent(error);
+  let result = isPresent(error);
   assert.ok(result);
 
   assert.notEqual(error.text().indexOf('wut'), -1);

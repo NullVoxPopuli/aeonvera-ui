@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 import { service } from 'ember-decorators/service';
 import { gt, notEmpty, alias } from 'ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
 
-export default class extends Ember.Component {
+export default class extends Component {
   @service('flash-notification') flash;
   @notEmpty('model.levelName') hasLevel;
   @alias('model') registration;

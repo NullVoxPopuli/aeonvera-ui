@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import EditModel from 'aeonvera/mixins/edit-model';
 
-export default Ember.Mixin.create(EditModel, {
-  flash: Ember.inject.service('flash-notification'),
+export default Mixin.create(EditModel, {
+  flash: service('flash-notification'),
 
   parentModelId: function() {
 
     const passedParent = this.get('parent');
 
-    if (!Ember.isPresent(passedParent)) {
+    if (!isPresent(passedParent)) {
       console.log('parent not passed in, moving on...');
     } else {
       return passedParent.get('id');
@@ -16,17 +18,17 @@ export default Ember.Mixin.create(EditModel, {
 
     const association = this.get('parentAssociation');
 
-    if (!Ember.isPresent(association)) {
+    if (!isPresent(association)) {
       console.log('association not found');
     }
 
     const parent = this.get('model').get(association);
 
-    if (!Ember.isPresent(parent)) {
+    if (!isPresent(parent)) {
       console.log('parent not found');
     }
 
-    if (Ember.isPresent(parent)) {
+    if (isPresent(parent)) {
       return parent.get('id');
     }
 

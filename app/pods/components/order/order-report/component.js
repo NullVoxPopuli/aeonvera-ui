@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { once } from '@ember/runloop';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
+import { observer } from '@ember/object';
 import { computed } from 'ember-decorators/object';
 import { alias, sort } from 'ember-decorators/object/computed';
 import { PropTypes } from 'ember-prop-types';
 
-const { isPresent, observer } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     orders: PropTypes.any,
     searchOrders: PropTypes.any.isRequired,
@@ -28,7 +29,7 @@ export default Ember.Component.extend({
   queryObserver: observer('pastDays', 'showPaid', 'selectedLineItem', 'firstOrLastNameContains', function() {
     // use run once, because the observer will syncronously queue up with each changed
     // property. So if multiple properties change at once, we still only want to search once.
-    Ember.run.once(this, 'search');
+    once(this, 'search');
   }),
 
   search() {

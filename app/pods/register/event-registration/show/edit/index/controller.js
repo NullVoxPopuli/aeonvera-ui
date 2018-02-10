@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 
 import { computed, readOnly } from 'ember-decorators/object';
@@ -9,9 +10,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
-const { isPresent, inject } = Ember;
-
-export default class extends Ember.Controller {
+export default class extends Controller {
   @service('flash-notification') flash;
 
   @alias('model.event') event;

@@ -1,14 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { alias, sort, oneWay } from 'ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
 
 import OLIPersistence from 'aeonvera/mixins/registration/order-line-item-persistence';
 
-const { inject } = Ember;
-
-export default Ember.Controller.extend(OLIPersistence, {
-  flash: inject.service('flash-notification'),
-  rollbar: inject.service('rollbar'),
+export default Controller.extend(OLIPersistence, {
+  flash: service('flash-notification'),
+  rollbar: service('rollbar'),
 
   @alias('model.registration.unpaidOrder') order: null,
   @alias('model.registration') registration: null,

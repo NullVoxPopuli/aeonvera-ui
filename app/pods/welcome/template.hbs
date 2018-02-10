@@ -1,4 +1,8 @@
-{{to-elsewhere named='left-side-bar'
-  send=(component 'app-nav/default-sidebar')}}
+<div class='welcome-screen'>
+  {{welcome-home/welcome-nav}}
 
-{{outlet}}
+  <div class='welcome-background'></div>
+  <div class='layout-column welcome-content'>
+    {{outlet}}
+  </div>
+</div>

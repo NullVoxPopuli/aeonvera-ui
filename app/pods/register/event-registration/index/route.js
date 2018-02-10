@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { isEmpty } from '@ember/utils';
 import RSVP from 'rsvp';
 import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
-
-const { isEmpty } = Ember;
 
 const include = `
 orders.order_line_items.line_item
@@ -13,7 +12,7 @@ housing_request
 housing_provision
 `.split('\n').join(',');
 
-export default Ember.Route.extend(SideNav, {
+export default Route.extend(SideNav, {
   model() {
     const event = this.modelFor('register.event-registration');
 

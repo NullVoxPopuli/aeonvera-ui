@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { set } from '@ember/object';
+import Component from '@ember/component';
 import { sort } from 'ember-decorators/object/computed';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'table',
   columns: [],
   evaluatedColumns: [],
@@ -26,7 +28,7 @@ export default Ember.Component.extend({
     const columns = this.get('columns');
     const firstProperty = columns.get('firstObject.property');
 
-    Ember.set(this, 'sortProps', [`${firstProperty}:asc`]);
+    set(this, 'sortProps', [`${firstProperty}:asc`]);
   },
 
   _evaluateColumnProperties() {
@@ -38,7 +40,7 @@ export default Ember.Component.extend({
         compute showOn, which decide whether or not the
         column is rendered
       */
-      if (Ember.isPresent(column.showOn)) {
+      if (isPresent(column.showOn)) {
         if (typeof (column.showOn) !== 'boolean') {
           const showOn = this.get(column.showOn);
 
@@ -53,12 +55,12 @@ export default Ember.Component.extend({
       */
       const indication = this._sortIndicator(column.property);
 
-      Ember.set(column, 'sortIndicator', indication);
+      set(column, 'sortIndicator', indication);
 
       evaluatedColumns.push(column);
     });
 
-    Ember.set(this, 'evaluatedColumns', evaluatedColumns);
+    set(this, 'evaluatedColumns', evaluatedColumns);
   },
 
   _sortIndicator(field) {
@@ -80,9 +82,9 @@ export default Ember.Component.extend({
 
     columns.forEach(item => {
       if (item.property === property) {
-        Ember.set(item, 'sortIndicator', sortIndicator);
+        set(item, 'sortIndicator', sortIndicator);
       } else {
-        Ember.set(item, 'sortIndicator', '');
+        set(item, 'sortIndicator', '');
       }
     });
 

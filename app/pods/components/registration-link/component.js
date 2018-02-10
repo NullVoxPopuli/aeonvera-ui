@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 import { oneWay, or } from 'ember-decorators/object/computed';
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     model: PropTypes.EmberObject.isRequired
   };

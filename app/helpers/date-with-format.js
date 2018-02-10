@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { helper } from '@ember/component/helper';
 
-export default Ember.Helper.helper(function(params) {
+export default helper(function(params) {
   let date = params[0];
   const format = params[1];
   const allowBlank = params[2];
@@ -9,7 +10,7 @@ export default Ember.Helper.helper(function(params) {
     date = new Date(date * 1000);
   }
 
-  if (!Ember.isPresent(date) && allowBlank) {
+  if (!isPresent(date) && allowBlank) {
     return '';
   }
 

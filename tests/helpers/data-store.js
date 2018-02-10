@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import { registerHelper } from '@ember/test';
 
-export default Ember.Test.registerHelper('dataStore', function(app) {
+export default registerHelper('dataStore', function(app) {
   return app.__container__.lookup('service:store');
 });

@@ -16,10 +16,10 @@ table
       each model as |ticket|
         tr
           td 
-            link-to 'events.show.raffles.show.raffle-tickets.show' ticket.id
+            = link-to 'events.show.raffles.show.raffle-tickets.show' ticket.id
               span {{ticket.numberOfTickets}} Ticket(s)
           td 
-            link-to 'events.show.raffles.show.raffle-tickets.show' ticket.id classNames='button small'
+            = link-to 'events.show.raffles.show.raffle-tickets.show' ticket.id classNames='button small'
               span View
     else
       tr: td colspan='2' There are no ticket options. You must have at least one ticket option for people to particpate in the raffle.

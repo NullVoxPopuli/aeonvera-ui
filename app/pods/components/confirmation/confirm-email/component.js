@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   errors: [],
   didInsertElement() {
     this._super(...arguments);
@@ -10,7 +11,7 @@ export default Ember.Component.extend({
     const token = this.get('confirmationToken');
     const url = ENV.host + '/api/confirmation?confirmation_token=' + token;
 
-    Ember.$.getJSON(url).then(success => {
+    $.getJSON(url).then(success => {
       this.sendAction('successAction');
     }, error => {
       const json = JSON.parse(error.responseText);

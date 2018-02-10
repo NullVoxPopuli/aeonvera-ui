@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { set } from '@ember/object';
 import { action } from 'ember-decorators/object';
 
-export default class extends Ember.Component {
+export default class extends Component {
   showModal = false;
 
   @action
   onCancel(menuContext) {
     this.set('showModal', true);
 
-    Ember.set(menuContext, 'isOpen', false);
+    set(menuContext, 'isOpen', false);
   }
 }

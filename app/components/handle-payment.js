@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 /*
   The model passed in to this component must be
   an order
 */
-export default Ember.Component.extend({
+export default Component.extend({
   title: 'Choose Payment Method',
 
   checkNumber: '',

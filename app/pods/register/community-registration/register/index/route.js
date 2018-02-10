@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
+import { isBlank, isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 import { computed } from 'ember-decorators/object';
 
 import RandomString from 'aeonvera/mixins/helpers/string';
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-const { isPresent, isBlank, inject } = Ember;
-
-export default Ember.Route.extend(currentUserHelpers, RandomString, {
-  rollbar: inject.service('rollbar'),
-  flash: inject.service('flash-notification'),
+export default Route.extend(currentUserHelpers, RandomString, {
+  rollbar: service('rollbar'),
+  flash: service('flash-notification'),
 
   beforeModel(transition) {
     const loggedIn = this.get('loggedIn');

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   // set by route:
   // - eventId
   columns: [
@@ -11,7 +12,7 @@ export default Ember.Controller.extend({
     { property: 'allowedPackages', title: 'Restricted To', sort: false }
   ],
 
-  paramsForDownload: Ember.computed('eventId', {
+  paramsForDownload: computed('eventId', {
     get(key) {
       return {
         event_id: this.get('eventId')
@@ -19,7 +20,7 @@ export default Ember.Controller.extend({
     }
   }),
 
-  path: Ember.computed('eventId', {
+  path: computed('eventId', {
     get(key) {
       return `${ENV.host}/api/discounts.csv?`;
     }

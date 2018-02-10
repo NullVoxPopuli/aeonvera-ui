@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
+import { isBlank } from '@ember/utils';
 import RSVP from 'rsvp';
 
-const { isBlank, inject } = Ember;
-
-export default Ember.Route.extend({
-  flash: inject.service('flash-notification'),
+export default Route.extend({
+  flash: service('flash-notification'),
 
   model() {
     return this.modelFor('register.event-registration.show');

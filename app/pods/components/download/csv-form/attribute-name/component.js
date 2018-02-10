@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { dasherize } from '@ember/string';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import hbs from 'htmlbars-inline-precompile';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'label',
   layout: hbs`{{label}}`,
 
@@ -10,13 +12,13 @@ export default Ember.Component.extend({
   // e.g.:
   //   registration.attendeeName => Attendee Name
   //   housingCapacity => Housing Capacity
-  label: Ember.computed('name', {
+  label: computed('name', {
     get() {
       const name = this.get('name');
       const split = name.split('.');
       const lastPhrase = split[split.length - 1];
 
-      const phrase = Ember.String.dasherize(lastPhrase).replace(/[-]/g, ' ');
+      const phrase = dasherize(lastPhrase).replace(/[-]/g, ' ');
 
       // TODO: capitalize each word
       // TODO: what about articles? English makes this lame.

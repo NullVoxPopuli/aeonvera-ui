@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { isBlank } from '@ember/utils';
 import { alias } from 'ember-decorators/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_MS = 1000;
 
-const { isBlank } = Ember;
-
-export default class extends Ember.Controller {
+export default class extends Controller {
   @alias('model.organization') organization;
   @alias('model.memberships') memberships;
   // @alias('searchMemberships.lastSuccessful.value') memberships;

@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Route from '@ember/routing/route';
 import Index from 'aeonvera/mixins/routes/crud/events/index';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Route.extend(Index, {
+export default Route.extend(Index, {
   modelName: 'discount',
 
   setupController(controller, model) {
@@ -13,7 +14,7 @@ export default Ember.Route.extend(Index, {
     controller.set('eventId', event.get('id'));
   },
 
-  downloadURL: Ember.computed(function() {
+  downloadURL: computed(function() {
     return ENV.host + '/api/discounts.csv';
   })
 });

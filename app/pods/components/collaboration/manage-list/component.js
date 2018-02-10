@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  flash: Ember.inject.service('flash-notification'),
+export default Component.extend({
+  flash: service('flash-notification'),
   collaborations: [], // set by renderer
   errors: [], // set by renderer
   newCollaboratorEmail: '', // set by input field

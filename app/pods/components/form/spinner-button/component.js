@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 // TODO: remove this component...
 // defaults taken from
 // https://github.com/RSSchermer/ember-spinner-button/blob/master/addon/components/spinner-button.js
 // ember-spinner-button does not work later versions of ember
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'button',
   classNames: ['spinner-button'],
   classNameBindings: ['spinning'],

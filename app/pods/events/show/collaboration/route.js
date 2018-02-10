@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Route.extend({
-  flash: Ember.inject.service('flash-notification'),
+export default Route.extend({
+  flash: service('flash-notification'),
   hostId: null,
   hostType: null,
 

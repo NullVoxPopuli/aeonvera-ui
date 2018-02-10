@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   numberOfLeads: DS.attr('number'),
   numberOfFollows: DS.attr('number'),
 
@@ -18,7 +19,7 @@ export default Ember.Mixin.create({
 
   totalRegistrants: function() {
     const numberOfRegistrants = this.get('numberOfRegistrants');
-    const useDefinedTotal = Ember.isPresent(numberOfRegistrants);
+    const useDefinedTotal = isPresent(numberOfRegistrants);
 
     return useDefinedTotal ? numberOfRegistrants : this.get('totalAttendees');
   }.property('totalAttendees')

@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { equal } from '@ember/object/computed';
+import Component from '@ember/component';
 import Form from 'aeonvera/mixins/components/edit-form';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend(Form, {
+export default Component.extend(Form, {
   modelName: 'housing-provision',
   saveSuccessPath: 'events.show.housing.provisions',
   cancelPath: 'events.show.housing.provisions',
@@ -13,5 +14,5 @@ export default Ember.Component.extend(Form, {
   // - 1: Entered Name
   whoIsProvidingType: 0,
 
-  isRegistrantProviding: Ember.computed.equal('whoIsProvidingType', 0)
+  isRegistrantProviding: equal('whoIsProvidingType', 0)
 });

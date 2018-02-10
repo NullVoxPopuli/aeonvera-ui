@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { alias } from 'ember-decorators/object/computed';
 
 
-export default Ember.Component.extend({
+export default Component.extend({
   @alias('registration.errors') errors: null,
 
   states: [

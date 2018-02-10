@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -35,10 +36,10 @@ export default DS.Model.extend({
   unwantedRoommates: DS.attr(),
 
   // for sorting
-  requesterName: Ember.computed('registration', 'name', function() {
+  requesterName: computed('registration', 'name', function() {
     const name = this.get('registration.attendeeName');
 
-    if (Ember.isPresent(name)) {
+    if (isPresent(name)) {
       return name;
     }
 

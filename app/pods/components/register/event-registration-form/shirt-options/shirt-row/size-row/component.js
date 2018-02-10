@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     orderLineItem: PropTypes.EmberObject.isRequired,
     updateShirt: PropTypes.func.isRequired,

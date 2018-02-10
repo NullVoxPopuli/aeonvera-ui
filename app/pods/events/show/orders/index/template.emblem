@@ -5,12 +5,12 @@
 
 = sortable-table columns=columns data=orders as |order|
   td
-    link-to 'events.show.orders.show' order
+    = link-to 'events.show.orders.show' order
       = order.userName
   td = to-usd order.currentPaidAmount
   td = to-bool order.paid
   td = date-with-format order.createdAt 'LLL'
   td
     if (is-present order.registration.id)
-      link-to 'events.show.registrations.show' order.registration.id
+      = link-to 'events.show.registrations.show' order.registration.id
         = to-bool (is-present order.registration.id)

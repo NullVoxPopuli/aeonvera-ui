@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { isBlank } from '@ember/utils';
 
-const { isBlank } = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
   _adjustCartMaxHeight() {
     const cart = jQuery('.fixed-to-top-cart');
     const windowHeight = jQuery(window).height();

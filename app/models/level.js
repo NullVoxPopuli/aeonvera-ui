@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
 import DeletedAt from '../mixins/models/deleted-at';
@@ -14,13 +14,13 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     async: true
   }),
 
-  hasRequirement: Ember.computed('requirement', function() {
+  hasRequirement: computed('requirement', function() {
     const requirement = this.get('requirement');
 
     return (requirement !== 0 && requirement !== null);
   }),
 
-  requiresName: Ember.computed('hasRequirement', function() {
+  requiresName: computed('hasRequirement', function() {
     const hasRequirement = this.get('hasRequirement');
     const requirement = this.get('requirement');
 
@@ -31,7 +31,7 @@ export default DS.Model.extend(LeadsAndFollows, DeletedAt, {
     return '';
   }),
 
-  requirementName: Ember.computed('requirement', function() {
+  requirementName: computed('requirement', function() {
     const requirement = this.get('requirement');
 
     if (requirement === 0) {

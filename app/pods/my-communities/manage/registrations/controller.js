@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import Controller from '@ember/controller';
 import { alias, or } from 'ember-decorators/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_MS = 500;
-
-const { isBlank, Controller } = Ember;
 
 export default class extends Controller {
   @alias('model.initialOrders') initialOrders;

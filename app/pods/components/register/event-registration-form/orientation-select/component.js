@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { computed } from 'ember-decorators/object';
 import { PropTypes } from 'ember-prop-types';
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     preciseOrientation: PropTypes.bool,
     selectedOrientation: PropTypes.string.isRequired,

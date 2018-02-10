@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function hasDateExpired(date) {
   // null means not expired
@@ -6,7 +6,7 @@ export function hasDateExpired(date) {
   return date != null && new Date() > date;
 }
 
-export default Ember.Helper.helper(function(params) {
+export default helper(function(params) {
   const date = params[0];
 
   return hasDateExpired(date);

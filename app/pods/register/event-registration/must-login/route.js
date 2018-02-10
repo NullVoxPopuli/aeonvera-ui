@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-const { computed, inject } = Ember;
-
-export default Ember.Route.extend({
-  session: inject.service(),
+export default Route.extend({
+  session: service(),
 
   beforeModel() {
     if (this.get('session.isAuthenticated')) {

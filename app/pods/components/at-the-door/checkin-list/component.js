@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
+import { A } from '@ember/array';
 
 import { computed, action } from 'ember-decorators/object';
 import { sort, alias } from 'ember-decorators/object/computed';
 
-export default class extends Ember.Component {
+export default class extends Component {
   queryText = '';
   showOnlyNonCheckedIn = false;
   showOnlyThoseWhoOweMoney = false;
@@ -30,7 +32,7 @@ export default class extends Ember.Component {
     return result;
   }
   // pages = Ember.A([1, 2, 3]);
-  limitOptions = Ember.A([10, 20, 30]);
+  limitOptions = A([10, 20, 30]);
   page = 1;
   sortProp = 'name';
   sortDir = 'asc';
@@ -44,7 +46,7 @@ export default class extends Ember.Component {
   paginatedRegistrations(registrations, page, limit) {
     let ind = (page - 1) * limit;
 
-    return Ember.A(registrations.toArray().splice(ind, limit));
+    return A(registrations.toArray().splice(ind, limit));
   }
 
   @sort('registrations', 'sortProperty') sortedRegistrations;
@@ -73,7 +75,7 @@ export default class extends Ember.Component {
 
   @computed('model', 'queryText', 'showOnlyNonCheckedIn', 'showOnlyThoseWhoOweMoney')
   registrations(model, query, onlyNonCheckedIn, onlyOweMoney) {
-    const queryPresent = Ember.isPresent(query);
+    const queryPresent = isPresent(query);
     const lowerQuery = query.toLowerCase();
 
     let filtered = model;

@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 /*
   the only purpose of this is to try to have consistency between all of the
   pages
 */
-export default Ember.Component.extend({
+export default Component.extend({
   text: ''
 });

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isBlank, isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import { PropTypes } from 'ember-prop-types';
-
-const { isPresent, isBlank, computed } = Ember;
 
 const SUPPORT_EMAIL = 'support@aeonvera.com';
 
@@ -21,7 +21,7 @@ const SUPPORT_EMAIL = 'support@aeonvera.com';
 
   given an order, all 3 of the above objects should be available
 */
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     model: PropTypes.EmberObject.isRequired,
     action: PropTypes.any.isRequired,

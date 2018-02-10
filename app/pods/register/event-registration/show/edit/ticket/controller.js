@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import RSVP from 'rsvp';
 import { computed, action } from 'ember-decorators/object';
 import { alias, sort, oneWay } from 'ember-decorators/object/computed';
@@ -10,7 +10,7 @@ import RegistrationController from 'aeonvera/mixins/registration/controller';
 import CurrentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 import EnsureOrderExists from 'aeonvera/mixins/registration/ensure-order-exists';
 
-export default Ember.Controller.extend(EnsureOrderExists, CurrentUserHelpers, RegistrationController, {
+export default Controller.extend(EnsureOrderExists, CurrentUserHelpers, RegistrationController, {
 
   levelSort: ['name:asc'],
   packageSort: ['name:asc'],

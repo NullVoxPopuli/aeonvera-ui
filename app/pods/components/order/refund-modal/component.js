@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import $ from 'jquery';
 import { PropTypes } from 'ember-prop-types';
 
 import ENV from 'aeonvera/config/environment';
@@ -12,7 +13,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 const FULL_REFUND = 'full';
 const PARTIAL_REFUND = 'partial';
 
-export default class RefundModal extends Ember.Component {
+export default class RefundModal extends Component {
   static propTypes = {
     order: PropTypes.EmberObject.isRequired
   };
@@ -61,7 +62,7 @@ export default class RefundModal extends Ember.Component {
     };
 
     try {
-      const data = yield Ember.$.ajax(ajaxOptions);
+      const data = yield $.ajax(ajaxOptions);
 
       this.get('store').pushPayload(data);
       this.get('flash').success('Refund Succeeded');

@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { isBlank, String: { htmlSafe } } = Ember;
+import { helper } from '@ember/component/helper';
+import { isBlank } from '@ember/utils';
+import { htmlSafe } from '@ember/string';
 
 const defaultTemplate = (title, detail) => (
   title && detail && `${title} ${detail}` || title || detail
@@ -77,4 +77,4 @@ function isServerError(error) {
   return errorStatus >= 500;
 }
 
-export default Ember.Helper.helper(messageFromError);
+export default helper(messageFromError);

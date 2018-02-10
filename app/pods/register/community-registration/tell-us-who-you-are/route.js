@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { observer } from '@ember/object';
 
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-const { observer } = Ember;
-
-export default Ember.Route.extend(currentUserHelpers, {
+export default Route.extend(currentUserHelpers, {
   beforeModel() {
     const loggedIn = this.get('loggedIn');
 

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Show from 'aeonvera/mixins/routes/crud/events/show';
 
-export default Ember.Route.extend(Show, {
+export default Route.extend(Show, {
   modelName: 'custom-field',
   include: 'custom_field_responses.writer'
 });

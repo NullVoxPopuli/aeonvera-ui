@@ -1,15 +1,14 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent, isBlank } from '@ember/utils';
 
 import { computed, action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
 
 import { PropTypes } from 'ember-prop-types';
 
-const { isBlank, isPresent } = Ember;
-
 const HIDE_CLASS = 'error-message-hidden';
 
-export default class extends Ember.Component {
+export default class extends Component {
   propTypes = {
     afterLogin: PropTypes.func
   };

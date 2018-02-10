@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import { computed, set } from '@ember/object';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
 import Form from 'aeonvera/mixins/components/edit-form';
 
-const { isPresent } = Ember;
-
-export default Ember.Component.extend(Form, {
+export default Component.extend(Form, {
   modelName: 'shirt',
   saveSuccessPath: 'events.show.shirts.show',
   cancelPath: 'events.show.shirts',
   parentAssociation: 'host',
 
-  showSetAllToPriceButton: Ember.computed('model.sizes', 'model.price', function() {
+  showSetAllToPriceButton: computed('model.sizes', 'model.price', function() {
     const sizes = this.get('model.sizes');
     const price = this.get('model.price');
 
@@ -22,7 +22,7 @@ export default Ember.Component.extend(Form, {
       const sizes = this.get('model.sizes');
 
       sizes.forEach(function(sizeData) {
-        Ember.set(sizeData, 'price', currentPrice);
+        set(sizeData, 'price', currentPrice);
       });
     }
   }

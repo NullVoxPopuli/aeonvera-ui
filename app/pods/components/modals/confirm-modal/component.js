@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 import { computed } from 'ember-decorators/object';
 
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     didConfirm: PropTypes.func.isRequired,
     isModalShowing: PropTypes.bool

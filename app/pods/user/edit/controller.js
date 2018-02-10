@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import ENV from 'aeonvera/config/environment';
 
 import { alias } from 'ember-decorators/object/computed';
 
-export default Ember.Controller.extend({
-  ajax: Ember.inject.service(),
-  flash: Ember.inject.service('flash-notification'),
+export default Controller.extend({
+  ajax: service(),
+  flash: service('flash-notification'),
 
   @alias('model.user') user: null,
 
@@ -21,7 +23,7 @@ export default Ember.Controller.extend({
             user.deleteRecord();
 
             // update ui stuff
-            Ember.$('.close-reveal-modal').click();
+            $('.close-reveal-modal').click();
             this.send('invalidateSession');
           })
           .catch(error => {

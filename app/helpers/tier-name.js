@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 import FormatWithDate from 'aeonvera/helpers/date-with-format';
 import IncreaseAfter from 'aeonvera/helpers/tier-increase-after';
 
@@ -6,7 +6,7 @@ import IncreaseAfter from 'aeonvera/helpers/tier-increase-after';
 // tier-increase-after \
 //    (date-with-format tier.increaseAfterDate 'LLL' true)
 //    tier.increaseAfterTotalRegistrants
-export default Ember.Helper.helper(function(params) {
+export default helper(function(params) {
   const tier = params[0];
 
   const date = tier.get('increaseAfterDate');

@@ -1,6 +1,9 @@
-import Ember from 'ember';
+import { isArray } from '@ember/array';
+import { isEmpty } from '@ember/utils';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: [
     'hasError:error:no-error', 'classes'
   ],
@@ -17,21 +20,21 @@ export default Ember.Component.extend({
   */
   fieldName: '',
 
-  hasError: Ember.computed('fieldErrors.@each', function() {
+  hasError: computed('fieldErrors.@each', function() {
     const errors = this.get('fieldErrors');
 
     return (errors.length > 0);
   }),
 
-  fieldErrors: Ember.computed('errors.@each', 'field', function() {
+  fieldErrors: computed('errors.@each', 'field', function() {
     const field = this.get('field');
     const error = (this.get('errors.' + field) || []);
 
-    if (Ember.isEmpty(error)) {
+    if (isEmpty(error)) {
       return error;
     }
 
-    if (Ember.isArray(error)) {
+    if (isArray(error)) {
       if (error.get('firstObject.message') === undefined) {
         return error.map(e => ({ message: e }));
       }

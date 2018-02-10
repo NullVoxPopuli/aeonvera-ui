@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { computed, action } from 'ember-decorators/object';
 import { filterBy } from 'ember-decorators/object/computed';
 
 import { PropTypes } from 'ember-prop-types';
 
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     onRemoveOrderLineItem: PropTypes.func
   };

@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Loading from '../../mixins/loading';
 
-export default Ember.Route.extend(Loading, {
+export default Route.extend(Loading, {
 });

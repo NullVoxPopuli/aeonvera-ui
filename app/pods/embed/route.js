@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   // This feels really hacky...
   beforeModel(transition) {
     const target = transition.params.embed.subdomain;

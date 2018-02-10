@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function isIncluded(params/* , hash*/) {
   const array = params[0];
@@ -7,4 +7,4 @@ export function isIncluded(params/* , hash*/) {
   return array.includes(value);
 }
 
-export default Ember.Helper.helper(isIncluded);
+export default helper(isIncluded);

@@ -1,17 +1,18 @@
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
+import { isPresent, isBlank } from '@ember/utils';
 import Ember from 'ember';
 import RSVP from 'rsvp';
-
-const { isBlank, isPresent, inject } = Ember;
 
 // requires that the including controler have the following:
 // - properties:
 //   - order
 //   - host
-export default Ember.Mixin.create({
-  rollbar: inject.service('rollbar'),
-  store: inject.service('store'),
-  flash: inject.service('flash-notification'),
-  session: inject.service('session'),
+export default Mixin.create({
+  rollbar: service('rollbar'),
+  store: service('store'),
+  flash: service('flash-notification'),
+  session: service('session'),
 
   _existingOrderLineItemForItem(lineItem) {
     Ember.Logger.info('_existingOrderLineItemForItem');

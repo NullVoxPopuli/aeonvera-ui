@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { moduleForModel, test, skip } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
 
@@ -29,7 +29,7 @@ test('total | multiplies quantity by price', function(assert) {
 });
 
 test('priceNeedsChanging | price is updated if a size is changed', function(assert) {
-  Ember.run(() => {
+  run(() => {
 
     let shirt = make('shirt');
     shirt.priceForSize = function(a) {

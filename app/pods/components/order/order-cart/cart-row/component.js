@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { computed, action } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
 import { PropTypes } from 'ember-prop-types';
 
-export default class OrderCartRow extends Ember.Component {
+export default class OrderCartRow extends Component {
   static propTypes = {
     order: PropTypes.EmberObject.isRequired,
     orderLineItem: PropTypes.EmberObject.isRequired,

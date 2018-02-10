@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import ENV from 'aeonvera/config/environment';
 
 import { computed } from 'ember-decorators/object';
 
-export default Ember.Controller.extend({
-  eventId: Ember.computed.alias('model.eventId'),
-  registrations: Ember.computed.alias('model.registrations'),
-  paramsForDownload: Ember.computed('model.eventId', {
+export default Controller.extend({
+  eventId: alias('model.eventId'),
+  registrations: alias('model.registrations'),
+  paramsForDownload: computed('model.eventId', {
     get(key) {
       return {
         event_id: this.get('model.eventId')

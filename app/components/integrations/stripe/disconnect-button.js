@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Component from '@ember/component';
 import env from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   actions: {
     removeIntegration() {
       const to = this.get('to');
       const integration = to.get('stripeIntegration');
 
-      if (Ember.isPresent(integration)) {
+      if (isPresent(integration)) {
         integration.deleteRecord();
         return integration.save().then(record => {
           this.get('store').unloadRecord(record);

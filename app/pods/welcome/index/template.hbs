@@ -1,67 +1,61 @@
-{{#unless loggedIn}}
+{{!-- {{#unless loggedIn}}
   <div class='layout row layout-align-space-between show-for-small'>
     {{login-modal afterLogin=(action (transition-to 'dashboard'))}}
     {{sign-up-modal}}
 
   </div>
-{{/unless}}
+{{/unless}} --}}
 
-<div class='header'>
+<div class='layout-column layout-align-space-around-stretch'>
+  <div class='main-title layout-row layout-align-center-center'>
+    <h1 class='welcome-title'>{{t 'subheader'}}</h1>
+  </div>
 
-  <h1 class='text-center'>{{t 'appname'}}</h1>
-  <h6 class='subheader.text-center'>{{t 'subheader'}}</h6>
-</div>
+  <div class='layout-column layout-align-space-around'>
 
+    <div class='calls-to-action layout-row layout-align-space-around'>
+      {{#paper-button
+        raised=true accent=true
+        onClick=(action (transition-to 'upcoming-events'))}}
+        {{t 'buttons.eventcalendar'}}
+      {{/paper-button}}
 
-    <h3>{{t 'lookingforevent'}}</h3>
-    <hr />
-    {{#link-to 'upcoming-events' classNames='button'}}
-      {{t 'buttons.eventcalendar'}}
-    {{/link-to}}
+      {{#paper-button
+        raised=true accent=true
+        onClick=(action (transition-to 'events.new'))}}
+        {{t 'buttons.createyourevent'}}
+      {{/paper-button}}
 
+      {{#paper-button
+        raised=true accent=true
+        onClick=(action (transition-to 'communities'))}}
+        List of Dance Scenes
+      {{/paper-button}}
+    </div>
 
-    <h3>{{t 'hostinganevent'}}</h3>
-    <hr />
-    {{#link-to 'events.new' classNames='button success'}}
-      {{t 'buttons.createyourevent'}}
-    {{/link-to}}
+    <div class='layout-row'>
 
-
-    <h3>{{t 'lookingforscene'}}</h3>
-    <hr />
-    {{#link-to 'communities' classNames='button'}}
-      {{t 'buttons.scenesbycity'}}
-    {{/link-to}}
-
-
-{{#unless session.isAuthenticated}}
-      {{login-modal afterLogin=(action (transition-to 'dashboard'))}}
-      {{sign-up-modal}}
-{{/unless}}
-
-
-  <h3 class='text-center'>{{t 'whatisheader'}}</h3>
-  {{t 'whatis'}}
-
-    <h3>
-      {{#link-to 'welcome.features'}}
+      <h3>
+        {{#link-to 'welcome.features'}}
         {{t 'features'}}
-      {{/link-to}}
-    {{t 'featuresinfo'}}
-    </h3>
-
-    <h3>
-      {{#link-to 'welcome.pricing'}}
-        {{ t 'pricing' }}
-      {{/link-to}}
-    {{t 'pricinginfo'}}
-    </h3>
-
-    <h3>
-      {{#link-to 'welcome.faq'}}
-       {{t 'faq'}}
-      {{/link-to}}
+        {{/link-to}}
+        {{t 'featuresinfo'}}
       </h3>
-    {{t 'faqinfo'}}
 
-br
+      <h3>
+        {{#link-to 'welcome.pricing'}}
+        {{ t 'pricing' }}
+        {{/link-to}}
+        {{t 'pricinginfo'}}
+      </h3>
+
+      <h3>
+        {{#link-to 'welcome.faq'}}
+        {{t 'faq'}}
+        {{/link-to}}
+      </h3>
+      {{t 'faqinfo'}}
+
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import ShowIndex from 'aeonvera/mixins/routes/crud/events/show/index';
 
-export default Ember.Route.extend(ShowIndex, {
+export default Route.extend(ShowIndex, {
   modelName: 'line-item'
 });

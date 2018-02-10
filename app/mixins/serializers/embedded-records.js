@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create(DS.EmbeddedRecordsMixin, {
+export default Mixin.create(DS.EmbeddedRecordsMixin, {
   // fix: move array to the data section
   //
   _serializeEmbeddedBelongsTo(snapshot, json, relationship) {

@@ -23,7 +23,7 @@ table
           else
             = to-usd tier.increaseBy
         td
-          link-to 'events.show.pricing-tiers.show' tier.id
+          = link-to 'events.show.pricing-tiers.show' tier.id
             = tier-name tier
         td = tier.numberOfLeads
         td = tier.numberOfFollows

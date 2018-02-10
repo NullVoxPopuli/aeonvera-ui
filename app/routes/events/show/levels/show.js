@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import Show from 'aeonvera/mixins/routes/crud/events/show';
 
-export default Ember.Route.extend(Show, {
+export default Route.extend(Show, {
   modelName: 'level',
   include: 'registrations,registrations.package,registrations.level,registrations.attendee,registrations.order'
 

@@ -19,7 +19,7 @@ table
     each model as |package|
       tr
         td 
-          link-to 'events.show.packages.show' package.id
+          = link-to 'events.show.packages.show' package.id
             = package.name
         td = package.numberOfLeads
         td = package.numberOfFollows

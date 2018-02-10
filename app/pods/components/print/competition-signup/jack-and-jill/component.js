@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import { computed } from 'ember-decorators/object';
 import { alias, filterBy } from 'ember-decorators/object/computed';
 
-export default class extends Ember.Component {
+export default class extends Component {
   // competition = null;
   additionalRows = 0;
 

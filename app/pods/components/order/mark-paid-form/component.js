@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isBlank, isPresent } from '@ember/utils';
 import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service';
@@ -6,9 +7,7 @@ import { alias } from 'ember-decorators/object/computed';
 
 import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
-const { isPresent, isBlank } = Ember;
-
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     order: PropTypes.EmberObject.isRequired,
     showOrder: PropTypes.bool,

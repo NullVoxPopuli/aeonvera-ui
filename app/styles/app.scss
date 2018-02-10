@@ -1,8 +1,10 @@
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
 
 $primary: 'blue-grey';
 $secondary: 'deep-purple';
-$accent: 'teal';
+$accent: 'cyan';
 
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
@@ -33,6 +35,25 @@ $accent: 'teal';
 
 
 @import 'pod-styles.scss';
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: white;
+
+  margin: 0;
+  padding: 0;
+
+  // > div {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  // }
+  .application-container {
+
+  }
+}
 
 blockquote {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);

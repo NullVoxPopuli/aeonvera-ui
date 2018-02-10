@@ -1,5 +1,6 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  lastObject: Ember.computed.alias('model.lastObject')
+export default Component.extend({
+  lastObject: alias('model.lastObject')
 });

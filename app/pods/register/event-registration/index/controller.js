@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 import { action, computed } from 'ember-decorators/object';
 import { sort, equal, gt } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   @service('flash-notification') flash: null,
 
   sortBy: ['registeredAt'],

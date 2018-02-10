@@ -1,14 +1,13 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { isEmpty } from '@ember/utils';
 
 import { service } from 'ember-decorators/service';
 
 import { UNREGISTERED_ID } from 'aeonvera/models/registration';
 
-const { isEmpty } = Ember;
-
 const PARENT_ROUTE = 'register.event-registration.show';
 
-export default Ember.Route.extend({
+export default Route.extend({
   @service('flash-notification') flash: null,
 
   // an unregistered registration cannot view this route

@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { isBlank, isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed, get } from '@ember/object';
 
-const { computed } = Ember;
-
-export default Ember.Component.extend({
-  session: Ember.inject.service(),
+export default Component.extend({
+  session: service(),
 
   // passed in
   path: '',
@@ -20,7 +22,7 @@ export default Ember.Component.extend({
       const path = this.get('path');
       const selectedAttributes = this.get('selectedAttributes').mapBy('name');
       const params = this.get('params');
-      const queryParams = Ember.isBlank(params) ? '' : Ember.$.param(params);
+      const queryParams = isBlank(params) ? '' : $.param(params);
       const fields = `fields=${selectedAttributes.join(',')}&${queryParams}`;
 
       return `${path}${fields}`;
@@ -60,14 +62,14 @@ export default Ember.Component.extend({
     get(key) {
       const fields = this.get('fields');
 
-      if (Ember.isPresent(fields)) {
+      if (isPresent(fields)) {
         return fields;
       }
 
       const modelType = this.get('modelType');
       let modelAttributes = this.get('_modelAttributes');
 
-      if (Ember.isBlank(modelAttributes)) {
+      if (isBlank(modelAttributes)) {
         modelAttributes = this._attributesForModelType(modelType, true);
 
         const relationships = this.get('modelRelationships');
@@ -92,7 +94,7 @@ export default Ember.Component.extend({
     get(key) {
       const modelType = this.get('modelType');
       const allowedRelationships = this.get('relationships').split(',');
-      const relationshipData = Ember.get(modelType, 'relationships');
+      const relationshipData = get(modelType, 'relationships');
 
       // return relationshipData.map(r => r.name)
       // TODO: is there a fancy ES6 way to do this?
@@ -125,7 +127,7 @@ export default Ember.Component.extend({
   }),
 
   _attributesForModelType(modelType, included = false, prefix = '') {
-    const attributeData = Ember.get(modelType, 'attributes');
+    const attributeData = get(modelType, 'attributes');
 
     // return attributeData.map((meta, attr) => attr);
     // TODO: is there a fancy ES6 way to do this?
@@ -158,7 +160,7 @@ export default Ember.Component.extend({
       // authenticated request, requires token
       const authToken = this.get('session.data.authenticated.token');
 
-      Ember.$.ajax({
+      $.ajax({
         url: path,
         type: 'GET',
         beforeSend(xhr) {

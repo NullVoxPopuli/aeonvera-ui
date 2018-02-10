@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model(params, transition) {
     const event = this.modelFor('event-at-the-door');
     const itemsPromise = this.store.query('orderLineItem', {

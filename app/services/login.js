@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 import { task } from 'ember-concurrency';
 
 import { service } from 'ember-decorators/service';
 
-const { isPresent } = Ember;
-
-export default class extends Ember.Service {
+export default class extends Service {
   @service('session') session;
   @service('current-user') currentUser;
   @service('flash-notification') flash;

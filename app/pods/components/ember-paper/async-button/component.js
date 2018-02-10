@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 // https://github.com/miguelcobain/ember-paper/issues/569#issuecomment-262945669
 //
@@ -10,7 +10,7 @@ import Ember from 'ember';
 //   successMessage='Created stuff'
 //   onClick=(action 'createStuff')
 // }}
-export default Ember.Component.extend({
+export default Component.extend({
 
   tagName: '', // no wrapper
 

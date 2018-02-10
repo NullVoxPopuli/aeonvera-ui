@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isBlank, isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 import { PropTypes } from 'ember-prop-types';
 
@@ -7,9 +8,7 @@ import { map, alias, filter, filterBy } from 'ember-decorators/object/computed';
 
 import { isA } from 'aeonvera/helpers/is-a';
 
-const { isPresent, isBlank } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     order: PropTypes.EmberObject.isRequired,
     shirt: PropTypes.EmberObject.isRequired,

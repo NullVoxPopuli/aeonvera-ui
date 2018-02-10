@@ -1,9 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import LineItem from '../models/line-item';
 import LeadsAndFollows from '../mixins/models/has-leads-and-follows';
-
-const { computed } = Ember;
 
 export default LineItem.extend(LeadsAndFollows, {
   event: DS.belongsTo('event'),

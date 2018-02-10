@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
 import { service } from 'ember-decorators/service';
 import { action } from 'ember-decorators/object';
@@ -8,7 +8,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 const TO_PERSON = 0;
 const TO_YEAR = 1;
 
-export default class extends Ember.Component {
+export default class extends Component {
   @service('flash-notification') flash;
   @service('authenticated-ajax') ajax;
 

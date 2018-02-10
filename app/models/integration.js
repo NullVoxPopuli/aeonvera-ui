@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -6,7 +6,7 @@ export default DS.Model.extend({
   publishableKey: DS.attr('string'),
   owner: DS.belongsTo('host', { polymorphic: true }),
 
-  name: Ember.computed.alias('kind'),
+  name: alias('kind'),
 
   // only used during the connecting process
   authorizationCode: DS.attr('string')

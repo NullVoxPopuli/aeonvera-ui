@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  flash: Ember.inject.service('flash-notification'),
+export default Controller.extend({
+  flash: service('flash-notification'),
   showPaymentInProgress: false,
 
   queryParams: ['token'],

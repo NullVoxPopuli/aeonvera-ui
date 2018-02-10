@@ -33,7 +33,7 @@ table
           else
             span This event doesn't have any discounts to apply.
             br
-            link-to 'events.show.discounts'
+            = link-to 'events.show.discounts'
               span Discounts can be created here
 
         td: button.success.tiny disabled=saveDisabled click='saveSponsorship' Save

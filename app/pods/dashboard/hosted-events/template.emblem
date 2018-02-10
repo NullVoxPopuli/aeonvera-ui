@@ -31,7 +31,7 @@ if model
     each filteredModel as |event|
       tr
         td
-          link-to 'events.show' event.id
+          = link-to 'events.show' event.id
             = event.name
         td = event.totalAttendees
         td = event.numberOfLeads

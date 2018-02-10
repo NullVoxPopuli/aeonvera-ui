@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  torii: Ember.inject.service(),
-  flash: Ember.inject.service('flash-notification'),
+export default Component.extend({
+  torii: service(),
+  flash: service('flash-notification'),
   resetButton: false,
 
   actions: {

@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
 import { computed } from 'ember-decorators/object';
 
 import { toUsd } from 'aeonvera/helpers/to-usd';
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     net: PropTypes.number.isRequired,
     fees: PropTypes.number.isRequired,

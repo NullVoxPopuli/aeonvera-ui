@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
-const { computed } = Ember;
-
-export default Ember.Mixin.create({
+export default Mixin.create({
   isDiscount: function() {
     return this.get('constructor.modelName') === 'discount';
   }.property(),

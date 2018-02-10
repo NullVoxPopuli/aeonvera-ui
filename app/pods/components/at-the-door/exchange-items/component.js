@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  cart: Ember.inject.service('order-cart'),
+export default Component.extend({
+  cart: service('order-cart'),
 
   // passed in
   items: [],
@@ -13,7 +16,7 @@ export default Ember.Component.extend({
   exchangingForQuantity: 0,
   absorbFees: true,
 
-  isGivingBackDisabled: Ember.computed('givingBackItem', 'givingBackQuantity', {
+  isGivingBackDisabled: computed('givingBackItem', 'givingBackQuantity', {
     get() {
       const item = this.get('givingBackItem');
       const quantity = this.get('givingBackQuantity');
@@ -22,7 +25,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  isExchangingForDisabled: Ember.computed('exchangingForItem', 'exchangingForQuantity', {
+  isExchangingForDisabled: computed('exchangingForItem', 'exchangingForQuantity', {
     get() {
       const item = this.get('exchangingForItem');
       const quantity = this.get('exchangingForQuantity');
@@ -56,7 +59,7 @@ export default Ember.Component.extend({
     },
 
     openPaymentModal(order) {
-      Ember.$('.hidden-mark-paid-container a').click();
+      $('.hidden-mark-paid-container a').click();
     },
 
     clearOrder() {

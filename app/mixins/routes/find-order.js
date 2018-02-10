@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 const includeString = `
 stripe_refunds,
@@ -7,7 +7,7 @@ registration.custom_field_responses,registration.housing_request,
 registration.housing_provision,host,
 order_line_items.line_item.restraints,host.integrations`;
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   _findOrder(id, queryParams) {
     const store = this.get('store');
 

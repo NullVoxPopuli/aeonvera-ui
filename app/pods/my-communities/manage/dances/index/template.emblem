@@ -11,7 +11,7 @@ table
     each model as |dance|
       tr
         td
-          link-to 'my-communities.manage.dances.show' dance.id
+          = link-to 'my-communities.manage.dances.show' dance.id
             = dance.name
         td = dance.schedule
         td 

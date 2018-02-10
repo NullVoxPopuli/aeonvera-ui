@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 import { equal } from 'ember-decorators/object/computed';
 
@@ -6,7 +6,7 @@ const DOES_NOT_NEED_HOUSING = 0;
 const CAN_PROVIDE_HOUSING = 1;
 const REQUESTING_HOUSING = 2;
 
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     selectedHousingOption: PropTypes.number,
     housingProvision: PropTypes.EmberObject,

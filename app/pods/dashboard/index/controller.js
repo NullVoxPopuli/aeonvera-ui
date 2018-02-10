@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { alias } from 'ember-decorators/object/computed';
 
-const { inject } = Ember;
-
-export default Ember.Controller.extend({
-  session: inject.service('session'),
+export default Controller.extend({
+  session: service('session'),
 
   @alias('session.currentUser') currentUser: null,
   @alias('model.upcoming') upcomingEvents: null,

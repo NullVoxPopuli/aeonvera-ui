@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Service, { inject as service } from '@ember/service';
 import DS from 'ember-data';
 import RSVP from 'rsvp';
 import { computed } from 'ember-decorators/object';
@@ -8,9 +9,7 @@ import { alias } from 'ember-decorators/object/computed';
 import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
 
-const { isEmpty, inject: { service } } = Ember;
-
-export default class extends Ember.Service {
+export default class extends Service {
   session = service('session');
   crisp = service('crisp');
   rollbar = service();

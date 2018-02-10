@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 import DS from 'ember-data';
 
@@ -9,9 +11,7 @@ import { PropTypes } from 'ember-prop-types';
 
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
 
-const { isPresent, inject: { service } } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     organization: PropTypes.EmberObject.isRequired,
     order: PropTypes.EmberObject.isRequired,

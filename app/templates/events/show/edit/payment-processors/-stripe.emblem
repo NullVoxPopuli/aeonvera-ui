@@ -12,7 +12,7 @@ ul.pricing-table
   li.bullet-item
     .row
       .medium-5.columns
-        link-to 'welcome.tos'
+        = link-to 'welcome.tos'
           span 0.75%
       .medium-7.columns
         span per transaction to ÆONVERA

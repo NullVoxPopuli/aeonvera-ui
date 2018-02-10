@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { isPresent, isBlank } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   amountOwed: DS.attr('number'),
   amountPaid: DS.attr('number'),
 
@@ -12,7 +13,7 @@ export default Ember.Mixin.create({
   hasPaid: function() {
     const amountPaid = this.get('amountPaid');
 
-    return (amountPaid !== 0 && Ember.isPresent(amountPaid));
+    return amountPaid !== 0 && isPresent(amountPaid);
   }.property('amountPaid'),
 
   paymentStatus: function() {
@@ -34,7 +35,7 @@ export default Ember.Mixin.create({
       status += 'Paid: $' + paid;
     }
 
-    if (Ember.isBlank(status)) {
+    if (isBlank(status)) {
       // something is off...
 
 

@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
+import { w } from '@ember/string';
 import { computed } from 'ember-decorators/object';
 import { not } from 'ember-decorators/object/computed';
 import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
-const { inject } = Ember;
-
-const eventInclude = Ember.String.w(`
+const eventInclude = w(`
   packages
   shirts
   levels
@@ -16,9 +16,9 @@ const eventInclude = Ember.String.w(`
   pricing_tiers
 `).join(',');
 
-export default Ember.Route.extend(SideNav, {
-  session: inject.service(),
-  i18n: inject.service(),
+export default Route.extend(SideNav, {
+  session: service(),
+  i18n: service(),
 
 
   // TODO: maybe eventually make requiring to login optional?

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
-export default class extends Ember.Route {
+export default class extends Route {
   model(params) {
     const organization = this.modelFor('my-communities.manage');
 

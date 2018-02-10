@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import { readOnly } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
-const { inject } = Ember;
-
-export default Ember.Mixin.create({
-  session: inject.service('session'),
-  currentUserService: inject.service('current-user'),
+export default Mixin.create({
+  session: service('session'),
+  currentUserService: service('current-user'),
 
   @readOnly
   @alias('currentUserService.user') currentUser: null,

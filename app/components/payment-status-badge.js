@@ -1,16 +1,17 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['payment-status-badge'],
   classNameBindings: ['showPaid:paid:unpaid'],
 
-  isBalanceZero: Ember.computed('owes', function() {
+  isBalanceZero: computed('owes', function() {
     const owes = this.get('owes');
 
     return (owes === 0.0);
   }),
 
-  showPaid: Ember.computed('isBalanceZero', 'hasPaid', function() {
+  showPaid: computed('isBalanceZero', 'hasPaid', function() {
     const isBalanceZero = this.get('isBalanceZero');
     const hasPaid = this.get('hasPaid');
 

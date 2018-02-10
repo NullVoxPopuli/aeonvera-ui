@@ -1,0 +1,38 @@
+{{#paper-toolbar as |nav|}}
+  {{#nav.tools}}
+    {{#if showSidebarToggler}}
+      {{#paper-button iconButton=true onClick=onLeftMenuOpen class='hide-gt-sm'}}
+        {{paper-icon 'menu'}}
+      {{/paper-button}}
+    {{/if}}
+
+    <h2>
+      {{#link-to 'application'}}{{t 'appname'}}{{/link-to}}
+    </h2>
+
+    <div class='flex'></div>
+
+    {{#if session.isAuthenticated}}
+      {{#paper-button onClick=logoutAction}}
+        {{paper-icon 'exit to app'}} Logout
+      {{/paper-button}}
+    {{else}}
+      {{#ember-paper/simple-dialog-with-button
+        buttonText=(t 'buttons.signup')
+        raised=false
+        title='Sign Up'}}
+
+        {{signup-form}}
+      {{/ember-paper/simple-dialog-with-button}}
+
+
+      {{#paper-button
+        data-test-app-nav-login-button
+        onClick=(action (transition-to 'login'))}}
+        Login
+      {{/paper-button}}
+
+    {{/if}}
+
+  {{/nav.tools}}
+{{/paper-toolbar}}

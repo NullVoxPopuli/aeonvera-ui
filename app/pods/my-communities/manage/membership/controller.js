@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import ENV from 'aeonvera/config/environment';
 
 import { computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   @alias('model.id') organizationId: null,
 
   @computed('organizationId')

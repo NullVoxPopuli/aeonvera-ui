@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import $ from 'jquery';
 import { test, skip } from 'ember-qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 import testSelector from 'ember-test-selectors';
@@ -19,7 +19,7 @@ moduleForAcceptance('Acceptance | Login | Errors', {
 test('shows an error', withChai(async function(expect) {
   const url = `/api/login`;
 
-  Ember.$.mockjax({ url, responseText: { error: 'cannot do a thing' }, type: 'POST' });
+  $.mockjax({ url, responseText: { error: 'cannot do a thing' }, type: 'POST' });
 
   await visit('/login');
 

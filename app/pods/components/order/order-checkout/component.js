@@ -1,19 +1,22 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { oneWay } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { computed } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 import { PropTypes } from 'ember-prop-types';
 
 import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
-export default Ember.Component.extend({
+export default Component.extend({
   propTypes: {
     model: PropTypes.EmberObject.isRequired,
     token: PropTypes.string
   },
-  store: Ember.inject.service('store'),
-  cart: Ember.inject.service('order-cart'),
-  flashMessages: Ember.inject.service('flash-notification'),
-  email: Ember.computed.oneWay('cart.userEmail'),
+  store: service('store'),
+  cart: service('order-cart'),
+  flashMessages: service('flash-notification'),
+  email: oneWay('cart.userEmail'),
 
   // Set when in the process of paying / waiting on stripe.
   // This triggers an overlay that prevents the user from
@@ -64,7 +67,7 @@ export default Ember.Component.extend({
   _setOrderTokenIfPresent(order) {
     const token = this.get('token');
 
-    if (Ember.isPresent(token)) {
+    if (isPresent(token)) {
       order.set('paymentToken', this.get('token'));
     }
   },

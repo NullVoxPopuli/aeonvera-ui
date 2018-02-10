@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import { registerHelper } from '@ember/test';
 
-export default Ember.Test.registerHelper('parseQueryParams', function(app, queryString) {
+export default registerHelper('parseQueryParams', function(app, queryString) {
   let params = {};
 
   // Split into key/value pairs

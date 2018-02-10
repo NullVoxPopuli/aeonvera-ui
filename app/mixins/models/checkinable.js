@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   checkedInAt: DS.attr('date'),
 
   isCheckedIn: function() {
-    return Ember.isPresent(this.get('checkedInAt'));
+    return isPresent(this.get('checkedInAt'));
   }.property('checkedInAt')
 });

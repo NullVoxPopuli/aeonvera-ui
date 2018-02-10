@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import RSVP from 'rsvp';
 
 import { controller } from 'ember-decorators/controller';
@@ -22,7 +22,7 @@ const TABS = [
 
 
 // @mixin(Registration)
-export default Ember.Controller.extend(EnsureOrderExists, Registration, {
+export default Controller.extend(EnsureOrderExists, Registration, {
   @controller('application') application: null,
   @service('flash-notification') flash: null,
 

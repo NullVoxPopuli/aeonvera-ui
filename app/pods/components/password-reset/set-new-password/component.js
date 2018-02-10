@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
-  ajax: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Component.extend({
+  ajax: service(),
+  flashMessages: service(),
 
   password: null,
   passwordConfirmation: null,

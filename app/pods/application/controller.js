@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 import { action } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
 import { service } from 'ember-decorators/service';
 
-export default class extends Ember.Controller {
+export default class extends Controller {
   @service('flash-notification') flashMessages;
   @service('session') session;
   @service('navbar-title') navbarTitle;

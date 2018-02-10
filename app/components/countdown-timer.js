@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { Component, isBlank } = Ember;
+import Component from '@ember/component';
+import { isBlank, isPresent } from '@ember/utils';
 
 export default Component.extend({
   targetDate: 5,
@@ -41,7 +40,7 @@ export default Component.extend({
   _updateForm() {
     const model = this.get('model');
 
-    if (Ember.isPresent(model)) {
+    if (isPresent(model)) {
       model.notifyPropertyChange('registrationIsOpen');
     }
   }

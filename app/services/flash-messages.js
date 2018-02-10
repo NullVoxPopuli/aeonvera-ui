@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const { Service, inject } = Ember;
+import Service, { inject as service } from '@ember/service';
 
 // This is a shim for helping migrate from
 // ember-cli-flash
@@ -9,7 +7,7 @@ const { Service, inject } = Ember;
 // ember-cli-flash is very foundation-y
 // and the notifications look more like toasts, and are much friendlier
 export default class extends Service {
-  flash = inject.service('flash-notification');
+  flash = service('flash-notification');
 
   success(msg) {
     this.get('flash').success(msg);

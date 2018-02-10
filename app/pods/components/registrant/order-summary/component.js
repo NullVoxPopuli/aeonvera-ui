@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
@@ -42,7 +43,7 @@ export default class extends Component {
     const url = ENV.host + '/api/orders/' + id + '/refresh_stripe';
     const authToken = this.get('session.data.authenticated.token');
 
-    Ember.$.ajax({
+    $.ajax({
       url: url,
       type: 'GET',
       beforeSend(xhr) {

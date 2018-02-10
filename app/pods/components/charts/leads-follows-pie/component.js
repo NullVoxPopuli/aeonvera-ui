@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { PropTypes } from 'ember-prop-types';
 
 import { computed } from 'ember-decorators/object';
 
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     leads: PropTypes.number.isRequired,
     follows: PropTypes.number.isRequired,

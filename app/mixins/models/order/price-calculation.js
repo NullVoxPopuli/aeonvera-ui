@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import { computed } from 'ember-decorators/object';
 import { not, gt } from 'ember-decorators/object/computed';
-
-const { inject } = Ember;
 
 // Because calculating the total amount of an order is complicated,
 // the logic for summing line items, and applying discounts
@@ -16,10 +15,10 @@ const { inject } = Ember;
 // (rather than whole orders), there needs to be some logic that checks
 // the line items for a discount's requirement, and applies the discount
 // only to that.
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   // handles fee adding / absorbing to the subtotal
-  priceCalculator: inject.service(),
+  priceCalculator: service(),
   // orderCalculator: inject.service(),
 
   allowNegative: false,

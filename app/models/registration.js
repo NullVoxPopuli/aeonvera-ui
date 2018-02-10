@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 import { resourceAction, modelAction } from 'ember-custom-actions';
 
-const { isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
 
 export const UNREGISTERED_ID = 'unregistered';
@@ -97,7 +96,7 @@ export default DS.Model.extend(
     },
 
     hasUnpaidOrder: function() {
-      return Ember.isPresent(this.get('unpaidOrder'));
+      return isPresent(this.get('unpaidOrder'));
     }.property('unpaidOrder'),
 
     @computed('attendeeFirstName', 'attendeeLastName')
@@ -114,7 +113,7 @@ export default DS.Model.extend(
       return attendeeName;
     },
 
-    hasUsedStudentDiscount: Ember.computed('orders.@each', {
+    hasUsedStudentDiscount: computed('orders.@each', {
       get() {
         let result = false;
 
@@ -141,7 +140,7 @@ export default DS.Model.extend(
           message: 'Phone Number is required when volunteering.',
           validation(key, value, model) {
             if (model.get('interestedInVolunteering')) {
-              return Ember.isPresent(value);
+              return isPresent(value);
             }
 
             return true;
@@ -161,7 +160,7 @@ export default DS.Model.extend(
 
             if (requiresLevel) {
               // value is undefined for some reason
-              return Ember.isPresent(model.get('level.id'));
+              return isPresent(model.get('level.id'));
             }
 
             return true;

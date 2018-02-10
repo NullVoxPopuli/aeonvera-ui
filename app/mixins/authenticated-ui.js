@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Mixin.create(AuthenticatedRouteMixin, {
+export default Mixin.create(AuthenticatedRouteMixin, {
   authenticationRoute: 'welcome',
-  session: Ember.inject.service('session'),
-  flashMessages: Ember.inject.service('flashMessages'),
+  session: service('session'),
+  flashMessages: service('flashMessages'),
 
   activate: function() {
     this._super(...arguments);

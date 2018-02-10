@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import { registerAsyncHelper } from '@ember/test';
 
 import {
   invalidateSession
 } from 'aeonvera/tests/helpers/ember-simple-auth';
 
-export default Ember.Test.registerAsyncHelper('logout', function(app) {
+export default registerAsyncHelper('logout', function(app) {
   invalidateSession(app);
 });

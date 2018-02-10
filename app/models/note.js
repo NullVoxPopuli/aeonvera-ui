@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import DeletedAt from 'aeonvera/mixins/models/deleted-at';
 

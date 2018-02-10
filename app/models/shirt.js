@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isEmpty } from '@ember/utils';
 import DS from 'ember-data';
 
 import { computed } from 'ember-decorators/object';
@@ -9,8 +10,6 @@ import { computed } from 'ember-decorators/object';
 // - Purchasable
 // - File
 import LineItem from '../models/line-item';
-
-const { isEmpty } = Ember;
 
 export default LineItem.extend({
   sizes: DS.attr(),
@@ -82,7 +81,7 @@ export default LineItem.extend({
     let sizes = this.get('sizes');
 
     if (isEmpty(sizes)) {
-      sizes = Ember.A();
+      sizes = A();
     }
 
     sizes.pushObject(sizeData);

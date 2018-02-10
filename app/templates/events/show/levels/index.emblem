@@ -14,7 +14,7 @@ table
     each model as |level|
       tr
         td 
-          link-to 'events.show.levels.show' level.id
+          = link-to 'events.show.levels.show' level.id
             = level.name
         td = level.numberOfLeads
         td = level.numberOfFollows

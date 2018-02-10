@@ -1,0 +1,46 @@
+.welcome-background {
+  z-index: 1;
+  position: absolute;
+  top: -500px;
+  left: -500px;
+  height: 900px;
+  right: -500px;
+
+  transform: rotate(-8deg);
+
+  $grad-start: color($color-blue, '500');
+  $grad-end: color($color-blue, '700');
+  background: linear-gradient($grad-start, $grad-end);
+
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-screen {
+  max-width: 100%;
+  overflow-x: hidden;
+  color: black;
+
+  md-toolbar.md-default-theme {
+    background: none;
+  }
+
+  .welcome-content {
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .main-title {
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+
+  .calls-to-action {
+    margin-bottom: 15%;
+  }
+
+  .welcome-title {
+    color: white;
+    font-size: 50px;
+  }
+}

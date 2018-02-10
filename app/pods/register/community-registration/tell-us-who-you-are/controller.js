@@ -1,13 +1,13 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { isPresent, isBlank } from '@ember/utils';
+import { inject as service } from '@ember/service';
 import { computed } from 'ember-decorators/object';
 import { alias, readOnly } from 'ember-decorators/object/computed';
 
 
 import { randomString } from 'aeonvera/mixins/helpers/string';
 
-const { isBlank, isPresent, inject: { service } } = Ember;
-
-export default class extends Ember.Controller {
+export default class extends Controller {
   flash = service('flash-notification');
   // store = service('store');
   rollbar = service('rollbar');

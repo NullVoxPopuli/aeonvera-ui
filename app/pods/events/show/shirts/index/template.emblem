@@ -15,7 +15,7 @@ table
     if (is-present model)
       each model as |shirt|
         tr
-          td: link-to 'events.show.shirts.show' shirt.id
+          td: = link-to 'events.show.shirts.show' shirt.id
             = shirt.name
           td = shirt.numberPurchased
           td = to-usd shirt.currentPrice

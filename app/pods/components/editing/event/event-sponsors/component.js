@@ -1,12 +1,14 @@
-import Ember from 'ember';
-const { computed, isPresent } = Ember;
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
-export default Ember.Component.extend({
+export default Component.extend({
   event: null, // set by caller
   organizations: [], // set by caller
   discounts: [], // set by caller
-  model: computed.alias('event'),
-  currentSponsorships: computed.alias('event.sponsorships'),
+  model: alias('event'),
+  currentSponsorships: alias('event.sponsorships'),
 
   isAdding: false,
   selectedOrganization: null,

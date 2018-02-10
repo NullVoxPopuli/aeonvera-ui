@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import RSVP from 'rsvp';
 import { or } from 'ember-decorators/object/computed';
 
-export default Ember.Controller.extend({
-  flash: Ember.inject.service('flash-notification'),
+export default Controller.extend({
+  flash: service('flash-notification'),
 
   saveSuccessPath: 'events.show.manage',
   cancelPath: 'events.show.manage',

@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 import { computed } from 'ember-decorators/object';
 
-export default Ember.Component.extend({
-  ajax: Ember.inject.service(),
+export default Component.extend({
+  ajax: service(),
   email: null,
   errors: [],
 

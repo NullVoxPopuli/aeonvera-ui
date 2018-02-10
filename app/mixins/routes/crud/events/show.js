@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   parentPath: 'events.show',
   parentIdName: 'event_id',
   include: '',
@@ -16,7 +17,7 @@ export default Ember.Mixin.create({
 
     query[parentIdName] = parent.get('id');
 
-    if (Ember.isPresent(include)) {
+    if (isPresent(include)) {
       query.include = include;
     }
 

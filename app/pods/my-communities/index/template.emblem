@@ -17,5 +17,5 @@ each model as |organization|
             h3 = organization.name
             h6 = organization.location
     .columns.small-4
-      link-to 'my-communities.manage' organization.id classNames='button'
+      = link-to 'my-communities.manage' organization.id classNames='button'
         span Manage

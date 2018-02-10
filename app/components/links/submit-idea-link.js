@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
 import ExternalLink from 'aeonvera/components/links/external-link';
 
 export default ExternalLink.extend({
-  i18n: Ember.inject.service(),
+  i18n: service(),
 
   layoutName: 'components/links/external-link',
   href: 'https://github.com/NullVoxPopuli/aeonvera/issues?state=open',

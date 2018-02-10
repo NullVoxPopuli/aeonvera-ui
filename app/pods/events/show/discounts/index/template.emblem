@@ -8,7 +8,7 @@ link-to 'events.show.discounts.new' classNames='button'
 
 = sortable-table columns=columns data=model as |discount|
   td
-    link-to 'events.show.discounts.show' discount.id
+    = link-to 'events.show.discounts.show' discount.id
       = discount.code
   td = discount.timesUsed
   td = discount.discount

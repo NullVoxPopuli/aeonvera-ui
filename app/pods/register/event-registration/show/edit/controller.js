@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 import { computed } from 'ember-decorators/object';
 import { alias, gt } from 'ember-decorators/object/computed';
 
-export default class extends Ember.Controller {
+export default class extends Controller {
   @alias('model.event') event;
   @alias('model.registration') registration;
   @alias('event.isHousingEnabled') hasHousing;

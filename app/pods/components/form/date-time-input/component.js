@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import { isBlank } from '@ember/utils';
 import DS from 'ember-data';
-const { isBlank } = Ember;
 const { PromiseObject } = DS;
 
-export default Ember.Component.extend({
-  fieldValue: Ember.computed('model', 'field', function() {
+export default Component.extend({
+  fieldValue: computed('model', 'field', function() {
     const fieldName = this.get('field');
     const value = this.get('model.' + fieldName);
 

@@ -1,16 +1,17 @@
-import Ember from 'ember';
+import { mapBy, sum, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  leadsArray: Ember.computed.mapBy('model', 'numberOfLeads'),
-  followsArray: Ember.computed.mapBy('model', 'numberOfFollows'),
-  totalsArray: Ember.computed.mapBy('model', 'totalRegistrants'),
-  totalLeads: Ember.computed.sum('leadsArray'),
-  totalFollows: Ember.computed.sum('followsArray'),
-  totalRegistrations: Ember.computed.sum('totalsArray'),
+export default Controller.extend({
+  leadsArray: mapBy('model', 'numberOfLeads'),
+  followsArray: mapBy('model', 'numberOfFollows'),
+  totalsArray: mapBy('model', 'totalRegistrants'),
+  totalLeads: sum('leadsArray'),
+  totalFollows: sum('followsArray'),
+  totalRegistrations: sum('totalsArray'),
 
   sortProperties: ['isOpeningTier:desc', 'registrantsAlias:asc',
     'increaseAfterDate:asc'
   ],
-  sortedTiers: Ember.computed.sort('model', 'sortProperties')
+  sortedTiers: sort('model', 'sortProperties')
 
 });

@@ -13,7 +13,7 @@ table
       each model as |raffle|
         tr
           td 
-            link-to 'events.show.raffles.show' raffle.id
+            = link-to 'events.show.raffles.show' raffle.id
               = raffle.name
           td = raffle.numberOfPurchasedTickets
           td

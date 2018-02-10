@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
 import ENV from 'aeonvera/config/environment';
 
-export default Ember.Component.extend({
+export default Component.extend({
   email: null,
 
   actions: {
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
       };
       const _this = this;
 
-      Ember.$.ajax({
+      $.ajax({
         url: url,
         type: 'POST',
         data: data,

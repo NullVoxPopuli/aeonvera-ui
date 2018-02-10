@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function isA(params) {
   const object = params[0];
@@ -10,4 +10,4 @@ export function isA(params) {
   return isA;
 }
 
-export default Ember.Helper.helper(isA);
+export default helper(isA);

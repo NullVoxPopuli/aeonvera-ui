@@ -16,6 +16,6 @@ table
     each model.registrations as |registration|
       tr
         td
-          link-to 'events.show.registrations.show' registration.id
+          = link-to 'events.show.registrations.show' registration.id
             = registration.attendeeName
         td = date-with-format registration.registeredAt 'LLL'

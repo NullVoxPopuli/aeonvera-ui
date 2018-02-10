@@ -14,12 +14,14 @@ table
   tbody
     each model as |competition|
       tr
-        td: link-to 'events.show.competitions.show' competition.id
+        td
+          = link-to 'events.show.competitions.show' competition.id
             = competition.name
         / TODO: don't display if 0
         td = to-usd competition.currentPrice
         td = competition.numberOfLeads
         td = competition.numberOfFollows
         td = competition.totalRegistrants
-        td: link-to 'events.show.competitions.show.print' competition
-          | Print Sign-Up Sheet
+        td
+          = link-to 'events.show.competitions.show.print' competition
+            | Print Sign-Up Sheet

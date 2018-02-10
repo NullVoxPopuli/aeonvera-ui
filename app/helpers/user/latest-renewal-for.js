@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { isPresent, isBlank } = Ember;
+import { helper } from '@ember/component/helper';
+import { isBlank, isPresent } from '@ember/utils';
 
 export function userLatestRenewalFor(params, hash) {
   const { user, organization } = hash;
@@ -36,4 +35,4 @@ export function userLatestRenewalFor(params, hash) {
   return latestRenewal;
 }
 
-export default Ember.Helper.helper(userLatestRenewalFor);
+export default helper(userLatestRenewalFor);

@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { isBlank, isPresent } from '@ember/utils';
 import { task } from 'ember-concurrency';
 
-const { isPresent, isBlank } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   host: null,
   target: null,
   notes: [],
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
   actions: {
     appendToNotes(note) {
       const notes = this.get('notes');
-      const result = Ember.A();
+      const result = A();
 
       if (isPresent(notes)) {
         result.addObjects(notes);

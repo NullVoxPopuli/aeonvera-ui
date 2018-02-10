@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import PromiseProxyMixin from '@ember/object/promise-proxy-mixin';
+import ObjectProxy from '@ember/object/proxy';
 import { task, timeout } from 'ember-concurrency';
 import { computed, readOnly } from 'ember-decorators/object';
 import { alias } from 'ember-decorators/object/computed';
@@ -7,9 +9,9 @@ import { alias } from 'ember-decorators/object/computed';
 import { userLatestRenewalFor } from 'aeonvera/helpers/user/latest-renewal-for';
 import { userIsMemberOf } from 'aeonvera/helpers/user/is-member-of';
 
-const ProxyPromise = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
+const ProxyPromise = ObjectProxy.extend(PromiseProxyMixin);
 
-export default Ember.Component.extend({
+export default Component.extend({
   // passed-in
   member: null,
   organization: null,

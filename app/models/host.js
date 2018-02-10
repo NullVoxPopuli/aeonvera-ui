@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 import attr from 'ember-data/attr';
 import File from 'ember-data-paperclip/objects/file';
@@ -24,7 +25,7 @@ export default DS.Model.extend({
   logoUrlThumb: DS.attr('string'),
   logoUrlMedium: DS.attr('string'),
 
-  stripeIntegration: Ember.computed('integrations.@each', function() {
+  stripeIntegration: computed('integrations.@each', function() {
     const integrations = this.get('integrations').filterBy('name', 'stripe');
     let stripeIntegration = null;
 
@@ -42,7 +43,7 @@ export default DS.Model.extend({
     */
     const stripeIntegration = this.get('stripeIntegration');
 
-    const isPresent = Ember.isPresent(stripeIntegration);
+    const isPresent = isPresent(stripeIntegration);
 
     if (isPresent) {
       return stripeIntegration.get('publishableKey');
@@ -51,23 +52,23 @@ export default DS.Model.extend({
     return null;
   }.property('integrations.@each'),
 
-  isOrganization: Ember.computed(function() {
+  isOrganization: computed(function() {
     return this.get('constructor.modelName') === 'organization';
   }),
 
-  isEvent: Ember.computed(function() {
+  isEvent: computed(function() {
     return this.get('constructor.modelName') === 'event';
   }),
 
   // This corresponds to the server-side model name.
   // TODO: find a better way to do this.
-  payableType: Ember.computed(function() {
+  payableType: computed(function() {
     return this.get('isEvent') ? 'Event' : 'Organization';
   }),
 
-  logoIsMissing: Ember.computed('logoUrl', function() {
+  logoIsMissing: computed('logoUrl', function() {
     const logoUrl = this.get('logoUrl');
-    const logoPresent = Ember.isPresent(logoUrl);
+    const logoPresent = isPresent(logoUrl);
 
     return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
   })

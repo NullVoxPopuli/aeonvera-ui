@@ -1,5 +1,5 @@
 .inline-list.page-header-list
   li
-    link-to editPath classNames='button small'
+    = link-to editPath classNames='button small'
       span Edit
   li = page-header text=title

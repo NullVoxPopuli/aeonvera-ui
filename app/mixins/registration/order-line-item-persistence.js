@@ -1,11 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 import { service } from 'ember-decorators/service';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
 import EnsureOrderExists from 'aeonvera/mixins/registration/ensure-order-exists';
-
-const { Mixin } = Ember;
 
 // requires:
 // - event

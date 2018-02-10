@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import EditModel from 'aeonvera/mixins/edit-model';
 
-export default Ember.Component.extend(EditModel, {
+export default Component.extend(EditModel, {
   modelName: 'organization',
   saveSuccessPath: 'my-communities.manage',
   cancelPath: 'my-communities.manage'

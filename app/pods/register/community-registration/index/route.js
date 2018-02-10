@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-const { isPresent } = Ember;
-
-export default Ember.Route.extend(currentUserHelpers, {
+export default Route.extend(currentUserHelpers, {
 
   beforeModel() {
     const loggedIn = this.get('loggedIn');

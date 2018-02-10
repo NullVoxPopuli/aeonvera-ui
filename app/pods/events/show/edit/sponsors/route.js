@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model() {
     const event = this.modelFor('events.show');
     const organizations = this.store.findAll('organization');

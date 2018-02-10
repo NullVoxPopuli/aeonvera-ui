@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   data: {
     columns: [],
     type: 'gauge'
@@ -23,7 +24,7 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    Ember.run.later(() => {
+    later(() => {
       const requests = this.get('model.requests');
       const assigned = this.get('model.assigned');
       const percent = assigned / requests * 100;

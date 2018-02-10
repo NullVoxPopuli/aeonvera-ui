@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  userService: Ember.inject.service('current-user'),
+export default Route.extend(AuthenticatedRouteMixin, {
+  userService: service('current-user'),
 
   model: function() {
     const id = this.get('userService.id');

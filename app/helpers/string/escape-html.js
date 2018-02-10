@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import $ from 'jquery';
 
 export function escapeHTML(string) {
-  return Ember.$('<div />').text(string).html();
+  return $('<div />').text(string).html();
 }
 
-export default Ember.Helper.helper((params, hash) => escapeHTML(params[0]));
+export default helper((params, hash) => escapeHTML(params[0]));

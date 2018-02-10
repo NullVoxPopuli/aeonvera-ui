@@ -1,5 +1,5 @@
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import env from 'aeonvera/config/environment';
 
@@ -9,7 +9,7 @@ moduleForComponent('integrations/stripe/connect-button',
 });
 
 test('it renders', function(assert) {
-  let model = Ember.Object.create({ id: 1, payableType: 'Test' });
+  let model = EmberObject.create({ id: 1, payableType: 'Test' });
   this.set('model', model);
 
   this.render(hbs`{{integrations/stripe/connect-button to=model}}`);

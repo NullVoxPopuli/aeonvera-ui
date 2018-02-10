@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { isBlank, isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
-const { isBlank, computed } = Ember;
 const { attr } = DS;
 
 export default DS.Model.extend({
@@ -36,9 +36,9 @@ export default DS.Model.extend({
     return (currently > opensAt);
   }),
 
-  logoIsMissing: Ember.computed('logoUrl', function() {
+  logoIsMissing: computed('logoUrl', function() {
     const logoUrl = this.get('logoUrl');
-    const logoPresent = Ember.isPresent(logoUrl);
+    const logoPresent = isPresent(logoUrl);
 
     return logoPresent ? logoUrl.indexOf('missing') !== -1 : true;
   })

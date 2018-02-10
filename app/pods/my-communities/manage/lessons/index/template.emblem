@@ -5,7 +5,7 @@ link-to 'my-communities.manage.lessons.new' classNames='button'
 
 = sortable-table columns=columns data=model as |lesson|
   td
-    link-to 'my-communities.manage.lessons.show' lesson.id
+    = link-to 'my-communities.manage.lessons.show' lesson.id
       = lesson.name
   / td = lesson.schedule
   td

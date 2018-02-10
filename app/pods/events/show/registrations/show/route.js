@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { w } from '@ember/string';
 
 
-const include = Ember.String.w(`
+const include = w(`
   custom_field_responses
   housing_request
   housing_provision
@@ -11,7 +12,7 @@ const include = Ember.String.w(`
   host.levels
 `)
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   model: function(params) {
     const event = this.modelFor('events.show');

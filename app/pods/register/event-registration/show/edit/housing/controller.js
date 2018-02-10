@@ -1,15 +1,14 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 import { computed } from 'ember-decorators/object';
 import { alias, equal, oneWay } from 'ember-decorators/object/computed';
-
-const { isPresent } = Ember;
 
 const NO_HOUSING = 0;
 const PROVIDING_HOUSING = 1;
 const REQUESTING_HOUSING = 2;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   @alias('model.event') event: null,
   @alias('model.registration') registration: null,
 

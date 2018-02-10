@@ -2,7 +2,7 @@
   h1 Features Everywhere
   h4.subheader
     a href="https://github.com/NullVoxPopuli/aeonvera" target="_blank" Have an Idea? Submit Here.
-  link-to 'events.new' classNames='button success '
+  = link-to 'events.new' classNames='button success '
     = t 'createyourevent'
 
 

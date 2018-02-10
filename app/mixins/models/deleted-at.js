@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   deletedAt: DS.attr('date'),
 
   isDeleted: function() {
-    return Ember.isPresent(this.get('deletedAt'));
+    return isPresent(this.get('deletedAt'));
   }.property('deletedAt')
 });

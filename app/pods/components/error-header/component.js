@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { set, get } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 import { computed, action } from 'ember-decorators/object';
 import { oneWay } from 'ember-decorators/object/computed';
@@ -7,9 +9,7 @@ import { messageFromError } from 'aeonvera/helpers/message-from-error';
 
 export const NOT_AUTHORIZED = 'Not authorized. Please login as an authorized user.';
 
-const { get, set, isPresent } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   @oneWay('errorsPresent') hidden: null,
 
   didUpdateAttrs() {

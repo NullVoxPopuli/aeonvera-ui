@@ -1,7 +1,7 @@
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import DS from 'ember-data';
-
-import { computed } from 'ember-decorators/object';
 
 import Discount from '../models/discount';
 import Validator from '../mixins/model-validator';
@@ -37,9 +37,9 @@ export default DS.Model.extend(Validator, {
   */
   discountCode: DS.attr('string'),
 
-  pickedUp: Ember.computed('pickedUpAt', {
+  pickedUp: computed('pickedUpAt', {
     get() {
-      return Ember.isPresent(this.get('pickedUpAt'));
+      return isPresent(this.get('pickedUpAt'));
     }
   }),
 
@@ -56,7 +56,7 @@ export default DS.Model.extend(Validator, {
     if (lineItem.priceForSize) {
       const sizeMethod = lineItem.priceForSize.bind(lineItem);
 
-      if (Ember.isPresent(sizeMethod)) {
+      if (isPresent(sizeMethod)) {
         const sizePrice = sizeMethod(size);
 
         this.set('price', sizePrice);
@@ -84,7 +84,7 @@ export default DS.Model.extend(Validator, {
         validation: function(key, value, model) {
           if (model.get('lineItem.isCompetition')) {
             if (model.get('lineItem.requiresPartner')) {
-              return Ember.isPresent(model.get('partnerName'));
+              return isPresent(model.get('partnerName'));
             }
           }
 
@@ -100,7 +100,7 @@ export default DS.Model.extend(Validator, {
         validation: function(key, value, model) {
           if (model.get('lineItem.isCompetition')) {
             if (model.get('lineItem.requiresOrientation')) {
-              return Ember.isPresent(model.get('danceOrientation'));
+              return isPresent(model.get('danceOrientation'));
             }
           }
 
@@ -115,7 +115,7 @@ export default DS.Model.extend(Validator, {
         message: 'Please select a shirt size.',
         validation: function(key, value, model) {
           if (model.get('lineItem.isShirt')) {
-            return Ember.isPresent(model.get('size'));
+            return isPresent(model.get('size'));
           }
 
           // always return true, this is not a required field

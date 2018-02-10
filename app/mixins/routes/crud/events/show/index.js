@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   parentPathRoot: 'events.show',
   model: function(params) {
     const modelName = this.get('modelName');

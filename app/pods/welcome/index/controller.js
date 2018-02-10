@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
 
 import currentUserHelpers from 'aeonvera/mixins/current-user-helpers';
 
-export default Ember.Controller.extend(currentUserHelpers, {
+export default Controller.extend(currentUserHelpers, {
 
 })

@@ -1,7 +1,7 @@
 .imageoverlay.text-center.panel.callout.extra-padding.header
   h1 Creating an Event is Free
   h4.subheader Probably cheaper than the altervative
-  link-to 'events.new' classNames='button success'
+  = link-to 'events.new' classNames='button success'
     = t 'createyourevent'
 
 

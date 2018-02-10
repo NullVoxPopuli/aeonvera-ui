@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 import Random from 'aeonvera/mixins/helpers/string';
 
-export default Ember.Component.extend(Random, {
+export default Component.extend(Random, {
   attributeBindings: [
     'data-tooltip',
     'data-width',
@@ -11,7 +12,7 @@ export default Ember.Component.extend(Random, {
   tagName: 'span',
   classNames: ['has-tip'],
 
-  title: Ember.computed.alias('message'),
+  title: alias('message'),
 
   'data-width': function() {
     return (this.get('width') || 200);

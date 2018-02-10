@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import EmberObject from '@ember/object';
 import { action } from 'ember-decorators/object';
 import { service } from 'ember-decorators/service'
 
-export default class extends Ember.Route {
+export default class extends Route {
   @service('flash-notification') flash;
   model(params) {
     const subdomain = params.subdomain;
@@ -18,7 +19,7 @@ export default class extends Ember.Route {
     }
 
     const firstError = reason.errors[0];
-    const errorObject = new Ember.Object(firstError);
+    const errorObject = new EmberObject(firstError);
     const status = firstError.code;
 
     // all errors are json api-formatted

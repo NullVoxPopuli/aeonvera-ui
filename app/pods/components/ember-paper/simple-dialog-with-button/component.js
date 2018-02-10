@@ -6,6 +6,7 @@ import { action } from 'ember-decorators/object';
 export default class extends Component {
   // tagName = '';
   raised = true;
+  onClick = null;
 
   @action
   closeModal() {
@@ -13,13 +14,12 @@ export default class extends Component {
   }
 
   @action
-  async onClick() {
-    const onClick = this.get('onClick');
+  async doClick() {
+    const { onClick } = this;
 
     if (onClick) {
       try {
         const result = await onClick();
-        console.log('onClick: ', result);
         if (!result) return;
 
         this.set('showModal', true);

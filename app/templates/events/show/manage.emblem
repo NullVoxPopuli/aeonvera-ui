@@ -7,32 +7,32 @@ hr
 
 ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
   li
-    h4: link-to 'events.show.levels': span Levels
+    h4: = link-to 'events.show.levels': span Levels
     p Also known as 'tracks'. Here, you can configure if different levels require auditions, as well as other requirements.
   li
-    h4: link-to 'events.show.discounts': span Discounts
+    h4: = link-to 'events.show.discounts': span Discounts
     p Did someone win a pass to your event? Is there a sweet deal for students? Create a discount here.
   li
-    h4: link-to 'events.show.packages': span Packages
+    h4: = link-to 'events.show.packages': span Packages
     p Most often 'Full Weekend', and 'Dance Only'. This is the core item that people will be paying for.
   li
-    h4: link-to 'events.show.pricing-tiers': span Pricing Tiers
+    h4: = link-to 'events.show.pricing-tiers': span Pricing Tiers
     p These affect the price of packages either over time and/or based on number of registrations.
   li
-    h4: link-to 'events.show.shirts': span Shirts
+    h4: = link-to 'events.show.shirts': span Shirts
     p Configure your event's shirt options and available sizes here.
   li
-    h4: link-to 'events.show.competitions': span Competitions
+    h4: = link-to 'events.show.competitions': span Competitions
     p Configure competitions such as Jack and Jills here.
   li
-    h4: link-to 'events.show.line-items': span À la Carte Items
+    h4: = link-to 'events.show.line-items': span À la Carte Items
     p Smaller things for sale, such as water bottles, or shoe bags. These will also be available at the door.
   li
-    h4: link-to 'events.show.raffles': span Raffles
+    h4: = link-to 'events.show.raffles': span Raffles
     p Want to give away a prize to try to make some additional money? Includes ability to choose winner.
   li
-    h4: link-to 'events.show.custom-fields': span Custom Fields
+    h4: = link-to 'events.show.custom-fields': span Custom Fields
     p Need to collect additional info? Want to display a disclaimer at the bottom of registration? This is it.
   li
-    h4: link-to 'events.show.collaboration': span Collaboration
+    h4: = link-to 'events.show.collaboration': span Collaboration
     p Invite people to help manage the event.

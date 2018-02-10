@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { isBlank } from '@ember/utils';
 
-const { isBlank } = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
   model(params) {
     const organization = this.modelFor('my-communities.manage.membership');
     const organizationId = organization.get('id');

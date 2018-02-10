@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { debounce } from '@ember/runloop';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   didInsertElement() {
     this._super(...arguments);
     this._bindScrolling();
@@ -26,17 +28,17 @@ export default Ember.Mixin.create({
     opts = opts || { debounce: 250 };
 
     if (opts.debounce) {
-      onScroll = _ => Ember.run.debounce(this, this.didScroll, opts.debounce, false);
+      onScroll = _ => debounce(this, this.didScroll, opts.debounce, false);
     } else {
       onScroll = _ => this.didScroll();
     }
 
-    Ember.$(document).bind('touchmove', onScroll);
-    Ember.$(window).bind('scroll', onScroll);
+    $(document).bind('touchmove', onScroll);
+    $(window).bind('scroll', onScroll);
   },
 
   _unbindScrolling() {
-    Ember.$(window).unbind('scroll');
-    Ember.$(document).unbind('touchmove');
+    $(window).unbind('scroll');
+    $(document).unbind('touchmove');
   }
 });

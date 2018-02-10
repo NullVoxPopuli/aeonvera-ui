@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import { test, skip } from 'ember-qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 import testSelector from 'ember-test-selectors';

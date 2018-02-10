@@ -1,13 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
+import { isBlank } from '@ember/utils';
 import { alias } from 'ember-decorators/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_MS = 1000;
 
-const { isBlank } = Ember;
-
-export default Ember.Controller.extend({
-  flash: Ember.inject.service('flash-notification'),
+export default Controller.extend({
+  flash: service('flash-notification'),
 
   @alias('model.membership') membership: null,
   @alias('model.organization') organization: null,

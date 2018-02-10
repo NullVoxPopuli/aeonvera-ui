@@ -1,12 +1,12 @@
 li.page
-  link-to 'upcoming-events'
+  = link-to 'upcoming-events'
     span = t 'upcomingevents'
 
 li.page
-  link-to 'communities'
+  = link-to 'communities'
    span = t 'communities'
 li.hide-for-small
-  link-to 'events.new' classNames='button'
+  = link-to 'events.new' classNames='button'
     | Host an Event
 
 li.show-for-small.divider
@@ -18,7 +18,7 @@ li.show-for-small
       = fa-icon 'sign-out'
       span Logout
 li.show-for-small
-  link-to 'welcome.about'
+  = link-to 'welcome.about'
     = fa-icon 'info-circle'
 
     span
@@ -44,7 +44,7 @@ li.has-dropdown.hide-for-small
           span Logout
     li.divider
     li
-      link-to 'welcome.about'
+      = link-to 'welcome.about'
         = fa-icon 'info-circle'
 
         span

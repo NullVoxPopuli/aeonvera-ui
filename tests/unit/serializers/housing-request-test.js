@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { moduleForModel, test } from 'ember-qunit';
 import { manualSetup, make } from 'ember-data-factory-guy';
 
@@ -20,7 +20,7 @@ moduleForModel('housing-request', 'Unit | Serializer | housing request', {
 
 // Replace this with your real tests.
 test('it converts requested to an array', function(assert) {
-  Ember.run(() => {
+  run(() => {
     let event = make('event');
     let record = make('housing-request', {
       host: event
@@ -37,7 +37,7 @@ test('it converts requested to an array', function(assert) {
 });
 
 test('it converts unwanted to an array', function(assert) {
-  Ember.run(() => {
+  run(() => {
     let event = make('event');
     let record = make('housing-request', {
       host: event

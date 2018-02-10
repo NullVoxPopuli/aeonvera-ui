@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   // required to be passed in
   request: null,
   provisions: null,
@@ -8,7 +9,7 @@ export default Ember.Component.extend({
   // managed by this component
   isEditing: false,
 
-  host: Ember.computed('request.host', {
+  host: computed('request.host', {
     get() {
       return this.get('request.host');
     }

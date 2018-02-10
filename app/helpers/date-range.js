@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
-export default Ember.Helper.helper(function(params/* , hash*/) {
+export default helper(function(params/* , hash*/) {
   const startDate = params[0];
   const endDate = params[1];
 

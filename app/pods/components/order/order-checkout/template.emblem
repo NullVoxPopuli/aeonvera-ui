@@ -3,7 +3,7 @@ br
   .small-12.medium-10.columns.medium-offset-1
     .layout-row
       .flex-20
-        link-to 'register' model.host.domain
+        = link-to 'register' model.host.domain
           = event/logo-thumbnail model=model.host align='left'
       .flex-80.text-center
         h3 Review Registration for {{model.host.name}}
@@ -29,10 +29,10 @@ br
           p.right data-pay-button=true
             = stripe/checkout-button model=model label='Pay' email=email action='processStripeToken'
           p.left
-            link-to hostPath editModel.id (query-params token=token) classNames='md-button md-raised md-accent' data-test-edit-button=true
+            = link-to hostPath editModel.id (query-params token=token) classNames='md-button md-raised md-accent' data-test-edit-button=true
               span Edit
 
-            link-to 'register' model.host.domain classNames='md-button md-raised'
+            = link-to 'register' model.host.domain classNames='md-button md-raised'
               span Register Again
     // TODO: give option to resend receipt
 

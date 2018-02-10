@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import { assert } from '@ember/debug';
 import RSVP from 'rsvp';
-
-const { Mixin, assert } = Ember;
 
 export default Mixin.create({
 

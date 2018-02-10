@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { isEmpty } from '@ember/utils';
 
-export function isEmpty(params/* , hash*/) {
+export function testIsEmpty(params/* , hash*/) {
   const value = params[0];
 
-  return Ember.isEmpty(value);
+  return isEmpty(value);
 }
 
-export default Ember.Helper.helper(isEmpty);
+export default helper(testIsEmpty);

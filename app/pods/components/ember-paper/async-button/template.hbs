@@ -13,18 +13,33 @@
     {{/if}}
 
   {{else}}
+
     {{#if promise}}
+
+    {{#unless (is-pending promise)}}
+   {{#if (is-rejected promise)}}
+     rejected! :(((
+   {{/if}}
+ {{/unless}}
+    {{log (get (promise-rejected-reason promise) 'message')}}
       {{#if (is-pending promise)}}
           {{loadingMessage}}
-      {{else if (is-fulfilled promise)}}
-          {{successMessage}}
       {{else}}
-        {{#if showError}}
-          Error! :-(
+
+        {{#if (is-rejected promise)}}
+          {{#if showError}}
+            Error! :-(
+          {{else}}
+            {{label}}
+          {{/if}}
+        {{else if (is-fulfilled promise)}}
+          {{successMessage}}
         {{else}}
-          {{label}}
+          :-\
         {{/if}}
+
       {{/if}}
+
     {{else}}
       {{#if icon}}
         {{paper-icon icon}} {{label}}
@@ -32,5 +47,6 @@
         {{label}}
       {{/if}}
     {{/if}}
+
   {{/if}}
 {{/paper-button}}

@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import New from 'aeonvera/mixins/routes/crud/events/new';
 
-export default Ember.Route.extend(New, {
+export default Route.extend(New, {
   modelName: 'pricing-tier'
 });

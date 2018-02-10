@@ -1,7 +1,3 @@
-// example link
-// https://aeonvera.com/confirmation?confirmation_token=b808ff2de64853c3b46a0ebbaa14360f086389d368e3b122f864bc22878a2561
-// TODO: come up with a way to migrate to auth0?
-import Ember from 'ember';
 import { test, skip } from 'ember-qunit';
 import { withChai } from 'ember-cli-chai/qunit';
 

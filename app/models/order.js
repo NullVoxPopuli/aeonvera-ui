@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import { isBlank, isPresent } from '@ember/utils';
 import DS from 'ember-data';
 import { computed } from 'ember-decorators/object';
 import { alias, gt, mapBy, not, filterBy } from 'ember-decorators/object/computed';
 
 import PriceCalculation from 'aeonvera/mixins/models/order/price-calculation';
 
-const { isPresent, isBlank, inject } = Ember;
 const { attr, belongsTo, hasMany, Model } = DS;
 
 const CENTS_IN_A_DOLLAR = 100;
@@ -65,7 +64,7 @@ export default Model.extend(PriceCalculation, {
 
   @computed('stripeRefunds')
   hasRefunds(stripeRefunds) {
-    return Ember.isPresent(stripeRefunds);
+    return isPresent(stripeRefunds);
   },
 
   @not('paid') unpaid: null,
@@ -81,7 +80,7 @@ export default Model.extend(PriceCalculation, {
     return totalInCents / CENTS_IN_A_DOLLAR;
   },
 
-  hasLineItems: Ember.computed('orderLineItems.@each', function() {
+  hasLineItems: computed('orderLineItems.@each', function() {
     return this.get('orderLineItems.length') > 0;
   }),
 

@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Mixin from '@ember/object/mixin';
 import DS from 'ember-data';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   isRegistrationOpen: function() {
     const open = this.get('hasRegistrationOpened');
     const ended = this.get('hasEnded');
@@ -12,7 +13,7 @@ export default Ember.Mixin.create({
   hasRegistrationOpened: function() {
     const registrationOpensAt = this.get('registrationOpensAt');
 
-    if (Ember.isPresent(registrationOpensAt)) {
+    if (isPresent(registrationOpensAt)) {
       const opensAt = registrationOpensAt.getTime();
       const currently = Date.now();
 

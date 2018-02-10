@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'tbody',
-  hasPets: Ember.computed.alias('housingProvision.hasPets'),
-  smokes: Ember.computed.alias('housingProvision.smokes'),
-  smokingConjunction: Ember.computed('hasPets', function() {
+  hasPets: alias('housingProvision.hasPets'),
+  smokes: alias('housingProvision.smokes'),
+  smokingConjunction: computed('hasPets', function() {
     return this.get('hasPets') ? 'and' : 'With';
   }),
-  transportationConjuction: Ember.computed('hasPets', 'smokes', function() {
+  transportationConjuction: computed('hasPets', 'smokes', function() {
     if (this.get('hasPets') || this.get('smokes')) {
       return 'and are';
     }
@@ -16,7 +18,7 @@ export default Ember.Component.extend({
   }),
 
   // TODO: this whole set of things could probably be replaced by i18n
-  transportPlural: Ember.computed('housingProvision.transportationCapacity', function() {
+  transportPlural: computed('housingProvision.transportationCapacity', function() {
     if (this.get('housingProvision.transportationCapacity') > 1) {
       return 'people';
     }
@@ -24,7 +26,7 @@ export default Ember.Component.extend({
     return 'person';
   }),
 
-  hostingNoPreference: Ember.computed('housingProvision.preferredGenderToHost', function() {
+  hostingNoPreference: computed('housingProvision.preferredGenderToHost', function() {
     return this.get('housingProvision.preferredGenderToHost').includes('No');
   })
 });

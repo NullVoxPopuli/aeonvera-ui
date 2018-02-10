@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import LinkComponent from '@ember/routing/link-component';
 
 let alreadyRun = false;
 
@@ -13,7 +13,7 @@ export default {
 
     // http://stackoverflow.com/questions/16124381/combine-linkto-and-action-helpers-in-ember-js
 
-    Ember.LinkComponent.reopen({
+    LinkComponent.reopen({
       action: null,
       _invoke: function(event) {
         const action = this.get('action');

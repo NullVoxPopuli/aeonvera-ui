@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isPresent } from '@ember/utils';
 import { PropTypes } from 'ember-prop-types';
 import { computed, action } from 'ember-decorators/object';
 import { alias, notEmpty, not, and, oneWay } from 'ember-decorators/object/computed';
 
-const { isPresent } = Ember;
-
-export default class extends Ember.Component {
+export default class extends Component {
   propTypes = {
     competition: PropTypes.EmberObject.isRequired,
     order: PropTypes.EmberObject.isRequired,

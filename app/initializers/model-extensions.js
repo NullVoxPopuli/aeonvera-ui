@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import CoreObject from '@ember/object/core';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import RSVP from 'rsvp';
+import RSVP, { resolve } from 'rsvp';
 
 let alreadyRun = false;
 
@@ -14,14 +15,14 @@ export default {
 
 
     DS.Model.reopen({
-      klass: Ember.computed(function() {
+      klass: computed(function() {
         const emberModelName = this.get('constructor.modelName');
         const result = emberModelName.singularize().camelize().capitalize();
 
         return result;
       }),
 
-      isPersisted: Ember.computed(function() {
+      isPersisted: computed(function() {
         return !this.get('isNew');
       }),
 
@@ -44,9 +45,9 @@ export default {
       }
     });
 
-    Ember.CoreObject.reopen({
+    CoreObject.reopen({
       asPromiseObject() {
-        return Ember.RSVP.resolve(this);
+        return resolve(this);
       }
     });
   }

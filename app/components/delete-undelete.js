@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'span',
 
-  deleteLabel: Ember.computed('model', function() {
+  deleteLabel: computed('model', function() {
     return 'Delete this ' + this.get('model.klass');
   }),
 

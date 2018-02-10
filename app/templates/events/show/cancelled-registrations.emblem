@@ -14,7 +14,7 @@ table
       each model as |registration|
         tr
           td
-            link-to 'events.show.registrations.show' registration.id
+            = link-to 'events.show.registrations.show' registration.id
               = registration.attendeeName
           td = registration.danceOrientation
           td = registration.packageName

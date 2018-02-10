@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import env from 'aeonvera/config/environment';
@@ -8,7 +8,7 @@ moduleForComponent('integrations/stripe/disconnect-button', 'Integration | Compo
 });
 
 test('it renders', function(assert) {
-  let o = Ember.Object.create({ id: 1, payableType: 'Test' });
+  let o = EmberObject.create({ id: 1, payableType: 'Test' });
   this.set('o', o);
 
   this.render(hbs`{{integrations/stripe/disconnect-button to=o}}`);

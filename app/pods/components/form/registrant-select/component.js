@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { isBlank } from '@ember/utils';
 import { PropTypes } from 'ember-prop-types';
 
 import { alias } from 'ember-decorators/object/computed';
@@ -9,9 +10,7 @@ import { restartableTask } from 'ember-concurrency-decorators';
 
 const DEBOUNCE_MS = 500;
 
-const { isBlank } = Ember;
-
-export default class extends Ember.Component {
+export default class extends Component {
   static propTypes = {
     event: PropTypes.EmberObject.isRequired,
     value: PropTypes.any,
