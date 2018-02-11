@@ -1,5 +1,4 @@
 footer {
-  text-align: center;
   width: 100%;
   font-size: 0.8em;
   line-height: 20px;
@@ -9,6 +8,16 @@ footer {
 
   a {
     font-size: 0.8em;
+
+    color: $footer-link-color;
+
+    &:visited {
+      color: $footer-link-color;
+    }
+  }
+
+  .copyright {
+    text-align: right;
   }
 
   &.small{

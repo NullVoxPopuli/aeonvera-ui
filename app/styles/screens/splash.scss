@@ -10,7 +10,7 @@
 
   $grad-start: color($color-blue, '400');
   $grad-end: color($color-blue, '600');
-  background: linear-gradient($grad-start, $grad-end);
+  background: linear-gradient(rgba($grad-start, 0.8), rgba($grad-end, 0.8)), url('/assets/images/blue.jpg');
 
   // box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
@@ -53,6 +53,7 @@
       max-width: 50%;
       margin-bottom: 80px;
       padding: 40px;
+      line-height: 1.5em;
 
       hr {
         color: color($color-grey, '200');
@@ -62,6 +63,7 @@
       h2 {
         color: color($color-blue-grey, '500');
         font-size: 30px;
+        // mix-blend-mode: color-burn;
       }
     }
   }

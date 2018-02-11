@@ -1,0 +1,43 @@
+<footer class='layout-column layout-align-start-stretch'>
+  <div class='layout-row layout-align layout-align-space-between-stretch'>
+    <div class='layout-column open-source'>
+      <h5>This Project is Open Source</h5>
+      {{#link-to 'welcome.opensource'}}
+        View projects
+      {{/link-to}}
+
+
+      Special shoutouts to:
+      <a href='https://emberjs.com/' target='_blank'>ember.js</a>
+      <a href='http://rubyonrails.org/' target='_blank'>Ruby on Rails</a>
+    </div>
+
+    <div class='layout-column'>
+      <h5>Information</h5>
+
+    </div>
+
+    <div class='layout-column'>
+      <h5>Resources</h5>
+
+      {{#link-to 'welcome.tos'}}
+        {{ t 'tos' }}
+      {{/link-to}}
+
+      {{#link-to 'welcome.privacy'}}
+        {{ t 'privacy' }}
+      {{/link-to}}
+
+      Facebook Page
+    </div>
+
+
+
+  </div>
+
+  <div class='copyright'>
+    {{t 'copyright'}}<br />
+    {{links/mail-support-icon-link}}
+    {{links/facebook-icon-link}}
+  </div>
+</footer>

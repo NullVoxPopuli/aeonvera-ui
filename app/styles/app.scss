@@ -70,6 +70,11 @@ html, body {
     @include sticky;
   }
 
+  .sticky-with-bg-color {
+    @include sticky;
+    background-color: grey;
+  }
+
   @media (min-width: $layout-breakpoint-xs) {
     .sticky-gt-xs {
       @include sticky;
