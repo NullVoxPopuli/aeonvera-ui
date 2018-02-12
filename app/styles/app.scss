@@ -13,9 +13,14 @@ $accent: 'cyan';
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
 @import 'paper-data-table';
-
 @import 'colors';
+
+@import './utility/all';
+
 @import 'styles';
+
+
+
 @import 'table';
 @import 'help';
 @import 'sidebar';

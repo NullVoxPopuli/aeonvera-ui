@@ -1,0 +1,43 @@
+<div class='title'>
+  <h3>Preview Your Ticket Costs</h3>
+  <h4>You are in control</h4>
+</div>
+<div class='layout-column'>
+  <div class='layout-row layout-align-space-between-center'>
+    <label class='flex-50'>Ticket Price</label>
+    {{paper-input
+      class='no-margins no-errors'
+      value=enteredValue
+      placeholder="75"
+      onChange=(action (mut enteredValue))
+    }}
+  </div>
+
+  <div class='layout-row layout-align-space-between-center'>
+    <label class='flex-50'>{{serviceFee}}</label>
+    <label class='flex-50'>{{cardFee}}</label>
+  </div>
+
+  <div class='layout-row layout-align-space-between-center'>
+    <label class='flex-50'>{{t 'appname'}} Fee</label>
+    <label class='flex-50'>Payment Processing Fee</label>
+  </div>
+
+  <div class='layout-row layout-align-space-between-center'>
+    <label class='flex-50'>Buyer Pays</label>
+    <label class='flex-50'>{{buyerPays}}</label>
+  </div>
+
+  <div class='layout-row layout-align-space-between-center'>
+    <label class='flex-50'>You Get</label>
+    <label class='flex-50'>{{youGet}}</label>
+  </div>
+
+  {{#paper-checkbox
+    type='checkbox'
+    value=absorbFees
+    onChange=(action (mut absorbFees))
+  }}
+    Absorb the fees into your price instead
+  {{/paper-checkbox}}
+</div>
