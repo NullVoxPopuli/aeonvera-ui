@@ -38,6 +38,7 @@
     .main-title {
       margin-top: 100px;
       margin-bottom: 50px;
+      line-height: 1.3em;
     }
 
     .calls-to-action {
@@ -50,9 +51,12 @@
     }
 
     .pricing {
+      line-height: 1.5em;
+
       .on-the-background {
         color: white;
-        h1.main-title {
+        .main-title {
+          margin-top: 90px;
           font-size: 50px;
           margin-bottom: 0;
         }
@@ -99,5 +103,17 @@
       max-width: inherit;
       margin-left: inherit;
     }
+
+    .pricing {
+      .on-the-background {
+        .main-title {
+          margin-top: 30px;
+        }
+        h4 {
+          margin-top: 0;
+        }
+      }
+    }
+
   }
 }

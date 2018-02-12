@@ -1,0 +1,75 @@
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}Preview Your Ticket Costs{{/text.headline}}
+      {{#text.subhead}}You are in control{{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.content}}
+
+    <table>
+
+      <tbody>
+        <tr>
+          <td width='50%'><label>Ticket Price</label></td>
+          <td>
+            {{paper-input
+              icon="attach money"
+              type='number'
+              class='no-margins no-errors'
+              value=enteredValue
+              placeholder="75"
+              onChange=(action (mut enteredValue))
+            }}
+          </td>
+        </tr>
+
+        <tr class='grey'>
+          <td colspan='2'>
+            <div class='fees layout-row layout-align-space-between'>
+              <div class='flex-50 layout-column'>
+                <span>{{to-usd serviceFee}}</span>
+                <label>{{t 'appname'}} Fee</label>
+              </div>
+
+              <div class='flex-50 layout-column'>
+                <span>{{to-usd cardFee}}</span>
+                <label>Payment Processing Fee</label>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>Buyer Pays</label></td>
+          <td>
+            {{paper-icon "attach money"}}
+            {{buyerPays}}
+          </td>
+        </tr>
+
+        <tr>
+          <td><label>You Get</label></td>
+          <td>
+            {{paper-icon "attach money"}}
+            {{youGet}}
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan='2' class='absorb-fees'>
+            {{#paper-checkbox
+              type='checkbox'
+              value=absorbFees
+              onChange=(action (mut absorbFees))
+            }}
+              Absorb the fees into your price instead
+            {{/paper-checkbox}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  {{/card.content}}
+{{/paper-card}}
