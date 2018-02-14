@@ -6,6 +6,8 @@ logs
 
 *.log
 
+/coverage
+/root/
 dist/
 tmp/
 node_modules/

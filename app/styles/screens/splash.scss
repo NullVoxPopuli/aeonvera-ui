@@ -1,16 +1,28 @@
 .welcome-background {
+  width: 100%;
+  top: -575px;
+  height: 1000px;
+  transform: skewY(-8deg);
+  transform-origin: 50%;
   z-index: 1;
   position: absolute;
-  top: -600px;
-  left: -500px;
-  height: 1000px;
-  right: -500px;
 
-  transform: rotate(-8deg);
 
   $grad-start: color($color-blue, '400');
   $grad-end: color($color-blue, '600');
   background: linear-gradient(rgba($grad-start, 0.8), rgba($grad-end, 0.8)), url('/assets/images/blue.jpg');
+}
+
+.welcome-background-bottom {
+  width: 100%;
+  top: 1000px;
+  height: 800px;
+  transform: skewY(-8deg);
+  transform-origin: 50%;
+  z-index: -1;
+  position: absolute;
+
+  background: color($color-grey, '100');
 }
 
 .welcome-screen {

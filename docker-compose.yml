@@ -26,11 +26,9 @@ services:
       - ./tests:/myapp/tests
       - ./vendor:/myapp/vendor
 
-      - ./.bowerrc:/myapp/.bowerrc
       - ./.ember-cli:/myapp/.ember-cli
       - ./.eslintignore:/myapp/.eslintignore
       - ./.eslintrc.js:/myapp/.eslintrc.js
-      - ./bower.json:/myapp/bower.json
       - ./ember-cli-build.js:/myapp/ember-cli-build.js
       - ./package.json:/myapp/package.json
       - ./testem.js:/myapp/testem.js
