@@ -12,7 +12,7 @@ import Computed from "@ember/object/computed";
 import User from "aeonvera/models/user";
 
 export default class SignupForm extends Component {
-	successAction?: any;
+	successAction?: () => void;
   store: Computed<DS.Store> = service('store');
   login = service('login');
   flash = service('flash-notification');

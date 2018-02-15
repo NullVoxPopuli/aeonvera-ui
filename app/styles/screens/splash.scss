@@ -16,22 +16,22 @@
 .welcome-background-bottom {
   width: 100%;
   top: 1000px;
-  height: 800px;
+  height: 650px;
   transform: skewY(-8deg);
   transform-origin: 50%;
-  z-index: -1;
+  z-index: 0;
   position: absolute;
 
   background: color($color-grey, '100');
 }
 
 .welcome-screen {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 100vh;
+  // position: fixed;
+  // top: 0;
+  // bottom: 0;
+  // right: 0;
+  // left: 0;
+  // height: 100vh;
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
