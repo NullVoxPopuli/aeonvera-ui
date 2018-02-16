@@ -17,11 +17,11 @@
       </a>
     </div>
 
-    <div class='layout-column'>
+    {{!-- <div class='layout-column'>
       <h4>Information</h4>
 
 
-    </div>
+    </div> --}}
 
     <div class='layout-column'>
       <h4>Resources</h4>
@@ -45,7 +45,13 @@
 
   <div class='copyright'>
     {{t 'copyright'}}<br />
-    {{links/mail-support-icon-link}}
-    {{links/facebook-icon-link}}
+
+    <a href='mailto:support@aeonvera.com'>
+      <i class='fa fa-envelope'></i>
+    </a>
+
+    <a href='https://facebook.com/aeonvera' target="_blank">
+      <i class='fab fa-facebook'></i>
+    </a>
   </div>
 </footer>
