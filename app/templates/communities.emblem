@@ -10,7 +10,7 @@ br
         .columns.small-3.medium-4.no-padding
           if organization.logoIsMissing
             span.icon-thumbnail.right
-              = fa-icon 'globe'
+              i.fa.fa-globe
 
           else
             img.right src="{{organization.logoUrlThumb}}"

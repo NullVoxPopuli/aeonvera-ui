@@ -104,13 +104,14 @@ module.exports = function(environment) {
       authorizationHeaderName: 'Authorization',
       headers: {}
     },
+    // TODO: add own domain
     contentSecurityPolicy: {
       'default-src': '\'none\'',
-      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' js-agent.newrelic.com *.stripe.com sidecar.gitter.im *',
-      'font-src': '\'self\' *.amazonaws.com fonts.gstatic.com client.crisp.chat',
+      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' *.stripe.com sidecar.gitter.im *',
+      'font-src': '\'self\' *.amazonaws.com fonts.gstatic.com client.crisp.chat https://use.fontawesome.com',
       'connect-src': '*',
       'img-src': '\'self\'  *.amazonaws.com data: https://*.stripe.com *',
-      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera.com https://fonts.googleapis.com client.crisp.chat',
+      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera.com https://fonts.googleapis.com https://use.fontawesome.com client.crisp.chat',
       'frame-src': 'https://*.stripe.com',
       'media-src': '\'self\' *.amazonaws.com client.crisp.chat'
     },
@@ -180,17 +181,6 @@ module.exports = function(environment) {
 
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-
-    ENV['contentSecurityPolicy'] = {
-      'default-src': '\'none\'',
-      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' https://*.stripe.com sidecar.gitter.im',
-      'font-src': '\'self\' *.amazonaws.com',
-      'connect-src': '\'self\' *.aeonvera-staging.work',
-      'img-src': '\'self\' \'*amazonaws.com\' data: https://*.stripe.com',
-      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera-staging.work',
-      'frame-src': 'https://*.stripe.com'
-    };
-
   }
 
   if (environment === 'test') {
@@ -221,16 +211,6 @@ module.exports = function(environment) {
     ENV.stripe.clientId = process.env.STRIPE_CLIENT_ID;
     ENV.torii.providers['stripe-connect'].redirectUri = ENV.host;
 
-
-    // Make sure Ember allows us to connect to teh server
-    ENV['contentSecurityPolicy'] = {
-      'default-src': '\'none\'',
-      'script-src': '\'self\' \'unsafe-inline\' \'unsafe-eval\' https://*.stripe.com sidecar.gitter.im',
-      'connect-src': '\'self\' *.aeonvera.com',
-      'img-src': '\'self\' \'*amazonaws.com\' data: https://*.stripe.com',
-      'style-src': '\'self\' \'unsafe-inline\' *.aeonvera.com',
-      'frame-src': 'https://*.stripe.com'
-    };
   }
 
   return ENV;

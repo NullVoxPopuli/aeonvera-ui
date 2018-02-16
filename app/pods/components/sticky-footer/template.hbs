@@ -1,24 +1,30 @@
 <footer class='layout-column layout-align-start-stretch'>
   <div class='layout-row layout-align layout-align-space-between-stretch'>
     <div class='layout-column open-source'>
-      <h5>This Project is Open Source</h5>
+      <h4>This Project is Open Source</h4>
       {{#link-to 'welcome.opensource'}}
         View projects
       {{/link-to}}
 
-
+      <br />
       Special shoutouts to:
-      <a href='https://emberjs.com/' target='_blank'>ember.js</a>
-      <a href='http://rubyonrails.org/' target='_blank'>Ruby on Rails</a>
+      <a href='https://emberjs.com/' class='ember' target='_blank'>
+        <i class='fab fa-ember'></i>
+      </a>
+
+      <a href='http://rubyonrails.org/' target='_blank'>
+        <span class='ruby-gem'>💎</span> Ruby on Rails
+      </a>
     </div>
 
     <div class='layout-column'>
-      <h5>Information</h5>
+      <h4>Information</h4>
+
 
     </div>
 
     <div class='layout-column'>
-      <h5>Resources</h5>
+      <h4>Resources</h4>
 
       {{#link-to 'welcome.tos'}}
         {{ t 'tos' }}
@@ -28,7 +34,9 @@
         {{ t 'privacy' }}
       {{/link-to}}
 
-      Facebook Page
+      <a href='https://www.facebook.com/aeonvera' target='_blank'>
+        Facebook Page
+      </a>
     </div>
 
 

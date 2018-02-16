@@ -1,13 +1,13 @@
 if session.isAuthenticated
   li.auth-link
     = link-to 'application' classNames='button success'
-      = fa-icon 'tachometer'
+      i.fa.fa-tachometer
       span Dashboard
 
 li.auth-link
   if session.isAuthenticated
     a.button href='user/edit'
-      = fa-icon 'pencil'
+      i.fa.fa-pencil
       span Edit Profile
   else
     = sign-up-modal
@@ -15,7 +15,7 @@ li.auth-link
 li.auth-link
   if session.isAuthenticated
     a click='invalidateSession'
-      = fa-icon 'sign-out'
+      i.fa.fa-sign-out
       span Logout
   else
     = login-modal

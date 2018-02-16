@@ -3,18 +3,18 @@
     h2.text-center Registration Form
     .row
       .medium-3.columns
-        h1.text-center = fa-icon "adjust"
+        h1.text-center: i.fa-fa-adjust
         h3 Customizable
         span Coming Soon. Want to collect additional information? Maybe to know what scene someone is from? Additional text boxes may be added.
       .medium-3.columns
-        h1.text-center = fa-icon "edit"
+        h1.text-center: i.fa-fa-edit
         h3 Styleable
         span Coming Soon. You'll be able to configure colors, add logos, banners, etc.
       .medium-3.columns
-        h1.text-center = fa-icon "th-large"
+        h1.text-center: i.fa-fa-th-large
         h3 Uniform
         span Everything is on one page, so your registrants can find everything and not be lost in silly broken up navigation.
       .medium-3.columns
-        h1.text-center = fa-icon "bookmark"
+        h1.text-center: i.fa-fa-bookmark
         h3 Validation
         span Dance Only packages don't require that registrants select a track. Full Weekend packages traditionally do. Validation logic is configurable.

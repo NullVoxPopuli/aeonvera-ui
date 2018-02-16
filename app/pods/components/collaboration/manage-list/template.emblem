@@ -11,7 +11,7 @@ table
       tr
         td
           = form/confirm-button action='removeCollaborator' target=collaboration preConfirmClasses='alert-color'
-            = fa-icon 'minus-circle'
+            i.fa.fa-minus-circle
         td = collaboration.userName
         td = collaboration.email
         td = date-with-format collaboration.createdAt 'lll'

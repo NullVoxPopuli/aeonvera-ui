@@ -4,24 +4,38 @@
 }
 footer {
   width: 100%;
-  font-size: 0.8em;
+  font-size: 1em;
   line-height: 20px;
   background: $footer-background;
   padding: 40px 40px;
   color: white;
 
-  h5 {
+  h4 {
     margin-top: 0px;
     margin-bottom: 0px;
   }
 
   a {
-    font-size: 0.8em;
-
+    font-size: 0.9em;
+    text-decoration: none;
     color: $footer-link-color;
 
     &:visited {
       color: $footer-link-color;
+    }
+
+    &.ember {
+      font-size: 50px;
+    }
+
+    .fa-ember {
+      color: #9b2918;
+      display: block;
+    }
+
+    .ruby-gem {
+      color: #cc0000;
+      font-size: 24px;
     }
   }
 
