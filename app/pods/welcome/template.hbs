@@ -10,5 +10,9 @@
   </div>
   <div class='welcome-background-bottom'></div>
 
-  {{sticky-footer}}
+
+  {{to-elsewhere
+    named='app-footer'
+    send=(component 'sticky-footer')
+  }}
 </div>

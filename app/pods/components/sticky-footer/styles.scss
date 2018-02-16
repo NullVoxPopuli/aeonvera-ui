@@ -1,6 +1,7 @@
 & {
   z-index: 1;
   position: relative;
+  @include sticky-footer;
 }
 footer {
   width: 100%;

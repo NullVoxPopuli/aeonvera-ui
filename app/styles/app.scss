@@ -45,7 +45,26 @@ $accent: 'cyan';
 
 @import 'pod-styles.scss';
 
+// how to sticky footer
+// html, body {
+//   height: 100%;
+// }
+// body {
+//   display: flex;
+//   flex-direction: column;
+// }
+// .content {
+//   flex: 1 0 auto;
+// }
+// .footer {
+//   flex-shrink: 0;
+// }
+
 html, body {
+  // needed for sticky footer
+  height: 100%;
+
+  // defaults
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   background-color: white;
@@ -53,14 +72,13 @@ html, body {
   margin: 0;
   padding: 0;
 
-  // > div {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  // }
-  .application-container {
+  // application containing div
+  > div.ember-view {
+    @include sticky-footer-container;
 
+    .application-wrapper {
+      @include sticky-footer-content;
+    }
   }
 
   @mixin sticky {
