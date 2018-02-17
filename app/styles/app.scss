@@ -78,6 +78,7 @@ html, body {
 
     .application-wrapper {
       @include sticky-footer-content;
+      display: flex;
     }
   }
 

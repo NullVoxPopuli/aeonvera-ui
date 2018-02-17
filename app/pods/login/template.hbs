@@ -1,10 +1,16 @@
-<br /><br />
-<div class='row'>
-  <div class='small-12 medium-6 columns medium-offset-3'>
-    <h2 class='text-center'>Login</h2>
+<div class='layout-row layout-align-center-center' style='flex: 1 1'>
+  <div class='flex-100 flex-gt-xs-50 padding-20'>
+
+    <h2 class='text-center' style='padding-left: 8px;'>Login</h2>
 
     <p>
-      {{login-form afterLogin=(action 'didAuthenticate')}}
+      {{#paper-card as |card|}}
+        {{#card.content}}
+          {{login-form afterLogin=(action 'didAuthenticate')}}
+
+        {{/card.content}}
+      {{/paper-card}}
+
     </p>
   </div>
 </div>
