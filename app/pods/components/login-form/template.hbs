@@ -20,8 +20,8 @@
       onChange=(action (mut password))
     }}
 
-    <div class='layout-row layout-align-space-between-end'>
-      <a onClick={{route-action 'passwordReset'}}>Forgot your password?</a>
+    <div class='layout-row layout-align-space-between-center'>
+      <a onClick={{action (transition-to 'passwordReset')}}>Forgot your password?</a>
 
       {{#form.submit-button raised=true primary=true}}Login{{/form.submit-button}}
     </div>
