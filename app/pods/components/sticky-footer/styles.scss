@@ -30,13 +30,13 @@ footer {
     }
 
     .fa-ember {
-      color: #9b2918;
+      color: $ember-orange;
       display: block;
       text-shadow: 0 0 5px black;
     }
 
     .ruby-gem {
-      color: #cc0000;
+      color: $rails-red;
       font-size: 24px;
       text-shadow: 0 0 5px black;
     }

@@ -1,0 +1,19 @@
+.open-source {
+  .ruby-gem {
+    color: $rails-red;
+
+  }
+
+  .ember {
+    color: $ember-orange;
+    font-size: 60px;
+  }
+
+  .frontend, .backend, .this-project {
+    text-align: center;
+  }
+
+  .open-source-content {
+    margin-top: 100px;
+  }
+}

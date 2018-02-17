@@ -3,6 +3,7 @@
     $welcome-bar-bg: color($color-orange, '800');
     background: rgba($welcome-bar-bg, 0.5);
     mix-blend-mode: luminosity;
+    transition-duration: 0.5s;
   }
 
   @media (max-width: $layout-breakpoint-xs) {

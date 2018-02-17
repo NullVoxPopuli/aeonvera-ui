@@ -1,0 +1,77 @@
+<style>
+  .welcome-background {
+    top: -700px;
+  }
+
+  @media (max-width: 599px) {
+    .welcome-background {
+      top: -810px;
+      transform: skewY(0deg);
+    }
+
+    .open-source .header-blurb {
+      color: black;
+    }
+  }
+</style>
+
+<div class='open-source'>
+  <div class='layout-row layout-xs-column layout-align-space-between on-the-background flex-wrap'>
+
+    <div class='layout-column flex-40 flex-xs-100'>
+      <h1 class='main'>{{t 'opensource'}}</h1>
+      <h4>Projects used in {{t 'appname'}}</h4>
+    </div>
+    <p class='header-blurb flex-50  flex-xs-100'>
+      {{t 'appname' }} wouldn't be where it is today if it weren't for
+      the hard work of all of the below projects.
+      Being able to use open source projects has easily shaved
+      years of off {{t 'appname'}}'s development time.
+      Here is a list of some of the more notable projects used,
+      and a special thanks to all of them! :-)
+    </p>
+
+  </div>
+
+  <div class='layout-row layout-wrap open-source-content'>
+
+    <div class='frontend layout-column flex-100 flex-gt-sm-50'>
+      <h3>Front-End / User-Interface</h3>
+
+      <a href='https://emberjs.com/' class='ember' target='_blank'>
+        <i class='fab fa-ember'></i>
+      </a>
+      <a href="http://miguelcobain.github.io/ember-paper/">ember-paper (Material Design)</a>
+      <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
+      <a href="https://www.typescriptlang.org/">TypeScript</a>
+
+      <a href="https://gitlab.com/precognition-llc/aeonvera-ui/blob/master/package.json">and more!</a>
+
+      <br />
+      <br />
+    </div>
+
+    <div class='backend layout-column flex-100 flex-gt-sm-50'>
+      <h3>Back-End / Server</h3>
+
+      <span>
+        <span class='ruby-gem'>💎</span>
+        <a href="https://www.ruby-lang.org/en/">Ruby</a> on <a href="http://rubyonrails.org/">Rails</a>
+      </span>
+
+
+      <a href="http://www.postgresql.org/">PostgreSQL</a>
+      <a href="http://redis.io/">Redis</a>
+      <a href="https://github.com/plataformatec/devise">Devise</a>
+      <a href="https://github.com/stripe/stripe-ruby">Stripe</a>
+
+      <a href="https://gitlab.com/precognition-llc/aeonvera/blob/master/Gemfile">and more!</a>
+    </div>
+
+    <div class='this-project layout-column flex-100 flex-gt-sm-50'>
+      <h3>{{t 'appname'}}</h3>
+      <a href="https://gitlab.com/precognition-llc/aeonvera-ui">Front-End</a>
+      <a href="https://gitlab.com/precognition-llc/aeonvera">Back-End</a>
+    </div>
+  </div>
+</div>
