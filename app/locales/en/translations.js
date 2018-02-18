@@ -2,7 +2,7 @@
 /* jscs:disable */
 
 export default {
-  appname: 'ÆONVERA',
+  appname: 'In Attendance',
   domain: 'aeonvera.com',
   holdingcompany: 'Precognition, LLC',
   subheader: 'Event registration designed for dancers.',

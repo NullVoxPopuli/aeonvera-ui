@@ -4,7 +4,13 @@
   {{!-- {{log 'all is pending:' (is-pending (promise-all promise)) 'all is rejected:' (is-rejected (promise-all promise)) 'all is fulfilled' (is-fulfilled (promise-all promise))}} --}}
 
   <div class='layout-row layout-align-center-center'>
-    <div class='sp sp-3balls'></div>
+    <div class='rect-spinner'>
+      <div class='rect1'></div>
+      <div class='rect2'></div>
+      <div class='rect3'></div>
+      <div class='rect4'></div>
+      <div class='rect5'></div>
+    </div>
   </div>
 {{else}}
   {{!-- {{log 'is-pending: ' (is-pending promise) 'is-rejected: ' (is-rejected promise) 'is-fulfilled: ' (is-fulfilled promise)}} --}}

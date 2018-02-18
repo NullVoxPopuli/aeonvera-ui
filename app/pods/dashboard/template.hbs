@@ -1,5 +1,12 @@
+{{to-elsewhere
+  named='top-navigation'
+  send=(component 'app-nav')
+}}
+
 {{to-elsewhere named='left-side-bar'
   send=(component 'app-nav/dashboard-sidebar')}}
 
 
-{{outlet}}
+<div>
+  {{outlet}}
+</div>

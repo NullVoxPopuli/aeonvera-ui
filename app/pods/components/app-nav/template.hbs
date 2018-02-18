@@ -1,14 +1,17 @@
 {{#paper-toolbar as |nav|}}
   {{#nav.tools}}
-    {{#if showSidebarToggler}}
-      {{#paper-button iconButton=true onClick=onLeftMenuOpen class='hide-gt-sm'}}
+    {{#if isSidebarEnabled}}
+      {{#paper-button
+        iconButton=true
+        onClick=(action (mut sideNavigation.open true))
+        class='hide-gt-sm'}}
         {{paper-icon 'menu'}}
       {{/paper-button}}
     {{/if}}
 
     <h2>
-      {{#if title}}
-        {{title}}
+      {{#if navTitle}}
+        {{navTitle}}
       {{else}}
         {{#link-to 'application'}}{{t 'appname'}}{{/link-to}}
       {{/if}}

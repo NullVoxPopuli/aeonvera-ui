@@ -1,8 +1,10 @@
 & {
   z-index: 1;
   position: relative;
+  margin-top: 50px;
   @include sticky-footer;
 }
+
 footer {
   width: 100%;
   font-size: 1em;

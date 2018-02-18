@@ -1,6 +1,0 @@
-
-.container.center-parent#loading
-  .message.text-center.center-child.both
-    div.width-of-300px Loading stuff... Stand by...
-
-    .sp.sp-3balls

@@ -2,11 +2,22 @@
 
 {{from-elsewhere name='top-navigation'}}
 
-<div class='application-wrapper'>
-  {{outlet}}
-</div>
+{{#paper-sidenav-container}}
+  {{#if showSidebar}}
+    {{#paper-sidenav open=isSidebarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))}}
+      {{from-elsewhere name='left-side-bar'}}
+    {{/paper-sidenav}}
+  {{/if}}
 
-{{from-elsewhere name='app-footer'}}
+
+  <div class='application-wrapper'>
+    {{outlet}}
+  </div>
+
+  {{from-elsewhere name='app-footer'}}
+
+{{/paper-sidenav-container}}
+
 
 {{to-elsewhere
   named='app-footer'

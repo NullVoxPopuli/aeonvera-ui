@@ -1,5 +1,7 @@
 import Component from '@ember/component';
 
-export default class WelcomeNav extends Component {
+import { inject as service } from '@ember/service';
 
+export default class WelcomeNav extends Component {
+  session = service('session');
 }

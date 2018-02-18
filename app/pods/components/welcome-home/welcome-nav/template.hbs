@@ -13,6 +13,10 @@
     <div class='flex'></div>
 
     {{#if session.isAuthenticated}}
+      {{#paper-button onClick=(transition-to 'dashboard')}}
+        {{paper-icon 'Home'}} Home
+      {{/paper-button}}
+
       {{#paper-button onClick=logoutAction}}
         {{paper-icon 'exit to app'}} Logout
       {{/paper-button}}

@@ -1,20 +1,29 @@
 import Service from '@ember/service';
-import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
-import { task } from 'ember-concurrency';
 
+import { isPresent } from '@ember/utils';
+import { task } from 'ember-concurrency';
 import { service } from 'ember-decorators/service';
 
-export default class extends Service {
+export default class Login extends Service.extend({
+  // anything which *must* be merged to prototype here
+}) {
+  // normal class body definition here
   @service('session') session;
   @service('current-user') currentUser;
   @service('flash-notification') flash;
   @service('i18n') i18n;
+  @service('router') router;
 
   errorMessage = null;
 
   authenticate(credentials) {
     return this.get('auth').perform(credentials);
+  }
+
+  logoutAndRedirect() {
+    this.get('session').invalidate();
+    this.get('router').transitionTo('welcome');
   }
 
   auth = task(function * (credentials) {
@@ -63,5 +72,12 @@ export default class extends Service {
 
     this.set('errorMessage', message);
     throw message;
+  }
+}
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    'login': Login;
   }
 }
