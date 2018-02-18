@@ -6,6 +6,8 @@ import DS from 'ember-data';
 import ENV from '../config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
+import { pluralize } from 'ember-inflector';
+
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
   host: ENV.host,
@@ -15,7 +17,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   pathForType: function(type) {
     const underscored = underscore(type);
 
-    return Ember.String.pluralize(underscored);
+    return pluralize(underscored);
   },
 
   urlForFindRecord(id, modelName, snapshot) {

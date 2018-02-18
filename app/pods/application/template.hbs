@@ -1,20 +1,27 @@
 {{notification-container position='top'}}
 
-{{from-elsewhere name='top-navigation'}}
-
-{{#paper-sidenav-container}}
+{{#paper-sidenav-container class='sidenav-container-wrapper'}}
   {{#if showSidebar}}
-    {{#paper-sidenav open=isSidebarOpen class='md-whiteframe-z2' onToggle=(action (mut leftBarOpen))}}
+    {{#paper-sidenav
+      open=isSidebarOpen
+      lockedOpen=false
+      class='md-whiteframe-z2'
+      onToggle=(action (mut isSidebarOpen))}}
       {{from-elsewhere name='left-side-bar'}}
     {{/paper-sidenav}}
   {{/if}}
 
 
   <div class='application-wrapper'>
-    {{outlet}}
+    {{from-elsewhere name='top-navigation'}}
+
+    <section class='main-section'>
+      {{outlet}}
+    </section>
+
+    {{from-elsewhere name='app-footer'}}
   </div>
 
-  {{from-elsewhere name='app-footer'}}
 
 {{/paper-sidenav-container}}
 

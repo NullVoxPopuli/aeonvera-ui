@@ -1,0 +1,23 @@
+
+  @mixin sticky {
+    position: sticky;
+    // when stuck, 0px from the top
+    top: 0px;
+
+    z-index: 1000;
+  }
+
+  .sticky {
+    @include sticky;
+  }
+
+  .sticky-with-bg-color {
+    @include sticky;
+    background-color: grey;
+  }
+
+  @media (min-width: $layout-breakpoint-xs) {
+    .sticky-gt-xs {
+      @include sticky;
+    }
+  }

@@ -19,8 +19,7 @@ $accent: 'cyan';
 
 @import 'styles';
 
-
-
+@import './component-groups/all';
 @import 'table';
 @import 'help';
 @import 'sidebar';
@@ -44,25 +43,7 @@ $accent: 'cyan';
 
 @import 'pod-styles.scss';
 
-// how to sticky footer
-// html, body {
-//   height: 100%;
-// }
-// body {
-//   display: flex;
-//   flex-direction: column;
-// }
-// .content {
-//   flex: 1 0 auto;
-// }
-// .footer {
-//   flex-shrink: 0;
-// }
-
 html, body {
-  // needed for sticky footer
-  height: 100%;
-
   // defaults
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -71,61 +52,39 @@ html, body {
   margin: 0;
   padding: 0;
 
-  // application containing div
-  > div.ember-view {
-    @include sticky-footer-container;
+  // restrict body height, because scrolling will happen
+  // in a nested div. (because we have non-scrollable items)
+  height: 100%;
+  height: 100vh;
+
+  .sidenav-container-wrapper {
+    // has hidden overflow
+    // so sidebar doesn't cause scrollbars
+    height: 100%;
 
     .application-wrapper {
-      @include sticky-footer-content;
-      display: flex;
+      @include sticky-footer-container;
+      width: 100%;
+      overflow: auto;
+
+      section.main-section {
+        @include sticky-footer-content;
+        width: 100%;
+        min-height: 700px;
+        position: relative;
+        padding: 20px;
+
+        // so that content can be centered and such
+        display: flex;
+        // so it behaves like a normal web page...
+        flex-direction: column;
+      }
     }
   }
 
-  @mixin sticky {
-    position: sticky;
-    // when stuck, 0px from the top
-    top: 0px;
 
-    z-index: 1000;
-  }
-
-  .sticky {
-    @include sticky;
-  }
-
-  .sticky-with-bg-color {
-    @include sticky;
-    background-color: grey;
-  }
-
-  @media (min-width: $layout-breakpoint-xs) {
-    .sticky-gt-xs {
-      @include sticky;
-    }
-  }
 }
 
 blockquote {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-// sticky-footer styles
-.inner-wrap {
-  height: 100%;
-  height: 100vh;
-  overflow-x: hidden;
-  background: white;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  section.main-section, .shell, .inner-shell {
-    flex: 1;
-    // min-height: 100%;
-  }
-
-  .sticky-footer {
-    margin-top: 40px;
-    z-index: 1;
-  }
 }

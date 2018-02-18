@@ -3,8 +3,7 @@
     {{#if isSidebarEnabled}}
       {{#paper-button
         iconButton=true
-        onClick=(action (mut sideNavigation.open true))
-        class='hide-gt-sm'}}
+        onClick=(action (mut sideNavigation.open true))}}
         {{paper-icon 'menu'}}
       {{/paper-button}}
     {{/if}}
@@ -31,11 +30,7 @@
 
         {{#if session.isAuthenticated}}
           {{#content.menu-item onClick=(action (transition-to 'dashboard'))}}
-            {{paper-icon 'home'}}
-          {{/content.menu-item}}
-
-          {{#content.menu-item onClick=(action (transition-to 'user.edit'))}}
-            {{paper-icon 'person'}} Edit Profile
+            <i class='fas fa-home'></i>
           {{/content.menu-item}}
 
           {{#content.menu-item onClick=logoutAction}}
@@ -55,12 +50,9 @@
 
       {{#if session.isAuthenticated}}
         {{#paper-button onClick=(action (transition-to 'dashboard'))}}
-          {{paper-icon 'home'}} Home
+          <i class='fas fa-home'></i> Home
         {{/paper-button}}
 
-        {{#paper-button onClick=(action (transition-to 'user.edit'))}}
-          {{paper-icon 'person'}} Edit Profile
-        {{/paper-button}}
 
         {{#paper-button onClick=logoutAction}}
           {{paper-icon 'exit to app'}} Logout

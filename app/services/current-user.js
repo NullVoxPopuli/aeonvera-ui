@@ -19,7 +19,9 @@ export default class extends Service {
   @alias('user.name') name;
 
   @computed('user')
-  isMemberOf(user) {
+  get isMemberOf() {
+    const user = this.get('user');
+
     return organization => RSVP.all([user, organization]).then(array => {
       const [user, organization] = array;
 
@@ -28,7 +30,9 @@ export default class extends Service {
   }
 
   @computed('user')
-  latestRenewalFor(user) {
+  get latestRenewalFor() {
+    const user = this.get('user');
+
     return organization => RSVP.all([user, organization]).then(array => {
       const [user, organization] = array;
 
@@ -37,7 +41,9 @@ export default class extends Service {
   }
 
   @computed('session.data.authenticated.{token}')
-  user(token) {
+  get user() {
+    const token = this.get('session.data.authenticated.token');
+
     if (isEmpty(token)) {
       return null;
     }

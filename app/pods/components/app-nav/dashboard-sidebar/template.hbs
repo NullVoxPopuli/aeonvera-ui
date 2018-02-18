@@ -1,0 +1,53 @@
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools class='py-5'}}
+    {{#paper-button
+      iconButton=true
+      onClick=(action (mut sideNavigation.open true))}}
+      {{paper-icon 'menu'}}
+    {{/paper-button}}
+    {{or title currentUser.name}}
+
+    {{paper-divider}}
+  {{/paper-toolbar-tools}}
+
+  {{#paper-list}}
+    {{#paper-item onClick=(transition-to 'user.edit')}}
+      <i class='fas fa-edit fa-fw'></i>
+      Edit Profile
+    {{/paper-item}}
+
+    {{paper-divider}}
+
+    {{#paper-item onClick=(transition-to 'dashboard')}}
+      <i class='fas fa-home fa-fw'></i>
+      Home
+    {{/paper-item}}
+
+    {{#paper-item onClick=(transition-to 'dashboard')}}
+      <i class='fas fa-search fa-fw'></i>
+      Find an Event
+    {{/paper-item}}
+
+    {{#paper-item onClick=(transition-to 'dashboard.registered-events')}}
+      <i class='fas fa-calendar-check fa-fw'></i>
+      Registered Events
+    {{/paper-item}}
+
+    {{#paper-item onClick=(transition-to 'dashboard.hosted-events')}}
+      <i class='fas fa-calendar-alt fa-fw'></i>
+      Hosted Events
+    {{/paper-item}}
+
+    {{#paper-item onClick=(transition-to 'my-communities')}}
+      <i class='fab fa-ethereum fa-fw'></i>
+      My Communities
+    {{/paper-item}}
+
+    {{#paper-item onClick=(transition-to 'dashboard.orders')}}
+      <i class='fas fa-th-list fa-fw'></i>
+      Order History
+    {{/paper-item}}
+
+  {{/paper-list}}
+
+{{/paper-toolbar}}
