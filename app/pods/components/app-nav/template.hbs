@@ -36,8 +36,6 @@
           {{#content.menu-item onClick=logoutAction}}
             {{paper-icon 'exit to app'}} Logout
           {{/content.menu-item}}
-
-          {{gravatar-image email=currentUser.user.email}}
         {{else}}
           {{#content.menu-item
             data-test-app-nav-login-button
@@ -55,11 +53,29 @@
           <i class='fas fa-home'></i> Home
         {{/paper-button}}
 
-        {{#paper-button onClick=logoutAction}}
-          {{paper-icon 'exit to app'}} Logout
-        {{/paper-button}}
 
-        {{gravatar-image size=40 email=currentUser.user.email}}
+
+        {{#paper-menu isOpen=isUserMenuOpen offset='0 55' position="target-right target" as |menu|}}
+          {{#menu.trigger}}
+            {{gravatar-image size=40 email=currentUser.user.email}}
+          {{/menu.trigger}}
+
+          {{#menu.content as |content|}}
+            {{#content.menu-item onClick=(transition-to 'user.edit')}}
+              <i class='fas fa-edit fa-fw'></i>
+              Edit Profile
+            {{/content.menu-item}}
+
+            {{paper-divider}}
+
+            {{#content.menu-item onClick=logoutAction}}
+              {{#paper-button onClick=null}}
+                {{paper-icon 'exit to app'}}
+                Logout
+              {{/paper-button}}
+            {{/content.menu-item}}
+          {{/menu.content}}
+        {{/paper-menu}}
       {{else}}
         {{#link-to 'upcoming-events'}}<small>Upcoming Events</small>{{/link-to}}
 
