@@ -5,6 +5,7 @@ import { service } from '@ember-decorators/service';
 // UnauthenticatedRouteMixin,
 export default class Welcome extends Route {
   @service('i18n') i18n;
+  @service('navbar-title') navbarTitle;
 
   sessionAuthenticated() {
     this.transitionTo('dashboard');
