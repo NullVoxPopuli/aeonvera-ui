@@ -1,18 +1,19 @@
-import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
+import { service } from '@ember-decorators/service';
 
 // import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 // UnauthenticatedRouteMixin,
-export default Route.extend(SideNav, {
-  i18n: service(),
+export default class Welcome extends Route {
+  @service('i18n') i18n;
 
   sessionAuthenticated() {
     this.transitionTo('dashboard');
-  },
-
-  afterModel() {
-    this._hideSideNav();
   }
 
-});
+  afterModel() {
+    const name = this.get('i18n').t('appname');
+
+    this.get('navbarTitle').setTitle(name);
+  }
+
+}

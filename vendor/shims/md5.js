@@ -1,7 +1,9 @@
-define('md5', [], function() {
-  'use strict';
+(function() {
+  function vendorModule() {
+    'use strict';
 
-  return {
-    'default': md5
-  };
-});
+    return { 'default': self['md5'] };
+  }
+
+  define('md5', [], vendorModule);
+})();

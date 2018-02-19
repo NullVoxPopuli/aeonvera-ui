@@ -45,6 +45,11 @@ module.exports = function(defaults) {
   var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
   var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
 
+  // to support gravatar images
+  app.import('node_modules/blueimp-md5/js/md5.min.js');
+  app.import('vendor/shims/md5.js');
+
+
   if (isProductionLike) {
     app.import('vendor/support/crisp.js');
     app.import('vendor/support/fullstory.js');
