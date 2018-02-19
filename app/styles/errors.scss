@@ -1,24 +1,26 @@
-.error-message-hidden{
+.error-message-hidden {
   display: none;
 }
 
-.ember-error-notification{
-  display: none;
-  h4{
-    color: white;
+.ember-error-notification {
+  display   : none;
+  background: color($color-red, '100');
+  border    : 1px solid darken(color($color-red, '100'), 20%);
+  z-index   : 100000;
+  position  : fixed;
+  top       : 0;
+  right     : 0;
+  color     : white;
+  padding   : 10px;
+  width     : 400px;
+  font-size : 11px;
+
+  h4 {
+    color : white;
     margin: 0;
   }
-  hr{
+
+  hr {
     margin: 5px 0;
   }
-  background: color($color-red, '100');
-  border: 1px solid darken(color($color-red, '100'), 20%);
-  z-index: 100000;
-  position: fixed;
-  top: 0;
-  right: 0;
-  color: white;
-  padding: 10px;
-  width: 400px;
-  font-size: 11px;
 }

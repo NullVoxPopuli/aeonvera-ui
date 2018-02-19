@@ -3,12 +3,9 @@ import RSVP from 'rsvp';
 
 import { isPresent } from '@ember/utils';
 import { task } from 'ember-concurrency';
-import { service } from 'ember-decorators/service';
+import { service } from '@ember-decorators/service';
 
-export default class Login extends Service.extend({
-  // anything which *must* be merged to prototype here
-}) {
-  // normal class body definition here
+export default class Login extends Service {
   @service('session') session;
   @service('current-user') currentUser;
   @service('flash-notification') flash;

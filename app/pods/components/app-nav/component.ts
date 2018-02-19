@@ -9,6 +9,7 @@ export default class AppNav extends Component {
   session: Computed<any> = service('session');
   login = service('login');
   navbarTitle = service('navbar-title');
+  currentUser = service('current-user');
 
   navTitle = alias('navbarTitle.navTitle');
   isSidebarEnabled = alias('sideNavigation.isEnabled');

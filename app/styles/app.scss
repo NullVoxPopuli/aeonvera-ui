@@ -43,6 +43,10 @@ $accent: 'cyan';
 
 @import 'pod-styles.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   // defaults
   font-family: 'Open Sans', sans-serif;
@@ -72,7 +76,6 @@ html, body {
         width: 100%;
         min-height: 700px;
         position: relative;
-        padding: 20px;
 
         // so that content can be centered and such
         display: flex;

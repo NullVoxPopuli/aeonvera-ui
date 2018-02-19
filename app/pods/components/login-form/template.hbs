@@ -1,8 +1,10 @@
-<div class='{{errorContainerClass}} alert-box alert'>
-  <a class='close' onClick={{action 'hideError'}} href='#'>&times;</a>
-  <span class='message'>{{errorMessage}}</span>
-  <br />
-</div>
+{{#if hasError}}
+  {{form/error-display
+    class='mb-3'
+    error=errorMessage
+    onHide=(action 'hideError')
+  }}
+{{/if}}
 
 {{#paper-form onSubmit=(action 'authenticate') as |form|}}
   <div class='layout-column'>
@@ -23,7 +25,9 @@
     <div class='layout-row layout-align-space-between-center'>
       <a onClick={{action (transition-to 'passwordReset')}}>Forgot your password?</a>
 
-      {{#form.submit-button raised=true primary=true}}Login{{/form.submit-button}}
+      {{#form.submit-button raised=true primary=true}}
+        Login
+      {{/form.submit-button}}
     </div>
   </div>
 {{/paper-form}}

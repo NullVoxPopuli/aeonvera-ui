@@ -58,6 +58,7 @@
           {{paper-icon 'exit to app'}} Logout
         {{/paper-button}}
 
+        {{gravatar-image email=currentUser.user.email}}
       {{else}}
         {{#link-to 'upcoming-events'}}<small>Upcoming Events</small>{{/link-to}}
 

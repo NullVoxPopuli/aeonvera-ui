@@ -1,10 +1,11 @@
-import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import SetNavBarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
-export default Route.extend(SetNavBarTitle, {
-  i18n: service(),
+import { service } from '@ember-decorators/service';
+
+export default class DashboardIndex extends Route {
+  @service('i18n') i18n;
+  @service('navbar-title') navbarTitle;
 
   model() {
     const upcoming = this.store.findAll('upcoming-event');
@@ -15,9 +16,12 @@ export default Route.extend(SetNavBarTitle, {
     });
 
     return RSVP.hash({ upcoming, hosted });
-  },
+  }
 
   afterModel() {
-    this._setAppNavTitle(this.get('i18n').t('appname'));
+    const navbarTitle = this.get('navbarTitle');
+    const title = this.get('i18n').t('appname');
+
+    navbarTitle.setTitle(title);
   }
-});
+}
