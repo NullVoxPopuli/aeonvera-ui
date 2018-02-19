@@ -61,8 +61,14 @@
           {{/menu.trigger}}
 
           {{#menu.content as |content|}}
+            {{#content.menu-item onClick=null}}
+              <h4>{{currentUser.user.name}}</h4>
+            {{/content.menu-item}}
+
+            {{paper-divider}}
+
             {{#content.menu-item onClick=(transition-to 'user.edit')}}
-              <i class='fas fa-edit fa-fw'></i>
+              {{paper-icon 'mode edit'}}
               Edit Profile
             {{/content.menu-item}}
 
