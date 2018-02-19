@@ -22,7 +22,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "@types/ember": "^2.8.8",
+    "@types/ember": "^2.8.13",
     "@types/ember-testing-helpers": "^0.0.3",
     "@types/jquery-mockjax": "^2.0.31",
     "@types/rsvp": "^4.0.1",
