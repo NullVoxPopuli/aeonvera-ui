@@ -1,23 +1,24 @@
 import Route from '@ember/routing/route';
-import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
+import { service } from '@ember-decorators/service';
+import { action } from '@ember-decorators/object';
 
-export default Route.extend(SetNavbarTitle, {
-  model: function(params) {
+export default class EventsShow extends Route {
+  @service('navbar-title') navbarTitle;
+
+  model(params) {
     return this.store.findRecord('event', params.event_id, {
       include: 'opening_tier,current_tier,integrations,sponsorships'
     });
-  },
-
-  actions: {
-    didTransition() {
-      const model = this.get('currentModel');
-      const name = model.get('name');
-
-      this.set('title', name);
-      this._setAppNavTitle(name);
-
-      // Don't execute parent didTransitions
-      return false;
-    }
   }
-});
+
+  @action
+  didTransition() {
+    const model = this.get('currentModel');
+    const name = model.get('name');
+
+    this.get('navbarTitle').setTitle(name);
+
+    // Don't execute parent didTransitions
+    return false;
+  }
+}
