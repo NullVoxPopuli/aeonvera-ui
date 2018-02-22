@@ -1,0 +1,70 @@
+<div class='layout-row layout-align-space-between-center'>
+  <h3>Hosted Events</h3>
+  <span>
+
+    {{#unless hasHostedAnEvent}}
+      {{#paper-checkbox value=showMyEvents onChange=(action (mut showMyEvents))}}
+        Show Only My Events
+      {{/paper-checkbox}}
+    {{/unless}}
+
+    {{#paper-button onClick=(transition-to 'events.new') raised=true primary=true}}
+      Host an Event
+    {{/paper-button}}
+  </span>
+</div>
+
+{{#unless hasHostedAnEvent}}
+  <p>
+    You have not yet hosted an event.
+    Hosting an event is free!
+    Click the 'Host an Event' button below to get get started.
+  </p>
+
+  {{#paper-button onClick=(transition-to 'events.new') raised=true primary=true}}
+    Host an Event
+  {{/paper-button}}
+{{/unless}}
+
+
+{{#if hasHelpedOrganizeAnEvent}}
+
+  {{#paper-data-table as |t|}}
+    {{#t.head as |h|}}
+      {{#h.column}} Name {{/h.column}}
+      {{#h.column}} Attendees {{/h.column}}
+      {{#h.column}} Registration Opens {{/h.column}}
+      {{#h.column}} Date {{/h.column}}
+    {{/t.head}}
+
+    {{#t.body as |b|}}
+
+      {{#each filteredEvents as |event|}}
+
+        {{#b.row as |r|}}
+          {{#r.cell}}
+            {{#link-to 'events.show' event.id}} {{event.name}} {{/link-to}}
+          {{/r.cell}}
+
+          {{#r.cell}} {{event.totalAttendees}} {{/r.cell}}
+
+          {{#r.cell}}
+            {{#if event.isRegistrationOpen}}
+              Open
+            {{else if event.hasEnded}}
+              Closed
+            {{else}}
+              {{date-with-format event.registrationOpensAt 'llll'}}
+            {{/if}}
+          {{/r.cell}}
+
+          {{#r.cell}} {{date-range event.startsAt event.endsAt}} {{/r.cell}}
+
+        {{/b.row}}
+
+      {{/each}}
+
+    {{/t.body}}
+  {{/paper-data-table}}
+
+{{/if}}

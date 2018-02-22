@@ -139,7 +139,7 @@
     "ember-simple-auth-token": "^3.0.0",
     "ember-wormhole": "^0.5.2",
     "moment": "^2.20.1",
-    "paper-data-table": "^0.1.4"
+    "paper-data-table": "https://github.com/ibarrick/paper-data-table.git"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.* || >= 8.*"

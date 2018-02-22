@@ -8185,6 +8185,13 @@ paper-data-table@^0.1.4:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.0.10"
 
+"paper-data-table@https://github.com/ibarrick/paper-data-table.git":
+  version "0.1.4"
+  resolved "https://github.com/ibarrick/paper-data-table.git#255d121b6db71b21e4d44bdc91dc94628218e4ee"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-htmlbars "^1.0.10"
+
 parse-glob@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/parse-glob/-/parse-glob-3.0.4.tgz#b2c376cfb11f35513badd173ef0bb6e3a388391c"

@@ -1,25 +1,34 @@
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  showMyEvents: false,
+import { computed } from '@ember-decorators/object';
+import { gt, alias, filter, empty, mapBy } from '@ember-decorators/object/computed';
 
-  /*
-    TODO: make the checkbox call an action and then
-    move this logic to the route
-  */
-  filteredModel: function() {
-    const store = this.store;
+export default class HostedEvents extends Controller {
+  showMyEvents = false;
+
+  @alias('model') events;
+
+  @gt('events.length', 0) hasHelpedOrganizeAnEvent;
+
+  @mapBy('events', 'myEvent') boolMyEvents;
+
+  @filter('boolMyEvents')
+  notHostedByMe(myEventValue) {
+    return myEventValue === false
+  }
+
+  @empty('notHostedByMe') hasHostedAnEvent;
+
+  @computed('events.[]', 'showMyEvents')
+  get filteredEvents() {
+    const events = this.get('events');
     const onlyMe = this.get('showMyEvents');
 
     if (onlyMe) {
-      const promise = store.filter('hosted-event', function(e) {
-        return e.get('myEvent');
-      });
-
-      return promise;
+      return events.filter(e => e.get('myEvent'));
     }
-    return store.findAll('hosted-event');
 
-  }.property('model.[]', 'showMyEvents')
+    return events;
 
-});
+  }
+}
