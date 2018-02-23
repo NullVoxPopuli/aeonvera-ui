@@ -1,4 +1,9 @@
 <div class='center-marign width-of-700'>
+
+  {{form/image-upload-with-preview
+    value=model.logo
+    onChange=(action (mut-file model.logo))
+  }}
   {{form/content-editable
     tagName='h1'
     value=model.name
