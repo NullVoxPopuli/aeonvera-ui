@@ -26,25 +26,15 @@
   }
 
   body{
+    a {
+      text-decoration: none;
+      color: $link-color;
+    }
 
     a.disabled {
       opacity: 0.3;
       cursor:  default;
     }
-
-    // .shell{
-    //   background-color: $content-background;
-    //
-    //   .page-title{
-    //     padding-top: 20px;
-    //   }
-    //
-    // }
-    //
-    // .panel.bg-header{
-    //   height: 200px;
-    //   padding-top: 50px;
-    // }
 
   }
 

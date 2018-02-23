@@ -1,7 +1,14 @@
-{{ember-flatpickr
-  dateFormat='F j, Y at h:i K'
-  timeFormat='h:i K'
-  value=(readonly value)
-  enableTime=true
-  altInput='text'
-  onChange=(action 'selectDate')}}
+<md-input-container class='md-default-theme {{if value 'md-input-has-value'}}'>
+  {{#if label}}
+    <label class={{if required 'md-required'}}>{{label}}</label>
+  {{/if}}
+
+  {{ember-flatpickr
+    class='md-input'
+    dateFormat='F j, Y at h:i K'
+    timeFormat='h:i K'
+    value=(readonly value)
+    enableTime=true
+    altInput='text'
+    onChange=(action 'selectDate')}}
+</md-input-container>

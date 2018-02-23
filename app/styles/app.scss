@@ -1,19 +1,35 @@
+// desaturate header bar (primary color)
+// make call to action a warmer complimentary color to the primary
+// utilize whitespace.
+// make links not so linky
+
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import 'fontawesome/css/fontawesome-all.min.css';
 // $foreground: "foreground-light";
 // $background: "background-dark";
 // $dark: true;
-$link: 'light-blue';
-$primary: 'deep-purple';
-$secondary: 'amber';
-$accent: 'cyan';
 
+// $layout-breakpoint-xs
+// $layout-breakpoint-xs
+// $layout-breakpoint-sm
+// $layout-breakpoint-md
+// $layout-breakpoint-lg
+$link: 'light-blue' !default;
+$primary: 'deep-purple' !default;
+$secondary: 'amber' !default;
+$accent: 'cyan' !default;
+$warn: 'red' !default;
+$default-color: '500' !default;
+
+$call-to-action: 'pink' !default;
 
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
 @import 'paper-data-table';
 @import 'colors';
+
+@import 'material-overrides';
 
 @import './utility/all';
 

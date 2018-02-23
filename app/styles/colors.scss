@@ -2,7 +2,9 @@ $ember-orange: #D2665C;
 $rails-red: #cc0000;
 
 $primary-color: color($primary, '500');
-
+$link-color: color($primary, '900');
+$link-active-color: darken($link-color, 20%);
+$call-to-action-color: color($call-to-action, '600');
 
 
 
@@ -10,8 +12,6 @@ $wrapping-background: #333333;
 $footer-background: $wrapping-background;
 $body-background: $footer-background;
 $content-background: white;
-$link-color: #2ba6cb;
-$link-active-color: darken($link-color, 20%);
 $footer-link-color-small: #aaa;
 $dark-background-text-color: white;
 $footer-link-color: color($color-grey, '100');

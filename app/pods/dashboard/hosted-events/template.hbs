@@ -42,6 +42,10 @@
       {{#each filteredEvents as |event|}}
 
         {{#b.row as |r|}}
+          {{!-- {{#r.cell}}
+            <img src={{event.logoUrlMedium}} />
+          {{/r.cell}} --}}
+
           {{#r.cell}}
             {{#link-to 'events.show' event.id}} {{event.name}} {{/link-to}}
           {{/r.cell}}

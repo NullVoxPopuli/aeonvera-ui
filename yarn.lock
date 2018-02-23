@@ -8178,13 +8178,6 @@ pac-resolver@^3.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/package/-/package-1.0.1.tgz#d25a1f99e2506dcb27d6704b83dca8a312e4edcc"
 
-paper-data-table@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/paper-data-table/-/paper-data-table-0.1.4.tgz#1b9262925aad16391ab20dd7a6cc62bf6941cae8"
-  dependencies:
-    ember-cli-babel "^5.1.7"
-    ember-cli-htmlbars "^1.0.10"
-
 "paper-data-table@https://github.com/ibarrick/paper-data-table.git":
   version "0.1.4"
   resolved "https://github.com/ibarrick/paper-data-table.git#255d121b6db71b21e4d44bdc91dc94628218e4ee"

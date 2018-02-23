@@ -1,0 +1,120 @@
+{{#paper-form onSubmit=(action 'save') as |form|}}
+
+  {{#form.input
+    label='Event Name'
+    required=true
+    value=model.name
+    onChange=(action (mut model.name))
+    errors=(map-by 'message' model.errors.name)
+    as |input|}}
+    {{#unless input.hasValue}}
+      <div class="hint">Event Name Year</div>
+    {{/unless}}
+  {{/form.input}}
+
+  {{form.input
+    label='Description'
+    required=true
+    value=model.shortDescription
+    onChange=(action (mut model.shortDescription))
+    errors=(map-by 'message' model.errors.shortDescription)
+  }}
+
+  {{#form.input
+    label='Location'
+    required=true
+    value=model.location
+    onChange=(action (mut model.location))
+    errors=(map-by 'message' model.errors.location)
+    as |input|}}
+    {{#unless input.hasValue}}
+      <div class="hint">City, State.</div>
+    {{/unless}}
+  {{/form.input}}
+
+  {{form/url-namespace-field classes='columns small-12 medium-6' errors=model.errors field='domain' model=model}}
+
+  {{form/date-time
+    label='Starts At'
+    required=true
+    value=model.startsAt
+    onChange=(action (mut model.startsAt))}}
+
+  {{form/date-time
+    label='Ends At'
+    required=true
+    value=model.endsAt
+    onChange=(action (mut model.endsAt))
+  }}
+
+  {{form/date-time
+    label='Registration Opens At'
+    required=true
+    value=model.openingTier.date
+    onChange=(action (mut model.openingTier.date))
+  }}
+
+  {{#form.input
+    label='Contact Email'
+    value=model.contactEmail
+    onChange=(action (mut model.contactEmail))
+    errors=(map-by 'message' model.errors.contactEmail)
+    as |input|}}
+    {{#unless input.hasValue}}
+      <div class="hint">included in registration and order receipts</div>
+    {{/unless}}
+  {{/form.input}}
+
+  {{form.input
+    label='Website'
+    value=model.website
+    onChange=(action (mut model.website))
+    errors=(map-by 'message' model.errors.website)
+  }}
+
+  {{form.input
+    label='Allow Discounts'
+    type='checkbox'
+    value=model.allowDiscounts
+    onChange=(action (mut model.allowDiscounts))
+  }}
+
+  {{form.input
+    label='Allow Combined Discounts'
+    type='checkbox'
+    value=model.allowCombinedDiscounts
+    onChange=(action (mut model.allowCombinedDiscounts))
+  }}
+
+
+  {{form.input
+    label='Show on Public Calendar'
+    type='checkbox'
+    value=model.showOnPublicCalendar
+    onChange=(action (mut model.showOnPublicCalendar))
+  }}
+
+  {{form.input
+    label='Allow Volunteer Sign Up'
+    type='checkbox'
+    value=model.hasVolunteers
+    onChange=(action (mut model.hasVolunteers))
+  }}
+
+  {{form.input
+    label='Make Registrants Pay Fees'
+    type='checkbox'
+    value=model.makeAttendeesPayFees
+    onChange=(action (mut model.makeAttendeesPayFees))
+  }}
+
+  {{form.input
+    label='Accept Only Electronic Payments'
+    type='checkbox'
+    value=model.acceptOnlyElectronicPayments
+    onChange=(action (mut model.acceptOnlyElectronicPayments))
+  }}
+
+
+  {{form/image-upload property='logo' model=model}}
+{{/paper-form}}
