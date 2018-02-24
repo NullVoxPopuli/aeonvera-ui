@@ -24,7 +24,6 @@ export default class FormContentEditable extends Component {
 
   @not('disabled') contenteditable;
 
-
   valueObserver = observer('value', function() {
     console.log(this.element);
     this.element.innerHTML = this.get('value');

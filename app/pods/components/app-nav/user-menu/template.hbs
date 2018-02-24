@@ -1,0 +1,27 @@
+{{#paper-menu isOpen=isUserMenuOpen offset='0 55' position="target-right target" as |menu|}}
+  {{#menu.trigger}}
+    {{gravatar-image size=40 email=user.email}}
+  {{/menu.trigger}}
+
+  {{#menu.content as |content|}}
+    {{#content.menu-item onClick=null}}
+      <h4>{{currentUser.name}}</h4>
+    {{/content.menu-item}}
+
+    {{paper-divider}}
+
+    {{#content.menu-item onClick=(transition-to 'user.edit')}}
+      {{paper-icon 'mode edit'}}
+      Edit Profile
+    {{/content.menu-item}}
+
+    {{paper-divider}}
+
+    {{#content.menu-item onClick=logoutAction}}
+      {{#paper-button onClick=null}}
+        {{paper-icon 'exit to app'}}
+        Logout
+      {{/paper-button}}
+    {{/content.menu-item}}
+  {{/menu.content}}
+{{/paper-menu}}

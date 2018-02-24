@@ -1,9 +1,9 @@
 & {
   position: relative;
-  // padding: 20px;
 
   &.not-answered {
     background: $inactive-background-color;
+    padding: 15px;
 
     .content {
       opacity: 0.5;

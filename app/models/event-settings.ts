@@ -4,6 +4,8 @@ const { attr, belongsTo } = DS;
 
 export default class EventSettings extends DS.Model.extend({
   requireCityState: attr('boolean'),
+  askOrientation: attr('boolean'),
+  askForVolunteers: attr('boolean'),
 
   event: belongsTo('event')
 }) {

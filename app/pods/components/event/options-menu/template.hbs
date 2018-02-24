@@ -1,0 +1,25 @@
+{{#paper-menu isOpen=isOptionsMenuOpen position='target-right target' as |menu|}}
+  {{#menu.trigger}}
+    {{#paper-button onClick=null raised=true}}
+      Event Options
+    {{/paper-button}}
+  {{/menu.trigger}}
+
+
+    {{#menu.content as |content|}}
+      {{#content.menu-item onClick=null}}
+        {{#paper-button onClick=null}}
+          Payment Configuration
+        {{/paper-button}}
+      {{/content.menu-item}}
+
+      {{paper-divider}}
+
+      {{#content.menu-item onClick=null}}
+        {{#paper-button onClick=null}}
+          Scheduling Options
+        {{/paper-button}}
+      {{/content.menu-item}}
+
+    {{/menu.content}}
+{{/paper-menu}}

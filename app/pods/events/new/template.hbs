@@ -1,1 +1,6 @@
 {{event/new-wizard event=model}}
+
+{{to-elsewhere
+  named='top-navigation'
+  send=(component 'app-nav/event-new-nav' event=model)
+}}

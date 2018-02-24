@@ -1,0 +1,27 @@
+{{#paper-toolbar class='welcome-toolbar' as |nav|}}
+  {{#nav.tools}}
+    {{#if showSidebarToggler}}
+      {{#paper-button iconButton=true onClick=onLeftMenuOpen class='hide-gt-sm'}}
+        {{paper-icon 'menu'}}
+      {{/paper-button}}
+    {{/if}}
+
+    <h2>
+      {{#link-to 'application'}}
+        <i class="fas fa-chevron-left"></i>
+      {{/link-to}}
+
+      {{event.name}}
+    </h2>
+
+    <div class='flex'></div>
+
+    {{event/options-menu event=event}}
+
+    {{#paper-button raised=true primary=true}}
+      Publish
+    {{/paper-button}}
+
+    {{app-nav/user-menu}}
+  {{/nav.tools}}
+{{/paper-toolbar}}
