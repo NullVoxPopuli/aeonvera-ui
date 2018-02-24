@@ -40,6 +40,8 @@ export default Host.extend(RegistrationOpens, {
 
   openingTier: belongsTo('opening-tier', { async: false }),
   currentTier: belongsTo('pricing-tier', { async: false }),
+  settings: belongsTo('event-settings', { async: false }),
+
   packages: hasMany('package'),
   levels: hasMany('level'),
   competitions: hasMany('competitions', { inverse: 'event' }),

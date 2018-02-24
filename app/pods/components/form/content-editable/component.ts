@@ -5,9 +5,7 @@ import { computed, readonly } from '@ember-decorators/object';
 import { alias, not } from '@ember-decorators/object/computed';
 // import { argument } from '@ember-decorators/argument';
 
-export default class FormContentEditable extends Component.extend({
-  // anything which *must* be merged to prototype here
-}) {
+export default class FormContentEditable extends Component {
   tagName: string;
   placeholder: string;
   disabled = false;

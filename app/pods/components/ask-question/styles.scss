@@ -1,0 +1,41 @@
+& {
+  position: relative;
+  // padding: 20px;
+
+  &.not-answered {
+    background: $inactive-background-color;
+
+    .content {
+      opacity: 0.5;
+    }
+    // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .question {
+    margin-left: -45px;
+    margin-right: -45px;
+  }
+
+  &.accepted {
+    .question {
+      opacity: 0;
+    }
+  }
+
+  .content, .question {
+    transition-property: all;
+    transition-duration: 0.3s;
+  }
+
+  &.not-answered .content,
+  &.rejected .content {
+    // opacity: 0.4;
+  }
+
+  &.rejected .question,
+  &.rejected .content {
+    // position: absolute;
+    // opacity: 0;
+    // height: 0;
+  }
+}

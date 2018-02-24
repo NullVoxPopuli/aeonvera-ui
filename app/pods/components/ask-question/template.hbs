@@ -1,0 +1,23 @@
+<div class='content'>
+  {{yield}}
+</div>
+
+{{#unless value}}
+  <div class='question'>
+    {{#paper-card as |card|}}
+      {{#card.content}}
+        {{text}}
+      {{/card.content}}
+
+      {{#card.actions}}
+        {{#paper-button onClick=(action 'reject')}}
+          No
+        {{/paper-button}}
+
+        {{#paper-button onClick=(action 'confirm')}}
+          Yes
+        {{/paper-button}}
+      {{/card.actions}}
+    {{/paper-card}}
+  </div>
+{{/unless}}

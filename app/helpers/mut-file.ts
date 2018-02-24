@@ -1,9 +1,7 @@
 import { helper } from '@ember/component/helper';
 
 export function mutFile(params, hash) {
-  console.log('[mutFile] ', params, this, ...arguments);
-  const something = params[0];
-  console.log('[]', something.modelName, something.id)
+  console.log('[mutFile] ', this, ...arguments);
   return (...args) => {
     const value = args[0];
     console.log('args', args)
