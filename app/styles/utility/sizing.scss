@@ -1,0 +1,9 @@
+$size-intervals: 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3;
+
+@each $amount in $size-intervals {
+  $modifier: str-replace($amount, '.', '-');
+
+  .size-#{$modifier} {
+    font-size: #{$amount}em;
+  }
+}

@@ -1,9 +1,10 @@
-{{#if value}}
+{{#if (and value dataUrl)}}
   <img src={{dataUrl}} />
 {{else}}
-  <div>
+  <span class='no-image-container'>
     <i class="fas fa-image"></i>
-    Click to set image
-    <input type='file' value=value />
-  </div>
+    <span>Choose an Image</span>
+  </span>
 {{/if}}
+
+<input type='file' value=value onchange={{action 'fileSelected'}} />

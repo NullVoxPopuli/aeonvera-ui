@@ -24,6 +24,7 @@ $default-color: '500' !default;
 
 $call-to-action: 'pink' !default;
 
+@import './functions';
 @import 'ember-paper';
 @import 'ember-paper-expansion-panel';
 @import 'paper-data-table';

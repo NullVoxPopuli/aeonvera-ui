@@ -1,0 +1,61 @@
+& {
+  position: relative;
+  // border: 1px solid grey;
+
+  // img {
+  //   height: 200px;
+  //   width: 200px;
+  //   border-radius: 100px;
+  // }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+
+    &:hover:before {
+      content: 'Choose an Image';
+      // width: 300px;
+      // height: 300px;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .no-image-container {
+    position: relative;
+    // width: 300px;
+    // height: 300px;
+    display: block;
+    opacity: 0.3;
+
+    i {
+      text-align: center;
+      display: block;
+      font-size: 100px;
+      // vertical-align: middle;
+      // font-size: 300px;
+      opacity: 0.5;
+
+      // align-self: flex-start;
+    }
+
+    span {
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-bottom: -15px;
+      font-size: 1.2em;
+      color: black;
+    }
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+}
