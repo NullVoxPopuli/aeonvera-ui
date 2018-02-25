@@ -8,14 +8,12 @@ export default class DashboardIndex extends Route {
   @service('navbar-title') navbarTitle;
 
   model() {
+    // TODO: make one call to the current user, and include these relationships
     const upcoming = this.store.findAll('upcoming-event');
-    const hosted = this.store.query('event-summary', {
-      q: {
-        starts_at_gteq: new Date()
-      }
-    });
+    const hosted = this.store.findAll('event-summary');
+    const registrations = this.store.findAll('users/registration');
 
-    return RSVP.hash({ upcoming, hosted });
+    return RSVP.hash({ upcoming, hosted, registrations });
   }
 
   afterModel() {

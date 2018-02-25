@@ -5,7 +5,7 @@
       {{form/image-upload-with-preview
         class='flex-20 flex-gt-xs-30 m-2'
         value=event.logo
-        onChange=(action (mut-file event.logo))
+        onChange=(action (mut-file event 'logo'))
       }}
 
       <div class='layout-column flex-grow layout-align flex-80 flex-gt-xs-70 '>

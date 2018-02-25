@@ -1,22 +1,51 @@
-<div class='layout-column'>
+<div class='layout-row'>
+  <div class='layout-column flex-50 layout-align-center-center'>
+    {{log numberOfHostedEvents}}
+    <h1 class='mb-3'>{{numberOfHostedEvents}}</h1>
+    <h4 class='mb-4 mt-1'>
+      Hosted Events
+    </h4>
 
-  {{#if (is-present upcomingHostedEvents)}}
-    <h4>Hosted Events</h4>
-    <div class='layout-row layout-wrap'>
-      {{#each upcomingHostedEvents as |event|}}
-        {{upcoming-hosted-event event=event class='flex-xs-100 flex-gt-sm-50'}}
-      {{/each}}
+    <div class='layout-row'>
+      {{#paper-button onClick=(transition-to 'dashboard.hosted-events')}}
+        View All
+      {{/paper-button}}
+
+      {{#paper-button onClick=(transition-to 'events.new') raised=true primary=true}}
+        Host an Event
+      {{/paper-button}}
     </div>
-  {{/if}}
 
-  <br />
-  <br />
-  <h4>Upcoming Events</h4>
-  <div class='layout-row layout-wrap'>
+  </div>
 
-    {{#each upcomingEvents as |event|}}
-      {{upcoming-event event=event class='flex-xs-100 flex-gt-sm-50'}}
-    {{/each}}
+  <div class='layout-column flex-50 layout-align-center-center'>
+    <h1 class='mb-3'>{{numberOfRegistrations}}</h1>
+    <h4 class='mb-4 mt-1'>Registered Events</h4>
+    <div class='layout-row'>
+      {{#paper-button onClick=(transition-to 'dashboard.registered-events')}}
+        View Registered
+      {{/paper-button}}
+
+      {{#paper-button onClick=(transition-to 'upcoming-events') raised=true }}
+        Register for Another
+      {{/paper-button}}
+    </div>
+  </div>
+
+</div>
+{{paper-divider class='mt-4'}}
+
+
+<div class='layout-row layout-align-center-center'>
+  <div class='layout-column flex-xs-100 flex-gt-sm-50'>
+    <h4>Upcoming Events</h4>
+    <div class='layout-row layout-wrap'>
+
+      {{#each upcomingEvents as |event|}}
+        {{upcoming-event event=event class='flex-100'}}
+      {{/each}}
+
+    </div>
   </div>
 </div>
 
