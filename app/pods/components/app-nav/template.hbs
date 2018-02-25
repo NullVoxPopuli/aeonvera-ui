@@ -22,31 +22,7 @@
 
     <div class='flex'></div>
 
-    <div class='hide-gt-xs'>
-      {{#ember-paper/ellipsis-menu as |content menu|}}
-        {{#content.menu-item onClick=(action (transition-to 'upcoming-events'))}}
-          Upcoming Events
-        {{/content.menu-item}}
-
-        {{#if session.isAuthenticated}}
-          {{#content.menu-item onClick=(action (transition-to 'dashboard'))}}
-            <i class='fas fa-home'></i>
-          {{/content.menu-item}}
-
-          {{#content.menu-item onClick=logoutAction}}
-            {{paper-icon 'exit to app'}} Logout
-          {{/content.menu-item}}
-        {{else}}
-          {{#content.menu-item
-            data-test-app-nav-login-button
-            onClick=(action (transition-to 'login'))}}
-            Login
-          {{/content.menu-item}}
-        {{/if}}
-      {{/ember-paper/ellipsis-menu}}
-    </div>
-
-    <div class='hide-xs layout-row'>
+    <div class='layout-row'>
 
       {{#if session.isAuthenticated}}
         {{#paper-button onClick=(action (transition-to 'dashboard'))}}

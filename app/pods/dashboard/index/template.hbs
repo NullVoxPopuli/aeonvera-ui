@@ -6,7 +6,7 @@
       Hosted Events
     </h4>
 
-    <div class='layout-row'>
+    <div class='layout-column layout-gt-xs-row'>
       {{#paper-button onClick=(transition-to 'dashboard.hosted-events')}}
         View All
       {{/paper-button}}
@@ -21,7 +21,8 @@
   <div class='layout-column flex-50 layout-align-center-center'>
     <h1 class='mb-3'>{{numberOfRegistrations}}</h1>
     <h4 class='mb-4 mt-1'>Registered Events</h4>
-    <div class='layout-row'>
+
+    <div class='layout-column layout-gt-xs-row'>
       {{#paper-button onClick=(transition-to 'dashboard.registered-events')}}
         View Registered
       {{/paper-button}}

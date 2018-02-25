@@ -1,5 +1,5 @@
 <div class='layout-row layout-align-space-between-center'>
-  <h3>Hosted Events</h3>
+  <h3 class='ml-20'>Hosted Events</h3>
   <span>
 
     {{#unless hasHostedAnEvent}}
@@ -8,7 +8,7 @@
       {{/paper-checkbox}}
     {{/unless}}
 
-    {{#paper-button onClick=(transition-to 'events.new') raised=true primary=true}}
+    {{#paper-button class='mr-20' onClick=(transition-to 'events.new') raised=true primary=true}}
       Host an Event
     {{/paper-button}}
   </span>
