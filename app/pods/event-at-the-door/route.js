@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 
-import { action } from 'ember-decorators/object';
-import { service } from 'ember-decorators/service';
+import { action } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 export default class extends Route {
-  @service navbarTitle;
+  @service('navbar-title') navbarTitle;
 
   model(params) {
     return this.get('store').findRecord('event', params.event_id, {
@@ -12,16 +12,14 @@ export default class extends Route {
     });
   }
 
-  actions = {
-    didTransition() {
-      const name = this.get('currentModel.name');
-      const navbarTitle = this.get('navbarTitle');
+  @action
+  didTransition() {
+    const name = this.get('currentModel.name');
+    const navbarTitle = this.get('navbarTitle');
 
-      navbarTitle.showSideNav();
-      navbarTitle.setAppNavTitle(name);
+    navbarTitle.setTitle(name);
 
-      // Don't execute parent didTransitions
-      return false;
-    }
+    // Don't execute parent didTransitions
+    return false;
   }
 }

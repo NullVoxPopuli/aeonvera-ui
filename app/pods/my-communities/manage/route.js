@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
-import SetNavbarTitle from 'aeonvera/mixins/routes/set-navbar-title';
 
-export default Route.extend(SetNavbarTitle, {
+export default Route.extend({
+  navbarTitle: service('navbar-title'),
+
   model: function(params) {
     const id = params.organization_id;
 
@@ -17,8 +18,7 @@ export default Route.extend(SetNavbarTitle, {
       const model = this.get('currentModel');
       const name = model.get('name');
 
-      this.set('title', name);
-      this._setAppNavTitle(name);
+      this.get('navbarTitle').setTitle(name);
 
       // Don't execute parent didTransitions
       return false;

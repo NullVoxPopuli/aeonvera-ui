@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 import { w } from '@ember/string';
 import { computed } from 'ember-decorators/object';
 import { not } from 'ember-decorators/object/computed';
-import SideNav from 'aeonvera/mixins/routes/set-navbar-title';
 
 const eventInclude = w(`
   packages
@@ -16,9 +15,10 @@ const eventInclude = w(`
   pricing_tiers
 `).join(',');
 
-export default Route.extend(SideNav, {
+export default Route.extend({
   session: service(),
   i18n: service(),
+  navbarTitle: service('navbar-title'),
 
 
   // TODO: maybe eventually make requiring to login optional?
@@ -37,12 +37,10 @@ export default Route.extend(SideNav, {
       return this.transitionTo('register.event-registration.must-login', model);
     }
 
-    this._showSideNav();
-
     const name = model.get('name');
     const i18n = this.get('i18n');
 
-    this._setAppNavTitle(name);
+    this.get('navbarTitle').setTitle(name);
     this.set('title', `${name} - ${i18n.t('appname')}`);
   }
 
