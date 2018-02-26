@@ -6,7 +6,7 @@
 
 <div class='show-gt-sm layout-column'>
   {{#link-to 'events.show' event.id classNames='width-of-60 padding-10 center-margin'}}
-    <img src={{event.logoUrlMedium}} />
+    <img class='width-of-100' src={{event.logoUrlMedium}} />
   {{/link-to}}
 
   {{#paper-button raised=true primary=true onClick=(transition-to 'events.show' event.id)}}

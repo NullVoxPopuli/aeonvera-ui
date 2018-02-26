@@ -1,0 +1,72 @@
+{{#paper-stepper
+  currentStep=currentStep
+  class='md-whiteframe-4dp'
+  alternative=true
+  onStepChange=(action (mut currentStep))
+  onStepperCompleted=(action onComplete) as |stepper|}}
+
+  {{#stepper.step label="Creating the Event" as |step|}}
+    {{#step.body}}
+      After the tutorial, you'll be presented with a screen that will represent the registration form
+      that potential registrants will be presented with when siging up for you event.
+    {{/step.body}}
+    {{#step.actions class='layout-row layout-align-end' as |nextStep previousStep|}}
+      {{#paper-button onClick=(action onComplete)}}
+        Skip Tutorial
+      {{/paper-button}}
+
+      {{#paper-button onClick=(action previousStep)}}
+        Back
+      {{/paper-button}}
+
+      {{#paper-button primary=true raised=true onClick=(action nextStep)}}
+        Continue
+      {{/paper-button}}
+    {{/step.actions}}
+  {{/stepper.step}}
+
+
+  {{#stepper.step label="Payments" as |step|}}
+    {{#step.body}}
+      You'll be asked to connect your Stripe account. If you don't have a Stripe account,
+      the only thing you'll need is a bank account to connect to the Stripe account.
+      <br />
+      <br />
+      Stripe will deposit money into your bank account every two days.
+    {{/step.body}}
+    {{#step.actions class='layout-row layout-align-end' as |nextStep previousStep|}}
+      {{#paper-button onClick=(action onComplete)}}
+        Skip Tutorial
+      {{/paper-button}}
+
+      {{#paper-button onClick=(action previousStep)}}
+        Back
+      {{/paper-button}}
+
+      {{#paper-button primary=true raised=true onClick=(action nextStep)}}
+        Continue
+      {{/paper-button}}
+    {{/step.actions}}
+  {{/stepper.step}}
+
+  {{#stepper.step label="Publishing" as |step|}}
+    {{#step.body}}
+      Once your event is ready to be seen by the public,
+      click the publish button in the top right corner.
+      <br /><br />
+      Potential registrants will only be greeted with the event's welcome screen and countdown,
+      and may not register until the specified date.
+      {{model.openingTier.date}}
+    {{/step.body}}
+
+    {{#step.actions class='layout-row layout-align-end' as |nextStep previousStep|}}
+      {{#paper-button onClick=(action previousStep)}}
+        Back
+      {{/paper-button}}
+
+      {{#paper-button primary=true raised=true onClick=(action nextStep)}}
+        OK, begin customizing event
+      {{/paper-button}}
+    {{/step.actions}}
+  {{/stepper.step}}
+{{/paper-stepper}}

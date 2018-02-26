@@ -2,6 +2,8 @@ $ember-orange: #D2665C;
 $rails-red: #cc0000;
 
 $primary-color: color($primary, '500');
+$primary-inverse: white;
+
 $link-color: color($primary, '900');
 $link-active-color: darken($link-color, 20%);
 $inactive-background-color: darken(white, 10%);
@@ -14,6 +16,16 @@ $content-background: white;
 $footer-link-color-small: #aaa;
 $dark-background-text-color: white;
 $footer-link-color: color($color-grey, '100');
+
+.primary {
+  color: $primary-color;
+  background: $primary-inverse
+}
+
+.primary-bg {
+  color: $primary-inverse;
+  background: $primary-color;
+}
 
 .success-color {
   color: color($color-green, '100');

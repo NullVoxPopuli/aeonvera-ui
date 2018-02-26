@@ -45,24 +45,24 @@
           </div>
 
           {{#if (true-or-undefined settings.requireCityState)}}
-            <div class='layout-row layout-align-center-center'>
-              {{#ask-question
-                text='Do you want to collect city/state information?'
-                value=settings.requireCityState
-                onChange=(action (mut settings.requireCityState))
-              }}
-                <div class='layout-row'>
-                  {{paper-input type='text' label='City' onChange=null}}
-                  {{paper-input type='text' label='State' onChange=null}}
-                </div>
+            {{#ask-question
+              text='Do you want to collect city/state information?'
+              class='mb-4'
+              value=settings.requireCityState
+              onChange=(action (mut settings.requireCityState))
+            }}
+              <div class='layout-row'>
+                {{paper-input type='text' label='City' onChange=null}}
+                {{paper-input type='text' label='State' onChange=null}}
+              </div>
 
-              {{/ask-question}}
-            </div>
+            {{/ask-question}}
           {{/if}}
 
           {{#if (true-or-undefined settings.askOrientation)}}
             {{#ask-question
               text="Do you need to know the registrant's preferred dance orientation"
+              class='mb-4'
               value=settings.askOrientation
               onChange=(action (mut settings.askOrientation))
             }}
@@ -78,8 +78,9 @@
           {{#if (true-or-undefined settings.askForVolunteers)}}
             {{#ask-question
               text="Are you in need of volunteers?"
-              value=settings.askOrientation
-              onChange=(action (mut settings.askOrientation))
+              class='mb-4'
+              value=settings.askForVolunteers
+              onChange=(action (mut settings.askForVolunteers))
             }}
 
               {{#paper-checkbox

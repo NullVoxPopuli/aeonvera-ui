@@ -1,68 +1,14 @@
+{{page-header text='New Event'}}
+{{editing/event/event-basic-info-form model=model cancelPath='dashboard' saveSuccessPath='events.show'}}
+
 <div class='layout-row flex-100 mt-sm-5 layout-align-center-start'>
   {{#unless showForm}}
-    {{#paper-stepper
-      currentStep=currentStep
-      class='md-whiteframe-4dp flex-xs-100 flex-gt-xs-70'
-      alternative=true
-      onStepChange=(action (mut currentStep))
-      onStepperCompleted=(action (mut showForm false)) as |stepper|}}
-
-      {{#stepper.step label="Creating the Event" as |step|}}
-        {{#step.body}}
-          After the tutorial, you'll be presented with a screen that will represent the registration form
-          that potential registrants will be presented with when siging up for you event.
-        {{/step.body}}
-        {{#step.actions as |nextStep previousStep|}}
-          {{#paper-button primary=true raised=true onClick=(action nextStep)}}
-            Continue
-          {{/paper-button}}
-          {{#paper-button onClick=(action previousStep)}}
-            Back
-          {{/paper-button}}
-          {{#paper-button onClick=(action (mut showForm false))}}
-            Skip Tutorial
-          {{/paper-button}}
-        {{/step.actions}}
-      {{/stepper.step}}
-
-
-      {{#stepper.step label="Payments" as |step|}}
-        {{#step.body}}
-          You'll be asked to connect your Stripe account. If you don't have a Stripe account,
-          the only thing you'll need is a bank account to connect to the Stripe account.
-          <br  />
-          <br />
-          Stripe will deposit money into your bank account every two days.
-        {{/step.body}}
-        {{#step.actions as |nextStep previousStep|}}
-          {{#paper-button primary=true raised=true onClick=(action nextStep)}}
-            Continue
-          {{/paper-button}}
-          {{#paper-button onClick=(action previousStep)}}
-            Back
-          {{/paper-button}}
-          {{#paper-button onClick=(action (mut showForm false))}}
-            Skip Tutorial
-          {{/paper-button}}
-        {{/step.actions}}
-      {{/stepper.step}}
-
-      {{#stepper.step label="Publishing" as |step|}}
-        {{#step.body}}
-          {{!-- Content here. Probably some form. --}}
-        {{/step.body}}
-        {{#step.actions as |nextStep previousStep|}}
-          {{#paper-button primary=true raised=true onClick=(action nextStep)}}
-            Continue
-          {{/paper-button}}
-          {{#paper-button onClick=(action previousStep)}}
-            Back
-          {{/paper-button}}
-        {{/step.actions}}
-      {{/stepper.step}}
-    {{/paper-stepper}}
+    {{event/new-tutorial
+      class='flex-xs-100 flex-gt-xs-70'
+      event=modal
+      onComplete=(action (mut showForm) true)
+    }}
   {{/unless}}
-
 </div>
 
 {{#if showForm}}

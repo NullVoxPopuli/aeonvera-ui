@@ -1,4 +1,4 @@
-<div class='layout-row'>
+<div class='layout-row layout-align-space-between-stretch'>
   <div class='layout-column flex-50 layout-align-center-center'>
     {{log numberOfHostedEvents}}
     <h1 class='mb-3'>{{numberOfHostedEvents}}</h1>
@@ -39,7 +39,7 @@
 
 <div class='layout-row layout-align-center-center'>
   <div class='layout-column flex-xs-100 flex-gt-sm-50'>
-    <h4>Upcoming Events</h4>
+    <h4 class='ml-20'>Upcoming Events</h4>
     <div class='layout-row layout-wrap'>
 
       {{#each upcomingEvents as |event|}}

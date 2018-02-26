@@ -1,0 +1,17 @@
+{{#paper-data-table as |t|}}
+  {{#t.head as |h|}}
+    {{#h.column}} Name {{/h.column}}
+    {{#h.column}} Own $ {{/h.column}}
+    {{#h.column}} Time Registered {{/h.column}}
+  {{/t.head}}
+
+  {{#t.body as |b|}}
+    {{#each model as |registration|}}
+      {{#b.row as |r|}}
+        {{#r.cell}} {{registration-link model=registration}} {{/r.cell}}
+        {{#r.cell}} {{to-usd registration.amountOwed}} {{/r.cell}}
+        {{#r.cell}} {{date-with-format registration.registeredAt 'lll'}} {{/r.cell}}
+      {{/b.row}}
+    {{/each}}
+  {{/t.body}}
+{{/paper-data-table}}

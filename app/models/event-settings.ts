@@ -3,9 +3,17 @@ import DS from 'ember-data';
 const { attr, belongsTo } = DS;
 
 export default class EventSettings extends DS.Model.extend({
+  // time settings
+  showOnPublicCalendar: attr('boolean'),
+
+  // form settings
   requireCityState: attr('boolean'),
   askOrientation: attr('boolean'),
   askForVolunteers: attr('boolean'),
+  isHousingEnabled: attr('boolean'),
+  housingEndsAt: attr('date'),
+  allowDiscounts: attr('boolean'),
+
 
   event: belongsTo('event')
 }) {
