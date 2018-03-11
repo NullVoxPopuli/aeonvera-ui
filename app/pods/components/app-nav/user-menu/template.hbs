@@ -17,7 +17,7 @@
 
     {{paper-divider}}
 
-    {{#content.menu-item onClick=logoutAction}}
+    {{#content.menu-item onClick=(action 'logout')}}
       {{#paper-button onClick=null}}
         {{paper-icon 'exit to app'}}
         Logout

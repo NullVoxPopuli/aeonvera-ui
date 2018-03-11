@@ -20,6 +20,11 @@ module.exports = function(defaults) {
         'transform-class-properties',
       ]
     },
+    // sassOptions: {
+    //   includePaths: [
+    //     'node_modules/billboard.js/dist/billboard.min.css'
+    //   ]
+    // },
     'ember-cli-babel': {
       includePolyfill: true,
     },
@@ -48,6 +53,10 @@ module.exports = function(defaults) {
   // to support gravatar images
   app.import('node_modules/blueimp-md5/js/md5.min.js');
   app.import('vendor/shims/md5.js');
+
+  // to support c3.js / billboard.js (c3 but for d3v4)
+  app.import('node_modules/billboard.js/dist/billboard.js');
+  app.import('vendor/shims/billboard.js');
 
 
   if (isProductionLike) {

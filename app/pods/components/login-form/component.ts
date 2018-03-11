@@ -19,19 +19,20 @@ export default class LoginForm extends Component {
   @notEmpty('errorMessage') hasError;
 
   @action
-  authenticate() {
+  async authenticate() {
     const afterLogin = this.get('afterLogin');
     const credentials = {
       identification: this.get('identification'),
       password: this.get('password')
     };
 
-    this.get('login')
-      .authenticate(credentials, afterLogin)
-      .then(() => afterLogin && this.sendAction('afterLogin'))
-      .catch(e => {
-        this.set('errorMessage', e || FALLBACK_ERROR);
-      });
+
+    try {
+      await this.get('login').authenticate(credentials, afterLogin);
+      if (afterLogin) this.sendAction('afterLogin');
+    } catch (e) {
+      this.set('errorMessage', e || FALLBACK_ERROR);
+    }
   }
 
   @action

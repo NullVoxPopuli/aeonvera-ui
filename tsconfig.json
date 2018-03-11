@@ -8,7 +8,6 @@
     "noEmitOnError": false,
     "noEmit": true,
     "sourceMap": true,
-    "allowNonTsExtensions": true,
 
     "experimentalDecorators": true,
     "baseUrl": ".",
