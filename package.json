@@ -105,7 +105,7 @@
     "ember-radio-button": "1.1.1",
     "ember-reactive-helpers": "^0.5.0",
     "ember-resize": "^0.0.17",
-    "ember-resolver": "^4.5.0",
+    "ember-resolver": "^4.5.5",
     "ember-responsive": "^2.0.4",
     "ember-rollbar-client": "^0.4.0",
     "ember-route-action-helper": "^2.0.3",
