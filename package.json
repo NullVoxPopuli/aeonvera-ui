@@ -79,7 +79,7 @@
     "ember-custom-actions": "^1.6.0",
     "ember-d3": "^0.4.1",
     "ember-data": "~2.18.0",
-    "ember-data-factory-guy": "^2.13.7",
+    "ember-data-factory-guy": "^3.1.1",
     "ember-data-filter": "1.13.0",
     "ember-data-paperclip": "^0.2.0",
     "ember-decorators": "git://github.com/ember-decorators/ember-decorators.git",
