@@ -97,7 +97,7 @@
     "ember-loading-route": "0.0.3",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-model-validator": "^2.0.0",
-    "ember-paper": "^1.0.0-beta.4",
+    "ember-paper": "^1.0.0-beta.5",
     "ember-paper-expansion-panel": "^0.0.1",
     "ember-power-select": "^1.8.5",
     "ember-promise-helpers": "^1.0.3",
